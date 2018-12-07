@@ -1,2 +1,2 @@
-# paper2-Phylogeography
+# paper2-phylogeography
 Phylogeography of Yersinia
