@@ -50,7 +50,6 @@ TABLE_COLUMNS = {
                 ],
   "BioSample" : [
                 {"Accession": "Accession"},
-                {"AccessionSecondary": "NullVar"},
                 {"BioProject": ["Link","label"]},
                 {"SRAAccession": ["Id","SRA","db"]},
                 {"BioSampleTitle": "Title"},

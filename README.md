@@ -55,11 +55,11 @@ python ~/Programs/NCBImeta/src/NCBImeta.py --flat --config config/paper2-phyloge
 ```
 ALTER TABLE BioSample ADD COLUMN AccessionSecondary TEXT;
 
-ALTER TABLE Assembly ADD COLUMN Comment TEXT;
-ALTER TABLE BioSample ADD COLUMN Comment TEXT;
-ALTER TABLE BioProject ADD COLUMN Comment TEXT;
-ALTER TABLE Nucleotide ADD COLUMN Comment TEXT;
-ALTER TABLE SRA ADD COLUMN Comment TEXT;
+ALTER TABLE Assembly ADD COLUMN AssemblyComment TEXT;
+ALTER TABLE BioSample ADD COLUMN BioSampleComment TEXT;
+ALTER TABLE BioProject ADD COLUMN BioProjectComment TEXT;
+ALTER TABLE Nucleotide ADD COLUMN NucleotideComment TEXT;
+ALTER TABLE SRA ADD COLUMN SRAComment TEXT;
 ```
 
 **3. Make a copy of the raw database**
@@ -93,6 +93,9 @@ python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/o
 - Prefer assemblies/bioprojects with detailed methodology info.
 
 **7. Construct the Master Join table**
+```
+python ~/Programs/NCBImeta/src/NCBImeta_Join.py --database NCBImeta/output/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA" --final Master --unique "Accession AccessionSecondary BioProject"
+```
 
 
 
