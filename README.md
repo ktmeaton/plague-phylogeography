@@ -42,11 +42,20 @@ Data Access:
 - Assembly statistics
 
 
-### NCBI
+### NCBI metadata
+**1. Retrieve plague metadata from NCBI**
+
 NCBImeta, v0.3.1 commit e53deb1
 ```
 python ~/Programs/NCBImeta/src/NCBImeta.py --flat --config config/paper2-phylogeography_config.py
+
 ```
+
+**2. Make a copy of the raw database**
+
+**3. Retain only records relevant to plague or Yersinia pestis.
+
+
 
 ### EnteroBase
 All Yersinia pestis species as of 2018-1207
