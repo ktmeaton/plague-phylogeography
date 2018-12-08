@@ -63,8 +63,11 @@ ALTER TABLE SRA ADD COLUMN Comment TEXT;
 ```
 
 **3. Make a copy of the raw database**
+```
+cp NCBImeta/output/yersinia_pestis_db.sqlite NCBImeta/output/yersinia_pestis_db_RAW.sqlite
+```
 
-**4. Filter to remove:**
+**4. Filter the BioSample table to remove:**
 - Records not relevant to plague or Yersinia pestis (ie. Organism/OrganismAlt)
 - Transcriptomic sequencing projects ("RNA" in BioSampleTitle or SampleType)
 - Laboratory manipulation experiment ("transposon in BioSampleTitle or "vivo" in SampleName or "insertion" in BioSampleTitle)
@@ -73,6 +76,7 @@ ALTER TABLE SRA ADD COLUMN Comment TEXT;
 
 **5. Deal with samples that have multiple BioSample accessions or missing BioProject/Strain info**
 - Annotate Cui et al. (2013) strains and the Peruvian (2010) strains and misc samples missing BioProject and/or Strain
+- The misc script also changes problematic characters (spaces,slashes,brackets)
 ```
 python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_cui2013_part2.txt --table BioSample
 python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_peru_part2.txt --table BioSample
@@ -84,8 +88,11 @@ python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/o
 - Remove any BioSample record that does not have BioProject (save for the Black Death project that is "None")
 
 **6. Remove duplicate strains**
+- Remove duplicate strains
+- When considering complete genomes, prefer the original version. Transfer over metadata where needed.
+- Prefer assemblies/bioprojects with detailed methodology info.
 
-- Remove duplicate strains, preferring newest where possible. (exception: Reference Genome CO92 keep original SAMEA1705942)
+**7. Construct the Master Join table**
 
 
 
