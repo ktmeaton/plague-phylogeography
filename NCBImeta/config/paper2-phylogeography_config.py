@@ -1,7 +1,7 @@
-OUTPUT_DIR = "output"
+OUTPUT_DIR = "NCBImeta/output"
 EMAIL = "eatonk3@mcmaster.ca"
-DATABASE = "yersinia_pestis_db_take2.sqlite"
-TABLES = ["Assembly","BioSample", "BioProject", "SRA"]
+DATABASE = "yersinia_pestis_db.sqlite"
+TABLES = ["Assembly","BioSample", "BioProject", "SRA", "Nucleotide"]
 SEARCH_TERMS = {"Assembly": "(plague OR pestis OR Yersinia pestis)",
                 "BioProject": "(plague OR pestis OR Yersinia pestis) AND (bioproject assembly[Filter] OR bioproject sra[Filter])",
                 "BioSample": "(plague OR pestis OR Yersinia pestis) AND (biosample assembly[Filter] OR biosample sra[Filter])",
@@ -51,6 +51,7 @@ TABLE_COLUMNS = {
                 ],
   "BioSample" : [
                 {"BioSampleAccession": "Accession"},
+                {"BioSampleAccessionSecondary" : "NullValue"},
                 {"BioSampleBioProjectAccession": ["Link","label"]},
                 {"BioSampleSRAAccession": ["Id","SRA","db"]},
                 {"BioSampleTitle": "Title"},
@@ -188,7 +189,7 @@ TABLE_COLUMNS = {
                 {"SRACenterName" : ["Submitter", "center_name"]},
                 {"SRAContactName" : ["Submitter", "contact_name"]},
                 {"SRALabName" : ["Submitter", "lab_name"]},
-                {"SRASubmitterAccession" : ["Submitter", "acc"]}.
+                {"SRASubmitterAccession" : ["Submitter", "acc"]},
                 {'SRAComment' : 'NullValue'}
                 ]
                 }

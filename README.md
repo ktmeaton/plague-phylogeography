@@ -2,84 +2,27 @@
 Phylogeography of Yersinia
 
 ## Data Acquisition
-Genomic data and metadata acquisition from public repositories.
-Desired information falls into 3 categories (sample, project info, data access)  
-
-- Strain
-- Alternative Strain Name
-- Collection Date
-- GeographicFull
-- Continent
-- Country
-- Region
-- District
-- City
-- Latitude
-- Longitude
-- Elevation
-- Environemntal misc (land cover?)
-- SourceFull
-- Niche
-- General or Common Name
-- Genus
-- Species
-- Disease
-- Biovar
-- Phylogroup
-- BioProject Accession
-- BioProject Description
-- BioSample
-
-
-Project Information:
-- BioProject
-- Date entered and modified
-
-
-Data Access:
-- Sequencing Info
-- SRA Experiment Run Sample
-- Assembly statistics
-
 
 ### NCBI metadata
 **1. Retrieve plague metadata from NCBI**
 
 NCBImeta, v0.3.1 commit e53deb1
 ```
-python ~/Programs/NCBImeta/src/NCBImeta.py --flat --config config/paper2-phylogeography_config.py
+python ~/Programs/NCBImeta/src/NCBImeta.py --flat --config NCBImeta/config/paper2-phylogeography_config.py
 
 ```
 
-**2. Add columns if they're missing (old program version) vis DB Browser**
-```
-ALTER TABLE BioSample ADD COLUMN AccessionSecondary TEXT;
-
-ALTER TABLE Assembly ADD COLUMN AssemblyComment TEXT;
-ALTER TABLE BioSample ADD COLUMN BioSampleComment TEXT;
-ALTER TABLE BioProject ADD COLUMN BioProjectComment TEXT;
-ALTER TABLE Nucleotide ADD COLUMN NucleotideComment TEXT;
-ALTER TABLE SRA ADD COLUMN SRAComment TEXT;
-```
-
-**3. Make a copy of the raw database**
+**2. Make a copy of the raw database**
 ```
 cp NCBImeta/output/yersinia_pestis_db.sqlite NCBImeta/output/yersinia_pestis_db_RAW.sqlite
 ```
 
-**4. Filter the BioSample table to remove:**
-- Records not relevant to plague or Yersinia pestis (ie. Organism/OrganismAlt)
-- Transcriptomic sequencing projects ("RNA" in BioSampleTitle or SampleType)
-- Laboratory manipulation experiment ("transposon in BioSampleTitle or "vivo" in SampleName or "insertion" in BioSampleTitle)
-- Treatment experiment (PRJNA254747 as BioProject, irradiation experiment)
-- Prarie dog passage experiments ("prarie dog in BioSampleTitle and PRJNA340278 as BioProject, passage in Infraspecies)
-
-**5. Deal with samples that have multiple BioSample accessions or missing BioProject/Strain info**
-- Annotate Cui et al. (2013) strains and the Peruvian (2010) strains and misc samples missing BioProject and/or Strain
-- The misc script also changes problematic characters (spaces,slashes,brackets)
+**3. Deal with samples that have multiple BioSample accessions or missing BioProject/Strain info**
+- Annotate Cui et al. (2013) strains and the Peruvian (2010) strains missing BioProject and/or Strain info
+- The misc file fixes problematic strain characters (spaces, slashes, parentheses, underscores) as well as adding bioproject info.
 ```
-python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_cui2013_part2.txt --table BioSample
-python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_peru_part2.txt --table BioSample
+python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_cui2013.txt --table BioSample
+python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_peru.txt --table BioSample
 python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_misc.txt --table BioSample
 
 ```
@@ -87,14 +30,21 @@ python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/o
 - Similarly for the Peruvian project, only the links with Organization=="University of MD" are the good ones with proper links to the SRA.
 - Remove any BioSample record that does not have BioProject (save for the Black Death project that is "None")
 
-**6. Remove duplicate strains**
-- Remove duplicate strains
-- When considering complete genomes, prefer the original version. Transfer over metadata where needed.
-- Prefer assemblies/bioprojects with detailed methodology info.
-
-**7. Construct the Master Join table**
+**4. Filter the BioSample table to remove records**
+- Mark the BioSample\_id fields with "REMOVE" for undesirable records.
 ```
-python ~/Programs/NCBImeta/src/NCBImeta_Join.py --database NCBImeta/output/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA" --final Master --unique "Accession AccessionSecondary BioProject"
+python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_remove.txt --table BioSample
+```
+- Records not relevant to plague or Yersinia pestis (ie. Organism/OrganismAlt)
+- Transcriptomic sequencing projects ("RNA" in BioSampleTitle or SampleType)
+- Laboratory manipulation experiment ("transposon in BioSampleTitle or "vivo" in SampleName or "insertion" in BioSampleTitle)
+- Treatment experiment (PRJNA254747 as BioProject, irradiation experiment)
+- Prarie dog passage experiments ("prarie dog in BioSampleTitle and PRJNA340278 as BioProject, passage in Infraspecies)
+- Duplicate strains (prioritizing original complete genomes, updated version, more complete metadata)
+
+**5. Construct the Master Join table**
+```
+python ~/Programs/NCBImeta/src/NCBImeta_Join.py --database NCBImeta/output/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
 ```
 
 

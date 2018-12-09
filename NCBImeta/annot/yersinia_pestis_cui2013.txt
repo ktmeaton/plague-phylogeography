@@ -1,4 +1,4 @@
-Accession	BioProject	Strain	SRAAccession	AccessionSecondary
+BioSampleAccession	BioSampleBioProjectAccession	BioSampleStrain	BioSampleSRAAccession	BioSampleAccessionSecondary
 SAMN02402991	PRJNA47685	12	SRS116668	SAMN00115135
 SAMN00115135	PRJNA47685	12	SRS116668	SAMN02402991
 SAMN02402992	PRJNA47685	164	SRS116670	SAMN00115137
