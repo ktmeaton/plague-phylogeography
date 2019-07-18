@@ -6,9 +6,9 @@ Phylogeography of Yersinia
 ### NCBI metadata
 **1. Retrieve plague metadata from NCBI**
 
-NCBImeta, v0.3.1 commit e53deb1
+NCBImeta, v0.3.1 commit 7c10cc8
 ```
-python ~/Programs/NCBImeta/src/NCBImeta.py --flat --config NCBImeta/config/paper-phylogeography_config.py
+python NCBImeta.py --flat --config NCBImeta/config/paper-phylogeography_config.py
 
 ```
 
