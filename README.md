@@ -1,4 +1,4 @@
-# paper2-phylogeography
+# paper-phylogeography
 Phylogeography of Yersinia
 
 ## Data Acquisition
@@ -8,7 +8,7 @@ Phylogeography of Yersinia
 
 NCBImeta, v0.3.1 commit e53deb1
 ```
-python ~/Programs/NCBImeta/src/NCBImeta.py --flat --config NCBImeta/config/paper2-phylogeography_config.py
+python ~/Programs/NCBImeta/src/NCBImeta.py --flat --config NCBImeta/config/paper-phylogeography_config.py
 
 ```
 
