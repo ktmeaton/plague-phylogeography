@@ -14,10 +14,8 @@
 */
 
 def helpMessage() {
+    log.info pipelineHeader()
     log.info"""
-    =========================================
-    ${workflow.manifest.name} v${workflow.manifest.version}
-    =========================================
     Usage:
 
     The typical command for executing the pipeline is:
@@ -36,6 +34,8 @@ def helpMessage() {
 // Extra configuration variables
 // SQLite commands script
 params.sqlite_commands = "$baseDir/sqlite_import.sh"
+params.genbank_asm_suffix = "_genomic.fna.gz"
+params.assembly_for_download_file = "assembly_for_download.txt"
 
 // Show help message
 params.help = false
@@ -61,18 +61,37 @@ if (params.sqlite){
                   .ifEmpty { exit 1, "SQLite commands script not found: ${params.sqlite_commands}" }
 
   process sqlite_import{
+    // Import assembly ftp url from database, retrieve file names and URL for web get
     echo true
+    log.info pipelineHeader()
     log.info"""SQLite database selected: ${params.sqlite}"""
 
     input:
     file sqlite from sqlite_ch
-    file sqlitecmd from sqlite_cmd_ch
+
+    output:
+    file params.assembly_for_download_file into assembly_for_download
 
     script:
     """
-    echo ${sqlite};
-    echo ${sqlitecmd};
-    #sqlite3 ${sqlite} ".read ${baseDir}/sqlite_import.sh";
+    sqlite3 ${sqlite} 'select AssemblyFTPGenbank from Assembly' | sed 's/ /\\n/g' | while read line;
+    do
+      if [[ ! -z \$line ]]; then
+        asm_url=\$line;
+        asm_fasta=`echo \$line | cut -d "/" -f 10 | awk -v suffix=${params.genbank_asm_suffix} '{print \$0 suffix}'`;
+        asm_ftp=\${asm_url}/\${asm_fasta};
+        echo \$asm_ftp >> ${params.assembly_for_download_file}
+      fi;
+    done;
     """
   }
+}
+
+def pipelineHeader() {
+  return"""
+  =========================================
+  ${workflow.manifest.name} v${workflow.manifest.version}
+  =========================================
+  """.stripIndent()
+
 }
