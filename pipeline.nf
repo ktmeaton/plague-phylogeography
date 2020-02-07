@@ -76,7 +76,6 @@ params.file_assembly_for_download_ftp = "assembly_for_download.txt"
 params.reference_genome_ftp = "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/009/065/GCF_000009065.1_ASM906v1/GCF_000009065.1_ASM906v1_genomic.fna.gz"
 
 // Snippy Paramaeters
-params.snippy_prefix = "snps"
 params.snippy_ctg_depth = 10
 params.snippy_map_qual = 30
 params.snippy_min_frac = 0.9
@@ -202,7 +201,8 @@ process snippy_pairwise{
 
   output:
   file "output${params.snippy_ctg_depth}X/*/*"
-  file "${params.snippy_prefix}.txt" into ch_snippy_snps_txt
+  file "output${params.snippy_ctg_depth}X/*/${asm_fna.baseName}.txt" into ch_snippy_snps_txt
+  file "${reference_genome_fna.baseName}" into ch_reference_genome
 
   when:
   !params.skip_snippy_pairwise
@@ -212,7 +212,7 @@ process snippy_pairwise{
   gunzip -f ${reference_genome_fna}
 
   snippy \
-    --prefix ${params.snippy_prefix} \
+    --prefix ${asm_fna.baseName} \
     --cpus ${params.snippy_cpus} \
     --reference ${reference_genome_fna.baseName} \
     --outdir output${params.snippy_ctg_depth}X/${asm_fna.baseName} \
@@ -242,6 +242,45 @@ process snippy_variant_summary{
 
   script:
   """
-  echo -e FILE"\\t"COMPLEX"\\t"DEL"\\t"INS"\\t"MNP"\\t"SNP"\\t"TOTAL > ${params.snippy_variant_summary};
+  COMPLEX=`awk 'BEGIN{count=0}{if (\$1 == "Variant-COMPLEX"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  DEL=`awk 'BEGIN{count=0}{if (\$1 == "Variant-DEL"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  INS=`awk 'BEGIN{count=0}{if (\$1 == "Variant-INS"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  MNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-MNP"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  echo -e ${snippy_snps_txt}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> ${params.snippy_variant_summary};
+  done
   """
 }
+
+// -------------------------------------------------------------------------- //
+//                       Filtering Before Multiple Alignment                  //
+// -------------------------------------------------------------------------- //
+
+//process reference_detect_repeats{
+//}
+
+process reference_detect_low_complexity{
+  // Detect low complexity regions with dust masker
+  publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+
+  echo true
+
+  input:
+  file reference_genome from ch_reference_genome
+
+  output:
+  file ${reference_genome.baseName}.dustmasker.intervals
+  //file bed_ref_low_complex into ch_bed_ref_low_complex
+
+  when:
+  !params.skip_reference_detect_low_complexity
+
+  script:
+  """
+  dustmasker -in ${reference_genome} -outfmt interval > ${reference_genome.baseName}.dustmasker.intervals
+  """
+}
+
+//process pairwise_detect_snp_high_density{
+//}
