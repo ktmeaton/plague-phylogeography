@@ -36,7 +36,7 @@ def helpMessage() {
 // SQLite commands script
 params.sqlite_commands = "$baseDir/sqlite_import.sh"
 params.genbank_asm_suffix = "_genomic.fna.gz"
-params.assembly_for_download_ftp_file = "assembly_for_download.txt"
+params.assembly_for_download_file = "assembly_for_download.txt"
 
 // Show help message
 params.help = false
@@ -62,7 +62,8 @@ if (params.sqlite){
 
   sqlite_ch = Channel.fromPath(params.sqlite, checkIfExists: true)
                   .ifEmpty { exit 1, "SQLite database not found: ${params.sqlite}" }
-  asm_ch =
+  sqlite_cmd_ch = Channel.fromPath(params.sqlite_commands, checkIfExists: true)
+                  .ifEmpty { exit 1, "SQLite commands script not found: ${params.sqlite_commands}" }
 
   process sqlite_import{
     // Import assembly ftp url from database, retrieve file names and URL for web get
@@ -74,21 +75,23 @@ if (params.sqlite){
     file sqlite from sqlite_ch
 
     output:
-    file params.assembly_for_download_ftp_file into assembly_for_download_ftp_ch
+    file params.assembly_for_download_file into assembly_for_download_ch
+    file assembly_for_download_ftp into assembly_for_download_ftp_ch
 
     script:
     """
     ftp_list=""
     fna_gz_list=""
-    echo "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/009/909/655/GCA_009909655.1_ASM990965v1 ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/009/909/645/GCA_009909645.1_ASM990964v1" | sed 's/ /\\n/g' | while read line;
+    sqlite3 ${sqlite} 'select AssemblyFTPGenbank from Assembly' | sed 's/ /\\n/g' | while read line;
     do
       if [[ ! -z \$line ]]; then
         asm_url=\$line;
         asm_fasta=`echo \$line | cut -d "/" -f 10 | awk -v suffix=${params.genbank_asm_suffix} '{print \$0 suffix}'`;
         asm_ftp=\${asm_url}/\${asm_fasta};
-        echo \$asm_ftp >> ${params.assembly_for_download_ftp_file}
+        echo \$asm_ftp >> ${params.assembly_for_download_file}
       fi;
     done;
+    cat ${params.assembly_for_download_file} > ${assembly_for_download_ftp}
     """
   }
 
@@ -97,18 +100,14 @@ if (params.sqlite){
     publishDir "${params.outdir}/assembly_download", mode: 'copy'
 
     echo true
-    // Deal with new lines
-    assembly_for_download_ftp_ch.splitText()
-            .map { file(it.replaceFirst(/\n/,'')) }
-            .set { ftp_url_list_ch }
 
     input:
-    file asm_fna_gz from ftp_url_list_ch
+    file asm_dwnl_txt from assembly_for_download_ch
 
+    output:
 
     script:
     """
-    echo ${asm_fna_gz}
     """
   }
 }
