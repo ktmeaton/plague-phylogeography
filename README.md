@@ -1,6 +1,14 @@
 # paper-phylogeography
 Phylogeography of Yersinia pestis
 
+## Requirements
+
+### Dependencies
+NextFlow  
+NCBImeta  
+sqlite3 (CLI)  
+snippy  
+
 ## Data Acquisition
 
 ### NCBI metadata
@@ -18,29 +26,38 @@ cp NCBImeta/output/yersinia_pestis_db.sqlite NCBImeta/output/yersinia_pestis_db_
 ```
 
 **3. Deal with samples that have multiple BioSample accessions or missing BioProject/Strain info**
-- Annotate Cui et al. (2013) strains and the Peruvian (2010) strains missing BioProject and/or Strain info
-- The misc file fixes problematic strain characters (spaces, parentheses, underscores) as well as adding bioproject info.
+The misc file fixes problematic strain characters (spaces, parentheses, underscores) as well as adding bioproject info.
+```
+python NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_misc.txt --table BioSample
+```
+Annotate Cui et al. (2013) strains and the Peruvian (2010) strains missing BioProject and/or Strain info
 ```
 python NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_cui2013.txt --table BioSample
 python NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_peru.txt --table BioSample
-python NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_misc.txt --table BioSample
 
 ```
-- Now keep only the Cui (2013) strains that have BioProject PRJNA47685 and Organization=="BGI". The records that have links to "Beijing Genomics Institute" Organization in this BioProject are duplicates and point to poor BioSample records. They are to be deleted.
-- Similarly for the Peruvian project, only the links with Organization=="Institute for Genome Sciences  University of MD School of Medicine" are the good ones with proper links to the SRA. All Peruvian project records with Organization=="University of Maryland School of Medicine, Institute for Genome Sciences" are bad duplicates and should be deleted.
-- Remove any BioSample record that does not have BioProject (save for the Black Death project that is "None")
 
-**4. Filter the BioSample table to remove records**
-- Mark the BioSample\_id fields with "REMOVE" for undesirable records.
+**4. Comment the BioSample table to keep or remove records**
+Mark the BioSampleComment fields with "REMOVE" for undesirable records.
+
 ```
-python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_remove.txt --table BioSample
+python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_REMOVE.txt --table BioSample
 ```
 - Records not relevant to plague or Yersinia pestis (ie. Organism/OrganismAlt)
-- Transcriptomic sequencing projects ("RNA" in BioSampleTitle or SampleType)
-- Laboratory manipulation experiment ("transposon in BioSampleTitle or "vivo" in SampleName or "insertion" in BioSampleTitle)
+- Transcriptomic sequencing projects (ex. "RNA" in BioSampleTitle or SampleType)
+- Laboratory manipulation experiment (ex. "transposon in BioSampleTitle or "vivo" in SampleName or "insertion" in BioSampleTitle)
 - Treatment experiment (PRJNA254747 as BioProject, irradiation experiment)
 - Prarie dog passage experiments ("prarie dog in BioSampleTitle and PRJNA340278 as BioProject, passage in Infraspecies)
-- Duplicate strains (prioritizing original complete genomes, updated version, more complete metadata)
+- [?] Duplicate strains (prioritizing original complete genomes, updated version, more complete metadata)
+
+Mark the BioSampleComment fields with "KEEP" for desirable records.  
+```
+python ~/Programs/NCBImeta/src/NCBImeta_AnnotateReplace.py --database NCBImeta/output/yersinia_pestis_db.sqlite --annotfile NCBImeta/annot/yersinia_pestis_KEEP.txt --table BioSample
+```
+
+Any record that now has an empty comment field has been added to the database after SEPT-2019.  
+
+
 
 **5. Construct the Master Join table**
 ```
