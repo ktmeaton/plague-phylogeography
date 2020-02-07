@@ -27,7 +27,8 @@ def helpMessage() {
 
     Other options:
       --help                 Print this help message.
-      --version              Print the current version number
+      --version              Print the current version number.
+      --outdir               The output directory where results are saved.
     """.stripIndent()
 }
 
@@ -52,9 +53,13 @@ if (params.version){
     exit 0
 }
 
-// Print sqlite database info
+// -------------------------------------------------------------------------- //
+//                        SQLite database import and download                 //
+// -------------------------------------------------------------------------- //
 if (params.sqlite){
   // sqlite db from Path
+  log.info pipelineHeader()
+
   sqlite_ch = Channel.fromPath(params.sqlite, checkIfExists: true)
                   .ifEmpty { exit 1, "SQLite database not found: ${params.sqlite}" }
   sqlite_cmd_ch = Channel.fromPath(params.sqlite_commands, checkIfExists: true)
@@ -62,15 +67,16 @@ if (params.sqlite){
 
   process sqlite_import{
     // Import assembly ftp url from database, retrieve file names and URL for web get
+    publishDir "${params.outdir}/sqlite_import", mode: 'copy'
     echo true
-    log.info pipelineHeader()
     log.info"""SQLite database selected: ${params.sqlite}"""
 
     input:
     file sqlite from sqlite_ch
 
     output:
-    file params.assembly_for_download_file into assembly_for_download
+    file params.assembly_for_download_file into assembly_for_download_ch
+    file asm_ftp into assembly_for_download_ftp_ch
 
     script:
     """
@@ -85,7 +91,30 @@ if (params.sqlite){
     done;
     """
   }
+
+  process assembly_download{
+    // Download assemblies using ftp links
+    publishDir "${params.outdir}/assembly_download", mode: 'copy'
+
+    echo true
+
+    input:
+    file asm_dwnl_txt from assembly_for_download_ch
+
+    output:
+
+    script:
+    """
+    cat ${asm_dwnl_txt} | while read line;
+    do
+      echo \$line;
+    done
+
+    """
+  }
 }
+
+
 
 def pipelineHeader() {
   return"""
