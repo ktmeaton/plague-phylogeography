@@ -20,7 +20,17 @@ def helpMessage() {
     ${workflow.manifest.name} v${workflow.manifest.version}
     =========================================
     Usage:
-    The typical command for running the pipeline is as follows:
+
+    The typical command for executing the pipeline is:
+
+    nextflow run ${workflow.manifest.mainScript}
+
+    Mandatory options:
+      --sqlite               Path to input sqlite database (ex. NCBImeta).
+
+    Other options:
+      --help                 Print this help message.
+      --version              Print the current version number
     """.stripIndent()
 }
 
@@ -29,6 +39,21 @@ params.help = false
 if (params.help){
     helpMessage()
     exit 0
+}
+
+// Show pipeline name and version number
+if (params.version){
+    log.info"""
+    ${workflow.manifest.name} v${workflow.manifest.version}
+    """.stripIndent()
+    exit 0
+}
+
+// Print sqlite database info
+if (params.sqlite){
+  log.info nfcoreHeader()
+  log.info"""SQLite database selected: ${params.sqlite}"""
+  exit 0
 }
 
 
@@ -51,7 +76,6 @@ def nfcoreHeader() {
     ${c_blue}  |\\ | |__  __ /  ` /  \\ |__) |__         ${c_yellow}}  {${c_reset}
     ${c_blue}  | \\| |       \\__, \\__/ |  \\ |___     ${c_green}\\`-._,-`-,${c_reset}
                                             ${c_green}`._,._,\'${c_reset}
-    ${c_purple}  ${workflow.manifest.name} v${workflow.manifest.version}${c_reset}
     -${c_dim}--------------------------------------------------${c_reset}-
     """.stripIndent()
 }
