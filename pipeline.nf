@@ -33,6 +33,10 @@ def helpMessage() {
     """.stripIndent()
 }
 
+// Extra configuration variables
+// SQLite commands script
+params.sqlite_commands = "$baseDir/sqlite_import.sh"
+
 // Show help message
 params.help = false
 if (params.help){
@@ -50,6 +54,25 @@ if (params.version){
 
 // Print sqlite database info
 if (params.sqlite){
-  log.info"""SQLite database selected: ${params.sqlite}"""
-  exit 0
+  // sqlite db from Path
+  sqlite_ch = Channel.fromPath(params.sqlite, checkIfExists: true)
+                  .ifEmpty { exit 1, "SQLite database not found: ${params.sqlite}" }
+  sqlite_cmd_ch = Channel.fromPath(params.sqlite_commands, checkIfExists: true)
+                  .ifEmpty { exit 1, "SQLite commands script not found: ${params.sqlite_commands}" }
+
+  process sqlite_import{
+    echo true
+    log.info"""SQLite database selected: ${params.sqlite}"""
+
+    input:
+    file sqlite from sqlite_ch
+    file sqlitecmd from sqlite_cmd_ch
+
+    script:
+    """
+    echo ${sqlite};
+    echo ${sqlitecmd};
+    #sqlite3 ${sqlite} ".read ${baseDir}/sqlite_import.sh";
+    """
+  }
 }
