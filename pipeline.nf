@@ -187,7 +187,7 @@ process assembly_download{
 
 process reference_download{
   // Pairwise align contigs to reference genome with snippy
-  tag ""
+  tag "$reference_genome_fna"
 
   echo true
 
@@ -221,7 +221,7 @@ process snippy_pairwise{
 
   output:
   file "output${params.snippy_ctg_depth}X/*/*"
-  file "output${params.snippy_ctg_depth}X/*/${asm_fna.baseName}.txt" into ch_snippy_snps_txt
+  file "output${params.snippy_ctg_depth}X/*/${asm_fna.baseName}_snippy.txt" into ch_snippy_snps_txt
 
   when:
   !params.skip_snippy_pairwise
@@ -229,9 +229,9 @@ process snippy_pairwise{
   script:
   """
   snippy \
-    --prefix ${asm_fna.baseName} \
+    --prefix ${asm_fna.baseName}_snippy \
     --cpus ${params.snippy_cpus} \
-    --reference ${reference_genome_fna.baseName} \
+    --reference ${reference_genome_fna} \
     --outdir output${params.snippy_ctg_depth}X/${asm_fna.baseName} \
     --ctgs ${asm_fna} \
     --mapqual ${params.snippy_map_qual} \
@@ -244,6 +244,8 @@ process snippy_pairwise{
 
 process snippy_variant_summary{
   // Variant Summary Table
+  tag "$snippy_snps_txt"
+
   publishDir "${params.outdir}/snippy_variant_summary", mode: 'copy'
 
   echo true
@@ -278,6 +280,8 @@ process snippy_variant_summary{
 
 process reference_detect_low_complexity{
   // Detect low complexity regions with dust masker
+  tag "$reference_genome_fna"
+
   publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
 
   echo true
