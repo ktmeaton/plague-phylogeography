@@ -185,6 +185,26 @@ process assembly_download{
   """
 }
 
+process reference_download{
+  // Pairwise align contigs to reference genome with snippy
+  tag ""
+
+  echo true
+
+  publishDir "${params.outdir}/reference_genome", mode: 'copy'
+
+  input:
+  file reference_genome_fna from file(params.reference_genome_ftp)
+
+  output:
+  file "${reference_genome_fna.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_genome_low_complexity
+
+  script:
+  """
+  gunzip -f ${reference_genome_fna}
+  """
+}
+
 process snippy_pairwise{
   // Pairwise align contigs to reference genome with snippy
   tag "$asm_fna"
@@ -197,20 +217,17 @@ process snippy_pairwise{
 
   input:
   file asm_fna from ch_asm_fna
-  file reference_genome_fna from file(params.reference_genome_ftp)
+  file reference_genome_fna from ch_reference_genome_snippy_pairwise
 
   output:
   file "output${params.snippy_ctg_depth}X/*/*"
   file "output${params.snippy_ctg_depth}X/*/${asm_fna.baseName}.txt" into ch_snippy_snps_txt
-  file "${reference_genome_fna.baseName}" into ch_reference_genome
 
   when:
   !params.skip_snippy_pairwise
 
   script:
   """
-  gunzip -f ${reference_genome_fna}
-
   snippy \
     --prefix ${asm_fna.baseName} \
     --cpus ${params.snippy_cpus} \
@@ -249,7 +266,6 @@ process snippy_variant_summary{
   SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' ${snippy_snps_txt};`
   TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' ${snippy_snps_txt};`
   echo -e ${snippy_snps_txt}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> ${params.snippy_variant_summary};
-  done
   """
 }
 
@@ -262,23 +278,26 @@ process snippy_variant_summary{
 
 process reference_detect_low_complexity{
   // Detect low complexity regions with dust masker
+  conda process.conda
+
   publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
 
   echo true
 
   input:
-  file reference_genome from ch_reference_genome
+  file reference_genome_fna from ch_reference_genome_low_complexity
 
   output:
-  file ${reference_genome.baseName}.dustmasker.intervals
-  //file bed_ref_low_complex into ch_bed_ref_low_complex
+  file "${reference_genome_fna.baseName}.dustmasker.intervals"
+  file "${reference_genome_fna.baseName}.dustmasker.bed" into ch_bed_ref_low_complex
 
   when:
   !params.skip_reference_detect_low_complexity
 
   script:
   """
-  dustmasker -in ${reference_genome} -outfmt interval > ${reference_genome.baseName}.dustmasker.intervals
+  dustmasker -in ${reference_genome_fna} -outfmt interval > ${reference_genome_fna.baseName}.dustmasker.intervals
+  "${baseDir}"/scripts/intervals2bed.sh ${reference_genome_fna.baseName}.dustmasker.intervals ${reference_genome_fna.baseName}.dustmasker.bed
   """
 }
 
