@@ -8,6 +8,8 @@ NextFlow
 NCBImeta  
 sqlite3 (CLI)  
 snippy  
+dustmasker  
+mummer  
 
 ## Data Acquisition
 

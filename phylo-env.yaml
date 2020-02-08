@@ -1,0 +1,11 @@
+name: phylo-env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - sqlite==3.31.1
+  - snippy==4.4.5
+  - blast==2.9.0
+  - ncbimeta==0.6.3
+  - mummer==3.23
