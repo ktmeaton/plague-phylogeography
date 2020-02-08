@@ -278,8 +278,6 @@ process snippy_variant_summary{
 
 process reference_detect_low_complexity{
   // Detect low complexity regions with dust masker
-  conda process.conda
-
   publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
 
   echo true
