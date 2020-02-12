@@ -382,8 +382,6 @@ process snippy_variant_summary{
 // Can this be moved up to within the previous process?
 ch_snippy_variant_multi_summary
       .collectFile(name: "${params.snippy_variant_summary}", newLine: false, storeDir: "${params.outdir}/snippy_variant_summary")
-      .println{ it.text }
-
 
 // -------------------------------------------------------------------------- //
 //                       Filtering Before Multiple Alignment                  //
