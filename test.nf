@@ -176,3 +176,73 @@ if(params.ncbimeta_update){
     """
   }
 }
+
+
+
+// -------------------------------------------------------------------------- //
+//                      Summarize Snippy Called Variants in Table             //
+// -------------------------------------------------------------------------- //
+
+process snippy_variant_summary{
+  // Variant Summary Table
+  tag "$snippy_snps_txt"
+
+  publishDir "${params.outdir}/snippy_variant_summary", mode: 'copy'
+
+  echo true
+
+  input:
+  file snippy_snps_txt from ch_snippy_snps_txt
+
+  output:
+  file params.snippy_variant_summary
+
+  when:
+  !params.skip_snippy_variant_summary
+
+  script:
+  """
+  COMPLEX=`awk 'BEGIN{count=0}{if (\$1 == "Variant-COMPLEX"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  DEL=`awk 'BEGIN{count=0}{if (\$1 == "Variant-DEL"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  INS=`awk 'BEGIN{count=0}{if (\$1 == "Variant-INS"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  MNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-MNP"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' ${snippy_snps_txt};`
+  echo -e ${snippy_snps_txt}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> ${params.snippy_variant_summary};
+  """
+}
+
+// -------------------------------------------------------------------------- //
+//                       Filtering Before Multiple Alignment                  //
+// -------------------------------------------------------------------------- //
+
+//process reference_detect_repeats{
+//}
+
+process reference_detect_low_complexity{
+  // Detect low complexity regions with dust masker
+  tag "$reference_genome_fna"
+
+  publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+
+  echo true
+
+  input:
+  file reference_genome_fna from ch_reference_genome_low_complexity
+
+  output:
+  file "${reference_genome_fna.baseName}.dustmasker.intervals"
+  file "${reference_genome_fna.baseName}.dustmasker.bed" into ch_bed_ref_low_complex
+
+  when:
+  !params.skip_reference_detect_low_complexity
+
+  script:
+  """
+  dustmasker -in ${reference_genome_fna} -outfmt interval > ${reference_genome_fna.baseName}.dustmasker.intervals
+  ${params.scriptdir}/intervals2bed.sh ${reference_genome_fna.baseName}.dustmasker.intervals ${reference_genome_fna.baseName}.dustmasker.bed
+  """
+}
+
+//process pairwise_detect_snp_high_density{
+//}

@@ -109,7 +109,7 @@ params.snippy_base_qual = 20
 params.snippy_cpus = 4
 
 // Snippy summary files
-params.snippy_variant_summary = "variants.summary"
+params.snippy_variant_summary = "snippy_variants_summary.txt"
 
 // SQLite
 params.sqlite_select_command = "\'select AssemblyFTPGenbank from Assembly\'"
@@ -313,13 +313,14 @@ process snippy_pairwise{
 
   echo true
 
+
   input:
   file asm_fna from ch_asm_fna
   file reference_genome_fna from ch_reference_genome_snippy_pairwise
 
   output:
   file "output${params.snippy_ctg_depth}X/*/*"
-  file "output${params.snippy_ctg_depth}X/*/${asm_fna.baseName}_snippy.txt" into ch_snippy_snps_txt
+  file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_summary
 
   when:
   !params.skip_snippy_pairwise
@@ -337,6 +338,17 @@ process snippy_pairwise{
     --minfrac ${params.snippy_min_frac} \
     --basequal ${params.snippy_base_qual} \
     --report;
+
+  snippy_snps_in=output${params.snippy_ctg_depth}X/${asm_fna.baseName}/${asm_fna.baseName}_snippy.txt
+  snippy_snps_txt=output${params.snippy_ctg_depth}X/${asm_fna.baseName}/${asm_fna.baseName}_snippy.summary.txt
+
+  COMPLEX=`awk 'BEGIN{count=0}{if (\$1 == "Variant-COMPLEX"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  DEL=`awk 'BEGIN{count=0}{if (\$1 == "Variant-DEL"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  INS=`awk 'BEGIN{count=0}{if (\$1 == "Variant-INS"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  MNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-MNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  echo -e output${params.snippy_ctg_depth}X/${asm_fna.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
   """
 }
 
@@ -348,30 +360,30 @@ process snippy_variant_summary{
   // Variant Summary Table
   tag "$snippy_snps_txt"
 
-  publishDir "${params.outdir}/snippy_variant_summary", mode: 'copy'
+  //publishDir "${params.outdir}/snippy_variant_summary", mode: 'copy'
 
   echo true
 
   input:
-  file snippy_snps_txt from ch_snippy_snps_txt
+  file snippy_snps_summary from ch_snippy_snps_summary
 
   output:
-  file params.snippy_variant_summary
+  file params.snippy_variant_summary into ch_snippy_variant_multi_summary
 
   when:
   !params.skip_snippy_variant_summary
 
   script:
   """
-  COMPLEX=`awk 'BEGIN{count=0}{if (\$1 == "Variant-COMPLEX"){count=\$2}}END{print count}' ${snippy_snps_txt};`
-  DEL=`awk 'BEGIN{count=0}{if (\$1 == "Variant-DEL"){count=\$2}}END{print count}' ${snippy_snps_txt};`
-  INS=`awk 'BEGIN{count=0}{if (\$1 == "Variant-INS"){count=\$2}}END{print count}' ${snippy_snps_txt};`
-  MNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-MNP"){count=\$2}}END{print count}' ${snippy_snps_txt};`
-  SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' ${snippy_snps_txt};`
-  TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' ${snippy_snps_txt};`
-  echo -e ${snippy_snps_txt}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> ${params.snippy_variant_summary};
+   < ${snippy_snps_summary} cat > ${params.snippy_variant_summary}
   """
 }
+
+// Can this be moved up to within the previous process?
+ch_snippy_variant_multi_summary
+      .collectFile(name: "${params.snippy_variant_summary}", newLine: false, storeDir: "${params.outdir}/snippy_variant_summary")
+      .println{ it.text }
+
 
 // -------------------------------------------------------------------------- //
 //                       Filtering Before Multiple Alignment                  //
