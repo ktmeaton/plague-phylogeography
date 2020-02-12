@@ -23,7 +23,6 @@ def pipelineHeader() {
   =========================================
   """.stripIndent()
 }
-log.info pipelineHeader()
 
 // Quick/Minimal program name and version number
 if (params.version){
@@ -65,6 +64,9 @@ if (params.help){
     exit 0
 }
 
+
+log.info pipelineHeader()
+
 // -------------------------------------------------------------------------- //
 //                              Extra Configuration                           //
 // -------------------------------------------------------------------------- //
@@ -93,27 +95,31 @@ params.sqlite_select_command = "\'select AssemblyFTPGenbank from Assembly\'"
 // -------------------------------------------------------------------------- //
 
 process ncbimeta_db{
-  // Run NCBImeta query to generate db
-  tag "$ncbimeta_yaml"
-  echo true
+    // Run NCBImeta query to generate db
+    tag "$ncbimeta_yaml"
+    echo true
 
-  publishDir "${params.outdir}/ncbimeta_db", mode: 'copy'
+    publishDir "${params.outdir}/ncbimeta_db", mode: 'copy'
 
-  if(params.ncbimeta){
     ch_ncbimeta_yaml = Channel.fromPath(params.ncbimeta, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta}" }
+
+    input:
+    file ncbimeta_yaml from ch_ncbimeta_yaml
+
+    output:
+    file ncbimeta_sqlite_db into ch_sqlite
+    file "database/*"
+    file "log/*"
+
+    when:
+    !params.skip_ncbimeta_db
+
+    script:
+    """
+    NCBImeta.py --config ${ncbimeta_yaml}
+    """
   }
-
-  input:
-  file ncbimeta_yaml from ch_ncbimeta_yaml
-
-  output:
-  //file ncbimeta_sqlite_db into ch_sqlite
-
-  script:
-  """
-  """
-}
 
 // -------------------------------------------------------------------------- //
 //                        SQLite database import and download                 //
@@ -198,6 +204,9 @@ process reference_download{
 
   output:
   file "${reference_genome_fna.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_genome_low_complexity
+
+  when:
+  !params.skip_reference_download
 
   script:
   """
