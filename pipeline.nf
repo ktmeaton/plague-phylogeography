@@ -71,6 +71,9 @@ log.info pipelineHeader()
 //                              Extra Configuration                           //
 // -------------------------------------------------------------------------- //
 
+// Results dir
+params.results_dir = "results"
+
 // NCBImeta parameters
 params.ncbimeta_output_dir = "output"
 params.ncbimeta_sqlite_db = "yersinia_pestis_db.sqlite"
@@ -99,31 +102,31 @@ params.sqlite_select_command = "\'select AssemblyFTPGenbank from Assembly\'"
 // -------------------------------------------------------------------------- //
 
 process ncbimeta_db{
-    // Run NCBImeta query to generate db
-    tag "$ncbimeta_yaml"
-    echo true
+  // Run NCBImeta query to generate db from scratch
+  tag "$ncbimeta_yaml"
+  echo true
 
-    publishDir "${params.outdir}/ncbimeta_db", mode: 'copy'
+  publishDir "${params.outdir}/ncbimeta_db", mode: 'copy'
 
-    ch_ncbimeta_yaml = Channel.fromPath(params.ncbimeta, checkIfExists: true)
-                         .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta}" }
+  ch_ncbimeta_yaml = Channel.fromPath(params.ncbimeta, checkIfExists: true)
+                       .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta}" }
 
-    input:
-    file ncbimeta_yaml from ch_ncbimeta_yaml
+  input:
+  file ncbimeta_yaml from ch_ncbimeta_yaml
 
-    output:
-    file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_sqlite
-    file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
-    file "${params.ncbimeta_output_dir}/log/*.log"
+  output:
+  //file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_sqlite
+  //file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
+  //file "${params.ncbimeta_output_dir}/log/*.log"
 
-    when:
-    !params.skip_ncbimeta_db
+  when:
+  !params.skip_ncbimeta_db
 
-    script:
-    """
-    NCBImeta.py --config ${ncbimeta_yaml}
-    """
-  }
+  script:
+  """
+  NCBImeta.py --config ${ncbimeta_yaml}
+  """
+}
 
 // -------------------------------------------------------------------------- //
 //                        SQLite database import and download                 //

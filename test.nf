@@ -48,7 +48,8 @@ def helpMessage() {
     nextflow run ${workflow.manifest.mainScript}
 
     DATABASE:
-      --ncbimeta             Path to yaml config file to run NCBImeta.
+      --ncbimeta-config      Path to yaml config file to run NCBImeta.
+      --ncbimeta-db          Path to sqlite database file from NCBImeta run.
       --sqlite               Path to output sqlite database of NCBImeta.
 
     OTHER:
@@ -102,7 +103,8 @@ params.sqlite_select_command = "\'select AssemblyFTPGenbank from Assembly\'"
 // -------------------------------------------------------------------------- //
 
 if(params.ncbimeta){
-  process ncbimeta_db{
+
+  process ncbimeta_db_create{
     // Run NCBImeta query to generate db from scratch
     tag "$ncbimeta_yaml"
     echo true
@@ -116,32 +118,56 @@ if(params.ncbimeta){
     file ncbimeta_yaml from ch_ncbimeta_yaml
 
     output:
-    file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_sqlite
+    file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_ncbimeta_sqlite_create
+    file ncbimeta_yaml into ch_ncbimeta_yaml_create
+    file "${params.ncbimeta_output_dir}/log/*.log" into ch_ncbimeta_logs_create
+    //file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
+    //file "${params.ncbimeta_output_dir}/log/*.log"
+
+    when:
+    !params.skip_ncbimeta_db_create
+
+    script:
+    """
+    NCBImeta.py --config ${ncbimeta_yaml}
+    """
+  }
+
+  process ncbimeta_db_update{
+    // Run NCBImeta query to update previously created db
+    tag "$ncbimeta_sqlite"
+    echo true
+
+    publishDir "${params.outdir}/ncbimeta_db_update", mode: 'copy'
+
+    input:
+    file ncbimeta_sqlite from ch_ncbimeta_sqlite_create
+    file ncbimeta_yaml from ch_ncbimeta_yaml_create
+    file ncbimeta_logs from ch_ncbimeta_logs_create
+
+    output:
+    file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_sqlite_create
+    file ncbimeta_yaml into ch_ncbimeta_yaml_for_update
     file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
     file "${params.ncbimeta_output_dir}/log/*.log"
 
     when:
-    !params.skip_ncbimeta_db
+    !params.skip_ncbimeta_db_update
 
     script:
     """
-    echo HI HI HI HI;
-    # If the DB already exists, change the config file to include the absolute path to it
-    target_DB=${baseDir}/${params.results_dir}/ncbimeta_db/${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db};
-    echo \$target_DB;
-    #ls -l \$target_DB;
-    if [ -f \$target_DB ];
-    then
-      cp ${ncbimeta_yaml} ncbimeta_update.yaml;
-      sed -i "s|${params.ncbimeta_sqlite_db}|\$target_DB|g" ncbimeta_update.yaml
-      head ncbimeta_update.yaml
-      echo NCBImeta.py --config ncbimeta_update.yaml
-      NCBImeta.py --config ncbimeta_update.yaml
-    else
-      head ncbimeta.yaml
-      echo NCBImeta.py --config ${ncbimeta_yaml}
-      NCBImeta.py --config ${ncbimeta_yaml}
-    fi;
+    echo ${ncbimeta_sqlite}
+    echo ${ncbimeta_yaml}
+    echo ${ncbimeta_logs}
+    # Make directories to mirror NCBImeta expected structure
+    mkdir ${params.ncbimeta_output_dir};
+    mkdir ${params.ncbimeta_output_dir}/database;
+    mkdir ${params.ncbimeta_output_dir}/log;
+    # Copy over input files
+    cp ${ncbimeta_sqlite} ${params.ncbimeta_output_dir}/database;
+    cp ${ncbimeta_logs} ${params.ncbimeta_output_dir}/log;
+    # Execute NCBImeta
+    NCBImeta.py --config ${ncbimeta_yaml}
     """
   }
 }
