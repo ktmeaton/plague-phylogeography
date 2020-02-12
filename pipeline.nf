@@ -71,6 +71,10 @@ log.info pipelineHeader()
 //                              Extra Configuration                           //
 // -------------------------------------------------------------------------- //
 
+// NCBImeta parameters
+params.ncbimeta_output_dir = "output"
+params.ncbimeta_sqlite_db = "yersinia_pestis_db.sqlite"
+
 // Genbank and assembly
 params.genbank_asm_gz_suffix = "_genomic.fna.gz"
 params.genbank_asm_fna_suffix = "_genomic.fna"
@@ -108,9 +112,9 @@ process ncbimeta_db{
     file ncbimeta_yaml from ch_ncbimeta_yaml
 
     output:
-    file ncbimeta_sqlite_db into ch_sqlite
-    file "database/*"
-    file "log/*"
+    file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_sqlite
+    file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
+    file "${params.ncbimeta_output_dir}/log/*.log"
 
     when:
     !params.skip_ncbimeta_db
