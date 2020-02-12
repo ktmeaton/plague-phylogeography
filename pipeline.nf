@@ -47,15 +47,25 @@ def helpMessage() {
 
     nextflow run ${workflow.manifest.mainScript}
 
-    DATABASE:
-      --ncbimeta             Path to yaml config file to run NCBImeta.
-      --sqlite               Path to output sqlite database of NCBImeta.
+    DATABASE (Choose 1 of the following):
+
+    --ncbimeta_create      Path to yaml config file to create NCBImeta DB (ncbimeta.yaml).
+    --ncbimeta_update      Path to yaml config file to update NCBImeta DB (ncbimeta.yaml).
+    --sqlite               Path to sqlite database file from NCBImeta (my_db.sqlite).
+
+
+    DOWNLOAD:
+
+    --max_datasets         Maximum number of datasets to download and analyze [100].
+
 
     OTHER:
-      --help                 Print this help message.
-      --version              Print the current version number.
-      --outdir               The output directory where results are saved.
-    """.stripIndent()
+
+    --help                 Print this help message.
+    --version              Print the current version number.
+    --outdir               The output directory where results are saved [results].
+
+    """
 }
 
 // Show help message
@@ -68,15 +78,22 @@ if (params.help){
 log.info pipelineHeader()
 
 // -------------------------------------------------------------------------- //
-//                              Extra Configuration                           //
+//                        Required Parameter Combo Checking                   //
 // -------------------------------------------------------------------------- //
 
-// Results dir
-params.results_dir = "results"
+if (!params.ncbimeta_create && !params.ncbimeta_update && !params.sqlite)
+{
+    exit 1, "The DATABASE parameter is missing or incorrect. Please consult --help for more information."
+}
+
+// -------------------------------------------------------------------------- //
+//                              Extra Configuration                           //
+// -------------------------------------------------------------------------- //
 
 // NCBImeta parameters
 params.ncbimeta_output_dir = "output"
 params.ncbimeta_sqlite_db = "yersinia_pestis_db.sqlite"
+params.ncbimeta_sqlite_db_latest = "${params.outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
 
 // Genbank and assembly
 params.genbank_asm_gz_suffix = "_genomic.fna.gz"
@@ -101,31 +118,81 @@ params.sqlite_select_command = "\'select AssemblyFTPGenbank from Assembly\'"
 //                              NCBImeta Entry Point                          //
 // -------------------------------------------------------------------------- //
 
-process ncbimeta_db{
-  // Run NCBImeta query to generate db from scratch
-  tag "$ncbimeta_yaml"
-  echo true
+if(params.ncbimeta_create){
 
-  publishDir "${params.outdir}/ncbimeta_db", mode: 'copy'
+  process ncbimeta_db_create{
+    // Run NCBImeta query to generate db from scratch
+    tag "$ncbimeta_yaml"
+    echo true
 
-  ch_ncbimeta_yaml = Channel.fromPath(params.ncbimeta, checkIfExists: true)
-                       .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta}" }
+    publishDir "${params.outdir}/ncbimeta_db/create", mode: 'copy'
+    publishDir "${params.outdir}/ncbimeta_db/update/latest", mode: 'copy'
 
-  input:
-  file ncbimeta_yaml from ch_ncbimeta_yaml
+    ch_ncbimeta_yaml_create = Channel.fromPath(params.ncbimeta_create, checkIfExists: true)
+                         .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta-create}" }
 
-  output:
-  //file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_sqlite
-  //file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
-  //file "${params.ncbimeta_output_dir}/log/*.log"
+    input:
+    file ncbimeta_yaml from ch_ncbimeta_yaml_create
 
-  when:
-  !params.skip_ncbimeta_db
+    output:
+    file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_ncbimeta_sqlite_create
+    file ncbimeta_yaml
+    file "${params.ncbimeta_output_dir}/log/*.log"
 
-  script:
-  """
-  NCBImeta.py --config ${ncbimeta_yaml}
-  """
+    when:
+    !params.skip_ncbimeta_db_create
+
+    script:
+    """
+    NCBImeta.py --config ${ncbimeta_yaml}
+    """
+  }
+}
+
+if(params.ncbimeta_update){
+
+  process ncbimeta_db_update{
+    // Run NCBImeta query to update previously created db
+    // Note this requires supplying an absolute path to a database
+    tag "$ncbimeta_sqlite"
+    echo true
+
+    // ISSUE: Can these be a symlink to each other?
+    publishDir "${params.outdir}/ncbimeta_db/update/${workflow.start}", mode: 'copy'
+    publishDir "${params.outdir}/ncbimeta_db/update/latest", mode: 'copy', overwrite: 'true'
+
+
+    ch_ncbimeta_yaml_update = Channel.fromPath(params.ncbimeta_update, checkIfExists: true)
+                         .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta-update}" }
+
+    ch_ncbimeta_sqlite_update = Channel.fromPath("${params.ncbimeta_sqlite_db_latest}", checkIfExists: true)
+                                .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.ncbimeta_sqlite_db_latest}" }
+
+    input:
+    file ncbimeta_yaml from ch_ncbimeta_yaml_update
+    file ncbimeta_sqlite from ch_ncbimeta_sqlite_update
+
+    output:
+    file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_ncbimeta_sqlite_update
+    file ncbimeta_yaml
+    file "${params.ncbimeta_output_dir}/log/*.log"
+
+    when:
+    !params.skip_ncbimeta_db_update
+
+    script:
+    """
+    # Make directories to mirror NCBImeta expected structure
+    mkdir ${params.ncbimeta_output_dir};
+    mkdir ${params.ncbimeta_output_dir}/database;
+    mkdir ${params.ncbimeta_output_dir}/log;
+    # Copy over input files
+    cp ${ncbimeta_sqlite} ${params.ncbimeta_output_dir}/database;
+    cp ${params.outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/log/* ${params.ncbimeta_output_dir}/log;
+    # Execute NCBImeta
+    NCBImeta.py --config ${ncbimeta_yaml}
+    """
+  }
 }
 
 // -------------------------------------------------------------------------- //
@@ -139,10 +206,13 @@ process sqlite_import{
 
   publishDir "${params.outdir}/sqlite_import", mode: 'copy'
 
-  if(params.sqlite){
-    // if sqlite db is specified on command line, override ncbimeta channel
+  // Set the sqlite channel to create or update depending on ncbimeta mode
+  if(params.ncbimeta_create){ch_sqlite = ch_ncbimeta_sqlite_create}
+  else if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_update}
+  else if(params.sqlite)
+  {
     ch_sqlite = Channel.fromPath(params.sqlite, checkIfExists: true)
-                    .ifEmpty { exit 1, "SQLite database not found: ${params.sqlite}" }
+                                .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.sqlite}" }
   }
 
   input:
@@ -156,7 +226,7 @@ process sqlite_import{
 
   script:
   """
-  sqlite3 ${sqlite} ${params.sqlite_select_command} | head -n 1 | sed 's/ /\\n/g' | while read line;
+  sqlite3 ${sqlite} ${params.sqlite_select_command} | head -n ${params.max_datasets} | sed 's/ /\\n/g' | while read line;
   do
     if [[ ! -z \$line ]]; then
       asm_url=\$line;
@@ -167,6 +237,10 @@ process sqlite_import{
   done;
   """
 }
+
+// -------------------------------------------------------------------------- //
+//                        Genome Download - Assemblies                        //
+// -------------------------------------------------------------------------- //
 
 process assembly_download{
   // Download assemblies using ftp links
@@ -198,6 +272,10 @@ process assembly_download{
   """
 }
 
+// -------------------------------------------------------------------------- //
+//                        Genome Download - Reference Sequence                //
+// -------------------------------------------------------------------------- //
+
 process reference_download{
   // Pairwise align contigs to reference genome with snippy
   tag "$reference_genome_fna"
@@ -220,6 +298,10 @@ process reference_download{
   gunzip -f ${reference_genome_fna}
   """
 }
+
+// -------------------------------------------------------------------------- //
+//                      Snippy Pipeline - Pairwise Alignment to Ref           //
+// -------------------------------------------------------------------------- //
 
 process snippy_pairwise{
   // Pairwise align contigs to reference genome with snippy
@@ -257,6 +339,10 @@ process snippy_pairwise{
     --report;
   """
 }
+
+// -------------------------------------------------------------------------- //
+//                      Summarize Snippy Called Variants in Table             //
+// -------------------------------------------------------------------------- //
 
 process snippy_variant_summary{
   // Variant Summary Table
