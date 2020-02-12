@@ -72,13 +72,10 @@ log.info pipelineHeader()
 //                              Extra Configuration                           //
 // -------------------------------------------------------------------------- //
 
-// Results dir
-params.results_dir = "results"
-
 // NCBImeta parameters
 params.ncbimeta_output_dir = "output"
 params.ncbimeta_sqlite_db = "yersinia_pestis_db.sqlite"
-params.ncbimeta_sqlite_db_abs = "${baseDir}/${params.results_dir}/ncbimeta_db/${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
+params.ncbimeta_sqlite_db_latest = "${params.outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
 
 // Genbank and assembly
 params.genbank_asm_gz_suffix = "_genomic.fna.gz"
@@ -110,7 +107,8 @@ if(params.ncbimeta_create){
     tag "$ncbimeta_yaml"
     echo true
 
-    publishDir "${params.outdir}/ncbimeta_db", mode: 'copy'
+    publishDir "${params.outdir}/ncbimeta_db/create", mode: 'copy'
+    publishDir "${params.outdir}/ncbimeta_db/update/latest", mode: 'copy'
 
     ch_ncbimeta_yaml_create = Channel.fromPath(params.ncbimeta_create, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta-create}" }
@@ -141,13 +139,16 @@ if(params.ncbimeta_update){
     tag "$ncbimeta_sqlite"
     echo true
 
-    publishDir "${params.outdir}/ncbimeta_db_update", mode: 'copy'
+    // ISSUE: Can these be a symlink to each other?
+    publishDir "${params.outdir}/ncbimeta_db/update/${workflow.start}", mode: 'copy'
+    publishDir "${params.outdir}/ncbimeta_db/update/latest", mode: 'copy', overwrite: 'true'
+
 
     ch_ncbimeta_yaml_update = Channel.fromPath(params.ncbimeta_update, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta-update}" }
 
-    ch_ncbimeta_sqlite_update = Channel.fromPath("${params.ncbimeta_sqlite_db_abs}", checkIfExists: true)
-                                .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.ncbimeta_sqlite_db_abs}" }
+    ch_ncbimeta_sqlite_update = Channel.fromPath("${params.ncbimeta_sqlite_db_latest}", checkIfExists: true)
+                                .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.ncbimeta_sqlite_db_latest}" }
 
     input:
     file ncbimeta_yaml from ch_ncbimeta_yaml_update
@@ -169,7 +170,7 @@ if(params.ncbimeta_update){
     mkdir ${params.ncbimeta_output_dir}/log;
     # Copy over input files
     cp ${ncbimeta_sqlite} ${params.ncbimeta_output_dir}/database;
-    cp ${baseDir}/${params.results_dir}/ncbimeta_db/${params.ncbimeta_output_dir}/log/* ${params.ncbimeta_output_dir}/log;
+    cp ${params.outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/log/* ${params.ncbimeta_output_dir}/log;
     # Execute NCBImeta
     NCBImeta.py --config ${ncbimeta_yaml}
     """
