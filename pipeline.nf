@@ -51,6 +51,7 @@ def helpMessage() {
 
     --ncbimeta_create      Path to yaml config file to create NCBImeta DB (ncbimeta.yaml).
     --ncbimeta_update      Path to yaml config file to update NCBImeta DB (ncbimeta.yaml).
+    --ncbimeta_annot       Path to text annotation file for NCBImeta DB (annot.txt).
     --sqlite               Path to sqlite database file from NCBImeta (my_db.sqlite).
 
 
@@ -94,6 +95,15 @@ if (!params.ncbimeta_create && !params.ncbimeta_update && !params.sqlite)
 params.ncbimeta_output_dir = "output"
 params.ncbimeta_sqlite_db = "yersinia_pestis_db.sqlite"
 params.ncbimeta_sqlite_db_latest = "${params.outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
+
+// NCBImetaAnnotate parameters
+params.ncbimeta_annot_table = "BioSample"
+
+// NCBImetaJoin parameters
+params.ncbimeta_join_final = "Master"
+params.ncbimeta_join_uniq = "'BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession'"
+params.ncbimeta_join_accessory = "'BioProject Assembly SRA Nucleotide'"
+params.ncbimeta_join_anchor = "BioSample"
 
 // Genbank and assembly
 params.genbank_asm_gz_suffix = "_genomic.fna.gz"
@@ -163,17 +173,22 @@ if(params.ncbimeta_update){
 
 
     ch_ncbimeta_yaml_update = Channel.fromPath(params.ncbimeta_update, checkIfExists: true)
-                         .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta-update}" }
+                         .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta_update}" }
+
+    ch_ncbimeta_annot_update = Channel.fromPath(params.ncbimeta_annot, checkIfExists: true)
+                         .ifEmpty { exit 1, "NCBImeta annotation file not found: ${params.ncbimeta_annot}" }
 
     ch_ncbimeta_sqlite_update = Channel.fromPath("${params.ncbimeta_sqlite_db_latest}", checkIfExists: true)
                                 .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.ncbimeta_sqlite_db_latest}" }
 
     input:
     file ncbimeta_yaml from ch_ncbimeta_yaml_update
+    file ncbimeta_annot from ch_ncbimeta_annot_update
     file ncbimeta_sqlite from ch_ncbimeta_sqlite_update
 
     output:
     file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_ncbimeta_sqlite_update
+    file ncbimeta_annot
     file ncbimeta_yaml
     file "${params.ncbimeta_output_dir}/log/*.log"
 
@@ -191,6 +206,8 @@ if(params.ncbimeta_update){
     cp ${params.outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/log/* ${params.ncbimeta_output_dir}/log;
     # Execute NCBImeta
     NCBImeta.py --config ${ncbimeta_yaml}
+    NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
+    NCBImetaJoin.py --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} --anchor ${params.ncbimeta_join_anchor} --accessory ${params.ncbimeta_join_accessory} --final ${params.ncbimeta_join_final} --unique ${params.ncbimeta_join_uniq}
     """
   }
 }
