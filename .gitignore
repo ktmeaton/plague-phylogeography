@@ -1,3 +1,4 @@
 work/*
 results/*
 .nextflow*
+ncbimeta.yaml
