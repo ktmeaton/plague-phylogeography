@@ -1,5 +1,0 @@
-Metadata and genomes from the following strains will first become available to you after the release date, or if the owner gives you editing rights as a buddy.
-Name	Barcode	Release Date
-M5	YER_AA4115AA	2020-12-20
-M13	YER_AA4122AA	2020-12-20
-M14	YER_AA4123AA	2020-12-20
