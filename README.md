@@ -2,12 +2,10 @@
 Phylogeography of Yersinia pestis
 
 ## Dependencies
-NextFlow  
-NCBImeta  
-sqlite3 (CLI)  
-snippy  
-dustmasker  
-mummer  
+**Workflow:** NextFlow  
+**Database:** NCBImeta, sqlite3 (CLI)  
+**Alignment:** snippy  
+**Masking, etc.:** dustmasker, mummer  
 
 ### Conda Environment
 Create a conda environment with the required dependencies  
@@ -23,8 +21,12 @@ conda activate phylo-env
 nextflow run pipeline.nf --ncbimeta_create ncbimeta.yaml --skip_sqlite_import
 ```
 
-### Remove Wrong Organism Hits
+### Annotate the Database
+Query the Database for problematic records (wrong organism)
 ```
+DB=results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
+sqlite3 $DB
+.output extract.txt
 SELECT BioSampleAccession,
        BioSampleBioProjectAccession,
        BioSampleStrain,
@@ -36,14 +38,26 @@ SELECT BioSampleAccession,
        BioSampleHost,
        BioSampleComment
 FROM BioSample
-WHERE (BioSampleOrganism NOT LIKE '%Yersinia pestis%')
+WHERE (BioSampleOrganism NOT LIKE '%Yersinia pestis%');
 ```
+Add delimited headers to top of file
+```
+DELIM="|"
+sed  -i "1i BioSampleAccession${DELIM}BioSampleBioProjectAccession${DELIM}BioSampleStrain${DELIM}BioSampleOrganism${DELIM}BioSampleSRAAccession${DELIM}BioSampleAccessionSecondary${DELIM}BioSampleCollectionDate${DELIM}BioSampleGeographicLocation${DELIM}BioSampleHost${DELIM}BioSampleComment" extract.txt
+```
+Convert from pipe-separated to tab-separated file
+```
+sed -i "s/|/\t/g" extract.txt
+```
+Inspect the extract.txt file in a spreadsheet view (ex. Excel, Google Sheets)  
+Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows that are confirmed appropriate.  
+
 
 ### Update Database With Annotations
 ```
 nextflow run pipeline.nf \
   --ncbimeta_update ncbimeta.yaml \
-  --ncbimeta_annot annot.txt \
+  --ncbimeta_annot extract.txt \
   --skip_sqlite_import \
   -resume
 ```
