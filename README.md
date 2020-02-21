@@ -9,6 +9,13 @@ snippy
 dustmasker  
 mummer  
 
+### Conda Environment
+Create a conda environment with the required dependencies  
+```
+conda env create -f phylo-env.yaml --name phylo-env
+conda activate phylo-env
+```
+
 ## Fresh start
 
 ### Build NCBImeta database, test lite run-through of pipeline
