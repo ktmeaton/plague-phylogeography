@@ -119,7 +119,7 @@ params.snippy_base_qual = 20
 params.snippy_cpus = 4
 
 // Snippy summary files
-params.snippy_variant_summary = "snippy_variants_summary.txt"
+params.snippy_variant_summary = "snippy_variant_summary"
 
 // SQLite
 params.sqlite_select_command = "\'SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment NOT LIKE \"%REMOVE%\"\'"
@@ -399,7 +399,7 @@ process snippy_variant_summary{
 if(!params.skip_snippy_variant_summary){
   // Can this be moved up to within the previous process?
   ch_snippy_variant_multi_summary
-      .collectFile(name: "${params.snippy_variant_summary}", newLine: false, storeDir: "${params.outdir}/snippy_variant_summary")
+      .collectFile(name: "${params.snippy_variant_summary}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_variant_summary")
 }
 
 // -------------------------------------------------------------------------- //
