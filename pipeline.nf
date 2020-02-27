@@ -168,7 +168,7 @@ if(params.ncbimeta_update){
     echo true
 
     // ISSUE: Can these be a symlink to each other?
-    publishDir "${params.outdir}/ncbimeta_db/update/${workflow.start}", mode: 'copy'
+    publishDir "${params.outdir}/ncbimeta_db/update/${workflow.runName}", mode: 'copy'
     publishDir "${params.outdir}/ncbimeta_db/update/latest", mode: 'copy', overwrite: 'true'
 
 
@@ -396,9 +396,11 @@ process snippy_variant_summary{
   """
 }
 
-// Can this be moved up to within the previous process?
-ch_snippy_variant_multi_summary
+if(!params.skip_snippy_variant_summary){
+  // Can this be moved up to within the previous process?
+  ch_snippy_variant_multi_summary
       .collectFile(name: "${params.snippy_variant_summary}", newLine: false, storeDir: "${params.outdir}/snippy_variant_summary")
+}
 
 // -------------------------------------------------------------------------- //
 //                       Filtering Before Multiple Alignment                  //
