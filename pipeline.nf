@@ -231,6 +231,7 @@ process sqlite_import{
   publishDir "${params.outdir}/sqlite_import", mode: 'copy'
 
   // Set the sqlite channel to create or update depending on ncbimeta mode
+  // Update needs to happen so we can have the master table?
   if(params.ncbimeta_create){ch_sqlite = ch_ncbimeta_sqlite_create}
   else if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_update}
   else if(params.sqlite)
@@ -250,7 +251,7 @@ process sqlite_import{
 
   script:
   """
-  sqlite3 ${sqlite} ${params.sqlite_select_command} | head -n ${params.max_datasets} | sed 's/ /\\n/g' | while read line;
+  sqlite3 ${sqlite} ${params.sqlite_select_command} | grep . | head -n ${params.max_datasets} | sed 's/ /\\n/g' | while read line;
   do
     if [[ ! -z \$line ]]; then
       asm_url=\$line;
