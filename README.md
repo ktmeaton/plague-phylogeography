@@ -14,7 +14,7 @@ conda env create -f phylo-env.yaml --name phylo-env
 conda activate phylo-env
 ```
 
-### Full Pipeline
+## Full Pipeline
 ```
 nextflow run pipeline.nf \
   --ncbimeta_create ncbimeta.yaml \
