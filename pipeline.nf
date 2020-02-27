@@ -122,7 +122,7 @@ params.snippy_cpus = 4
 params.snippy_variant_summary = "snippy_variants_summary.txt"
 
 // SQLite
-params.sqlite_select_command = "\'select AssemblyFTPGenbank from Assembly\'"
+params.sqlite_select_command = "\'SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment NOT LIKE \"%REMOVE%\"\'"
 
 // -------------------------------------------------------------------------- //
 //                              NCBImeta Entry Point                          //
