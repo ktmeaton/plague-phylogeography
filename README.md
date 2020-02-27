@@ -14,11 +14,24 @@ conda env create -f phylo-env.yaml --name phylo-env
 conda activate phylo-env
 ```
 
+### Full Pipeline
+```
+nextflow run pipeline.nf \
+  --ncbimeta_create ncbimeta.yaml \
+  --ncbimeta_update ncbimeta.yaml \
+  -with-trace
+  -with-timeline
+  -with-dag pipeline.pdf
+  -with-report
+```
+
 ## Fresh start
 
 ### Build NCBImeta database, test lite run-through of pipeline
 ```
-nextflow run pipeline.nf --ncbimeta_create ncbimeta.yaml --skip_sqlite_import
+nextflow run pipeline.nf \
+  --ncbimeta_create ncbimeta.yaml \
+  --skip_sqlite_import
 ```
 
 ### Annotate the Database
@@ -71,4 +84,8 @@ nextflow run pipeline.nf \
   -resume
 ```
 
-NCBImetaJoin.py --database yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
+### Tracing
+-with-trace
+-with-timeline
+-with-dag pipeline.pdf
+-with-report
