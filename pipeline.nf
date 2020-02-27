@@ -152,7 +152,7 @@ if(params.ncbimeta_create){
 
     output:
     file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_ncbimeta_sqlite_create
-    file ncbimeta_yaml as ch_ncbimeta_yaml_create
+    file ncbimeta_yaml into ch_ncbimeta_yaml_create
     file "${params.ncbimeta_output_dir}/log/*.log"
 
     when:
@@ -201,8 +201,8 @@ if(params.ncbimeta_update){
 
     output:
     file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_ncbimeta_sqlite_update
-    file ncbimeta_annot as ch_ncbimeta_annot_update
-    file ncbimeta_yaml as ch_ncbimeta_annot_yaml
+    file ncbimeta_annot into ch_ncbimeta_annot_update
+    file ncbimeta_yaml into ch_ncbimeta_annot_yaml
     file "${params.ncbimeta_output_dir}/log/*.log"
 
     when:
