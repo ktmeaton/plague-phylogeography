@@ -184,8 +184,15 @@ if(params.ncbimeta_update){
     ch_ncbimeta_annot_update = Channel.fromPath(params.ncbimeta_annot, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta annotation file not found: ${params.ncbimeta_annot}" }
 
-    ch_ncbimeta_sqlite_update = Channel.fromPath("${params.ncbimeta_sqlite_db_latest}", checkIfExists: true)
+    // If the database isn't being created in the same pipeline run, create channel from file path
+    if(!params.ncbimeta_create){
+      ch_ncbimeta_sqlite_update = Channel.fromPath("${params.ncbimeta_sqlite_db_latest}", checkIfExists: true)
                                 .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.ncbimeta_sqlite_db_latest}" }
+    }
+    // If the database is being created just before, use from input channel
+    else{
+      ch_ncbimeta_sqlite_update = ch_ncbimeta_sqlite_create
+    }
 
     input:
     file ncbimeta_yaml from ch_ncbimeta_yaml_update
@@ -231,9 +238,8 @@ process sqlite_import{
   publishDir "${params.outdir}/sqlite_import", mode: 'copy'
 
   // Set the sqlite channel to create or update depending on ncbimeta mode
-  // Update needs to happen so we can have the master table?
-  if(params.ncbimeta_create){ch_sqlite = ch_ncbimeta_sqlite_create}
-  else if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_update}
+  // Only options are update or sqlite, no just create? Because we need Master Table Join
+  if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_update}
   else if(params.sqlite)
   {
     ch_sqlite = Channel.fromPath(params.sqlite, checkIfExists: true)
