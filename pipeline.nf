@@ -99,11 +99,17 @@ params.ncbimeta_sqlite_db_latest = "${params.outdir}/ncbimeta_db/update/latest/$
 // NCBImetaAnnotate parameters
 params.ncbimeta_annot_table = "BioSample"
 
-// NCBImetaJoin parameters
-params.ncbimeta_join_final = "Master"
-params.ncbimeta_join_uniq = "'BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession'"
-params.ncbimeta_join_accessory = "'BioProject Assembly SRA Nucleotide'"
-params.ncbimeta_join_anchor = "BioSample"
+// NCBImetaJoin First Parameters
+params.ncbimeta_join_first_final = "MasterFirst"
+params.ncbimeta_join_first_uniq = "'BioSampleAccession BioSampleAccessionSecondary'"
+params.ncbimeta_join_first_accessory = "'Assembly SRA Nucleotide'"
+params.ncbimeta_join_first_anchor = "BioSample"
+
+// NCBImetaJoin Second Parameters
+params.ncbimeta_join_second_final = "Master"
+params.ncbimeta_join_second_uniq = "'BioSampleBioProjectAccession'"
+params.ncbimeta_join_second_accessory = "'BioProject'"
+params.ncbimeta_join_second_anchor = "MasterFirst"
 
 // Genbank and assembly
 params.genbank_asm_gz_suffix = "_genomic.fna.gz"
@@ -207,7 +213,8 @@ if(params.ncbimeta_update){
     # Execute NCBImeta
     NCBImeta.py --config ${ncbimeta_yaml}
     NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
-    NCBImetaJoin.py --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} --anchor ${params.ncbimeta_join_anchor} --accessory ${params.ncbimeta_join_accessory} --final ${params.ncbimeta_join_final} --unique ${params.ncbimeta_join_uniq}
+    NCBImetaJoin.py --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} --anchor ${params.ncbimeta_join_first_anchor} --accessory ${params.ncbimeta_join_first_accessory} --final ${params.ncbimeta_join_first_final} --unique ${params.ncbimeta_join_first_uniq}
+    NCBImetaJoin.py --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} --anchor ${params.ncbimeta_join_second_anchor} --accessory ${params.ncbimeta_join_second_accessory} --final ${params.ncbimeta_join_second_final} --unique ${params.ncbimeta_join_second_uniq}
     """
   }
 }
