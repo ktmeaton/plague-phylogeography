@@ -20,7 +20,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - 2020-02-21 Used git filter-branch to purge ncbimeta.yaml from history. API key accidentally revealed. Re-added and now not tracked.
 - 2020-02-28 Redo ncbimeta.yaml history purge:
   ```
-  cp ncbimeta.yaml ncbimeta.yaml.bak
+  cp ncbimeta.yaml $HOME/ncbimeta.yaml.bak
   ```
   (Delete sensitive data)
   ```
