@@ -91,3 +91,32 @@ nextflow run pipeline.nf \
 -with-timeline
 -with-dag pipeline.pdf
 -with-report
+
+### Join Figuring Out
+params.ncbimeta_join_first_final = "MasterFirst"
+params.ncbimeta_join_first_uniq = "'BioSampleAccession BioSampleAccessionSecondary BioSampleSRAAccession'"
+params.ncbimeta_join_first_accessory = "'Assembly SRA'"
+params.ncbimeta_join_first_anchor = "BioSample"
+
+// NCBImetaJoin Second Parameters
+params.ncbimeta_join_second_final = "Master"
+params.ncbimeta_join_second_uniq = "'BioSampleBioProjectAccession'"
+params.ncbimeta_join_second_accessory = "'BioProject'"
+params.ncbimeta_join_second_anchor = "MasterFirst"
+
+NCBImetaJoin.py \
+  --database yersinia_pestis_db.sqlite \
+  --anchor BioSample \
+  --accessory "Assembly SRA" \
+  --final MasterFirst \
+  --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleSRAAccession"
+
+NCBImetaJoin.py \
+  --database yersinia_pestis_db.sqlite \
+  --anchor MasterFirst \
+  --accessory BioProject \
+  --final Master \
+  --unique ${params.ncbimeta_join_second_uniq}
+
+### Perl5 Issues
+export PERL5LIB=~/miniconda3/envs/phylo-env/lib/site_perl/5.26.2/
