@@ -1,5 +1,6 @@
 work/*
 results/*
+src/*
 .nextflow*
 ncbimeta.yaml
 pipeline.pdf*
