@@ -174,7 +174,7 @@ if(params.ncbimeta_update){
     echo true
 
     // ISSUE: Can these be a symlink to each other?
-    publishDir "${params.outdir}/ncbimeta_db/update/${workflow.runName}", mode: 'copy'
+    publishDir "${params.outdir}/ncbimeta_db/update/${workflow.start}_${workflow.runName}", mode: 'copy'
     publishDir "${params.outdir}/ncbimeta_db/update/latest", mode: 'copy', overwrite: 'true'
 
 
