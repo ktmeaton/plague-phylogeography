@@ -19,6 +19,7 @@ conda activate phylo-env
 nextflow run pipeline.nf \
   --ncbimeta_create ncbimeta.yaml \
   --ncbimeta_update ncbimeta.yaml \
+  --ncbimeta_annot extract.txt \
   -with-trace \
   -with-timeline \
   -with-dag pipeline.pdf \
