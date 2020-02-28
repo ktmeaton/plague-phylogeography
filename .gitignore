@@ -1,7 +1,8 @@
 work/*
 results/*
+src/*
 .nextflow*
-ncbimeta.yaml
+ncbimeta.yaml*
 pipeline.pdf*
 report.html*
 timeline.html*

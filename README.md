@@ -116,7 +116,6 @@ NCBImetaJoin.py \
   --anchor MasterFirst \
   --accessory BioProject \
   --final Master \
-  --unique ${params.ncbimeta_join_second_uniq}
 
 ### Perl5 Issues
 export PERL5LIB=~/miniconda3/envs/phylo-env/lib/site_perl/5.26.2/
