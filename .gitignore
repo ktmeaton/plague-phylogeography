@@ -2,7 +2,7 @@ work/*
 results/*
 .nextflow*
 ncbimeta.yaml
-pipeline.pdf
-report.html
-timeline.html
-trace.txt
+pipeline.pdf*
+report.html*
+timeline.html*
+trace.txt*
