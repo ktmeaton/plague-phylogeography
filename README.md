@@ -107,6 +107,21 @@ params.ncbimeta_join_second_anchor = "MasterFirst"
 NCBImetaJoin.py \
   --database yersinia_pestis_db.sqlite \
   --anchor BioSample \
+  --accessory "SRA" \
+  --final BioSampleSRA \
+  --unique "BioSampleAccession BioSampleSRAAccession"
+
+  NCBImetaJoin.py \
+    --database yersinia_pestis_db.sqlite \
+    --anchor Assembly \
+    --accessory "BioProject" \
+    --final AssemblyBioProject \
+    --unique "AssemblyAccession AssemblyGenbankBioprojectAccession"
+
+
+NCBImetaJoin.py \
+  --database yersinia_pestis_db.sqlite \
+  --anchor BioSample \
   --accessory "Assembly SRA" \
   --final MasterFirst \
   --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleSRAAccession"
@@ -116,7 +131,7 @@ NCBImetaJoin.py \
   --anchor MasterFirst \
   --accessory BioProject \
   --final Master \
-  --unique ${params.ncbimeta_join_second_uniq}
+  --unique "BioSampleAccession BioSampleBioProjectAccession"
 
 ### Perl5 Issues
 export PERL5LIB=~/miniconda3/envs/phylo-env/lib/site_perl/5.26.2/

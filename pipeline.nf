@@ -107,7 +107,7 @@ params.ncbimeta_join_first_anchor = "BioSample"
 
 // NCBImetaJoin Second Parameters
 params.ncbimeta_join_second_final = "Master"
-params.ncbimeta_join_second_uniq = "'BioSampleBioProjectAccession'"
+params.ncbimeta_join_second_uniq = "'BioSampleAccession BioSampleBioProjectAccession'"
 params.ncbimeta_join_second_accessory = "'BioProject'"
 params.ncbimeta_join_second_anchor = "MasterFirst"
 
