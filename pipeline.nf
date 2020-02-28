@@ -101,8 +101,8 @@ params.ncbimeta_annot_table = "BioSample"
 
 // NCBImetaJoin First Parameters
 params.ncbimeta_join_first_final = "MasterFirst"
-params.ncbimeta_join_first_uniq = "'BioSampleAccession BioSampleAccessionSecondary'"
-params.ncbimeta_join_first_accessory = "'Assembly SRA Nucleotide'"
+params.ncbimeta_join_first_uniq = "'BioSampleAccession BioSampleAccessionSecondary BioSampleSRAAccession'"
+params.ncbimeta_join_first_accessory = "'Assembly SRA'"
 params.ncbimeta_join_first_anchor = "BioSample"
 
 // NCBImetaJoin Second Parameters
