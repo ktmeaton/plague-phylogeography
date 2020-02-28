@@ -37,7 +37,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   ```
   Stop git from continuing to track the file and ignore
   ```
-  git rm --cached ncbimeta.yaml
+  git update-index --skip-worktree ncbimeta.yaml
   echo "ncbimeta.yaml" >> .gitignore
   ```
 [Development]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
