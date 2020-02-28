@@ -14,21 +14,22 @@ conda env create -f phylo-env.yaml --name phylo-env
 conda activate phylo-env
 ```
 
-## Full Pipeline
+## Full Pipeline (Reproduce)
 ```
 nextflow run pipeline.nf \
   --ncbimeta_create ncbimeta.yaml \
   --ncbimeta_update ncbimeta.yaml \
   --ncbimeta_annot extract.txt \
+  --max_datasets 3 \
   -with-trace \
   -with-timeline \
   -with-dag pipeline.pdf \
   -with-report
 ```
 
-## Fresh start
+## Step By Step (From Scratch)
 
-### Build NCBImeta database, test lite run-through of pipeline
+### Build NCBImeta database
 ```
 nextflow run pipeline.nf \
   --ncbimeta_create ncbimeta.yaml \
