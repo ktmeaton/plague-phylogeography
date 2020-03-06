@@ -5,7 +5,8 @@ Phylogeography of Yersinia pestis
 **Workflow:** NextFlow  
 **Database:** NCBImeta, sqlite3 (CLI)  
 **Alignment:** snippy  
-**Masking, etc.:** dustmasker, mummer  
+**Masking, etc.:** dustmasker, mummer
+**Model Selection:** modeltest-ng  
 
 ### Conda Environment
 Create a conda environment with the required dependencies  
@@ -81,7 +82,6 @@ nextflow run pipeline.nf \
 ```
 nextflow run pipeline.nf \
   --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-  --ncbimeta_annot annot.txt \
   --max_datasets 1 \
   -resume
 ```
