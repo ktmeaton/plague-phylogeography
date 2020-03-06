@@ -424,7 +424,7 @@ process reference_detect_repeats{
   // Detect in-exact repeats with mummer
   tag "$reference_genome_fna"
 
-  publishDir ""
+  publishDir "${params.outdir}/reference_detect_repeats", mode: 'copy'
 
   echo true
 
@@ -433,6 +433,7 @@ process reference_detect_repeats{
 
   output:
   file "${reference_genome_fna.baseName}.inexact.repeats.bed" into ch_bed_ref_detect_repeats
+  file "${reference_genome_fna.baseName}.inexact*"
 
   when:
   !params.skip_reference_detect_repeats
@@ -442,23 +443,21 @@ process reference_detect_repeats{
   echo ${reference_genome_fna}
   PREFIX=${reference_genome_fna.baseName}
   # Align reference to itself to find inexact repeats
-  nucmer --maxmatch --nosimplify --prefix=${PREFIX}.inexact ${PREFIX}.fasta ${PREFIX}.fasta
+  nucmer --maxmatch --nosimplify --prefix=\${PREFIX}.inexact ${reference_genome_fna} ${reference_genome_fna}
   # Convert the delta file to a simplified, tab-delimited coordinate file
-  show-coords -r -c -l -T ${PREFIX}.inexact.delta | tail -n+5 > ${PREFIX}.inexact.coords
+  show-coords -r -c -l -T \${PREFIX}.inexact.delta | tail -n+5 > \${PREFIX}.inexact.coords
   # Remove all "repeats" that are simply each reference aligned to itself
   # also retain only repeats with more than 90% sequence similarity.
-  awk -F "\t" '{
-    if (\$1 == \$3 && \$2 == \$4 && \$12 == \$13)
+  awk -F "\t" '{if (\$1 == \$3 && \$2 == \$4 && \$12 == \$13)
         {next;}
     else if (\$7 > 90)
-        {print \$0}}' ${PREFIX}.inexact.coords > ${PREFIX}.inexact.repeats
+        {print \$0}}' \${PREFIX}.inexact.coords > \${PREFIX}.inexact.repeats
   # Convert to bed file format, changing to 0-base position coordinates
-  awk -F "\t" '{
-    print \$12 "\t" \$1-1 "\t" \$2-1;
+  awk -F "\t" '{print \$12 "\t" \$1-1 "\t" \$2-1;
     if (\$3 > \$4){tmp=\$4; \$4=\$3; \$3=tmp;}
     print \$13 "\t" \$3-1 "\t" \$4-1;}' \${PREFIX}.inexact.repeats | \
   sort -k1,1 -k2,2n | \
-  bedtools merge > ${PREFIX}.inexact.repeats.bed
+  bedtools merge > \${PREFIX}.inexact.repeats.bed
   """
 
 }
