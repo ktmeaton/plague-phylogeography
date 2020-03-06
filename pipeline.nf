@@ -319,7 +319,7 @@ process reference_download{
   file reference_genome_fna from file(params.reference_genome_ftp)
 
   output:
-  file "${reference_genome_fna.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_genome_low_complexity
+  file "${reference_genome_fna.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_detect_repeats, ch_reference_genome_low_complexity
 
   when:
   !params.skip_reference_download
@@ -420,8 +420,48 @@ if(!params.skip_snippy_variant_summary){
 //                       Filtering Before Multiple Alignment                  //
 // -------------------------------------------------------------------------- //
 
-//process reference_detect_repeats{
-//}
+process reference_detect_repeats{
+  // Detect in-exact repeats with mummer
+  tag "$reference_genome_fna"
+
+  publishDir ""
+
+  echo true
+
+  input:
+  file reference_genome_fna from ch_reference_detect_repeats
+
+  output:
+  file "${reference_genome_fna.baseName}.inexact.repeats.bed" into ch_bed_ref_detect_repeats
+
+  when:
+  !params.skip_reference_detect_repeats
+
+  script:
+  """
+  echo ${reference_genome_fna}
+  PREFIX=${reference_genome_fna.baseName}
+  # Align reference to itself to find inexact repeats
+  nucmer --maxmatch --nosimplify --prefix=${PREFIX}.inexact ${PREFIX}.fasta ${PREFIX}.fasta
+  # Convert the delta file to a simplified, tab-delimited coordinate file
+  show-coords -r -c -l -T ${PREFIX}.inexact.delta | tail -n+5 > ${PREFIX}.inexact.coords
+  # Remove all "repeats" that are simply each reference aligned to itself
+  # also retain only repeats with more than 90% sequence similarity.
+  awk -F "\t" '{
+    if (\$1 == \$3 && \$2 == \$4 && \$12 == \$13)
+        {next;}
+    else if (\$7 > 90)
+        {print \$0}}' ${PREFIX}.inexact.coords > ${PREFIX}.inexact.repeats
+  # Convert to bed file format, changing to 0-base position coordinates
+  awk -F "\t" '{
+    print \$12 "\t" \$1-1 "\t" \$2-1;
+    if (\$3 > \$4){tmp=\$4; \$4=\$3; \$3=tmp;}
+    print \$13 "\t" \$3-1 "\t" \$4-1;}' \${PREFIX}.inexact.repeats | \
+  sort -k1,1 -k2,2n | \
+  bedtools merge > ${PREFIX}.inexact.repeats.bed
+  """
+
+}
 
 process reference_detect_low_complexity{
   // Detect low complexity regions with dust masker
