@@ -8,7 +8,7 @@ dependencies:
   - snippy==4.4.5
   - blast==2.9.0
   - mummer==3.23
-  - perl-bioperl==1.7.2
+  - modeltest-ng==0.1.6
   - pip==20.0.2
   - pip:
      - "--editable=git+https://github.com/ktmeaton/NCBImeta.git@dev#egg=ncbimeta"
