@@ -5,7 +5,7 @@ Phylogeography of Yersinia pestis
 **Workflow:** NextFlow  
 **Database:** NCBImeta, sqlite3 (CLI)  
 **Alignment:** snippy  
-**Masking, etc.:** dustmasker, mummer
+**Masking, etc.:** dustmasker, mummer, vcftools
 **Model Selection:** modeltest-ng  
 
 ### Conda Environment
