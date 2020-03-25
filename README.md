@@ -20,7 +20,7 @@ conda activate phylo-env
 nextflow run pipeline.nf \
   --ncbimeta_create ncbimeta.yaml \
   --ncbimeta_update ncbimeta.yaml \
-  --ncbimeta_annot extract.txt \
+  --ncbimeta_annot annot_biosample.txt \
   --max_datasets 3 \
   -with-trace \
   -with-timeline \
@@ -42,7 +42,7 @@ Query the Database for problematic records (wrong organism)
 ```
 DB=results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
 sqlite3 $DB
-.output extract.txt
+.output annot_biosample.txt
 SELECT BioSampleAccession,
        BioSampleBioProjectAccession,
        BioSampleStrain,
@@ -59,13 +59,13 @@ WHERE (BioSampleOrganism NOT LIKE '%Yersinia pestis%');
 Add delimited headers to top of file
 ```
 DELIM="|"
-sed  -i "1i BioSampleAccession${DELIM}BioSampleBioProjectAccession${DELIM}BioSampleStrain${DELIM}BioSampleOrganism${DELIM}BioSampleSRAAccession${DELIM}BioSampleAccessionSecondary${DELIM}BioSampleCollectionDate${DELIM}BioSampleGeographicLocation${DELIM}BioSampleHost${DELIM}BioSampleComment" extract.txt
+sed  -i "1i BioSampleAccession${DELIM}BioSampleBioProjectAccession${DELIM}BioSampleStrain${DELIM}BioSampleOrganism${DELIM}BioSampleSRAAccession${DELIM}BioSampleAccessionSecondary${DELIM}BioSampleCollectionDate${DELIM}BioSampleGeographicLocation${DELIM}BioSampleHost${DELIM}BioSampleComment" annot_biosample.txt
 ```
 Convert from pipe-separated to tab-separated file
 ```
-sed -i "s/|/\t/g" extract.txt
+sed -i "s/|/\t/g" annot_biosample.txt
 ```
-Inspect the extract.txt file in a spreadsheet view (ex. Excel, Google Sheets)  
+Inspect the annot_biosample.txt file in a spreadsheet view (ex. Excel, Google Sheets)  
 Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows that are confirmed appropriate.  
 
 
@@ -73,7 +73,7 @@ Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows tha
 ```
 nextflow run pipeline.nf \
   --ncbimeta_update ncbimeta.yaml \
-  --ncbimeta_annot extract.txt \
+  --ncbimeta_annot annot_biosample.txt \
   --skip_sqlite_import \
   -resume
 ```
