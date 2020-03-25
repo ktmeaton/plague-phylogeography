@@ -11,5 +11,4 @@ dependencies:
   - modeltest-ng==0.1.6
   - vcftools==0.1.16
   - pip==20.0.2
-  - pip:
-     - "--editable=git+https://github.com/ktmeaton/NCBImeta.git@dev#egg=ncbimeta"
+  - ncbimeta==0.6.5
