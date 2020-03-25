@@ -5,7 +5,7 @@ Phylogeography of Yersinia pestis
 **Workflow:** NextFlow  
 **Database:** NCBImeta, sqlite3 (CLI)  
 **Alignment:** snippy  
-**Masking, etc.:** dustmasker, mummer, vcftools  
+**Masking, etc.:** dustmasker, mummer, vcftools   
 **Model Selection:** modeltest-ng  
 
 ### Conda Environment
@@ -33,8 +33,7 @@ nextflow run pipeline.nf \
 ### Build NCBImeta database
 ```
 nextflow run pipeline.nf \
-  --ncbimeta_create ncbimeta.yaml \
-  --skip_sqlite_import
+  --ncbimeta_create ncbimeta.yaml
 ```
 
 ### Annotate the Database
@@ -56,7 +55,7 @@ SELECT BioSampleAccession,
 FROM BioSample
 WHERE (BioSampleOrganism NOT LIKE '%Yersinia pestis%');
 ```
-Add delimited headers to top of file
+Add delimited headers to top of file (that match NCBImeta table BioSample)
 ```
 DELIM="|"
 sed  -i "1i BioSampleAccession${DELIM}BioSampleBioProjectAccession${DELIM}BioSampleStrain${DELIM}BioSampleOrganism${DELIM}BioSampleSRAAccession${DELIM}BioSampleAccessionSecondary${DELIM}BioSampleCollectionDate${DELIM}BioSampleGeographicLocation${DELIM}BioSampleHost${DELIM}BioSampleComment" annot_biosample.txt

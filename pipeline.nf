@@ -234,294 +234,324 @@ if(params.ncbimeta_update){
 //                        SQLite database import and download                 //
 // -------------------------------------------------------------------------- //
 
-process sqlite_import{
-  // Import assembly ftp url from database, retrieve file names and URL for web get
-  tag "$sqlite"
-  echo true
+if(params.sqlite || params.ncbimeta_update){
 
-  publishDir "${params.outdir}/sqlite_import", mode: 'copy'
+  process sqlite_import{
+    // Import assembly ftp url from database, retrieve file names and URL for web get
+    tag "$sqlite"
+    echo true
 
-  // Set the sqlite channel to create or update depending on ncbimeta mode
-  // Only options are update or sqlite, no just create? Because we need Master Table Join
-  if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_update}
-  else if(params.sqlite)
-  {
-    ch_sqlite = Channel.fromPath(params.sqlite, checkIfExists: true)
-                                .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.sqlite}" }
+    publishDir "${params.outdir}/sqlite_import", mode: 'copy'
+
+    // Set the sqlite channel to create or update depending on ncbimeta mode
+    // Only options are update or sqlite, no just create? Because we need Master Table Join
+    if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_update}
+    else if(params.sqlite)
+    {
+      ch_sqlite = Channel.fromPath(params.sqlite, checkIfExists: true)
+                                  .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.sqlite}" }
+    }
+
+    input:
+    file sqlite from ch_sqlite
+
+    output:
+    file params.file_assembly_for_download_ftp into ch_assembly_for_download_ftp
+
+    when:
+    !params.skip_sqlite_import
+
+    script:
+    """
+    sqlite3 ${sqlite} ${params.sqlite_select_command} | grep . | head -n ${params.max_datasets} | sed 's/ /\\n/g' | while read line;
+    do
+      if [[ ! -z \$line ]]; then
+        asm_url=\$line;
+        asm_fasta=`echo \$line | cut -d "/" -f 10 | awk -v suffix=${params.genbank_asm_gz_suffix} '{print \$0 suffix}'`;
+        asm_ftp=\${asm_url}/\${asm_fasta};
+        echo \$asm_ftp >> ${params.file_assembly_for_download_ftp}
+      fi;
+    done;
+    """
   }
 
-  input:
-  file sqlite from ch_sqlite
-
-  output:
-  file params.file_assembly_for_download_ftp into ch_assembly_for_download_ftp
-
-  when:
-  !params.skip_sqlite_import
-
-  script:
-  """
-  sqlite3 ${sqlite} ${params.sqlite_select_command} | grep . | head -n ${params.max_datasets} | sed 's/ /\\n/g' | while read line;
-  do
-    if [[ ! -z \$line ]]; then
-      asm_url=\$line;
-      asm_fasta=`echo \$line | cut -d "/" -f 10 | awk -v suffix=${params.genbank_asm_gz_suffix} '{print \$0 suffix}'`;
-      asm_ftp=\${asm_url}/\${asm_fasta};
-      echo \$asm_ftp >> ${params.file_assembly_for_download_ftp}
-    fi;
-  done;
-  """
 }
-
 // -------------------------------------------------------------------------- //
 //                        Genome Download - Assemblies                        //
 // -------------------------------------------------------------------------- //
 
-process assembly_download{
-  // Download assemblies using ftp links
-  tag "$asm_fna_gz"
+if(params.sqlite || params.ncbimeta_update){
 
-  publishDir "${params.outdir}/assembly_download", mode: 'copy'
+  process assembly_download{
+    // Download assemblies using ftp links
+    tag "$asm_fna_gz"
 
-  echo true
+    publishDir "${params.outdir}/assembly_download", mode: 'copy'
 
-  // Deal with new lines, split up ftp links by url
-  // By loading with file(), stages as local file
-  ch_assembly_for_download_ftp.splitText()
-          .map { file(it.replaceFirst(/\n/,'')) }
-          .set { ch_ftp_url_list }
+    echo true
 
-  input:
-  file asm_fna_gz from ch_ftp_url_list
+    // Deal with new lines, split up ftp links by url
+    // By loading with file(), stages as local file
+    ch_assembly_for_download_ftp.splitText()
+            .map { file(it.replaceFirst(/\n/,'')) }
+            .set { ch_ftp_url_list }
 
-  output:
-  file "*${params.genbank_asm_fna_suffix}" into ch_asm_fna
+    input:
+    file asm_fna_gz from ch_ftp_url_list
 
-  when:
-  !params.skip_assembly_download
+    output:
+    file "*${params.genbank_asm_fna_suffix}" into ch_asm_fna
 
-  script:
-  """
-  # Use -f otherwise error due to too many levels of symbolic links
-  gunzip -f ${asm_fna_gz}
-  """
+    when:
+    !params.skip_assembly_download
+
+    script:
+    """
+    # Use -f otherwise error due to too many levels of symbolic links
+    gunzip -f ${asm_fna_gz}
+    """
+  }
+
 }
-
 // -------------------------------------------------------------------------- //
 //                        Genome Download - Reference Sequence                //
 // -------------------------------------------------------------------------- //
 
-process reference_download{
-  // Pairwise align contigs to reference genome with snippy
-  tag "$reference_genome_fna"
+if(params.sqlite || params.ncbimeta_update){
 
-  echo true
+  process reference_download{
+    // Pairwise align contigs to reference genome with snippy
+    tag "$reference_genome_fna"
 
-  publishDir "${params.outdir}/reference_genome", mode: 'copy'
+    echo true
 
-  input:
-  file reference_genome_fna from file(params.reference_genome_ftp)
+    publishDir "${params.outdir}/reference_genome", mode: 'copy'
 
-  output:
-  file "${reference_genome_fna.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_detect_repeats, ch_reference_genome_low_complexity
+    input:
+    file reference_genome_fna from file(params.reference_genome_ftp)
 
-  when:
-  !params.skip_reference_download
+    output:
+    file "${reference_genome_fna.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_detect_repeats, ch_reference_genome_low_complexity
 
-  script:
-  """
-  gunzip -f ${reference_genome_fna}
-  """
+    when:
+    !params.skip_reference_download
+
+    script:
+    """
+    gunzip -f ${reference_genome_fna}
+    """
+  }
+
 }
 
 // -------------------------------------------------------------------------- //
 //                      Snippy Pipeline - Pairwise Alignment to Ref           //
 // -------------------------------------------------------------------------- //
 
-process snippy_pairwise{
-  // Pairwise align contigs to reference genome with snippy
-  tag "$asm_fna"
+if(params.sqlite || params.ncbimeta_update){
 
-  publishDir "${params.outdir}/snippy_pairwise", mode: 'copy'
-  //publishDir "${params.outdir}/snippy_pairwise/output${params.snippy_ctg_depth}X/", mode: 'copy',
-  //      saveAs: {filename -> "${asm_fna.baseName}/$filename"}
+  process snippy_pairwise{
+    // Pairwise align contigs to reference genome with snippy
+    tag "$asm_fna"
 
-  echo true
+    publishDir "${params.outdir}/snippy_pairwise", mode: 'copy'
+    //publishDir "${params.outdir}/snippy_pairwise/output${params.snippy_ctg_depth}X/", mode: 'copy',
+    //      saveAs: {filename -> "${asm_fna.baseName}/$filename"}
+
+    echo true
 
 
-  input:
-  file asm_fna from ch_asm_fna
-  file reference_genome_fna from ch_reference_genome_snippy_pairwise
+    input:
+    file asm_fna from ch_asm_fna
+    file reference_genome_fna from ch_reference_genome_snippy_pairwise
 
-  output:
-  file "output${params.snippy_ctg_depth}X/*/*"
-  file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_summary
-  file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf
+    output:
+    file "output${params.snippy_ctg_depth}X/*/*"
+    file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_summary
+    file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf
 
-  when:
-  !params.skip_snippy_pairwise
+    when:
+    !params.skip_snippy_pairwise
 
-  script:
-  """
-  snippy \
-    --prefix ${asm_fna.baseName}_snippy \
-    --cpus ${params.snippy_cpus} \
-    --reference ${reference_genome_fna} \
-    --outdir output${params.snippy_ctg_depth}X/${asm_fna.baseName} \
-    --ctgs ${asm_fna} \
-    --mapqual ${params.snippy_map_qual} \
-    --mincov ${params.snippy_ctg_depth} \
-    --minfrac ${params.snippy_min_frac} \
-    --basequal ${params.snippy_base_qual} \
-    --report;
+    script:
+    """
+    snippy \
+      --prefix ${asm_fna.baseName}_snippy \
+      --cpus ${params.snippy_cpus} \
+      --reference ${reference_genome_fna} \
+      --outdir output${params.snippy_ctg_depth}X/${asm_fna.baseName} \
+      --ctgs ${asm_fna} \
+      --mapqual ${params.snippy_map_qual} \
+      --mincov ${params.snippy_ctg_depth} \
+      --minfrac ${params.snippy_min_frac} \
+      --basequal ${params.snippy_base_qual} \
+      --report;
 
-  snippy_snps_in=output${params.snippy_ctg_depth}X/${asm_fna.baseName}/${asm_fna.baseName}_snippy.txt
-  snippy_snps_txt=output${params.snippy_ctg_depth}X/${asm_fna.baseName}/${asm_fna.baseName}_snippy.summary.txt
+    snippy_snps_in=output${params.snippy_ctg_depth}X/${asm_fna.baseName}/${asm_fna.baseName}_snippy.txt
+    snippy_snps_txt=output${params.snippy_ctg_depth}X/${asm_fna.baseName}/${asm_fna.baseName}_snippy.summary.txt
 
-  COMPLEX=`awk 'BEGIN{count=0}{if (\$1 == "Variant-COMPLEX"){count=\$2}}END{print count}' \$snippy_snps_in;`
-  DEL=`awk 'BEGIN{count=0}{if (\$1 == "Variant-DEL"){count=\$2}}END{print count}' \$snippy_snps_in;`
-  INS=`awk 'BEGIN{count=0}{if (\$1 == "Variant-INS"){count=\$2}}END{print count}' \$snippy_snps_in;`
-  MNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-MNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
-  SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
-  TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' \$snippy_snps_in;`
-  echo -e output${params.snippy_ctg_depth}X/${asm_fna.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
-  """
+    COMPLEX=`awk 'BEGIN{count=0}{if (\$1 == "Variant-COMPLEX"){count=\$2}}END{print count}' \$snippy_snps_in;`
+    DEL=`awk 'BEGIN{count=0}{if (\$1 == "Variant-DEL"){count=\$2}}END{print count}' \$snippy_snps_in;`
+    INS=`awk 'BEGIN{count=0}{if (\$1 == "Variant-INS"){count=\$2}}END{print count}' \$snippy_snps_in;`
+    MNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-MNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
+    SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
+    TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' \$snippy_snps_in;`
+    echo -e output${params.snippy_ctg_depth}X/${asm_fna.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
+    """
+  }
+
 }
 
 // -------------------------------------------------------------------------- //
 //                      Summarize Snippy Called Variants in Table             //
 // -------------------------------------------------------------------------- //
 
-process snippy_variant_summary{
-  // Variant Summary Table
-  tag "$snippy_snps_txt"
+if(params.sqlite || params.ncbimeta_update){
 
-  //publishDir "${params.outdir}/snippy_variant_summary", mode: 'copy'
+  process snippy_variant_summary{
+    // Variant Summary Table
+    tag "$snippy_snps_txt"
 
-  echo true
+    //publishDir "${params.outdir}/snippy_variant_summary", mode: 'copy'
 
-  input:
-  file snippy_snps_summary from ch_snippy_snps_summary
+    echo true
 
-  output:
-  file params.snippy_variant_summary into ch_snippy_variant_multi_summary
+    input:
+    file snippy_snps_summary from ch_snippy_snps_summary
 
-  when:
-  !params.skip_snippy_variant_summary
+    output:
+    file params.snippy_variant_summary into ch_snippy_variant_multi_summary
 
-  script:
-  """
-   < ${snippy_snps_summary} cat > ${params.snippy_variant_summary}
-  """
-}
+    when:
+    !params.skip_snippy_variant_summary
 
-if(!params.skip_snippy_variant_summary){
-  // Can this be moved up to within the previous process?
-  ch_snippy_variant_multi_summary
-      .collectFile(name: "${params.snippy_variant_summary}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_variant_summary")
+    script:
+    """
+     < ${snippy_snps_summary} cat > ${params.snippy_variant_summary}
+    """
+  }
+
+  if(!params.skip_snippy_variant_summary){
+    // Can this be moved up to within the previous process?
+    ch_snippy_variant_multi_summary
+        .collectFile(name: "${params.snippy_variant_summary}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_variant_summary")
+  }
+
 }
 
 // -------------------------------------------------------------------------- //
 //                       Filtering Before Multiple Alignment                  //
 // -------------------------------------------------------------------------- //
 
-process reference_detect_repeats{
-  // Detect in-exact repeats with mummer
-  tag "$reference_genome_fna"
+if(params.sqlite || params.ncbimeta_update){
 
-  publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+  process reference_detect_repeats{
+    // Detect in-exact repeats with mummer
+    tag "$reference_genome_fna"
 
-  echo true
+    publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
 
-  input:
-  file reference_genome_fna from ch_reference_detect_repeats
+    echo true
 
-  output:
-  file "${reference_genome_fna.baseName}.inexact.repeats.bed" into ch_bed_ref_detect_repeats
-  file "${reference_genome_fna.baseName}.inexact*"
+    input:
+    file reference_genome_fna from ch_reference_detect_repeats
 
-  when:
-  !params.skip_reference_detect_repeats
+    output:
+    file "${reference_genome_fna.baseName}.inexact.repeats.bed" into ch_bed_ref_detect_repeats
+    file "${reference_genome_fna.baseName}.inexact*"
 
-  script:
-  """
-  PREFIX=${reference_genome_fna.baseName}
-  # Align reference to itself to find inexact repeats
-  nucmer --maxmatch --nosimplify --prefix=\${PREFIX}.inexact ${reference_genome_fna} ${reference_genome_fna}
-  # Convert the delta file to a simplified, tab-delimited coordinate file
-  show-coords -r -c -l -T \${PREFIX}.inexact.delta | tail -n+5 > \${PREFIX}.inexact.coords
-  # Remove all "repeats" that are simply each reference aligned to itself
-  # also retain only repeats with more than 90% sequence similarity.
-  awk -F "\t" '{if (\$1 == \$3 && \$2 == \$4 && \$12 == \$13)
-        {next;}
-    else if (\$7 > 90)
-        {print \$0}}' \${PREFIX}.inexact.coords > \${PREFIX}.inexact.repeats
-  # Convert to bed file format, changing to 0-base position coordinates
-  awk -F "\t" '{print \$12 "\t" \$1-1 "\t" \$2-1;
-    if (\$3 > \$4){tmp=\$4; \$4=\$3; \$3=tmp;}
-    print \$13 "\t" \$3-1 "\t" \$4-1;}' \${PREFIX}.inexact.repeats | \
-  sort -k1,1 -k2,2n | \
-  bedtools merge > \${PREFIX}.inexact.repeats.bed
-  """
+    when:
+    !params.skip_reference_detect_repeats
+
+    script:
+    """
+    PREFIX=${reference_genome_fna.baseName}
+    # Align reference to itself to find inexact repeats
+    nucmer --maxmatch --nosimplify --prefix=\${PREFIX}.inexact ${reference_genome_fna} ${reference_genome_fna}
+    # Convert the delta file to a simplified, tab-delimited coordinate file
+    show-coords -r -c -l -T \${PREFIX}.inexact.delta | tail -n+5 > \${PREFIX}.inexact.coords
+    # Remove all "repeats" that are simply each reference aligned to itself
+    # also retain only repeats with more than 90% sequence similarity.
+    awk -F "\t" '{if (\$1 == \$3 && \$2 == \$4 && \$12 == \$13)
+          {next;}
+      else if (\$7 > 90)
+          {print \$0}}' \${PREFIX}.inexact.coords > \${PREFIX}.inexact.repeats
+    # Convert to bed file format, changing to 0-base position coordinates
+    awk -F "\t" '{print \$12 "\t" \$1-1 "\t" \$2-1;
+      if (\$3 > \$4){tmp=\$4; \$4=\$3; \$3=tmp;}
+      print \$13 "\t" \$3-1 "\t" \$4-1;}' \${PREFIX}.inexact.repeats | \
+    sort -k1,1 -k2,2n | \
+    bedtools merge > \${PREFIX}.inexact.repeats.bed
+    """
+
+  }
 
 }
 
-process reference_detect_low_complexity{
-  // Detect low complexity regions with dust masker
-  tag "$reference_genome_fna"
+if(params.sqlite || params.ncbimeta_update){
 
-  publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+  process reference_detect_low_complexity{
+    // Detect low complexity regions with dust masker
+    tag "$reference_genome_fna"
 
-  echo true
+    publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
 
-  input:
-  file reference_genome_fna from ch_reference_genome_low_complexity
+    echo true
 
-  output:
-  file "${reference_genome_fna.baseName}.dustmasker.intervals"
-  file "${reference_genome_fna.baseName}.dustmasker.bed" into ch_bed_ref_low_complex
+    input:
+    file reference_genome_fna from ch_reference_genome_low_complexity
 
-  when:
-  !params.skip_reference_detect_low_complexity
+    output:
+    file "${reference_genome_fna.baseName}.dustmasker.intervals"
+    file "${reference_genome_fna.baseName}.dustmasker.bed" into ch_bed_ref_low_complex
 
-  script:
-  """
-  dustmasker -in ${reference_genome_fna} -outfmt interval > ${reference_genome_fna.baseName}.dustmasker.intervals
-  ${params.scriptdir}/intervals2bed.sh ${reference_genome_fna.baseName}.dustmasker.intervals ${reference_genome_fna.baseName}.dustmasker.bed
-  """
+    when:
+    !params.skip_reference_detect_low_complexity
+
+    script:
+    """
+    dustmasker -in ${reference_genome_fna} -outfmt interval > ${reference_genome_fna.baseName}.dustmasker.intervals
+    ${params.scriptdir}/intervals2bed.sh ${reference_genome_fna.baseName}.dustmasker.intervals ${reference_genome_fna.baseName}.dustmasker.bed
+    """
+  }
+
 }
 
-process pairwise_detect_snp_high_density{
-  // Detect regions of high SNP density
-  tag "$snippy_subs_vcf"
+if(params.sqlite || params.ncbimeta_update){
 
-  //publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+  process pairwise_detect_snp_high_density{
+    // Detect regions of high SNP density
+    tag "$snippy_subs_vcf"
 
-  echo true
+    //publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
 
-  input:
-  file snippy_subs_vcf from ch_snippy_subs_vcf
+    echo true
 
-  output:
-  file "*.subs.snpden" into ch_snippy_subs
+    input:
+    file snippy_subs_vcf from ch_snippy_subs_vcf
 
-  when:
-  !params.skip_pairwise_detect_snp_high_density
+    output:
+    file "*.subs.snpden" into ch_snippy_subs
 
-  script:
-  """
-  echo ${snippy_subs_vcf}
-  vcftools --vcf ${snippy_subs_vcf} --SNPdensity ${params.snippy_snp_density_window} --out ${snippy_subs_vcf.baseName}.tmp
-  tail -n+2 ${snippy_subs_vcf.baseName}.tmp.snpden > ${snippy_subs_vcf.baseName}.snpden
-  """
-}
+    when:
+    !params.skip_pairwise_detect_snp_high_density
 
-if(!params.skip_pairwise_detect_snp_high_density){
-  ch_snippy_subs
-      .collectFile(name: "${params.snippy_variant_density}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_filtering")
-}
+    script:
+    """
+    echo ${snippy_subs_vcf}
+    vcftools --vcf ${snippy_subs_vcf} --SNPdensity ${params.snippy_snp_density_window} --out ${snippy_subs_vcf.baseName}.tmp
+    tail -n+2 ${snippy_subs_vcf.baseName}.tmp.snpden > ${snippy_subs_vcf.baseName}.snpden
+    """
+  }
 
-if(!params.skip_pairwise_extract_snp_high_density){
-  ch_snippy_subs_multi = Channel.fromPath("${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt", checkIfExists: true)
-                              .ifEmpty { exit 1, "Snippy variant density file not found: ${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt"}
+  if(!params.skip_pairwise_detect_snp_high_density){
+    ch_snippy_subs
+        .collectFile(name: "${params.snippy_variant_density}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_filtering")
+  }
+
+  if(!params.skip_pairwise_extract_snp_high_density){
+    ch_snippy_subs_multi = Channel.fromPath("${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt", checkIfExists: true)
+                                .ifEmpty { exit 1, "Snippy variant density file not found: ${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt"}
+  }
+
 }
