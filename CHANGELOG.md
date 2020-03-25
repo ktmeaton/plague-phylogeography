@@ -46,7 +46,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   ```
   If you need to restore the file to the work tree:
   ```
-  git update-index --no-skip-worktree <file_name>
+  git update-index --no-skip-worktree ncbimeta.yaml
   ```
 
 [Development]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
