@@ -127,6 +127,10 @@ params.snippy_cpus = 4
 // Snippy summary files
 params.snippy_variant_summary = "snippy_variant_summary"
 
+// Snippy filterin
+params.snippy_snp_density_window = 10
+params.snippy_variant_density = "snippy_variant_density"
+
 // SQLite
 params.sqlite_select_command = "\'SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment NOT LIKE \"%REMOVE%\"\'"
 
@@ -352,6 +356,7 @@ process snippy_pairwise{
   output:
   file "output${params.snippy_ctg_depth}X/*/*"
   file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_summary
+  file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf
 
   when:
   !params.skip_snippy_pairwise
@@ -424,7 +429,7 @@ process reference_detect_repeats{
   // Detect in-exact repeats with mummer
   tag "$reference_genome_fna"
 
-  publishDir "${params.outdir}/reference_detect_repeats", mode: 'copy'
+  publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
 
   echo true
 
@@ -440,7 +445,6 @@ process reference_detect_repeats{
 
   script:
   """
-  echo ${reference_genome_fna}
   PREFIX=${reference_genome_fna.baseName}
   # Align reference to itself to find inexact repeats
   nucmer --maxmatch --nosimplify --prefix=\${PREFIX}.inexact ${reference_genome_fna} ${reference_genome_fna}
@@ -487,5 +491,37 @@ process reference_detect_low_complexity{
   """
 }
 
-//process pairwise_detect_snp_high_density{
-//}
+process pairwise_detect_snp_high_density{
+  // Detect regions of high SNP density
+  tag "$snippy_subs_vcf"
+
+  //publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+
+  echo true
+
+  input:
+  file snippy_subs_vcf from ch_snippy_subs_vcf
+
+  output:
+  file "*.subs.snpden" into ch_snippy_subs
+
+  when:
+  !params.skip_pairwise_detect_snp_high_density
+
+  script:
+  """
+  echo ${snippy_subs_vcf}
+  vcftools --vcf ${snippy_subs_vcf} --SNPdensity ${params.snippy_snp_density_window} --out ${snippy_subs_vcf.baseName}.tmp
+  tail -n+2 ${snippy_subs_vcf.baseName}.tmp.snpden > ${snippy_subs_vcf.baseName}.snpden
+  """
+}
+
+if(!params.skip_pairwise_detect_snp_high_density){
+  ch_snippy_subs
+      .collectFile(name: "${params.snippy_variant_density}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_filtering")
+}
+
+if(!params.skip_pairwise_extract_snp_high_density){
+  ch_snippy_subs_multi = Channel.fromPath("${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt", checkIfExists: true)
+                              .ifEmpty { exit 1, "Snippy variant density file not found: ${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt"}
+}
