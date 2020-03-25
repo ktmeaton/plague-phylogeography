@@ -118,3 +118,8 @@ NCBImetaJoin.py \
 
 ### Perl5 Issues
 export PERL5LIB=~/miniconda3/envs/phylo-env/lib/site_perl/5.26.2/
+
+### Dev Dependencies
+pip install sphinx
+pip install sphinx-rtd-theme
+pip install m2r
