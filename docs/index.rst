@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to the Plague Phylogeography NextFlow documentation!
-====================================================
+============================================================
 
 .. toctree::
    :maxdepth: 2
@@ -20,7 +20,6 @@ Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
 
 Testing!
