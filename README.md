@@ -57,8 +57,8 @@ WHERE (BioSampleOrganism NOT LIKE '%Yersinia pestis%');
 ```
 Add delimited headers to top of file (that match NCBImeta table BioSample)
 ```
-DELIM="|"
-sed  -i "1i BioSampleAccession${DELIM}BioSampleBioProjectAccession${DELIM}BioSampleStrain${DELIM}BioSampleOrganism${DELIM}BioSampleSRAAccession${DELIM}BioSampleAccessionSecondary${DELIM}BioSampleCollectionDate${DELIM}BioSampleGeographicLocation${DELIM}BioSampleHost${DELIM}BioSampleComment" annot_biosample.txt
+DELIM="|";
+sed  -i "1i BioSampleAccession${DELIM}BioSampleBioProjectAccession${DELIM}BioSampleStrain${DELIM}BioSampleOrganism${DELIM}BioSampleSRAAccession${DELIM}BioSampleAccessionSecondary${DELIM}BioSampleCollectionDate${DELIM}BioSampleGeographicLocation${DELIM}BioSampleHost${DELIM}BioSampleComment" annot_biosample.txt;
 ```
 Convert from pipe-separated to tab-separated file
 ```
@@ -73,7 +73,7 @@ Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows tha
 nextflow run pipeline.nf \
   --ncbimeta_update ncbimeta.yaml \
   --ncbimeta_annot annot_biosample.txt \
-  --skip_sqlite_import \
+  --max_datasets 3 \
   -resume
 ```
 
