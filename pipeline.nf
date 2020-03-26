@@ -19,6 +19,7 @@ Notes and Nomenclatures
 - Verbosity for variable names is greatly preferred over succinctness.
 - Input channel name should reflect the process currently operating on it
 - Output channel name should reflect the process that will receive it
+- If changed, outdir needs to be an absolute path!
 */
 
 // -------------------------------------------------------------------------- //
@@ -111,7 +112,6 @@ if (!params.skip_ncbimeta_db_create && params.ncbimeta_create){
 
     // Other variables and config
     tag "$ncbimeta_yaml"
-    echo true
     publishDir "${params.outdir}/ncbimeta_db/create", mode: 'copy'
     publishDir "${params.outdir}/ncbimeta_db/update/latest", mode: 'copy'
     ch_ncbimeta_yaml_create = Channel.fromPath(params.ncbimeta_create, checkIfExists: true)
@@ -155,15 +155,17 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update && params.ncbimeta_
 
     // Other variables and config
     tag "$ncbimeta_sqlite"
-    echo true
     // ISSUE: Can these be a symlink to each other (update and update/latest)?
     publishDir "${params.outdir}/ncbimeta_db/update/${workflow.start}_${workflow.runName}", mode: 'copy'
     publishDir "${params.outdir}/ncbimeta_db/update/latest", mode: 'copy', overwrite: 'true'
     // The config file, annotation file, and database file, are being read from paths, not channels
     ch_ncbimeta_yaml_update = Channel.fromPath(params.ncbimeta_update, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta_update}" }
-    ch_ncbimeta_sqlite_update = Channel.fromPath("${params.ncbimeta_sqlite_db_latest}", checkIfExists: true)
+    // If create and update not in same run (not fully reproducing finished pipeline)
+    if (!params.ncbimeta_create){
+        ch_ncbimeta_sqlite_update = Channel.fromPath("${params.ncbimeta_sqlite_db_latest}", checkIfExists: true)
                                 .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.ncbimeta_sqlite_db_latest}" }
+    }
     ch_ncbimeta_annot_update = Channel.fromPath(params.ncbimeta_annot, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta annotation file not found: ${params.ncbimeta_annot}" }
 
@@ -220,7 +222,6 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     // Other variables and config
     tag "$sqlite"
     publishDir "${params.outdir}/sqlite_import", mode: 'copy'
-    echo true
     // Set the sqlite channel to update or sqlite import depending on ncbimeta mode
     // TO DO: catch if both parameters are specified!!!
     if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_import}
@@ -323,7 +324,6 @@ if (!params.skip_reference_download){
     // Other variables and config
     tag "$reference_genome_local"
     publishDir "${params.outdir}/reference_genome", mode: 'copy'
-    echo true
 
     // IO and conditional behavior
     input:
@@ -362,7 +362,6 @@ if (!params.skip_reference_detect_repeats){
     // Other variables and config
     tag "$reference_genome_fna"
     publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
-    echo true
 
     // IO and conditional behavior
     input:
@@ -418,7 +417,6 @@ if (!params.skip_reference_detect_low_complexity){
     // Other variables and config
     tag "$reference_genome_fna"
     publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
-    echo true
 
     // IO and conditional behavior
     input:
@@ -467,7 +465,6 @@ if(!params.skip_snippy_pairwise){
     // Other variables and config
     tag "$assembly_fna"
     publishDir "${params.outdir}/snippy_pairwise", mode: 'copy'
-    echo true
 
     // IO and conditional behavior
     input:
@@ -527,7 +524,6 @@ if(!params.skip_snippy_variant_summary){
     */
     // Other variables and config
     tag "$snippy_snps_summary"
-    echo true
 
     // IO and conditional behavior
     input:
@@ -565,7 +561,6 @@ if(!params.skip_snippy_detect_snp_high_density){
     */
     // Other variables and config
     tag "$snippy_subs_vcf"
-    echo true
 
     // IO and conditional behavior
     input:
@@ -601,7 +596,6 @@ if(!params.skip_snippy_detect_snp_high_density){
     // Other variables and config
     tag "$snippy_subs_bed"
     publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
-    echo true
 
     // IO and conditional behavior
     input:
