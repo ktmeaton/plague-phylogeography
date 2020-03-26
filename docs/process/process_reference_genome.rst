@@ -11,27 +11,27 @@ Download the reference genome of interest from the FTP site.
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
-reference_genome_ftp                      fasta.gz                    The compressed reference genome fasta accessed by url via FTP.
+reference_genome_ftp                      fasta.gz                    The reference genome accessed by url via FTP.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_reference_genome_snippy_pairwise       fasta                       The reference genome for snippy_pairwise process.
-ch_reference_detect_repeats               fasta                       The reference genome for detect_repeats process.
-ch_reference_genome_detect_low_complexity fasta                       The reference genome for detect_low_complexity process.
+ch_reference_genome_snippy_pairwise       fasta                       The reference genome for process snippy_pairwise.
+ch_reference_detect_repeats               fasta                       The reference genome for process detect_repeats.
+ch_reference_genome_detect_low_complexity fasta                       The reference genome for process detect_low_complexity.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
 Publish                                    Type                        Description
 ========================================= =========================== ===========================
-${reference_genome_fna.baseName}          fasta                       The reference genome
+${reference_genome_local.baseName}          fasta                       The locally downloaded reference genome.
 ========================================= =========================== ===========================
 
 
 **Shell script**::
 
-      gunzip -f ${reference_genome_fna}
+      gunzip -f ${reference_genome_local}
 
 ------------
 
