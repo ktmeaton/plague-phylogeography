@@ -99,18 +99,6 @@ params.ncbimeta_sqlite_db_latest = "${params.outdir}/ncbimeta_db/update/latest/$
 // NCBImetaAnnotate parameters
 params.ncbimeta_annot_table = "BioSample"
 
-// NCBImetaJoin First Parameters
-params.ncbimeta_join_first_final = "MasterFirst"
-params.ncbimeta_join_first_uniq = "'BioSampleAccession BioSampleAccessionSecondary BioSampleSRAAccession'"
-params.ncbimeta_join_first_accessory = "'Assembly SRA'"
-params.ncbimeta_join_first_anchor = "BioSample"
-
-// NCBImetaJoin Second Parameters
-params.ncbimeta_join_second_final = "Master"
-params.ncbimeta_join_second_uniq = "'BioSampleAccession BioSampleBioProjectAccession'"
-params.ncbimeta_join_second_accessory = "'BioProject'"
-params.ncbimeta_join_second_anchor = "MasterFirst"
-
 // Genbank and assembly
 params.genbank_asm_gz_suffix = "_genomic.fna.gz"
 params.genbank_asm_fna_suffix = "_genomic.fna"
