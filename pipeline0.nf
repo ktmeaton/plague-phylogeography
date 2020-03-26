@@ -55,7 +55,7 @@ def helpMessage() {
 
     nextflow run ${workflow.manifest.mainScript}
 
-    DATABASE (Choose 1 of the following):
+    DATABASE:
 
     --ncbimeta_create      Path to yaml config file to create NCBImeta DB (ncbimeta.yaml).
     --ncbimeta_update      Path to yaml config file to update NCBImeta DB (ncbimeta.yaml).
@@ -132,7 +132,7 @@ if (!params.skip_ncbimeta_db_create && params.ncbimeta_create){
   }
 }
 
-if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
+if(!params.skip_ncbimeta_db_update && params.ncbimeta_update && params.ncbimeta_annot){
 
   process ncbimeta_db_update{
     /*
@@ -162,10 +162,10 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     // The config file, annotation file, and database file, are being read from paths, not channels
     ch_ncbimeta_yaml_update = Channel.fromPath(params.ncbimeta_update, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta_update}" }
-    ch_ncbimeta_annot_update = Channel.fromPath(params.ncbimeta_annot, checkIfExists: true)
-                         .ifEmpty { exit 1, "NCBImeta annotation file not found: ${params.ncbimeta_annot}" }
     ch_ncbimeta_sqlite_update = Channel.fromPath("${params.ncbimeta_sqlite_db_latest}", checkIfExists: true)
                                 .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.ncbimeta_sqlite_db_latest}" }
+    ch_ncbimeta_annot_update = Channel.fromPath(params.ncbimeta_annot, checkIfExists: true)
+                         .ifEmpty { exit 1, "NCBImeta annotation file not found: ${params.ncbimeta_annot}" }
 
     // IO and conditional behavior
     input:
@@ -173,7 +173,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     file ncbimeta_annot from ch_ncbimeta_annot_update
     file ncbimeta_sqlite from ch_ncbimeta_sqlite_update
     output:
-    file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_ncbimeta_sqlite_update
+    file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_ncbimeta_sqlite_import
     file ncbimeta_annot
     file ncbimeta_yaml
     file "${params.ncbimeta_output_dir}/log/*.log"
@@ -202,18 +202,20 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
 // -------------------------------------------------------------------------- //
 
 //------------------------SQLite database import and download-----------------//
-if( (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !params.skip_sqlite_import){
 
   process sqlite_import{
-    // Import assembly ftp url from database, retrieve file names and URL for web get
     /*
-    Import assembly FTP url from database, retrieve file names and URL for web get.
+    Import assembly FTP url from database, also retrieve file names for web get.
 
     Input:
     ch_sqlite (sqlite): NCBImeta SQLite database from process ncbimeta_db_update or params.sqlite
 
     Output:
     ch_assembly_for_download_ftp (url): FTP url for genomic fasta assembly download.
+
+    Publish:
+    file_assembly_for_download_ftp (text): List of FTP urls for genomic assembly download.
     */
     // Other variables and config
     tag "$sqlite"
@@ -221,7 +223,7 @@ if( (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
     echo true
     // Set the sqlite channel to update or sqlite import depending on ncbimeta mode
     // TO DO: catch if both parameters are specified!!!
-    if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_update}
+    if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_import}
     else if(params.sqlite)
     {
       ch_sqlite = Channel.fromPath(params.sqlite, checkIfExists: true)
@@ -280,7 +282,7 @@ if (!params.skip_reference_download){
     tag "$reference_genome_fna"
     publishDir "${params.outdir}/reference_genome", mode: 'copy'
     echo true
-    
+
     // IO and conditional behavior
     input:
     file reference_genome_fna from file(params.reference_genome_ftp)
