@@ -1,0 +1,20 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+2	51/ef49f9	29546	reference_download (GCF_000009065.1_ASM906v1_genomic.fna.gz)	CACHED	0	2020-03-26 18:25:36.167	705ms	98ms	72.6%	0	0	0	0
+1	b7/3dd9ed	29530	ncbimeta_db_create (ncbimeta.yaml)	CACHED	0	2020-03-26 18:25:36.069	32m 14s	32m 14s	4.8%	0	0	0	0
+5	b3/d6ad8c	29735	reference_detect_repeats (GCF_000009065.1_ASM906v1_genomic.fna)	CACHED	0	2020-03-26 18:25:36.924	30.7s	30.2s	99.4%	0	0	0	0
+4	4f/56f05c	29738	reference_detect_low_complexity (GCF_000009065.1_ASM906v1_genomic.fna)	CACHED	0	2020-03-26 18:25:36.947	1.4s	998ms	95.0%	0	0	0	0
+3	ea/c76b02	9122	ncbimeta_db_update (yersinia_pestis_db.sqlite)	COMPLETED	0	2020-03-26 19:06:54.247	8m 20s	8m 20s	94.1%	0	0	0	0
+6	27/f11705	14715	sqlite_import (yersinia_pestis_db.sqlite)	COMPLETED	0	2020-03-26 19:15:14.553	1.1s	261ms	78.8%	0	0	0	0
+7	8c/16e750	14949	assembly_download (GCA_009669545.1_ASM966954v1_genomic.fna.gz)	COMPLETED	0	2020-03-26 19:15:15.701	826ms	122ms	63.9%	0	0	0	0
+8	8d/6906e8	14952	assembly_download (GCA_009669555.1_ASM966955v1_genomic.fna.gz)	COMPLETED	0	2020-03-26 19:15:15.719	816ms	121ms	77.3%	0	0	0	0
+9	93/59d2e8	14957	assembly_download (GCA_009669565.1_ASM966956v1_genomic.fna.gz)	COMPLETED	0	2020-03-26 19:15:15.736	865ms	131ms	95.5%	0	0	0	0
+12	0d/a07877	15281	snippy_pairwise (GCA_009669565.1_ASM966956v1_genomic.fna)	COMPLETED	0	2020-03-26 19:15:16.698	1m 47s	1m 47s	242.1%	0	0	0	0
+14	7f/9a07fc	27665	snippy_variant_summary (GCA_009669565.1_ASM966956v1_genomic_snippy.summary.txt)	COMPLETED	0	2020-03-26 19:17:04.071	1.1s	98ms	67.5%	0	0	0	0
+11	9d/9c8734	15276	snippy_pairwise (GCA_009669555.1_ASM966955v1_genomic.fna)	COMPLETED	0	2020-03-26 19:15:16.668	1m 49s	1m 48s	237.7%	0	0	0	0
+10	2d/53a79c	15272	snippy_pairwise (GCA_009669545.1_ASM966954v1_genomic.fna)	COMPLETED	0	2020-03-26 19:15:16.637	1m 49s	1m 49s	239.1%	0	0	0	0
+15	2b/a0d349	28039	snippy_variant_summary (GCA_009669555.1_ASM966955v1_genomic_snippy.summary.txt)	COMPLETED	0	2020-03-26 19:17:05.818	931ms	70ms	78.3%	0	0	0	0
+18	6d/e19edf	28175	snippy_variant_summary (GCA_009669545.1_ASM966954v1_genomic_snippy.summary.txt)	COMPLETED	0	2020-03-26 19:17:06.463	922ms	89ms	74.3%	0	0	0	0
+13	f1/6b5e00	27705	snippy_detect_snp_high_density (GCA_009669565.1_ASM966956v1_genomic_snippy.subs.vcf)	COMPLETED	0	2020-03-26 19:17:04.353	6.2s	5.5s	95.3%	0	0	0	0
+16	fc/a69a1b	28044	snippy_detect_snp_high_density (GCA_009669555.1_ASM966955v1_genomic_snippy.subs.vcf)	COMPLETED	0	2020-03-26 19:17:05.874	5.5s	4.9s	97.9%	0	0	0	0
+17	d4/705f60	28143	snippy_detect_snp_high_density (GCA_009669545.1_ASM966954v1_genomic_snippy.subs.vcf)	COMPLETED	0	2020-03-26 19:17:06.315	5.5s	4.6s	98.7%	0	0	0	0
+19	f5/a16ecf	28980	snippy_sort_snp_high_density (snippy_variant_density_unsorted.txt)	COMPLETED	0	2020-03-26 19:17:11.916	609ms	72ms	75.4%	0	0	0	0
