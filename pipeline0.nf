@@ -507,3 +507,85 @@ if(!params.skip_snippy_pairwise){
   }
 
 }
+
+// ------------------------Multi Sample Variant Summary-----------------------//
+
+if(!params.skip_snippy_variant_summary){
+
+  process snippy_variant_summary{
+    // Variant Summary Table
+    /*
+    Concatenate variant summary tables for all samples.
+
+    Input:
+    ch_snippy_snps_variant_summary (text): Table of single-sample summarized SNP counts from process snippy_pairwise
+
+    Output:
+    ch_snippy_variant_summary_multi (text): Table of multi-sample summarized SNP counts for process snippy_multi
+
+    Publish:
+    params.snippy_variant_summary (text): Table of multi-sample summarized SNP counts.
+    */
+    // Other variables and config
+    tag "$snippy_snps_txt"
+    //publishDir "${params.outdir}/snippy_variant_summary", mode: 'copy'
+    echo true
+
+    // IO and conditional behavior
+    input:
+    file snippy_snps_summary from ch_snippy_snps_variant_summary
+    output:
+    file params.snippy_variant_summary into ch_snippy_variant_summary_multi
+
+    // Shell script to execute
+    script:
+    """
+    < ${snippy_snps_summary} cat > ${params.snippy_variant_summary}
+    """
+  }
+
+  ch_snippy_variant_summary_multi
+        .collectFile(name: "${params.snippy_variant_summary}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_variant_summary")
+
+}
+
+// --------------------------Detect High SNP Density--------------------------//
+
+if(params.sqlite || params.ncbimeta_update){
+
+  process pairwise_detect_snp_high_density{
+    // Detect regions of high SNP density
+    tag "$snippy_subs_vcf"
+
+    //publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+
+    echo true
+
+    input:
+    file snippy_subs_vcf from ch_snippy_subs_vcf
+
+    output:
+    file "*.subs.snpden" into ch_snippy_subs
+
+    when:
+    !params.skip_pairwise_detect_snp_high_density
+
+    script:
+    """
+    echo ${snippy_subs_vcf}
+    vcftools --vcf ${snippy_subs_vcf} --SNPdensity ${params.snippy_snp_density_window} --out ${snippy_subs_vcf.baseName}.tmp
+    tail -n+2 ${snippy_subs_vcf.baseName}.tmp.snpden > ${snippy_subs_vcf.baseName}.snpden
+    """
+  }
+
+  if(!params.skip_pairwise_detect_snp_high_density){
+    ch_snippy_subs
+        .collectFile(name: "${params.snippy_variant_density}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_filtering")
+  }
+
+  if(!params.skip_pairwise_extract_snp_high_density){
+    ch_snippy_subs_multi = Channel.fromPath("${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt", checkIfExists: true)
+                                .ifEmpty { exit 1, "Snippy variant density file not found: ${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt"}
+  }
+
+}
