@@ -198,6 +198,61 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
 }
 
 // -------------------------------------------------------------------------- //
+//                            Downloading Genomic Assemblies                  //
+// -------------------------------------------------------------------------- //
+
+//------------------------SQLite database import and download-----------------//
+if( (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+
+  process sqlite_import{
+    // Import assembly ftp url from database, retrieve file names and URL for web get
+    /*
+    Import assembly FTP url from database, retrieve file names and URL for web get.
+
+    Input:
+    ch_sqlite (sqlite): NCBImeta SQLite database from process ncbimeta_db_update or params.sqlite
+
+    Output:
+    ch_assembly_for_download_ftp (url): FTP url for genomic fasta assembly download.
+    */
+    // Other variables and config
+    tag "$sqlite"
+    publishDir "${params.outdir}/sqlite_import", mode: 'copy'
+    echo true
+    // Set the sqlite channel to update or sqlite import depending on ncbimeta mode
+    // TO DO: catch if both parameters are specified!!!
+    if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_update}
+    else if(params.sqlite)
+    {
+      ch_sqlite = Channel.fromPath(params.sqlite, checkIfExists: true)
+                                  .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.sqlite}" }
+    }
+
+    // IO and conditional behavior
+    input:
+    file sqlite from ch_sqlite
+    output:
+    file params.file_assembly_for_download_ftp into ch_assembly_for_download_ftp
+
+    // Shell script to execute
+    script:
+    """
+    sqlite3 ${sqlite} ${params.sqlite_select_command} | grep . | head -n ${params.max_datasets} | sed 's/ /\\n/g' | while read line;
+    do
+      if [[ ! -z \$line ]]; then
+        asm_url=\$line;
+        asm_fasta=`echo \$line | cut -d "/" -f 10 | awk -v suffix=${params.genbank_asm_gz_suffix} '{print \$0 suffix}'`;
+        asm_ftp=\${asm_url}/\${asm_fasta};
+        echo \$asm_ftp >> ${params.file_assembly_for_download_ftp}
+      fi;
+    done;
+    """
+  }
+
+}
+
+
+// -------------------------------------------------------------------------- //
 //                           Reference Genome Processing                      //
 // -------------------------------------------------------------------------- //
 
@@ -223,9 +278,9 @@ if (!params.skip_reference_download){
 
     // Other variables and config
     tag "$reference_genome_fna"
-    echo true
     publishDir "${params.outdir}/reference_genome", mode: 'copy'
-
+    echo true
+    
     // IO and conditional behavior
     input:
     file reference_genome_fna from file(params.reference_genome_ftp)
