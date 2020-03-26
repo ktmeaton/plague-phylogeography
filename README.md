@@ -116,6 +116,22 @@ NCBImetaJoin.py \
   --accessory BioProject \
   --final Master \
 
+NCBImetaJoin.py \
+  --database yersinia_pestis_db.sqlite \
+  --anchor BioSample \
+  --accessory "Assembly SRA BioProject Nucleotide" \
+  --final MasterMinusPubmed \
+  --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleSRAAccession BioSampleBioProjectAccession"
+
+NCBImetaJoin.py \
+  --database yersinia_pestis_db.sqlite \
+  --anchor MasterMinusPubmed \
+  --accessory "Pubmed" \
+  --final Master \
+  --unique "BioSampleAccession BioProjectPublicationID"
+
+
+
 ### Perl5 Issues
 export PERL5LIB=~/miniconda3/envs/phylo-env/lib/site_perl/5.26.2/
 
