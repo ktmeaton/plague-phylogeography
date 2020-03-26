@@ -35,3 +35,33 @@ file_assembly_for_download_ftp            text                        List of FT
           echo \$asm_ftp >> ${params.file_assembly_for_download_ftp}
         fi;
       done;
+
+------------
+
+Assembly Download
+------------------
+
+Download genomic assembly fasta using FTP urls.
+
+========================================= =========================== ===========================
+Input                                     Type                        Description
+========================================= =========================== ===========================
+ch_assembly_fna_gz_local                  fasta.gz                    The genomic assembly accessed by url via FTP.
+========================================= =========================== ===========================
+
+========================================= =========================== ===========================
+Output                                    Type                        Description
+========================================= =========================== ===========================
+ch_assembly_fna_snippy_pairwise           fasta                       The genomic assembly for process snippy_pairwise.
+========================================= =========================== ===========================
+
+========================================= =========================== ===========================
+Publish                                    Type                        Description
+========================================= =========================== ===========================
+genbank_assembly_fna_suffix               fasta                       The locally downloaded genomic assembly.
+========================================= =========================== ===========================
+
+**Shell script**::
+
+      # Use -f otherwise error due to too many levels of symbolic links
+      gunzip -f ${assembly_fna_gz}
