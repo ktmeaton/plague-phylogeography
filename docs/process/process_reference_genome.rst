@@ -1,4 +1,3 @@
-***************************
 Reference Genome Processing
 ***************************
 
@@ -12,7 +11,7 @@ Download the reference genome of interest from the FTP site.
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
-reference_genome_fna                      fasta.gz                    The compressed reference genome fasta accessed by url via FTP.
+reference_genome_ftp                      fasta.gz                    The compressed reference genome fasta accessed by url via FTP.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
@@ -44,7 +43,7 @@ Detect in-exact repeats in reference genome using the program mummer. Convert th
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
-reference_genome_fna                      fasta                       The reference genome fasta from the process reference_download.
+ch_reference_genome_detect_repeats        fasta                       The reference genome fasta from the process reference_download.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
@@ -92,7 +91,7 @@ Detect low complexity regions with dustmasker. Convert the identified regions fi
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
-reference_genome_fna                      fasta                       The reference genome fasta from the process reference_download.
+ch_reference_genome_low_complexity        fasta                       The reference genome fasta from the process reference_download.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
