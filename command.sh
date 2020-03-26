@@ -1,0 +1,12 @@
+nextflow run pipeline.nf \
+  --ncbimeta_create ncbimeta.yaml \
+  --ncbimeta_update ncbimeta.yaml \
+  --ncbimeta_annot annot_biosample.txt \
+  --max_datasets 3 \
+  -with-trace \
+  -with-timeline \
+  -with-dag pipeline.pdf \
+  -with-report \
+  -name PlaguePhylo2 \
+  --outdir /mnt/c/Users/ktmea/Projects/paper-phylogeography/results \
+  -resume
