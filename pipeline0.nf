@@ -201,7 +201,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update && params.ncbimeta_
 //                            Downloading Genomic Assemblies                  //
 // -------------------------------------------------------------------------- //
 
-//------------------------SQLite database import and download-----------------//
+//-----------------------------SQLite database import FTP url-----------------//
 if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !params.skip_sqlite_import){
 
   process sqlite_import{
@@ -212,7 +212,7 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     ch_sqlite (sqlite): NCBImeta SQLite database from process ncbimeta_db_update or params.sqlite
 
     Output:
-    ch_assembly_for_download_ftp (url): FTP url for genomic fasta assembly download.
+    ch_assembly_for_download_ftp (url): FTP url for process assembly_download.
 
     Publish:
     file_assembly_for_download_ftp (text): List of FTP urls for genomic assembly download.
@@ -253,7 +253,49 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
 
 }
 
+//-----------------------------Download Assembly Fasta------------------------//
 
+if (!params.skip_assembly_download){
+
+  process assembly_download{
+    /*
+    Download genomic assembly fasta using FTP urls.
+
+    Input:
+    ch_assembly_fna_gz_local (fasta.gz): The genomic assembly accessed by url via FTP.
+
+    Output:
+    ch_assembly_fna_snippy_pairwise (fasta): The genomic assembly for process snippy_pairwise
+
+    Publish:
+    genbank_assembly_fna_suffix (fasta): The locally downloaded genomic assembly.
+
+    */
+    // Other variables and config
+    tag "$assembly_fna_gz"
+    publishDir "${params.outdir}/assembly_download", mode: 'copy'
+    echo true
+    // Deal with new lines, split up ftp links by url
+    // By loading with file(), stages as local file
+    ch_assembly_for_download_ftp.splitText()
+            .map { file(it.replaceFirst(/\n/,'')) }
+            .set { ch_assembly_fna_gz_local }
+
+      // IO and conditional behavior
+    input:
+    file assembly_fna_gz from ch_assembly_fna_gz_local
+    output:
+    file "*${params.genbank_assembly_fna_suffix}" into ch_assembly_fna_snippy_pairwise
+
+    // Shell script to execute
+    script:
+    """
+    # Use -f otherwise error due to too many levels of symbolic links
+    gunzip -f ${assembly_fna_gz}
+    """
+  }
+
+}
 // -------------------------------------------------------------------------- //
 //                           Reference Genome Processing                      //
 // -------------------------------------------------------------------------- //
@@ -267,32 +309,32 @@ if (!params.skip_reference_download){
      Download the reference genome of interest from the FTP site.
 
      Input:
-     reference_genome_ftp (fasta): The reference genome fasta accessed by url via FTP.
+     reference_genome_ftp (fasta.gz): The reference genome accessed by url via FTP.
 
      Output:
-     ch_reference_genome_snippy_pairwise (fasta.gz): The compressed reference genome for snippy_pairwise process.
+     ch_reference_genome_snippy_pairwise (fasta): The compressed reference genome for snippy_pairwise process.
      ch_reference_detect_repeats (fasta): The reference genome for detect_repeats process.
      ch_reference_genome_detect_low_complexity (fasta): The reference genome for detect_low_complexity process.
 
      Publish:
-     reference_genome/${reference_genome_fna.baseName} (fasta): The reference genome.
+     reference_genome/${reference_genome_local.baseName} (fasta): The locally downloaded reference genome.
     */
 
     // Other variables and config
-    tag "$reference_genome_fna"
+    tag "$reference_genome_local"
     publishDir "${params.outdir}/reference_genome", mode: 'copy'
     echo true
 
     // IO and conditional behavior
     input:
-    file reference_genome_fna from file(params.reference_genome_ftp)
+    file reference_genome_local from file(params.reference_genome_ftp)
     output:
-    file "${reference_genome_fna.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity
+    file "${reference_genome_local.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity
 
     // Shell script to execute
     script:
     """
-    gunzip -f ${reference_genome_fna}
+    gunzip -f ${reference_genome_local}
     """
   }
 
