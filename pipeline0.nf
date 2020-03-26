@@ -137,7 +137,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
   process ncbimeta_db_update{
     /*
     Run NCBImeta queries to update, annotate, and join a previously created database.
-    Note this requires supplying an absolute path to a database
+    Note this requires supplying an absolute path to a database.
 
     Input:
     ch_ncbimeta_yaml_update (yaml): NCBImeta config file from process ncbimeta_db_create.
@@ -150,7 +150,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     Publish:
     ncbimeta_annot (text): NCBImeta annotation file.
     ncbimeta_yaml (yaml): NCBImeta config file.
-    *.log (text): : Text logs of NCBImeta database update.
+    *.log (text): Text logs of NCBImeta database update.
     */
 
     // Other variables and config
