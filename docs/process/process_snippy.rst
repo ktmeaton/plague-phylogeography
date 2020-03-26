@@ -17,15 +17,15 @@ ch_reference_genome_snippy_pairwise       fasta                       The refere
 Output                                    Type                        Description
 ========================================= =========================== ===========================
 ch_snippy_snps_variant_summary            text                        Table of summarized SNP counts for process variant_summary.
-ch_snippy_subs_vcf_detect_density         text                        VCF of substitutions for process pairwise_detect_snp_high_density.
+ch_snippy_subs_vcf_detect_density         vcf                         VCF of substitutions for process pairwise_detect_snp_high_density.
 ========================================= =========================== ===========================
 
 =========================================== =========================== ===========================
 Publish                                     Type                        Description
 =========================================== =========================== ===========================
 ${assembly_fna.baseName}_snippy.summary.txt text                        Table of summarized SNP counts.
-${assembly_fna.baseName}_snippy.subs.vcf    text                        VCF of substitutions.
-${assembly_fna.baseName}_snippy.\*          text                        All default snippy pipeline output.
+${assembly_fna.baseName}_snippy.subs.vcf    vcf                         VCF of substitutions.
+${assembly_fna.baseName}_snippy.\*          misc                        All default snippy pipeline output.
 =========================================== =========================== ===========================
 
 **Shell script**::
