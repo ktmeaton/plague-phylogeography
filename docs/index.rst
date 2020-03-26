@@ -4,15 +4,16 @@
    contain the root `toctree` directive.
 
 Welcome to the Plague Atlas' NextFlow documentation!
-=================================================
+====================================================
 
 .. toctree::
    :maxdepth: 2
+   :glob:
    :caption: Table of Contents:
 
    README <README>
    Flowchart <flowchart>
-   Processes <process/process_reference_genome>
+   process/process_link.rst
 
 
 Indices and tables
