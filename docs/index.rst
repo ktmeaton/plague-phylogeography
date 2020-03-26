@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Plague Phylogeography's documentation!
+Welcome to the Plague Atlas' NextFlow documentation!
 =================================================
 
 .. toctree::
@@ -12,6 +12,7 @@ Welcome to Plague Phylogeography's documentation!
 
    README <README>
    Flowchart <flowchart>
+   Processes <process/process_reference_genome>
 
 
 Indices and tables
