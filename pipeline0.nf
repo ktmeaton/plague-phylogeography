@@ -229,6 +229,7 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
       ch_sqlite = Channel.fromPath(params.sqlite, checkIfExists: true)
                                   .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.sqlite}" }
     }
+    else{exit 1}
 
     // IO and conditional behavior
     input:
@@ -243,7 +244,7 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     do
       if [[ ! -z \$line ]]; then
         asm_url=\$line;
-        asm_fasta=`echo \$line | cut -d "/" -f 10 | awk -v suffix=${params.genbank_asm_gz_suffix} '{print \$0 suffix}'`;
+        asm_fasta=`echo \$line | cut -d "/" -f 10 | awk -v suffix=${params.genbank_assembly_gz_suffix} '{print \$0 suffix}'`;
         asm_ftp=\${asm_url}/\${asm_fasta};
         echo \$asm_ftp >> ${params.file_assembly_for_download_ftp}
       fi;
@@ -274,7 +275,6 @@ if (!params.skip_assembly_download){
     // Other variables and config
     tag "$assembly_fna_gz"
     publishDir "${params.outdir}/assembly_download", mode: 'copy'
-    echo true
     // Deal with new lines, split up ftp links by url
     // By loading with file(), stages as local file
     ch_assembly_for_download_ftp.splitText()
