@@ -14,6 +14,9 @@
 
 Notes and Nomenclatures
 - All channel objects must use the 'ch_' prefix in variable naming
+- Flags to skip a process must use the 'skip_' refix then the process name
+- The process docstrings will only describe output channels, not other file types
+- Verbosity for variable names is greatly preferred over succinctness.
 */
 
 // -------------------------------------------------------------------------- //
@@ -95,14 +98,16 @@ process reference_download{
    reference_genome_fna (fasta): The reference genome fasta accessed by url via FTP
 
    Output:
-   ch_reference_genome_snippy_pairwise (fasta): The reference genome for snippy_pairwise process
+   ch_reference_genome_snippy_pairwise (fasta.gz): The compressed reference genome for snippy_pairwise process
    ch_reference_detect_repeats (fasta): The reference genome for detect_repeats process
    ch_reference_genome_detect_low_complexity (fasta): The reference genome for detect_low_complexity process
+
+   Publish:
+   reference_genome/${reference_genome_fna.baseName} (fasta): The reference genome
   */
 
   // Other variables and config
   tag "$reference_genome_fna"
-  complete_reference_detect_repeats = true
   echo true
   publishDir "${params.outdir}/reference_genome", mode: 'copy'
 
@@ -129,7 +134,7 @@ process reference_detect_repeats{
    Convert the identified regions file to a bed format.
 
    Input:
-   reference_genome_fna (fasta): The reference genome fasta from the process reference_download
+   reference_genome_fna (fasta): The reference genome fasta from the process reference_download.
 
    Output:
    ch_bed_ref_detect_repeats (bed): A bed file containing regions of in-exact repeats.
@@ -138,7 +143,6 @@ process reference_detect_repeats{
   tag "$reference_genome_fna"
   publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
   echo true
-  complete_reference_detect_repeats = true
 
   // IO and conditional behavior
   input:
@@ -171,4 +175,39 @@ process reference_detect_repeats{
   bedtools merge > \${PREFIX}.inexact.repeats.bed
   """
 
+}
+
+// -------------------------Detect Low Complexity-----------------------------//
+
+process reference_detect_low_complexity{
+  /*
+   Detect low complexity regions with dustmasker.
+   Convert the identified regions file to a bed format.
+
+   Input:
+   reference_genome_fna (fasta): The reference genome fasta from the process reference_download.
+
+   Output:
+   ch_bed_ref_low_complexity (bed): A bed file containing regions of low-complexity regions.
+  */
+  // Other variables and config
+  tag "$reference_genome_fna"
+  publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+  echo true
+
+  // IO and conditional behavior
+  input:
+  file reference_genome_fna from ch_reference_genome_low_complexity
+  output:
+  file "${reference_genome_fna.baseName}.dustmasker.intervals"
+  file "${reference_genome_fna.baseName}.dustmasker.bed" into ch_bed_ref_low_complex
+  when:
+  !params.skip_reference_detect_low_complexity
+
+  // Shell script to execute
+  script:
+  """
+  dustmasker -in ${reference_genome_fna} -outfmt interval > ${reference_genome_fna.baseName}.dustmasker.intervals
+  ${params.scriptdir}/intervals2bed.sh ${reference_genome_fna.baseName}.dustmasker.intervals ${reference_genome_fna.baseName}.dustmasker.bed
+  """
 }
