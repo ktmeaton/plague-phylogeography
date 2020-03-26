@@ -457,12 +457,12 @@ if(!params.skip_snippy_pairwise){
 
     Output:
     ch_snippy_snps_variant_summary (text): Table of summarized SNP counts for process variant_summary.
-    ch_snippy_subs_vcf_detect_density (text): VCF of substitutions for process pairwise_detect_snp_high_density.
+    ch_snippy_subs_vcf_detect_density (vcf): Substitutions for process pairwise_detect_snp_high_density.
 
     Publish:
     ${assembly_fna.baseName}_snippy.summary.txt (text): Table of summarized SNP counts.
-    ${assembly_fna.baseName}_snippy.subs.vcf (text): VCF of substitutions.
-    ${assembly_fna.baseName}_snippy.\* (text): All default snippy pipeline output.
+    ${assembly_fna.baseName}_snippy.subs.vcf (vcf): Substitutions.
+    ${assembly_fna.baseName}_snippy.\* (misc): All default snippy pipeline output.
     */
     // Other variables and config
     tag "$assembly_fna"
@@ -513,7 +513,6 @@ if(!params.skip_snippy_pairwise){
 if(!params.skip_snippy_variant_summary){
 
   process snippy_variant_summary{
-    // Variant Summary Table
     /*
     Concatenate variant summary tables for all samples.
 
@@ -524,11 +523,10 @@ if(!params.skip_snippy_variant_summary){
     ch_snippy_variant_summary_multi (text): Table of multi-sample summarized SNP counts for process snippy_multi
 
     Publish:
-    params.snippy_variant_summary (text): Table of multi-sample summarized SNP counts.
+    ${params.snippy_variant_summary}_${workflow.runName}.txt (text): Table of multi-sample summarized SNP counts.
     */
     // Other variables and config
-    tag "$snippy_snps_txt"
-    //publishDir "${params.outdir}/snippy_variant_summary", mode: 'copy'
+    tag "$snippy_snps_summary"
     echo true
 
     // IO and conditional behavior
@@ -545,47 +543,87 @@ if(!params.skip_snippy_variant_summary){
   }
 
   ch_snippy_variant_summary_multi
-        .collectFile(name: "${params.snippy_variant_summary}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_variant_summary")
+        .collectFile(name: "${params.snippy_variant_summary}_${workflow.runName}.txt",
+        newLine: false,
+        storeDir: "${params.outdir}/snippy_variant_summary")
 
 }
 
 // --------------------------Detect High SNP Density--------------------------//
 
-if(params.sqlite || params.ncbimeta_update){
+if(!params.skip_snippy_detect_snp_high_density){
 
-  process pairwise_detect_snp_high_density{
-    // Detect regions of high SNP density
+  process snippy_detect_snp_high_density{
+    /*
+    Detect regions of high SNP density.
+
+    Input:
+    ch_snippy_subs_vcf_detect_density (vcf): Substitutions from process snippy_pairwise.
+
+    Output:
+    ch_snippy_subs_bed_merge_density (bed): High-density SNP regions for process snippy_merge_snp_high_density
+    */
+    // Other variables and config
     tag "$snippy_subs_vcf"
-
-    //publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
-
     echo true
 
+    // IO and conditional behavior
     input:
-    file snippy_subs_vcf from ch_snippy_subs_vcf
-
+    file snippy_subs_vcf from ch_snippy_subs_vcf_detect_density
     output:
-    file "*.subs.snpden" into ch_snippy_subs
+    file "*.subs.snpden" into ch_snippy_subs_bed_merge_density
 
-    when:
-    !params.skip_pairwise_detect_snp_high_density
-
+    // Shell script to execute
     script:
     """
-    echo ${snippy_subs_vcf}
     vcftools --vcf ${snippy_subs_vcf} --SNPdensity ${params.snippy_snp_density_window} --out ${snippy_subs_vcf.baseName}.tmp
-    tail -n+2 ${snippy_subs_vcf.baseName}.tmp.snpden > ${snippy_subs_vcf.baseName}.snpden
+    tail -n+2 ${snippy_subs_vcf.baseName}.tmp.snpden | awk -F "\\t" '{if (\$3 > 1){print \$1 "\\t" \$2-10-1 "\\t" \$2}}' > ${snippy_subs_vcf.baseName}.snpden
     """
   }
 
-  if(!params.skip_pairwise_detect_snp_high_density){
-    ch_snippy_subs
-        .collectFile(name: "${params.snippy_variant_density}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_filtering")
-  }
+  ch_snippy_subs_bed_merge_density
+      .collectFile(name: "${params.snippy_variant_density}_unsorted.txt")
+      .set{ch_snippy_subs_bed_sort_density}
 
-  if(!params.skip_pairwise_extract_snp_high_density){
-    ch_snippy_subs_multi = Channel.fromPath("${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt", checkIfExists: true)
-                                .ifEmpty { exit 1, "Snippy variant density file not found: ${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt"}
+  process snippy_sort_snp_high_density{
+    /*
+    Sort and merge regions of high SNP density.
+
+    Input:
+    ch_snippy_subs_bed_sort_density (bed): High density SNP regions collected after process snippy_detect_snp_high_density.
+
+    Output:
+    ch_snippy_subs_bed_density_multi (bed): Sorted and merged high density SNP regions for process snippy_multi.
+
+    Publish:
+    ${params.snippy_variant_density}_${workflow.runName}.txt (bed): Sorted and merged high density SNP regions.
+    */
+    // Other variables and config
+    tag "$snippy_subs_bed"
+    publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+    echo true
+
+    // IO and conditional behavior
+    input:
+    file snippy_subs_bed from ch_snippy_subs_bed_sort_density
+    output:
+    file "${params.snippy_variant_density}_${workflow.runName}.txt" into ch_snippy_subs_bed_density_multi
+
+    // Shell script to execute
+    script:
+    """
+    sort -k1,1 -k2,2n ${snippy_subs_bed} | bedtools merge > ${params.snippy_variant_density}_${workflow.runName}.txt
+    """
   }
 
 }
+  /*
+
+  ch_snippy_subs_bed_unmerged
+    .collectFile(name: "${params.snippy_variant_density}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_filtering")
+    .println{ it.text }
+
+  ch_snippy_subs_bed_merge_density = Channel.fromPath("${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt",
+                                 checkIfExists: true)
+                                 .ifEmpty { exit 1, "Snippy variant density file not found: ${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt"}
+   */
