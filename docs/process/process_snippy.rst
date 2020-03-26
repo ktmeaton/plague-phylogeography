@@ -52,3 +52,32 @@ ${assembly_fna.baseName}_snippy.\*          text                        All defa
     SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
     TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' \$snippy_snps_in;`
     echo -e output${params.snippy_ctg_depth}X/${assembly_fna.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
+
+------------
+
+Snippy Variant Summary
+----------------------
+
+Concatenate variant summary tables for all samples.
+
+========================================= =========================== ===========================
+Input                                     Type                        Description
+========================================= =========================== ===========================
+ch_snippy_snps_variant_summary            text                        Table of single-sample summarized SNP counts from process snippy_pairwise
+========================================= =========================== ===========================
+
+========================================= =========================== ===========================
+Output                                    Type                        Description
+========================================= =========================== ===========================
+ch_snippy_variant_summary_multi           text                        Table of multi-sample summarized SNP counts for process snippy_multi
+========================================= =========================== ===========================
+
+=========================================== =========================== ===========================
+Publish                                     Type                        Description
+=========================================== =========================== ===========================
+params.snippy_variant_summary               text                        Table of multi-sample summarized SNP counts.
+=========================================== =========================== ===========================
+
+**Shell script**::
+
+      < ${snippy_snps_summary} cat > ${params.snippy_variant_summary}
