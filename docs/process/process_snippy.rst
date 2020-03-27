@@ -18,6 +18,7 @@ Output                                    Type                        Descriptio
 ========================================= =========================== ===========================
 ch_snippy_snps_variant_summary            text                        Table of summarized SNP counts for process variant_summary.
 ch_snippy_subs_vcf_detect_density         vcf                         Substitutions for process pairwise_detect_snp_high_density.
+ch_snippy_bam_pairwise_qualimap           bam)                        Pairwise alignment file for process qualimap_snippy_pairwise.
 ========================================= =========================== ===========================
 
 =========================================== =========================== ===========================
