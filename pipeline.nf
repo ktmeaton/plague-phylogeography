@@ -456,6 +456,7 @@ if(!params.skip_snippy_pairwise){
     Output:
     ch_snippy_snps_variant_summary (text): Table of summarized SNP counts for process variant_summary.
     ch_snippy_subs_vcf_detect_density (vcf): Substitutions for process pairwise_detect_snp_high_density.
+    ch_snippy_bam_pairwise_qualimap (bam): Pairwise alignment file for process qualimap_snippy_pairwise.
 
     Publish:
     ${assembly_fna.baseName}_snippy.summary.txt (text): Table of summarized SNP counts.
@@ -474,6 +475,7 @@ if(!params.skip_snippy_pairwise){
     file "output${params.snippy_ctg_depth}X/*/*"
     file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_variant_summary
     file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf_detect_density
+    file "output${params.snippy_ctg_depth}X/*/*_snippy.bam" into ch_snippy_bam_pairwise_qualimap
 
     // Shell script to execute
     script:
@@ -611,13 +613,101 @@ if(!params.skip_snippy_detect_snp_high_density){
   }
 
 }
+
+
+// -------------------------------------------------------------------------- //
+//                           Visualization MultiQC                            //
+// -------------------------------------------------------------------------- //
+
+process qualimap_snippy_pairwise{
   /*
 
-  ch_snippy_subs_bed_unmerged
-    .collectFile(name: "${params.snippy_variant_density}_${workflow.runName}.txt", newLine: false, storeDir: "${params.outdir}/snippy_filtering")
-    .println{ it.text }
+  Run QualiMap on the output bam of snippy pairwise.
 
-  ch_snippy_subs_bed_merge_density = Channel.fromPath("${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt",
-                                 checkIfExists: true)
-                                 .ifEmpty { exit 1, "Snippy variant density file not found: ${params.outdir}/snippy_filtering/${params.snippy_variant_density}_${workflow.runName}.txt"}
-   */
+  Input:
+  ch_snippy_bam_pairwise_qualimap (bam): Pairwise alignment file from process snippy_pairwise.
+
+  Output:
+  ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output for process multiqc.
+
+  Publish:
+  \* (misc): All default qualimap output.
+  */
+  // Other variables and config
+  tag "${snippy_bam}"
+  publishDir "${params.outdir}/snippy_pairwise/qualimap", mode: 'copy'
+
+  // IO and conditional behavior
+  input:
+  file snippy_bam from ch_snippy_bam_pairwise_qualimap
+  output:
+  file "*" into ch_snippy_pairwise_qualimap_multiqc
+
+  // Shell script to execute
+  script:
+  """
+  sample=${snippy_bam.baseName}_stats
+  qualimap bamqc -bam ${snippy_bam} -c -outformat "HTML" -outdir . -nt ${task.cpus}
+  """
+}
+
+process multiqc{
+  /*
+  Generate a MultiQC report from pipeline analyses.
+
+  Input:
+  ch_():
+
+  Output:
+  ch_ ():
+
+  Publish:
+  */
+  // Other variables and config
+  tag ""
+  publishDir "${params.outdir}/multiqc", mode: 'copy'
+  echo true
+
+  // IO and conditional behavior
+  input:
+  file test from ch_snippy_pairwise_qualimap_multiqc.collect()
+  output:
+  file "*multiqc_report.html"
+  file "*_data"
+
+  // Shell script to execute
+  script:
+  """
+  multiqc --config ${params.multiqc_config} .
+  """
+}
+
+
+/* Stock process
+process my_process{
+
+
+  Input:
+  ch_():
+
+  Output:
+  ch_ ():
+
+  Publish:
+
+  // Other variables and config
+  tag ""
+  publishDir
+
+  // IO and conditional behavior
+  input:
+
+  output:
+
+
+  // Shell script to execute
+  script:
+  """
+  """
+}
+*/
