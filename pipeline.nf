@@ -677,17 +677,19 @@ if(!params.skip_snippy_multi){
   /*
 
     Input:
-    ch_():
+    ch_reference_genome_snippy_multi (gbff): The reference genome from process reference_download.
+    ch_bed_mask_snippy_multi (bed): Master masking BED file from process snippy_merge_mask_bed.
 
     Output:
-    ch_ ():
+    ch_snippy_core_aln_filter (fasta): Multi fasta of aligned core SNPs for process snippy_multi_filter.
+    ch_snippy_core_full_aln_filter (fasta): Multi fasta of aligned core genome for process snippy_multi_filter.
 
     Publish:
-
+    * (misc): All default output from snippy-core.
   */
     // Other variables and config
-    tag ""
-    echo true
+    tag "${reference_genome_gb}"
+    publishDir "${params.outdir}/snippy_multi", mode: 'copy'
 
     // IO and conditional behavior
     input:
@@ -695,6 +697,9 @@ if(!params.skip_snippy_multi){
     file bed_mask from ch_bed_mask_snippy_multi
 
     output:
+    file "snippy-core.aln" into ch_snippy_core_aln_filter
+    file "snippy-core.full.aln" into ch_snippy_core_full_aln_filter
+    file "*"
 
     // Shell script to execute
     script:
@@ -708,14 +713,51 @@ if(!params.skip_snippy_multi){
     # Perform multiple genome alignment (with custom filtering)
     snippy-core \
         --ref ${reference_genome_gb} \
-        --prefix raw \
+        --prefix snippy-core \
         --mask ${bed_mask} \
         --mask-char ${params.snippy_mask_char} \
-        \$allDir 2>&1 | tee snippy-raw.log
+        \$allDir 2>&1 | tee snippy-core.log
     """
   }
 
 }
+
+process snippy_multi_filter{
+  /*
+
+  Input:
+  ch_snippy_core_full_aln_filter (fasta): Multi fasta of aligned core genome ffrom process snippy_multi.
+
+  Output:
+  ch_snippy_core_filter_modeltest (fasta): Multi fasta of filtered core genome sites for process modeltest.
+
+  Publish:
+  ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta (fasta): Multi fasta of filtered core genome sites.
+  */
+  // Other variables and config
+  tag "$snippy_core_full_aln"
+  publishDir "${params.outdir}/snippy_multi", mode: 'copy'
+
+  // IO and conditional behavior
+  input:
+  file snippy_core_full_aln from ch_snippy_core_full_aln_filter
+  output:
+  file "${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_modeltest
+
+  // Shell script to execute
+  script:
+  """
+  # Filter full genome alignment (No Missing Data)
+  snp-sites -m -c -b -o ${snippy_core_full_aln.baseName}.filtered.fasta ${snippy_core_full_aln};
+  # Filter full alignment (X% Missing Data)
+  ${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln} > ${snippy_core_full_aln.baseName}.unwrap.fasta;
+  ${params.scriptdir}/fasta_filterGapsNs.sh \
+    ${snippy_core_full_aln.baseName}.unwrap.fasta \
+    ${params.snippy_multi_missing_data} \
+    ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.backbone > ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta;
+  """
+}
+
 
 // -------------------------------------------------------------------------- //
 //                           Visualization MultiQC                            //
