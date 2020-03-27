@@ -7,7 +7,7 @@ Phylogeography of Yersinia pestis
 **Alignment:** snippy  
 **Masking, etc.:** dustmasker, mummer, vcftools   
 **Model Selection:** modeltest-ng  
-**Statistics:** qualimap
+**Statistics:** qualimap, multiqc
 
 ### Conda Environment
 Create a conda environment with the required dependencies  
