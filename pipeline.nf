@@ -341,6 +341,11 @@ if (!params.skip_reference_download){
     """
     gunzip -f ${reference_genome_fna_local}
     gunzip -f ${reference_genome_gb_local}
+    # Fix discrepancies between fna and gbff file headers
+    sed -i 's/NC_003143.1/NC_003143/g' ${reference_genome_fna_local.baseName}
+    sed -i 's/NC_003131.1/NC_003131/g' ${reference_genome_fna_local.baseName}
+    sed -i 's/NC_003134.1/NC_003134/g' ${reference_genome_fna_local.baseName}
+    sed -i 's/NC_003132.1/NC_003132/g' ${reference_genome_fna_local.baseName}
     """
   }
 
@@ -687,9 +692,9 @@ if(!params.skip_snippy_multi){
     // IO and conditional behavior
     input:
     file reference_genome_gb from ch_reference_genome_snippy_multi
+    file bed_mask from ch_bed_mask_snippy_multi
 
     output:
-
 
     // Shell script to execute
     script:
@@ -700,6 +705,13 @@ if(!params.skip_snippy_multi){
     # Save the contents of that file as a variable
     allDir=`cat allDir`;
     echo \$allDir;
+    # Perform multiple genome alignment (with custom filtering)
+    snippy-core \
+        --ref ${reference_genome_gb} \
+        --prefix raw \
+        --mask ${bed_mask} \
+        --mask-char ${params.snippy_mask_char} \
+        \$allDir 2>&1 | tee snippy-raw.log
     """
   }
 
