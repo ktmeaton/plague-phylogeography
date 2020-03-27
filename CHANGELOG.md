@@ -6,15 +6,22 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 - Rewrite shell scripts in python?
+- Overabundance of files in database update and snippy_filtering
 
-## [v0.1.0] - 2020-02-28
+## [v0.1.0] - 2020-03-26
 
 ### Added
 - Repository: README.md, CHANGELOG.md, .gitignore
-- Data Collection: ncbimeta.yaml
+- Configuration: ncbimeta.yaml, multiqc_config.yaml
 - NextFlow: pipeline.nf, nextflow.config, phylo-env.yaml
+- Documentation: docs directory for Sphinx Read The Docs template
+- Paper: paper directory for Sphinx Read The Docs template
 - Misc: scripts/intervals2bed.sh
-- Steps: NCBImeta, SQLite import, Reference Download, Assembly Download, Snippy Pairwise, Variants Summary
+- Steps - Database: NCBImeta Create, NCBImeta Update
+- Steps - Data Download: SQLite import, Reference Download, Assembly Download
+- Steps - Alignment: Snippy Pairwise, Variants Summary
+- Steps - Filtering: Detect repeats, low-complexity, high-density SNPs
+- Steps - Statistics: QualiMap, MultiQC
 
 ### Changed
 - 2020-02-21 Used git filter-branch to purge ncbimeta.yaml from history. API key accidentally revealed. Re-added and now not tracked.
