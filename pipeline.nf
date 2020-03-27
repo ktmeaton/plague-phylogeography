@@ -646,8 +646,10 @@ process qualimap_snippy_pairwise{
   // Shell script to execute
   script:
   """
-  sample=${snippy_bam.baseName}_stats
-  qualimap bamqc -bam ${snippy_bam} -c -outformat "HTML" -outdir . -nt ${task.cpus}
+  qualimap bamqc -bam ${snippy_bam} --skip-duplicated -c -outformat "HTML" -outdir . -nt ${task.cpus}
+  qualimapDir=${snippy_bam.baseName}_stats
+  mv \$qualimapDir ${snippy_bam.baseName}
+  ls -l
   """
 }
 
@@ -656,21 +658,19 @@ process multiqc{
   Generate a MultiQC report from pipeline analyses.
 
   Input:
-  ch_():
+  ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output from process qualimap_snippy_pairwise.
 
-  Output:
-  ch_ ():
-
-  Publish:
+  Publish
+  multiqc_report.html (html): MultiQC report file.
+  *_data (misc): All default MultiQC data files.
   */
   // Other variables and config
   tag ""
   publishDir "${params.outdir}/multiqc", mode: 'copy'
-  echo true
 
   // IO and conditional behavior
   input:
-  file test from ch_snippy_pairwise_qualimap_multiqc.collect()
+  file qualimap_misc from ch_snippy_pairwise_qualimap_multiqc.collect()
   output:
   file "*multiqc_report.html"
   file "*_data"

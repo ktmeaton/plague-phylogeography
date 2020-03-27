@@ -2,7 +2,7 @@ Statistics
 ***************************
 
 Qualimap Snippy Pairwise
-------------------
+------------------------
 
 Run QualiMap on the output bam of snippy pairwise.
 
@@ -28,3 +28,31 @@ Publish                                     Type                        Descript
 
       sample=${snippy_bam.baseName}_stats
       qualimap bamqc -bam ${snippy_bam} -c -outformat "HTML" -outdir . -nt ${task.cpus}
+
+
+MultiQC
+-------
+
+Generate a MultiQC report from pipeline analyses.
+
+========================================= =========================== ===========================
+Input                                     Type                        Description
+========================================= =========================== ===========================
+ch_snippy_pairwise_qualimap_multiqc       misc                        All default qualimap output from process qualimap_snippy_pairwise.
+========================================= =========================== ===========================
+
+========================================= =========================== ===========================
+Output                                    Type                        Description
+========================================= =========================== ===========================
+multiqc_report.html                       html                        MultiQC report file.
+========================================= =========================== ===========================
+
+=========================================== =========================== ===========================
+Publish                                     Type                        Description
+=========================================== =========================== ===========================
+\*_data                                     misc                        All default MultiQC data files.
+=========================================== =========================== ===========================
+
+**Shell script**::
+
+      multiqc --config ${params.multiqc_config} .
