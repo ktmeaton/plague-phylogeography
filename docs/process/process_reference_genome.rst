@@ -11,7 +11,8 @@ Download the reference genome of interest from the FTP site.
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
-reference_genome_ftp                      fasta.gz                    The reference genome accessed by url via FTP.
+reference_genome_fna_ftp                  fasta.gz                    The reference genome fasta accessed by url via FTP.
+reference_genome_gb_ftp                   gbff.gz                     The reference genome gb accessed by url via FTP.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
@@ -20,12 +21,14 @@ Output                                    Type                        Descriptio
 ch_reference_genome_snippy_pairwise       fasta                       The reference genome for process snippy_pairwise.
 ch_reference_detect_repeats               fasta                       The reference genome for process detect_repeats.
 ch_reference_genome_detect_low_complexity fasta                       The reference genome for process detect_low_complexity.
+ch_reference_genome_snippy_multiple       gbff                        The reference genome for process snippy_multi.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
-Publish                                    Type                        Description
+Publish                                   Type                        Description
 ========================================= =========================== ===========================
-${reference_genome_local.baseName}          fasta                       The locally downloaded reference genome.
+${reference_genome_fna_local.baseName}    fasta                       The locally downloaded reference genome.
+${reference_genome_gb_local.baseName}     gbff                        The locally downloaded reference genome.
 ========================================= =========================== ===========================
 
 

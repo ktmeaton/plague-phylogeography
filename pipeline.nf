@@ -310,12 +310,14 @@ if (!params.skip_reference_download){
      Download the reference genome of interest from the FTP site.
 
      Input:
-     reference_genome_ftp (fasta.gz): The reference genome accessed by url via FTP.
+     reference_genome_fna_ftp (fasta.gz): The reference genome fasta accessed by url via FTP.
+     reference_genome_gb_ftp (fasta.gz): The reference genome gbff accessed by url via FTP.
 
      Output:
-     ch_reference_genome_snippy_pairwise (fasta): The compressed reference genome for snippy_pairwise process.
-     ch_reference_detect_repeats (fasta): The reference genome for detect_repeats process.
-     ch_reference_genome_detect_low_complexity (fasta): The reference genome for detect_low_complexity process.
+     ch_reference_genome_snippy_pairwise (fasta): The compressed reference genome for process snippy_pairwise.
+     ch_reference_detect_repeats (fasta): The reference genome for process detect_repeats.
+     ch_reference_genome_detect_low_complexity (fasta): The reference genome for process detect_low_complexity.
+     ch_reference_genome_snippy_multiple (gb): The reference genome for process snippy_multi.
 
      Publish:
      reference_genome/${reference_genome_local.baseName} (fasta): The locally downloaded reference genome.
@@ -327,14 +329,18 @@ if (!params.skip_reference_download){
 
     // IO and conditional behavior
     input:
-    file reference_genome_local from file(params.reference_genome_ftp)
+    file reference_genome_fna_local from file(params.reference_genome_fna_ftp)
+    file reference_genome_gb_local from file(params.reference_genome_gb_ftp)
+
     output:
-    file "${reference_genome_local.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity
+    file "${reference_genome_fna_local.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity
+    file "${reference_genome_gb_local.baseName}" into ch_reference_genome_snippy_multi
 
     // Shell script to execute
     script:
     """
-    gunzip -f ${reference_genome_local}
+    gunzip -f ${reference_genome_fna_local}
+    gunzip -f ${reference_genome_gb_local}
     """
   }
 
@@ -614,6 +620,48 @@ if(!params.skip_snippy_detect_snp_high_density){
 
 }
 
+//------------------------------Multiple Alignment----------------------------//
+
+
+process snippy_multiple{
+/*
+
+  Input:
+  ch_():
+
+  Output:
+  ch_ ():
+
+  Publish:
+
+*/
+  // Other variables and config
+  tag ""
+  publishDir
+
+  // IO and conditional behavior
+  input:
+  file reference_genome_fna from ch_reference_genome_snippy_multi
+
+  output:
+
+
+  // Shell script to execute
+  script:
+  """
+  # Store a list of all the Snippy output directories in a file
+  ls -d1 ${params.outdir}/snippy_pairwise/output${params.snippy_ctg_depth}X/* > allDir;
+  # Save the contents of that file as a variable
+  allDir=`cat allDir`;
+  # Perform multiple genome alignment (with custom filtering)
+  snippy-core \
+      --ref /mnt/c/Users/ktmea/Projects/Bacterial-Phylogenetics/reference/Yersinia_pestis_CO92_whole_genome.gb \
+      --prefix raw \
+      --mask ../mask/master.bed \
+      --mask-char N \
+      $allDir 2>&1 | tee snippy-raw.log
+  """
+}
 
 // -------------------------------------------------------------------------- //
 //                           Visualization MultiQC                            //
@@ -665,7 +713,7 @@ process multiqc{
   *_data (misc): All default MultiQC data files.
   */
   // Other variables and config
-  tag ""
+  tag "${qualimap_misc}"
   publishDir "${params.outdir}/multiqc", mode: 'copy'
 
   // IO and conditional behavior
