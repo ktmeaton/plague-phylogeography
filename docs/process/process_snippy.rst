@@ -135,3 +135,33 @@ ${params.snippy_variant_density}_${workflow.runName}.txt  bed)                  
 **Shell script**::
 
       sort -k1,1 -k2,2n ${snippy_subs_bed} | bedtools merge > ${params.snippy_variant_density}_${workflow.runName}.txt
+
+
+------------
+
+Snippy Merge Mask Bed
+------------------------------
+
+Sort and merge regions of high SNP density.
+
+========================================= =========================== ===========================
+Input                                     Type                        Description
+========================================= =========================== ===========================
+ch_bed_mask_master_merge                  bed                         Combined BED files of repeats, low-complexity and (optional) high-density SNP regions.
+========================================= =========================== ===========================
+
+========================================= =========================== ===========================
+Output                                    Type                        Description
+========================================= =========================== ===========================
+ch_bed_mask_snippy_multi                  bed                         Master masking BED file for process snippy_multi
+========================================= =========================== ===========================
+
+========================================================= =========================== ===========================
+Publish                                                   Type                        Description
+========================================================= =========================== ===========================
+master.bed                                                bed                         Master masking BED file.
+========================================================= =========================== ===========================
+
+**Shell script**::
+
+      cat ${bed_mask} | sort -k1,1 -k2,2n | bedtools merge > master.bed

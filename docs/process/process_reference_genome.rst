@@ -34,7 +34,8 @@ ${reference_genome_gb_local.baseName}     gbff                        The locall
 
 **Shell script**::
 
-      gunzip -f ${reference_genome_local}
+      gunzip -f ${reference_genome_fna_local}
+      gunzip -f ${reference_genome_gb_local}
 
 ------------
 

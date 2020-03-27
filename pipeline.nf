@@ -324,7 +324,7 @@ if (!params.skip_reference_download){
     */
 
     // Other variables and config
-    tag "$reference_genome_local"
+    tag "$reference_genome_fna_local"
     publishDir "${params.outdir}/reference_genome", mode: 'copy'
 
     // IO and conditional behavior
@@ -620,47 +620,89 @@ if(!params.skip_snippy_detect_snp_high_density){
 
 }
 
-//------------------------------Multiple Alignment----------------------------//
+// --------------------------Merge Filtering BED Files------------------------//
 
-
-process snippy_multiple{
-/*
+process snippy_merge_mask_bed{
+  /*
 
   Input:
-  ch_():
+  ch_bed_mask_master_merge (bed): Combined BED files of repeats, low-complexity and (optional) high-density SNP regions.
 
   Output:
-  ch_ ():
+  ch_bed_mask_snippy_multi (bed): Master masking BED file for process snippy_multi
 
   Publish:
-
-*/
+  master.bed (bed): Master masking BED file.
+  */
   // Other variables and config
-  tag ""
-  publishDir
+  tag "bed_snippy_subs_density"
+  publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+  if (params.skip_snippy_detect_snp_high_density){
+  ch_bed_ref_detect_repeats
+      .mix(ch_bed_ref_low_complex)
+      .collectFile(name: "master_unmerged_skip_snp_density.bed")
+      .set{ch_bed_mask_master_merge}
+  }
 
+  else{
+    ch_bed_ref_detect_repeats
+        .mix(ch_bed_ref_low_complex, ch_snippy_subs_bed_density_multi)
+        .collectFile(name: "master_unmerged.bed")
+        .set{ch_bed_mask_master_merge}
+  }
   // IO and conditional behavior
   input:
-  file reference_genome_fna from ch_reference_genome_snippy_multi
-
+  file bed_mask from ch_bed_mask_master_merge
   output:
-
+  file "master.bed" into ch_bed_mask_snippy_multi
 
   // Shell script to execute
   script:
   """
-  # Store a list of all the Snippy output directories in a file
-  ls -d1 ${params.outdir}/snippy_pairwise/output${params.snippy_ctg_depth}X/* > allDir;
-  # Save the contents of that file as a variable
-  allDir=`cat allDir`;
-  # Perform multiple genome alignment (with custom filtering)
-  snippy-core \
-      --ref /mnt/c/Users/ktmea/Projects/Bacterial-Phylogenetics/reference/Yersinia_pestis_CO92_whole_genome.gb \
-      --prefix raw \
-      --mask ../mask/master.bed \
-      --mask-char N \
-      $allDir 2>&1 | tee snippy-raw.log
+  cat ${bed_mask} | sort -k1,1 -k2,2n | bedtools merge > master.bed
   """
+}
+
+
+//------------------------------Multiple Alignment----------------------------//
+
+if(!params.skip_snippy_multi){
+
+  process snippy_multi{
+  /*
+
+    Input:
+    ch_():
+
+    Output:
+    ch_ ():
+
+    Publish:
+
+  */
+    // Other variables and config
+    tag ""
+    echo true
+
+    // IO and conditional behavior
+    input:
+    file reference_genome_gb from ch_reference_genome_snippy_multi
+
+    output:
+
+
+    // Shell script to execute
+    script:
+    """
+    echo ${reference_genome_gb}
+    # Store a list of all the Snippy output directories in a file
+    ls -d1 ${params.outdir}/snippy_pairwise/output${params.snippy_ctg_depth}X/* > allDir;
+    # Save the contents of that file as a variable
+    allDir=`cat allDir`;
+    echo \$allDir;
+    """
+  }
+
 }
 
 // -------------------------------------------------------------------------- //
