@@ -468,6 +468,7 @@ if(!params.skip_snippy_pairwise){
     ch_snippy_snps_variant_summary (text): Table of summarized SNP counts for process variant_summary.
     ch_snippy_subs_vcf_detect_density (vcf): Substitutions for process pairwise_detect_snp_high_density.
     ch_snippy_bam_pairwise_qualimap (bam): Pairwise alignment file for process qualimap_snippy_pairwise.
+    ch_snippy_csv_snpEff_multiqc (csv): Variant summary statistics for process multiqc.
 
     Publish:
     ${assembly_fna.baseName}_snippy.summary.txt (text): Table of summarized SNP counts.
@@ -515,8 +516,11 @@ if(!params.skip_snippy_pairwise){
     TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' \$snippy_snps_in;`
     echo -e output${params.snippy_ctg_depth}X/${assembly_fna.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
 
+    snippy_snps_filt=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.filt.vcf
+    snippy_snps_csv=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.snpEff.csv
+
     # SnpEff csv Stats
-    snpEff -v -csvStats ${assembly_fna.baseName}_snippy.snpEff.csv ${params.snpeff_db} ${assembly_fna.baseName}_snippy.filt.vcf
+    snpEff -v -csvStats \$snippy_snps_csv ${params.snpeff_db} \$snippy_snps_filt
     """
   }
 
