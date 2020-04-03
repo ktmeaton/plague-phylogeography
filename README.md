@@ -134,9 +134,22 @@ NCBImetaJoin.py \
 
 
 ### Perl5 Issues
+```
 export PERL5LIB=~/miniconda3/envs/phylo-env/lib/site_perl/5.26.2/
+```
 
 ### Dev Dependencies
+```
 pip install sphinx
 pip install sphinx-rtd-theme
 pip install m2r
+```
+
+### SnpEff Build Database
+```
+mkdir ~/miniconda3/envs/phylo-env/share/snpeff-4.3.1t-3/data/Yersinia_pestis_co92
+cp results/reference_genome/GCF_000009065.1_ASM906v1_genomic.gbff ~/miniconda3/envs/phylo-env/share/snpeff-4.3.1t-3/data/Yersinia_pestis_co92/genes.gbk;
+# Edit snpEff.config file
+Yersinia_pestis_co92.genome : Yersinia_pestis_co92
+snpEff build -v -genbank Yersinia_pestis_co92
+```
