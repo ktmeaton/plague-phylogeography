@@ -156,3 +156,20 @@ snpEff build -v -genbank Yersinia_pestis_co92
 snpEff -v -csvStats GCA_009669545.1_ASM966954v1_genomic_snippy.snpEff.csv Yersinia_pestis_co92 GCA_009669545.1_ASM966954v1_genomic_snippy.filt.vcf
 .filt.vcf
 ```
+
+### Host selection
+```
+SELECT BioSampleHost FROM Master WHERE (TRIM(BioSampleHost) > '') AND BioSampleHost IS NOT "missing"
+-> 854 Rows
+SELECT BioSampleHost FROM Master WHERE (TRIM(BioSampleHost) > '') AND (BioSampleHost IS NOT "missing") AND (BioSampleComment NOT LIKE "%REMOVE%")
+-> 734 Rows
+SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeographicLocation FROM Master WHERE
+    (BioSampleComment NOT LIKE "%REMOVE%") AND
+	(TRIM(BioSampleHost) > '') AND
+	(TRIM(LOWER(BioSampleHost)) IS NOT "missing") AND
+	(TRIM(BioSampleCollectionDate) > '') AND
+	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "not applicable" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "unknown" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "n/a" ) AND
+	(TRIM(BioSampleGeographicLocation) > '') AND
+	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing")
+->669 Rows
+```

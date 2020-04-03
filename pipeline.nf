@@ -640,6 +640,7 @@ if(!params.skip_snippy_detect_snp_high_density){
 
 process snippy_merge_mask_bed{
   /*
+  Combine, merge, and sort all BED file regions for masking the multiple alignment.
 
   Input:
   ch_bed_mask_master_merge (bed): Combined BED files of repeats, low-complexity and (optional) high-density SNP regions.
@@ -685,7 +686,8 @@ process snippy_merge_mask_bed{
 if(!params.skip_snippy_multi){
 
   process snippy_multi{
-  /*
+    /*
+    Perform a multiple genome alignment with snippy-core.
 
     Input:
     ch_reference_genome_snippy_multi (gbff): The reference genome from process reference_download.
@@ -697,7 +699,7 @@ if(!params.skip_snippy_multi){
 
     Publish:
     * (misc): All default output from snippy-core.
-  */
+    */
     // Other variables and config
     tag "${reference_genome_gb}"
     publishDir "${params.outdir}/snippy_multi", mode: 'copy'
@@ -735,6 +737,7 @@ if(!params.skip_snippy_multi){
 
 process snippy_multi_filter{
   /*
+  Filter the multiple alignment for X% missing data.
 
   Input:
   ch_snippy_core_full_aln_filter (fasta): Multi fasta of aligned core genome ffrom process snippy_multi.
@@ -768,6 +771,41 @@ process snippy_multi_filter{
     ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.backbone > ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta;
   """
 }
+
+// -------------------------------------------------------------------------- //
+//                                Model-Test                                  //
+// -------------------------------------------------------------------------- //
+
+process modeltest{
+  /*
+  Identify an appropriate substitution model.
+
+  Input:
+  ch_snippy_core_filter_modeltest (fasta): Multi fasta of filtered core genome sites from process snippy_multi_filter.
+
+  Output:
+  ch_ ():
+
+  Publish:
+
+  */
+  // Other variables and config
+  tag ""
+  publishDir
+
+  // IO and conditional behavior
+  input:
+  file snippy_core_filter_aln from ch_snippy_core_filter_modeltest
+  output:
+
+
+  // Shell script to execute
+  script:
+  """
+  echo ${snippy_core_filter_aln}
+  """
+}
+*/
 
 
 // -------------------------------------------------------------------------- //
