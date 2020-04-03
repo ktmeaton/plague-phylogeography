@@ -746,6 +746,7 @@ if(!params.skip_snippy_multi_filter){
 
     Output:
     ch_snippy_core_filter_modeltest (fasta): Multi fasta of filtered core genome sites for process modeltest.
+    ch_snippy_core_filter_iqtree (fasta): Multi fasta of filtered core genome sites for process iqtree.
 
     Publish:
     ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta (fasta): Multi fasta of filtered core genome sites.
@@ -758,7 +759,7 @@ if(!params.skip_snippy_multi_filter){
     input:
     file snippy_core_full_aln from ch_snippy_core_full_aln_filter
     output:
-    file "${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_modeltest
+    file "${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_modeltest,ch_snippy_core_filter_iqtree
 
     // Shell script to execute
     script:
@@ -806,6 +807,7 @@ if(!params.skip_modeltest){
     file snippy_core_filter_aln from ch_snippy_core_filter_modeltest
     output:
     file "core_modeltest-ng.out" into ch_modeltest_out_iqtree
+    file "core_modeltest-ng*"
 
     // Shell script to execute
     script:
@@ -826,8 +828,6 @@ if(!params.skip_modeltest){
 //                                ML Phylogeny                                //
 // -------------------------------------------------------------------------- //
 
-/*
-
 if(!params.skip_iqtree){
 
   process iqtree{
@@ -836,12 +836,14 @@ if(!params.skip_iqtree){
 
     Input:
     ch_modeltest_out_iqtree (text): modeltest-ng log file from process modeltest.
+    ch_snippy_core_filter_iqtree (fasta): Multi fasta of filtered core genome sites from process snippy_multi_filter.
 
     Output:
     ch_ ():
 
     Publish:
 
+    */
     // Other variables and config
     tag ""
     publishDir
@@ -849,19 +851,22 @@ if(!params.skip_iqtree){
     // IO and conditional behavior
     input:
     file modeltest_out from ch_modeltest_out_iqtree
-    output:
+    file snippy_core_filter_aln from ch_snippy_core_filter_modeltest
 
+    output:
+    file "iqtree*"
 
     // Shell script to execute
     script:
     """
+    # Remember to change outgroup here later
     iqtree \
-      -s raw.full.filter5.fasta \
+      -s ${snippy_core_filter_aln} \
       -m GTR+G4 \
       -nt AUTO \
-      -o RISE509_4836-4625BP \
-      -seed 6232913 \
-      -pre iqtree.raw-filter5_bootstrap \
+      -o ${params.iqtree_outgroup} \
+      -seed ${params.iqtree_rng} \
+      -pre iqtree.core-filter5_bootstrap \
       -v \
       -bb 1000 \
       -alrt 1000 \
