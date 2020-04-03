@@ -496,7 +496,7 @@ if(!params.skip_snippy_pairwise){
     """
     snippy \
       --prefix ${assembly_fna.baseName}_snippy \
-      --cpus ${params.snippy_cpus} \
+      --cpus ${task.cpus} \
       --reference ${reference_genome_fna} \
       --outdir output${params.snippy_ctg_depth}X/${assembly_fna.baseName} \
       --ctgs ${assembly_fna} \
@@ -798,12 +798,19 @@ process modeltest{
   input:
   file snippy_core_filter_aln from ch_snippy_core_filter_modeltest
   output:
-
+  file "core_modeltest-ng.out" into ch_modeltest_out_iqtree
 
   // Shell script to execute
   script:
   """
-  echo ${snippy_core_filter_aln}
+  modeltest-ng \
+      --input ${snippy_core_filter_aln} \
+      --datatype nt \
+      --processes ${task.cpus} \
+      --output core_modeltest-ng \
+      --model-het uigf \
+      --topology ml \
+      -f ef
   """
 }
 
