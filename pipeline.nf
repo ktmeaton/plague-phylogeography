@@ -851,7 +851,7 @@ if(!params.skip_iqtree){
     // IO and conditional behavior
     input:
     file modeltest_out from ch_modeltest_out_iqtree
-    file snippy_core_filter_aln from ch_snippy_core_filter_modeltest
+    file snippy_core_filter_aln from ch_snippy_core_filter_iqtree
 
     output:
     file "iqtree*"
@@ -863,7 +863,7 @@ if(!params.skip_iqtree){
     iqtree \
       -s ${snippy_core_filter_aln} \
       -m GTR+G4 \
-      -nt AUTO \
+      -nt ${task.cpus} \
       -o ${params.iqtree_outgroup} \
       -seed ${params.iqtree_rng} \
       -pre iqtree.core-filter5_bootstrap \
