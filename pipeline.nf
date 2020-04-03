@@ -790,8 +790,9 @@ process modeltest{
 
   */
   // Other variables and config
-  tag ""
-  publishDir
+  tag "$snippy_core_filter_aln"
+  publishDir "${params.outdir}/modeltest", mode: 'copy'
+  echo true
 
   // IO and conditional behavior
   input:
@@ -805,7 +806,6 @@ process modeltest{
   echo ${snippy_core_filter_aln}
   """
 }
-*/
 
 
 // -------------------------------------------------------------------------- //
