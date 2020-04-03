@@ -521,7 +521,7 @@ if(!params.skip_snippy_pairwise){
     snippy_snps_rename=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.rename.csv
 
     # SnpEff csv Stats
-    mv \$snippy_snps_csv $\snippy_snps_rename
+    mv \$snippy_snps_csv \$snippy_snps_rename
     snpEff -v -csvStats \$snippy_snps_csv ${params.snpeff_db} \$snippy_snps_filt
     """
   }
