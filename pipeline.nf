@@ -765,12 +765,14 @@ if(!params.skip_snippy_multi_filter){
     """
     # Filter full genome alignment (No Missing Data)
     snp-sites -m -c -b -o ${snippy_core_full_aln.baseName}.filtered.fasta ${snippy_core_full_aln};
+    # ONLY DO THIS FOR NOW TO SPEED UP DURING TESTING, REMEMBER TO REMOVE!
+    cp ${snippy_core_full_aln} ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta;
     # Filter full alignment (X% Missing Data)
-    ${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln} > ${snippy_core_full_aln.baseName}.unwrap.fasta;
-    ${params.scriptdir}/fasta_filterGapsNs.sh \
-      ${snippy_core_full_aln.baseName}.unwrap.fasta \
-      ${params.snippy_multi_missing_data} \
-      ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.backbone > ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta;
+    #${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln} > ${snippy_core_full_aln.baseName}.unwrap.fasta;
+    #${params.scriptdir}/fasta_filterGapsNs.sh \
+    #  ${snippy_core_full_aln.baseName}.unwrap.fasta \
+    #  ${params.snippy_multi_missing_data} \
+    #  ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.backbone > ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta;
     """
   }
 }
