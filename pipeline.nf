@@ -473,6 +473,7 @@ if(!params.skip_snippy_pairwise){
     Publish:
     ${assembly_fna.baseName}_snippy.summary.txt (text): Table of summarized SNP counts.
     ${assembly_fna.baseName}_snippy.subs.vcf (vcf): Substitutions.
+    ${assembly_fna.baseName}_snippy.csv (csv): SnpEff annotation and summary report.
     ${assembly_fna.baseName}_snippy.\* (misc): All default snippy pipeline output.
     */
     // Other variables and config
@@ -488,7 +489,7 @@ if(!params.skip_snippy_pairwise){
     file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_variant_summary
     file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf_detect_density
     file "output${params.snippy_ctg_depth}X/*/*_snippy.bam" into ch_snippy_bam_pairwise_qualimap
-    file "output${params.snippy_ctg_depth}X/*/*_snippy.snpEff.csv" into ch_snippy_csv_snpEff_multiqc
+    file "output${params.snippy_ctg_depth}X/*/*_snippy.csv" into ch_snippy_csv_snpEff_multiqc
 
     // Shell script to execute
     script:
