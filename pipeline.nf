@@ -816,7 +816,7 @@ if(!params.skip_modeltest){
         --processes ${task.cpus} \
         --output core_modeltest-ng \
         --model-het uigf \
-        --topology ml \
+        -t ml \
         -f ef
     """
   }
