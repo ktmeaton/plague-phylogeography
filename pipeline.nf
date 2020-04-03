@@ -735,85 +735,139 @@ if(!params.skip_snippy_multi){
 
 }
 
-process snippy_multi_filter{
-  /*
-  Filter the multiple alignment for X% missing data.
+if(!params.skip_snippy_multi_filter){
 
-  Input:
-  ch_snippy_core_full_aln_filter (fasta): Multi fasta of aligned core genome ffrom process snippy_multi.
+  process snippy_multi_filter{
+    /*
+    Filter the multiple alignment for X% missing data.
 
-  Output:
-  ch_snippy_core_filter_modeltest (fasta): Multi fasta of filtered core genome sites for process modeltest.
+    Input:
+    ch_snippy_core_full_aln_filter (fasta): Multi fasta of aligned core genome ffrom process snippy_multi.
 
-  Publish:
-  ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta (fasta): Multi fasta of filtered core genome sites.
-  */
-  // Other variables and config
-  tag "$snippy_core_full_aln"
-  publishDir "${params.outdir}/snippy_multi", mode: 'copy'
+    Output:
+    ch_snippy_core_filter_modeltest (fasta): Multi fasta of filtered core genome sites for process modeltest.
 
-  // IO and conditional behavior
-  input:
-  file snippy_core_full_aln from ch_snippy_core_full_aln_filter
-  output:
-  file "${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_modeltest
+    Publish:
+    ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta (fasta): Multi fasta of filtered core genome sites.
+    */
+    // Other variables and config
+    tag "$snippy_core_full_aln"
+    publishDir "${params.outdir}/snippy_multi", mode: 'copy'
 
-  // Shell script to execute
-  script:
-  """
-  # Filter full genome alignment (No Missing Data)
-  snp-sites -m -c -b -o ${snippy_core_full_aln.baseName}.filtered.fasta ${snippy_core_full_aln};
-  # Filter full alignment (X% Missing Data)
-  ${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln} > ${snippy_core_full_aln.baseName}.unwrap.fasta;
-  ${params.scriptdir}/fasta_filterGapsNs.sh \
-    ${snippy_core_full_aln.baseName}.unwrap.fasta \
-    ${params.snippy_multi_missing_data} \
-    ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.backbone > ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta;
-  """
+    // IO and conditional behavior
+    input:
+    file snippy_core_full_aln from ch_snippy_core_full_aln_filter
+    output:
+    file "${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_modeltest
+
+    // Shell script to execute
+    script:
+    """
+    # Filter full genome alignment (No Missing Data)
+    snp-sites -m -c -b -o ${snippy_core_full_aln.baseName}.filtered.fasta ${snippy_core_full_aln};
+    # Filter full alignment (X% Missing Data)
+    ${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln} > ${snippy_core_full_aln.baseName}.unwrap.fasta;
+    ${params.scriptdir}/fasta_filterGapsNs.sh \
+      ${snippy_core_full_aln.baseName}.unwrap.fasta \
+      ${params.snippy_multi_missing_data} \
+      ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.backbone > ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta;
+    """
+  }
 }
 
 // -------------------------------------------------------------------------- //
 //                                Model-Test                                  //
 // -------------------------------------------------------------------------- //
 
-process modeltest{
-  /*
-  Identify an appropriate substitution model.
+if(!params.skip_modeltest){
 
-  Input:
-  ch_snippy_core_filter_modeltest (fasta): Multi fasta of filtered core genome sites from process snippy_multi_filter.
+  process modeltest{
+    /*
+    Identify an appropriate substitution model.
 
-  Output:
-  ch_ ():
+    Input:
+    ch_snippy_core_filter_modeltest (fasta): Multi fasta of filtered core genome sites from process snippy_multi_filter.
 
-  Publish:
+    Output:
+    ch_modeltest_out_iqtree (text): modeltest-ng log file for process iqtree.
 
-  */
-  // Other variables and config
-  tag "$snippy_core_filter_aln"
-  publishDir "${params.outdir}/modeltest", mode: 'copy'
-  echo true
+    Publish:
 
-  // IO and conditional behavior
-  input:
-  file snippy_core_filter_aln from ch_snippy_core_filter_modeltest
-  output:
-  file "core_modeltest-ng.out" into ch_modeltest_out_iqtree
+    */
+    // Other variables and config
+    tag "$snippy_core_filter_aln"
+    publishDir "${params.outdir}/modeltest", mode: 'copy'
+    echo true
 
-  // Shell script to execute
-  script:
-  """
-  modeltest-ng \
-      --input ${snippy_core_filter_aln} \
-      --datatype nt \
-      --processes ${task.cpus} \
-      --output core_modeltest-ng \
-      --model-het uigf \
-      --topology ml \
-      -f ef
-  """
+    // IO and conditional behavior
+    input:
+    file snippy_core_filter_aln from ch_snippy_core_filter_modeltest
+    output:
+    file "core_modeltest-ng.out" into ch_modeltest_out_iqtree
+
+    // Shell script to execute
+    script:
+    """
+    modeltest-ng \
+        --input ${snippy_core_filter_aln} \
+        --datatype nt \
+        --processes ${task.cpus} \
+        --output core_modeltest-ng \
+        --model-het uigf \
+        --topology ml \
+        -f ef
+    """
+  }
 }
 
+// -------------------------------------------------------------------------- //
+//                                ML Phylogeny                                //
+// -------------------------------------------------------------------------- //
+
+/*
+
+if(!params.skip_iqtree){
+
+  process iqtree{
+    /*
+    Maximum likelihood tree search, iqtree phylogeny.
+
+    Input:
+    ch_modeltest_out_iqtree (text): modeltest-ng log file from process modeltest.
+
+    Output:
+    ch_ ():
+
+    Publish:
+
+    // Other variables and config
+    tag ""
+    publishDir
+
+    // IO and conditional behavior
+    input:
+    file modeltest_out from ch_modeltest_out_iqtree
+    output:
+
+
+    // Shell script to execute
+    script:
+    """
+    iqtree \
+      -s raw.full.filter5.fasta \
+      -m GTR+G4 \
+      -nt AUTO \
+      -o RISE509_4836-4625BP \
+      -seed 6232913 \
+      -pre iqtree.raw-filter5_bootstrap \
+      -v \
+      -bb 1000 \
+      -alrt 1000 \
+      2>&1 | tee iqtree.raw-filter5_bootstrap.output
+    """
+  }
+}
+*/
 
 // -------------------------------------------------------------------------- //
 //                           Visualization MultiQC                            //
