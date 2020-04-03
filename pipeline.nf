@@ -487,6 +487,7 @@ if(!params.skip_snippy_pairwise){
     file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_variant_summary
     file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf_detect_density
     file "output${params.snippy_ctg_depth}X/*/*_snippy.bam" into ch_snippy_bam_pairwise_qualimap
+    file "output${params.snippy_ctg_depth}X/*/*_snippy.snpEff.csv" into ch_snippy_csv_snpEff_multiqc
 
     // Shell script to execute
     script:
@@ -513,6 +514,9 @@ if(!params.skip_snippy_pairwise){
     SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
     TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' \$snippy_snps_in;`
     echo -e output${params.snippy_ctg_depth}X/${assembly_fna.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
+
+    # SnpEff csv Stats
+    snpEff -v -csvStats ${assembly_fna.baseName}_snippy.snpEff.csv ${assembly_fna.baseName}_snippy.filt.vcf
     """
   }
 
@@ -815,6 +819,7 @@ process multiqc{
   // IO and conditional behavior
   input:
   file qualimap_misc from ch_snippy_pairwise_qualimap_multiqc.collect()
+  file snpeff_misc from ch_snippy_csv_snpEff_multiqc.collect()
   output:
   file "*multiqc_report.html"
   file "*_data"
