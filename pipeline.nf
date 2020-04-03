@@ -800,7 +800,6 @@ if(!params.skip_modeltest){
     // Other variables and config
     tag "$snippy_core_filter_aln"
     publishDir "${params.outdir}/modeltest", mode: 'copy'
-    echo true
 
     // IO and conditional behavior
     input:
@@ -845,8 +844,9 @@ if(!params.skip_iqtree){
 
     */
     // Other variables and config
-    tag ""
-    publishDir
+    tag "$snippy_core_filter_aln"
+    publishDir "${params.outdir}/iqtree", mode: 'copy'
+    echo true
 
     // IO and conditional behavior
     input:
@@ -874,7 +874,6 @@ if(!params.skip_iqtree){
     """
   }
 }
-*/
 
 // -------------------------------------------------------------------------- //
 //                           Visualization MultiQC                            //
