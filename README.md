@@ -152,4 +152,7 @@ cp results/reference_genome/GCF_000009065.1_ASM906v1_genomic.gbff ~/miniconda3/e
 # Edit snpEff.config file
 Yersinia_pestis_co92.genome : Yersinia_pestis_co92
 snpEff build -v -genbank Yersinia_pestis_co92
+
+snpEff -v -csvStats GCA_009669545.1_ASM966954v1_genomic_snippy.snpEff.csv Yersinia_pestis_co92 GCA_009669545.1_ASM966954v1_genomic_snippy.filt.vcf
+.filt.vcf
 ```

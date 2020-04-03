@@ -516,7 +516,7 @@ if(!params.skip_snippy_pairwise){
     echo -e output${params.snippy_ctg_depth}X/${assembly_fna.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
 
     # SnpEff csv Stats
-    snpEff -v -csvStats ${assembly_fna.baseName}_snippy.snpEff.csv Yersinia_pestis_co92 ${assembly_fna.baseName}_snippy.filt.vcf
+    snpEff -v -csvStats ${assembly_fna.baseName}_snippy.snpEff.csv ${params.snpeff_db} ${assembly_fna.baseName}_snippy.filt.vcf
     """
   }
 
