@@ -92,46 +92,6 @@ nextflow run pipeline.nf \
 -with-dag pipeline.pdf
 -with-report
 
-### Join Figuring Out
-params.ncbimeta_join_first_final = "MasterFirst"
-params.ncbimeta_join_first_uniq = "'BioSampleAccession BioSampleAccessionSecondary BioSampleSRAAccession'"
-params.ncbimeta_join_first_accessory = "'Assembly SRA'"
-params.ncbimeta_join_first_anchor = "BioSample"
-
-// NCBImetaJoin Second Parameters
-params.ncbimeta_join_second_final = "Master"
-params.ncbimeta_join_second_uniq = "'BioSampleBioProjectAccession'"
-params.ncbimeta_join_second_accessory = "'BioProject'"
-params.ncbimeta_join_second_anchor = "MasterFirst"
-
-NCBImetaJoin.py \
-  --database yersinia_pestis_db.sqlite \
-  --anchor BioSample \
-  --accessory "Assembly SRA" \
-  --final MasterFirst \
-  --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleSRAAccession"
-
-NCBImetaJoin.py \
-  --database yersinia_pestis_db.sqlite \
-  --anchor MasterFirst \
-  --accessory BioProject \
-  --final Master \
-
-NCBImetaJoin.py \
-  --database yersinia_pestis_db.sqlite \
-  --anchor BioSample \
-  --accessory "Assembly SRA BioProject Nucleotide" \
-  --final MasterMinusPubmed \
-  --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleSRAAccession BioSampleBioProjectAccession"
-
-NCBImetaJoin.py \
-  --database yersinia_pestis_db.sqlite \
-  --anchor MasterMinusPubmed \
-  --accessory "Pubmed" \
-  --final Master \
-  --unique "BioSampleAccession BioProjectPublicationID"
-
-
 
 ### Perl5 Issues
 ```
@@ -168,7 +128,7 @@ SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeograp
 	(TRIM(BioSampleHost) > '') AND
 	(TRIM(LOWER(BioSampleHost)) IS NOT "missing") AND
 	(TRIM(BioSampleCollectionDate) > '') AND
-	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "not applicable" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "unknown" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "n/a" ) AND
+	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "not applicable") AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "unknown" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "n/a" ) AND
 	(TRIM(BioSampleGeographicLocation) > '') AND
 	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing")
 ->669 Rows
