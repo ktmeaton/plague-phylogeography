@@ -14,3 +14,4 @@ dependencies:
   - ncbimeta==0.6.5
   - qualimap==2.2.2d
   - multiqc==1.8
+  - nextflow==v20.01.0
