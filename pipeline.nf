@@ -232,7 +232,6 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     // Other variables and config
     tag "$sqlite"
     publishDir "${params.outdir}/sqlite_import", mode: 'copy'
-    echo true
     // Set the sqlite channel to update or sqlite import depending on ncbimeta mode
     // TO DO: catch if both parameters are specified!!!
     if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_import}
