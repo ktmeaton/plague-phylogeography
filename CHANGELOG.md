@@ -7,6 +7,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [Development]
 - Rewrite shell scripts in python?
 - Overabundance of files in database update and snippy_filtering
+- Deal with the fail to publish issue with NCBImeta db
 
 ## [v0.1.0] - 2020-04-08
 
