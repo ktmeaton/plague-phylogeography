@@ -132,4 +132,14 @@ SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeograp
 	(TRIM(BioSampleGeographicLocation) > '') AND
 	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing")
 ->669 Rows
+SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeographicLocation FROM Master WHERE
+    (BioSampleComment NOT LIKE "%REMOVE%") AND
+	(TRIM(BioSampleHost) > '') AND
+	(TRIM(LOWER(BioSampleHost)) IS NOT "missing") AND
+	(TRIM(BioSampleCollectionDate) > '') AND
+	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "not applicable" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "unknown" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "n/a" ) AND
+	(TRIM(BioSampleGeographicLocation) > '') AND
+	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing") AND
+	(TRIM(AssemblyFTPGenbank) > '')
+--> 146 rows
 ```
