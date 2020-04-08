@@ -252,14 +252,11 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     // Shell script to execute
     script:
     """
-    sqlite3 ${sqlite} ${params.sqlite_select_command} | grep . | head -n ${params.max_datasets} | sed 's/ /\\n/g' | while read line;
+    sqlite3 ${sqlite} ${params.sqlite_select_command} | grep . | head -n ${params.max_datasets} | sed -E -e 's/ |;/\\n/g' | while read line;
     do
       if [[ ! -z \$line ]]; then
-        asm_url=\$line;
-        asm_fasta=`echo \$line | \
-            awk -F "/" '{print \$NF}' | \
-            awk -v suffix=${params.genbank_assembly_gz_suffix} '{print \$0 suffix}'`;
-        asm_ftp=\${asm_url}/\${asm_fasta};
+        asm_ftp=`echo \$line | \
+            awk -F "/" -v suffix=${params.genbank_assembly_gz_suffix} '{print \$0 FS \$NF suffix}'`;
         echo \$asm_ftp >> ${params.file_assembly_for_download_ftp}
       fi;
     done;
