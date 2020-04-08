@@ -88,6 +88,15 @@ if (params.help){
 log.info pipelineHeader()
 
 // -------------------------------------------------------------------------- //
+//                              Param Error Checking                          //
+// -------------------------------------------------------------------------- //
+
+if (params.ncbimeta_update && !params.ncbimeta_annot){
+  println ("The parameter --ncbimeta_update has been specified but --ncbimeta_annot is missing.")
+  exit 1
+}
+
+// -------------------------------------------------------------------------- //
 //                              NCBImeta Entry Point                          //
 // -------------------------------------------------------------------------- //
 
@@ -195,6 +204,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update && params.ncbimeta_
     NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
     NCBImetaJoin.py --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} --anchor ${params.ncbimeta_join_first_anchor} --accessory ${params.ncbimeta_join_first_accessory} --final ${params.ncbimeta_join_first_final} --unique ${params.ncbimeta_join_first_uniq}
     NCBImetaJoin.py --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} --anchor ${params.ncbimeta_join_second_anchor} --accessory ${params.ncbimeta_join_second_accessory} --final ${params.ncbimeta_join_second_final} --unique ${params.ncbimeta_join_second_uniq}
+    NCBImetaJoin.py --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} --anchor ${params.ncbimeta_join_third_anchor} --accessory ${params.ncbimeta_join_third_accessory} --final ${params.ncbimeta_join_third_final} --unique ${params.ncbimeta_join_third_uniq}
     """
   }
 }
@@ -222,6 +232,7 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     // Other variables and config
     tag "$sqlite"
     publishDir "${params.outdir}/sqlite_import", mode: 'copy'
+    echo true
     // Set the sqlite channel to update or sqlite import depending on ncbimeta mode
     // TO DO: catch if both parameters are specified!!!
     if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_import}
@@ -245,7 +256,9 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     do
       if [[ ! -z \$line ]]; then
         asm_url=\$line;
-        asm_fasta=`echo \$line | cut -d "/" -f 10 | awk -v suffix=${params.genbank_assembly_gz_suffix} '{print \$0 suffix}'`;
+        asm_fasta=`echo \$line | \
+            awk -F "/" '{print \$NF}' | \
+            awk -v suffix=${params.genbank_assembly_gz_suffix} '{print \$0 suffix}'`;
         asm_ftp=\${asm_url}/\${asm_fasta};
         echo \$asm_ftp >> ${params.file_assembly_for_download_ftp}
       fi;
