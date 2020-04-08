@@ -711,7 +711,7 @@ if(!params.skip_snippy_multi){
     */
     // Other variables and config
     tag "${reference_genome_gb}"
-    publishDir "${params.outdir}/snippy_multi", mode: 'copy'
+    publishDir "${params.outdir}/snippy_multi", mode: 'copy', overwrite: 'true'
 
     // IO and conditional behavior
     input:
@@ -762,7 +762,7 @@ if(!params.skip_snippy_multi_filter){
     */
     // Other variables and config
     tag "$snippy_core_full_aln"
-    publishDir "${params.outdir}/snippy_multi", mode: 'copy'
+    publishDir "${params.outdir}/snippy_multi", mode: 'copy', overwrite: 'true'
 
     // IO and conditional behavior
     input:
@@ -808,7 +808,7 @@ if(!params.skip_modeltest){
     */
     // Other variables and config
     tag "$snippy_core_filter_aln"
-    publishDir "${params.outdir}/modeltest", mode: 'copy'
+    publishDir "${params.outdir}/modeltest", mode: 'copy', overwrite: 'true'
 
     // IO and conditional behavior
     input:
@@ -854,7 +854,7 @@ if(!params.skip_iqtree){
     */
     // Other variables and config
     tag "$snippy_core_filter_aln"
-    publishDir "${params.outdir}/iqtree", mode: 'copy'
+    publishDir "${params.outdir}/iqtree", mode: 'copy', overwrite: 'true'
     echo true
 
     // IO and conditional behavior
