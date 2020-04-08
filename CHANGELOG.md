@@ -8,19 +8,21 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Rewrite shell scripts in python?
 - Overabundance of files in database update and snippy_filtering
 
-## [v0.1.0] - 2020-03-26
+## [v0.1.0] - 2020-04-08
 
 ### Added
 - Repository: README.md, CHANGELOG.md, .gitignore
 - Configuration: ncbimeta.yaml, multiqc_config.yaml
+- Annotation: annot_biosample.txt
 - NextFlow: pipeline.nf, nextflow.config, phylo-env.yaml
 - Documentation: docs directory for Sphinx Read The Docs template
 - Paper: paper directory for Sphinx Read The Docs template
-- Misc: scripts/intervals2bed.sh
+- Misc: scripts/intervals2bed.sh, scripts/fasta_unwrap.sh scripts/fasta_filterGapsNs.sh
 - Steps - Database: NCBImeta Create, NCBImeta Update
 - Steps - Data Download: SQLite import, Reference Download, Assembly Download
 - Steps - Alignment: Snippy Pairwise, Variants Summary
 - Steps - Filtering: Detect repeats, low-complexity, high-density SNPs
+- Steps - Evolution: Modeltest, Maximum Likelihood Phylogeny
 - Steps - Statistics: QualiMap, MultiQC
 
 ### Changed
