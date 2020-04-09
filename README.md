@@ -7,6 +7,7 @@ Phylogeography of Yersinia pestis
 **Alignment:** snippy  
 **Masking, etc.:** dustmasker, mummer, vcftools   
 **Model Selection:** modeltest-ng  
+**Phylogenetic Tree:** iqtree
 **Statistics:** qualimap, multiqc
 
 ### Conda Environment
