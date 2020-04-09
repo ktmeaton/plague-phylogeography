@@ -876,11 +876,11 @@ if(!params.skip_iqtree){
       -nt ${task.cpus} \
       -o ${params.iqtree_outgroup} \
       -seed ${params.iqtree_rng} \
-      -pre iqtree.core-filter5_bootstrap \
+      -pre iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap \
       -v \
       -bb 1000 \
       -alrt 1000 \
-      2>&1 | tee iqtree.raw-filter5_bootstrap.output
+      2>&1 | tee iqtree.raw-filter${params.snippy_multi_missing_data_text}_bootstrap.output
     """
   }
 }
