@@ -6,8 +6,7 @@ Phylogeography of Yersinia pestis
 **Database:** NCBImeta, sqlite3 (CLI)  
 **Alignment:** snippy  
 **Masking, etc.:** dustmasker, mummer, vcftools   
-**Model Selection:** modeltest-ng  
-**Phylogenetic Tree:** iqtree
+**Phylogenetics:** iqtree
 **Statistics:** qualimap, multiqc
 
 ### Conda Environment
