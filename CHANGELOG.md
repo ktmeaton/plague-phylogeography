@@ -8,8 +8,9 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Rewrite shell scripts in python?
 - Overabundance of files in database update and snippy_filtering
 - Deal with the fail to publish issue with NCBImeta db
+- Switch model testing from modeltest-ng to ModelFinder (because of the AVX/AVX2 requirement)
 
-## [v0.1.0] - 2020-04-08
+## [v0.1.0] - 2020-04-14
 
 ### Added
 - Repository: README.md, CHANGELOG.md, .gitignore
@@ -60,4 +61,4 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   ```
 
 [Development]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
-[v0.1.0]: https://github.com/ktmeaton/NCBImeta/compare/0447d630299ae11f7ffffb26280b1288e1c09c72...HEAD
+[v0.1.0]: https://github.com/ktmeaton/NCBImeta/compare/0447d630299ae11f7ffffb26280b1288e1c09c72...v0.1.0

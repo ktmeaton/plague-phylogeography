@@ -1,5 +1,6 @@
 work/*
 results*/*
+test*/*
 src/*
 .nextflow*
 ncbimeta.yaml*
