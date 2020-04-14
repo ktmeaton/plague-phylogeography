@@ -98,6 +98,8 @@ if (params.ncbimeta_update && !params.ncbimeta_annot){
 
 // Prefix the baseDir in front of the outdir
 outdir = "$baseDir/${params.outdir}"
+outdir = outdir
+println ("The outdir is: $outdir")
 
 // -------------------------------------------------------------------------- //
 //                              NCBImeta Entry Point                          //
@@ -124,8 +126,8 @@ if (!params.skip_ncbimeta_db_create && params.ncbimeta_create){
 
     // Other variables and config
     tag "$ncbimeta_yaml"
-    publishDir "${params.outdir}/ncbimeta_db/create", mode: 'copy'
-    publishDir "${params.outdir}/ncbimeta_db/update/latest", mode: 'copy'
+    publishDir "${outdir}/ncbimeta_db/create", mode: 'copy'
+    publishDir "${outdir}/ncbimeta_db/update/latest", mode: 'copy'
     ch_ncbimeta_yaml_create = Channel.fromPath(params.ncbimeta_create, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta-create}" }
     // IO and conditional behavior
@@ -168,8 +170,8 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update && params.ncbimeta_
     // Other variables and config
     tag "$ncbimeta_sqlite"
     // ISSUE: Can these be a symlink to each other (update and update/latest)?
-    publishDir "${params.outdir}/ncbimeta_db/update/${workflow.start}_${workflow.runName}", mode: 'copy'
-    publishDir "${params.outdir}/ncbimeta_db/update/latest", mode: 'copy', overwrite: 'true'
+    publishDir "${outdir}/ncbimeta_db/update/${workflow.start}_${workflow.runName}", mode: 'copy'
+    publishDir "${outdir}/ncbimeta_db/update/latest", mode: 'copy', overwrite: 'true'
     // The config file, annotation file, and database file, are being read from paths, not channels
     ch_ncbimeta_yaml_update = Channel.fromPath(params.ncbimeta_update, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta_update}" }
@@ -201,7 +203,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update && params.ncbimeta_
     mkdir ${params.ncbimeta_output_dir}/log;
     # Copy over input files
     cp ${ncbimeta_sqlite} ${params.ncbimeta_output_dir}/database;
-    cp ${params.outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/log/* ${params.ncbimeta_output_dir}/log;
+    cp ${outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/log/* ${params.ncbimeta_output_dir}/log;
     # Execute NCBImeta
     NCBImeta.py --config ${ncbimeta_yaml}
     NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
@@ -234,7 +236,7 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     */
     // Other variables and config
     tag "$sqlite"
-    publishDir "${params.outdir}/sqlite_import", mode: 'copy'
+    publishDir "${outdir}/sqlite_import", mode: 'copy'
     // Set the sqlite channel to update or sqlite import depending on ncbimeta mode
     // TO DO: catch if both parameters are specified!!!
     if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_import}
@@ -287,7 +289,7 @@ if (!params.skip_assembly_download){
     */
     // Other variables and config
     tag "$assembly_fna_gz"
-    publishDir "${params.outdir}/assembly_download", mode: 'copy'
+    publishDir "${outdir}/assembly_download", mode: 'copy'
     // Deal with new lines, split up ftp links by url
     // By loading with file(), stages as local file
     ch_assembly_for_download_ftp.splitText()
@@ -337,7 +339,7 @@ if (!params.skip_reference_download){
 
     // Other variables and config
     tag "$reference_genome_fna_local"
-    publishDir "${params.outdir}/reference_genome", mode: 'copy'
+    publishDir "${outdir}/reference_genome", mode: 'copy'
 
     // IO and conditional behavior
     input:
@@ -384,7 +386,7 @@ if (!params.skip_reference_detect_repeats){
     */
     // Other variables and config
     tag "$reference_genome_fna"
-    publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+    publishDir "${outdir}/snippy_filtering", mode: 'copy'
 
     // IO and conditional behavior
     input:
@@ -439,7 +441,7 @@ if (!params.skip_reference_detect_low_complexity){
     */
     // Other variables and config
     tag "$reference_genome_fna"
-    publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+    publishDir "${outdir}/snippy_filtering", mode: 'copy'
 
     // IO and conditional behavior
     input:
@@ -490,7 +492,7 @@ if(!params.skip_snippy_pairwise){
     */
     // Other variables and config
     tag "$assembly_fna"
-    publishDir "${params.outdir}/snippy_pairwise", mode: 'copy'
+    publishDir "${outdir}/snippy_pairwise", mode: 'copy'
 
     // IO and conditional behavior
     input:
@@ -590,7 +592,7 @@ process snippy_variant_summary_collect{
   */
   // Other variables and config
   tag "$variant_summary_collect"
-  publishDir "${params.outdir}/snippy_variant_summary", mode: 'copy', overwrite: 'true'
+  publishDir "${outdir}/snippy_variant_summary", mode: 'copy', overwrite: 'true'
   ch_snippy_variant_summary_multi
         .collectFile(name: "${params.snippy_variant_summary}.txt",
         newLine: false)
@@ -655,7 +657,7 @@ if(!params.skip_snippy_detect_snp_high_density){
     */
     // Other variables and config
     tag "$snippy_subs_bed"
-    publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+    publishDir "${outdir}/snippy_filtering", mode: 'copy'
 
     ch_snippy_subs_bed_merge_density
         .collectFile(name: "${params.snippy_variant_density}_unsorted.txt")
@@ -694,7 +696,7 @@ process snippy_merge_mask_bed{
   */
   // Other variables and config
   tag "bed_snippy_subs_density"
-  publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
+  publishDir "${outdir}/snippy_filtering", mode: 'copy'
   if (params.skip_snippy_detect_snp_high_density){
   ch_bed_ref_detect_repeats
       .mix(ch_bed_ref_low_complex)
@@ -743,7 +745,7 @@ if(!params.skip_snippy_multi){
     */
     // Other variables and config
     tag "${reference_genome_gb}"
-    publishDir "${params.outdir}/snippy_multi", mode: 'copy', overwrite: 'true'
+    publishDir "${outdir}/snippy_multi", mode: 'copy', overwrite: 'true'
 
     // IO and conditional behavior
     input:
@@ -760,7 +762,7 @@ if(!params.skip_snippy_multi){
     """
     echo ${reference_genome_gb}
     # Store a list of all the Snippy output directories in a file
-    ls -d1 ${params.outdir}/snippy_pairwise/output${params.snippy_ctg_depth}X/* > allDir;
+    ls -d1 ${outdir}/snippy_pairwise/output${params.snippy_ctg_depth}X/* > allDir;
     # Save the contents of that file as a variable
     allDir=`cat allDir`;
     echo \$allDir;
@@ -794,7 +796,7 @@ if(!params.skip_snippy_multi_filter){
     */
     // Other variables and config
     tag "$snippy_core_full_aln"
-    publishDir "${params.outdir}/snippy_multi", mode: 'copy', overwrite: 'true'
+    publishDir "${outdir}/snippy_multi", mode: 'copy', overwrite: 'true'
 
     // IO and conditional behavior
     input:
@@ -841,7 +843,7 @@ if(!params.skip_modeltest){
     */
     // Other variables and config
     tag "$snippy_core_filter_aln"
-    publishDir "${params.outdir}/modeltest", mode: 'copy', overwrite: 'true'
+    publishDir "${outdir}/modeltest", mode: 'copy', overwrite: 'true'
 
     // IO and conditional behavior
     input:
@@ -887,7 +889,7 @@ if(!params.skip_iqtree){
     */
     // Other variables and config
     tag "$snippy_core_filter_aln"
-    publishDir "${params.outdir}/iqtree", mode: 'copy', overwrite: 'true'
+    publishDir "${outdir}/iqtree", mode: 'copy', overwrite: 'true'
 
     // IO and conditional behavior
     input:
@@ -936,7 +938,7 @@ process qualimap_snippy_pairwise{
   */
   // Other variables and config
   tag "${snippy_bam}"
-  publishDir "${params.outdir}/snippy_pairwise/qualimap", mode: 'copy'
+  publishDir "${outdir}/snippy_pairwise/qualimap", mode: 'copy'
 
   // IO and conditional behavior
   input:
@@ -967,7 +969,7 @@ process multiqc{
   */
   // Other variables and config
   tag "${qualimap_misc}"
-  publishDir "${params.outdir}/multiqc", mode: 'copy'
+  publishDir "${outdir}/multiqc", mode: 'copy'
 
   // IO and conditional behavior
   input:
