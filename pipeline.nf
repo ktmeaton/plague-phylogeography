@@ -823,51 +823,6 @@ if(!params.skip_snippy_multi_filter){
 }
 
 // -------------------------------------------------------------------------- //
-//                                Model-Test                                  //
-// -------------------------------------------------------------------------- //
-
-if(!params.skip_modeltest){
-
-  process modeltest{
-    /*
-    Identify an appropriate substitution model.
-
-    Input:
-    ch_snippy_core_filter_modeltest (fasta): Multi fasta of filtered core genome sites from process snippy_multi_filter.
-
-    Output:
-    ch_modeltest_out_iqtree (text): modeltest-ng log file for process iqtree.
-
-    Publish:
-
-    */
-    // Other variables and config
-    tag "$snippy_core_filter_aln"
-    publishDir "${outdir}/modeltest", mode: 'copy', overwrite: 'true'
-
-    // IO and conditional behavior
-    input:
-    file snippy_core_filter_aln from ch_snippy_core_filter_modeltest
-    output:
-    file "core_modeltest-ng.out" into ch_modeltest_out_iqtree
-    file "core_modeltest-ng*"
-
-    // Shell script to execute
-    script:
-    """
-    modeltest-ng \
-        --input ${snippy_core_filter_aln} \
-        --datatype nt \
-        --processes ${task.cpus} \
-        --output core_modeltest-ng \
-        --model-het uigf \
-        -t ml \
-        -f ef
-    """
-  }
-}
-
-// -------------------------------------------------------------------------- //
 //                                ML Phylogeny                                //
 // -------------------------------------------------------------------------- //
 
@@ -875,7 +830,7 @@ if(!params.skip_iqtree){
 
   process iqtree{
     /*
-    Maximum likelihood tree search, iqtree phylogeny.
+    Maximum likelihood tree search and model selection, iqtree phylogeny.
 
     Input:
     ch_modeltest_out_iqtree (text): modeltest-ng log file from process modeltest.
@@ -893,7 +848,6 @@ if(!params.skip_iqtree){
 
     // IO and conditional behavior
     input:
-    file modeltest_out from ch_modeltest_out_iqtree
     file snippy_core_filter_aln from ch_snippy_core_filter_iqtree
 
     output:
@@ -903,17 +857,17 @@ if(!params.skip_iqtree){
     script:
     """
     # Remember to change outgroup here later
+    # A thorough tree search for model selection can be done with -m MF -mtree
     iqtree \
       -s ${snippy_core_filter_aln} \
-      -m GTR+G4 \
+      -m MFP \
       -nt ${task.cpus} \
       -o ${params.iqtree_outgroup} \
       -seed ${params.iqtree_rng} \
       -pre iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap \
-      -v \
       -bb 1000 \
       -alrt 1000 \
-      2>&1 | tee iqtree.raw-filter${params.snippy_multi_missing_data_text}_bootstrap.output
+      2>&1 | tee iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap.output
     """
   }
 }
