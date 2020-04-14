@@ -60,5 +60,5 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   git update-index --no-skip-worktree ncbimeta.yaml
   ```
 
-[Development]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
-[v0.1.0]: https://github.com/ktmeaton/NCBImeta/compare/0447d630299ae11f7ffffb26280b1288e1c09c72...v0.1.0
+[Development]: https://github.com/ktmeaton/paper-phylogeography/compare/HEAD...dev
+[v0.1.0]: https://github.com/ktmeaton/paper-phylogeography/compare/de952505c2a4ebbfdd7a6747896e3e7372c8030b...v0.1.0
