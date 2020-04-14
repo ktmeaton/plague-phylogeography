@@ -562,7 +562,7 @@ if(!params.skip_snippy_variant_summary){
     input:
     file snippy_snps_summary from ch_snippy_snps_variant_summary
     output:
-    file params.snippy_variant_summary into ch_snippy_variant_summary_multi,ch_snippy_variant_summary_multi_io_dummy
+    file params.snippy_variant_summary into ch_snippy_variant_summary_multi
 
     // Shell script to execute
     script:
@@ -586,15 +586,19 @@ process snippy_variant_summary_collect{
 
   */
   // Other variables and config
-  tag "$io_dummy"
+  tag "$variant_summary_collect"
+  publishDir "${params.outdir}/snippy_variant_summary", mode: 'copy', overwrite: 'true'
   ch_snippy_variant_summary_multi
-        .collectFile(name: "${params.snippy_variant_summary}_${workflow.runName}.txt",
-        newLine: false,
-        storeDir: "${params.outdir}/snippy_variant_summary")
+        .collectFile(name: "${params.snippy_variant_summary}.txt",
+        newLine: false)
+        .set{ch_snippy_variant_summary_multi_collect}
 
   // IO and conditional behavior
   input:
-  file io_dummy from ch_snippy_variant_summary_multi_io_dummy
+  file variant_summary_collect from ch_snippy_variant_summary_multi_collect
+
+  output:
+  file "${params.snippy_variant_summary}.txt"
 
   // Shell script to execute
   script:
@@ -623,7 +627,7 @@ if(!params.skip_snippy_detect_snp_high_density){
     input:
     file snippy_subs_vcf from ch_snippy_subs_vcf_detect_density
     output:
-    file "*.subs.snpden" into ch_snippy_subs_bed_merge_density, ch_snippy_subs_bed_sort_density_io_dummy
+    file "*.subs.snpden" into ch_snippy_subs_bed_merge_density
 
     // Shell script to execute
     script:
@@ -656,16 +660,15 @@ if(!params.skip_snippy_detect_snp_high_density){
 
     // IO and conditional behavior
     input:
-    file io_dummy from ch_snippy_subs_bed_sort_density_io_dummy
     file snippy_subs_bed from ch_snippy_subs_bed_sort_density
 
     output:
-    file "${params.snippy_variant_density}_${workflow.runName}.txt" into ch_snippy_subs_bed_density_multi
+    file "${params.snippy_variant_density}.txt" into ch_snippy_subs_bed_density_multi
 
     // Shell script to execute
     script:
     """
-    sort -k1,1 -k2,2n ${snippy_subs_bed} | bedtools merge > ${params.snippy_variant_density}_${workflow.runName}.txt
+    sort -k1,1 -k2,2n ${snippy_subs_bed} | bedtools merge > ${params.snippy_variant_density}.txt
     """
   }
 
