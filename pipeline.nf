@@ -562,7 +562,7 @@ if(!params.skip_snippy_variant_summary){
     input:
     file snippy_snps_summary from ch_snippy_snps_variant_summary
     output:
-    file params.snippy_variant_summary into ch_snippy_variant_summary_multi
+    file params.snippy_variant_summary into ch_snippy_variant_summary_multi,ch_snippy_variant_summary_multi_io_dummy
 
     // Shell script to execute
     script:
@@ -571,11 +571,35 @@ if(!params.skip_snippy_variant_summary){
     """
   }
 
+}
+
+process snippy_variant_summary_collect{
+  /*
+
+  Input:
+  ch_():
+
+  Output:
+  ch_ ():
+
+  Publish:
+
+  */
+  // Other variables and config
+  tag "$io_dummy"
   ch_snippy_variant_summary_multi
         .collectFile(name: "${params.snippy_variant_summary}_${workflow.runName}.txt",
         newLine: false,
         storeDir: "${params.outdir}/snippy_variant_summary")
 
+  // IO and conditional behavior
+  input:
+  file io_dummy from ch_snippy_variant_summary_multi_io_dummy
+
+  // Shell script to execute
+  script:
+  """
+  """
 }
 
 // --------------------------Detect High SNP Density--------------------------//
@@ -599,7 +623,7 @@ if(!params.skip_snippy_detect_snp_high_density){
     input:
     file snippy_subs_vcf from ch_snippy_subs_vcf_detect_density
     output:
-    file "*.subs.snpden" into ch_snippy_subs_bed_merge_density
+    file "*.subs.snpden" into ch_snippy_subs_bed_merge_density, ch_snippy_subs_bed_sort_density_io_dummy
 
     // Shell script to execute
     script:
@@ -608,10 +632,6 @@ if(!params.skip_snippy_detect_snp_high_density){
     tail -n+2 ${snippy_subs_vcf.baseName}.tmp.snpden | awk -F "\\t" '{if (\$3 > 1){print \$1 "\\t" \$2-10-1 "\\t" \$2}}' > ${snippy_subs_vcf.baseName}.snpden
     """
   }
-
-  ch_snippy_subs_bed_merge_density
-      .collectFile(name: "${params.snippy_variant_density}_unsorted.txt")
-      .set{ch_snippy_subs_bed_sort_density}
 
   process snippy_sort_snp_high_density{
     /*
@@ -630,9 +650,15 @@ if(!params.skip_snippy_detect_snp_high_density){
     tag "$snippy_subs_bed"
     publishDir "${params.outdir}/snippy_filtering", mode: 'copy'
 
+    ch_snippy_subs_bed_merge_density
+        .collectFile(name: "${params.snippy_variant_density}_unsorted.txt")
+        .set{ch_snippy_subs_bed_sort_density}
+
     // IO and conditional behavior
     input:
+    file io_dummy from ch_snippy_subs_bed_sort_density_io_dummy
     file snippy_subs_bed from ch_snippy_subs_bed_sort_density
+
     output:
     file "${params.snippy_variant_density}_${workflow.runName}.txt" into ch_snippy_subs_bed_density_multi
 
@@ -856,7 +882,6 @@ if(!params.skip_iqtree){
     // Other variables and config
     tag "$snippy_core_filter_aln"
     publishDir "${params.outdir}/iqtree", mode: 'copy', overwrite: 'true'
-    echo true
 
     // IO and conditional behavior
     input:
