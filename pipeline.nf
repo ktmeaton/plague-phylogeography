@@ -96,6 +96,9 @@ if (params.ncbimeta_update && !params.ncbimeta_annot){
   exit 1
 }
 
+// Prefix the baseDir in front of the outdir
+outdir = "$baseDir/${params.outdir}"
+
 // -------------------------------------------------------------------------- //
 //                              NCBImeta Entry Point                          //
 // -------------------------------------------------------------------------- //
