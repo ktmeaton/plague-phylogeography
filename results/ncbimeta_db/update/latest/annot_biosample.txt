@@ -35,7 +35,7 @@ SAMN02470616	PRJNA201408	9				1994	India: Surat	Homo sapiens
 SAMN02470617	PRJNA201410	113				1994	India: Surat	Rattus rattus	
 SAMN02470613	PRJNA201413	S3				2002	India: Shimla	Homo sapiens	
 SAMN02470618	PRJNA201414	24H				1998	India: Hosur	Tatera indica	
-SAMN02614613	PRJNA237115	Niagara R	Hylemonella gracilis str. Niagara R			Aug-07	USA: Upper Niagara River		REMOVE: Not Yersinia pestis
+SAMN02614613	PRJNA237115	Niagara R	Hylemonella gracilis str. Niagara R			07-Aug	USA: Upper Niagara River		REMOVE: Not Yersinia pestis
 SAMN02929926	PRJNA255985		synthetic metagenome	SRS664879		not applicable	not applicable		REMOVE: Not Yersinia pestis
 SAMN02929927	PRJNA255985		synthetic metagenome	SRS664880		not applicable	not applicable		REMOVE: Not Yersinia pestis
 SAMN02929928	PRJNA255985		synthetic metagenome	SRS664882		not applicable	not applicable		REMOVE: Not Yersinia pestis
@@ -550,7 +550,7 @@ SAMN02442726		Justinian		SRS514506
 SAMN02442727		Justinian		SRS514507					
 SAMN02442728		Justinian		SRS514508					
 SAMN02602918		548	Brucella melitensis 548			04-Sep-48	Russia: Saratov region	Ovis aries	REMOVE: Not Yersinia pestis
-SAMN02640258			Oropsylla silantiewi	SRS557313		Dec-12	"China: Huzhu County, Qinghai"	Marmota himalayana	REMOVE: Not Yersinia pestis
+SAMN02640258			Oropsylla silantiewi	SRS557313		12-Dec	"China: Huzhu County, Qinghai"	Marmota himalayana	REMOVE: Not Yersinia pestis
 SAMN02640305		1330	Brucella suis 1330			unknown	unknown	unknown	REMOVE: Not Yersinia pestis
 SAMN02650267		C-554	Brucella melitensis			16-Jul-12	Russia: The Republic of Dagestan	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN02650270		C-555	Brucella melitensis			18-Jul-12	Russia: The Republic of Dagestan	Homo sapiens	REMOVE: Not Yersinia pestis
@@ -579,26 +579,26 @@ SAMN04023224		39	Vibrio cholerae O1 biovar El Tor			2011	Ukraine: Mariupol		REMO
 SAMN04023225		56	Vibrio cholerae O1 biovar El Tor			1994	Ukraine: Mariupol		REMOVE: Not Yersinia pestis
 SAMN04023226		43	Vibrio cholerae O1 biovar El Tor			1994	Ukraine: Mariupol	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN04023227		31	Vibrio cholerae O1 biovar El Tor			2011	Ukraine: Mariupol	Homo sapiens	REMOVE: Not Yersinia pestis
-SAMN04192112		GF41	Candida sojae			Jan-14	Brazil: Alagoas	Diatraea saccharalis	REMOVE: Not Yersinia pestis
+SAMN04192112		GF41	Candida sojae			14-Jan	Brazil: Alagoas	Diatraea saccharalis	REMOVE: Not Yersinia pestis
 SAMN04413737		M299	Vibrio cholerae			1965	Turkmenistan	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN04413738		P13762	Vibrio cholerae			1988	Uzbekistan: Tashkent	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN04417215		M1275	Vibrio cholerae O1 biovar El Tor			1993	Russia: Dagestan	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN04417245		M888	Vibrio cholerae			1970	Russia: Astrakhan	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN04417250		M1275D	Vibrio cholerae O1 biovar El Tor			20-Oct-15	Russia: Dagestan	Homo sapiens	REMOVE: Not Yersinia pestis
-SAMN05162505			crab metagenome	SRS1539749		Feb-13	USA: Florida	Chyroptochiridae	REMOVE: Not Yersinia pestis
-SAMN05162506			coral metagenome	SRS1539748		Feb-13	USA: Florida	Diploria labyrinthiformis	REMOVE: Not Yersinia pestis
+SAMN05162505			crab metagenome	SRS1539749		13-Feb	USA: Florida	Chyroptochiridae	REMOVE: Not Yersinia pestis
+SAMN05162506			coral metagenome	SRS1539748		13-Feb	USA: Florida	Diploria labyrinthiformis	REMOVE: Not Yersinia pestis
 SAMN05823553		KIV-L	Brucella melitensis			2014	Russia	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN05823560		I-349	Brucella melitensis			1999	Russia	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN05853556		V-120	Burkholderia mallei			1985	Russia: Ulan-Ude	horse	REMOVE: Not Yersinia pestis
 SAMN06075483		I-216	Brucella melitensis			1970	Russia	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN06075487		I-338	Brucella melitensis			1993	Russia	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN06711158		617	Vibrio cholerae			missing	Ukraine: Piatikhatskii district	Homo sapiens	REMOVE: Not Yersinia pestis
-SAMN06768128		5	Vibrio cholerae			Sep-16	Ukraine: Zaporizhia	Homo sapiens	REMOVE: Not Yersinia pestis
-SAMN06768129		28	Vibrio cholerae			Sep-16	Ukraine: Krivoy Rog	Homo sapiens	REMOVE: Not Yersinia pestis
-SAMN06768130		102	Vibrio cholerae			Sep-16	Ukraine: Kerch	Homo sapiens	REMOVE: Not Yersinia pestis
-SAMN06768131		114	Vibrio cholerae			Sep-16	Ukraine: Mariupol	Homo sapiens	REMOVE: Not Yersinia pestis
-SAMN06768132		147	Vibrio cholerae			Sep-16	Ukraine: Yalta	missing	REMOVE: Not Yersinia pestis
-SAMN06768133		89	Vibrio cholerae			Sep-16	Ukraine: Yalta	missing	REMOVE: Not Yersinia pestis
+SAMN06768128		5	Vibrio cholerae			16-Sep	Ukraine: Zaporizhia	Homo sapiens	REMOVE: Not Yersinia pestis
+SAMN06768129		28	Vibrio cholerae			16-Sep	Ukraine: Krivoy Rog	Homo sapiens	REMOVE: Not Yersinia pestis
+SAMN06768130		102	Vibrio cholerae			16-Sep	Ukraine: Kerch	Homo sapiens	REMOVE: Not Yersinia pestis
+SAMN06768131		114	Vibrio cholerae			16-Sep	Ukraine: Mariupol	Homo sapiens	REMOVE: Not Yersinia pestis
+SAMN06768132		147	Vibrio cholerae			16-Sep	Ukraine: Yalta	missing	REMOVE: Not Yersinia pestis
+SAMN06768133		89	Vibrio cholerae			16-Sep	Ukraine: Yalta	missing	REMOVE: Not Yersinia pestis
 SAMN06768135		223	Vibrio cholerae			not collected	Ukraine: Nizhnie Serogozy	missing	REMOVE: Not Yersinia pestis
 SAMN06768535		155	Vibrio cholerae			not collected	Ukraine: Mariupol	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN06806438		85	Vibrio cholerae			not collected	Ukraine: Berdiansk	Homo sapiens	REMOVE: Not Yersinia pestis
@@ -639,12 +639,12 @@ SAMN09111775		10213D	Vibrio cholerae			1994-10-18	Russia: Dagestan	Homo sapiens	
 SAMN09111788		16241D	Vibrio cholerae			1994	Russia: Dagestan	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN09245989		8600	Shigella sonnei			2013-10-27	missing	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN09397111		IP2666pIB1	Yersinia pseudotuberculosis	SRS3938234		01-Jan-18	USA: Santa Cruz		REMOVE: Not Yersinia pestis
-SAMN09464363		4811	Burkholderia pseudomallei	SRS3557496		Oct-17	Viet Nam		REMOVE: Not Yersinia pestis
-SAMN09464364		1701	Burkholderia pseudomallei			Mar-17	Viet Nam	Homo sapiens	REMOVE: Not Yersinia pestis
-SAMN09464365		4802R	Burkholderia pseudomallei	SRS3557499		Apr-18	Viet Nam		REMOVE: Not Yersinia pestis
-SAMN09464366		4811R	Burkholderia pseudomallei	SRS3557495		Apr-18	Viet Nam		REMOVE: Not Yersinia pestis
-SAMN09464367		PT02	Burkholderia cepacia			Feb-18	Viet Nam	Homo sapiens	REMOVE: Not Yersinia pestis
-SAMN09464368		4802	Burkholderia pseudomallei	SRS3557498		Oct-17	Viet Nam		REMOVE: Not Yersinia pestis
+SAMN09464363		4811	Burkholderia pseudomallei	SRS3557496		17-Oct	Viet Nam		REMOVE: Not Yersinia pestis
+SAMN09464364		1701	Burkholderia pseudomallei			17-Mar	Viet Nam	Homo sapiens	REMOVE: Not Yersinia pestis
+SAMN09464365		4802R	Burkholderia pseudomallei	SRS3557499		18-Apr	Viet Nam		REMOVE: Not Yersinia pestis
+SAMN09464366		4811R	Burkholderia pseudomallei	SRS3557495		18-Apr	Viet Nam		REMOVE: Not Yersinia pestis
+SAMN09464367		PT02	Burkholderia cepacia			18-Feb	Viet Nam	Homo sapiens	REMOVE: Not Yersinia pestis
+SAMN09464368		4802	Burkholderia pseudomallei	SRS3557498		17-Oct	Viet Nam		REMOVE: Not Yersinia pestis
 SAMN10340333		9760	Vibrio cholerae			1975	Russia: Rostov-on-Don	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN10484567		Jan-81	Bacillus anthracis	SRS4873497		1979	Russia	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN10584386		N1	Brucella abortus			29-Jan-18	Russia: Samara	cow	REMOVE: Not Yersinia pestis
@@ -706,3 +706,4 @@ SAMN13675230		4702	Burkholderia pseudomallei			2018	Viet Nam		REMOVE: Not Yersin
 SAMN13675363		4822	Burkholderia pseudomallei			2018	Viet Nam		REMOVE: Not Yersinia pestis
 SAMN13698231		134	Burkholderia pseudomallei			1985	Thailand	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN13698233		134K	Burkholderia pseudomallei			2019	Thailand		REMOVE: Not Yersinia pestis
+SAMN08892357		139	Yersinia pestis			1966	Kazakhstan	Rhombomis opinus	REMOVE: Pairwise alignment 60 percent coverage of reference 
