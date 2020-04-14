@@ -241,6 +241,7 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     */
     // Other variables and config
     tag "$sqlite"
+    echo true
     publishDir "${outdir}/sqlite_import", mode: 'copy'
     // Set the sqlite channel to update or sqlite import depending on ncbimeta mode
     // TO DO: catch if both parameters are specified!!!
@@ -261,13 +262,19 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     // Shell script to execute
     script:
     """
-    sqlite3 ${sqlite} ${params.sqlite_select_command} | grep . | head -n ${params.max_datasets} | sed -E -e 's/ |;/\\n/g' | while read line;
+    # Select the Genbank Assemblies
+    sqlite3 ${sqlite} ${params.sqlite_select_command_asm} | grep . | head -n ${params.max_datasets} | sed -E -e 's/ |;/\\n/g' | while read line;
     do
       if [[ ! -z \$line ]]; then
         asm_ftp=`echo \$line | \
             awk -F "/" -v suffix=${params.genbank_assembly_gz_suffix} '{print \$0 FS \$NF suffix}'`;
         echo \$asm_ftp >> ${params.file_assembly_for_download_ftp}
       fi;
+    done;
+    # Select the SRA Run Accessions
+    sqlite3 ${sqlite} ${params.sqlite_select_command_sra} | grep . | head -n ${params.max_datasets} | sed -E -e 's/ |;/\\n/g' | while read line;
+    do
+      echo "\$line";
     done;
     """
   }
@@ -316,6 +323,39 @@ if (!params.skip_assembly_download){
   }
 
 }
+
+// -------------------------------------------------------------------------- //
+//                                SRA Download                                //
+// -------------------------------------------------------------------------- //
+/*
+process sra_download{
+
+  Input:
+  ch_():
+
+  Output:
+  ch_ ():
+
+  Publish:
+
+  // Other variables and config
+  tag ""
+  publishDir
+
+  // IO and conditional behavior
+  input:
+
+  output:
+
+
+  // Shell script to execute
+  script:
+  """
+  """
+}
+*/
+
+
 // -------------------------------------------------------------------------- //
 //                           Reference Genome Processing                      //
 // -------------------------------------------------------------------------- //

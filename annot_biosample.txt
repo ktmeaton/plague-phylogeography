@@ -707,3 +707,4 @@ SAMN13675363		4822	Burkholderia pseudomallei			2018	Viet Nam		REMOVE: Not Yersin
 SAMN13698231		134	Burkholderia pseudomallei			1985	Thailand	Homo sapiens	REMOVE: Not Yersinia pestis
 SAMN13698233		134K	Burkholderia pseudomallei			2019	Thailand		REMOVE: Not Yersinia pestis
 SAMN08892357		139	Yersinia pestis			1966	Kazakhstan	Rhombomis opinus	REMOVE: Pairwise alignment 60 percent coverage of reference 
+SAMEA3541827	PRJEB10885	RISE509	Yersinia pestis	ERS848976	SAMEA3325401	"14C cal BC low: -2677, 14C cal BC High: -2887"	Russia: Bateni	Homo sapiens	KEEP
