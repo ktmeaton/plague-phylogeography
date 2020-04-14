@@ -10,6 +10,17 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Deal with the fail to publish issue with NCBImeta db
 - Switch model testing from modeltest-ng to ModelFinder (because of the AVX/AVX2 requirement)
 
+## [v0.1.1] - 2020-04-14
+
+### Added
+- ModelFinder for model selection, automatic integration with IQTREE
+
+### Removed
+- Modeltest-NG process entirely removed
+
+### Changed
+- At this point, the pipeline is fully resumable.
+
 ## [v0.1.0] - 2020-04-14
 
 ### Added
