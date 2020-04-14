@@ -258,6 +258,7 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     file sqlite from ch_sqlite
     output:
     file params.file_assembly_for_download_ftp into ch_assembly_for_download_ftp
+    file params.file_sra_for_download_acc into ch_sra_for_download_acc
 
     // Shell script to execute
     script:
@@ -274,8 +275,10 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     # Select the SRA Run Accessions
     sqlite3 ${sqlite} ${params.sqlite_select_command_sra} | grep . | head -n ${params.max_datasets} | sed -E -e 's/ |;/\\n/g' | while read line;
     do
-      echo "\$line";
-    done;
+      if [[ ! -z \$line ]]; then
+        echo \$line >> ${params.file_sra_for_download_acc}
+      fi;
+    done
     """
   }
 
