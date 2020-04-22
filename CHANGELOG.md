@@ -10,6 +10,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Deal with the fail to publish issue with NCBImeta db
 - Switch model testing from modeltest-ng to ModelFinder (because of the AVX/AVX2 requirement)
 - Add exact-repeats and tandem repeats detection
+- Add GeoPy to phylo-env environment
 
 ## [v0.1.1] - 2020-04-14
 

@@ -95,6 +95,18 @@ augur export v2 \
     --output plague_auspice_test.json
 ```
 
+```
+augur export v2 \
+    --tree refine-tree.nwk \
+    --metadata test.tsv \
+    --node-data refine-branch_lengths.json \
+                traits.json \
+                aa_muts.json \
+                nt_muts.json \
+    --lat-longs config/test_lat_lon.tsv \
+    --output auspice/plague.json
+```
+
 ### Geocoding for Lat Lon
 ```
 from geopy.geocoders import Nominatim
@@ -114,3 +126,12 @@ location_b = geolocator.geocode("Russia Chita Oblast")
 location_c = geolocator.geocode("Russia Tuva")
 location_d = geolocator.geocode("United States Colorado")
 ```
+
+### Visualize the Results
+Navigate to a place to build the auspice server
+```
+cd ~/Programs/NextStrain/
+auspice build
+```
+
+auspice view --datasetDir /mnt/c/Users/ktmea/Projects/paper-phylogeography/nextstrain
