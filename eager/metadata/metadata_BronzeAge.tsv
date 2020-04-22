@@ -1,0 +1,20 @@
+Sample_Name	Library_ID	Lane	SeqType	Organism	Strandedness	UDG_Treatment	R1	R2	BAM	Group	Populations	Age
+SAMEA3541827	ERR1018984	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018984/RS1556.RISE509.MA877_L1_S3.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018983	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018983/RS1551.RISE509.MA877_L1_S3.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018982	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018982/RS1547.RISE509.MA877_L2_S1.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018981	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018981/RS1542.RISE509.MA877_L2_S1.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018980	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018980/RS1537.RISE509.MA877_L2_S1.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018979	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018979/RS1531.RISE509.MA877_L1_S3.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018978	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018978/RS1526.RISE509.MA877_L1_S3.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018977	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018977/RS1464.RISE509.MA877_L1_S3.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018976	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018976/RS1460.RISE509.MA877_L2_S1.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018975	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018975/RS956.RISE509.MA877_L1_S2.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018974	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018974/RS737.RISE509.MA877_L1_S2.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018973	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018973/RS729.RISE509.MA877_L1_S2.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018972	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018972/RS384.RISE509.MA877_L1_S1.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018971	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018971/RS241.RISE509.MA877_L1_S2.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018970	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018970/RS198.RISE509.MA877_L1_S2.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018969	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018969/RS169.RISE509.MA877_L1_S2.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018968	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018968/RS140.RISE509.MA877_L1_S2.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018967	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018967/RS111.RISE509.MA877_L1_S2.trim.fastq.gz	NA	NA	NA	NA	NA
+SAMEA3541827	ERR1018966	1	SE	Yersinia pestis	double	none	http://ftp.sra.ebi.ac.uk/vol1/run/ERR101/ERR1018966/RS82.RISE509.MA877_L1_S2.trim.fastq.gz	NA	NA	NA	NA	NA
