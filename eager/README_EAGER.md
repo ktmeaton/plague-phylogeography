@@ -6,7 +6,7 @@ conda create --name eager-env
 conda activate eager-env
 conda install --name eager-env -c bioconda nextflow
 nextflow pull nf-core/eager -r tsv-input
-conda update --name eager-env -f ~/.nextflow/assets/nf-core/eager/environment.yml
+conda env update --name eager-env --file ~/.nextflow/assets/nf-core/eager/environment.yml
 ```
 
 ## Misc Git EAGER Commands
