@@ -132,6 +132,7 @@ SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeograp
 	(TRIM(BioSampleGeographicLocation) > '') AND
 	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing")
 ->669 Rows
+
 SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeographicLocation FROM Master WHERE
     (BioSampleComment NOT LIKE "%REMOVE%") AND
 	(TRIM(BioSampleHost) > '') AND
@@ -171,3 +172,7 @@ sqlite3 results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sql
 ```
 
     if($3 == "PAIRED"){SeqType="PE"}else if ($3 == "SINGLE"){SeqType="SE" } print Sample_Name "\t" Library_ID "\t" Lane "\t" SeqType}'
+
+
+## NCBI FILTERING!!!
+"geo_loc_name=Russia: Chechnya"[attr]
