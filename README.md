@@ -143,3 +143,29 @@ SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeograp
 	(TRIM(AssemblyFTPGenbank) > '')
 --> 146 rows
 ```
+
+```
+sqlite3 results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite "SELECT SRASampleName,SRARunAccession, SRALibraryLayout,SRAFileURL From Master WHERE BioSampleAccession IS 'SAMEA3541827'" | \
+  awk -F "|" -v Org="Yersinia pestis" -v Strand="double" -v UDG="none" -v BAM="NA" -v Group="NA" -v Pop="NA" -v Age="NA" '{
+    Lane = 1; Sample_Name=$1; Library_ID=$2;
+    split($2, Library_IDSplit,";");
+    split($3, SeqTypeSplit,";");
+    split($4, FileURLSplit,";");
+    i_new=1
+    for (i=1;i<=length(FileURLSplit);i++)
+    {
+      URL=FileURLSplit[i]
+      if (URL ~ /fastq/){FileURLSplitNew[i_new] = URL; i_new++}
+    }
+    for (i=1;i<=length(Library_IDSplit);i++)
+    {
+      if (length(SeqTypeSplit) == 1){SeqType = SeqTypeSplit[1]}
+      else {SeqType = SeqTypeSplit[i]}
+      if (SeqType == "SINGLE"){SeqType = "SE"; R2 = "NA"}
+      else if (SeqType == "PAIRED"){SeqType = "PE"; R2 = PLACEHOLDER}
+      print Sample_Name "\t" Library_IDSplit[i] "\t" Lane "\t" SeqType "\t" Org "\t" Strand "\t" UDG "\t" FileURLSplitNew[i] "\t" R2 "\t" BAM "\t" Group "\t" Pop "\t" Age;
+    }
+  }'
+```
+
+    if($3 == "PAIRED"){SeqType="PE"}else if ($3 == "SINGLE"){SeqType="SE" } print Sample_Name "\t" Library_ID "\t" Lane "\t" SeqType}'
