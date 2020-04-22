@@ -145,6 +145,8 @@ SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeograp
 ```
 
 ```
+HEADER="Sample_Name\tLibrary_ID\tLane\tSeqType\tOrganism\tStrandedness\tUDG_Treatment\tR1\tR2\tBAM\tGroup\tPopulations\tAge";
+echo -e $HEADER > metadata_BronzeAge3.tsv;
 sqlite3 results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite "SELECT SRASampleName,SRARunAccession, SRALibraryLayout,SRAFileURL From Master WHERE BioSampleAccession IS 'SAMEA3541827'" | \
   awk -F "|" -v Org="Yersinia pestis" -v Strand="double" -v UDG="none" -v BAM="NA" -v Group="NA" -v Pop="NA" -v Age="NA" '{
     Lane = 1; Sample_Name=$1; Library_ID=$2;
@@ -165,7 +167,7 @@ sqlite3 results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sql
       else if (SeqType == "PAIRED"){SeqType = "PE"; R2 = PLACEHOLDER}
       print Sample_Name "\t" Library_IDSplit[i] "\t" Lane "\t" SeqType "\t" Org "\t" Strand "\t" UDG "\t" FileURLSplitNew[i] "\t" R2 "\t" BAM "\t" Group "\t" Pop "\t" Age;
     }
-  }'
+  }' >> metadata_BronzeAge3.tsv
 ```
 
     if($3 == "PAIRED"){SeqType="PE"}else if ($3 == "SINGLE"){SeqType="SE" } print Sample_Name "\t" Library_ID "\t" Lane "\t" SeqType}'
