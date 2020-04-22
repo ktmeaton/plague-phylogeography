@@ -1,0 +1,68 @@
+{
+  "alignment": "../testX/snippy_multi/snippy-core.full.filter0.fasta",
+  "clock": {
+    "intercept": -0.0016820497031897247,
+    "rate": 8.651775254526522e-07,
+    "rtt_Tmrca": 1944.1671260585429
+  },
+  "generated_by": {
+    "program": "augur",
+    "version": "7.0.2"
+  },
+  "input_tree": "../testX/iqtree/iqtree.core-filter0_bootstrap.treefile",
+  "nodes": {
+    "100/100": {
+      "branch_length": 1.0786036868024002e-05,
+      "clock_length": 1.0786036868024002e-05,
+      "date": "1956-01-15",
+      "mutation_length": 1.1223829508457602e-05,
+      "numdate": 1956.0391254423212
+    },
+    "GCA_009295965.1_ASM929596v1_genomic": {
+      "branch_length": 1.2079821077659785e-05,
+      "clock_length": 1.2079821077659785e-05,
+      "date": "1970-01-01",
+      "mutation_length": 1.1060347094661185e-05,
+      "numdate": 1970.001371018846,
+      "raw_date": "1970-XX-XX"
+    },
+    "GCA_009296005.1_ASM929600v1_genomic": {
+      "branch_length": 8.59161295040741e-06,
+      "clock_length": 8.59161295040741e-06,
+      "date": "1953-07-03",
+      "mutation_length": 8.072946545352076e-06,
+      "numdate": 1953.5027397260274,
+      "raw_date": "1953-07-03"
+    },
+    "GCA_009363195.1_ASM936319v1_genomic": {
+      "branch_length": 1.1919601452204785e-05,
+      "clock_length": 1.1919601452204785e-05,
+      "date": "1977-08-26",
+      "mutation_length": 1.2001639578094605e-05,
+      "numdate": 1977.650684931507,
+      "raw_date": "1977-08-26"
+    },
+    "NODE_0000000": {
+      "branch_length": 6.778234107821671e-06,
+      "clock_length": 6.778234107821671e-06,
+      "date": "1963-11-15",
+      "mutation_length": 6.589116373354887e-06,
+      "numdate": 1963.87362634926
+    },
+    "NODE_0000001": {
+      "branch_length": 0.001,
+      "clock_length": 0.001,
+      "date": "1943-07-28",
+      "mutation_length": 0.001,
+      "numdate": 1943.5722772513898
+    },
+    "Reference": {
+      "branch_length": 2.4335489291614244e-05,
+      "clock_length": 2.4335489291614244e-05,
+      "date": "1992-01-01",
+      "mutation_length": 2.3768180461102753e-05,
+      "numdate": 1992.0013672760508,
+      "raw_date": "1992-XX-XX"
+    }
+  }
+}
