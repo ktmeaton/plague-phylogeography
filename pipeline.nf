@@ -458,6 +458,7 @@ if (!params.skip_reference_detect_repeats){
           {next;}
       else if (\$7 > 90)
           {print \$0}}' \${PREFIX}.inexact.coords > \${PREFIX}.inexact.repeats
+    # Also exact and tandem repeats??
     # Convert to bed file format, changing to 0-base position coordinates
     awk -F "\t" '{print \$12 "\t" \$1-1 "\t" \$2-1;
       if (\$3 > \$4){tmp=\$4; \$4=\$3; \$3=tmp;}
