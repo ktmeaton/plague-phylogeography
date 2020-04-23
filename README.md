@@ -84,7 +84,7 @@ nextflow run pipeline.nf \
 
 ### Perl5 Issues for HPC Snippy
 ```
-export PERL5LIB=~/miniconda3/envs/phylo-env/lib/site_perl/5.26.2/
+export PERL5LIB=~/miniconda3/envs/phylo-env/lib/site_perl/5.26.2/:$PERL5LIB
 ```
 
 ### SnpEff Build Database
@@ -107,9 +107,9 @@ SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeograp
 	(TRIM(BioSampleHost) > '') AND
 	(TRIM(LOWER(BioSampleHost)) IS NOT "missing") AND
 	(TRIM(BioSampleCollectionDate) > '') AND
-	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "not applicable" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "unknown" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "n/a" ) AND
-	(TRIM(BioSampleGeographicLocation) > '') AND
-	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing") AND
+	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "not applicable" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "unknown" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "n/a" ) AND (TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing") AND
+  (TRIM(BioSampleGeographicLocation) > '') AND
+  (TRIM(LOWER(BioSampleGeographicLocation)) IS NOT "missing") AND
 	(TRIM(AssemblyFTPGenbank) > '')
 --> 146 rows
 ```
