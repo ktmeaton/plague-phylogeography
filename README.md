@@ -1,12 +1,12 @@
-# paper-phylogeography
-Phylogeography of Yersinia pestis
+# Plague Phylogeography
+A **VERY** in-development work on the phylogeography of *Yersinia pestis*.
 
 ## Dependencies
 **Workflow:** NextFlow  
 **Database:** NCBImeta, sqlite3 (CLI)  
 **Alignment:** snippy  
 **Masking, etc.:** dustmasker, mummer, vcftools   
-**Phylogenetics:** iqtree
+**Phylogenetics:** iqtree  
 **Statistics:** qualimap, multiqc
 
 ### Conda Environment
@@ -16,18 +16,14 @@ conda env create -f phylo-env.yaml --name phylo-env
 conda activate phylo-env
 ```
 
-## Full Pipeline (Reproduce)
+### Dev Dependencies for Docs
 ```
-nextflow run pipeline.nf \
-  --ncbimeta_create ncbimeta.yaml \
-  --ncbimeta_update ncbimeta.yaml \
-  --ncbimeta_annot annot_biosample.txt \
-  --max_datasets 3 \
-  -with-trace \
-  -with-timeline \
-  -with-dag pipeline.pdf \
-  -with-report
+pip install sphinx
+pip install sphinx-rtd-theme
+pip install m2r
 ```
+
+Everything from here on out is free form notes as I experiment and document.
 
 ## Step By Step (From Scratch)
 
@@ -74,7 +70,7 @@ Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows tha
 nextflow run pipeline.nf \
   --ncbimeta_update ncbimeta.yaml \
   --ncbimeta_annot annot_biosample.txt \
-  --max_datasets 3 \
+  --max_datasets 2000 \
   -resume
 ```
 
@@ -86,23 +82,9 @@ nextflow run pipeline.nf \
   -resume
 ```
 
-### Tracing
--with-trace
--with-timeline
--with-dag pipeline.pdf
--with-report
-
-
-### Perl5 Issues
+### Perl5 Issues for HPC Snippy
 ```
 export PERL5LIB=~/miniconda3/envs/phylo-env/lib/site_perl/5.26.2/
-```
-
-### Dev Dependencies
-```
-pip install sphinx
-pip install sphinx-rtd-theme
-pip install m2r
 ```
 
 ### SnpEff Build Database
@@ -118,21 +100,8 @@ snpEff -v -csvStats GCA_009669545.1_ASM966954v1_genomic_snippy.snpEff.csv Yersin
 ```
 
 ### Host selection
+Require Assembly,Host,CollectionDate,GeographicLocation
 ```
-SELECT BioSampleHost FROM Master WHERE (TRIM(BioSampleHost) > '') AND BioSampleHost IS NOT "missing"
--> 854 Rows
-SELECT BioSampleHost FROM Master WHERE (TRIM(BioSampleHost) > '') AND (BioSampleHost IS NOT "missing") AND (BioSampleComment NOT LIKE "%REMOVE%")
--> 734 Rows
-SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeographicLocation FROM Master WHERE
-    (BioSampleComment NOT LIKE "%REMOVE%") AND
-	(TRIM(BioSampleHost) > '') AND
-	(TRIM(LOWER(BioSampleHost)) IS NOT "missing") AND
-	(TRIM(BioSampleCollectionDate) > '') AND
-	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "not applicable") AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "unknown" AND TRIM(LOWER(BioSampleCollectionDate)) IS NOT "n/a" ) AND
-	(TRIM(BioSampleGeographicLocation) > '') AND
-	(TRIM(LOWER(BioSampleCollectionDate)) IS NOT "missing")
-->669 Rows
-
 SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeographicLocation FROM Master WHERE
     (BioSampleComment NOT LIKE "%REMOVE%") AND
 	(TRIM(BioSampleHost) > '') AND
@@ -144,7 +113,7 @@ SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeograp
 	(TRIM(AssemblyFTPGenbank) > '')
 --> 146 rows
 ```
-
+Get the "Root" SRA sequences
 ```
 HEADER="Sample_Name\tLibrary_ID\tLane\tSeqType\tOrganism\tStrandedness\tUDG_Treatment\tR1\tR2\tBAM\tGroup\tPopulations\tAge";
 echo -e $HEADER > metadata_BronzeAge3.tsv;
@@ -171,8 +140,8 @@ sqlite3 results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sql
   }' >> metadata_BronzeAge3.tsv
 ```
 
-    if($3 == "PAIRED"){SeqType="PE"}else if ($3 == "SINGLE"){SeqType="SE" } print Sample_Name "\t" Library_ID "\t" Lane "\t" SeqType}'
 
-
-## NCBI FILTERING!!!
+## NCBI Filtering by Attribute AHA!!!
+```
 "geo_loc_name=Russia: Chechnya"[attr]
+```
