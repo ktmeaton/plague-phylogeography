@@ -8,3 +8,7 @@ pipeline.pdf*
 report.html*
 timeline.html*
 trace.txt*
+nextstrain/*json
+nextstrain/*vcf
+nextstrain/*nwk
+nextstrain/*.txt
