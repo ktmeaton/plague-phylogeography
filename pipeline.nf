@@ -851,7 +851,7 @@ if(!params.skip_snippy_multi_filter){
     input:
     file snippy_core_full_aln from ch_snippy_core_full_aln_filter
     output:
-    file "${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_modeltest,ch_snippy_core_filter_iqtree
+    file "${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_modeltest,ch_snippy_core_filter_iqtree
 
     // Shell script to execute
     script:
