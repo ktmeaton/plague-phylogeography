@@ -831,7 +831,7 @@ if(!params.skip_snippy_multi_filter){
 
   process snippy_multi_filter{
     /*
-    Filter the multiple alignment for X% missing data.
+    Filter the multiple alignment for X% missing data and split by replicon.
 
     Input:
     ch_snippy_core_full_aln_filter (fasta): Multi fasta of aligned core genome ffrom process snippy_multi.
@@ -856,16 +856,18 @@ if(!params.skip_snippy_multi_filter){
     // Shell script to execute
     script:
     """
-    # Filter full genome alignment (No Missing Data)
-    snp-sites -m -c -b -o ${snippy_core_full_aln.baseName}.filter0.fasta ${snippy_core_full_aln};
+    # Split by LOCUS (generates snippy-core_%REPLICON.fasta)
+    ${params.scriptdir}/fasta_split_locus.sh ${snippy_core_full_aln}
+    # Filter full CHROMOSOME alignment (No Missing Data)
+    snp-sites -m -c -b -o ${snippy_core_full_aln.baseName}_CHROM.filter0.fasta ${snippy_core_full_aln.baseName}_CHROM.fasta;
     # Optional: Filter full alignment to remove less missing data
     if [[ ${params.snippy_multi_missing_data_text} > 0 ]]; then
-      ${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln} > ${snippy_core_full_aln.baseName}.unwrap.fasta;
+      ${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln.baseName}_CHROM.fasta > ${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta;
       ${params.scriptdir}/fasta_filterGapsNs.sh \
-          ${snippy_core_full_aln.baseName}.unwrap.fasta \
+          ${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta \
           ${params.snippy_multi_missing_data} \
-          ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.backbone > \
-          ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta;
+          ${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.backbone > \
+          ${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta;
     fi;
     """
   }

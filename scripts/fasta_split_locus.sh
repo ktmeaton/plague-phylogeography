@@ -44,18 +44,18 @@ done > extract_pPCP1.bed
 
 #--------Create new alignments from extracted sequences, rename headers--------#
 # CHROMOSOME
-outfile=${IN_FASTA_FILE%%.*}"_CHROM.fasta"
+outfile=${IN_FASTA_FILE%.*}"_CHROM.fasta"
 bedtools getfasta -fi $IN_FASTA_FILE -fo $outfile -bed extract_CHROM.bed
 sed -i "s/:$CHROM_START-$CHROM_END//g" $outfile
 # pCD1
-outfile=${IN_FASTA_FILE%%.*}"_pCD1.fasta"
+outfile=${IN_FASTA_FILE%.*}"_pCD1.fasta"
 bedtools getfasta -fi $IN_FASTA_FILE -fo $outfile -bed extract_pCD1.bed
 sed -i "s/:$pCD1_START-$pCD1_END//g" $outfile
 # pMT1
-outfile=${IN_FASTA_FILE%%.*}"_pMT1.fasta"
+outfile=${IN_FASTA_FILE%.*}"_pMT1.fasta"
 bedtools getfasta -fi $IN_FASTA_FILE -fo $outfile -bed extract_pMT1.bed
 sed -i "s/:$pMT1_START-$pMT1_END//g" $outfile
 # pPCP1
-outfile=${IN_FASTA_FILE%%.*}"_pPCP1.fasta"
+outfile=${IN_FASTA_FILE%.*}"_pPCP1.fasta"
 bedtools getfasta -fi $IN_FASTA_FILE -fo $outfile -bed extract_pPCP1.bed
 sed -i "s/:$pPCP1_START-$pPCP1_END//g" $outfile
