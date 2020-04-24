@@ -145,3 +145,97 @@ sqlite3 results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sql
 ```
 "geo_loc_name=Russia: Chechnya"[attr]
 ```
+
+## NextStrain setup
+pip install nextstrain-augur
+conda install -c conda-forge --name phylo-env nodejs=10
+npm install --global auspice
+
+Activate then deactivate the conda environment to get auspice working!!!
+
+```
+mkdir -p results
+augur refine \
+    --tree ../iqtree/iqtree.core-filter0_bootstrap.treefile \
+    --alignment ../snippy_multi/snippy-core.full_CHROM.fasta \
+    --vcf-reference ../reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
+    --metadata plagueBasic.tsv \
+    --timetree \
+    --root residual \
+    --coalescent opt \
+    --output-tree results/tree.nwk \
+    --output-node-data results/branch_lengths.json;
+```
+```
+augur ancestral \
+    --tree results/tree.nwk \
+    --alignment ../snippy_multi/snippy-core.full.aln \
+    --vcf-reference ../reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
+    --inference joint \
+    --keep-overhangs \
+    --output-node-data results/nt_muts.json
+```
+
+```
+augur translate \
+    --tree results/tree.nwk \
+    --ancestral-sequences results/nt_muts.json \
+    --vcf-reference ../reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
+    --reference-sequence CHROM.gb \
+    --output results/aa_muts.json \
+    --alignment-output results/my_alignment_%GENE.fasta \
+    --vcf-reference-output results/translations_reference.fasta
+```
+
+```
+augur traits \
+    --tree results/tree.nwk \
+    --metadata plagueBasic.tsv \
+    --columns region country host \
+    --confidence \
+    --output results/traits.json
+```
+
+Fix the periods (not necessary)
+```
+sed 's/\.1_/_/g' plagueBasic.tsv > plagueBasic_edit.tsv
+sed 's/\.1_/_/g' results/tree.nwk >  results/tree_edit.nwk
+for file in `ls results/*json`; do sed 's/\.1_/_/g' $file > ${file%.*}_edit.json; done
+```
+
+```
+augur export v2 \
+    --tree results/tree.nwk \
+    --metadata plagueBasic.tsv \
+    --node-data results/branch_lengths.json results/traits.json results/aa_muts.json results/nt_muts.json \
+    --auspice-config auspice_config.json \
+    --output auspice_v2/plague.json
+```
+
+Nicer strain names
+```
+cp plagueBasic.tsv plagueBasic_edit.tsv;
+cp results/tree.nwk results/tree_edit.nwk;
+for file in `ls results/*json`; do cp $file ${file%.*}_edit.json; done;
+tail -n+2 plagueBasic.tsv | awk -F "\t" '{print $1 "\t" $8}' | while read line;
+do
+  IN=`echo -e "$line" | cut -f 1`;
+  OUT=`echo -e "$line" | cut -f 2`;
+  sed -i "s/$IN/$OUT/g" plagueBasic_edit.tsv;
+  sed -i "s/$IN/$OUT/g" results/tree_edit.nwk;
+  for file in `ls results/*edit.json`; do sed -i "s/$IN/$OUT/g" $file; done;
+done
+```
+
+```
+augur export v2 \
+    --tree results/tree_edit.nwk \
+    --metadata plagueBasic_edit.tsv \
+    --node-data results/branch_lengths_edit.json results/traits_edit.json results/aa_muts_edit.json results/nt_muts_edit.json \
+    --auspice-config auspice_config.json \
+    --output auspice_v2/plagueEdit.json
+```
+
+```
+auspice view --datasetDir auspice
+```
