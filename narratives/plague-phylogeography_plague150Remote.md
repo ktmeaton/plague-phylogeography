@@ -9,6 +9,12 @@ The content displayed here is for testing display purposes only. It is not inten
 ---
 
 <!-- This is left-side text 1-->
+# [Geographic Spread](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
+* This is a reconstruction of the global spread of plague.
+* But can we trust it?
+* In this exhibit, I'll investigate the underlying data and methods I've used.
+
+<!-- This is left-side text 1-->
 # [Time-Scaled Phylogeny](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&m=time)
 * [START HERE: How to read a phylogeny](https://nextstrain.org/narratives/trees-background/).  
 * This is a time-scaled phylogeny, where samples (terminal nodes) correspond to their collection date and internal nodes are estimated to be the most likely time of divergence.  
@@ -46,7 +52,3 @@ The content displayed here is for testing display purposes only. It is not inten
 * If we ONLY study modern genomes, Y. pestis origins are in Asia although the question of Russia/Mongolia/China is outstanding.
 * Sampling of ancient genomes has been key (TO BE ADDED IN!) in changing this.
 * Note: This map is an example of the dangers of poorly curated geocoding. Each plague sample has been geocoded using the country of origin which results in latitude and longitude of the center of the country (Nominatim, GeoPy). Russia is a a very large country, demonstrating why this is an inappropriate method.
-
-# [Geographic Spread](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
-* With all these issues in mind, this dataset probably isn't yet trustworthy for geographic reconstructions.
-* But here is what the highly biased version looks like so far.
