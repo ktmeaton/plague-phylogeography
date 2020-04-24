@@ -203,11 +203,12 @@ sed 's/\.1_/_/g' results/tree.nwk >  results/tree_edit.nwk
 for file in `ls results/*json`; do sed 's/\.1_/_/g' $file > ${file%.*}_edit.json; done
 ```
 
+Can I make this a smaller export file?? The Default is way too big
 ```
 augur export v2 \
     --tree results/tree.nwk \
     --metadata plagueBasic.tsv \
-    --node-data results/branch_lengths.json results/traits.json results/aa_muts.json results/nt_muts.json \
+    --node-data results/branch_lengths.json results/traits.json \
     --auspice-config auspice_config.json \
     --output auspice_v2/plague.json
 ```
