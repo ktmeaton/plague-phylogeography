@@ -203,6 +203,8 @@ sed 's/\.1_/_/g' results/tree.nwk >  results/tree_edit.nwk
 for file in `ls results/*json`; do sed 's/\.1_/_/g' $file > ${file%.*}_edit.json; done
 ```
 
+On export, the output has to be name githubrepo_something
+the githubreport and underscore are mandatory! But i think the underscore will screw things up for local deploy...
 ```
 augur export v2 \
     --tree results/tree.nwk \
