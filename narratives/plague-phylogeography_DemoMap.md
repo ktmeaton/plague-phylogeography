@@ -1,5 +1,5 @@
 ---
 title: "Plague Phylogeography Narrative Demo"
 authors: "Katherine Eaton"
-dataset: "http://localhost:4000/DemoMap?d=map"
+dataset: "https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150"
 ---
