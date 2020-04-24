@@ -203,16 +203,24 @@ sed 's/\.1_/_/g' results/tree.nwk >  results/tree_edit.nwk
 for file in `ls results/*json`; do sed 's/\.1_/_/g' $file > ${file%.*}_edit.json; done
 ```
 
+```
+augur export v2 \
+    --tree results/tree.nwk \
+    --metadata plagueBasic.tsv \
+    --node-data results/branch_lengths.json results/traits.json results/aa_muts.json results/nt_muts.json \
+    --auspice-config auspice_config.json \
+    --output auspice_v2/plague.json
+```
 Can I make this a smaller export file?? The Default is way too big
 ```
 augur export v2 \
     --tree results/tree.nwk \
     --metadata plagueBasic.tsv \
-    --node-data results/branch_lengths.json results/traits.json \
-    --auspice-config auspice_config.json \
-    --output auspice_v2/plague.json
+    --node-data results/branch_lengths.json results/traits.json\
+    --auspice-config auspice_config_small.json \
+    --lat-longs lat_longs.tsv \
+    --output auspice_v2/plague150.json
 ```
-
 Nicer strain names
 ```
 cp plagueBasic.tsv plagueBasic_edit.tsv;
@@ -239,4 +247,44 @@ augur export v2 \
 
 ```
 auspice view --datasetDir auspice
+```
+
+### Test 150
+It looks like the branch support labels from IQTREE and TreeTime are conflicting with each other
+Also got a segmentation core dump when running TreeTime large on my laptop.
+let's try running IQTREE without branch supports then TreeTime.
+(I think branch supports need to go into a json file somehow so they can become --node-data)
+
+```
+iqtree \
+  -s ../../snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+  -m TVM+F+R5 \
+  -nt 8 \
+  -o Reference \
+  -seed 4154541355 \
+  -pre iqtree.core-filter0_noBranchSupport \
+  2>&1 | tee iqtree.core-filter0_noBranchSupport.output
+```
+
+```
+mkdir -p results
+augur refine \
+    --tree iqtree.core-filter0_noBranchSupport.treefile \
+    --alignment ../../snippy_multi/snippy-core.full_CHROM.fasta \
+    --vcf-reference ../../reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
+    --metadata ../../../nextstrain/plagueBasic.tsv \
+    --timetree \
+    --root residual \
+    --coalescent opt \
+    --output-tree results/tree.nwk \
+    --output-node-data results/branch_lengths.json;
+```
+
+```
+augur traits \
+    --tree results/tree.nwk \
+    --metadata ../../../nextstrain/plagueBasic.tsv \
+    --columns region country host \
+    --confidence \
+    --output results/traits.json
 ```
