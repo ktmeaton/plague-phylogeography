@@ -19,7 +19,7 @@ Compare the previous animation to the location of the largest bubbles in the fig
 
 ```auspiceMainDisplayMarkdown
 
-## Human Plague
+## COVID-19 Resources
 
 Below, we've prepared some resources that are worth reading to familiarize yourself with COVID-19 and the virus that causes it, SARS-CoV-2.
 This information will make interpreting the data we present in this narrative easier.
