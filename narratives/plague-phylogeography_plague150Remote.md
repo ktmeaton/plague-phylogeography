@@ -16,6 +16,9 @@ This animation is congruent with the hypothesis that plague's origins are in Asi
 
 # [Geographic Spread Comparison](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote)
 Compare the previous animation to the location of the largest bubbles in the figure here. Why are they so different? Admittedly, my own dataset is a small and biased sample. Increasing my sample size will yield additional samples from Madagascar but frustratingly little more from the DRC, Tanzania, or Uganda, the most heavily affected places today. It is extremely concerning to know areas of high public health importance are so severely underrepresented in narratives constructed from genetic material.
+<div>
+  <a href="https://nextstrain.org/help/coronavirus/human-CoV"><img alt="microscopy image of coronaviruses" width="100" src="https://www.economist.com/sites/default/files/20170708_WOM968_0.png"/> Background on Coronaviruses </a>
+</div>
 
 ```auspiceMainDisplayMarkdown
 
@@ -26,7 +29,6 @@ This information will make interpreting the data we present in this narrative ea
 
 <div>
   <a href="https://nextstrain.org/help/coronavirus/human-CoV"><img alt="microscopy image of coronaviruses" width="100" src="https://www.economist.com/sites/default/files/20170708_WOM968_0.png"/> Background on Coronaviruses </a>
-
 </div>
 
 
