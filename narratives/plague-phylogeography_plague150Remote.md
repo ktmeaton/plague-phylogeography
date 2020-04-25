@@ -44,10 +44,13 @@ The following plot explores exactly that: by the regression of time (date on the
 Plague is not picky, the disease can infect virtually all mammals. In the following evolutionary tree, the bubbles (plague samples) are coloured by the host they were collected from. Frustratingly, no clear patterns of host clusters emerge, the colours appear randomly distributed. I suspect there are far more ecologically meaningful ways to colour/label the hosts including: domestic vs. non-domestic species, reservoir vs. non-reservoir species etc.
 
 # [Human Outbreaks](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?c=host&d=tree,map&f_host=Homo&legend=closed)
-* Similarly, human outbreaks occur throughout the tree and of course, throughout the world.
+To wrap things up, I'll talk briefly about the "human" side of the project. The map shows how human outbreaks of plague occur across various continents.
+<br/><br/>
+The tree highlights plague samples isolated from human hosts. Rather than clustering all within one part of the tree, this again shows plague's fluidity to move between hosts as many strains are capable of infecting humans.
 
 <!-- This is left-side text 3-->
-# [The Origins of Plague](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=map&animate=1400-01-01,1675-01-01,1,1,30000)
-* If we ONLY study modern genomes, Y. pestis origins are in Asia although the question of Russia/Mongolia/China is outstanding.
-* Sampling of ancient genomes has been key (TO BE ADDED IN!) in changing this.
-* Note: This map is an example of the dangers of poorly curated geocoding. Each plague sample has been geocoded using the country of origin which results in latitude and longitude of the center of the country (Nominatim, GeoPy). Russia is a a very large country, demonstrating why this is an inappropriate method.
+# [What's Next](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote)
+With a successful demo deployed, I'm looking forward to doing some serious scientific inquiry! My next steps will be to expand my sample size to include more datasets that, while previously published, have never been synthesized and visualized in this way before. Following that, I'll be asking these questions:
+* How has the composition of plague data changed in the last 10 years?
+* Does a compositional bias (ex. geography) change our historical narratives of disease?
+* What are the dangers in synthesizing digital datasets created from disparate agendas and objectives? What are the possible contributions that can be made?
