@@ -18,7 +18,7 @@ This animation is congruent with the hypothesis that plague's origins are in Asi
 # [Temporal Signal](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&l=clock&m=time)
 While the geographic origins of the spread reconstruction made sense, there are many reasons to be suspicious. Accurately modelling these dynamics requires several criteria to be met. The most important one being the presence of temporal signal or more plainly, a correlation between how much time has passed and how many mutations have occurred.
 <br/><br/>
-The following plot explores exactly that: by regression of time (date on the X-axis) against mutations (genetic divergence Y-axis). The plague samples (coloured dots) are widely dispersed above and below the regression line (black line), a highly undesirable result. The finding that some plague strains evolve slower or faster than others is widely known, and it continues to be a thorny problem!
+The following plot explores exactly that: by the regression of time (date on the X-axis) against mutations (genetic divergence Y-axis). The plague samples (coloured dots) are widely dispersed above and below the regression line (black line), a highly undesirable result. The finding that some plague strains evolve slower or faster than others is widely known, and it continues to be a thorny problem!
 
 <!-- This is left-side text 1-->
 # [Time-Scaled Phylogeny](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&m=time)
@@ -41,9 +41,7 @@ The following plot explores exactly that: by regression of time (date on the X-a
 * Click RESET LAYOUT in the top right of the tree panel.
 
 # [A Complex Ecology](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree,map&c=host&legend=open)
-* This complex pacing of evolution could be due to a complex multi-host ecology.
-* Plague can be found in many different mammalian hosts across the globe.
-* When colored by host genus, no strong clustering pattern appears on the tree.
+Plague is not picky, the disease can infect virtually all mammals. In the following evolutionary tree, the bubbles (plague samples) are coloured by the host they were collected from. Frustratingly, no clear patterns of host clusters emerge, the colours appear randomly distributed. I suspect there are far more ecologically meaningful ways to colour/label the hosts including: domestic vs. non-domestic species, reservoir vs. non-reservoir species etc.
 
 # [Human Outbreaks](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?c=host&d=tree,map&f_host=Homo&legend=closed)
 * Similarly, human outbreaks occur throughout the tree and of course, throughout the world.
