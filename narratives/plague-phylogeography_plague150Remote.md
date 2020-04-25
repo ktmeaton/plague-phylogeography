@@ -14,7 +14,7 @@ The following visual is a spread reconstruction of the plague bacterium Y. pesti
 <br/><br/>
 This animation is congruent with the hypothesis that plague's origins are in Asia, possible from Russia, China, Mongolia, etc. However, we see a cardinal sin of geocoding in action, as I've simply used the sample's "Country" metadata field to retrieve latitude and longitude which is now being placed in the centroid of each country. Russia is an incredibly large landmass, and the nuances of sampling location WILL hugely bias the spread reconstruction.
 
-# [Geographic Spread Comparison](https://nextstrain.org/ncov/2020-03-04)
+# [Geographic Spread Comparison](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote)
 Compare the previous animation to the location of the largest bubbles in the figure here. Why are they so different? Admittedly, my own dataset is a small and biased sample. Increasing my sample size will yield additional samples from Madagascar but frustratingly little more from the DRC, Tanzania, or Uganda, the most heavily affected places today. It is extremely concerning to know areas of high public health importance are so severely underrepresented in narratives constructed from genetic material.
 
 ```auspiceMainDisplayMarkdown
@@ -27,10 +27,6 @@ Compare the previous animation to the location of the largest bubbles in the fig
 
 The following pages contain analysis performed using [Nextstrain](https://nextstrain.org).
 Scrolling through the left-hand sidebar will reveal paragraphs of text with a corresponding visualization of the genomic data on the right-hand side.
-
-To have full genomes of a novel and large RNA virus this quickly is a remarkable achievement.
-These analyses have been made possible by the rapid and open sharing of genomic data and interpretations by scientists all around the world (see the final slide for a visualization of sequencing authorship).
-
 
 ```
 
