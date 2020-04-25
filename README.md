@@ -290,3 +290,13 @@ augur traits \
     --confidence \
     --output results/traits.json
 ```
+
+```
+augur export v2 \
+    --tree results/tree.nwk \
+    --metadata ../../../nextstrain/plagueBasic.tsv \
+    --node-data results/branch_lengths.json results/traits.json \
+    --auspice-config ../../../nextstrain/auspice_config_small.json \
+    --lat-longs ../../../nextstrain/lat_longs.tsv \
+    --output auspice_v2/plague150.json
+```
