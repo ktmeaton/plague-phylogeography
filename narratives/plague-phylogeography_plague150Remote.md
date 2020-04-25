@@ -10,9 +10,9 @@ The purpose of creating this demo is to perform a spread reconstruction… and t
 
 <!-- This is left-side text 1-->
 # [Geographic Spread](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
-* This is a reconstruction of the global spread of plague.
-* But can we trust it?
-* In this exhibit, I'll investigate the underlying data and methods I've used.
+The following visual is a spread reconstruction of the plague bacterium Y. pestis across the globe. It's constructed by examining an evolutionary tree, where the geographic location of plague samples at the tips/leaves are known, and locations in the past are statistically inferred.  
+
+This animation is congruent with the hypothesis that plague's origins are in Asia, possible from Russia, China, Mongolia, etc. However, we see a cardinal sin of geocoding in action, as I've simply used the sample's "Country" metadata field to retrieve latitude and longitude which is now being placed in the centroid of each country. Russia is an incredibly large landmass, and the nuances of sampling location WILL hugely bias the spread reconstruction.
 
 <!-- This is left-side text 1-->
 # [Time-Scaled Phylogeny](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&m=time)
