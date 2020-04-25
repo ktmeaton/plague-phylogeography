@@ -11,3 +11,4 @@ trace.txt*
 nextstrain/*vcf
 nextstrain/*nwk
 nextstrain/*.txt
+nextstrain/test150/*
