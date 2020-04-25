@@ -18,9 +18,9 @@ This animation is congruent with the hypothesis that plague's origins are in Asi
 Compare the previous animation to the location of the largest bubbles in the figure here. Why are they so different? Admittedly, my own dataset is a small and biased sample. Increasing my sample size will yield additional samples from Madagascar but frustratingly little more from the DRC, Tanzania, or Uganda, the most heavily affected places today. It is extremely concerning to know areas of high public health importance are so severely underrepresented in narratives constructed from genetic material.
 
 ```auspiceMainDisplayMarkdown
-### Human Plague 2010-2015
+## Human Plague 2010-2015
 <div>
-  <img alt="plague global incidences 2010-2015" width="100" src="https://www.economist.com/sites/default/files/20170708_WOM968_0.png"/>
+  <img alt="plague global incidences 2010-2015" width="400" src="https://www.economist.com/sites/default/files/20170708_WOM968_0.png"/>
 </div>
 
 ## Nextstrain narratives
