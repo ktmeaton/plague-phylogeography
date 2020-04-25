@@ -14,34 +14,18 @@ The following visual is a spread reconstruction of the plague bacterium Y. pesti
 <br/><br/>
 This animation is congruent with the hypothesis that plague's origins are in Asia, possible from Russia, China, Mongolia, etc. However, we see a cardinal sin of geocoding in action, as I've simply used the sample's "Country" metadata field to retrieve latitude and longitude which is now being placed in the centroid of each country. Russia is an incredibly large landmass, and the nuances of sampling location WILL hugely bias the spread reconstruction.
 
-# [Geographic Spread Comparison](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote)
-Compare the previous animation to the location of the largest bubbles in the figure here. Why are they so different? Admittedly, my own dataset is a small and biased sample. Increasing my sample size will yield additional samples from Madagascar but frustratingly little more from the DRC, Tanzania, or Uganda, the most heavily affected places today. It is extremely concerning to know areas of high public health importance are so severely underrepresented in narratives constructed from genetic material.
-
-```auspiceMainDisplayMarkdown
-
-## Human Plague
-
-Below, we've prepared some resources that are worth reading to familiarize yourself with COVID-19 and the virus that causes it, SARS-CoV-2.
-This information will make interpreting the data we present in this narrative easier.
-
-<div>
-  <a href="https://nextstrain.org/help/coronavirus/human-CoV"><img alt="microscopy image of coronaviruses" width="250" src="https://www.economist.com/sites/default/files/20170708_WOM968_0.png"/> Background on Coronaviruses </a>
-</div>
-
-
-```
+<!-- This is left-side text 2-->
+# [Temporal Signal](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&l=clock&m=time)
+While the geographic origins of the spread reconstruction made sense, there are many reasons to be suspicious. Accurately modelling these dynamics requires several criteria to be met. The most important one being the presence of temporal signal or more plainly, a correlation between how much time has passed and how many mutations have occurred.
+<br/><br/>
+The following plot explores exactly that: by regression of time (date on the X-axis) against mutations (genetic divergence Y-axis). The plague samples (coloured dots) are widely dispersed above and below the regression line (black line), a highly undesirable result. The finding that some plague strains evolve slower or faster than others is widely known, and it continues to be a thorny problem!
 
 <!-- This is left-side text 1-->
 # [Time-Scaled Phylogeny](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&m=time)
 * [START HERE: How to read a phylogeny](https://nextstrain.org/narratives/trees-background/).  
 * This is a time-scaled phylogeny, where samples (terminal nodes) correspond to their collection date and internal nodes are estimated to be the most likely time of divergence.  
-* There are numerous problems with this tree.  
-* Ex. The root of the tree is dated to be 1069 CE. We know from previous modern work, and ancient DNA papers, that the coalescence of these samples should be MUCH later in time, at least 5000 years ago.
+* There are numerous problems with this tree, for example, the root of the tree is dated to be 1069 CE. We know from previous modern work, and ancient DNA papers, that the coalescence of these samples should be MUCH later in time, at least 5000 years ago.
 
-<!-- This is left-side text 2-->
-# [Temporal Signal](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&l=clock&m=time)
-* And it's no surprise the time estimates are so bad when we look at the temporal signal in the data.
-* Basically no dots fall on the dark black regression line.
 
 <!-- This is left-side text 1-->
 # [Divergence-Scaled Phylogeny](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&m=div&s=GCA_001601675.1_ASM160167v1_genomic)
