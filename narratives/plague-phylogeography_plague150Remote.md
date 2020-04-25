@@ -20,7 +20,7 @@ Compare the previous animation to the location of the largest bubbles in the fig
 ```auspiceMainDisplayMarkdown
 ## Human Plague 2010-2015
 <div>
-  <img alt="plague global incidences 2010-2015" width="400" src="https://www.economist.com/sites/default/files/20170708_WOM968_0.png"/>
+  <img alt="plague global incidences 2010-2015" width="100" src="https://www.economist.com/sites/default/files/20170708_WOM968_0.png"/>
 </div>
 
 ## Nextstrain narratives
