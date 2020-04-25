@@ -14,21 +14,8 @@ The following visual is a spread reconstruction of the plague bacterium Y. pesti
 <br/><br/>
 This animation is congruent with the hypothesis that plague's origins are in Asia, possible from Russia, China, Mongolia, etc. However, we see a cardinal sin of geocoding in action, as I've simply used the sample's "Country" metadata field to retrieve latitude and longitude which is now being placed in the centroid of each country. Russia is an incredibly large landmass, and the nuances of sampling location WILL hugely bias the spread reconstruction.
 
-# [Geographic Spread Comparison](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote)
+# [Geographic Spread Comparison](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote&d=map)
 Compare the previous animation to the location of the largest bubbles in the figure here. Why are they so different? Admittedly, my own dataset is a small and biased sample. Increasing my sample size will yield additional samples from Madagascar but frustratingly little more from the DRC, Tanzania, or Uganda, the most heavily affected places today. It is extremely concerning to know areas of high public health importance are so severely underrepresented in narratives constructed from genetic material.
-
-```auspiceMainDisplayMarkdown
-## Human Plague 2010-2015
-<div>
-  <img alt="plague global incidences 2010-2015" width="100" src="https://www.economist.com/sites/default/files/20170708_WOM968_0.png"/>
-</div>
-
-## Nextstrain narratives
-
-The following pages contain analysis performed using [Nextstrain](https://nextstrain.org).
-Scrolling through the left-hand sidebar will reveal paragraphs of text....
-
-```
 
 <!-- This is left-side text 1-->
 # [Time-Scaled Phylogeny](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&m=time)
