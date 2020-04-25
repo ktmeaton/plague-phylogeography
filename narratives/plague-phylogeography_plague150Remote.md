@@ -15,21 +15,11 @@ The following visual is a spread reconstruction of the plague bacterium Y. pesti
 This animation is congruent with the hypothesis that plague's origins are in Asia, possible from Russia, China, Mongolia, etc. However, we see a cardinal sin of geocoding in action, as I've simply used the sample's "Country" metadata field to retrieve latitude and longitude which is now being placed in the centroid of each country. Russia is an incredibly large landmass, and the nuances of sampling location WILL hugely bias the spread reconstruction.
 
 # [Geographic Spread Comparison](https://nextstrain.org/ncov/2020-03-04)
-
-### Further Reading:
-
-* Summary of the nCov outbreak on [Wikipedia](https://en.wikipedia.org/wiki/2019%E2%80%9320_Wuhan_coronavirus_outbreak) _2020-01-30_
-* Material provided by the [US CDC](https://www.cdc.gov/coronavirus/index.html) _2020-01-29_
+Compare the previous animation to the location of the largest bubbles in the figure here. Why are they so different? Admittedly, my own dataset is a small and biased sample. Increasing my sample size will yield additional samples from Madagascar but frustratingly little more from the DRC, Tanzania, or Uganda, the most heavily affected places today. It is extremely concerning to know areas of high public health importance are so severely underrepresented in narratives constructed from genetic material.
 
 ```auspiceMainDisplayMarkdown
-
-## COVID-19 Resources
-
-Below, we've prepared some resources that are worth reading to familiarize yourself with COVID-19 and the virus that causes it, SARS-CoV-2.
-This information will make interpreting the data we present in this narrative easier.
-
 <div>
-  <img alt="plague global incidences 2010-2015" width="100" src="https://www.economist.com/sites/default/files/20170708_WOM968_0.png"/>
+  <img alt="plague global incidences 2010-2015" width="900" src="https://www.economist.com/sites/default/files/20170708_WOM968_0.png"/>
 </div>
 
 ## Nextstrain narratives
