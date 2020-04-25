@@ -25,7 +25,8 @@ Below, we've prepared some resources that are worth reading to familiarize yours
 This information will make interpreting the data we present in this narrative easier.
 
 <div>
-  <a href="https://nextstrain.org/help/coronavirus/human-CoV"><img alt="microscopy image of coronaviruses" width="200" src="https://www.economist.com/sites/default/files/20170708_WOM968_0.png"/> Background on Coronaviruses </a>
+  <a href="https://nextstrain.org/help/coronavirus/human-CoV"><img alt="microscopy image of coronaviruses" width="100" src="https://nextstrain.org/static/ncov_narrative-76cfd610d11ef708d213a3170de9519f.png"/> Background on Coronaviruses </a>
+
 </div>
 
 
