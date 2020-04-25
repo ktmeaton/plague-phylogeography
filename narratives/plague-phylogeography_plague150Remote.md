@@ -26,7 +26,7 @@ Compare the previous animation to the location of the largest bubbles in the fig
 ## Nextstrain narratives
 
 The following pages contain analysis performed using [Nextstrain](https://nextstrain.org).
-Scrolling through the left-hand sidebar will reveal paragraphs of text with a corresponding visualization of the genomic data on the right-hand side.
+Scrolling through the left-hand sidebar will reveal paragraphs of text....
 
 ```
 
