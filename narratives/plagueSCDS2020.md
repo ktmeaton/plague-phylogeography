@@ -21,8 +21,8 @@ abstract: "
 ---
 
 <!-- This is left-side text 2 -->
-# [Origins](http://localhost:4000/plague150Local?d=map)
-General text that will introduce this slide and the next slide.
+# [Origins: History](http://localhost:4000/plague150Local?d=map)
+General text that will introduce the historical reconstruction.
 
 <!-- This is right-side text 2-->
 ```auspiceMainDisplayMarkdown
@@ -43,5 +43,22 @@ General text that will introduce this slide and the next slide.
 ```
 
 <!-- This is left-side text 3-->
-# [Origins](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
-General text that will introduce this slide and the next slide.
+# [Origins: Genetic](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
+General text that will introduce the genetic reconstruction.
+
+<!-- This is left-side text 4-->
+# [Evolution: Time Vortex](http://localhost:4000/plague150Remote?d=tree&l=clock&m=time)
+General text that will introduce the problems of time.
+
+<!-- This is left-side text 5-->
+# [Ecology: Plague's Not Picky](http://localhost:4000/plague150Remote?d=tree&c=host&legend=open)
+General text that will introduce the wide variety of mammalian hosts.
+Some rodent pictures?
+
+<!-- This is left-side text 6-->
+# [Ecology: Human Spillover](http://localhost:4000/plague150Remote?c=host&d=tree,map&f_host=Homo&legend=closed)
+General text that introduce how plague easily moves between species. Especially humans!
+
+<!-- This is left-side text 7-->
+# [Future: Digital Scholarship](http://localhost:4000/plague150Remote?d=map)
+Digital scholarship paving the way to new understanding!
