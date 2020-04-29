@@ -12,13 +12,13 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Add exact-repeats and tandem repeats detection
 - Add GeoPy to phylo-env environment
 
-## [v0.1.1] - 2020-04-23
+## [v0.1.1] - 2020-04-29 - Narratives and ReadtheDocs
 
 ### Added
 - ModelFinder for model selection, automatic integration with IQTREE
 - scripts/fasta_split_locus.sh
-- EAGER processing begins
-- NextStrain processing begins
+- EAGER processing begins  (eager/)
+- NextStrain Datasets and Narratives (auspice/ and narratives/)
 
 ### Removed
 - Modeltest-NG process entirely removed
