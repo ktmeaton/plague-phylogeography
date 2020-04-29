@@ -1,6 +1,6 @@
-----------------------
-Plague Atlas Processes
-----------------------
+-------------------------------
+Plague Phylogeography Processes
+-------------------------------
 
 .. contents::
      :local:
