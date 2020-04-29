@@ -21,8 +21,16 @@ abstract: "
 ---
 
 <!-- This is left-side text 2 -->
-# [Origins: History](http://localhost:4000/plague150Local?d=map)
-General text that will introduce the historical reconstruction.
+# [Origins of the Ancient Plagues](http://localhost:4000/plague150Local?d=map)
+#### The plagues of the ancient world have intriguing geographic origins.
+
+#### Early hypotheses on the 'origins' of the ancient pandemics varied greatly including regions in Central and East Africa, the Middle East, as well as Western and Central Asia [(Dols, 1974](https://www.jstor.org/stable/600071); [Dols, 1979](https://www.jstor.org/stable/3631953); [Benedictow, 2010)](https://books.google.ca/books/about/The_Black_Death_1346_1353.html?id=KjLHAOE7irsC).
+
+## The Power of Maps
+
+#### Iconic maps produced in the mid-20th century have largely influenced the discussion of geographic and temporal spread of plague [(Mengel, 2011)](https://academic.oup.com/past/article-abstract/211/1/3/1381253). The historical sources used to estimate plague mortality consist of documents such as parish records, financial transactions, wills, and local testimonies [(Christakos et al. 2005)](https://www.springer.com/gp/book/9783540257943).
+
+### However, these source documents can be of poor quality or are sparsely found leading to high levels of uncertainty [(Skog and Hauska, 2013)](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9671.2012.01369.x). As a result, the historical sources used in the construction of these maps are experiencing renewed critical re-examination  [(Bossak and Welford, 2015)](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12).
 
 <!-- This is right-side text 2-->
 ```auspiceMainDisplayMarkdown
@@ -62,3 +70,18 @@ General text that introduce how plague easily moves between species. Especially 
 <!-- This is left-side text 7-->
 # [Future: Digital Scholarship](http://localhost:4000/plague150Remote?d=map)
 Digital scholarship paving the way to new understanding!
+<br><br>
+## References (Update Zotero)
+Bossak, B. H. & Welford, M. R. (2015). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12). In E. Delmelle, A. Páez, & P. Kanaroglou (Eds.), Spatial Analysis in Health Geography. Surrey, England: Ashgate Publishing Limited.
+<br><br>
+Christakos, G., Olea, R. A., Serre, M. A., Yu, H.-L., & Wang, L.-L. (2005). [Interdisciplinary Public Health Reasoning and Epidemic Modelling: The Case of the Black Death](https://www.springer.com/gp/book/9783540257943). Springer-Verlag Berlin Heidelberg.
+<br><br>
+Dols, M. (1974). [Plague in Early Islamic History](https://www.jstor.org/stable/600071). *Journal of the American Oriental Society*, 94(3), 371-383. doi:10.2307/600071
+<br><br>
+Dols, M. (1979). [The Second Plague Pandemic and Its Recurrences in the Middle East: 1347-1894](https://www.jstor.org/stable/3631953). *Journal of the Economic and Social History of the Orient*, 22(2), 162-189. doi:10.2307/3631953
+<br><br>
+Skog, L. & Hauska, H. (2013). [Spatial modeling of the Black Death in Sweden](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9671.2012.01369.x). *Transactions in GIS*, 17 (4), 589–611.
+<br>
+Laudisoit 2009
+<br><br>
+Mengel 2011
