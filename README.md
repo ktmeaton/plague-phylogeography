@@ -18,9 +18,7 @@ conda activate phylo-env
 
 ### Dev Dependencies for Docs
 ```
-pip install sphinx
-pip install sphinx-rtd-theme
-pip install m2r
+pip install sphinx sphinx-rtd-theme m2r
 ```
 
 Everything from here on out is free form notes as I experiment and document.
