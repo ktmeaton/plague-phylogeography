@@ -72,7 +72,7 @@ abstract: "
 </a>
 
 <!-- This is left-side text 4-->
-# [Evolution: A Time Vortex](http://localhost:4000/plague150Remote?d=tree&l=clock&m=time)
+# [Evolution: A Time Vortex](http://localhost:4000/plague150Local?d=tree&l=clock&m=time)
 #### To critique the previous maps on the spread of plague, it is important to consider several statistical problems.
 
 #### To model the past using genetic data, we make and test theories about how evolution proceeds over time.
@@ -85,24 +85,32 @@ abstract: "
 
 #### The visual to the right compares time on the X-axis (the date) with the mutations that have occurred on the Y-axis (divergence). The dots represent plague samples, and ideally they should fall close to the dark black line.
 
-#### The bubbles above the black line have MORE mutations than expected, and those below the black line have FEWER mutations than expected.
+#### The bubbles above the black line have **more** mutations than expected, and those below the black line have **fewer** mutations than expected.
 
 #### How can we a reconstruct geographic spread over time, with evidence that behaves so chaotically?
 
 <!-- This is left-side text 5-->
-# [Ecology: Plague's Not Picky](http://localhost:4000/plague150Remote?d=tree&c=host&legend=open)
-General text that will introduce the wide variety of mammalian hosts.
-Some rodent pictures?
+# [Ecology: Plague's Not Picky](http://localhost:4000/plague150Local?d=tree&c=host&legend=open)
+#### The solution could be in understanding **why** this disease does not evolve in a "clock-like" manner. And a clue may lie in considering the ecology of plague.
+
+#### Although plague is primarily a disease of rodents, virtually all mammals are capable of becoming infected when exposed [(Gage and Kosoy, 2006)](http://reviverestore.org/wp-content/uploads/2015/02/Gage-and-Kosoy_USGS-Blk-footed-ferret-symp_2006-copy.pdf). The movement of plague between novel hosts and environments may be a key factor in explaining why the rate of evolution changes so suddenly.
+
+#### The accompanying visual is a **phylogenetic tree**, where the bubbles again represent plague samples and the connecting lines show their degree of relatedness. The color indicates what mammalian host or flea vector the bacteria was isolated from.
+#### [How to read a phylogeny](https://nextstrain.org/narratives/trees-background/).
+
+#### No obvious patterns emerge as the colors appear 'randomly' distributed. But perhaps the [rodent subfamily Arvicolinae](http://localhost:4000/plague150Local?c=host&d=tree&f_host=Microtus,Neodon,Lasiopodomys) is tentatively associated with extra-long branch lengths (ie. excessive mutation).
+
+#### New perspectives on exploratory data analysis that are ecologically-grounded have great potential to yield greater insight.
 
 <!-- This is left-side text 6-->
-# [Ecology: Human Spillover](http://localhost:4000/plague150Remote?c=host&d=tree,map&f_host=Homo&legend=closed)
+# [Ecology: Human Spillover](http://localhost:4000/plague150Local?c=host&d=tree,map&f_host=Homo&legend=closed)
 General text that introduce how plague easily moves between species. Especially humans!
 
 <!-- This is left-side text 7-->
-# [Future: Digital Scholarship](http://localhost:4000/plague150Remote?d=map)
+# [Future: Digital Scholarship](http://localhost:4000/plague150Local?d=map)
 Digital scholarship paving the way to new understanding!
 
-# [References (Update Zotero)](http://localhost:4000/plague150Remote)
+# [References (Update Zotero)](http://localhost:4000/plague150Local?d=tree,map&legend=closed)
 Bossak, B. H. & Welford, M. R. (2015). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12). In E. Delmelle, A. Páez, & P. Kanaroglou (Eds.), Spatial Analysis in Health Geography. Surrey, England: Ashgate Publishing Limited.
 <br><br>
 Christakos, G., Olea, R. A., Serre, M. A., Yu, H.-L., & Wang, L.-L. (2005). [Interdisciplinary Public Health Reasoning and Epidemic Modelling: The Case of the Black Death](https://www.springer.com/gp/book/9783540257943). Springer-Verlag Berlin Heidelberg.
@@ -114,8 +122,10 @@ Dols, M. (1974). [Plague in Early Islamic History](https://www.jstor.org/stable/
 <br><br>
 Dols, M. (1979). [The Second Plague Pandemic and Its Recurrences in the Middle East: 1347-1894](https://www.jstor.org/stable/3631953). *Journal of the Economic and Social History of the Orient*, 22(2), 162-189. doi:10.2307/3631953
 <br><br>
+Gage, K. & Kosoy, M. (2006). [Recent trends in plague ecology](http://reviverestore.org/wp-content/uploads/2015/02/Gage-and-Kosoy_USGS-Blk-footed-ferret-symp_2006-copy.pdf). *USG Survey*, 213–231.
+<br><br>
 Skog, L. & Hauska, H. (2013). [Spatial modeling of the Black Death in Sweden](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9671.2012.01369.x). *Transactions in GIS*, 17 (4), 589–611.
-<br>
+<br><br>
 Laudisoit 2009
 <br><br>
 Mengel 2011
