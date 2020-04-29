@@ -21,7 +21,7 @@ abstract: "
 ---
 
 <!-- This is left-side text 2 -->
-# [Origins of the Ancient Plagues](http://localhost:4000/plague150Local?d=map)
+# [Origins: The Ancient Plagues](http://localhost:4000/plague150Local?d=map)
 #### The plagues of the ancient world have intriguing geographic origins.
 
 #### Early hypotheses on the 'origins' of the ancient pandemics varied greatly including regions in Central and East Africa, the Middle East, as well as Western and Central Asia [(Dols, 1974](https://www.jstor.org/stable/600071); [Dols, 1979](https://www.jstor.org/stable/3631953); [Benedictow, 2010)](https://books.google.ca/books/about/The_Black_Death_1346_1353.html?id=KjLHAOE7irsC).<br>
@@ -52,10 +52,17 @@ abstract: "
 
 <!-- This is left-side text 3-->
 # [Origins: Through a New Lens](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
-#### Advances in DNA sequencing have now made it possible to rapidly sequence the genome of the plague bacterium *Yersinia pestis* from outbreak sources across the globe.
+#### In contrast to the historical perspective, genetic evidence offers a very different narrative.
 
-#### Not only that, now can do ancient DNA evidence.
-<img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
+### Advances in DNA sequencing have made it possible to rapidly sequence the genome of the plague bacterium *Yersinia pestis* from outbreak sources across the globe.
+
+#### By examining the relationships between modern plague outbreaks, researchers demonstrated that plague evolved in or near East Asia with multiple global radiations throughout history [(Morelli et al. 2010)](https://www.nature.com/articles/ng.705).
+
+#### Not only that, ancient plague DNA can be retrieved from victims of past epidemics, providing new windows into the past.
+<a href="https://www.history.com/news/is-the-black-death-the-ancestor-of-all-modern-plagues">
+  <img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
+        <pre>     London's East Smithfield "plague pits", 1348-1349.</pre>
+</a>
 
 <!-- This is left-side text 4-->
 # [Evolution: Time Vortex](http://localhost:4000/plague150Remote?d=tree&l=clock&m=time)
@@ -88,3 +95,5 @@ Skog, L. & Hauska, H. (2013). [Spatial modeling of the Black Death in Sweden](ht
 Laudisoit 2009
 <br><br>
 Mengel 2011
+<br><br>
+Morelli, G., Song, Y., Mazzoni, C. J., Eppinger, M., Roumagnac, P., Wagner, D. M., . . . Achtman, M. (2010). [*Yersinia pestis* genome sequencing identifies patterns of global phylogenetic diversity](https://www.nature.com/articles/ng.705). *Nature Genetics*, 42, 1140–1143.
