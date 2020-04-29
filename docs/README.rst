@@ -3,7 +3,7 @@
 
 
 Plague Phylogeography
-====================
+=====================
 
 Phylogeography of Yersinia pestis
 
