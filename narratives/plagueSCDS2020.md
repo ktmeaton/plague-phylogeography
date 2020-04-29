@@ -58,8 +58,7 @@ abstract: "
 
 #### By examining the relationships between modern plague outbreaks, researchers demonstrated that plague evolved in or near East Asia with multiple global radiations throughout history [(Morelli et al. 2010)](https://www.nature.com/articles/ng.705).
 
-# Ancient DNA
-
+# [Origins: Ancient DNA](http://localhost:4000/plague150Local?d=map&country=sweden)
 #### But the picture grows murkier still. Ancient plague DNA retrieved from victims of past epidemics provides new windows into the past.
 <a href="https://www.history.com/news/is-the-black-death-the-ancestor-of-all-modern-plagues">
   <img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
@@ -73,8 +72,22 @@ abstract: "
 </a>
 
 <!-- This is left-side text 4-->
-# [Evolution: Time Vortex](http://localhost:4000/plague150Remote?d=tree&l=clock&m=time)
-General text that will introduce the problems of time.
+# [Evolution: A Time Vortex](http://localhost:4000/plague150Remote?d=tree&l=clock&m=time)
+#### To critique the previous maps on the spread of plague, it is important to consider several statistical problems.
+
+#### To model the past using genetic data, we make and test theories about how evolution proceeds over time.
+
+#### Unfortunately, plague does not follow the rules of a **"molecular clock"**, where evolution should occur at a constant rate. Under this model, a 'younger' strain (ex. collected in 2000) should have more mutations than an 'older' strain (ex. collected in 1950).
+
+#### Instead, there are dramatic fluctuations where the bacterium may "speed up" or "slow down" it's pace and mode of evolution [(Cui et al. 2013)](https://www.pnas.org/content/110/2/577.long).
+
+# Regression
+
+#### The visual to the right compares time on the X-axis (the date) with the mutations that have occurred on the Y-axis (divergence). The dots represent plague samples, and ideally they should fall close to the dark black line.
+
+#### The bubbles above the black line have MORE mutations than expected, and those below the black line have FEWER mutations than expected.
+
+#### How can we a reconstruct geographic spread over time, with evidence that behaves so chaotically?
 
 <!-- This is left-side text 5-->
 # [Ecology: Plague's Not Picky](http://localhost:4000/plague150Remote?d=tree&c=host&legend=open)
@@ -88,11 +101,14 @@ General text that introduce how plague easily moves between species. Especially 
 <!-- This is left-side text 7-->
 # [Future: Digital Scholarship](http://localhost:4000/plague150Remote?d=map)
 Digital scholarship paving the way to new understanding!
-<br><br>
-## References (Update Zotero)
+
+# [References (Update Zotero)](http://localhost:4000/plague150Remote)
 Bossak, B. H. & Welford, M. R. (2015). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12). In E. Delmelle, A. Páez, & P. Kanaroglou (Eds.), Spatial Analysis in Health Geography. Surrey, England: Ashgate Publishing Limited.
 <br><br>
 Christakos, G., Olea, R. A., Serre, M. A., Yu, H.-L., & Wang, L.-L. (2005). [Interdisciplinary Public Health Reasoning and Epidemic Modelling: The Case of the Black Death](https://www.springer.com/gp/book/9783540257943). Springer-Verlag Berlin Heidelberg.
+<br><br>
+Cui, Y., Yu, C., Yan, Y., Li, D., Li, Y., Jombart, T., . . . Yang, R. (2013). [Historical variations in
+mutation rate in an epidemic pathogen, *Yersinia pestis*](https://www.pnas.org/content/110/2/577.long). *PNAS*, 110 (2), 577–582.
 <br><br>
 Dols, M. (1974). [Plague in Early Islamic History](https://www.jstor.org/stable/600071). *Journal of the American Oriental Society*, 94(3), 371-383. doi:10.2307/600071
 <br><br>
