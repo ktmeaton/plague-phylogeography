@@ -2,7 +2,7 @@
    :format: html
 
 
-paper-phylogeography
+Plague Phylogeography
 ====================
 
 Phylogeography of Yersinia pestis
@@ -14,12 +14,12 @@ Dependencies
 **Database:** NCBImeta, sqlite3 (CLI)\ :raw-html-m2r:`<br>`
 **Alignment:** snippy\ :raw-html-m2r:`<br>`
 **Masking, etc.:** dustmasker, mummer, vcftools\ :raw-html-m2r:`<br>`
-**Model Selection:** modeltest-ng  
+**Model Selection:** modeltest-ng
 
 Conda Environment
 ^^^^^^^^^^^^^^^^^
 
-Create a conda environment with the required dependencies  
+Create a conda environment with the required dependencies
 
 .. code-block::
 
@@ -89,7 +89,7 @@ Convert from pipe-separated to tab-separated file
    sed -i "s/|/\t/g" annot_biosample.txt
 
 Inspect the annot_biosample.txt file in a spreadsheet view (ex. Excel, Google Sheets)\ :raw-html-m2r:`<br>`
-Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows that are confirmed appropriate.  
+Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows that are confirmed appropriate.
 
 Update Database With Annotations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
