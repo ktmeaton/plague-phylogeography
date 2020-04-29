@@ -54,14 +54,22 @@ abstract: "
 # [Origins: Through a New Lens](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
 #### In contrast to the historical perspective, genetic evidence offers a very different narrative.
 
-### Advances in DNA sequencing have made it possible to rapidly sequence the genome of the plague bacterium *Yersinia pestis* from outbreak sources across the globe.
+### Advances in DNA sequencing have made it possible to rapidly sequence the genome of the plague bacterium, *Yersinia pestis*, from outbreak sources across the globe.
 
 #### By examining the relationships between modern plague outbreaks, researchers demonstrated that plague evolved in or near East Asia with multiple global radiations throughout history [(Morelli et al. 2010)](https://www.nature.com/articles/ng.705).
 
-#### Not only that, ancient plague DNA can be retrieved from victims of past epidemics, providing new windows into the past.
+# Ancient DNA
+
+#### But the picture grows murkier still. Ancient plague DNA retrieved from victims of past epidemics provides new windows into the past.
 <a href="https://www.history.com/news/is-the-black-death-the-ancestor-of-all-modern-plagues">
   <img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
         <pre>     London's East Smithfield "plague pits", 1348-1349.</pre>
+</a>
+
+#### A recent study identified the plague bacterium in skeletal remains from Sweden 4,900 years ago [(Rascovan et al. 2019)](https://doi.org/10.1016/j.cell.2018.11.005). This finding yet again prompts alternative hypotheses concerning the spread of plague across Eurasia. The case is anything but closed.
+<a href="https://doi.org/10.1016/j.cell.2018.11.005">
+  <img src="https://raw.githubusercontent.com/ktmeaton/plague-phylogeography/master/narratives/images/neolithic-map-1.png" width="80%">
+        <pre>   The Spread of Neolithic Plague (Rascovan et al. 2019) </pre>
 </a>
 
 <!-- This is left-side text 4-->
