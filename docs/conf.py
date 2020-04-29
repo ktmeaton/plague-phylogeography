@@ -57,3 +57,6 @@ html_static_path = ['_static']
 
 # The master doc is the index file
 master_doc = 'index'
+
+# Code blocks and syntax highlighting
+pygments_style = 'sphinx'
