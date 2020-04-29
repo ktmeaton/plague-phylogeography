@@ -36,14 +36,14 @@ abstract: "
 ```auspiceMainDisplayMarkdown
 
 <div>
-  <a href="https://nextstrain.org/help/coronavirus/human-CoV">
+  <a href="https://www.researchgate.net/profile/Anne_Laudisoit2/publication/315837122">
     <img alt="microscopy image of coronaviruses" width="500" src="https://www.researchgate.net/profile/Anne_Laudisoit2/publication/315837122/figure/fig1/AS:652961457897473@1532689551350/a-leftThe-origin-and-spread-of-Justinian-plague.png"/>
       <pre>                    Spread of the Justinian Plague (Laudisoit, 2009)</pre>
   </a>
 
-  <a href="https://nextstrain.org/help/coronavirus/SARS-CoV-2">
-    <img alt="illustration of a coronavirus" width="600" src="https://cdn.britannica.com/98/6698-050-B961849A/pandemic-Europe-Black-Death.jpg"/>
-      <pre>                          Spread of the Black Death Plague (Laudisoit, 2009)</pre>
+  <a href="https://books.google.ca/books/about/The_Black_Death_1346_1353.html?id=KjLHAOE7irsC">
+    <img alt="illustration of a coronavirus" width="600" src="https://www.historytoday.com/sites/default/files/blackdeathmap.jpg"/>
+      <pre>                          Spread of the Black Death Plague (Benedictow, 2010)</pre>
   </a>
 
 </div>
@@ -104,13 +104,25 @@ abstract: "
 
 <!-- This is left-side text 6-->
 # [Ecology: Human Spillover](http://localhost:4000/plague150Local?c=host&d=tree,map&f_host=Homo&legend=closed)
-General text that introduce how plague easily moves between species. Especially humans!
+### This ecological fluidity to adapt to different hosts has had devastating consequences for human populations.
+
+### 'Spillover' events, where plague crosses over environmental and species boundaries, has led to human outbreaks all across the globe ([Plowright et al. 2017)](https://www.nature.com/articles/nrmicro.2017.45).
+
+### There is not just a single strain of plague responsible for human infections, instead, plague strains from many areas of the evolutionary tree have been linked to epidemics.
+
+### However, certain lineages of plague seem to be more 'successful' than others, leading to global pandemics and extensive mortality.
+
+### The question of **why** these particular bacteria vary in their virulence potential continues to be a question of paramount importance.
 
 <!-- This is left-side text 7-->
-# [Future: Digital Scholarship](http://localhost:4000/plague150Local?d=map)
-Digital scholarship paving the way to new understanding!
+# [Digital Scholarship](http://localhost:4000/plague150Local?d=map)
+### The data in this exhibit all derive from publicly accessible projects available through the [National Centre for Biotechnology Information](https://www.ncbi.nlm.nih.gov/).
 
-# [References (Update Zotero)](http://localhost:4000/plague150Local?d=tree,map&legend=closed)
+### This exhibit only captures a very small fraction (150 samples) of the available plague datasets that could be harnessed for analysis (1500+ and growing).
+
+### The computational methods are open-access via a [GitHub Repository](https://github.com/ktmeaton/plague-phylogeography) and are continually developed for expanded scope and reproducibility.
+
+# [References](http://localhost:4000/plague150Local?d=tree,map&legend=closed)
 Bossak, B. H. & Welford, M. R. (2015). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12). In E. Delmelle, A. Páez, & P. Kanaroglou (Eds.), Spatial Analysis in Health Geography. Surrey, England: Ashgate Publishing Limited.
 <br><br>
 Christakos, G., Olea, R. A., Serre, M. A., Yu, H.-L., & Wang, L.-L. (2005). [Interdisciplinary Public Health Reasoning and Epidemic Modelling: The Case of the Black Death](https://www.springer.com/gp/book/9783540257943). Springer-Verlag Berlin Heidelberg.
@@ -118,15 +130,17 @@ Christakos, G., Olea, R. A., Serre, M. A., Yu, H.-L., & Wang, L.-L. (2005). [Int
 Cui, Y., Yu, C., Yan, Y., Li, D., Li, Y., Jombart, T., . . . Yang, R. (2013). [Historical variations in
 mutation rate in an epidemic pathogen, *Yersinia pestis*](https://www.pnas.org/content/110/2/577.long). *PNAS*, 110 (2), 577–582.
 <br><br>
-Dols, M. (1974). [Plague in Early Islamic History](https://www.jstor.org/stable/600071). *Journal of the American Oriental Society*, 94(3), 371-383. doi:10.2307/600071
+Dols, M. (1974). [Plague in early Islamic history](https://www.jstor.org/stable/600071). *Journal of the American Oriental Society*, 94(3), 371-383.
 <br><br>
-Dols, M. (1979). [The Second Plague Pandemic and Its Recurrences in the Middle East: 1347-1894](https://www.jstor.org/stable/3631953). *Journal of the Economic and Social History of the Orient*, 22(2), 162-189. doi:10.2307/3631953
+Dols, M. (1979). [The Second Plague Pandemic and its recurrences in the Middle East: 1347-1894](https://www.jstor.org/stable/3631953). *Journal of the Economic and Social History of the Orient*, 22(2), 162-189.
 <br><br>
 Gage, K. & Kosoy, M. (2006). [Recent trends in plague ecology](http://reviverestore.org/wp-content/uploads/2015/02/Gage-and-Kosoy_USGS-Blk-footed-ferret-symp_2006-copy.pdf). *USG Survey*, 213–231.
 <br><br>
+Plowright, R. K., Parrish, C. R., McCallum, H., Hudson, P. J., Ko, A. I., Graham, A. L., & Lloyd-Smith, J. O. (2017). [Pathways to zoonotic spillover](https://doi.org/10.1038/nrmicro.2017.45). *Nature Reviews Microbiology*, 15(8), 502–510.
+<br><br>
 Skog, L. & Hauska, H. (2013). [Spatial modeling of the Black Death in Sweden](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9671.2012.01369.x). *Transactions in GIS*, 17 (4), 589–611.
 <br><br>
-Laudisoit 2009
+Laudisoit, A. (2009). [Diversity, ecology and status of potential hosts and vectors of the plague bacillus *Yersinia pestis*](https://doi.org/10.13140/RG.2.2.25362.25281). Contribution to Plague Epidemiology in an Endemic Plague Focus: The Lushoto District (Tanzania).
 <br><br>
 Mengel 2011
 <br><br>
