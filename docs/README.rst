@@ -30,7 +30,7 @@ Create a conda environment with the required dependencies
 Dev Dependencies for Docs
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: bash
 
    pip install sphinx sphinx-rtd-theme m2r
 
@@ -42,7 +42,7 @@ Step By Step (From Scratch)
 Build NCBImeta database
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: bash
 
    nextflow run pipeline.nf \
      --ncbimeta_create ncbimeta.yaml
@@ -52,7 +52,7 @@ Annotate the Database
 
 Query the Database for problematic records (wrong organism)
 
-.. code-block::
+.. code-block:: bash
 
    DB=results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
    sqlite3 $DB
@@ -72,14 +72,14 @@ Query the Database for problematic records (wrong organism)
 
 Add delimited headers to top of file (that match NCBImeta table BioSample)
 
-.. code-block::
+.. code-block:: bash
 
    DELIM="|";
    sed  -i "1i BioSampleAccession${DELIM}BioSampleBioProjectAccession${DELIM}BioSampleStrain${DELIM}BioSampleOrganism${DELIM}BioSampleSRAAccession${DELIM}BioSampleAccessionSecondary${DELIM}BioSampleCollectionDate${DELIM}BioSampleGeographicLocation${DELIM}BioSampleHost${DELIM}BioSampleComment" annot_biosample.txt;
 
 Convert from pipe-separated to tab-separated file
 
-.. code-block::
+.. code-block:: bash
 
    sed -i "s/|/\t/g" annot_biosample.txt
 
@@ -89,7 +89,7 @@ Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows tha
 Update Database With Annotations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: bash
 
    nextflow run pipeline.nf \
      --ncbimeta_update ncbimeta.yaml \
@@ -100,7 +100,7 @@ Update Database With Annotations
 Run from established database
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: bash
 
    nextflow run pipeline.nf \
      --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
