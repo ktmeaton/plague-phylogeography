@@ -16,7 +16,7 @@ abstract: "
 4. __How__ does a city respond to losing 50% of its population?
 <br><br>
 
-### The mysteries of plague bring together researchers from a wide variety of disciplines from art history to microbiology. While each field stands to make a unique contribution, there remains a unified fascination over how people are affected and cope with this disease, as well as where, when, and why it suddenly appears...
+### The mysteries of plague bring together researchers from a wide variety of disciplines from art history to microbiology. While each field stands to make a unique contribution, there remains a unified fascination over how people are affected and cope with this disease, as well as where, when, and how it suddenly appears...
 "
 ---
 
@@ -120,7 +120,11 @@ abstract: "
 
 ### This exhibit only captures a very small fraction (150 samples) of the available plague datasets that could be harnessed for analysis (1500+ and growing).
 
-### The computational methods are open-access via a [GitHub Repository](https://github.com/ktmeaton/plague-phylogeography) and are continually developed for expanded scope and reproducibility.
+### Method documentation for the project can be found at [Read the Docs](https://plague-phylogeography.readthedocs.io/en/latest/).
+
+### The underlying code is open-access via a [GitHub Repository](https://github.com/ktmeaton/plague-phylogeography) and is continually developed for reproducibility.
+
+### Future work will focus on expanding scope, both geographically and temporally, and integrating new theoretical perspectives to shed further light on the mysteries of **where**, **when**, and **how** the plague spreads across the globe.
 
 # [References](http://localhost:4000/plague150Local?d=tree,map&legend=closed)
 Bossak, B. H. & Welford, M. R. (2015). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12). In E. Delmelle, A. Páez, & P. Kanaroglou (Eds.), Spatial Analysis in Health Geography. Surrey, England: Ashgate Publishing Limited.
@@ -142,6 +146,6 @@ Skog, L. & Hauska, H. (2013). [Spatial modeling of the Black Death in Sweden](ht
 <br><br>
 Laudisoit, A. (2009). [Diversity, ecology and status of potential hosts and vectors of the plague bacillus *Yersinia pestis*](https://doi.org/10.13140/RG.2.2.25362.25281). Contribution to Plague Epidemiology in an Endemic Plague Focus: The Lushoto District (Tanzania).
 <br><br>
-Mengel 2011
+Mengel, D. C. (2011). [A plague on Bohemia? Mapping the Black Death](https://doi.org/10.1093/pastj/gtq069). *Past & Present*, 211(1), 3–34.
 <br><br>
 Morelli, G., Song, Y., Mazzoni, C. J., Eppinger, M., Roumagnac, P., Wagner, D. M., . . . Achtman, M. (2010). [*Yersinia pestis* genome sequencing identifies patterns of global phylogenetic diversity](https://www.nature.com/articles/ng.705). *Nature Genetics*, 42, 1140–1143.
