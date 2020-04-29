@@ -24,9 +24,9 @@ abstract: "
 # [Origins of the Ancient Plagues](http://localhost:4000/plague150Local?d=map)
 #### The plagues of the ancient world have intriguing geographic origins.
 
-#### Early hypotheses on the 'origins' of the ancient pandemics varied greatly including regions in Central and East Africa, the Middle East, as well as Western and Central Asia [(Dols, 1974](https://www.jstor.org/stable/600071); [Dols, 1979](https://www.jstor.org/stable/3631953); [Benedictow, 2010)](https://books.google.ca/books/about/The_Black_Death_1346_1353.html?id=KjLHAOE7irsC).
+#### Early hypotheses on the 'origins' of the ancient pandemics varied greatly including regions in Central and East Africa, the Middle East, as well as Western and Central Asia [(Dols, 1974](https://www.jstor.org/stable/600071); [Dols, 1979](https://www.jstor.org/stable/3631953); [Benedictow, 2010)](https://books.google.ca/books/about/The_Black_Death_1346_1353.html?id=KjLHAOE7irsC).<br>
 
-## The Power of Maps
+# The Power of Maps
 
 #### Iconic maps produced in the mid-20th century have largely influenced the discussion of geographic and temporal spread of plague [(Mengel, 2011)](https://academic.oup.com/past/article-abstract/211/1/3/1381253). The historical sources used to estimate plague mortality consist of documents such as parish records, financial transactions, wills, and local testimonies [(Christakos et al. 2005)](https://www.springer.com/gp/book/9783540257943).
 
@@ -51,8 +51,11 @@ abstract: "
 ```
 
 <!-- This is left-side text 3-->
-# [Origins: Genetic](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
-General text that will introduce the genetic reconstruction.
+# [Origins: Through a New Lens](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
+#### Advances in DNA sequencing have now made it possible to rapidly sequence the genome of the plague bacterium *Yersinia pestis* from outbreak sources across the globe.
+
+#### Not only that, now can do ancient DNA evidence.
+<img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
 
 <!-- This is left-side text 4-->
 # [Evolution: Time Vortex](http://localhost:4000/plague150Remote?d=tree&l=clock&m=time)
