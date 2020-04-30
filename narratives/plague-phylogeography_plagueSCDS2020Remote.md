@@ -142,7 +142,7 @@ abstract: "
 
 #### 'Spillover' events, where plague crosses over environmental and species boundaries, has led to human outbreaks all across the globe ([Plowright et al. 2017)](https://www.nature.com/articles/nrmicro.2017.45).
 
-#### There is not just a single strain of plague responsible for human infections, instead, plague strains from different lineages throughout the evolutionary tree have been linked to epidemics.
+#### There is not just a single strain of plague responsible for human infections. Instead, plague strains from many different lineages throughout the evolutionary tree have been linked to epidemics.
 
 #### However, certain lineages of plague seem to be more 'successful' than others, leading to global pandemics and extensive mortality.
 
