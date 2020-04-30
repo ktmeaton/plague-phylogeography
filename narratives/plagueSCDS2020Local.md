@@ -3,20 +3,20 @@ title: "Plagues of the Past and Present"
 authors: "Katherine Eaton"
 dataset: "http://localhost:4000/plague150Local?d=map&legend=closed"
 abstract: "
-'The Plague' is a mystifying and devastating disease that has re-emerged multiple times throughout history. From the Plague of Justinian (6th century) to the Madagascar Plague Outbreak (2017), this infectious disease has resulted in exceptional mortality and societal upheaval.
+'The Plague' is a mystifying and devastating disease that has re-emerged multiple times throughout history. From the Plague of Justinian (6th century), through the centuries long Black Death Pandemic (14th-19th century), to the Madagascar Plague Outbreak (2017), this infectious disease has resulted in exceptional mortality and societal upheaval.
 
-### While our knowledge of plague has grown tremendously, there are many outstanding questions:
+### While our knowledge of the plague has grown tremendously, there are many outstanding questions:
 <br><br>
 1. __Where__ did the ancient pandemics originate?  
 <br>
-2. __When__ might modern plague foci re-activate?  
+2. __When__ might dormant plague zones re-activate?  
 <br>
 3. __Why__ has plague gone extinct in some regions?
 <br>
-4. __How__ does a city respond to losing 30-50% of its population?
+4. __How__ does a community respond to losing a large portion of its population?
 <br><br>
 
-### The mysteries of plague bring together researchers from a wide variety of disciplines from art history to microbiology. While each field stands to make a unique contribution, there remains a unified fascination over how people are affected and cope with this disease, as well as where, when, and why it suddenly appears...
+### The mysteries of plague bring together researchers from a wide variety of disciplines from art history to microbiology. Each field contributes a unique perspective to the questions of how people are affected and cope with this disease, as well as where, when, and why it suddenly appears...
 
 ## Table of Contents
 
@@ -40,13 +40,13 @@ abstract: "
 # [Origins: The Ancient Plagues](http://localhost:4000/plague150Local?d=map)
 #### The plagues of the ancient world have intriguing geographic origins.
 
-#### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in [Central and East Africa](https://www.jstor.org/stable/600071)[<sup>1</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8), [the Middle East, as well as Western and Central Asia](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html)[<sup>2</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).<br>
+#### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in [Central and East Africa](https://doi.org/10.2307/600071)[<sup>1</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8), [the Middle East, as well as Western and Central Asia](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html)[<sup>2</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).<br>
 
 # The Power of Maps
 
-#### Iconic maps produced in the mid-20th century have [largely influenced the discussion](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) on the spread of plague. The historical sources used to estimate plague mortality consist of documents such as parish records, financial transactions, wills, and local testimonies [(Christakos et al. 2005)](https://www.springer.com/gp/book/9783540257943).
+#### Iconic maps produced in the mid-20th century have [largely influenced the discussion](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) on the spread of plague. The historical sources used to [estimate plague mortality](https://www.springer.com/gp/book/9783540257943)[<sup>4</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) consist of documents such as parish records, financial transactions, wills, and local testimonies.
 
-#### However, these source documents can be of poor quality or are sparsely found leading to high levels of uncertainty [(Skog and Hauska, 2013)](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9671.2012.01369.x). As a result, the historical sources used in the construction of these maps are experiencing renewed critical re-examination  [(Bossak and Welford, 2015)](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12).
+#### However, these source documents can be of poor quality or are sparsely found leading to [high levels of uncertainty](https://doi.org/10.1111/j.1467-9671.2012.01369.x)[<sup>5</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8). As a result, the historical sources used in the construction of these maps are experiencing [renewed critical re-examination](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615)[<sup>6</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
 
 
 <!----------------------------------------------------------------------------->
@@ -57,12 +57,12 @@ abstract: "
 <div>
   <a href="https://www.researchgate.net/profile/Anne_Laudisoit2/publication/315837122">
     <img alt="microscopy image of coronaviruses" width="500" src="https://www.researchgate.net/profile/Anne_Laudisoit2/publication/315837122/figure/fig1/AS:652961457897473@1532689551350/a-leftThe-origin-and-spread-of-Justinian-plague.png"/>
-      <pre>                    Spread of the Justinian Plague (Laudisoit, 2009)</pre>
+      <pre>                         Spread of the Justinian Plague [7] </pre>
   </a>
 
-  <a href="https://books.google.ca/books/about/The_Black_Death_1346_1353.html?id=KjLHAOE7irsC">
+  <a href="https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html">
     <img alt="illustration of a coronavirus" width="600" src="https://www.historytoday.com/sites/default/files/blackdeathmap.jpg"/>
-      <pre>                          Spread of the Black Death Plague (Benedictow, 2010)</pre>
+      <pre>                                  Spread of the Black Death Plague [2] </pre>
   </a>
 
 </div>
@@ -167,16 +167,21 @@ abstract: "
 <!--                     8 : LS : References Numbered                        -->
 <!----------------------------------------------------------------------------->
 # [References](http://localhost:4000/plague150Local?d=tree,map&legend=closed)
-1. Dols, M. W. (1974). [Plague in early Islamic history](https://www.jstor.org/stable/600071). *Journal of the American Oriental Society*, 94(3), 371–383.
+1. Dols, M. W. (1974). [Plague in early Islamic history](https://doi.org/10.2307/600071). *Journal of the American Oriental Society*, 94(3), 371–383.
 2. Benedictow, O. J. (2004). [The Black Death, 1346-1353: The Complete History](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html). Woodbridge, Suffolk, United Kingdom: Boydell Press.
 3. Mengel, D. C. (2011). [A plague on Bohemia? Mapping the Black Death](https://doi.org/10.1093/pastj/gtq069). *Past & Present*, 211(1), 3–34.
+4. Christakos, G., Olea, R. A., Serre, M. L., Yu, H.-L., & Wang, L.-L. (2005). [Interdisciplinary Public Health Reasoning and Epidemic Modelling: The Case of Black Death](https://doi.org/10.1007/3-540-28165-7). Berlin Heidelberg: Springer-Verlag.
+5. Skog, L., & Hauska, H. (2013). [Spatial Modeling of the Black Death in Sweden]https://doi.org/10.1111/j.1467-9671.2012.01369.x. *Transactions in GIS*, 17(4), 589–611.
+6. Bossak, B. H., & Welford, M. R. (2016). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615). In P. Kanaroglou & E. D. Delmelle (Eds.), Spatial Analysis in Health Geography (pp. 93–106). Routledge.
+7. Laudisoit, A. (2009). [Diversity, ecology and status of potential hosts and vectors of the plague bacillus *Yersinia pestis* (PhD Thesis)](https://doi.org/10.13140/RG.2.2.25362.25281). University of Liège and Antwerpen.
+
 
 
 <!----------------------------------------------------------------------------->
 <!--                     9 : LS : References                                 -->
 <!----------------------------------------------------------------------------->
 # [References](http://localhost:4000/plague150Local?d=tree,map&legend=closed)
-Bossak, B. H. & Welford, M. R. (2015). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12). In E. Delmelle, A. Páez, & P. Kanaroglou (Eds.), Spatial Analysis in Health Geography. Surrey, England: Ashgate Publishing Limited.
+Bossak, B. H. & Welford, M. R. (2015). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615). In E. Delmelle, A. Páez, & P. Kanaroglou (Eds.), Spatial Analysis in Health Geography. Surrey, England: Ashgate Publishing Limited.
 <br><br>
 Christakos, G., Olea, R. A., Serre, M. A., Yu, H.-L., & Wang, L.-L. (2005). [Interdisciplinary Public Health Reasoning and Epidemic Modelling: The Case of the Black Death](https://www.springer.com/gp/book/9783540257943). Springer-Verlag Berlin Heidelberg.
 <br><br>
