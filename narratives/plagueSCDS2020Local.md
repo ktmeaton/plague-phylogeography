@@ -40,11 +40,11 @@ abstract: "
 # [Origins: The Ancient Plagues](http://localhost:4000/plague150Local?d=map)
 #### The plagues of the ancient world have intriguing geographic origins.
 
-#### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in Central and East Africa<sup>1</sup>, the Middle East, as well as Western and Central Asia [(Dols, 1974](https://www.jstor.org/stable/600071); [Dols, 1979](https://www.jstor.org/stable/3631953); [Benedictow, 2010)](https://books.google.ca/books/about/The_Black_Death_1346_1353.html?id=KjLHAOE7irsC).<br>
+#### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in [Central and East Africa](https://www.jstor.org/stable/600071)[<sup>1</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8), [the Middle East, as well as Western and Central Asia](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html)[<sup>2</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).<br>
 
 # The Power of Maps
 
-#### Iconic maps produced in the mid-20th century have largely influenced the discussion on the spread of plague [(Mengel, 2011)](https://academic.oup.com/past/article-abstract/211/1/3/1381253). The historical sources used to estimate plague mortality consist of documents such as parish records, financial transactions, wills, and local testimonies [(Christakos et al. 2005)](https://www.springer.com/gp/book/9783540257943).
+#### Iconic maps produced in the mid-20th century have [largely influenced the discussion](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) on the spread of plague. The historical sources used to estimate plague mortality consist of documents such as parish records, financial transactions, wills, and local testimonies [(Christakos et al. 2005)](https://www.springer.com/gp/book/9783540257943).
 
 #### However, these source documents can be of poor quality or are sparsely found leading to high levels of uncertainty [(Skog and Hauska, 2013)](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9671.2012.01369.x). As a result, the historical sources used in the construction of these maps are experiencing renewed critical re-examination  [(Bossak and Welford, 2015)](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12).
 
@@ -163,9 +163,17 @@ abstract: "
 
 #### Future work will focus on expanding scope, both geographically and temporally, and integrating new theoretical perspectives to shed further light on the mysteries of **where**, **when**, and **how** plague spreads across the globe.
 
+<!----------------------------------------------------------------------------->
+<!--                     8 : LS : References Numbered                        -->
+<!----------------------------------------------------------------------------->
+# [References](http://localhost:4000/plague150Local?d=tree,map&legend=closed)
+1. Dols, M. W. (1974). [Plague in early Islamic history](https://www.jstor.org/stable/600071). *Journal of the American Oriental Society*, 94(3), 371–383.
+2. Benedictow, O. J. (2004). [The Black Death, 1346-1353: The Complete History](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html). Woodbridge, Suffolk, United Kingdom: Boydell Press.
+3. Mengel, D. C. (2011). [A plague on Bohemia? Mapping the Black Death](https://doi.org/10.1093/pastj/gtq069). *Past & Present*, 211(1), 3–34.
+
 
 <!----------------------------------------------------------------------------->
-<!--                     8 : LS : References                                 -->
+<!--                     9 : LS : References                                 -->
 <!----------------------------------------------------------------------------->
 # [References](http://localhost:4000/plague150Local?d=tree,map&legend=closed)
 Bossak, B. H. & Welford, M. R. (2015). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12). In E. Delmelle, A. Páez, & P. Kanaroglou (Eds.), Spatial Analysis in Health Geography. Surrey, England: Ashgate Publishing Limited.
