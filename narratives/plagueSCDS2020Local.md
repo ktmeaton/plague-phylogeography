@@ -44,7 +44,7 @@ abstract: "
 
 # The Power of Maps
 
-#### Iconic maps produced in the mid-20th century have [largely influenced the discussion](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) on the spread of plague. The historical sources used to [estimate plague mortality](https://www.springer.com/gp/book/9783540257943)[<sup>4</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) consist of documents such as parish records, financial transactions, wills, and local testimonies.
+#### Iconic maps produced in the mid-20th century have [largely influenced the discussion](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) on the spread of the plague. The historical sources used to [estimate plague mortality](https://www.springer.com/gp/book/9783540257943)[<sup>4</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) consist of documents such as parish records, financial transactions, wills, and local testimonies.
 
 #### However, these source documents can be of poor quality or are sparsely found leading to [high levels of uncertainty](https://doi.org/10.1111/j.1467-9671.2012.01369.x)[<sup>5</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8). As a result, the historical sources used in the construction of these maps are experiencing [renewed critical re-examination](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615)[<sup>6</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
 
@@ -78,7 +78,9 @@ abstract: "
 
 #### Advances in DNA sequencing have made it possible to rapidly sequence the genome of the plague bacterium, *Yersinia pestis*, from outbreak sources across the globe.
 
-#### By examining the relationships between modern plague outbreaks, researchers demonstrated that plague evolved in or near East Asia with multiple global radiations throughout history [(Morelli et al. 2010)](https://www.nature.com/articles/ng.705).
+#### By examining the relationships between modern plague outbreaks, researchers demonstrated that plague evolved [in or near East Asia]((https://doi.org/10.1038/ng.705) [<sup>8</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) with multiple global radiations throughout history.
+
+#### The accompanying visual reproduces this finding, through the analysis of 151 DNA samples of modern *Y. pestis*. This analysis calculates relatedness between bacterial samples, and tracks the mutations that have occurred over time and space. Estimates are then provided on the possible locations of plague in the distant past, affirming the most likely regions to be in East or Central Asia.
 
 
 <!----------------------------------------------------------------------------->
@@ -91,10 +93,10 @@ abstract: "
         <pre>     London's East Smithfield "plague pits", 1348-1349.</pre>
 </a>
 
-#### A recent study identified the plague bacterium in skeletal remains from Sweden 4,900 years ago [(Rascovan et al. 2019)](https://doi.org/10.1016/j.cell.2018.11.005). This finding yet again prompts alternative hypotheses concerning the spread of plague across Eurasia. The case is anything but closed.
+#### A recent study identified the plague bacterium in skeletal remains from [Sweden 4,900 years ago](https://doi.org/10.1016/j.cell.2018.11.005)[<sup>9</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8). This finding yet again prompts alternative hypotheses concerning the spread of plague across Eurasia. The case is anything but closed.
 <a href="https://doi.org/10.1016/j.cell.2018.11.005">
   <img src="https://raw.githubusercontent.com/ktmeaton/plague-phylogeography/master/narratives/images/neolithic-map-1.png" width="80%">
-        <pre>   The Spread of Neolithic Plague (Rascovan et al. 2019) </pre>
+        <pre>              The Spread of Neolithic Plague [9] </pre>
 </a>
 
 
@@ -155,7 +157,7 @@ abstract: "
 # [Digital Scholarship](http://localhost:4000/plague150Local?d=map)
 #### The data in this exhibit all derive from publicly accessible projects available through the [National Centre for Biotechnology Information](https://www.ncbi.nlm.nih.gov/).
 
-#### This exhibit only captures a very small fraction (150 samples) of the available plague datasets that could be harnessed for analysis (1500+ and growing).
+#### This exhibit only captures a very small fraction (151 samples) of the available plague datasets that could be harnessed for analysis (1500+ and growing).
 
 #### Method documentation for the project can be found at [Read the Docs](https://plague-phylogeography.readthedocs.io/en/latest/).
 
@@ -174,7 +176,8 @@ abstract: "
 5. Skog, L., & Hauska, H. (2013). [Spatial Modeling of the Black Death in Sweden]https://doi.org/10.1111/j.1467-9671.2012.01369.x. *Transactions in GIS*, 17(4), 589–611.
 6. Bossak, B. H., & Welford, M. R. (2016). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615). In P. Kanaroglou & E. D. Delmelle (Eds.), Spatial Analysis in Health Geography (pp. 93–106). Routledge.
 7. Laudisoit, A. (2009). [Diversity, ecology and status of potential hosts and vectors of the plague bacillus *Yersinia pestis* (PhD Thesis)](https://doi.org/10.13140/RG.2.2.25362.25281). University of Liège and Antwerpen.
-
+8. Morelli, G., Song, Y., Mazzoni, C. J., Eppinger, M., Roumagnac, P., Wagner, D. M., ... Achtman, M. (2010). [*Yersinia pestis* genome sequencing identifies patterns of global phylogenetic diversity](https://doi.org/10.1038/ng.705). Nature Genetics, 42(12), 1140–1143.
+9. Rascovan, N., Sjögren, K.-G., Kristiansen, K., Nielsen, R., Willerslev, E., Desnues, C., & Rasmussen, S. (2019). [Emergence and spread of basal lineages of *Yersinia pestis* during the Neolithic Decline](https://doi.org/10.1016/j.cell.2018.11.005). Cell, 176(1), 295-305.e10.
 
 
 <!----------------------------------------------------------------------------->
