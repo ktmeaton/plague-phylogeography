@@ -40,7 +40,7 @@ abstract: "
 # [Origins: The Ancient Plagues](http://localhost:4000/plague150Local?d=map)
 #### The plagues of the ancient world have intriguing geographic origins.
 
-#### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in Central and East Africa, the Middle East, as well as Western and Central Asia [(Dols, 1974](https://www.jstor.org/stable/600071); [Dols, 1979](https://www.jstor.org/stable/3631953); [Benedictow, 2010)](https://books.google.ca/books/about/The_Black_Death_1346_1353.html?id=KjLHAOE7irsC).<br>
+#### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in Central and East Africa<sup>1</sup>, the Middle East, as well as Western and Central Asia [(Dols, 1974](https://www.jstor.org/stable/600071); [Dols, 1979](https://www.jstor.org/stable/3631953); [Benedictow, 2010)](https://books.google.ca/books/about/The_Black_Death_1346_1353.html?id=KjLHAOE7irsC).<br>
 
 # The Power of Maps
 
