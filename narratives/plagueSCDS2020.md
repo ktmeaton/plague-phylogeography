@@ -16,7 +16,20 @@ abstract: "
 4. __How__ does a city respond to losing 50% of its population?
 <br><br>
 
-### The mysteries of plague bring together researchers from a wide variety of disciplines from art history to microbiology. While each field stands to make a unique contribution, there remains a unified fascination over how people are affected and cope with this disease, as well as where, when, and how it suddenly appears...
+### The mysteries of plague bring together researchers from a wide variety of dislocalciplines from art history to microbiology. While each field stands to make a unique contribution, there remains a unified fascination over how people are affected and cope with this disease, as well as where, when, and how it suddenly appears...
+
+## Table of Contents
+
+###
+<pre>
+   [Origins](http://localhost:4000/narratives/plagueSCDS2020?n=1)
+<br>
+   [Evolution](http://localhost:4000/narratives/plagueSCDS2020?n=4)  
+<br>
+   [Ecology](http://localhost:4000/narratives/plagueSCDS2020?n=5)  
+<br>
+   [Digital Scholarship](http://localhost:4000/narratives/plagueSCDS2020?n=7)
+</pre>
 "
 ---
 
