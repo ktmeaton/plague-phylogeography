@@ -22,13 +22,13 @@ abstract: "
 
 ###
 <pre>
-   [Origins](http://localhost:4000/narratives/plagueSCDS2020?n=1)
+   [Origins](http://localhost:4000/narratives/plagueSCDS2020Local?n=1)
 <br>
-   [Evolution](http://localhost:4000/narratives/plagueSCDS2020?n=4)  
+   [Evolution](http://localhost:4000/narratives/plagueSCDS2020Local?n=4)  
 <br>
-   [Ecology](http://localhost:4000/narratives/plagueSCDS2020?n=5)  
+   [Ecology](http://localhost:4000/narratives/plagueSCDS2020Local?n=5)  
 <br>
-   [Digital Scholarship](http://localhost:4000/narratives/plagueSCDS2020?n=7)
+   [Digital Scholarship](http://localhost:4000/narratives/plagueSCDS2020Local?n=7)
 </pre>
 "
 ---
@@ -142,7 +142,7 @@ abstract: "
 
 #### 'Spillover' events, where plague crosses over environmental and species boundaries, has led to human outbreaks all across the globe ([Plowright et al. 2017)](https://www.nature.com/articles/nrmicro.2017.45).
 
-#### There is not just a single strain of plague responsible for human infections, instead, plague strains from many areas of the evolutionary tree have been linked to epidemics.
+#### There is not just a single strain of plague responsible for human infections. Instead, plague strains from many different lineages throughout the evolutionary tree have been linked to epidemics.
 
 #### However, certain lineages of plague seem to be more 'successful' than others, leading to global pandemics and extensive mortality.
 
