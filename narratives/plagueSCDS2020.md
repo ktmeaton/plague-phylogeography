@@ -11,12 +11,12 @@ abstract: "
 <br>
 2. __When__ might modern plague foci re-activate?  
 <br>
-3. __Why__ does plague no longer exist in Western Europe?
+3. __Why__ has plague gone extinct in some regions?
 <br>
-4. __How__ does a city respond to losing 50% of its population?
+4. __How__ does a city respond to losing 30-50% of its population?
 <br><br>
 
-### The mysteries of plague bring together researchers from a wide variety of dislocalciplines from art history to microbiology. While each field stands to make a unique contribution, there remains a unified fascination over how people are affected and cope with this disease, as well as where, when, and how it suddenly appears...
+### The mysteries of plague bring together researchers from a wide variety of disciplines from art history to microbiology. While each field stands to make a unique contribution, there remains a unified fascination over how people are affected and cope with this disease, as well as where, when, and why it suddenly appears...
 
 ## Table of Contents
 
@@ -33,19 +33,25 @@ abstract: "
 "
 ---
 
-<!-- This is left-side text 2 -->
+
+<!----------------------------------------------------------------------------->
+<!--                     1 : LS : Origins Ancient Plague                     -->
+<!----------------------------------------------------------------------------->
 # [Origins: The Ancient Plagues](http://localhost:4000/plague150Local?d=map)
 #### The plagues of the ancient world have intriguing geographic origins.
 
-#### Early hypotheses on the 'origins' of the ancient pandemics varied greatly including regions in Central and East Africa, the Middle East, as well as Western and Central Asia [(Dols, 1974](https://www.jstor.org/stable/600071); [Dols, 1979](https://www.jstor.org/stable/3631953); [Benedictow, 2010)](https://books.google.ca/books/about/The_Black_Death_1346_1353.html?id=KjLHAOE7irsC).<br>
+#### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in Central and East Africa, the Middle East, as well as Western and Central Asia [(Dols, 1974](https://www.jstor.org/stable/600071); [Dols, 1979](https://www.jstor.org/stable/3631953); [Benedictow, 2010)](https://books.google.ca/books/about/The_Black_Death_1346_1353.html?id=KjLHAOE7irsC).<br>
 
 # The Power of Maps
 
-#### Iconic maps produced in the mid-20th century have largely influenced the discussion of geographic and temporal spread of plague [(Mengel, 2011)](https://academic.oup.com/past/article-abstract/211/1/3/1381253). The historical sources used to estimate plague mortality consist of documents such as parish records, financial transactions, wills, and local testimonies [(Christakos et al. 2005)](https://www.springer.com/gp/book/9783540257943).
+#### Iconic maps produced in the mid-20th century have largely influenced the discussion on the spread of plague [(Mengel, 2011)](https://academic.oup.com/past/article-abstract/211/1/3/1381253). The historical sources used to estimate plague mortality consist of documents such as parish records, financial transactions, wills, and local testimonies [(Christakos et al. 2005)](https://www.springer.com/gp/book/9783540257943).
 
-### However, these source documents can be of poor quality or are sparsely found leading to high levels of uncertainty [(Skog and Hauska, 2013)](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9671.2012.01369.x). As a result, the historical sources used in the construction of these maps are experiencing renewed critical re-examination  [(Bossak and Welford, 2015)](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12).
+#### However, these source documents can be of poor quality or are sparsely found leading to high levels of uncertainty [(Skog and Hauska, 2013)](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9671.2012.01369.x). As a result, the historical sources used in the construction of these maps are experiencing renewed critical re-examination  [(Bossak and Welford, 2015)](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12).
 
-<!-- This is right-side text 2-->
+
+<!----------------------------------------------------------------------------->
+<!--                     1 : RS : Origins Maps                               -->
+<!----------------------------------------------------------------------------->
 ```auspiceMainDisplayMarkdown
 
 <div>
@@ -63,14 +69,21 @@ abstract: "
 
 ```
 
-<!-- This is left-side text 3-->
-# [Origins: Through a New Lens](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
-#### In contrast to the historical perspective, genetic evidence offers a very different narrative.
 
-### Advances in DNA sequencing have made it possible to rapidly sequence the genome of the plague bacterium, *Yersinia pestis*, from outbreak sources across the globe.
+<!----------------------------------------------------------------------------->
+<!--                     2 : LS : Origins New Lens                           -->
+<!----------------------------------------------------------------------------->
+# [Origins: Through a New Lens](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
+#### In contrast to these initial historical perspectives, genetic evidence offers a very different narrative.
+
+#### Advances in DNA sequencing have made it possible to rapidly sequence the genome of the plague bacterium, *Yersinia pestis*, from outbreak sources across the globe.
 
 #### By examining the relationships between modern plague outbreaks, researchers demonstrated that plague evolved in or near East Asia with multiple global radiations throughout history [(Morelli et al. 2010)](https://www.nature.com/articles/ng.705).
 
+
+<!----------------------------------------------------------------------------->
+<!--                     3 : LS : Origins Ancient DNA                        -->
+<!----------------------------------------------------------------------------->
 # [Origins: Ancient DNA](http://localhost:4000/plague150Local?d=map&country=sweden)
 #### But the picture grows murkier still. Ancient plague DNA retrieved from victims of past epidemics provides new windows into the past.
 <a href="https://www.history.com/news/is-the-black-death-the-ancestor-of-all-modern-plagues">
@@ -84,7 +97,10 @@ abstract: "
         <pre>   The Spread of Neolithic Plague (Rascovan et al. 2019) </pre>
 </a>
 
-<!-- This is left-side text 4-->
+
+<!----------------------------------------------------------------------------->
+<!--                     4 : LS : Evolution Time Vortex                      -->
+<!----------------------------------------------------------------------------->
 # [Evolution: A Time Vortex](http://localhost:4000/plague150Local?d=tree&l=clock&m=time)
 #### To critique the previous maps on the spread of plague, it is important to consider several statistical problems.
 
@@ -102,43 +118,55 @@ abstract: "
 
 #### How can we a reconstruct geographic spread over time, with evidence that behaves so chaotically?
 
-<!-- This is left-side text 5-->
+
+<!----------------------------------------------------------------------------->
+<!--                     5 : LS : Ecology Picky                              -->
+<!----------------------------------------------------------------------------->
 # [Ecology: Plague's Not Picky](http://localhost:4000/plague150Local?d=tree&c=host&legend=open)
 #### The solution could be in understanding **why** this disease does not evolve in a "clock-like" manner. And a clue may lie in considering the ecology of plague.
 
 #### Although plague is primarily a disease of rodents, virtually all mammals are capable of becoming infected when exposed [(Gage and Kosoy, 2006)](http://reviverestore.org/wp-content/uploads/2015/02/Gage-and-Kosoy_USGS-Blk-footed-ferret-symp_2006-copy.pdf). The movement of plague between novel hosts and environments may be a key factor in explaining why the rate of evolution changes so suddenly.
 
 #### The accompanying visual is a **phylogenetic tree**, where the bubbles again represent plague samples and the connecting lines show their degree of relatedness. The color indicates what mammalian host or flea vector the bacteria was isolated from.
-#### [How to read a phylogeny](https://nextstrain.org/narratives/trees-background/).
 
-#### No obvious patterns emerge as the colors appear 'randomly' distributed. But perhaps the [rodent subfamily Arvicolinae](http://localhost:4000/plague150Local?c=host&d=tree&f_host=Microtus,Neodon,Lasiopodomys) is tentatively associated with extra-long branch lengths (ie. excessive mutation).
+#### No obvious patterns emerge as the colors appear 'randomly' distributed. But perhaps the [rodent subfamily Arvicolinae](http://localhost:4000/plague150Local?c=host&d=tree&f_host=Microtus,Neodon,Lasiopodomys) is tentatively associated with extra-long branch lengths (ie. rapid evolution).
 
 #### New perspectives on exploratory data analysis that are ecologically-grounded have great potential to yield greater insight.
 
-<!-- This is left-side text 6-->
+
+<!----------------------------------------------------------------------------->
+<!--                     6 : LS : Ecology Human                              -->
+<!----------------------------------------------------------------------------->
 # [Ecology: Human Spillover](http://localhost:4000/plague150Local?c=host&d=tree,map&f_host=Homo&legend=closed)
-### This ecological fluidity to adapt to different hosts has had devastating consequences for human populations.
+#### This ecological fluidity to adapt to different hosts has had devastating consequences for human populations.
 
-### 'Spillover' events, where plague crosses over environmental and species boundaries, has led to human outbreaks all across the globe ([Plowright et al. 2017)](https://www.nature.com/articles/nrmicro.2017.45).
+#### 'Spillover' events, where plague crosses over environmental and species boundaries, has led to human outbreaks all across the globe ([Plowright et al. 2017)](https://www.nature.com/articles/nrmicro.2017.45).
 
-### There is not just a single strain of plague responsible for human infections, instead, plague strains from many areas of the evolutionary tree have been linked to epidemics.
+#### There is not just a single strain of plague responsible for human infections, instead, plague strains from many areas of the evolutionary tree have been linked to epidemics.
 
-### However, certain lineages of plague seem to be more 'successful' than others, leading to global pandemics and extensive mortality.
+#### However, certain lineages of plague seem to be more 'successful' than others, leading to global pandemics and extensive mortality.
 
-### The question of **why** these particular bacteria vary in their virulence potential continues to be a question of paramount importance.
+#### The question of **why** these particular bacteria vary in their virulence potential continues to be a question of paramount importance.
 
-<!-- This is left-side text 7-->
+
+<!----------------------------------------------------------------------------->
+<!--                     7 : LS : Digital Scholarship                        -->
+<!----------------------------------------------------------------------------->
 # [Digital Scholarship](http://localhost:4000/plague150Local?d=map)
-### The data in this exhibit all derive from publicly accessible projects available through the [National Centre for Biotechnology Information](https://www.ncbi.nlm.nih.gov/).
+#### The data in this exhibit all derive from publicly accessible projects available through the [National Centre for Biotechnology Information](https://www.ncbi.nlm.nih.gov/).
 
-### This exhibit only captures a very small fraction (150 samples) of the available plague datasets that could be harnessed for analysis (1500+ and growing).
+#### This exhibit only captures a very small fraction (150 samples) of the available plague datasets that could be harnessed for analysis (1500+ and growing).
 
-### Method documentation for the project can be found at [Read the Docs](https://plague-phylogeography.readthedocs.io/en/latest/).
+#### Method documentation for the project can be found at [Read the Docs](https://plague-phylogeography.readthedocs.io/en/latest/).
 
-### The underlying code is open-access via a [GitHub Repository](https://github.com/ktmeaton/plague-phylogeography) and is continually developed for reproducibility.
+#### The underlying code is open-access via a [GitHub Repository](https://github.com/ktmeaton/plague-phylogeography) and is continually developed for reproducibility.
 
-### Future work will focus on expanding scope, both geographically and temporally, and integrating new theoretical perspectives to shed further light on the mysteries of **where**, **when**, and **how** the plague spreads across the globe.
+#### Future work will focus on expanding scope, both geographically and temporally, and integrating new theoretical perspectives to shed further light on the mysteries of **where**, **when**, and **how** plague spreads across the globe.
 
+
+<!----------------------------------------------------------------------------->
+<!--                     8 : LS : References                                 -->
+<!----------------------------------------------------------------------------->
 # [References](http://localhost:4000/plague150Local?d=tree,map&legend=closed)
 Bossak, B. H. & Welford, M. R. (2015). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.taylorfrancis.com/books/e/9781315610252/chapters/10.4324%2F9781315610252-12). In E. Delmelle, A. Páez, & P. Kanaroglou (Eds.), Spatial Analysis in Health Geography. Surrey, England: Ashgate Publishing Limited.
 <br><br>
