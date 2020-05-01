@@ -106,7 +106,7 @@ abstract: "
 
 #### To model the past using genetic data, we make and test theories about how evolution proceeds over time.
 
-#### Unfortunately, the plague does not follow the rules of a **"molecular clock"**, where evolution should occur at a constant rate. Under this model, a 'younger' strain (ex. collected in 2000) should have more mutations than an 'older' strain (ex. collected in 1950).
+#### Unfortunately, the plague does not follow the rules of a <b>"molecular clock"</b>, where evolution should occur at a constant rate. Under this model, a 'younger' strain (ex. collected in 2000) should have more mutations than an 'older' strain (ex. collected in 1950).
 
 #### Instead, there are dramatic fluctuations where the bacterium may "speed up" or "slow down" it's [pace and mode of evolution](https://doi.org/10.1073/pnas.1205750110)[<sup>10</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
 
@@ -114,7 +114,7 @@ abstract: "
 
 #### The visual to the right compares time on the X-axis (the date) with the mutations that have occurred on the Y-axis (divergence). The dots represent plague samples, and ideally they should fall close to the dark black line.
 
-#### The bubbles above the black line have **more** mutations than expected, and those below the black line have **fewer** mutations than expected.
+#### The bubbles above the black line have <b>more</b> mutations than expected, and those below the black line have <b>fewer</b> mutations than expected.
 
 #### How can we a reconstruct geographic spread over time, with evidence that behaves so chaotically?
 
@@ -161,7 +161,7 @@ abstract: "
 
 #### The underlying code is open-access via a [GitHub Repository](https://github.com/ktmeaton/plague-phylogeography) and is continually developed for reproducibility.
 
-#### Future work will focus on expanding scope, both geographically and temporally, and integrating new theoretical perspectives to shed further light on the mysteries of **where**, **when**, and **how** plague spreads across the globe.
+#### Future work will focus on expanding scope, both geographically and temporally, and integrating new theoretical perspectives to shed further light on the mysteries of <b>where</b>, <b>when</b>, and <b>how</b> plague spreads across the globe.
 
 <!----------------------------------------------------------------------------->
 <!--                     8 : LS : References Numbered                        -->

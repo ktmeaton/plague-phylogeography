@@ -223,13 +223,5 @@ augur export v2 \
 
 Convert from local to remote (SCDS2020)
 ```
-MARKDOWN_LOCAL="narratives/plagueSCDS2020Local";
-MARKDOWN_REMOTE="narratives/plagueSCDS2020Remote";
-DATA_LOCAL="http://localhost:4000/";
-DATA_REMOTE="https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote";
-NARRATIVE_LOCAL="http://localhost:4000/narratives/plagueSCDS2020Local";
-NARRATIVE_REMOTE="https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote";
-sed "s|${DATA_LOCAL}|${DATA_REMOTE}|g" narratives/${NARRATIVE_LOCAL}.md | \
-  sed "s|${REPO_LOCAL}narratives/${NARRATIVE_LOCAL}|${REPO_REMOTE}narratives${DATA_REMOTE}|g" narratives/${NARRATIVE_LOCAL}.md
-
+nextstrain_local2remote.sh ktmeaton plague-phylogeography plagueSCDS2020 plague150
 ```
