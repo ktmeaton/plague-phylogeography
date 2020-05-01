@@ -49,6 +49,7 @@ Override font size to 30 px
 # [Origins: The Ancient Plagues](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=map)
 #### The plagues of the ancient world have intriguing geographic origins.
 
+#### Is anything changing remotely?
 <p style='color: red ! important;'> Override font color to red</p>
 
 #### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in [Central and East Africa](https://doi.org/10.2307/600071)[<sup>1</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8), [the Middle East, as well as Western and Central Asia](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html)[<sup>2</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8).<br>
