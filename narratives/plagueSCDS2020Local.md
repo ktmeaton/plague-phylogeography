@@ -1,5 +1,5 @@
 ---
-title: "Plagues of the Past and Present"
+title: "<h1>Plagues of the Past and Present</h1>"
 authors: "Katherine Eaton"
 dataset: "http://localhost:4000/plague150Local?d=map&legend=closed"
 abstract: "
@@ -30,7 +30,7 @@ abstract: "
 <br>
    [Digital Scholarship](http://localhost:4000/narratives/plagueSCDS2020Local?n=7)
 </pre>
-
+</p>
 "
 ---
 

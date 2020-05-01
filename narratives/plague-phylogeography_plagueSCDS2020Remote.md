@@ -1,5 +1,5 @@
 ---
-title: "Plagues of the Past and Present"
+title: "<h1>Plagues of the Past and Present</h1>"
 authors: "Katherine Eaton"
 dataset: "https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=map&legend=closed"
 abstract: "
@@ -30,7 +30,7 @@ abstract: "
 <br>
    [Digital Scholarship](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=7)
 </pre>
-
+</p>
 "
 ---
 
