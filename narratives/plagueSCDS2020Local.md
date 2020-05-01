@@ -43,7 +43,7 @@ abstract: "
 
 #### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in [Central and East Africa](https://doi.org/10.2307/600071)[<sup>1</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8), [the Middle East, as well as Western and Central Asia](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html)[<sup>2</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).<br>
 
-#### Iconic maps produced in the mid-20th century have [largely influenced the discussion](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) on the spread of the plague. The historical sources used to [estimate plague mortality](https://www.springer.com/gp/book/9783540257943)[<sup>4</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) consist of documents such as parish records, financial transactions, wills, and local testimonies.
+#### The historical sources used to [estimate plague mortality](https://www.springer.com/gp/book/9783540257943)[<sup>4</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) consist of documents such as parish records, financial transactions, wills, and local testimonies. From these sources, iconic maps of the spread of plague were produced in the mid-20th century that [heavily influenced perceptions](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) on the geographic origins.
 
 #### However, these source documents can be of poor quality or are sparsely found leading to [high levels of uncertainty](https://doi.org/10.1111/j.1467-9671.2012.01369.x)[<sup>5</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8). As a result, the historical sources used in the construction of these maps are experiencing [renewed critical re-examination](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615)[<sup>6</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
 
@@ -81,7 +81,6 @@ abstract: "
 
 #### The accompanying spread map reproduces this finding, through the analysis of 151 DNA samples of modern *Y. pestis*. This analysis calculates relatedness between bacterial samples, and tracks the mutations that have occurred over time and space. Estimates are then provided on the possible locations of plague in the distant past, affirming the most likely regions to be in East or Central Asia.
 
-
 <!----------------------------------------------------------------------------->
 <!--                     3 : LS : Origins Ancient DNA                        -->
 <!----------------------------------------------------------------------------->
@@ -89,13 +88,13 @@ abstract: "
 #### But the picture grows murkier still. Ancient plague DNA retrieved from victims of past epidemics provides new windows into the past.
 <a href="https://www.history.com/news/is-the-black-death-the-ancestor-of-all-modern-plagues">
   <img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
-        <p style='text-align: center ! important;'>London's East Smithfield "plague pits", 1348-1349.</p>
+        <p style='text-align: center;'>London's East Smithfield "plague pits", 1348-1349.</p>
 </a>
 
 #### A recent study identified the plague bacterium in skeletal remains from [Sweden 4,900 years ago](https://doi.org/10.1016/j.cell.2018.11.005)[<sup>9</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8). This finding yet again prompts alternative hypotheses concerning the spread of the plague across Eurasia. The case is anything but closed.
 <a href="https://doi.org/10.1016/j.cell.2018.11.005">
   <img src="https://raw.githubusercontent.com/ktmeaton/plague-phylogeography/master/narratives/images/neolithic-map-1.png" width="80%">
-        <p style='text-align: center ! important;'>The Spread of Neolithic Plague [9]</p>
+        <p style='text-align: center;'>The Spread of Neolithic Plague [9]</p>
 </a>
 
 
@@ -180,3 +179,21 @@ abstract: "
 10. Cui, Y., Yu, C., Yan, Y., Li, D., Li, Y., Jombart, T., ... Yang, R. (2013). [Historical variations in mutation rate in an epidemic pathogen, *Yersinia pestis*](https://doi.org/10.1073/pnas.1205750110). *Proceedings of the National Academy of Sciences*, 110(2), 577–582.
 11. Gage, K., & Kosoy, M. (2006). [Recent trends in plague ecology](http://reviverestore.org/wp-content/uploads/2015/02/Gage-and-Kosoy_USGS-Blk-footed-ferret-symp_2006-copy.pdf). *USG Survey*, 213–231.
 12. Plowright, R. K., Parrish, C. R., McCallum, H., Hudson, P. J., Ko, A. I., Graham, A. L., & Lloyd-Smith, J. O. (2017). [Pathways to zoonotic spillover](https://doi.org/10.1038/nrmicro.2017.45). *Nature Reviews Microbiology*, 15(8), 502–510.5
+
+<!----------------------------------------------------------------------------->
+<!--                     8 : LS : References Numbered                        -->
+<!----------------------------------------------------------------------------->
+# [Left Panel Styling](https://nextstrain.org/community/inrb-drc/ebola-nord-kivu)
+<p style='text-align:center; color:red; font-size:30px; font-family:Arial'>
+Big, red, centered, Arial text.
+<br>
+<b>Bolded!</b>
+</p>
+
+```auspiceMainDisplayMarkdown
+# Right Panel Styling
+<p style='text-align:center; color:red; font-size:30px; font-family:Arial'>
+I would like this to be big, red, centered, Arial text.
+<b>This text doesn't appear!</b>
+</p>
+```
