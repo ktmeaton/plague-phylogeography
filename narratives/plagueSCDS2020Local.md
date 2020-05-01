@@ -31,14 +31,6 @@ abstract: "
    [Digital Scholarship](http://localhost:4000/narratives/plagueSCDS2020Local?n=7)
 </pre>
 
-<p style='color: red ! important;'>
-Override font color to red
-</p>
-
-<p style='font-size: 30px ! important;'>
-Override font size to 30 px
-</p>
-
 "
 ---
 
@@ -48,9 +40,6 @@ Override font size to 30 px
 <!----------------------------------------------------------------------------->
 # [Origins: The Ancient Plagues](http://localhost:4000/plague150Local?d=map)
 #### The plagues of the ancient world have intriguing geographic origins.
-
-#### Is anything changing remotely?
-<p style='color: red ! important;'> Override font color to red</p>
 
 #### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in [Central and East Africa](https://doi.org/10.2307/600071)[<sup>1</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8), [the Middle East, as well as Western and Central Asia](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html)[<sup>2</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).<br>
 
