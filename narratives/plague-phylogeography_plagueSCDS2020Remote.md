@@ -97,7 +97,7 @@ abstract: "
 #### A recent study identified the plague bacterium in skeletal remains from [Sweden 4,900 years ago](https://doi.org/10.1016/j.cell.2018.11.005)[<sup>8</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8). Given that Europe was largely excluded from being a candidate origin of plague, this finding is particularly surprising. New hypotheses are constantly emerging concerning the spread of plague across Eurasia. The case is anything but closed.
 <a href="https://doi.org/10.1016/j.cell.2018.11.005">
   <img src="https://raw.githubusercontent.com/ktmeaton/plague-phylogeography/master/narratives/images/neolithic-map-1.png" width="80%">
-        <p style='text-align: center;'>The Spread of Neolithic Plague [9]</p>
+        <p style='text-align: center;'>The Spread of Neolithic Plague [8]</p>
 </a>
 
 
