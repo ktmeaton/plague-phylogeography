@@ -80,7 +80,7 @@ abstract: "
 
 #### The accompanying spread map visualizes 151 DNA samples of modern *Y. pestis* (1947-2016). The underlying analyses calculate relatedness between plague bacteria and track the mutations that have occurred over time and space. Estimates are then provided on the possible locations of plague in the distant past, suggesting the most likely regions to be [in or near East Asia]((https://doi.org/10.1038/ng.705) [<sup>8</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8).
 
-[Restart Spread Animation](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
+#### [Restart Spread Animation](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=2).
 
 <!----------------------------------------------------------------------------->
 <!--                     3 : LS : Origins Ancient DNA                        -->
