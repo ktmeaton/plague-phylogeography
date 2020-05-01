@@ -43,10 +43,11 @@ abstract: "
 
 #### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in [Central and East Africa](https://doi.org/10.2307/600071)[<sup>1</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8), [the Middle East, as well as Western and Central Asia](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html)[<sup>2</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).<br>
 
-#### The historical sources used to [estimate plague mortality](https://www.springer.com/gp/book/9783540257943)[<sup>4</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) consist of documents such as parish records, financial transactions, wills, and local testimonies. From these sources, iconic maps of the spread of plague were produced in the mid-20th century that [heavily influenced perceptions](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) on the geographic origins.
+#### The historical sources used to [estimate plague mortality](https://www.springer.com/gp/book/9783540257943)[<sup>4</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) consist of documents such as parish records, financial transactions, wills, and local testimonies.
 
 #### However, these source documents can be of poor quality or are sparsely found leading to [high levels of uncertainty](https://doi.org/10.1111/j.1467-9671.2012.01369.x)[<sup>5</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8). As a result, the historical sources used in the construction of these maps are experiencing [renewed critical re-examination](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615)[<sup>6</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
 
+#### From these sources, iconic maps of the spread of plague were produced in the mid-20th century that [heavily influenced perceptions](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) on the geographic origins.
 
 <!----------------------------------------------------------------------------->
 <!--                     1 : RS : Origins Maps                               -->
