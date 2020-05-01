@@ -56,12 +56,12 @@ abstract: "
 <div>
   <a href="https://doi.org/10.13140/RG.2.2.25362.25281">
     <img alt="microscopy image of coronaviruses" width="500" src="https://www.researchgate.net/profile/Anne_Laudisoit2/publication/315837122/figure/fig1/AS:652961457897473@1532689551350/a-leftThe-origin-and-spread-of-Justinian-plague.png"/>
-      <pre>                         Spread of the Justinian Plague [7] </pre>
+      <pre>                         Spread of the Justinian Plague [7]                         </pre>
   </a>
 
   <a href="https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html">
     <img alt="illustration of a coronavirus" width="600" src="https://www.historytoday.com/sites/default/files/blackdeathmap.jpg"/>
-      <pre>                                  Spread of the Black Death Plague [2] </pre>
+      <pre>                                  Spread of the Black Death Plague [2]                                </pre>
   </a>
 
 </div>
@@ -89,13 +89,13 @@ abstract: "
 #### But the picture grows murkier still. Ancient plague DNA retrieved from victims of past epidemics provides new windows into the past.
 <a href="https://www.history.com/news/is-the-black-death-the-ancestor-of-all-modern-plagues">
   <img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
-        <pre>     London's East Smithfield "plague pits", 1348-1349.</pre>
+        <p style='text-align: center ! important;'>London's East Smithfield "plague pits", 1348-1349.</p>
 </a>
 
 #### A recent study identified the plague bacterium in skeletal remains from [Sweden 4,900 years ago](https://doi.org/10.1016/j.cell.2018.11.005)[<sup>9</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8). This finding yet again prompts alternative hypotheses concerning the spread of the plague across Eurasia. The case is anything but closed.
 <a href="https://doi.org/10.1016/j.cell.2018.11.005">
   <img src="https://raw.githubusercontent.com/ktmeaton/plague-phylogeography/master/narratives/images/neolithic-map-1.png" width="80%">
-        <pre>              The Spread of Neolithic Plague [9] </pre>
+        <p style='text-align: center ! important;'>The Spread of Neolithic Plague [9]</p>
 </a>
 
 
