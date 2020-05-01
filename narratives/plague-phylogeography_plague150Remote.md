@@ -3,7 +3,7 @@ title: "Plague Phylogeography Demo"
 authors: "Katherine Eaton"
 dataset: "https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=map"
 abstract: "
-The data used in this demo are 151 samples of the plague bacterium *Yersinia pestis* which were submitted for genome sequencing and made publicly accessible through NCBI. There are many more samples publicly available, I simply selected those with the best available metadata.
+### The data used in this demo are 151 samples of the plague bacterium *Yersinia pestis* which were submitted for genome sequencing and made publicly accessible through NCBI. There are many more samples publicly available, I simply selected those with the best available metadata.
 
 The purpose of creating this demo is to perform a spread reconstruction… and then immediately critique it and tear it apart. I’ve found that interactive visuals spark inventive questions which often lead to productive conversations. Therefore, the content displayed here is for testing display purposes only. It is not intended for scientific interpretation, as the results are known to contain substantial and technical artifacts."
 ---
