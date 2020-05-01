@@ -47,8 +47,6 @@ abstract: "
 
 #### However, these source documents can be of poor quality or are sparsely found leading to [high levels of uncertainty](https://doi.org/10.1111/j.1467-9671.2012.01369.x)[<sup>5</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8). As a result, the historical sources used in the construction of these maps are experiencing [renewed critical re-examination](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615)[<sup>6</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8).
 
-#### From these sources, iconic maps of the spread of plague were produced in the mid-20th century that [heavily influenced perceptions](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8) on the geographic origins.
-
 <!----------------------------------------------------------------------------->
 <!--                     1 : RS : Origins Maps                               -->
 <!----------------------------------------------------------------------------->
