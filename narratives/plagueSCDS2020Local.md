@@ -72,13 +72,15 @@ abstract: "
 <!--                     2 : LS : Origins New Lens                           -->
 <!----------------------------------------------------------------------------->
 # [New Perspectives](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
-#### In contrast to these initial historical perspectives, genetic evidence offers a very different narrative.
+#### In contrast to these initial historical perspectives, genetic evidence offers a different narrative.
 
 #### Advances in DNA sequencing have made it possible to rapidly sequence the genome of the plague bacterium, *Yersinia pestis*, from outbreak sources across the globe.
 
-#### By examining the relationships between modern plague outbreaks, researchers demonstrated that plague evolved [in or near East Asia]((https://doi.org/10.1038/ng.705) [<sup>8</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) with multiple global radiations throughout history.
+#### DNA is unique in that it provides a continual record of change over time. That includes both mutations occurring within an organism's lifetime as well as those that appeared in an ancestral population. Because of this unique characteristic, DNA can be used to make inferences about events occurring in the very distant past. One example presented here is linking ancient evolutionary events to geographic locations.
 
-#### The accompanying spread map reproduces this finding, through the analysis of 151 DNA samples of modern *Y. pestis*. This analysis calculates relatedness between bacterial samples, and tracks the mutations that have occurred over time and space. Estimates are then provided on the possible locations of plague in the distant past, affirming the most likely regions to be in East or Central Asia.
+#### The accompanying spread map visualizes 151 DNA samples of modern *Y. pestis* (1947-2016). The underlying analyses calculate relatedness between plague bacteria and track the mutations that have occurred over time and space. Estimates are then provided on the possible locations of plague in the distant past, suggesting the most likely regions to be [in or near East Asia]((https://doi.org/10.1038/ng.705) [<sup>8</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
+
+[Restart Spread Animation](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
 
 <!----------------------------------------------------------------------------->
 <!--                     3 : LS : Origins Ancient DNA                        -->
