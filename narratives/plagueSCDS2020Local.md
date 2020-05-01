@@ -38,7 +38,7 @@ abstract: "
 <!----------------------------------------------------------------------------->
 <!--                     1 : LS : Origins Ancient Plague                     -->
 <!----------------------------------------------------------------------------->
-# [Origins: The Ancient Plagues](http://localhost:4000/plague150Local?d=map)
+# [Contentious Origins](http://localhost:4000/plague150Local?d=map)
 #### The plagues of the ancient world have intriguing geographic origins.
 
 #### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in [Central and East Africa](https://doi.org/10.2307/600071)[<sup>1</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8), [the Middle East, as well as Western and Central Asia](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html)[<sup>2</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).<br>
@@ -71,7 +71,7 @@ abstract: "
 <!----------------------------------------------------------------------------->
 <!--                     2 : LS : Origins New Lens                           -->
 <!----------------------------------------------------------------------------->
-# [Origins: Through a New Lens](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
+# [New Perspectives](http://localhost:4000/plague150Local?d=map&animate=1400-01-01,2017-01-01,0,1,30000)
 #### In contrast to these initial historical perspectives, genetic evidence offers a very different narrative.
 
 #### Advances in DNA sequencing have made it possible to rapidly sequence the genome of the plague bacterium, *Yersinia pestis*, from outbreak sources across the globe.
@@ -83,7 +83,7 @@ abstract: "
 <!----------------------------------------------------------------------------->
 <!--                     3 : LS : Origins Ancient DNA                        -->
 <!----------------------------------------------------------------------------->
-# [Origins: Ancient DNA](http://localhost:4000/plague150Local?d=map&country=sweden)
+# [Ancient DNA](http://localhost:4000/plague150Local?d=map&country=sweden)
 #### But the picture grows murkier still. Ancient plague DNA retrieved from victims of past epidemics provides new windows into the past.
 <a href="https://www.history.com/news/is-the-black-death-the-ancestor-of-all-modern-plagues">
   <img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
