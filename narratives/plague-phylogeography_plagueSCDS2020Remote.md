@@ -49,6 +49,8 @@ Override font size to 30 px
 # [Origins: The Ancient Plagues](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=map)
 #### The plagues of the ancient world have intriguing geographic origins.
 
+<p style='color: red ! important;'> Override font color to red</p>
+
 #### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in [Central and East Africa](https://doi.org/10.2307/600071)[<sup>1</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8), [the Middle East, as well as Western and Central Asia](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html)[<sup>2</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8).<br>
 
 #### Iconic maps produced in the mid-20th century have [largely influenced the discussion](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8) on the spread of the plague. The historical sources used to [estimate plague mortality](https://www.springer.com/gp/book/9783540257943)[<sup>4</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8) consist of documents such as parish records, financial transactions, wills, and local testimonies.
