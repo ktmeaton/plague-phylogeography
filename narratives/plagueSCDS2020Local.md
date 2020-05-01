@@ -30,6 +30,15 @@ abstract: "
 <br>
    [Digital Scholarship](http://localhost:4000/narratives/plagueSCDS2020Local?n=7)
 </pre>
+
+<p style='color: red ! important;'>
+Override text color to red
+</p>
+
+<p style='font-size: 30px ! important;'>
+Override font size
+</p>
+
 "
 ---
 
