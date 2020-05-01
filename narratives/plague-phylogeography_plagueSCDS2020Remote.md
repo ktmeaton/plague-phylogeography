@@ -30,6 +30,15 @@ abstract: "
 <br>
    [Digital Scholarship](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=7)
 </pre>
+
+<p style='color: red ! important;'>
+Override text color to red
+</p>
+
+<p style='font-size: 30px ! important;'>
+Override font size
+</p>
+
 "
 ---
 
