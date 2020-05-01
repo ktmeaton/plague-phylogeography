@@ -82,14 +82,16 @@ abstract: "
 
 #### [Restart Spread Animation](http://localhost:4000/narratives/plagueSCDS2020Local?n=2).
 
+#### However, modern DNA as a form of evidence, similar to the historical sources discussed previously, suffers from several key flaws. Notably, the strong geographic bias towards where <i>modern</i> plague epidemics occur has greatly restricted our view of the past.
+
 <!----------------------------------------------------------------------------->
 <!--                     3 : LS : Origins Ancient DNA                        -->
 <!----------------------------------------------------------------------------->
 # [Ancient DNA](http://localhost:4000/plague150Local?d=map&country=sweden)
-#### But the picture grows murkier still. Ancient plague DNA retrieved from victims of past epidemics provides new windows into the past.
+#### And so the picture grows murkier still. Ancient plague DNA retrieved from victims of historic epidemics provides new windows into the past.
 <a href="https://www.history.com/news/is-the-black-death-the-ancestor-of-all-modern-plagues">
   <img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
-        <p style='text-align: center;'>London's East Smithfield "plague pits", 1348-1349.</p>
+        <p style='text-align: center;'>London's East Smithfield "plague pits", Black Death.</p>
 </a>
 
 #### A recent study identified the plague bacterium in skeletal remains from [Sweden 4,900 years ago](https://doi.org/10.1016/j.cell.2018.11.005)[<sup>9</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8). This finding yet again prompts alternative hypotheses concerning the spread of the plague across Eurasia. The case is anything but closed.
