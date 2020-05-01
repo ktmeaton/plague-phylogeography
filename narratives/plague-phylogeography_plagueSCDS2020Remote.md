@@ -7,13 +7,13 @@ abstract: "
 
 ### While our knowledge of the plague has grown tremendously, there are many outstanding questions:
 <br><br>
-1. **WHERE** did the ancient pandemics originate?  
+1. <b>Where</b> did the ancient pandemics originate?  
 <br>
-2. **WHEN** might dormant plague zones re-activate?  
+2. <b>When</b> might dormant plague zones re-activate?  
 <br>
-3. **WHY** has the plague gone extinct in some regions?
+3. <b>Why</b> has the plague gone extinct in some regions?
 <br>
-4. **HOW** does a community respond to losing a large portion of its population?
+4. <b>How</b> does a community respond to losing a large portion of its population?
 <br><br>
 
 ### The mysteries of the plague bring together researchers from a wide variety of disciplines from art history to microbiology. Each field contributes a unique perspective to the questions of how people are affected and cope with this disease, as well as where, when, and why it suddenly appears...
