@@ -43,9 +43,9 @@ abstract: "
 
 #### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in [Central and East Africa](https://doi.org/10.2307/600071)[<sup>1</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8), [the Middle East, as well as Western and Central Asia](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html)[<sup>2</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).<br>
 
-#### The historical sources used to [estimate plague mortality](https://www.springer.com/gp/book/9783540257943)[<sup>4</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) consist of documents such as parish records, financial transactions, wills, and local testimonies. These documents are used to trace the progressive movement of plague between populations and are visualized in the form of spread maps.
+#### The historical sources used to [estimate plague mortality](https://www.springer.com/gp/book/9783540257943)[<sup>3</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) consist of documents such as parish records, financial transactions, wills, and local testimonies. These documents are used to trace the progressive movement of plague between populations and are visualized in the form of spread maps.
 
-#### However, these source documents can be of poor quality or are sparsely found leading to [high levels of uncertainty](https://doi.org/10.1111/j.1467-9671.2012.01369.x)[<sup>5</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8). As a result, the historical sources used in the construction of these maps are experiencing [renewed critical re-examination](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615)[<sup>6</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
+#### However, these source documents can be of poor quality or are sparsely found leading to [high levels of uncertainty](https://doi.org/10.1111/j.1467-9671.2012.01369.x)[<sup>4</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8). As a result, the historical sources used in the construction of these maps are experiencing [renewed critical re-examination](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615)[<sup>5</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
 
 <!----------------------------------------------------------------------------->
 <!--                     1 : RS : Origins Maps                               -->
@@ -55,7 +55,7 @@ abstract: "
 <div>
   <a href="https://doi.org/10.13140/RG.2.2.25362.25281">
     <img alt="microscopy image of coronaviruses" width="500" src="https://www.researchgate.net/profile/Anne_Laudisoit2/publication/315837122/figure/fig1/AS:652961457897473@1532689551350/a-leftThe-origin-and-spread-of-Justinian-plague.png"/>
-      <pre>                         Spread of the Justinian Plague [7]                         </pre>
+      <pre>                         Spread of the Justinian Plague [6]                         </pre>
   </a>
 
   <a href="https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html">
@@ -78,7 +78,7 @@ abstract: "
 
 #### DNA is unique in that it provides a continual record of change over time. That includes both mutations occurring within an organism's lifetime as well as those that appeared in an ancestral population. Because of this unique characteristic, DNA can be used to make inferences about events occurring in the very distant past. One example presented here is linking ancient evolutionary events to geographic locations.
 
-#### The accompanying spread map visualizes 151 DNA samples of modern *Y. pestis* (1947-2016). The underlying analyses calculate relatedness between plague bacteria and track the mutations that have occurred over time and space. Estimates are then provided on the possible locations of plague in the distant past, suggesting the most likely regions to be [in or near East Asia]((https://doi.org/10.1038/ng.705) [<sup>8</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
+#### The accompanying spread map visualizes 151 DNA samples of modern *Y. pestis* (1947-2016). The underlying analyses calculate relatedness between plague bacteria and track the mutations that have occurred over time and space. Estimates are then provided on the possible locations of plague in the distant past, suggesting the most likely regions to be [in or near East Asia]((https://doi.org/10.1038/ng.705) [<sup>7</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
 
 #### [Restart Spread Animation](http://localhost:4000/narratives/plagueSCDS2020Local?n=2).
 
@@ -94,7 +94,7 @@ abstract: "
         <p style='text-align: center;'>London's East Smithfield "plague pits", Black Death.</p>
 </a>
 
-#### A recent study identified the plague bacterium in skeletal remains from [Sweden 4,900 years ago](https://doi.org/10.1016/j.cell.2018.11.005)[<sup>9</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8). Given that Europe was largely excluded from being a candidate origin of plague, this finding is particularly surprising. New hypotheses are constantly emerging concerning the spread of plague across Eurasia. The case is anything but closed.
+#### A recent study identified the plague bacterium in skeletal remains from [Sweden 4,900 years ago](https://doi.org/10.1016/j.cell.2018.11.005)[<sup>8</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8). Given that Europe was largely excluded from being a candidate origin of plague, this finding is particularly surprising. New hypotheses are constantly emerging concerning the spread of plague across Eurasia. The case is anything but closed.
 <a href="https://doi.org/10.1016/j.cell.2018.11.005">
   <img src="https://raw.githubusercontent.com/ktmeaton/plague-phylogeography/master/narratives/images/neolithic-map-1.png" width="80%">
         <p style='text-align: center;'>The Spread of Neolithic Plague [9]</p>
@@ -111,7 +111,7 @@ abstract: "
 
 #### Unfortunately, the plague does not follow the rules of a <b>"molecular clock"</b>, where evolution should occur at a constant rate. Under this model, a 'younger' strain (ex. collected in 2000) should have more mutations than an 'older' strain (ex. collected in 1950).
 
-#### Instead, there are dramatic fluctuations where the bacterium may ["speed up" or "slow down" it's pace of evolution](https://doi.org/10.1073/pnas.1205750110)[<sup>10</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
+#### Instead, there are dramatic fluctuations where the bacterium may ["speed up" or "slow down" it's pace of evolution](https://doi.org/10.1073/pnas.1205750110)[<sup>9</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).
 
 # Regression
 
@@ -128,7 +128,7 @@ abstract: "
 # [Plague's Not Picky](http://localhost:4000/plague150Local?d=tree&c=host&legend=open)
 #### The solution could be in understanding why this disease does not evolve in a "clock-like" manner. And a clue may lie in considering the ecology of plague.
 
-#### Although plague is primarily a disease of rodents, [virtually all mammals](http://reviverestore.org/wp-content/uploads/2015/02/Gage-and-Kosoy_USGS-Blk-footed-ferret-symp_2006-copy.pdf)[<sup>11</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) are capable of becoming infected when exposed . The movement of plague between novel hosts and environments may be a key factor in explaining why the rate of evolution changes so suddenly.
+#### Although plague is primarily a disease of rodents, [virtually all mammals](http://reviverestore.org/wp-content/uploads/2015/02/Gage-and-Kosoy_USGS-Blk-footed-ferret-symp_2006-copy.pdf)[<sup>10</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) are capable of becoming infected when exposed . The movement of plague between novel hosts and environments may be a key factor in explaining why the rate of evolution changes so suddenly.
 
 #### The accompanying visual is a [phylogenetic tree](https://nextstrain.org/help/general/how-to-read-a-tree), where the bubbles represent plague samples and the connecting lines show their degree of relatedness. The color indicates what mammalian host or flea vector the bacteria was isolated from.
 
@@ -143,7 +143,7 @@ abstract: "
 # [Human Spillover](http://localhost:4000/plague150Local?c=host&d=tree,map&f_host=Homo&legend=closed)
 #### This ecological fluidity to adapt to different hosts has had devastating consequences for human populations.
 
-#### ['Spillover' events](https://doi.org/10.1038/nrmicro.2017.45)[<sup>12</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8), where plague crosses over environmental and species boundaries, has led to human outbreaks all across the globe.
+#### ['Spillover' events](https://doi.org/10.1038/nrmicro.2017.45)[<sup>11</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8), where plague crosses over environmental and species boundaries, has led to human outbreaks all across the globe.
 
 #### There is not just a single strain of plague responsible for human infections. Instead, plague strains from many different lineages throughout the evolutionary tree have been linked to epidemics.
 
@@ -172,31 +172,12 @@ abstract: "
 # [References](http://localhost:4000/plague150Local?d=tree,map&legend=closed)
 1. Dols, M. W. (1974). [Plague in early Islamic history](https://doi.org/10.2307/600071). *Journal of the American Oriental Society*, 94(3), 371–383.
 2. Benedictow, O. J. (2004). [The Black Death, 1346-1353: The Complete History](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html). Woodbridge, Suffolk, United Kingdom: Boydell Press.
-3. Mengel, D. C. (2011). [A plague on Bohemia? Mapping the Black Death](https://doi.org/10.1093/pastj/gtq069). *Past & Present*, 211(1), 3–34.
-4. Christakos, G., Olea, R. A., Serre, M. L., Yu, H.-L., & Wang, L.-L. (2005). [Interdisciplinary Public Health Reasoning and Epidemic Modelling: The Case of Black Death](https://doi.org/10.1007/3-540-28165-7). Berlin Heidelberg: Springer-Verlag.
-5. Skog, L., & Hauska, H. (2013). [Spatial Modeling of the Black Death in Sweden](https://doi.org/10.1111/j.1467-9671.2012.01369.x). *Transactions in GIS*, 17(4), 589–611.
-6. Bossak, B. H., & Welford, M. R. (2016). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615). In P. Kanaroglou & E. D. Delmelle (Eds.), Spatial Analysis in Health Geography (pp. 93–106). Routledge.
-7. Laudisoit, A. (2009). [Diversity, ecology and status of potential hosts and vectors of the plague bacillus *Yersinia pestis* (PhD Thesis)](https://doi.org/10.13140/RG.2.2.25362.25281). University of Liège and Antwerpen.
-8. Morelli, G., Song, Y., Mazzoni, C. J., Eppinger, M., Roumagnac, P., Wagner, D. M., ... Achtman, M. (2010). [*Yersinia pestis* genome sequencing identifies patterns of global phylogenetic diversity](https://doi.org/10.1038/ng.705). *Nature Genetics*, 42(12), 1140–1143.
-9. Rascovan, N., Sjögren, K.-G., Kristiansen, K., Nielsen, R., Willerslev, E., Desnues, C., & Rasmussen, S. (2019). [Emergence and spread of basal lineages of *Yersinia pestis* during the Neolithic Decline](https://doi.org/10.1016/j.cell.2018.11.005). *Cell*, 176(1), 295-305.e10.
-10. Cui, Y., Yu, C., Yan, Y., Li, D., Li, Y., Jombart, T., ... Yang, R. (2013). [Historical variations in mutation rate in an epidemic pathogen, *Yersinia pestis*](https://doi.org/10.1073/pnas.1205750110). *Proceedings of the National Academy of Sciences*, 110(2), 577–582.
-11. Gage, K., & Kosoy, M. (2006). [Recent trends in plague ecology](http://reviverestore.org/wp-content/uploads/2015/02/Gage-and-Kosoy_USGS-Blk-footed-ferret-symp_2006-copy.pdf). *USG Survey*, 213–231.
-12. Plowright, R. K., Parrish, C. R., McCallum, H., Hudson, P. J., Ko, A. I., Graham, A. L., & Lloyd-Smith, J. O. (2017). [Pathways to zoonotic spillover](https://doi.org/10.1038/nrmicro.2017.45). *Nature Reviews Microbiology*, 15(8), 502–510.5
-
-<!----------------------------------------------------------------------------->
-<!--                     8 : LS : References Numbered                        -->
-<!----------------------------------------------------------------------------->
-# [Left Panel Styling](https://nextstrain.org/community/inrb-drc/ebola-nord-kivu)
-<p style='text-align:center; color:red; font-size:30px; font-family:Arial'>
-Big, red, centered, Arial text.
-<br>
-<b>Bolded!</b>
-</p>
-
-```auspiceMainDisplayMarkdown
-# Right Panel Styling
-<p style='text-align:center; color:red; font-size:30px; font-family:Arial'>
-I would like this to be big, red, centered, Arial text.
-<b>This text doesn't appear!</b>
-</p>
-```
+3. Christakos, G., Olea, R. A., Serre, M. L., Yu, H.-L., & Wang, L.-L. (2005). [Interdisciplinary Public Health Reasoning and Epidemic Modelling: The Case of Black Death](https://doi.org/10.1007/3-540-28165-7). Berlin Heidelberg: Springer-Verlag.
+4. Skog, L., & Hauska, H. (2013). [Spatial Modeling of the Black Death in Sweden](https://doi.org/10.1111/j.1467-9671.2012.01369.x). *Transactions in GIS*, 17(4), 589–611.
+5. Bossak, B. H., & Welford, M. R. (2016). [Spatio-Temporal Characteristics of the Medieval Black Death](https://www.routledge.com/Spatial-Analysis-in-Health-Geography/Kanaroglou-Delmelle/p/book/9781138546615). In P. Kanaroglou & E. D. Delmelle (Eds.), Spatial Analysis in Health Geography (pp. 93–106). Routledge.
+6. Laudisoit, A. (2009). [Diversity, ecology and status of potential hosts and vectors of the plague bacillus *Yersinia pestis* (PhD Thesis)](https://doi.org/10.13140/RG.2.2.25362.25281). University of Liège and Antwerpen.
+7. Morelli, G., Song, Y., Mazzoni, C. J., Eppinger, M., Roumagnac, P., Wagner, D. M., ... Achtman, M. (2010). [*Yersinia pestis* genome sequencing identifies patterns of global phylogenetic diversity](https://doi.org/10.1038/ng.705). *Nature Genetics*, 42(12), 1140–1143.
+8. Rascovan, N., Sjögren, K.-G., Kristiansen, K., Nielsen, R., Willerslev, E., Desnues, C., & Rasmussen, S. (2019). [Emergence and spread of basal lineages of *Yersinia pestis* during the Neolithic Decline](https://doi.org/10.1016/j.cell.2018.11.005). *Cell*, 176(1), 295-305.e10.
+9. Cui, Y., Yu, C., Yan, Y., Li, D., Li, Y., Jombart, T., ... Yang, R. (2013). [Historical variations in mutation rate in an epidemic pathogen, *Yersinia pestis*](https://doi.org/10.1073/pnas.1205750110). *Proceedings of the National Academy of Sciences*, 110(2), 577–582.
+10. Gage, K., & Kosoy, M. (2006). [Recent trends in plague ecology](http://reviverestore.org/wp-content/uploads/2015/02/Gage-and-Kosoy_USGS-Blk-footed-ferret-symp_2006-copy.pdf). *USG Survey*, 213–231.
+11. Plowright, R. K., Parrish, C. R., McCallum, H., Hudson, P. J., Ko, A. I., Graham, A. L., & Lloyd-Smith, J. O. (2017). [Pathways to zoonotic spillover](https://doi.org/10.1038/nrmicro.2017.45). *Nature Reviews Microbiology*, 15(8), 502–510.5
