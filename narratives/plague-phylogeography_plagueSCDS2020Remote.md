@@ -32,11 +32,11 @@ abstract: "
 </pre>
 
 <p style='color: red ! important;'>
-Override text color to red
+Override font color to red
 </p>
 
 <p style='font-size: 30px ! important;'>
-Override font size
+Override font size to 30 px
 </p>
 
 "
