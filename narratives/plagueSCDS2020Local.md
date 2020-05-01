@@ -3,17 +3,17 @@ title: "Plagues of the Past and Present"
 authors: "Katherine Eaton"
 dataset: "http://localhost:4000/plague150Local?d=map&legend=closed"
 abstract: "
-'The Plague' is a mystifying and devastating disease that has re-emerged multiple times throughout history. From the Plague of Justinian (6th century), through the centuries long Black Death Pandemic (14th-19th century), to the Madagascar Plague Outbreak (2017), this infectious disease has resulted in exceptional mortality and societal upheaval.
+'The Plague' is a mystifying and devastating disease that has re-emerged multiple times throughout history. From the Plague of Justinian (6th century), through the centuries long Black Death (14th-19th century), to the Madagascar Plague Outbreak (2017), this infectious disease has resulted in exceptional mortality and societal upheaval.
 
 ### While our knowledge of the plague has grown tremendously, there are many outstanding questions:
 <br><br>
-1. __Where__ did the ancient pandemics originate?  
+1. **WHERE** did the ancient pandemics originate?  
 <br>
-2. __When__ might dormant plague zones re-activate?  
+2. **WHEN** might dormant plague zones re-activate?  
 <br>
-3. __Why__ has the plague gone extinct in some regions?
+3. **WHY** has the plague gone extinct in some regions?
 <br>
-4. __How__ does a community respond to losing a large portion of its population?
+4. **HOW** does a community respond to losing a large portion of its population?
 <br><br>
 
 ### The mysteries of the plague bring together researchers from a wide variety of disciplines from art history to microbiology. Each field contributes a unique perspective to the questions of how people are affected and cope with this disease, as well as where, when, and why it suddenly appears...
@@ -41,8 +41,6 @@ abstract: "
 #### The plagues of the ancient world have intriguing geographic origins.
 
 #### Early hypotheses on the 'origins' of the ancient plagues varied greatly including regions in [Central and East Africa](https://doi.org/10.2307/600071)[<sup>1</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8), [the Middle East, as well as Western and Central Asia](https://boydellandbrewer.com/the-black-death-1346-1353-the-complete-history.html)[<sup>2</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8).<br>
-
-# The Power of Maps
 
 #### Iconic maps produced in the mid-20th century have [largely influenced the discussion](https://academic.oup.com/past/article-abstract/211/1/3/1381253)[<sup>3</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) on the spread of the plague. The historical sources used to [estimate plague mortality](https://www.springer.com/gp/book/9783540257943)[<sup>4</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) consist of documents such as parish records, financial transactions, wills, and local testimonies.
 
@@ -125,11 +123,11 @@ abstract: "
 <!--                     5 : LS : Ecology Picky                              -->
 <!----------------------------------------------------------------------------->
 # [Ecology: Plague's Not Picky](http://localhost:4000/plague150Local?d=tree&c=host&legend=open)
-#### The solution could be in understanding **why** this disease does not evolve in a "clock-like" manner. And a clue may lie in considering the ecology of plague.
+#### The solution could be in understanding why this disease does not evolve in a "clock-like" manner. And a clue may lie in considering the ecology of plague.
 
 #### Although plague is primarily a disease of rodents, [virtually all mammals](http://reviverestore.org/wp-content/uploads/2015/02/Gage-and-Kosoy_USGS-Blk-footed-ferret-symp_2006-copy.pdf)[<sup>11</sup>](http://localhost:4000/narratives/plagueSCDS2020Local?n=8) are capable of becoming infected when exposed . The movement of plague between novel hosts and environments may be a key factor in explaining why the rate of evolution changes so suddenly.
 
-#### The accompanying visual is a **phylogenetic tree**, where the bubbles represent plague samples and the connecting lines show their degree of relatedness. The color indicates what mammalian host or flea vector the bacteria was isolated from.
+#### The accompanying visual is a [phylogenetic tree](https://nextstrain.org/help/general/how-to-read-a-tree), where the bubbles represent plague samples and the connecting lines show their degree of relatedness. The color indicates what mammalian host or flea vector the bacteria was isolated from.
 
 #### No obvious patterns emerge as the colors appear 'randomly' distributed. But perhaps the [rodent subfamily Arvicolinae](http://localhost:4000/plague150Local?c=host&d=tree&f_host=Microtus,Neodon,Lasiopodomys) is tentatively associated with extra-long branch lengths (ie. rapid evolution).
 
@@ -148,7 +146,7 @@ abstract: "
 
 #### However, certain lineages of plague seem to be more 'successful' than others, leading to global pandemics and extensive mortality.
 
-#### The question of **why** these particular bacteria vary in their virulence potential continues to be a question of paramount importance.
+#### The question of why these particular bacteria vary in their virulence potential continues to be one of paramount importance.
 
 
 <!----------------------------------------------------------------------------->
