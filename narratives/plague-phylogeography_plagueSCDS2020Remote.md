@@ -104,18 +104,18 @@ abstract: "
 <!----------------------------------------------------------------------------->
 <!--                     4 : LS : Evolution Time Vortex                      -->
 <!----------------------------------------------------------------------------->
-# [Evolution: A Time Vortex](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&l=clock&m=time)
+# [Time Vortex of Evolution](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&l=clock&m=time)
 #### To critique the previous maps on the spread of the plague, it is important to consider several statistical problems.
 
 #### To model the past using genetic data, we make and test theories about how evolution proceeds over time.
 
 #### Unfortunately, the plague does not follow the rules of a <b>"molecular clock"</b>, where evolution should occur at a constant rate. Under this model, a 'younger' strain (ex. collected in 2000) should have more mutations than an 'older' strain (ex. collected in 1950).
 
-#### Instead, there are dramatic fluctuations where the bacterium may "speed up" or "slow down" it's [pace and mode of evolution](https://doi.org/10.1073/pnas.1205750110)[<sup>10</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8).
+#### Instead, there are dramatic fluctuations where the bacterium may ["speed up" or "slow down" it's pace of evolution](https://doi.org/10.1073/pnas.1205750110)[<sup>10</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8).
 
 # Regression
 
-#### The visual to the right compares time on the X-axis (the date) with the mutations that have occurred on the Y-axis (divergence). The dots represent plague samples, and ideally they should fall close to the dark black line.
+#### The visual to the right compares time on the X-axis (the date) with the mutations that have occurred on the Y-axis (divergence). The dots represent plague samples, and ideally they should fall on the dark black line.
 
 #### The bubbles above the black line have <b>more</b> mutations than expected, and those below the black line have <b>fewer</b> mutations than expected.
 
@@ -125,7 +125,7 @@ abstract: "
 <!----------------------------------------------------------------------------->
 <!--                     5 : LS : Ecology Picky                              -->
 <!----------------------------------------------------------------------------->
-# [Ecology: Plague's Not Picky](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&c=host&legend=open)
+# [Plague's Not Picky](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?d=tree&c=host&legend=open)
 #### The solution could be in understanding why this disease does not evolve in a "clock-like" manner. And a clue may lie in considering the ecology of plague.
 
 #### Although plague is primarily a disease of rodents, [virtually all mammals](http://reviverestore.org/wp-content/uploads/2015/02/Gage-and-Kosoy_USGS-Blk-footed-ferret-symp_2006-copy.pdf)[<sup>11</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8) are capable of becoming infected when exposed . The movement of plague between novel hosts and environments may be a key factor in explaining why the rate of evolution changes so suddenly.
@@ -140,7 +140,7 @@ abstract: "
 <!----------------------------------------------------------------------------->
 <!--                     6 : LS : Ecology Human                              -->
 <!----------------------------------------------------------------------------->
-# [Ecology: Human Spillover](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?c=host&d=tree,map&f_host=Homo&legend=closed)
+# [Human Spillover](https://nextstrain.org/community/ktmeaton/plague-phylogeography/plague150Remote?c=host&d=tree,map&f_host=Homo&legend=closed)
 #### This ecological fluidity to adapt to different hosts has had devastating consequences for human populations.
 
 #### ['Spillover' events](https://doi.org/10.1038/nrmicro.2017.45)[<sup>12</sup>](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote?n=8), where plague crosses over environmental and species boundaries, has led to human outbreaks all across the globe.
