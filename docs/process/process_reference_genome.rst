@@ -18,9 +18,9 @@ reference_genome_gb_ftp                   gbff.gz                     The refere
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_reference_genome_snippy_pairwise       fasta                       The reference genome for process :ref:`snippy_pairwise<Snippy Pairwise`.
-ch_reference_detect_repeats               fasta                       The reference genome for process :ref:`detect_repeats<Detect Repeats>`.
-ch_reference_genome_detect_low_complexity fasta                       The reference genome for process :ref:`detect_low_complexity<Detect Low Complexity>`.
+ch_reference_genome_snippy_pairwise       fasta                       The reference genome for process :ref:`snippy_pairwise<Snippy Pairwise>`.
+ch_reference_detect_repeats               fasta                       The reference genome for process :ref:`detect_repeats<Reference Detect Repeats>`.
+ch_reference_genome_detect_low_complexity fasta                       The reference genome for process :ref:`detect_low_complexity<Reference Detect Low Complexity>`.
 ch_reference_genome_snippy_multiple       gbff                        The reference genome for process :ref:`snippy_multi<Snippy Multi>`.
 ========================================= =========================== ===========================
 
