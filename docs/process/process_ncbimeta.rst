@@ -22,7 +22,7 @@ ch_ncbimeta_yaml_update                   yaml                        NCBImeta c
 ========================================= =========================== ===========================
 Publish                                    Type                        Description
 ========================================= =========================== ===========================
-${params.ncbimeta_sqlite_db}              sqlite                      NCBImeta SQLite database.
+ncbimeta_sqlite_db                        sqlite                      NCBImeta SQLite database.
 ncbimeta_yaml                             yaml                        NCBImeta config file.
 \*.log                                    text                        Text logs of NCBImeta database creation.
 ========================================= =========================== ===========================
