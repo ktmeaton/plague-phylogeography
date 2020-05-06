@@ -228,16 +228,18 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
 
   process sqlite_import{
     /*
-    Import assembly FTP url from database, also retrieve file names for web get.
+    Import assembly FTP url from database, retrieve file names for web get, prepare TSV input of SRA metadata for EAGER pipeline.
 
     Input:
     ch_sqlite (sqlite): NCBImeta SQLite database from process ncbimeta_db_update or params.sqlite
 
     Output:
-    ch_assembly_for_download_ftp (url): FTP url for process assembly_download.
+    ch_assembly_for_download_ftp (text): FTP url for process assembly_download.
+    ch_sra_tsv_for_eager (tsv): TSV metadata input for process eager.
 
     Publish:
     file_assembly_for_download_ftp (text): List of FTP urls for genomic assembly download.
+    ${params.eager_tsv} (tsv): TSV metadata input for EAGER pipeline.
     */
     // Other variables and config
     tag "$sqlite"
