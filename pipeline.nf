@@ -243,7 +243,6 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     */
     // Other variables and config
     tag "$sqlite"
-    echo true
     publishDir "${outdir}/sqlite_import", mode: 'copy'
     // Set the sqlite channel to update or sqlite import depending on ncbimeta mode
     // TO DO: catch if both parameters are specified!!!
@@ -330,38 +329,6 @@ if (!params.skip_assembly_download){
 }
 
 // -------------------------------------------------------------------------- //
-//                                SRA Download                                //
-// -------------------------------------------------------------------------- //
-/*
-process sra_download{
-
-  Input:
-  ch_():
-
-  Output:
-  ch_ ():
-
-  Publish:
-
-  // Other variables and config
-  tag ""
-  publishDir
-
-  // IO and conditional behavior
-  input:
-
-  output:
-
-
-  // Shell script to execute
-  script:
-  """
-  """
-}
-*/
-
-
-// -------------------------------------------------------------------------- //
 //                           Reference Genome Processing                      //
 // -------------------------------------------------------------------------- //
 
@@ -384,11 +351,12 @@ if (!params.skip_reference_download){
      ch_reference_genome_snippy_multiple (gb): The reference genome for process snippy_multi.
 
      Publish:
-     reference_genome/${reference_genome_local.baseName} (fasta): The locally downloaded reference genome.
+     reference_genome_fna_local (fasta): The locally downloaded reference genome.
     */
 
     // Other variables and config
     tag "$reference_genome_fna_local"
+    echo true
     publishDir "${outdir}/reference_genome", mode: 'copy'
 
     // IO and conditional behavior
@@ -405,11 +373,15 @@ if (!params.skip_reference_download){
     """
     gunzip -f ${reference_genome_fna_local}
     gunzip -f ${reference_genome_gb_local}
-    # Fix discrepancies between fna and gbff file headers
-    sed -i 's/NC_003143.1/NC_003143/g' ${reference_genome_fna_local.baseName}
-    sed -i 's/NC_003131.1/NC_003131/g' ${reference_genome_fna_local.baseName}
-    sed -i 's/NC_003134.1/NC_003134/g' ${reference_genome_fna_local.baseName}
-    sed -i 's/NC_003132.1/NC_003132/g' ${reference_genome_fna_local.baseName}
+    # Edit the fasta headers to match the gb loci (for snippy)
+    GB_LOCI=(`grep LOCUS ${reference_genome_gb_local.baseName} | sed 's/ \\+/ /g' | cut -d " " -f 2`);
+    FNA_LOCI=(`grep ">" ${reference_genome_fna_local.baseName} | cut -d " " -f 1 | cut -d ">" -f 2`);
+    i=0;
+    while [ \$i -lt \${#GB_LOCI[*]} ];
+    do
+      sed -i "s/\${FNA_LOCI[\$i]}/\${GB_LOCI[\$i]}/g" ${reference_genome_fna_local.baseName};
+      i=\$(( \$i + 1));
+    done
     """
   }
 
