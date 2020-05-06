@@ -102,13 +102,13 @@ Detect regions of high SNP density.
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_subs_vcf_detect_density         vcf                         Substitutions from process snippy_pairwise.
+ch_snippy_subs_vcf_detect_density         vcf                         Substitutions from process :ref:`snippy_pairwise<Snippy Pairwise>`.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_subs_bed_merge_density          bed                         High-density SNP regions for process snippy_merge_snp_high_density
+ch_snippy_subs_bed_merge_density          bed                         High-density SNP regions for process :ref:`snippy_merge_snp_high_density<Snippy Merge SNP High Density>`.
 ========================================= =========================== ===========================
 
 **Shell script**::
@@ -126,24 +126,24 @@ Sort and merge regions of high SNP density.
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_subs_bed_sort_density           bed                         High density SNP regions collected after process snippy_detect_snp_high_density.
+ch_snippy_subs_bed_sort_density           bed                         High density SNP regions collected after process :ref:`snippy_detect_snp_high_density<Snippy Detect SNP High Density>`.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_subs_bed_density_multi          bed                         Sorted and merged high density SNP regions for process snippy_multi.
+ch_snippy_subs_bed_density_multi          bed                         Sorted and merged high density SNP regions for process :ref:`snippy_multi<Snippy Multi>`.
 ========================================= =========================== ===========================
 
 ========================================================= =========================== ===========================
 Publish                                                   Type                        Description
 ========================================================= =========================== ===========================
-${params.snippy_variant_density}_${workflow.runName}.txt  bed)                        Sorted and merged high density SNP regions.
+snippy_variant_density                                    bed                         Sorted and merged high density SNP regions.
 ========================================================= =========================== ===========================
 
 **Shell script**::
 
-      sort -k1,1 -k2,2n ${snippy_subs_bed} | bedtools merge > ${params.snippy_variant_density}_${workflow.runName}.txt
+      sort -k1,1 -k2,2n ${snippy_subs_bed} | bedtools merge > ${params.snippy_variant_density}.txt
 
 
 ------------

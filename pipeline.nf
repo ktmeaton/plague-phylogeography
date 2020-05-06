@@ -649,7 +649,7 @@ if(!params.skip_snippy_detect_snp_high_density){
     ch_snippy_subs_bed_density_multi (bed): Sorted and merged high density SNP regions for process snippy_multi.
 
     Publish:
-    ${params.snippy_variant_density}_${workflow.runName}.txt (bed): Sorted and merged high density SNP regions.
+    snippy_variant_density(bed): Sorted and merged high density SNP regions.
     */
     // Other variables and config
     tag "$snippy_subs_bed"
