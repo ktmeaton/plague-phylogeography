@@ -18,17 +18,17 @@ reference_genome_gb_ftp                   gbff.gz                     The refere
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_reference_genome_snippy_pairwise       fasta                       The reference genome for process snippy_pairwise.
-ch_reference_detect_repeats               fasta                       The reference genome for process detect_repeats.
-ch_reference_genome_detect_low_complexity fasta                       The reference genome for process detect_low_complexity.
-ch_reference_genome_snippy_multiple       gbff                        The reference genome for process snippy_multi.
+ch_reference_genome_snippy_pairwise       fasta                       The reference genome for process :ref:`snippy_pairwise<Snippy Pairwise`.
+ch_reference_detect_repeats               fasta                       The reference genome for process :ref:`detect_repeats<Detect Repeats>`.
+ch_reference_genome_detect_low_complexity fasta                       The reference genome for process :ref:`detect_low_complexity<Detect Low Complexity>`.
+ch_reference_genome_snippy_multiple       gbff                        The reference genome for process :ref:`snippy_multi<Snippy Multi>`.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
 Publish                                   Type                        Description
 ========================================= =========================== ===========================
-${reference_genome_fna_local.baseName}    fasta                       The locally downloaded reference genome.
-${reference_genome_gb_local.baseName}     gbff                        The locally downloaded reference genome.
+reference_genome_fna_local                fasta                       The locally downloaded reference fasta.
+reference_genome_gb_local                 gbff                        The locally downloaded reference genbank annotation.
 ========================================= =========================== ===========================
 
 
@@ -36,6 +36,15 @@ ${reference_genome_gb_local.baseName}     gbff                        The locall
 
       gunzip -f ${reference_genome_fna_local}
       gunzip -f ${reference_genome_gb_local}
+      # Edit the fasta headers to match the gb loci (for snippy)
+      GB_LOCI=(`grep LOCUS ${reference_genome_gb_local.baseName} | sed 's/ \\+/ /g' | cut -d " " -f 2`);
+      FNA_LOCI=(`grep ">" ${reference_genome_fna_local.baseName} | cut -d " " -f 1 | cut -d ">" -f 2`);
+      i=0;
+      while [ \$i -lt \${#GB_LOCI[*]} ];
+      do
+        sed -i "s/\${FNA_LOCI[\$i]}/\${GB_LOCI[\$i]}/g" ${reference_genome_fna_local.baseName};
+        i=\$(( \$i + 1));
+      done
 
 ------------
 
