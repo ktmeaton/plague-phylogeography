@@ -11,6 +11,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Add exact-repeats and tandem repeats detection
 - Add GeoPy to phylo-env environment
 - Github actions, to build docs and remote narratives
+- Automate SNPEff db creation
 
 ## [v0.1.1] - 2020-04-29 - Narratives and ReadtheDocs
 
