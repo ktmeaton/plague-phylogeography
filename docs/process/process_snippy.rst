@@ -75,19 +75,19 @@ Concatenate variant summary tables for all samples.
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_snps_variant_summary            text                        Table of single-sample summarized SNP counts from process snippy_pairwise
+ch_snippy_snps_variant_summary            text                        Table of single-sample summarized SNP counts from process :ref:`snippy_pairwise<Snippy Pairwise>`.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_variant_summary_multi           text                        Table of multi-sample summarized SNP counts for process snippy_multi
+ch_snippy_variant_summary_multi           text                        Table of multi-sample summarized SNP counts for process :ref:`snippy_multi<Snippy Multi>`.
 ========================================= =========================== ===========================
 
 ========================================================= =========================== ===========================
 Publish                                                   Type                        Description
 ========================================================= =========================== ===========================
-${params.snippy_variant_summary}_${workflow.runName}.txt             text                        Table of multi-sample summarized SNP counts.
+snippy_variant_summary                                    text                        Table of multi-sample summarized SNP counts.
 ========================================================= =========================== ===========================
 
 **Shell script**::
