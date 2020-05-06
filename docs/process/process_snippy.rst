@@ -67,7 +67,7 @@ assembly_fna_snippy.\*                      misc                        All defa
 
 ------------
 
-Snippy Variant Summary
+Snippy Variant Summary Collect
 ----------------------
 
 Concatenate variant summary tables for all samples.
@@ -81,7 +81,7 @@ ch_snippy_snps_variant_summary            text                        Table of s
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_variant_summary_multi           text                        Table of multi-sample summarized SNP counts for process :ref:`snippy_multi<Snippy Multi>`.
+ch_snippy_variant_summary_multi_collect   text                        Table of multi-sample summarized SNP counts for process :ref:`multiqc<MultiQC>`.
 ========================================= =========================== ===========================
 
 ========================================================= =========================== ===========================
@@ -90,9 +90,7 @@ Publish                                                   Type                  
 snippy_variant_summary                                    text                        Table of multi-sample summarized SNP counts.
 ========================================================= =========================== ===========================
 
-**Shell script**::
 
-      < ${snippy_snps_summary} cat > ${params.snippy_variant_summary}
 
 ------------
 

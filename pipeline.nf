@@ -572,73 +572,41 @@ if(!params.skip_snippy_pairwise){
 
 if(!params.skip_snippy_variant_summary){
 
-  process snippy_variant_summary{
+  process snippy_variant_summary_collect{
     /*
     Concatenate variant summary tables for all samples.
 
     Input:
-    ch_snippy_snps_variant_summary (text): Table of single-sample summarized SNP counts from process snippy_pairwise
+    ch_snippy_snps_variant_summary (text): Table of single-sample summarized SNP counts from process snippy_pairwise.
+    ch_snippy_variant_summary_multi_collect (text): Table of multi-sample summarized SNP counts.
 
     Output:
-    ch_snippy_variant_summary_multiple (text): Table of multi-sample summarized SNP counts for process snippy_variant_summary_collect.
+    ch_snippy_variant_summary_multiqc (text): Table of multi-sample summarized SNP counts for process multiqc.
 
     Publish:
-    snippy_variant_summary (text): Table of multi-sample summarized SNP counts.
+    snippy_variant_summary.txt (text): Table of multi-sample summarized SNP counts.
     */
     // Other variables and config
-    tag "$snippy_snps_summary"
+    tag "$variant_summary_collect"
+    publishDir "${outdir}/snippy_variant_summary", mode: 'copy', overwrite: 'true'
+    ch_snippy_snps_variant_summary
+          .collectFile(name: "${params.snippy_variant_summary}.txt",
+          newLine: false)
+          .set{ch_snippy_variant_summary_multi_collect}
 
     // IO and conditional behavior
     input:
-    file snippy_snps_summary from ch_snippy_snps_variant_summary
+    file variant_summary_collect from ch_snippy_variant_summary_multi_collect
 
     output:
-    file params.snippy_variant_summary into ch_snippy_variant_summary_multiple
+    file "${params.snippy_variant_summary}.txt" into ch_snippy_variant_summary_multiqc
 
     // Shell script to execute
     script:
     """
-    < ${snippy_snps_summary} cat > ${params.snippy_variant_summary}
     """
   }
-
 }
-
-process snippy_variant_summary_collect{
-  /*
-  Collect all the Snippy variant summary files into one file.
-
-  Input:
-  ch_snippy_variant_summary_multiple (text): Table of multi-sample summarized SNP counts for process snippy_multi
-  ch_(): ch_snippy_variant_summary_multi_collect
-
-  Output:
-  ch_ ():
-
-  Publish:
-
-  */
-  // Other variables and config
-  tag "$variant_summary_collect"
-  publishDir "${outdir}/snippy_variant_summary", mode: 'copy', overwrite: 'true'
-  ch_snippy_variant_summary_multiple
-        .collectFile(name: "${params.snippy_variant_summary}.txt",
-        newLine: false)
-        .set{ch_snippy_variant_summary_multi_collect}
-
-  // IO and conditional behavior
-  input:
-  file variant_summary_collect from ch_snippy_variant_summary_multi_collect
-
-  output:
-  file "${params.snippy_variant_summary}.txt"
-
-  // Shell script to execute
-  script:
-  """
-  """
-}
-
 // --------------------------Detect High SNP Density--------------------------//
 
 if(!params.skip_snippy_detect_snp_high_density){
