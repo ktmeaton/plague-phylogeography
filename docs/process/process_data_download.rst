@@ -23,7 +23,7 @@ ch_sra_tsv_for_eager                      tsv                         TSV metada
 Publish                                    Type                        Description
 ========================================= =========================== ===========================
 file_assembly_for_download_ftp            text                        List of FTP urls for genomic assembly download.
-${params.eager_tsv}                       tsv                         TSV metadata input for EAGER pipeline.
+eager_tsv                                 tsv                         TSV metadata input for EAGER pipeline.
 ========================================= =========================== ===========================
 
 **Shell script**::
@@ -61,7 +61,7 @@ ch_assembly_fna_gz_local                  fasta.gz                    The genomi
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_assembly_fna_snippy_pairwise           fasta                       The genomic assembly for process snippy_pairwise.
+ch_assembly_fna_snippy_pairwise           fasta                       The genomic assembly for process :ref:`snippy_pairwise<Snippy Pairwise>`..
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
