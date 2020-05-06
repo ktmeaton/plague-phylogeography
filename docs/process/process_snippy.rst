@@ -119,7 +119,7 @@ ch_snippy_subs_bed_merge_density          bed                         High-densi
 ------------
 
 Snippy Sort SNP High Density
-------------------------------
+----------------------------
 
 Sort and merge regions of high SNP density.
 
@@ -149,7 +149,7 @@ snippy_variant_density                                    bed                   
 ------------
 
 Snippy Merge Mask Bed
-------------------------------
+---------------------
 
 Combine, merge, and sort all BED file regions for masking the multiple alignment.
 
@@ -160,7 +160,6 @@ ch_bed_ref_detect_repeats                 bed                         A bed file
 ch_bed_ref_low_complex                    bed                         A bed file containing regions of low-complexity regions from process :ref:`reference_detect_low_complexity<Reference Detect Low Complexity>`.
 ch_snippy_subs_bed_density_multi          bed                         Sorted and merged high density SNP regions from process :ref:`snippy_sort_snp_high_density<Snippy Sort SNP High Density>`.
 ch_bed_mask_master_merge                  bed                         Combined BED files of repeats, low-complexity and (optional) high-density SNP regions.
-
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
@@ -178,3 +177,45 @@ master.bed                                                bed                   
 **Shell script**::
 
       cat ${bed_mask} | sort -k1,1 -k2,2n | bedtools merge > master.bed
+
+------------
+
+Snippy Multi
+------------
+
+Perform a multiple genome alignment with snippy-core.
+
+========================================= =========================== ===========================
+Input                                     Type                        Description
+========================================= =========================== ===========================
+ch_reference_genome_snippy_multi          gbff                        The reference genome from process :ref:`reference_download<Reference Download>`.
+ch_bed_mask_snippy_multi                  bed                         Master masking BED file from process :ref:`snippy_merge_mask_bed<Snippy Merge Mask Bed>`.
+========================================= =========================== ===========================
+
+========================================= =========================== ===========================
+Output                                    Type                        Description
+========================================= =========================== ===========================
+ch_snippy_core_aln_filter                 fasta                       Multi fasta of aligned core SNPs for process :ref:`snippy_multi_filter<Snippy Multi Filter>`.
+ch_snippy_core_full_aln_filter            fasta                       Multi fasta of aligned core genome for process :ref:`snippy_multi_filter<Snippy Multi Filter>`.
+========================================= =========================== ===========================
+
+========================================================= =========================== ===========================
+Publish                                                   Type                        Description
+========================================================= =========================== ===========================
+\*                                                        misc                        All default output from snippy-core.
+========================================================= =========================== ===========================
+
+**Shell script**::
+
+      # Store a list of all the Snippy output directories in a file
+      ls -d1 ${outdir}/snippy_pairwise/output${params.snippy_ctg_depth}X/* > allDir;
+      # Save the contents of that file as a variable
+      allDir=`cat allDir`;
+      echo \$allDir;
+      # Perform multiple genome alignment (with custom filtering)
+      snippy-core \
+          --ref ${reference_genome_gb} \
+          --prefix snippy-core \
+          --mask ${bed_mask} \
+          --mask-char ${params.snippy_mask_char} \
+          \$allDir 2>&1 | tee snippy-core.log
