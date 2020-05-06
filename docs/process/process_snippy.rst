@@ -9,31 +9,34 @@ Pairwise align contigs to reference genome with snippy.
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
-ch_assembly_fna_snippy_pairwise           fasta                       The genomic assembly from process assembly_download.
-ch_reference_genome_snippy_pairwise       fasta                       The reference genome from process reference_download.
+ch_assembly_fna_snippy_pairwise           fasta                       The genomic assembly from process :ref:`assembly_download<Assembly Download>`.
+ch_reference_genome_snippy_pairwise       fasta                       The reference genome from process :ref:`reference_download<Reference Download>`.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_snps_variant_summary            text                        Table of summarized SNP counts for process variant_summary.
-ch_snippy_subs_vcf_detect_density         vcf                         Substitutions for process pairwise_detect_snp_high_density.
-ch_snippy_bam_pairwise_qualimap           bam)                        Pairwise alignment file for process qualimap_snippy_pairwise.
+ch_snippy_snps_variant_summary            text                        Table of summarized SNP counts for process :ref:`variant_summary<Variant Summary>`.
+ch_snippy_subs_vcf_detect_density         vcf                         Substitutions for process :ref:`pairwise_detect_snp_high_density<Pairwise Detect SNP High Density>`.
+ch_snippy_bam_pairwise_qualimap           bam                         Pairwise alignment file for process :ref:`qualimap_snippy_pairwise<QualiMap Snippy Pairwise>`.
+ch_snippy_csv_snpEff_multiqc              csv                         Variant summary statistics for process :ref:`multiqc<MultiQC>`.
 ========================================= =========================== ===========================
 
 =========================================== =========================== ===========================
 Publish                                     Type                        Description
 =========================================== =========================== ===========================
-${assembly_fna.baseName}_snippy.summary.txt text                        Table of summarized SNP counts.
-${assembly_fna.baseName}_snippy.subs.vcf    vcf                         Substitutions.
-${assembly_fna.baseName}_snippy.\*          misc                        All default snippy pipeline output.
+assembly_fna_snippy.summary.txt             text                        Table of summarized SNP counts.
+assembly_fna_snippy.subs.vcf                vcf                         Substitutions.
+assembly_fna_snippy.csv                     csv                         SnpEff annotation and summary report.
+assembly_fna_snippy.bam                     bam                         Snippy bam alignment file.
+assembly_fna_snippy.\*                      misc                        All default snippy pipeline output.
 =========================================== =========================== ===========================
 
 **Shell script**::
 
     snippy \
       --prefix ${assembly_fna.baseName}_snippy \
-      --cpus ${params.snippy_cpus} \
+      --cpus ${task.cpus} \
       --reference ${reference_genome_fna} \
       --outdir output${params.snippy_ctg_depth}X/${assembly_fna.baseName} \
       --ctgs ${assembly_fna} \
@@ -53,6 +56,14 @@ ${assembly_fna.baseName}_snippy.\*          misc                        All defa
     SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
     TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' \$snippy_snps_in;`
     echo -e output${params.snippy_ctg_depth}X/${assembly_fna.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
+
+    snippy_snps_filt=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.filt.vcf
+    snippy_snps_csv=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.csv
+    snippy_snps_rename=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.rename.csv
+
+    # SnpEff csv Stats
+    mv \$snippy_snps_csv \$snippy_snps_rename
+    snpEff -v -csvStats \$snippy_snps_csv ${params.snpeff_db} \$snippy_snps_filt
 
 ------------
 
