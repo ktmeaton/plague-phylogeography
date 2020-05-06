@@ -508,10 +508,11 @@ if(!params.skip_snippy_pairwise){
     ch_snippy_csv_snpEff_multiqc (csv): Variant summary statistics for process multiqc.
 
     Publish:
-    ${assembly_fna.baseName}_snippy.summary.txt (text): Table of summarized SNP counts.
-    ${assembly_fna.baseName}_snippy.subs.vcf (vcf): Substitutions.
-    ${assembly_fna.baseName}_snippy.csv (csv): SnpEff annotation and summary report.
-    ${assembly_fna.baseName}_snippy.\* (misc): All default snippy pipeline output.
+    assembly_fna_snippy.summary.txt (text): Table of summarized SNP counts.
+    assembly_fna_snippy.subs.vcf (vcf): Substitutions.
+    assembly_fna_snippy.csv (csv): SnpEff annotation and summary report.
+    assembly_fna_snippy.bam (bam): Snippy bam alignment file.
+    assembly_fna_snippy.\* (misc): All default snippy pipeline output.
     */
     // Other variables and config
     tag "$assembly_fna"
@@ -521,6 +522,7 @@ if(!params.skip_snippy_pairwise){
     input:
     file assembly_fna from ch_assembly_fna_snippy_pairwise
     file reference_genome_fna from ch_reference_genome_snippy_pairwise
+
     output:
     file "output${params.snippy_ctg_depth}X/*/*"
     file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_variant_summary
