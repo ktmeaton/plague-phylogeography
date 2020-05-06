@@ -8,7 +8,8 @@ Extract SRA metadata from an NCBImeta sqlite database to create the tsv input fi
   --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
   --query "SELECT SRASampleName,SRARunAccession, SRALibraryLayout,SRAFileURL From Master WHERE ( BioSampleComment LIKE '%KEEP%')" \
   --organism "Yersinia pestis" \
-  --output "metadata.tsv"
+  --max-datasets 3 \
+  --output metadata.tsv
 """
 
 # This program should only be called from the command-line
@@ -54,6 +55,12 @@ parser.add_argument('--output',
                     dest = 'outPath',
                     required = True)
 
+parser.add_argument('--max-datasets',
+                    help = 'Maximum number of BioSample Accessions to retrieve.',
+                    action = 'store',
+                    dest = 'maxData',
+                    required = True)
+
 # Retrieve user parameters
 args = vars(parser.parse_args())
 
@@ -61,6 +68,7 @@ db_path = args['dbPath']
 sql_query = args['sqlQuery']
 org_name = args['orgName']
 out_path = args['outPath']
+max_dataset = int(args['maxData'])
 
 #------------------------------------------------------------------------------#
 #                            Error Catching                                    #
@@ -115,8 +123,12 @@ record_exists = cur.fetchall()
 # Print the default EAGER header
 out_file.write(EAGER_HEADER + "\n")
 
-# If the record_exists, skip the whole next part (ie. "continue" to next record)
+ # Iterate through all records, keep track and stop if maximum is hit
+record_i = 0
 for record in record_exists:
+    # Exit the for loop if we've hit the maximum number of datasets requested
+    if record_i >= max_dataset:
+        break
     # Biosample Accession
     biosample_acc = record[BIOSAMPLE_ACC_IND]
     # SRA Run Accession
@@ -183,6 +195,9 @@ for record in record_exists:
                   AGE + "\n")
             ftp_i+=2
             sra_i+=1
+
+    # Increment record counter by 1
+    record_i+=1
 
 
 #------------------------------------------------------------------------------#
