@@ -682,6 +682,9 @@ process snippy_merge_mask_bed{
   Combine, merge, and sort all BED file regions for masking the multiple alignment.
 
   Input:
+  ch_bed_ref_detect_repeats (bed): A bed file containing regions of in-exact repeats from process reference_detect_repeats.
+  ch_bed_ref_low_complex (bed): A bed file containing regions of low-complexity regions from process reference_detect_low_complexity.
+  ch_snippy_subs_bed_density_multi (bed): Sorted and merged high density SNP regions from process snippy_sort_snp_high_density.
   ch_bed_mask_master_merge (bed): Combined BED files of repeats, low-complexity and (optional) high-density SNP regions.
 
   Output:

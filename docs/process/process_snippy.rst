@@ -151,18 +151,22 @@ snippy_variant_density                                    bed                   
 Snippy Merge Mask Bed
 ------------------------------
 
-Sort and merge regions of high SNP density.
+Combine, merge, and sort all BED file regions for masking the multiple alignment.
 
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
+ch_bed_ref_detect_repeats                 bed                         A bed file containing regions of in-exact repeats from process :ref:`reference_detect_repeats<Reference Detect Repeats>`.
+ch_bed_ref_low_complex                    bed                         A bed file containing regions of low-complexity regions from process :ref:`reference_detect_low_complexity<Reference Detect Low Complexity>`.
+ch_snippy_subs_bed_density_multi          bed                         Sorted and merged high density SNP regions from process :ref:`snippy_sort_snp_high_density<Snippy Sort SNP High Density>`.
 ch_bed_mask_master_merge                  bed                         Combined BED files of repeats, low-complexity and (optional) high-density SNP regions.
+
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_bed_mask_snippy_multi                  bed                         Master masking BED file for process snippy_multi
+ch_bed_mask_snippy_multi                  bed                         Master masking BED file for process :ref:`snippy_multi<Snippy Multi>`.
 ========================================= =========================== ===========================
 
 ========================================================= =========================== ===========================
