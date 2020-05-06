@@ -258,7 +258,7 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
     file sqlite from ch_sqlite
     output:
     file params.file_assembly_for_download_ftp into ch_assembly_for_download_ftp
-    file params.file_sra_for_download_acc into ch_sra_for_download_acc
+    file params.eager_tsv into ch_sra_tsv_for_eager
 
     // Shell script to execute
     script:
@@ -272,13 +272,13 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
         echo \$asm_ftp >> ${params.file_assembly_for_download_ftp}
       fi;
     done;
-    # Select the SRA Run Accessions
-    sqlite3 ${sqlite} ${params.sqlite_select_command_sra} | grep . | head -n ${params.max_datasets} | sed -E -e 's/ |;/\\n/g' | while read line;
-    do
-      if [[ ! -z \$line ]]; then
-        echo \$line >> ${params.file_sra_for_download_acc}
-      fi;
-    done
+    # Extract SRA Metadata for EAGER tsv
+    ${params.scriptdir}/sqlite_EAGER_tsv.py \
+      --database ${sqlite} \
+      --query ${params.sqlite_select_command_sra} \
+      --organism ${params.eager_organism} \
+      --max-datasets ${params.max_datasets} \
+      --output ${params.eager_tsv}
     """
   }
 
