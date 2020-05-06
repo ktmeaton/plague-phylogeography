@@ -16,8 +16,8 @@ ch_reference_genome_snippy_pairwise       fasta                       The refere
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_snps_variant_summary            text                        Table of summarized SNP counts for process :ref:`variant_summary<Variant Summary>`.
-ch_snippy_subs_vcf_detect_density         vcf                         Substitutions for process :ref:`pairwise_detect_snp_high_density<Pairwise Detect SNP High Density>`.
+ch_snippy_snps_variant_summary            text                        Table of summarized SNP counts for process :ref:`snippy_variant_summary_collect<Snippy Variant Summary Collect>`.
+ch_snippy_subs_vcf_detect_density         vcf                         Substitutions for process :ref:`snippy_detect_snp_high_density<Snippy Detect SNP High Density>`.
 ch_snippy_bam_pairwise_qualimap           bam                         Pairwise alignment file for process :ref:`qualimap_snippy_pairwise<QualiMap Snippy Pairwise>`.
 ch_snippy_csv_snpEff_multiqc              csv                         Variant summary statistics for process :ref:`multiqc<MultiQC>`.
 ========================================= =========================== ===========================
@@ -68,7 +68,7 @@ assembly_fna_snippy.\*                      misc                        All defa
 ------------
 
 Snippy Variant Summary Collect
-----------------------
+------------------------------
 
 Concatenate variant summary tables for all samples.
 
@@ -108,7 +108,7 @@ ch_snippy_subs_vcf_detect_density         vcf                         Substituti
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_subs_bed_merge_density          bed                         High-density SNP regions for process :ref:`snippy_merge_snp_high_density<Snippy Merge SNP High Density>`.
+ch_snippy_subs_bed_merge_density          bed                         High-density SNP regions for process :ref:`snippy_sort_snp_high_density<Snippy Sort SNP High Density>`.
 ========================================= =========================== ===========================
 
 **Shell script**::
@@ -219,3 +219,8 @@ Publish                                                   Type                  
           --mask ${bed_mask} \
           --mask-char ${params.snippy_mask_char} \
           \$allDir 2>&1 | tee snippy-core.log
+
+------------
+
+Snippy Multi Filter
+-------------------
