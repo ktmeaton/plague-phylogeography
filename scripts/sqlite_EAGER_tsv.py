@@ -2,9 +2,9 @@
 """
 @author: Katherine Eaton
 
-sqlite_sra_parse.py
+Extract SRA metadata from an NCBImeta sqlite database to create the tsv input file for EAGER.
 
-./sqlite_sra_parse.py \
+./sqlite_EAGER_tsv.py \
   --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
   --query "SELECT SRASampleName,SRARunAccession, SRALibraryLayout,SRAFileURL From Master WHERE ( BioSampleComment LIKE '%KEEP%')" \
   --organism "Yersinia pestis" \
@@ -25,7 +25,7 @@ import sys                               # Filepath operations
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-parser = argparse.ArgumentParser(description='Short description goes here.',
+parser = argparse.ArgumentParser(description='Extract SRA metadata from an NCBImeta sqlite database to create the tsv input file for EAGER.',
                                  add_help=True)
 
 # Argument groups for the program
@@ -37,13 +37,13 @@ parser.add_argument('--database',
                     required = True)
 
 parser.add_argument('--query',
-                    help = 'SQL query command.',
+                    help = 'SQL query command ("SELECT ...").',
                     action = 'store',
                     dest = 'sqlQuery',
                     required = True)
 
 parser.add_argument('--organism',
-                    help = 'Organism name for EAGER (Genus species).',
+                    help = 'Organism name for EAGER (\"Genus species\").',
                     action = 'store',
                     dest = 'orgName',
                     required = True)
@@ -176,7 +176,7 @@ for record in record_exists:
                   library_layout + "\t" +
                   org_name + "\t" +
                   R1_path + "\t" +
-                  R2_path + "\t" + 
+                  R2_path + "\t" +
                   BAM + "\t" +
                   GROUP + "\t" +
                   POPULATIONS + "\t" +
