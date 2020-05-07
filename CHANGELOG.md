@@ -15,6 +15,14 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Deal with nextstrain augur not working with phylogeny with branch support values
 
+## [v0.1.2] - 2020-05-07 - Metadata
+
+### Added
+- scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py
+
+### Changed
+- git update-index --add --chmod=+x scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py
+
 ## [v0.1.1] - 2020-04-29 - Narratives and ReadtheDocs
 
 ### Added
