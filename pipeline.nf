@@ -688,7 +688,7 @@ process snippy_merge_mask_bed{
   ch_bed_mask_master_merge (bed): Combined BED files of repeats, low-complexity and (optional) high-density SNP regions.
 
   Output:
-  ch_bed_mask_snippy_multi (bed): Master masking BED file for process snippy_multi
+  ch_bed_mask_snippy_multi (bed): Master masking BED file for process snippy_multi.
 
   Publish:
   master.bed (bed): Master masking BED file.
@@ -759,7 +759,6 @@ if(!params.skip_snippy_multi){
     // Shell script to execute
     script:
     """
-    echo ${reference_genome_gb}
     # Store a list of all the Snippy output directories in a file
     ls -d1 ${outdir}/snippy_pairwise/output${params.snippy_ctg_depth}X/* > allDir;
     # Save the contents of that file as a variable

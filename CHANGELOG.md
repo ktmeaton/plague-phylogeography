@@ -12,6 +12,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Add GeoPy to phylo-env environment
 - Github actions, to build docs and remote narratives
 - Automate SNPEff db creation
+- Make the snippy multi filter locus splitting be generic (not plague specific)
 
 ## [v0.1.1] - 2020-04-29 - Narratives and ReadtheDocs
 

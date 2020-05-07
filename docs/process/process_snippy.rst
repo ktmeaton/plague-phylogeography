@@ -224,3 +224,46 @@ Publish                                                   Type                  
 
 Snippy Multi Filter
 -------------------
+
+Filter the multiple alignment for X% missing data and split by locus.
+
+========================================= =========================== ===========================
+Input                                     Type                        Description
+========================================= =========================== ===========================
+ch_snippy_core_full_aln_filter            fasta                       Multi fasta of aligned core genome ffrom process :ref:`snippy_multi<Snippy Multi>`.
+========================================= =========================== ===========================
+
+========================================= =========================== ===========================
+Output                                    Type                        Description
+========================================= =========================== ===========================
+ch_snippy_core_filter_iqtree              fasta                       Multi fasta of filtered core genome sites for process :ref:`iqtree<IQ-TREE>`.
+========================================= =========================== ===========================
+
+========================================================= =========================== ===========================
+Publish                                                   Type                        Description
+========================================================= =========================== ===========================
+snippy_core_full_aln.filterX.fasta                        fasta                       Multi fasta of filtered chromosome genome sites.
+\*.fasta                                                  fasta                       All loci extracted fasta files.
+\*.bed                                                    bed                         All loci bed coordinate files for extraction.
+========================================================= =========================== ===========================
+
+**Shell script**::
+
+      # Split by LOCUS (generates snippy-core_%REPLICON.fasta)
+      ${params.scriptdir}/fasta_split_locus.sh ${snippy_core_full_aln}
+      # Filter full CHROMOSOME alignment (No Missing Data)
+      snp-sites -m -c -b -o ${snippy_core_full_aln.baseName}_CHROM.filter0.fasta ${snippy_core_full_aln.baseName}_CHROM.fasta;
+      # Optional: Filter full alignment to remove less missing data
+      if [[ ${params.snippy_multi_missing_data_text} > 0 ]]; then
+        ${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln.baseName}_CHROM.fasta > ${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta;
+        ${params.scriptdir}/fasta_filterGapsNs.sh \
+            ${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta \
+            ${params.snippy_multi_missing_data} \
+            ${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.backbone > \
+            ${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta;
+      fi;
+      
+------------
+
+IQ-TREE
+-------
