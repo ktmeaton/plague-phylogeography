@@ -933,6 +933,7 @@ process multiqc{
   input:
   file qualimap_misc from ch_snippy_pairwise_qualimap_multiqc.collect()
   file snpeff_misc from ch_snippy_csv_snpEff_multiqc.collect()
+
   output:
   file "*multiqc_report.html"
   file "*_data"
