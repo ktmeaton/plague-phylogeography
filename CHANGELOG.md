@@ -13,6 +13,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Github actions, to build docs and remote narratives
 - Automate SNPEff db creation
 - Make the snippy multi filter locus splitting be generic (not plague specific)
+- Deal with nextstrain augur not working with phylogeny with branch support values
 
 ## [v0.1.1] - 2020-04-29 - Narratives and ReadtheDocs
 

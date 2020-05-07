@@ -512,7 +512,7 @@ if(!params.skip_snippy_pairwise){
     assembly_fna_snippy.subs.vcf (vcf): Substitutions.
     assembly_fna_snippy.csv (csv): SnpEff annotation and summary report.
     assembly_fna_snippy.bam (bam): Snippy bam alignment file.
-    assembly_fna_snippy.\* (misc): All default snippy pipeline output.
+    assembly_fna_snippy.* (misc): All default snippy pipeline output.
     */
     // Other variables and config
     tag "$assembly_fna"
@@ -780,17 +780,18 @@ if(!params.skip_snippy_multi_filter){
 
   process snippy_multi_filter{
     /*
-    Filter the multiple alignment for X% missing data and split by replicon.
+    Filter the multiple alignment for X% missing data and split by locus.
 
     Input:
     ch_snippy_core_full_aln_filter (fasta): Multi fasta of aligned core genome ffrom process snippy_multi.
 
     Output:
-    ch_snippy_core_filter_modeltest (fasta): Multi fasta of filtered core genome sites for process modeltest.
     ch_snippy_core_filter_iqtree (fasta): Multi fasta of filtered core genome sites for process iqtree.
 
     Publish:
-    ${snippy_core_full_aln.baseName}.filter${params.snippy_multi_missing_data_text}.fasta (fasta): Multi fasta of filtered core genome sites.
+    snippy_core_full_aln.filter\*.fasta (fasta): Multi fasta of filtered chromosome genome sites.
+    *.fasta (fasta): All loci extracted fasta files.
+    *.bed (bed): All loci bed coordinate files for extraction.
     */
     // Other variables and config
     tag "$snippy_core_full_aln"
@@ -799,8 +800,9 @@ if(!params.skip_snippy_multi_filter){
     // IO and conditional behavior
     input:
     file snippy_core_full_aln from ch_snippy_core_full_aln_filter
+
     output:
-    file "${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_modeltest,ch_snippy_core_filter_iqtree
+    file "${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_iqtree
     file "*.fasta"
     file "*.bed"
 
@@ -835,14 +837,14 @@ if(!params.skip_iqtree){
     Maximum likelihood tree search and model selection, iqtree phylogeny.
 
     Input:
-    ch_modeltest_out_iqtree (text): modeltest-ng log file from process modeltest.
     ch_snippy_core_filter_iqtree (fasta): Multi fasta of filtered core genome sites from process snippy_multi_filter.
 
     Output:
-    ch_ ():
+    ch_iqtree_treefile_augur_refine (newick): Newick treefile phylogeny with branch supports for process augur_refine.
 
     Publish:
-
+    iqtree.core-filter*_bootstrap.treefile (newick): Newick treefile phylogeny with branch supports.
+    iqtree* (misc): All default output of iqtree.
     */
     // Other variables and config
     tag "$snippy_core_filter_aln"
@@ -853,6 +855,7 @@ if(!params.skip_iqtree){
     file snippy_core_filter_aln from ch_snippy_core_filter_iqtree
 
     output:
+    file "iqtree.core-filter*_bootstrap.treefile" into ch_iqtree_treefile_augur_refine
     file "iqtree*"
 
     // Shell script to execute
@@ -890,7 +893,7 @@ process qualimap_snippy_pairwise{
   ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output for process multiqc.
 
   Publish:
-  \* (misc): All default qualimap output.
+  * (misc): All default qualimap output.
   */
   // Other variables and config
   tag "${snippy_bam}"
