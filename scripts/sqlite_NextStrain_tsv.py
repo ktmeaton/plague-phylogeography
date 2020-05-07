@@ -59,6 +59,10 @@ out_path = args['outPath']
 #------------------------------------------------------------------------------#
 
 # Check if DATABASE file exists
+if not os.path.exists(db_path):
+    print('An error occurred while trying to open ', db_path)
+    sys.exit(1)
+
 try:
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()

@@ -75,13 +75,16 @@ max_dataset = int(args['maxData'])
 #------------------------------------------------------------------------------#
 
 # Check if DATABASE file exists
+if not os.path.exists(db_path):
+    print('An error occurred while trying to open ', db_path)
+    sys.exit(1)
+
 try:
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
 except IOError:
     print('An error occurred while trying to open ', db_path)
     sys.exit(1)
-
 # Open the output file
 out_file = open(out_path, 'w')
 
