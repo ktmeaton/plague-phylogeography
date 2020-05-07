@@ -39,18 +39,14 @@ Generate a MultiQC report from pipeline analyses.
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_pairwise_qualimap_multiqc       misc                        All default qualimap output from process qualimap_snippy_pairwise.
-========================================= =========================== ===========================
-
-========================================= =========================== ===========================
-Output                                    Type                        Description
-========================================= =========================== ===========================
-multiqc_report.html                       html                        MultiQC report file.
+ch_snippy_pairwise_qualimap_multiqc       misc                        All default qualimap output from process :ref:`qualimap_snippy_pairwise<QualiMap Snippy Pairwise>`.
+ch_snippy_csv_snpEff_multiqc              csv                         Variant summary statistics from process :ref:`snippy_pairwise<Snippy Pairwise>`
 ========================================= =========================== ===========================
 
 =========================================== =========================== ===========================
 Publish                                     Type                        Description
 =========================================== =========================== ===========================
+\*multiqc_report.html                       html                        MultiQC report file.
 \*_data                                     misc                        All default MultiQC data files.
 =========================================== =========================== ===========================
 
