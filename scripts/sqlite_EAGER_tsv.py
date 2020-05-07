@@ -20,7 +20,8 @@ if __name__ != "__main__": quit()
 #-----------------------------------------------------------------------#
 import argparse                         # Command-line argument parsing
 import sqlite3                          # Database storage and queries
-import sys                               # Filepath operations
+import sys                              # Filepath operations
+import os                               # Filepath operations
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
@@ -76,14 +77,14 @@ max_dataset = int(args['maxData'])
 
 # Check if DATABASE file exists
 if not os.path.exists(db_path):
-    print('An error occurred while trying to open ', db_path)
+    print('An error occurred while trying to open', db_path)
     sys.exit(1)
 
 try:
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
 except IOError:
-    print('An error occurred while trying to open ', db_path)
+    print('An error occurred while trying to open', db_path)
     sys.exit(1)
 # Open the output file
 out_file = open(out_path, 'w')
@@ -126,7 +127,7 @@ record_exists = cur.fetchall()
 # Print the default EAGER header
 out_file.write(EAGER_HEADER + "\n")
 
- # Iterate through all records, keep track and stop if maximum is hit
+# Iterate through all records, keep track and stop if maximum is hit
 record_i = 0
 for record in record_exists:
     # Exit the for loop if we've hit the maximum number of datasets requested
