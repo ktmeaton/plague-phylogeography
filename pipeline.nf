@@ -911,7 +911,6 @@ process qualimap_snippy_pairwise{
   qualimap bamqc -bam ${snippy_bam} --skip-duplicated -c -outformat "HTML" -outdir . -nt ${task.cpus}
   qualimapDir=${snippy_bam.baseName}_stats
   mv \$qualimapDir ${snippy_bam.baseName}
-  ls -l
   """
 }
 

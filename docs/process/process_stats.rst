@@ -9,13 +9,13 @@ Run QualiMap on the output bam of snippy pairwise.
 ========================================= =========================== ===========================
 Input                                     Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_bam_pairwise_qualimap           bam                         Pairwise alignment file from process snippy_pairwise.
+ch_snippy_bam_pairwise_qualimap           bam                         Pairwise alignment file from process :ref:`snippy_pairwise<Snippy Pairwise>`.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_snippy_pairwise_qualimap_multiqc       misc                        All default qualimap output for process multiqc.
+ch_snippy_pairwise_qualimap_multiqc       misc                        All default qualimap output for process :ref:`multiqc<MultiQC>`.
 ========================================= =========================== ===========================
 
 =========================================== =========================== ===========================
@@ -26,8 +26,9 @@ Publish                                     Type                        Descript
 
 **Shell script**::
 
-      sample=${snippy_bam.baseName}_stats
-      qualimap bamqc -bam ${snippy_bam} -c -outformat "HTML" -outdir . -nt ${task.cpus}
+      qualimap bamqc -bam ${snippy_bam} --skip-duplicated -c -outformat "HTML" -outdir . -nt ${task.cpus}
+      qualimapDir=${snippy_bam.baseName}_stats
+      mv \$qualimapDir ${snippy_bam.baseName}
 
 
 MultiQC
