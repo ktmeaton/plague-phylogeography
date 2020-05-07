@@ -31,7 +31,7 @@ SELECT AssemblyFTPGenbank,BioSampleHost,BioSampleCollectionDate,BioSampleGeograp
 	(TRIM(AssemblyFTPGenbank) > '')
 --> 146 rows
 ```
-Get the "Root" SRA sequences
+### Get the "Root" SRA sequences
 ```
 HEADER="Sample_Name\tLibrary_ID\tLane\tSeqType\tOrganism\tStrandedness\tUDG_Treatment\tR1\tR2\tBAM\tGroup\tPopulations\tAge";
 echo -e $HEADER > metadata_BronzeAge3.tsv;
@@ -58,6 +58,33 @@ sqlite3 results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sql
   }' >> metadata_BronzeAge3.tsv
 ```
 
+### Identify Datasets with no assembly or SRA data
+```
+SELECT * FROM MASTER WHERE (TRIM(AssemblyFTPGenbank) IS '' AND TRIM(SRARunAccession) IS '' AND BioSampleComment NOT LIKE '%REMOVE%')
+```
+
+### Creating the annotation table
+BioSampleAccession
+AssemblyFTPGenbank
+SRARunAccession
+BioSampleStrain
+BioSampleCollectionDate
+BioSampleHost
+BioSampleGeographicLocation
+BioSampleBiovar
+PubmedArticleTitle
+PubmedAuthorsLastName
+AssemblyContigCount
+AssemblyTotalLength
+NucleotideGenes
+NucleotideGenesTotal
+NucleotidePseudoGenes
+NucleotidePseudoGenesTotal
+NucleotiderRNAs
+AssemblySubmissionDate
+SRARunPublishDate
+
+SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate FROM Master WHERE BioSampleComment NOT LIKE '%REMOVE%'
 
 ## NCBI Filtering by Attribute AHA!!!
 ```
