@@ -48,11 +48,6 @@ parser.add_argument('--output',
                     dest = 'outPath',
                     required = True)
 
-parser.add_argument('--split-col',
-                    help = 'Names of the column to check for splitting records (CSV).',
-                    action = 'store',
-                    dest = 'splitCol',
-                    required = False)
 
 # Retrieve user parameters
 args = vars(parser.parse_args())
@@ -60,7 +55,6 @@ args = vars(parser.parse_args())
 db_path = args['dbPath']
 sql_query = args['sqlQuery']
 out_path = args['outPath']
-split_col = args['splitCol']
 
 #------------------------------------------------------------------------------#
 #                            Error Catching                                    #

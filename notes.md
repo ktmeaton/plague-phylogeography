@@ -83,12 +83,28 @@ NucleotidePseudoGenesTotal
 NucleotiderRNAs
 AssemblySubmissionDate
 SRARunPublishDate
+BioSampleComment
 
-SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate FROM Master WHERE BioSampleComment NOT LIKE '%REMOVE%'
+```
+# General
+./sqlite_NextStrain_tsv.py   --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite   --query "SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate,BioSampleComment FROM Master"   --output metadata_all_nextstrain.tsv
+
+
+# Both Assembly and SRA
+SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate,BioSampleComment FROM Master WHERE BioSampleComment NOT LIKE '%REMOVE%'
+
+# Only Assembly
+./sqlite_NextStrain_tsv.py   --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite   --query "SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate,BioSampleComment FROM Master WHERE (BioSampleComment NOT LIKE '%REMOVE%' AND TRIM(AssemblyFTPGenbank) > '')"   --output metadata_assembly_nextstrain.tsv
+
+We need to add the mandatory column sample/name
+```
+
+
 
 ## NCBI Filtering by Attribute AHA!!!
 ```
 "geo_loc_name=Russia: Chechnya"[attr]
+"project_name=Rise of the Bronze Age"[attr]
 ```
 
 ## NextStrain setup
