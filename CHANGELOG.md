@@ -14,6 +14,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Automate SNPEff db creation
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Deal with nextstrain augur not working with phylogeny with branch support values
+- Fixup the metadata for nextstrain
 
 ## [v0.1.2] - 2020-05-07 - Metadata
 
