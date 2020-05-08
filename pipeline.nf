@@ -287,7 +287,7 @@ if( (params.sqlite || ( params.ncbimeta_update && params.ncbimeta_annot) ) && !p
 
 //-----------------------------Download Assembly Fasta------------------------//
 
-if (!params.skip_assembly_download){
+if (!params.skip_assembly_download && (params.sqlite || params.ncbimeta_update)){
 
   process assembly_download{
     /*
@@ -388,7 +388,7 @@ if (!params.skip_reference_download){
 }
 // -----------------------------Detect Repeats--------------------------------//
 
-if (!params.skip_reference_detect_repeats){
+if (!params.skip_reference_detect_repeats && !params.skip_reference_download){
 
   process reference_detect_repeats{
     /*
@@ -446,7 +446,7 @@ if (!params.skip_reference_detect_repeats){
 }
 // -------------------------Detect Low Complexity-----------------------------//
 
-if (!params.skip_reference_detect_low_complexity){
+if (!params.skip_reference_detect_low_complexity && !params.skip_reference_download){
 
   process reference_detect_low_complexity{
     /*
@@ -491,7 +491,7 @@ if (!params.skip_reference_detect_low_complexity){
 
 // --------------------------------Pairwise Alignment-------------------------//
 
-if(!params.skip_snippy_pairwise){
+if(!params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sqlite || params.ncbimeta_update)){
 
   process snippy_pairwise{
     /*
@@ -570,7 +570,7 @@ if(!params.skip_snippy_pairwise){
 
 // ------------------------Multi Sample Variant Summary-----------------------//
 
-if(!params.skip_snippy_variant_summary){
+if(!params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sqlite || params.ncbimeta_update)){
 
   process snippy_variant_summary_collect{
     /*
@@ -609,7 +609,7 @@ if(!params.skip_snippy_variant_summary){
 }
 // --------------------------Detect High SNP Density--------------------------//
 
-if(!params.skip_snippy_detect_snp_high_density){
+if(!params.skip_snippy_detect_snp_high_density && !params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sqlite || params.ncbimeta_update)){
 
   process snippy_detect_snp_high_density{
     /*
@@ -676,56 +676,57 @@ if(!params.skip_snippy_detect_snp_high_density){
 }
 
 // --------------------------Merge Filtering BED Files------------------------//
+if(!params.skip_snippy_merge_mask_bed && !params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sqlite || params.ncbimeta_update)){
 
-process snippy_merge_mask_bed{
-  /*
-  Combine, merge, and sort all BED file regions for masking the multiple alignment.
+  process snippy_merge_mask_bed{
+    /*
+    Combine, merge, and sort all BED file regions for masking the multiple alignment.
 
-  Input:
-  ch_bed_ref_detect_repeats (bed): A bed file containing regions of in-exact repeats from process reference_detect_repeats.
-  ch_bed_ref_low_complex (bed): A bed file containing regions of low-complexity regions from process reference_detect_low_complexity.
-  ch_snippy_subs_bed_density_multi (bed): Sorted and merged high density SNP regions from process snippy_sort_snp_high_density.
-  ch_bed_mask_master_merge (bed): Combined BED files of repeats, low-complexity and (optional) high-density SNP regions.
+    Input:
+    ch_bed_ref_detect_repeats (bed): A bed file containing regions of in-exact repeats from process reference_detect_repeats.
+    ch_bed_ref_low_complex (bed): A bed file containing regions of low-complexity regions from process reference_detect_low_complexity.
+    ch_snippy_subs_bed_density_multi (bed): Sorted and merged high density SNP regions from process snippy_sort_snp_high_density.
+    ch_bed_mask_master_merge (bed): Combined BED files of repeats, low-complexity and (optional) high-density SNP regions.
 
-  Output:
-  ch_bed_mask_snippy_multi (bed): Master masking BED file for process snippy_multi.
+    Output:
+    ch_bed_mask_snippy_multi (bed): Master masking BED file for process snippy_multi.
 
-  Publish:
-  master.bed (bed): Master masking BED file.
-  */
-  // Other variables and config
-  tag "bed_snippy_subs_density"
-  publishDir "${outdir}/snippy_filtering", mode: 'copy'
-  if (params.skip_snippy_detect_snp_high_density){
-  ch_bed_ref_detect_repeats
-      .mix(ch_bed_ref_low_complex)
-      .collectFile(name: "master_unmerged_skip_snp_density.bed")
-      .set{ch_bed_mask_master_merge}
-  }
-
-  else{
+    Publish:
+    master.bed (bed): Master masking BED file.
+    */
+    // Other variables and config
+    tag "bed_snippy_subs_density"
+    publishDir "${outdir}/snippy_filtering", mode: 'copy'
+    if (params.skip_snippy_detect_snp_high_density){
     ch_bed_ref_detect_repeats
-        .mix(ch_bed_ref_low_complex, ch_snippy_subs_bed_density_multi)
-        .collectFile(name: "master_unmerged.bed")
+        .mix(ch_bed_ref_low_complex)
+        .collectFile(name: "master_unmerged_skip_snp_density.bed")
         .set{ch_bed_mask_master_merge}
+    }
+
+    else{
+      ch_bed_ref_detect_repeats
+          .mix(ch_bed_ref_low_complex, ch_snippy_subs_bed_density_multi)
+          .collectFile(name: "master_unmerged.bed")
+          .set{ch_bed_mask_master_merge}
+    }
+    // IO and conditional behavior
+    input:
+    file bed_mask from ch_bed_mask_master_merge
+    output:
+    file "master.bed" into ch_bed_mask_snippy_multi
+
+    // Shell script to execute
+    script:
+    """
+    cat ${bed_mask} | sort -k1,1 -k2,2n | bedtools merge > master.bed
+    """
   }
-  // IO and conditional behavior
-  input:
-  file bed_mask from ch_bed_mask_master_merge
-  output:
-  file "master.bed" into ch_bed_mask_snippy_multi
-
-  // Shell script to execute
-  script:
-  """
-  cat ${bed_mask} | sort -k1,1 -k2,2n | bedtools merge > master.bed
-  """
 }
-
 
 //------------------------------Multiple Alignment----------------------------//
 
-if(!params.skip_snippy_multi){
+if(!params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sqlite || params.ncbimeta_update)){
 
   process snippy_multi{
     /*
@@ -776,7 +777,7 @@ if(!params.skip_snippy_multi){
 
 }
 
-if(!params.skip_snippy_multi_filter){
+if(!params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sqlite || params.ncbimeta_update)){
 
   process snippy_multi_filter{
     /*
@@ -830,7 +831,7 @@ if(!params.skip_snippy_multi_filter){
 //                                ML Phylogeny                                //
 // -------------------------------------------------------------------------- //
 
-if(!params.skip_iqtree){
+if(!params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sqlite || params.ncbimeta_update)){
 
   process iqtree{
     /*
@@ -881,70 +882,75 @@ if(!params.skip_iqtree){
 //                           Visualization MultiQC                            //
 // -------------------------------------------------------------------------- //
 
-process qualimap_snippy_pairwise{
-  /*
+if(!params.skip_qualimap_snippy_pairwise && !params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sqlite || params.ncbimeta_update)){
 
-  Run QualiMap on the output bam of snippy pairwise.
+  process qualimap_snippy_pairwise{
+    /*
 
-  Input:
-  ch_snippy_bam_pairwise_qualimap (bam): Pairwise alignment file from process snippy_pairwise.
+    Run QualiMap on the output bam of snippy pairwise.
 
-  Output:
-  ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output for process multiqc.
+    Input:
+    ch_snippy_bam_pairwise_qualimap (bam): Pairwise alignment file from process snippy_pairwise.
 
-  Publish:
-  * (misc): All default qualimap output.
-  */
-  // Other variables and config
-  tag "${snippy_bam}"
-  publishDir "${outdir}/snippy_pairwise/qualimap", mode: 'copy'
+    Output:
+    ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output for process multiqc.
 
-  // IO and conditional behavior
-  input:
-  file snippy_bam from ch_snippy_bam_pairwise_qualimap
-  output:
-  file "*" into ch_snippy_pairwise_qualimap_multiqc
+    Publish:
+    * (misc): All default qualimap output.
+    */
+    // Other variables and config
+    tag "${snippy_bam}"
+    publishDir "${outdir}/snippy_pairwise/qualimap", mode: 'copy'
 
-  // Shell script to execute
-  script:
-  """
-  qualimap bamqc -bam ${snippy_bam} --skip-duplicated -c -outformat "HTML" -outdir . -nt ${task.cpus}
-  qualimapDir=${snippy_bam.baseName}_stats
-  mv \$qualimapDir ${snippy_bam.baseName}
-  """
+    // IO and conditional behavior
+    input:
+    file snippy_bam from ch_snippy_bam_pairwise_qualimap
+    output:
+    file "*" into ch_snippy_pairwise_qualimap_multiqc
+
+    // Shell script to execute
+    script:
+    """
+    qualimap bamqc -bam ${snippy_bam} --skip-duplicated -c -outformat "HTML" -outdir . -nt ${task.cpus}
+    qualimapDir=${snippy_bam.baseName}_stats
+    mv \$qualimapDir ${snippy_bam.baseName}
+    """
+  }
 }
 
-process multiqc{
-  /*
-  Generate a MultiQC report from pipeline analyses.
+if(!params.skip_multiqc && !params.skip_qualimap_snippy_pairwise && !params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sqlite || params.ncbimeta_update)){
 
-  Input:
-  ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output from process qualimap_snippy_pairwise.
+  process multiqc{
+    /*
+    Generate a MultiQC report from pipeline analyses.
 
-  Publish
-  multiqc_report.html (html): MultiQC report file.
-  *_data (misc): All default MultiQC data files.
-  */
-  // Other variables and config
-  tag "${qualimap_misc}"
-  publishDir "${outdir}/multiqc", mode: 'copy'
+    Input:
+    ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output from process qualimap_snippy_pairwise.
 
-  // IO and conditional behavior
-  input:
-  file qualimap_misc from ch_snippy_pairwise_qualimap_multiqc.collect()
-  file snpeff_misc from ch_snippy_csv_snpEff_multiqc.collect()
+    Publish
+    multiqc_report.html (html): MultiQC report file.
+    *_data (misc): All default MultiQC data files.
+    */
+    // Other variables and config
+    tag "${qualimap_misc}"
+    publishDir "${outdir}/multiqc", mode: 'copy'
 
-  output:
-  file "*multiqc_report.html"
-  file "*_data"
+    // IO and conditional behavior
+    input:
+    file qualimap_misc from ch_snippy_pairwise_qualimap_multiqc.collect()
+    file snpeff_misc from ch_snippy_csv_snpEff_multiqc.collect()
 
-  // Shell script to execute
-  script:
-  """
-  multiqc --config ${params.multiqc_config} .
-  """
+    output:
+    file "*multiqc_report.html"
+    file "*_data"
+
+    // Shell script to execute
+    script:
+    """
+    multiqc --config ${params.multiqc_config} .
+    """
+  }
 }
-
 
 /* Stock process
 process my_process{
