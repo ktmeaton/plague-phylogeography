@@ -17,6 +17,7 @@ import argparse                         # Command-line argument parsing
 import sqlite3                          # Database storage and queries
 import sys                              # Filepath operations
 import os                               # Filepath operations
+from geopy.geocoders import Nominatim   # Geocoding Nominatim
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
@@ -79,7 +80,12 @@ NO_DATA_CHAR = "?"
 # Tsv input header
 HEADER = in_file.readline().strip().split(DELIM)
 # Dictionary to store latitude and longitude
-lat_lon_dict = {}
+lat_lon_dict = {}                   # {'Location String' : {latitude: float, longitude: float, address_dict}}
+address_dict = {'latitude': '', 'longitude': '', 'country': '', 'state': '', 'region': '', 'county': '', 'city': '', 'town': ''}
+# Geocoding registry
+APP_NAME = "plague-phylogeography"
+geolocator = Nominatim(user_agent=APP_NAME)
+LOC_DIVISIONS = ['country', 'state', 'region'. 'county', 'city', 'town']
 
 #------------------------------------------------------------------------------#
 #                             Processing                                       #
@@ -98,6 +104,38 @@ while read_line:
     geo_loc = split_line[geo_col_index]
     if geo_loc != "?":
         print(geo_loc)
+        if geo_loc not in lat_lon_dict:
+            location = geolocator.geocode(geo_loc, language='en')
+            str_lat_lon = str(location.latitude) + ", " + str(location.longitude)
+            loc_rev = geolocator.reverse(str_lat_lon, language='en')
+            data = loc_rev.raw
+            lat_lon_dict[geo_loc] = address_dict.copy()
+            for loc_div in LOC_DIVISIONS:
+            # Try to retrieve value for country
+            try: lat_lon_dict[geo_loc]['country'] = data['address']['country']
+            except KeyError: None
+            # Try to retrieve value for state
+            try: lat_lon_dict[geo_loc]['state'] = data['address']['state']
+            except KeyError: None
+            # Try to retrieve value for region
+            try: region = data['address']['region']
+            except KeyError: None
+            # Try to retrieve value for county
+            try: county = data['address']['county']
+            except KeyError: None
+            # Try to retrieve value for city
+            try: city = data['address']['city']
+            except KeyError: None
+            # Try to retrieve value for town
+            try: town = data['address']['town']
+            except KeyError: None
+            print(lat_lon_dict)
+            quit()
+        #print(location.address)
+        #str_lat_lon = str(location.latitude) + ", " + str(location.longitude)
+        #loc_rev = geolocator.reverse(str_lat_lon, language='en')
+        #data = loc_rev.raw
+        print("\n")
     read_line = in_file.readline().strip()
 
 #------------------------------------------------------------------------------#
