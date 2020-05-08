@@ -26,36 +26,14 @@ Everything from here on out is free form notes as I experiment and document.
 ## Step By Step (From Scratch)
 
 ### Build NCBImeta database
-```
-nextflow run pipeline.nf \
-  --ncbimeta_create ncbimeta.yaml \
-  --skip_ncbimeta_db_update \
-  --skip_sqlite_import \
-  --skip_assembly_download \
-  --skip_reference_download \
-  --skip_reference_detect_repeats \
-  --skip_reference_detect_low_complexity \
-  --skip_snippy_pairwise \
-  --skip_snippy_variant_summary \
-  --skip_snippy_detect_snp_high_density \
-  --skip_snippy_merge_mask_bed \
-  --skip_snippy_multi \
-  --skip_snippy_multi_filter \
-  --skip_iqtree \
-  --skip_qualimap_snippy_pairwise \
-  --skip_multiqc \
-  --outdir testSkip
-```
 
 ```
 nextflow run pipeline.nf \
   --ncbimeta_create ncbimeta.yaml \
   --skip_ncbimeta_db_update \
   --skip_reference_download \
-  --outdir testSkip
+  --outdir test
 ```
-
-
 
 ### Annotate the Database
 Query the Database for problematic records (wrong organism)

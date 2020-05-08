@@ -7,7 +7,7 @@
     Channel
       .fromPath(params.ncbimeta_annot, checkIfExists: true)
       .ifEmpty { exit 1, "NCBImeta annotation file not found: ${params.ncbimeta_annot}" }
-      .collectFile(name: 'ncbimeta_annot.txt', newLine: true, storeDir: "${workDir}")
+      .collectFile(name: 'dummy_annot.txt', newLine: true, storeDir: "${workDir}")
 
 
     }
@@ -18,11 +18,10 @@
     // Shell script to execute
     script:
     """
-    echo "TESTING"
+    ANNOT_FILE=`basename ${params.ncbimeta_annot}`
+    echo \$ANNOT_FILE
     if [[ ${params.ncbimeta_annot} != "false" ]]; then
-      echo ${params.ncbimeta_annot};
-      ls -l ${workDir}/ncbimeta_annot.txt
+      mv ${workDir}/dummy_annot.txt `pwd`/\$ANNOT_FILE;
     fi
-    pwd
     """
 }
