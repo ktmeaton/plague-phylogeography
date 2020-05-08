@@ -97,8 +97,71 @@ SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,Bio
 ./sqlite_NextStrain_tsv.py   --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite   --query "SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate,BioSampleComment FROM Master WHERE (BioSampleComment NOT LIKE '%REMOVE%' AND TRIM(AssemblyFTPGenbank) > '')"   --output metadata_assembly_nextstrain.tsv
 
 We need to add the mandatory column sample/name
+
+Manually deal with the concat records
+
+HEADER=`head -n 1 metadata_assembly_nextstrain_edit.tsv`;
+echo -e "name\t$HEADER" > metadata_assembly_nextstrain_edit_name.tsv;
+tail -n+2 metadata_assembly_nextstrain_edit.tsv | while read line;
+do
+  NAME=`echo -e "$line" | cut -f 2 | cut -d "/" -f 10 | awk '{print $0 "_genomic"}'`;
+  echo -e $NAME"\t$line";
+done >> metadata_assembly_nextstrain_edit_name.tsv;
+
 ```
 
+## GeoPy
+```
+from geopy.geocoders import Nominatim
+geolocator = Nominatim(user_agent="plague-phylogeography")
+location = geolocator.geocode("China: Xinjiang Guertu", language='en')
+str_lat_lon = str(location.latitude) + ", " + str(location.longitude)
+loc_rev = geolocator.reverse(str_lat_lon, language='en')
+data = loc_rev.raw
+country = data['address']['country']
+try:
+  state = data['address']['state']
+except KeyError:
+  state = ""
+try:
+  region = data['address']['region']
+except KeyError:
+  region = ""
+try:  
+  county = data['address']['county']
+except KeyError:
+  county = ""
+try:
+  city = data['address']['city']
+except KeyError:
+  city = ""
+
+try:
+  town = data['address']['town']
+except KeyError:
+  town = ""
+
+print(country + ", " + state + ", " + region + ", " + county + ", " + city + ", " + town)
+
+print(location.address)
+
+lat = location.latitude
+lon = location.longitude
+
+location = geolocator.geocode("Russia: Chechnya", language='en')
+str_lat_lon = str(location.latitude) + ", " + str(location.longitude)
+loc_rev = geolocator.reverse(str_lat_lon, language='en')
+data = loc_rev.raw
+data = data['address']
+address = str(data)
+
+
+def get_country(locations):
+    locations = geolocator.reverse(row['lat'], row['lon'], timeout = 10)
+    for location in locations:
+        for component in location.raw['address_components']:
+            if 'country' in component['types']:
+                return component['long_name']
 
 
 ## NCBI Filtering by Attribute AHA!!!
