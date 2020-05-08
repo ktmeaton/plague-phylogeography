@@ -8,7 +8,7 @@ Geocode addresses in a tsv file.
    --in-tsv ../metadata_assembly_nextstrain_edit_name.tsv \
    --loc-col BioSampleGeographicLocation \
    --out-tsv ../metadata_assembly_nextstrain_edit_name_geocode.tsv \
-   --out-lat-lon metadata_assembly_nextstrain_edit_name_lat_lon.tsv
+   --out-lat-lon ../metadata_assembly_nextstrain_edit_name_lat_lon.tsv
 """
 
 # This program should only be called from the command-line
@@ -88,6 +88,7 @@ out_lat_lon_file = open(out_lat_lon, 'w')
 DELIM = "\t"
 # No data values will be replaced by this char
 NO_DATA_CHAR = "?"
+MISSING_DATA_LIST = ["missing", "unknown"]
 
 # Dictionary to store latitude and longitude
 geo_loc_dict = {}                   # {'Location String' : {latitude: float, longitude: float, address_dict}}
@@ -150,7 +151,7 @@ while read_line:
     if geo_loc not in geo_loc_dict:
         # Copy in the blank address dictionary, not by reference!
         geo_loc_dict[geo_loc] = copy.deepcopy(address_dict)
-        if geo_loc != NO_DATA_CHAR:
+        if geo_loc != NO_DATA_CHAR and geo_loc.lower() not in MISSING_DATA_LIST:
             # Geocode the string location
             location = geolocator.geocode(geo_loc, language='en')
             if location:
