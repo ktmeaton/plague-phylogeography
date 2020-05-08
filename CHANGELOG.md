@@ -19,10 +19,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [v0.1.2] - 2020-05-07 - Metadata
 
 ### Added
-- scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py
+- scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py scripts/geocode_NextStrain.py
 
 ### Changed
-- git update-index --add --chmod=+x scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py
+- git update-index --add --chmod=+x scripts/geocode_NextStrain.py scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py
 
 ## [v0.1.1] - 2020-04-29 - Narratives and ReadtheDocs
 
