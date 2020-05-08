@@ -155,14 +155,12 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update && params.ncbimeta_
 
     Input:
     ch_ncbimeta_yaml_update (yaml): NCBImeta config file from process ncbimeta_db_create.
-    ch_ncbimeta_annot_update (text): NCBImeta annotation file.
     ch_ncbimeta_sqlite_update (sqlite): NCBImeta SQLite database from process ncbimeta_db_create.
 
     Output:
     ch_ncbimeta_sqlite_import (sqlite): NCBImeta SQLite database for process sqlite_import.
 
     Publish:
-    ncbimeta_annot (text): NCBImeta annotation file.
     ncbimeta_yaml (yaml): NCBImeta config file.
     *.log (text): Text logs of NCBImeta database update.
     */
@@ -177,20 +175,22 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update && params.ncbimeta_
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta_update}" }
     // If create and update not in same run (not fully reproducing finished pipeline)
     if (!params.ncbimeta_create){
-        ch_ncbimeta_sqlite_update = Channel.fromPath("${params.ncbimeta_sqlite_db_latest}", checkIfExists: true)
+        ch_ncbimeta_sqlite_update = Channel.fromPath(params.ncbimeta_sqlite_db_latest, checkIfExists: true)
                                 .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.ncbimeta_sqlite_db_latest}" }
     }
-    ch_ncbimeta_annot_update = Channel.fromPath(params.ncbimeta_annot, checkIfExists: true)
-                         .ifEmpty { exit 1, "NCBImeta annotation file not found: ${params.ncbimeta_annot}" }
+    if (params.ncbimeta_annot){
+    Channel
+      .fromPath(params.ncbimeta_annot, checkIfExists: true)
+      .ifEmpty { exit 1, "NCBImeta annotation file not found: ${params.ncbimeta_annot}" }
+      .collectFile(name: "${params.ncbimeta_annot}", newLine: false)
+    }
 
     // IO and conditional behavior
     input:
     file ncbimeta_yaml from ch_ncbimeta_yaml_update
-    file ncbimeta_annot from ch_ncbimeta_annot_update
     file ncbimeta_sqlite from ch_ncbimeta_sqlite_update
     output:
     file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_ncbimeta_sqlite_import
-    file ncbimeta_annot
     file ncbimeta_yaml
     file "${params.ncbimeta_output_dir}/log/*.log"
 
@@ -206,6 +206,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update && params.ncbimeta_
     cp ${outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/log/* ${params.ncbimeta_output_dir}/log;
     # Execute NCBImeta
     NCBImeta.py --config ${ncbimeta_yaml}
+    if [[ ! -z ${params}]]; then
     NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
     # Drop old or outdated join tables
     sqlite3 ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} "DROP TABLE IF EXISTS MasterFirst"
