@@ -154,7 +154,7 @@ SAMN12720423	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/008/630/415/GCA_00863041
 SAMN12715009	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/008/630/395/GCA_008630395.1_ASM863039v1	?	C-528	09-Apr-1984	Gerbillinae	Russia	?	?	?	291	4542764	?	4,280	?	302	2, 1, 1 (5S, 16S, 23S)	2019/09/20 00:00	?	?
 SAMN12714845	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/008/630/575/GCA_008630575.1_ASM863057v1	?	C-527	14-Nov-1984	Meriones libycus	Azerbaijan	?	?	?	227	4570871	?	4,316	?	328	2, 1, 1 (5S, 16S, 23S)	2019/09/20 00:00	?	?
 SAMN12714485	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/008/630/375/GCA_008630375.1_ASM863037v1	?	C-506	May-1982	Spermophilus musicus	Russia	?	?	?	381	4468260	?	4,359	?	1,527	3, 1 (5S, 16S)	2019/09/20 00:00	?	?
-SAMEA5851981	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/902/387/395/GCA_902387395.1_UHGG_MGYG-HGUT-02476	?	?	?	?	Russia	?	?	?	3	4935125	?	?	?	?	?	2019/08/16 00:00	?	?
+SAMEA5851981	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/902/387/395/GCA_902387395.1_UHGG_MGYG-HGUT-02476	?	?	?	?	Russia	?	?	?	3	4935125	?	?	?	?	?	2019/08/16 00:00	?	REMOVE: Long branch and no date
 SAMN03399931	?	SRR1910312	Yersinia pestis KIM6dCsrA	2014	?	not applicable	?	?	?	?	?	?	?	?	?	?	?	2015-03-23 12:34:15	?
 SAMN03399930	?	SRR1910290	Yersinia pestis CO92dCsrA-P+	2014	?	not applicable	?	?	?	?	?	?	?	?	?	?	?	2015-03-12 00:00:00	?
 SAMN03399929	?	SRR1910280	Yersinia pestis CO92dCsrA	2014	?	not applicable	?	?	?	?	?	?	?	?	?	?	?	2015-03-12 00:00:00	?
