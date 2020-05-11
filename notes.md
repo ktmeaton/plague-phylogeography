@@ -89,6 +89,8 @@ BioSampleComment
 # General
 ./sqlite_NextStrain_tsv.py   --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite   --query "SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate,BioSampleComment FROM Master"   --output metadata_all_nextstrain.tsv
 
+# Replace ? with empty "" for ncbimeta annotation
+sed 's/?//g' metadata_all_nextstrain.tsv | colview | less -S
 
 # Both Assembly and SRA
 SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate,BioSampleComment FROM Master WHERE BioSampleComment NOT LIKE '%REMOVE%'
