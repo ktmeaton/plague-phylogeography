@@ -7,6 +7,7 @@ Extract Assembly and SRA metadata from an NCBImeta sqlite database to create the
 ./sqlite_NextStrain_tsv.py \
   --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
   --query "SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate,BioSampleComment FROM Master WHERE (BioSampleComment NOT LIKE '%REMOVE%' AND TRIM(AssemblyFTPGenbank) > '')" \
+  --no-data-char ? \
   --output metadata_nextstrain.tsv
 """
 
@@ -48,6 +49,12 @@ parser.add_argument('--output',
                     dest = 'outPath',
                     required = True)
 
+parser.add_argument('--no-data-char',
+                    help = 'Character to use for no data (? or "")',
+                    action = 'store',
+                    dest = 'noDataChar',
+                    required = True)
+
 
 # Retrieve user parameters
 args = vars(parser.parse_args())
@@ -55,6 +62,7 @@ args = vars(parser.parse_args())
 db_path = args['dbPath']
 sql_query = args['sqlQuery']
 out_path = args['outPath']
+no_data_char = args['noDataChar']
 
 #------------------------------------------------------------------------------#
 #                            Error Catching                                    #
@@ -79,7 +87,8 @@ out_file = open(out_path, 'w')
 #                                 Constants                                    #
 #------------------------------------------------------------------------------#
 # No data values will be replaced by this char
-NO_DATA_CHAR = "?"
+#NO_DATA_CHAR = "?"
+NO_DATA_CHAR = no_data_char
 # Separator for record values
 DB_SEP = ";"
 
