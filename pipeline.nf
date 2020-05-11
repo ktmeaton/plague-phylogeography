@@ -91,11 +91,6 @@ log.info pipelineHeader()
 //                              Param Error Checking                          //
 // -------------------------------------------------------------------------- //
 
-if (params.ncbimeta_update && !params.ncbimeta_annot){
-  println ("The parameter --ncbimeta_update has been specified but --ncbimeta_annot is missing.")
-  exit 1
-}
-
 // Prefix the baseDir in front of the outdir
 outdir = "$baseDir/${params.outdir}"
 outdir = outdir
@@ -170,19 +165,23 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update && params.ncbimeta_
     // ISSUE: Can these be a symlink to each other (update and update/latest)?
     publishDir "${outdir}/ncbimeta_db/update/${workflow.start}_${workflow.runName}", mode: 'copy'
     publishDir "${outdir}/ncbimeta_db/update/latest", mode: 'copy', overwrite: 'true'
+
     // The config file, annotation file, and database file, are being read from paths, not channels
     ch_ncbimeta_yaml_update = Channel.fromPath(params.ncbimeta_update, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta_update}" }
+
     // If create and update not in same run (not fully reproducing finished pipeline)
     if (!params.ncbimeta_create){
         ch_ncbimeta_sqlite_update = Channel.fromPath(params.ncbimeta_sqlite_db_latest, checkIfExists: true)
                                 .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.ncbimeta_sqlite_db_latest}" }
     }
+
+    // If an annotation file has been supplied, the annotation script will be run
     if (params.ncbimeta_annot){
     Channel
       .fromPath(params.ncbimeta_annot, checkIfExists: true)
       .ifEmpty { exit 1, "NCBImeta annotation file not found: ${params.ncbimeta_annot}" }
-      .collectFile(name: "${params.ncbimeta_annot}", newLine: false)
+      .collectFile(name: 'dummy_annot.txt', newLine: true, storeDir: "${workDir}")
     }
 
     // IO and conditional behavior
@@ -206,8 +205,12 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update && params.ncbimeta_
     cp ${outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/log/* ${params.ncbimeta_output_dir}/log;
     # Execute NCBImeta
     NCBImeta.py --config ${ncbimeta_yaml}
-    if [[ ! -z ${params}]]; then
-    NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
+    # If annotation file supplied, run the annotation script
+    if [[ ${params.ncbimeta_annot} != "false" ]]; then
+      ANNOT_FILE=`basename ${params.ncbimeta_annot}`
+      mv ${workDir}/dummy_annot.txt `pwd`/\$ANNOT_FILE;
+      NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
+    fi
     # Drop old or outdated join tables
     sqlite3 ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} "DROP TABLE IF EXISTS MasterFirst"
     sqlite3 ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} "DROP TABLE IF EXISTS MasterSecond"
