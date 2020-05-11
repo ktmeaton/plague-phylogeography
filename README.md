@@ -25,54 +25,46 @@ Everything from here on out is free form notes as I experiment and document.
 
 ## Step By Step (From Scratch)
 
-### Build NCBImeta database
+### Build, Update, Join NCBImeta database
 
 ```
 nextflow run pipeline.nf \
   --ncbimeta_create ncbimeta.yaml \
-  --skip_ncbimeta_db_update \
-  --skip_reference_download \
-  --outdir test
+  --outdir test \
+  --ncbimeta_update ncbimeta.yaml \
+  --skip_assembly_download \
+  --skip_reference_download
 ```
 
-### Annotate the Database
-Query the Database for problematic records (wrong organism)
+### Customize and Curate the Annotations
+1. Create a metadata TSV file with just the metadata columns of interest (ie. for NextStrain visualization)
 ```
-DB=results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
-sqlite3 $DB
-.output annot_biosample.txt
-SELECT BioSampleAccession,
-       BioSampleBioProjectAccession,
-       BioSampleStrain,
-       BioSampleOrganism,
-       BioSampleSRAAccession,
-       BioSampleAccessionSecondary,
-       BioSampleCollectionDate,
-       BioSampleGeographicLocation,
-       BioSampleHost,
-       BioSampleComment
-FROM BioSample
-WHERE (BioSampleOrganism NOT LIKE '%Yersinia pestis%');
+scripts/sqlite_NextStrain_tsv.py   \
+  --database test/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite   \
+  --query "SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate,BioSampleComment FROM Master"   \
+  --no-data-char ? \
+  --output ncbimeta_default_annot.txt
 ```
-Add delimited headers to top of file (that match NCBImeta table BioSample)
-```
-DELIM="|";
-sed  -i "1i BioSampleAccession${DELIM}BioSampleBioProjectAccession${DELIM}BioSampleStrain${DELIM}BioSampleOrganism${DELIM}BioSampleSRAAccession${DELIM}BioSampleAccessionSecondary${DELIM}BioSampleCollectionDate${DELIM}BioSampleGeographicLocation${DELIM}BioSampleHost${DELIM}BioSampleComment" annot_biosample.txt;
-```
-Convert from pipe-separated to tab-separated file
-```
-sed -i "s/|/\t/g" annot_biosample.txt
-```
-Inspect the annot_biosample.txt file in a spreadsheet view (ex. Excel, Google Sheets)  
-Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows that are confirmed appropriate.  
 
+2. Add custom metadata, example:
+Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows that are the wrong organism (manually).
+Edit the collection data, geographic location, host etc. based on associated publication.
+
+
+3. Replace ? with empty "" for ncbimeta annotation script
+```
+sed 's/?//g' ncbimeta_default_annot.txt > ncbimeta_annot.txt
+```
 
 ### Update Database With Annotations
+Remember that this drops/deletes the Master tables every time it's rerun
 ```
 nextflow run pipeline.nf \
   --ncbimeta_update ncbimeta.yaml \
-  --ncbimeta_annot annot_biosample.txt \
-  --max_datasets 2000 \
+  --ncbimeta_annot ncbimeta_annot.tsv \
+  --outdir test \  
+  --skip_assembly_download \
+  --skip_reference_download \
   -resume
 ```
 
