@@ -23,6 +23,13 @@ pip install sphinx sphinx-rtd-theme m2r
 
 Everything from here on out is free form notes as I experiment and document.
 
+## Reproduce from previously generated database
+```
+nextflow run pipeline.nf \
+  --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+  --max_datasets 2000
+```
+
 ## Step By Step (From Scratch)
 
 ### Build, Update, Join NCBImeta database
@@ -45,33 +52,36 @@ scripts/sqlite_NextStrain_tsv.py   \
   --no-data-char ? \
   --output ncbimeta_default_annot.txt
 ```
+Currently there's an issue with ' char being escaped. Change now, investigate later.
+```
+sed -i "s/\\\'/\\'/g" ncbimeta_default_annot.txt
+```
 
-2. Add custom metadata, example:
+2. Curate/Add metadata, example:
 Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows that are the wrong organism (manually).
 Edit the collection data, geographic location, host etc. based on associated publication.
 
-
-3. Replace ? with empty "" for ncbimeta annotation script
+3. Replace ? with empty "" for NCBImeta annotation script
 ```
 sed 's/?//g' ncbimeta_default_annot.txt > ncbimeta_annot.txt
 ```
 
 ### Update Database With Annotations
-Remember that this drops/deletes the Master tables every time it's rerun
+Remember that this drops/deletes the Master tables every time it's rerun:
 ```
 nextflow run pipeline.nf \
   --ncbimeta_update ncbimeta.yaml \
-  --ncbimeta_annot ncbimeta_annot.tsv \
-  --outdir test \  
-  --skip_assembly_download \
+  --ncbimeta_annot ncbimeta_annot.txt \
+  --outdir test \
+  --skip_sqlite_import \
   --skip_reference_download \
   -resume
 ```
 
-### Run from established database
+### Run the full pipeline
 ```
 nextflow run pipeline.nf \
   --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-  --max_datasets 200 \
+  --max_datasets 2000 \
   -resume
 ```
