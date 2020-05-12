@@ -7,9 +7,9 @@ abstract: "
 
 ### While our knowledge of the plague has grown tremendously, there are many outstanding questions:
 <br><br>
-1. <b>Where</b> did the ancient pandemics originate?  
+1. <b>Where</b> did the ancient pandemics originate?
 <br>
-2. <b>When</b> might dormant plague zones re-activate?  
+2. <b>When</b> might dormant plague zones re-activate?
 <br>
 3. <b>Why</b> has the plague gone extinct in some regions?
 <br>
@@ -24,9 +24,9 @@ abstract: "
 <pre>
    [Origins](http://localhost:4000/narratives/plagueSCDS2020Local?n=1)
 <br>
-   [Evolution](http://localhost:4000/narratives/plagueSCDS2020Local?n=4)  
+   [Evolution](http://localhost:4000/narratives/plagueSCDS2020Local?n=4)
 <br>
-   [Ecology](http://localhost:4000/narratives/plagueSCDS2020Local?n=5)  
+   [Ecology](http://localhost:4000/narratives/plagueSCDS2020Local?n=5)
 <br>
    [Digital Scholarship](http://localhost:4000/narratives/plagueSCDS2020Local?n=7)
 </pre>
