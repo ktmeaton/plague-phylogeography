@@ -32,4 +32,4 @@ jobs:
           conda list
           nextflow run pipeline.nf \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-            --max_datasets 3
+            --max_datasets 4
