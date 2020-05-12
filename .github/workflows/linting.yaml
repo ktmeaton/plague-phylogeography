@@ -6,11 +6,12 @@ on:
   push:
     branches:
       - '*'
-    # On change to workflow, markdown, python
+    # On change to workflow, README, CHANGELOG
     paths:
       - '.github/workflows/linting.yaml*'
       - '.github/markdown_lint.yaml'
-      - '*.md'
+      - 'README.md'
+      - 'CHANGELOG.md'
   # Triggered on PR for all branches, any file
   pull_request:
     branches:
@@ -32,8 +33,8 @@ jobs:
 
       - name: Run Markdownlint
         run: |
-          #markdownlint ${GITHUB_WORKSPACE} -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
           markdownlint CHANGELOG.md -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
+          markdownlint README.md -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
 
   # YAML template from nf-core eager to trial
   yaml_lint:
