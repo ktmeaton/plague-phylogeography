@@ -1,10 +1,12 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project "attempts" to adhere to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Development]
+
 - Rewrite shell scripts in python?
 - Overabundance of files in database update and snippy_filtering
 - Deal with the fail to publish issue with NCBImeta db
@@ -21,29 +23,35 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [v0.1.2] - 2020-05-07 - Metadata
 
 ### Added
+
 - scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py scripts/geocode_NextStrain.py
 
 ### Changed
+
 - git update-index --add --chmod=+x scripts/geocode_NextStrain.py scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py
 
 ## [v0.1.1] - 2020-04-29 - Narratives and ReadtheDocs
 
 ### Added
+
 - ModelFinder for model selection, automatic integration with IQTREE
 - scripts/fasta_split_locus.sh
 - EAGER processing begins  (eager/)
 - NextStrain Datasets and Narratives (auspice/ and narratives/)
 
 ### Removed
+
 - Modeltest-NG process entirely removed
 
 ### Changed
+
 - At this point, the pipeline is fully resumable.
 - git update-index --add --chmod=+x scripts/fasta_split_replicon.sh
 
 ## [v0.1.0] - 2020-04-14
 
 ### Added
+
 - Repository: README.md, CHANGELOG.md, .gitignore
 - Configuration: ncbimeta.yaml, multiqc_config.yaml
 - Annotation: annot_biosample.txt
@@ -59,8 +67,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Steps - Statistics: QualiMap, MultiQC
 
 ### Changed
+
 - 2020-02-21 Used git filter-branch to purge ncbimeta.yaml from history. API key accidentally revealed. Re-added and now not tracked.
 - 2020-02-28 Redo ncbimeta.yaml history purge:
+
   ```
   cp ncbimeta.yaml $HOME/ncbimeta.yaml.bak
   ```
