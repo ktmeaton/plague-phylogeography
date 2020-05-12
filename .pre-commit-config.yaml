@@ -17,3 +17,4 @@ repos:
     rev: v1.23.0
     hooks:
       - id: yamllint
+        args: ['-d {extends: default, rules: {line-length: disable}}']
