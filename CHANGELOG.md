@@ -71,33 +71,45 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - 2020-02-21 Used git filter-branch to purge ncbimeta.yaml from history. API key accidentally revealed. Re-added and now not tracked.
 - 2020-02-28 Redo ncbimeta.yaml history purge:
 
-  ```
+  ```bash
   cp ncbimeta.yaml $HOME/ncbimeta.yaml.bak
   ```
+
   (Delete sensitive data)
-  ```
+
+  ```bash
   git filter-branch --force --index-filter "git rm --cached --ignore-unmatch ncbimeta.yaml" --prune-empty --tag-name-filter cat -- --all
   ```
+
   Push the changes to the remote
-  ```
+
+  ```bash
   git push origin --force --all
   ```
+
   (Restore default config file)
-  ```
+
+  ```bash
   mv $HOME/ncbimeta.yaml.bak ncbimeta.yaml
   git add -f ncbimeta.yaml
   ```
+
   Stop git from continuing to track the file and ignore
-  ```
+
+  ```bash
   git update-index --skip-worktree ncbimeta.yaml
   echo "ncbimeta.yaml" >> .gitignore
   ```
+
   After stash+pull, restore yaml with sensitive info
-  ```
+
+  ```bash
   git checkout stash@{0} -- ncbimeta.yaml
   ```
+
   If you need to restore the file to the work tree:
-  ```
+
+  ```bash
   git update-index --no-skip-worktree ncbimeta.yaml
   ```
 
