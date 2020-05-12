@@ -1,0 +1,27 @@
+name: phylo-dev-env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+  - anaconda
+dependencies:
+  - sqlite==3.31.1
+  - snippy==4.6.0
+  - blast==2.9.0
+  - mummer==3.23
+  - vcftools==0.1.16
+  - pip==20.0.2
+  - ncbimeta==0.6.5
+  - qualimap==2.2.2d
+  - multiqc==1.8
+  - nextflow==20.01.0
+  - iqtree==1.6.12
+  - sphinx_rtd_theme==0.4.3
+  - sphinxcontrib-applehelp==1.0.2
+  - sphinxcontrib-devhelp==1.0.2
+  - sphinxcontrib-htmlhelp==1.0.3
+  - sphinxcontrib-jsmath==1.0.1
+  - sphinxcontrib-qthelp==1.0.3
+  - sphinxcontrib-serializinghtml==1.1.4
+  - m2r==0.2.1
+  - pre_commit==2.3.0
