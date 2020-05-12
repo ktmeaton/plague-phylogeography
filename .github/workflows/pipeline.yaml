@@ -1,0 +1,33 @@
+name: Pipeline
+#This is a workflow for minimal pipeline testing, triggered on a push or pull-request.
+on:
+  # Triggered on Push for any branch
+  push:
+    branches:
+      - '*'
+    # On change to workflow, pipeline
+    paths:
+      - '.github/workflows/pipeline.yaml'
+      - 'pipeline.nf'
+
+  # Triggered on PR for all branches, pipeline
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+
+  example:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Create Conda Environment
+      run: |
+        conda env create -f phylo-env.yaml --name phylo-env
+        conda activate phylo-env
+
+    - name: Pipeline Test
+      run: |
+        nextflow run pipeline.nf \
+          --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+          --max_datasets 3
