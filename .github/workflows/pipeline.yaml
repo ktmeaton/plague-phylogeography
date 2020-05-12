@@ -27,12 +27,10 @@ jobs:
           environment-file: phylo-env.yaml
           auto-activate-base: false
       - shell: bash -l {0}
+      - name: Pipeline Test
         run: |
           conda info
           conda list
-
-      - name: Pipeline Test
-        run: |
           nextflow run pipeline.nf \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --max_datasets 3
