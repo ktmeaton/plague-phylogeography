@@ -44,7 +44,6 @@ Run NCBImeta queries to update, annotate, and join a previously created database
 Input                                     Type                        Description
 ========================================= =========================== ===========================
 ch_ncbimeta_yaml_update                   yaml                        NCBImeta config file from process :ref:`ncbimeta_db_create<NCBImeta DB Create>`.
-ch_ncbimeta_annot_update                  text                        NCBImeta annotation file.
 ch_ncbimeta_sqlite_update                 sqlite                      NCBImeta SQLite database from process :ref:`ncbimeta_db_create<NCBImeta DB Create>`.
 ========================================= =========================== ===========================
 
@@ -58,7 +57,6 @@ ch_ncbimeta_sqlite_import                 sqlite                      NCBImeta S
 Publish                                    Type                        Description
 ========================================= =========================== ===========================
 ${params.ncbimeta_sqlite_db}              sqlite                      NCBImeta SQLite database.
-ncbimeta_annot                            text                        NCBImeta annotation file.
 ncbimeta_yaml                             yaml                        NCBImeta config file.
 \*.log                                    text                        Text logs of NCBImeta database update.
 ========================================= =========================== ===========================
@@ -74,7 +72,12 @@ ncbimeta_yaml                             yaml                        NCBImeta c
       cp ${outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/log/* ${params.ncbimeta_output_dir}/log;
       # Execute NCBImeta
       NCBImeta.py --config ${ncbimeta_yaml}
-      NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
+      # If annotation file supplied, run the annotation script
+      if [[ ${params.ncbimeta_annot} != "false" ]]; then
+        ANNOT_FILE=`basename ${params.ncbimeta_annot}`
+        mv ${workDir}/dummy_annot.txt `pwd`/\$ANNOT_FILE;
+        NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${params.ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
+      fi
       # Drop old or outdated join tables
       sqlite3 ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} "DROP TABLE IF EXISTS MasterFirst"
       sqlite3 ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} "DROP TABLE IF EXISTS MasterSecond"
