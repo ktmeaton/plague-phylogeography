@@ -31,4 +31,21 @@ jobs:
         run: npm install -g markdownlint-cli
 
       - name: Run Markdownlint
-        run: markdownlint ${GITHUB_WORKSPACE} -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
+        run: |
+          #markdownlint ${GITHUB_WORKSPACE} -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
+          markdownlint CHANGELOG.md -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
+
+  # YAML template from nf-core eager to trial
+  yaml_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+
+      - name: Install yaml-lint
+        run: npm install -g yaml-lint
+
+      - name: Run yaml-lint
+        run: yamllint $(find ${GITHUB_WORKSPACE} -type f -name "*.yaml")
