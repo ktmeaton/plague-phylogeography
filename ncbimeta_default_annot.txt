@@ -1,417 +1,4 @@
 BioSampleAccession	AssemblyFTPGenbank	SRARunAccession	BioSampleStrain	BioSampleCollectionDate	BioSampleHost	BioSampleGeographicLocation	BioSampleBiovar	PubmedArticleTitle	PubmedAuthorsLastName	AssemblyContigCount	AssemblyTotalLength	NucleotideGenes	NucleotideGenesTotal	NucleotidePseudoGenes	NucleotidePseudoGenesTotal	NucleotiderRNAs	AssemblySubmissionDate	SRARunPublishDate	BioSampleComment
-SAMN13259076	?	?	347-16	2016	Homo sapiens	Russia: Kislovodsk	?	?	?	?	?	?	?	?	?	?	?	?	?
-SAMN08162039	?	SRR6367135	Yp3994	1966	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Serra Sitio Novo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08162038	?	SRR6367029	Yp3992	1986	Calomys callosus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Paraiso	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08162037	?	SRR6367027	Yp3990	1983	Galea spixii wellsi	Brazil:Ceara,Baturite,Mulungu,Sitio Camara	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08162036	?	SRR6367033	Yp3987	1982	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipueiras,Sitio Baixa Nova	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08162035	?	SRR6367032	Yp3983	1982	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipueiras,Sitio Almas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08162034	?	SRR6367031	Yp3982	1982	Bolomys lasiurus	Brazil:Ceara,Baturite,Aratuba,Sitio Outeiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08162033	?	SRR6367030	Yp3981	1982	Pulex irritans	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Garrancho Velho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08162032	?	SRR6367037	Yp3979	1980	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipueiras,Sitio Santa Maria	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08162031	?	SRR6367036	Yp3978	1980	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08162030	?	SRR6367035	Yp3977	1979	rodent	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08162029	?	SRR6367034	Yp3975	1979	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipu,Sitio Tabocal	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08162028	?	SRR6366831	Yp3974	1984	Xenopsylla cheopis	Brazil:Bahia,Feira de Santana,Feira de Santana,Fazenda Jurema I	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162027	?	SRR6366830	Yp3972	1986	Cerradomys subflavus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162026	?	SRR6366837	Yp3971	1986	Rattus rattus frugivorus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Cinco Lagoas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162025	?	SRR6366836	Yp3967	1986	Bolomys lasiurus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162024	?	SRR6366835	Yp3959	1982	Bolomys lasiurus	Brazil:Paraiba,Itabaiana,Salgado de Sao Felix,Engenho Covao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162023	?	SRR6366834	Yp3958	1982	Bolomys lasiurus	Brazil:Pernambuco,Garanhuns,Caetes,Sitio Riacho Fundo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162022	?	SRR6366841	Yp3952	1979	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08162021	?	SRR6366840	Yp3951	1979	Polygenis	Brazil:Pernambuco,Vale do Ipojuca,Tacaimbo,Sitio Paulista	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162020	?	SRR6366839	Yp3950	1979	Polygenis	Brazil:Pernambuco,Vale do Ipojuca,Sao Caitano,Sitio Campo Alegre	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162019	?	SRR6367133	Yp3949	1979	Cerradomys subflavus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Lagoa do Almeida	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08162018	?	SRR6366814	Yp3947	1979	Polygenis	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Boqueirao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162017	?	SRR6366825	Yp3935	1978	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Sao Jose dos Pilotos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162016	?	SRR6366955	Yp3931	1978	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Jardim	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08162015	?	SRR6366956	Yp3925	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Granito,Sitio Catumbi	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08162014	?	SRR6366957	Yp3924	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Vicente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08162013	?	SRR6366958	Yp3905	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Povoado Serra Branca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08162012	?	SRR6366951	Yp3901	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08162011	?	SRR6366952	Yp3899	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08162010	?	SRR6366953	Yp3892	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Cachoeira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08162009	?	SRR6366954	Yp3884	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Cana Mansa	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08162008	?	SRR6366824	Yp3872	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162007	?	SRR6366823	Yp3867	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Ludugerio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162006	?	SRR6366820	Yp3866	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Bras	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162005	?	SRR6366819	Yp3865	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162004	?	SRR6366822	Yp3862	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Louvado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162003	?	SRR6366821	Yp3860	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Louvado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162002	?	SRR6366816	Yp3858	1974	Rattus rattus alexandrinus	Brazil:Ceara,Cariri,Santana do Cariri,Sitio Serra da Palmeira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162001	?	SRR6366815	Yp3856	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08162000	?	SRR6366818	Yp3855	1974	Galea spixii wellsi	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161999	?	SRR6366817	Yp3854	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161998	?	SRR6366941	Yp3853	1974	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161997	?	SRR6366942	Yp3852	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161996	?	SRR6366939	Yp3851	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161995	?	SRR6366940	Yp3850	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161994	?	SRR6366937	Yp3849	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161993	?	SRR6366938	Yp3848	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161992	?	SRR6366935	Yp3847	1974	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161991	?	SRR6366936	Yp3845	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161990	?	SRR6366933	Yp3844	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Cruzinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161989	?	SRR6366934	Yp3843	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161988	?	SRR6366992	Yp3842	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161987	?	SRR6366991	Yp3841	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161986	?	SRR6367006	Yp3840	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161985	?	SRR6367005	Yp3839	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Santo Amaro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161984	?	SRR6367004	Yp3838	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Santo Amaro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161983	?	SRR6367003	Yp3837	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Romania	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161982	?	SRR6367002	Yp3834	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa da Rapadura	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161981	?	SRR6367001	Yp3833	1972	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa da Rapadura	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161980	?	SRR6366932	Yp3832	1972	Polygenis	Brazil:Ceara,Ibiapaba,Sao Benedito,Sitio Pimenteira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161979	?	SRR6366931	Yp3830	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Jose	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161978	?	SRR6367120	Yp3829	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sussuanha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161977	?	SRR6367121	Yp3828	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Benedito	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161976	?	SRR6367111	Yp3826	1971	Homo sapiens	Brazil:Ceara,Ipu,Ipueiras,Povoado America	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161975	?	SRR6367112	Yp3825	1971	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Mato Grosso	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161974	?	SRR6367113	Yp3824	1971	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Serra da Matinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161973	?	SRR6367114	Yp3823	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Timbauba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161972	?	SRR6367115	Yp3822	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161971	?	SRR6367116	Yp3821	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Pocos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161970	?	SRR6367117	Yp3820	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161969	?	SRR6367118	Yp3819	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Pocos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161968	?	SRR6366765	Yp3817	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Aracaju	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161967	?	SRR6366764	Yp3816	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161966	?	SRR6366767	Yp3815	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161965	?	SRR6366766	Yp3813	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Aracaju	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161964	?	SRR6366769	Yp3812	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161963	?	SRR6366768	Yp3811	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161962	?	SRR6366771	Yp3810	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161961	?	SRR6366770	Yp3809	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161960	?	SRR6366773	Yp3808	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161959	?	SRR6366772	Yp3807	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Baixio do Meio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161958	?	SRR6366877	Yp3806	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161957	?	SRR6367068	Yp3805	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161956	?	SRR6367079	Yp3803	1971	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Pamonha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161955	?	SRR6367080	Yp3802	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Entremontes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161954	?	SRR6366881	Yp3801	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Paraiso	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161953	?	SRR6366882	Yp3800	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Batinga	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161952	?	SRR6366887	Yp3799	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Engenho Velho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161951	?	SRR6366888	Yp3797	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Entremontes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161950	?	SRR6366885	Yp3795	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Batinga	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161949	?	SRR6366886	Yp3794	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Batinga	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161948	?	SRR6366930	Yp3793	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Entremontes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161947	?	SRR6366929	Yp3792	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161946	?	SRR6366924	Yp3791	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Curicaca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161945	?	SRR6366923	Yp3790	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161944	?	SRR6366922	Yp3789	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161943	?	SRR6366921	Yp3788	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161942	?	SRR6366928	Yp3787	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161941	?	SRR6366927	Yp3786	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161940	?	SRR6366926	Yp3785	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161939	?	SRR6366925	Yp3784	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161938	?	SRR6367056	Yp3783	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161937	?	SRR6367057	Yp3780	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161936	?	SRR6367052	Yp3774	1969	Ornithodoros	Brazil:Pernambuco,Araripina,Exu,Sitio Pedra Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161935	?	SRR6367053	Yp3768	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Patrimonio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161934	?	SRR6367054	Yp3766	1969	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Baixa das Flores	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161933	?	SRR6367055	Yp3765	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Bugao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161932	?	SRR6367048	Yp3763	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161931	?	SRR6367049	Yp3762	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Bugao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161930	?	SRR6367050	Yp3761	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Novo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161929	?	SRR6367051	Yp3759	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Serra Anastacio Barbosa	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161928	?	SRR6366999	Yp3757	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Gamba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161927	?	SRR6367000	Yp3756	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Luiz Ferreira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161926	?	SRR6366997	Yp3755	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Pedra Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161925	?	SRR6366998	Yp3754	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Serra Janoca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161924	?	SRR6366995	Yp3753	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Pedra Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161923	?	SRR6366996	Yp3752	1969	Homo sapiens	Brazil:Pernambuco,Salgueiro,Sao Jose do Belmonte,Sitio Baixio Velho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161922	?	SRR6366993	Yp3749	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Pamonha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161921	?	SRR6366994	Yp3747	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Joaquim Santana	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161920	?	SRR6366919	Yp3746	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Joaquim Santana	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161919	?	SRR6366920	Yp3744	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Joaquim Santana	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161918	?	SRR6366884	Yp3743	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161917	?	SRR6366883	Yp3742	1969	Pulex	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161916	?	SRR6366878	Yp3737	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Floresta	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161915	?	SRR6367064	Yp3735	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Floresta	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161914	?	SRR6366880	Yp3731	1968	Pulex	Brazil:Pernambuco,Araripina,Exu,Sitio Barrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161913	?	SRR6366879	Yp3726	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Bodoco,Sitio Serra Pedro Paulino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161912	?	SRR6366874	Yp3725	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Bodoco,Sitio Taboquinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161911	?	SRR6366873	Yp3724	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Serra Cicero Mendes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161910	?	SRR6366876	Yp3723	1968	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Mamonas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161909	?	SRR6366875	Yp3722	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Bodoco,Sitio Queimada	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161908	?	SRR6367007	Yp3715	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Cascavel	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161907	?	SRR6367008	Yp3713	1968	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161906	?	SRR6367013	Yp3712	1968	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161905	?	SRR6367014	Yp3711	1968	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Sebastiao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161904	?	SRR6367015	Yp3710	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161903	?	SRR6367016	Yp3709	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161902	?	SRR6367009	Yp3708	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161901	?	SRR6367010	Yp3707	1968	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161900	?	SRR6367011	Yp3706	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161899	?	SRR6367012	Yp3705	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Rua Coronel Bem Bem	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161898	?	SRR6366890	Yp3704	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Batedor	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161897	?	SRR6366889	Yp3703	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Queimada Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161896	?	SRR6366894	Yp3701	1967	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Serrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161895	?	SRR6366893	Yp3700	1967	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa do Ouro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161894	?	SRR6366892	Yp3699	1967	Homo sapiens	Brazil:Pernambuco,Vale de Ipojuca,Caruaru,Sitio Lagoa do Anjo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161893	?	SRR6366891	Yp3698	1967	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Jatoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161892	?	SRR6366898	Yp3696	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Novo Horizonte	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161891	?	SRR6366897	Yp3695	1967	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Liberdade	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161890	?	SRR6366896	Yp3693	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161889	?	SRR6366895	Yp3692	1967	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Ludugerio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161888	?	SRR6366838	Yp3690	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Novo Horizonte	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161887	?	SRR6367134	Yp3687	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161886	?	SRR6366828	Yp3686	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161885	?	SRR6366829	Yp3685	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161884	?	SRR6366826	Yp3684	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Novo Horizonte	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161883	?	SRR6366827	Yp3683	1967	Rattus rattus frugivorus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161882	?	SRR6366832	Yp3682	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Barra Nova	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161881	?	SRR6366833	Yp3681	1967	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161880	?	SRR6367119	Yp3680	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161879	?	SRR6367122	Yp3679	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161878	?	SRR6367132	Yp3678	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161877	?	SRR6367131	Yp3669	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161876	?	SRR6367124	Yp3668	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161875	?	SRR6367123	Yp3665	1967	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161874	?	SRR6367126	Yp3661	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Queimada Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161873	?	SRR6367125	Yp3660	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161872	?	SRR6367128	Yp3659	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161871	?	SRR6367127	Yp3658	1967	Rattus rattus frugivorus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161870	?	SRR6367130	Yp3656	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161869	?	SRR6367129	Yp3655	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161868	?	SRR6367069	Yp3653	1967	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161867	?	SRR6367070	Yp3652	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161866	?	SRR6367071	Yp3651	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161865	?	SRR6367072	Yp3650	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161864	?	SRR6367073	Yp3649	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161863	?	SRR6367074	Yp3648	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161862	?	SRR6367075	Yp3647	1967	Rattus rattus frugivorus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161861	?	SRR6367076	Yp3646	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161860	?	SRR6367077	Yp3640	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161859	?	SRR6367078	Yp3639	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161858	?	SRR6366990	Yp3638	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161857	?	SRR6366989	Yp3637	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161856	?	SRR6366950	Yp3636	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Batedor	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161855	?	SRR6366949	Yp3631	1967	Homo sapiens	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Santa Clara	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161854	?	SRR6366948	Yp3630	1967	Homo sapiens	Brazil:Pernambuco,Salgueiro,Sao Jose do Belmonte,Sitio Minador	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161853	?	SRR6366947	Yp3625	1966	Oligoryzomys nigripes	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Manoel Severino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161852	?	SRR6366946	Yp3624	1966	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Jose Padeiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161851	?	SRR6366945	Yp3623	1966	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161850	?	SRR6366944	Yp3622	1966	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Jose Padeiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161849	?	SRR6366943	Yp3621	1966	Rattus rattus frugivorus	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161848	?	SRR6366863	Yp3620	1966	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Serrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161847	?	SRR6366864	Yp3619	1966	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Serra Novo Mundo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161846	?	SRR6366871	Yp3603	1983	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Sao Benedito,Sitio Pimenteira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161845	?	SRR6366872	Yp3600	1982	Rattus rattus alexandrinus	Brazil:Ceara,Baturite,Redencao,Sitio Miranda	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161844	?	SRR6366869	Yp3598	1982	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Baixinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161843	?	SRR6366870	Yp3597	1982	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Ibiapina,Sitio Aracas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161842	?	SRR6366867	Yp3592	1982	Bolomys lasiurus	Brazil:Ceara,Fortaleza,Maranguape,Sitio Santo Amaro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161841	?	SRR6366868	Yp3588	1979	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161840	?	SRR6366865	Yp3587	1979	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161839	?	SRR6366866	Yp3584	1997	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Ipuzinho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161838	?	SRR6366755	Yp3583	1986	Homo sapiens	Brazil:Paraiba,Curimatau Ocidental,Remigio,Fazenda Serrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161837	?	SRR6366754	Yp3580	1986	Cerradomys subflavus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Bacalhau	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161836	?	SRR6366761	Yp3578	1986	Rattus rattus frugivorus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Cinco Lagoas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161835	?	SRR6366760	Yp3577	1986	Rattus rattus frugivorus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Bacalhau	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161834	?	SRR6366763	Yp3576	1986	Cerradomys subflavus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Cinco Lagoas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161833	?	SRR6366762	Yp3575	1986	Bolomys lasiurus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Cinco Lagoas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161832	?	SRR6366757	Yp3573	1986	Bolomys lasiurus	Brazil:Paraiba,Curimatau Oriental,Solanea,Fazenda Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161831	?	SRR6366756	Yp3572	1986	Holochilus sciureus	Brazil:Paraiba,Curimatau Oriental,Solanea,Fazenda Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161830	?	SRR6366759	Yp3571	1986	Bolomys lasiurus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Cinco Estrelas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161829	?	SRR6366758	Yp3570	1986	Bolomys lasiurus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Lagoa do Serrote	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161828	?	SRR6366970	Yp3569	1986	Rattus rattus frugivorus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Valerio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161827	?	SRR6366969	Yp3568	1986	Rattus rattus frugivorus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161826	?	SRR6366976	Yp3567	1986	Homo sapiens	Brazil:Paraiba,Curimatau Ocidental,Barra de Santa Rosa,Sitio Malhada da Catingueira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161825	?	SRR6366975	Yp3566	1986	Homo sapiens	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161824	?	SRR6366978	Yp3565	1982	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipueiras,Sitio Grossos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161823	?	SRR6366977	Yp3562	1982	Bolomys lasiurus	Brazil:Pernambuco,Garanhuns,Caetes,Sitio Riacho Fundo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161822	?	SRR6366972	Yp3561	1980	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Araripina,Sitio Tamboril	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161821	?	SRR6366971	Yp3560	1980	Bolomys lasiurus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Gito	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161820	?	SRR6366974	Yp3559	1980	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Baixa	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161819	?	SRR6366973	Yp3558	1980	Bolomys lasiurus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Salgadinho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161818	?	SRR6367091	Yp3557	1980	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161817	?	SRR6367092	Yp3555	1979	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipu,Sitio Taboca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161816	?	SRR6367099	Yp3551	1979	Polygenis	Brazil:Pernambuco,Vale do Ipojuca,Tacaimbo,Sitio Malhada do Jua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161815	?	SRR6367100	Yp3549	1979	Bolomys lasiurus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Taua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161814	?	SRR6367097	Yp3548	1979	Polygenis	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Santa Tereza	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161813	?	SRR6367098	Yp3547	1979	Cerradomys subflavus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Estivas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161812	?	SRR6367095	Yp3545	1979	Cerradomys subflavus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Salgada	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161811	?	SRR6367096	Yp3544	1979	Cerradomys subflavus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Conceicao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161810	?	SRR6367093	Yp3543	1979	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Salgada	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161809	?	SRR6367094	Yp3542	1979	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Boqueirao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161808	?	SRR6366803	Yp3541	1979	Bolomys lasiurus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Estivas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161807	?	SRR6366802	Yp3540	1979	Bolomys lasiurus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Cha do Vento	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161806	?	SRR6366797	Yp3539	1979	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Macaco	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161805	?	SRR6366796	Yp3537	1979	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Taboca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161804	?	SRR6366795	Yp3536	1979	Calomys callosus	Brazil:Ceara,Baturite,Aratuba,Sitio Fernandes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161803	?	SRR6366794	Yp3535	1978	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Santo Amaro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161802	?	SRR6366801	Yp3534	1978	Homo sapiens	Brazil:Ceara,Ibiapaba,Sao Benedito,Sitio Carnauba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161801	?	SRR6366800	Yp3533	1978	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Sao Joao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161800	?	SRR6366799	Yp3532	1978	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Tabocal	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161799	?	SRR6366798	Yp3531	1978	rodent	Brazil:Bahia,Serrinha,Serrinha,Fazenda Flores	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161798	?	SRR6366917	Yp3529	1978	Rattus rattus	Brazil:Ceara,Ipu,Ipu,Sitio Almas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161797	?	SRR6366918	Yp3528	1978	Homo sapiens	Brazil:Ceara,Baturite,Aratuba,Sitio Serrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161796	?	SRR6366913	Yp3527	1978	Cerradomys subflavus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Sao Jose dos Vianas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161795	?	SRR6366914	Yp3526	1978	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Jerico	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161794	?	SRR6366915	Yp3525	1978	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Cabeca Dantas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161793	?	SRR6366916	Yp3524	1978	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Barbalho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161792	?	SRR6366909	Yp3522	1978	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161791	?	SRR6366910	Yp3521	1977	Polygenis	Brazil:Pernambuco,Araripina,Araripina,Sitio Alto Alegre	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161790	?	SRR6366911	Yp3520	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Brejo Santo Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161789	?	SRR6366912	Yp3519	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Pedro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161788	?	SRR6367059	Yp3518	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Pedro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161787	?	SRR6367058	Yp3517	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Neco	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161786	?	SRR6367061	Yp3516	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Inhame	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161785	?	SRR6367060	Yp3515	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Lagoa do Alvino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161784	?	SRR6367063	Yp3512	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa do Ouro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161783	?	SRR6367062	Yp3511	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Cavaco	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161782	?	SRR6367065	Yp3510	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Vila Timorante	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161781	?	SRR6366842	Yp3509	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa Seca 2	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161780	?	SRR6367067	Yp3508	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Cacimbinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161779	?	SRR6367066	Yp3507	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Lagoa do Alvino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161778	?	SRR6366744	Yp3506	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Graca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161777	?	SRR6366745	Yp3505	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Pitombeira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161776	?	SRR6366748	Yp3504	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Serra Antonio Domingos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161775	?	SRR6366749	Yp3503	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Cacimbinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161774	?	SRR6366746	Yp3502	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Cacimbinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161773	?	SRR6366747	Yp3501	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Cacimbinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161772	?	SRR6366752	Yp3500	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Mulunguzinho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161771	?	SRR6366753	Yp3499	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161770	?	SRR6366750	Yp3498	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161769	?	SRR6366751	Yp3497	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161768	?	SRR6366854	Yp3496	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cascavel	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161767	?	SRR6366853	Yp3495	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Bandeira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161766	?	SRR6366862	Yp3494	1975	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio Campo Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161765	?	SRR6366861	Yp3492	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Nascente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161764	?	SRR6366860	Yp3491	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Torre Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161763	?	SRR6366859	Yp3490	1975	Homo sapiens	Brazil:Piaui,Alto Medio Caninde,Simoes,Sitio Barrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161762	?	SRR6366858	Yp3489	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Batente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161761	?	SRR6366857	Yp3487	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Joaquim dos Ferreiras	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161760	?	SRR6366856	Yp3485	1975	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161759	?	SRR6366855	Yp3484	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161758	?	SRR6366987	Yp3483	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Canavieira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161757	?	SRR6366988	Yp3482	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161756	?	SRR6366979	Yp3481	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161755	?	SRR6366980	Yp3480	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161754	?	SRR6366981	Yp3479	1975	Oligoryzomys nigripes	Brazil:Pernambuco,Araripina,Exu,Sitio Canavieira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161753	?	SRR6366982	Yp3478	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Araripina,Sitio Alagadico	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161752	?	SRR6366983	Yp3476	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Campo Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161751	?	SRR6366984	Yp3475	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Vira Mao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161750	?	SRR6366985	Yp3474	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Cansancao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161749	?	SRR6366986	Yp3473	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Araripina,Sitio Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161748	?	SRR6367110	Yp3472	1975	Thrichomys	Brazil:Pernambuco,Araripina,Araripina,Sitio Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161747	?	SRR6367109	Yp3471	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Serra da Torre	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161746	?	SRR6367106	Yp3470	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161745	?	SRR6367105	Yp3468	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Nazare	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161744	?	SRR6367108	Yp3466	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Saco Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161743	?	SRR6367107	Yp3465	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Patrimonio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161742	?	SRR6367102	Yp3464	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Nazare	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161741	?	SRR6367101	Yp3463	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Altair	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161740	?	SRR6367104	Yp3462	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Barro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161739	?	SRR6367103	Yp3461	1974	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Exu	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161738	?	SRR6366812	Yp3460	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161737	?	SRR6366813	Yp3459	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161736	?	SRR6366810	Yp3458	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Ludugerio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161735	?	SRR6366811	Yp3457	1974	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Alto do Ferreira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161734	?	SRR6366808	Yp3455	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161733	?	SRR6366809	Yp3454	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
-SAMN08161732	?	SRR6366806	Yp3453	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Ludugerio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161731	?	SRR6366807	Yp3452	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161730	?	SRR6366804	Yp3448	1974	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Mata Fresca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161729	?	SRR6366805	Yp3447	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Jurubeba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161728	?	SRR6366900	Yp3446	1974	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Jurubeba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161727	?	SRR6366899	Yp3444	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Mata Fresca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161726	?	SRR6366906	Yp3442	1974	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Saudade	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161725	?	SRR6366905	Yp3440	1974	Pulex	Brazil:Pernambuco,Araripina,Exu,Sitio Brejo Santo Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161724	?	SRR6366908	Yp3439	1974	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Brejo Santo Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161723	?	SRR6366907	Yp3438	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Morada Nova	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161722	?	SRR6366902	Yp3435	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161721	?	SRR6366901	Yp3432	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161720	?	SRR6366904	Yp3431	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
-SAMN08161719	?	SRR6366903	Yp3414	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Romania	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
-SAMN08161718	?	SRR6366784	Yp3413	1972	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161717	?	SRR6366785	Yp3412	1972	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa da Rapadura	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161716	?	SRR6366792	Yp3411	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Bodoco,Sitio Araruna	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161715	?	SRR6366793	Yp3408	1972	Polygenis	Brazil:Pernambuco,Araripina,Bodoco,Sitio Araruna	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161714	?	SRR6366790	Yp3406	1972	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Macambira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161713	?	SRR6366791	Yp3405	1972	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161712	?	SRR6366788	Yp3404	1972	Homo sapiens	Brazil:Ceara,Ibiapaba,Sao Benedito,Sitio Pimenteira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161711	?	SRR6366789	Yp3400	1971	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Lagoa Velha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161710	?	SRR6366786	Yp3399	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Lagoa do Firmino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161709	?	SRR6366787	Yp3398	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161708	?	SRR6366733	Yp3396	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Santo Antonio dos Camelos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161707	?	SRR6366732	Yp3393	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Buriti Apua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161706	?	SRR6366731	Yp3387	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Aracaju	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161705	?	SRR6366730	Yp3386	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Misericordia	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161704	?	SRR6367028	Yp3382	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Misericordia	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161703	?	SRR6367140	Yp3381	1971	Calomys callosus	Brazil:Pernambuco,Araripina,Exu,Sitio Misericordia	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161702	?	SRR6367139	Yp3372	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161701	?	SRR6367138	Yp3370	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Pamonha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161700	?	SRR6367137	Yp3364	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Entremontes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161699	?	SRR6367136	Yp3362	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Entremontes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161698	?	SRR6367046	Yp3358	1970	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Sapo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161697	?	SRR6367047	Yp3356	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Curicaca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161696	?	SRR6367038	Yp3352	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161695	?	SRR6367039	Yp3350	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161694	?	SRR6367040	Yp3349	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161693	?	SRR6367041	Yp3346	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161692	?	SRR6367042	Yp3342	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161691	?	SRR6367043	Yp3341	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161690	?	SRR6367044	Yp3340	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161689	?	SRR6367045	Yp3338	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
-SAMN08161688	?	SRR6366960	Yp3337	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161687	?	SRR6366959	Yp3336	1969	Ornithodoros	Brazil:Pernambuco,Araripina,Exu,Sitio Pedra Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161686	?	SRR6366962	Yp3335	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161685	?	SRR6366961	Yp3334	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161684	?	SRR6366964	Yp3332	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161683	?	SRR6366963	Yp3331	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161682	?	SRR6366966	Yp3330	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161681	?	SRR6366965	Yp3329	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Patrimonio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161680	?	SRR6366968	Yp3328	1969	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Patrimonio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161679	?	SRR6366967	Yp3327	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Patrimonio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
-SAMN08161678	?	SRR6366843	Yp3325	1969	Homo sapiens	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Batinga	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161677	?	SRR6366844	Yp3322	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Bugao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161676	?	SRR6366847	Yp3316	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161675	?	SRR6366848	Yp3309	1969	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161674	?	SRR6366845	Yp3308	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161673	?	SRR6366846	Yp3306	1969	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Odocil Peixoto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161672	?	SRR6366851	Yp3303	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161671	?	SRR6366852	Yp3299	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161670	?	SRR6366849	Yp3298	1969	Pulex	Brazil:Pernambuco,Araripina,Exu,Sitio Cajueiro 3	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161669	?	SRR6366850	Yp3297	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Brejo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
-SAMN08161668	?	SRR6366783	Yp3296	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Coqueiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161667	?	SRR6366782	Yp3292	1969	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Ambrosio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161666	?	SRR6366777	Yp3291	1968	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio Barrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161665	?	SRR6366776	Yp3290	1968	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio Barrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161664	?	SRR6366775	Yp3287	1968	Homo sapiens	Brazil:Pernambuco,Salgueiro,Sao Jose do Belmonte,Sitio Mata Redonda	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161663	?	SRR6366774	Yp3286	1968	Homo sapiens	Brazil:Pernambuco,Salgueiro,Sao Jose do Belmonte,Sitio Terra Nova	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161662	?	SRR6366781	Yp3285	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Caraiba do Avelino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161661	?	SRR6366780	Yp3278	1968	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra da Farinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161660	?	SRR6366779	Yp3277	1968	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra da Farinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161659	?	SRR6366778	Yp3276	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Mamonas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
-SAMN08161658	?	SRR6367081	Yp3274	1968	Homo sapiens	Brazil:Pernambuco,Salgueiro,Sao Jose do Belmonte,Sitio Baixa Verde	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161657	?	SRR6367082	Yp3272	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Aperto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161656	?	SRR6367087	Yp3248	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Novo Horizonte	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161655	?	SRR6367088	Yp3247	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161654	?	SRR6367089	Yp3245	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Novo Horizonte	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161653	?	SRR6367090	Yp3241	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161652	?	SRR6367083	Yp3234	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161651	?	SRR6367084	Yp3233	1967	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161650	?	SRR6367085	Yp3232	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Barra Nova	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161649	?	SRR6367086	Yp3231	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
-SAMN08161648	?	SRR6367026	Yp3230	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161647	?	SRR6367025	Yp3229	1967	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161646	?	SRR6367022	Yp3228	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161645	?	SRR6367021	Yp3227	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161644	?	SRR6367024	Yp3224	1967	Rattus rattus frugivorus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161643	?	SRR6367023	Yp3222	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161642	?	SRR6367018	Yp3221	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161641	?	SRR6367017	Yp3213	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161640	?	SRR6367020	Yp3208	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161639	?	SRR6367019	Yp3204	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
-SAMN08161638	?	SRR6366743	Yp3202	1967	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161637	?	SRR6366742	Yp3201	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161636	?	SRR6366739	Yp3200	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161635	?	SRR6366738	Yp3197	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161634	?	SRR6366741	Yp3193	1967	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Cidade	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161633	?	SRR6366740	Yp3192	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161632	?	SRR6366735	Yp3191	1967	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Alto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161631	?	SRR6366734	Yp3190	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161630	?	SRR6366737	Yp3186	1966	Homo sapiens	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Santa Clara	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN08161629	?	SRR6366736	Yp3185	1966	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
-SAMN03145064	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/834/495/GCA_000834495.1_ASM83449v1	SRR2148848;SRR2148847;SRR2148846	El Dorado	2002	Homo sapiens	USA: NY, New York	O	Thirty-Two Complete Genome Assemblies of Nine Yersinia Species, Including Y. pestis, Y. pseudotuberculosis, and Y. enterocolitica.	Johnson;Daligault;Davenport;Jaissle;Frey;Ladner;Broomall;Bishop-Lilly;Bruce;Coyne;Gibbons;Lo;Munk;Rosenzweig;Koroleva;Palacios;Redden;Xu;Minogue;Chain	4	4838262	?	?	?	?	?	2015/02/09 00:00	2015-08-12 03:34:22;2015-08-12 03:30:14;2015-08-12 03:35:48	?
 SAMN13698233	?	?	134K	2019	?	Thailand	?	?	?	?	?	?	?	?	?	?	?	?	?
 SAMN13698231	?	?	134	1985	Homo sapiens	Thailand	?	?	?	?	?	?	?	?	?	?	?	?	?
 SAMN13680007	?	?	4812	2018	?	Viet Nam	?	?	?	?	?	?	?	?	?	?	?	?	?
@@ -552,8 +139,8 @@ SAMN12991207	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/009/363/195/GCA_00936319
 SAMN12991206	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/009/295/945/GCA_009295945.1_ASM929594v1	SRR10259780;SRR10259781	SCPM-O-DNA-18 (I-3113)	22-Aug-1984	Marmota sibirica	Russia: Tuva	?	?	?	5	4759144	?	?	?	?	?	2019/10/24 00:00	2019-10-12 05:13:12;2019-10-12 04:18:12	?
 SAMN12991205	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/009/295/925/GCA_009295925.1_ASM929592v1	SRR10259784;SRR10259785	SCPM-O-B-6899 (231)	02-Jul-1947	Marmota baibacina	Kyrgyzstan	?	?	?	4	4806721	?	?	?	?	?	2019/10/24 00:00	2019-10-12 05:56:19;2019-10-12 04:19:12	?
 SAMEA5970710	?	ERR3549716;ERR3549715;ERR3549714;ERR3549713	KIM6	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2019-10-06 08:53:52;2019-10-06 08:53:52;2019-10-06 08:53:52;2019-10-06 08:53:52	?
-SAMEA5970709	?	ERR3549712;ERR3549711;ERR3549710;ERR3549709	KIM6	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2019-10-06 08:53:52;2019-10-06 08:53:52;2019-10-06 08:53:51;2019-10-06 08:53:51	?
-SAMEA5970708	?	ERR3549705;ERR3549708;ERR3549707;ERR3549706	KIM6	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2019-10-06 08:53:51;2019-10-06 08:53:51;2019-10-06 08:53:51;2019-10-06 08:53:51	?
+SAMEA5970709	?	ERR3549709;ERR3549710;ERR3549711;ERR3549712	KIM6	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2019-10-06 08:53:51;2019-10-06 08:53:51;2019-10-06 08:53:52;2019-10-06 08:53:52	?
+SAMEA5970708	?	ERR3549708;ERR3549707;ERR3549706;ERR3549705	KIM6	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2019-10-06 08:53:51;2019-10-06 08:53:51;2019-10-06 08:53:51;2019-10-06 08:53:51	?
 SAMEA5970707	?	ERR3549704;ERR3549703;ERR3549702;ERR3549701	KIM6	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2019-10-06 08:53:51;2019-10-06 08:53:51;2019-10-06 08:53:51;2019-10-06 08:53:51	?
 SAMEA5970605	?	?	KIM6	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?
 SAMEA5970604	?	?	KIM6	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?
@@ -619,7 +206,7 @@ SAMN01853159	?	SRR651090	17/99 B	1999	Homo sapiens	Madagascar: Mahajanga	?	?	?	?
 SAMN12254088	?	?	wild-type strain 201	?	?	?	?	Hfq Globally Binds and Destabilizes sRNAs and mRNAs in Yersinia pestis.	Han;Chen;Yan;Gao;Liu;Xue;Zhang;Yang	?	?	?	?	?	?	?	?	?	?
 SAMN12254087	?	?	wild-type strain 201 carrying pACYC184-Hfq-Flag	?	?	?	?	Hfq Globally Binds and Destabilizes sRNAs and mRNAs in Yersinia pestis.	Han;Chen;Yan;Gao;Liu;Xue;Zhang;Yang	?	?	?	?	?	?	?	?	?	?
 SAMN12254086	?	?	wild-type strain 201 carrying pACYC184-Flag	?	?	?	?	Hfq Globally Binds and Destabilizes sRNAs and mRNAs in Yersinia pestis.	Han;Chen;Yan;Gao;Liu;Xue;Zhang;Yang	?	?	?	?	?	?	?	?	?	?
-SAMN12214386	?	SRR9643627;SRR9643628;SRR9643629;SRR9643630	?	?	?	?	?	FPR1 is the plague receptor on host immune cells.	Osei-Owusu;Charlton;Kim;Missiakas;Schneewind	?	?	?	?	?	?	?	?	2019-07-08 08:27:35;2019-07-08 08:27:35;2019-07-08 08:27:35;2019-07-08 08:27:35	?
+SAMN12214386	?	SRR9643630;SRR9643629;SRR9643628;SRR9643627	?	?	?	?	?	FPR1 is the plague receptor on host immune cells.	Osei-Owusu;Charlton;Kim;Missiakas;Schneewind	?	?	?	?	?	?	?	?	2019-07-08 08:27:35;2019-07-08 08:27:35;2019-07-08 08:27:35;2019-07-08 08:27:35	?
 SAMN12214385	?	SRR9643631;SRR9643632;SRR9643633;SRR9643634	?	?	?	?	?	FPR1 is the plague receptor on host immune cells.	Osei-Owusu;Charlton;Kim;Missiakas;Schneewind	?	?	?	?	?	?	?	?	2019-07-08 08:27:35;2019-07-08 08:27:35;2019-07-08 08:27:35;2019-07-08 08:27:35	?
 SAMN12214384	?	SRR9643635	?	?	?	?	?	FPR1 is the plague receptor on host immune cells.	Osei-Owusu;Charlton;Kim;Missiakas;Schneewind	?	?	?	?	?	?	?	?	2019-07-08 08:27:35	?
 SAMN12214383	?	SRR9643636	?	?	?	?	?	FPR1 is the plague receptor on host immune cells.	Osei-Owusu;Charlton;Kim;Missiakas;Schneewind	?	?	?	?	?	?	?	?	2019-07-08 08:27:35	?
@@ -682,7 +269,7 @@ SAMN02404402	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/169/655/GCA_00016965
 SAMN02404401	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/169/675/GCA_000169675.1_ASM16967v1	?	B42003004	?	?	?	Antiqua	Draft genome sequences of Yersinia pestis isolates from natural foci of endemic plague in China.	Eppinger;Guo;Sebastian;Song;Lindler;Yang;Ravel	69	4841690	?	?	?	?	?	2007/03/26 00:00	?	?
 SAMN02404400	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/169/695/GCA_000169695.1_ASM16969v1	?	E1979001	?	?	?	Antiqua	Draft genome sequences of Yersinia pestis isolates from natural foci of endemic plague in China.	Eppinger;Guo;Sebastian;Song;Lindler;Yang;Ravel	75	4847813	?	?	?	?	?	2007/03/26 00:00	?	?
 SAMN02404399	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/170/275/GCA_000170275.1_ASM17027v1	?	F1991016	?	?	?	Orientalis	Draft genome sequences of Yersinia pestis isolates from natural foci of endemic plague in China.	Eppinger;Guo;Sebastian;Song;Lindler;Yang;Ravel	107	4892085	?	?	?	?	?	2007/05/16 00:00	?	?
-SAMN02404398	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/168/235/GCA_000168235.2_ASM16823v2;ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/168/235/GCA_000168235.1_ASM16823v1	?	IP275	1995	?	Madagascar: Ambalavao district	Orientalis	?	?	102;101	5322065;5139152	?	?	?	?	?	2008/01/17 00:00	?	?
+SAMN02404398	?	?	IP275	1995	?	Madagascar: Ambalavao district	Orientalis	?	?	102;101	5322065;5139152	?	?	?	?	?	2008/01/17 00:00	?	?
 SAMN02403943	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/182/525/GCA_000182525.1_ASM18252v1	?	PEXU2	?	?	?	Orientalis	?	?	12	4770886	?	?	?	?	?	2009/05/08 00:00	?	?
 SAMN02403942	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/182/505/GCA_000182505.1_ASM18250v1	?	India 195	?	?	?	Orientalis	?	?	41	4719608	?	?	?	?	?	2009/05/08 00:00	?	?
 SAMN02403021	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/324/785/GCA_000324785.1_ASM32478v1	?	E1979001	?	?	?	Antiqua	Historical variations in mutation rate in an epidemic pathogen, Yersinia pestis.	Cui;Yu;Yan;Li;Li;Jombart;Weinert;Wang;Guo;Xu;Zhang;Zheng;Qin;Xiao;Wu;Wang;Zhou;Qi;Du;Wu;Yang;Cao;Wang;Wang;Yao;Rakin;Li;Falush;Balloux;Achtman;Song;Wang;Yang	941	4516254	?	?	?	?	?	2012/12/07 00:00	?	?
@@ -706,9 +293,161 @@ SAMN12011892	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/006/376/415/GCA_00637641
 SAMN10484567	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/860/145/GCA_003860145.1_ASM386014v1	SRR9192556	81/1	1979	Homo sapiens	Russia	?	?	?	55	5444423	?	5,798	?	547	4, 2, 1 (5S, 16S, 23S)	2018/12/03 00:00	2019-08-31 00:34:55	?
 SAMN10984864	?	SRR8608848;SRR8608851;SRR8608862;SRR8608881	A1122	N/A	N/A	N/A	?	?	?	?	?	?	?	?	?	?	?	2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:55	?
 SAMN10984860	?	SRR8608849;SRR8608880;SRR8608852;SRR8608853;SRR8608854;SRR8608855;SRR8608858;SRR8608859;SRR8608868;SRR8608869;SRR8608870;SRR8608871;SRR8608872;SRR8608873;SRR8608874;SRR8608875;SRR8608876;SRR8608877;SRR8608878;SRR8608879	S1037	N/A	N/A	N/A	?	?	?	?	?	?	?	?	?	?	?	2019-05-31 00:24:56;2019-05-31 00:24:55;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:56;2019-05-31 00:24:55;2019-05-31 00:24:55	?
+SAMN08162039	?	SRR6367135	Yp3994	1966	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Serra Sitio Novo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08162036	?	SRR6367033	Yp3987	1982	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipueiras,Sitio Baixa Nova	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08162035	?	SRR6367032	Yp3983	1982	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipueiras,Sitio Almas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08162034	?	SRR6367031	Yp3982	1982	Bolomys lasiurus	Brazil:Ceara,Baturite,Aratuba,Sitio Outeiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08162032	?	SRR6367037	Yp3979	1980	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipueiras,Sitio Santa Maria	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08162031	?	SRR6367036	Yp3978	1980	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08162029	?	SRR6367034	Yp3975	1979	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipu,Sitio Tabocal	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08162025	?	SRR6366836	Yp3967	1986	Bolomys lasiurus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162024	?	SRR6366835	Yp3959	1982	Bolomys lasiurus	Brazil:Paraiba,Itabaiana,Salgado de Sao Felix,Engenho Covao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162023	?	SRR6366834	Yp3958	1982	Bolomys lasiurus	Brazil:Pernambuco,Garanhuns,Caetes,Sitio Riacho Fundo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162022	?	SRR6366841	Yp3952	1979	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08162017	?	SRR6366825	Yp3935	1978	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Sao Jose dos Pilotos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162016	?	SRR6366955	Yp3931	1978	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Jardim	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08162011	?	SRR6366952	Yp3899	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08162008	?	SRR6366824	Yp3872	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162006	?	SRR6366820	Yp3866	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Bras	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162005	?	SRR6366819	Yp3865	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162004	?	SRR6366822	Yp3862	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Louvado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162003	?	SRR6366821	Yp3860	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Louvado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161999	?	SRR6366817	Yp3854	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161996	?	SRR6366939	Yp3851	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161995	?	SRR6366940	Yp3850	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161994	?	SRR6366937	Yp3849	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161993	?	SRR6366938	Yp3848	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161990	?	SRR6366933	Yp3844	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Cruzinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161987	?	SRR6366991	Yp3841	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161986	?	SRR6367006	Yp3840	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161985	?	SRR6367005	Yp3839	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Santo Amaro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161984	?	SRR6367004	Yp3838	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Santo Amaro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161983	?	SRR6367003	Yp3837	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Romania	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161982	?	SRR6367002	Yp3834	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa da Rapadura	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161971	?	SRR6367116	Yp3821	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Pocos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161970	?	SRR6367117	Yp3820	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161968	?	SRR6366765	Yp3817	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Aracaju	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161967	?	SRR6366764	Yp3816	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161964	?	SRR6366769	Yp3812	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161963	?	SRR6366768	Yp3811	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161962	?	SRR6366771	Yp3810	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161960	?	SRR6366773	Yp3808	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161953	?	SRR6366882	Yp3800	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Batinga	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161947	?	SRR6366929	Yp3792	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161946	?	SRR6366924	Yp3791	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Curicaca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161944	?	SRR6366922	Yp3789	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161943	?	SRR6366921	Yp3788	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161942	?	SRR6366928	Yp3787	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161941	?	SRR6366927	Yp3786	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161939	?	SRR6366925	Yp3784	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161938	?	SRR6367056	Yp3783	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161937	?	SRR6367057	Yp3780	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161935	?	SRR6367053	Yp3768	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Patrimonio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161934	?	SRR6367054	Yp3766	1969	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Baixa das Flores	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161926	?	SRR6366997	Yp3755	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Pedra Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161924	?	SRR6366995	Yp3753	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Pedra Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161921	?	SRR6366994	Yp3747	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Joaquim Santana	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161920	?	SRR6366919	Yp3746	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Joaquim Santana	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161916	?	SRR6366878	Yp3737	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Floresta	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161904	?	SRR6367015	Yp3710	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161903	?	SRR6367016	Yp3709	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161902	?	SRR6367009	Yp3708	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161900	?	SRR6367011	Yp3706	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161898	?	SRR6366890	Yp3704	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Batedor	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161897	?	SRR6366889	Yp3703	1968	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Queimada Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161892	?	SRR6366898	Yp3696	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Novo Horizonte	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161890	?	SRR6366896	Yp3693	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161888	?	SRR6366838	Yp3690	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Novo Horizonte	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161885	?	SRR6366829	Yp3685	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161882	?	SRR6366832	Yp3682	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Barra Nova	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161880	?	SRR6367119	Yp3680	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161879	?	SRR6367122	Yp3679	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161878	?	SRR6367132	Yp3678	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161876	?	SRR6367124	Yp3668	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161874	?	SRR6367126	Yp3661	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Queimada Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161872	?	SRR6367128	Yp3659	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161869	?	SRR6367129	Yp3655	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161867	?	SRR6367070	Yp3652	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161866	?	SRR6367071	Yp3651	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161865	?	SRR6367072	Yp3650	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161863	?	SRR6367074	Yp3648	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161861	?	SRR6367076	Yp3646	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161860	?	SRR6367077	Yp3640	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161857	?	SRR6366989	Yp3637	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161856	?	SRR6366950	Yp3636	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Batedor	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161852	?	SRR6366946	Yp3624	1966	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Jose Padeiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161851	?	SRR6366945	Yp3623	1966	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161850	?	SRR6366944	Yp3622	1966	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Jose Padeiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161846	?	SRR6366871	Yp3603	1983	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Sao Benedito,Sitio Pimenteira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161843	?	SRR6366870	Yp3597	1982	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Ibiapina,Sitio Aracas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161842	?	SRR6366867	Yp3592	1982	Bolomys lasiurus	Brazil:Ceara,Fortaleza,Maranguape,Sitio Santo Amaro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161841	?	SRR6366868	Yp3588	1979	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161840	?	SRR6366865	Yp3587	1979	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161833	?	SRR6366762	Yp3575	1986	Bolomys lasiurus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Cinco Lagoas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161832	?	SRR6366757	Yp3573	1986	Bolomys lasiurus	Brazil:Paraiba,Curimatau Oriental,Solanea,Fazenda Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161830	?	SRR6366759	Yp3571	1986	Bolomys lasiurus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Cinco Estrelas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161829	?	SRR6366758	Yp3570	1986	Bolomys lasiurus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Lagoa do Serrote	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161824	?	SRR6366978	Yp3565	1982	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipueiras,Sitio Grossos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161823	?	SRR6366977	Yp3562	1982	Bolomys lasiurus	Brazil:Pernambuco,Garanhuns,Caetes,Sitio Riacho Fundo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161822	?	SRR6366972	Yp3561	1980	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Araripina,Sitio Tamboril	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161821	?	SRR6366971	Yp3560	1980	Bolomys lasiurus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Gito	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161819	?	SRR6366973	Yp3558	1980	Bolomys lasiurus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Salgadinho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161818	?	SRR6367091	Yp3557	1980	Bolomys lasiurus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161817	?	SRR6367092	Yp3555	1979	Bolomys lasiurus	Brazil:Ceara,Ipu,Ipu,Sitio Taboca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161815	?	SRR6367100	Yp3549	1979	Bolomys lasiurus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Taua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161810	?	SRR6367093	Yp3543	1979	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Salgada	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161809	?	SRR6367094	Yp3542	1979	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Boqueirao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161808	?	SRR6366803	Yp3541	1979	Bolomys lasiurus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Estivas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161807	?	SRR6366802	Yp3540	1979	Bolomys lasiurus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Cha do Vento	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161795	?	SRR6366914	Yp3526	1978	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Jerico	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161793	?	SRR6366916	Yp3524	1978	Bolomys lasiurus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Barbalho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161769	?	SRR6366751	Yp3497	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161768	?	SRR6366854	Yp3496	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cascavel	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161753	?	SRR6366982	Yp3478	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Araripina,Sitio Alagadico	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161749	?	SRR6366986	Yp3473	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Araripina,Sitio Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161745	?	SRR6367105	Yp3468	1975	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Nazare	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161738	?	SRR6366812	Yp3460	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161737	?	SRR6366813	Yp3459	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161736	?	SRR6366810	Yp3458	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Ludugerio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161734	?	SRR6366808	Yp3455	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161733	?	SRR6366809	Yp3454	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161729	?	SRR6366805	Yp3447	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Jurubeba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161727	?	SRR6366899	Yp3444	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Mata Fresca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161722	?	SRR6366902	Yp3435	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161721	?	SRR6366901	Yp3432	1974	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161719	?	SRR6366903	Yp3414	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Romania	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161716	?	SRR6366792	Yp3411	1972	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Bodoco,Sitio Araruna	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161706	?	SRR6366731	Yp3387	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Aracaju	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161704	?	SRR6367028	Yp3382	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Misericordia	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161702	?	SRR6367139	Yp3372	1971	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161697	?	SRR6367047	Yp3356	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Curicaca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161695	?	SRR6367039	Yp3350	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161694	?	SRR6367040	Yp3349	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161693	?	SRR6367041	Yp3346	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161690	?	SRR6367044	Yp3340	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161688	?	SRR6366960	Yp3337	1970	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161686	?	SRR6366962	Yp3335	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161684	?	SRR6366964	Yp3332	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161669	?	SRR6366850	Yp3297	1969	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Brejo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161656	?	SRR6367087	Yp3248	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Novo Horizonte	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161654	?	SRR6367089	Yp3245	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Novo Horizonte	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161653	?	SRR6367090	Yp3241	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161649	?	SRR6367086	Yp3231	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161648	?	SRR6367026	Yp3230	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161645	?	SRR6367021	Yp3227	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161643	?	SRR6367023	Yp3222	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161641	?	SRR6367017	Yp3213	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161640	?	SRR6367020	Yp3208	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161639	?	SRR6367019	Yp3204	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161636	?	SRR6366739	Yp3200	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161635	?	SRR6366738	Yp3197	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161633	?	SRR6366740	Yp3192	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Alto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161631	?	SRR6366734	Yp3190	1967	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161629	?	SRR6366736	Yp3185	1966	Bolomys lasiurus	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
 SAMN05017638	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/086/155/GCA_003086155.1_ASM308615v1	?	M-1448	1990-06-28	Spermophilus pygmaeus	Russia	?	?	?	420	4525103	?	4,293	?	565	2, 3, 1 (5S, 16S, 23S)	2018/05/02 00:00	?	?
 SAMN04376037	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/617/725/GCA_001617725.1_Yersinia_pestis_M-1484	?	M-1484	1992	Spermophilus pygmaeus	Russia	?	?	?	404	4519703	4,281	?	1,200	?	2, 1, 1 (5S, 16S, 23S)	2016/04/08 00:00	?	?
 SAMN04376023	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/617/705/GCA_001617705.1_Yersinia_pestis_C-791	?	C-791	2003	Spermophilus pygmaeus	Russia: The Republic of Dagestan, Babaiurtovskii District	?	?	?	282	4573297	4,255	?	454	?	2, 1, 1 (5S, 16S, 23S)	2016/04/08 00:00	?	?
+SAMN03145064	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/834/495/GCA_000834495.1_ASM83449v1	SRR2148848;SRR2148847;SRR2148846	El Dorado	2002	Homo sapiens	USA: NY, New York	O	Thirty-Two Complete Genome Assemblies of Nine Yersinia Species, Including Y. pestis, Y. pseudotuberculosis, and Y. enterocolitica.	Johnson;Daligault;Davenport;Jaissle;Frey;Ladner;Broomall;Bishop-Lilly;Bruce;Coyne;Gibbons;Lo;Munk;Rosenzweig;Koroleva;Palacios;Redden;Xu;Minogue;Chain	4	4838262	?	?	?	?	?	2015/02/09 00:00	2015-08-12 03:34:22;2015-08-12 03:30:14;2015-08-12 03:35:48	?
 SAMN02999506	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/986/995/GCA_000986995.1_YPES001-SEQ-2-ASM-1	SRR1925409	ZE94-2122	1994	Homo sapiens	Zimbabwe	Orientalis	?	?	83	4827235	4,649	?	85	?	17 (5S, 16S, 23S)	2015/05/01 00:00	2015-04-13 11:32:02	?
 SAMN02640305	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/701/065/GCA_000701065.1_Bru1330	?	1330	unknown	unknown	unknown	?	?	?	112	3280616	3,290	?	534	?	3 (5S, 16S, 23S)	2014/06/11 00:00	?	?
 SAMN02179219	?	?	?	Oct-2011	?	China	?	?	?	?	?	?	?	?	?	?	?	?	?
@@ -725,7 +464,7 @@ SAMEA5054092	?	ERR2862149;ERR2862148	?	2018	Homo sapiens	Norway	?	?	?	?	?	?	?	?	
 SAMEA5054091	?	ERR2862153	?	2018	Homo sapiens	Norway	?	?	?	?	?	?	?	?	?	?	?	2018-12-02 13:21:34	?
 SAMEA5054090	?	ERR2862147	?	2018	Homo sapiens	Norway	?	?	?	?	?	?	?	?	?	?	?	2018-12-02 13:21:34	?
 SAMEA5054089	?	ERR2862146	?	2018	Homo sapiens	Norway	?	?	?	?	?	?	?	?	?	?	?	2018-12-02 13:21:34	?
-SAMEA715985	?	ERR007662;ERR007661;ERR007665;ERR007660;ERR007664;ERR007659;ERR007663	IP674	?	?	?	Orientalis	?	?	?	?	?	?	?	?	?	?	2011-03-18 11:33:47;2011-03-18 11:33:47;2011-03-18 11:33:47;2011-03-18 11:33:47;2011-03-18 11:33:47;2011-03-18 11:33:47;2011-03-18 11:33:47	?
+SAMEA715985	?	ERR007661;ERR007662;ERR007663;ERR007659;ERR007664;ERR007660;ERR007665	IP674	?	?	?	Orientalis	?	?	?	?	?	?	?	?	?	?	2011-03-18 11:33:47;2011-03-18 11:33:47;2011-03-18 11:33:47;2011-03-18 11:33:47;2011-03-18 11:33:47;2011-03-18 11:33:47;2011-03-18 11:33:47	?
 SAMEA104443954	?	?	?	?	?	Czech Republic	?	?	?	?	?	?	?	?	?	?	?	?	?
 SAMEA104281628	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/900/460/465/GCA_900460465.1_57940_B01	ERR2246667	NCTC5923	1900/1939	not available	?	?	?	?	12	4777134	?	?	?	?	?	2018/06/29 00:00	2018-01-26 11:18:48	?
 SAMEA104233048	?	ERR2112573;ERR2112572;ERR2112571;ERR2112570;ERR2112569;ERR2112552;ERR2112551;ERR2112550;ERR2112549	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2017-09-12 11:32:13;2017-09-12 11:32:13;2017-09-12 11:32:13;2017-09-12 11:32:13;2017-09-12 11:32:13;2017-09-12 11:32:13;2017-09-12 11:32:13;2017-09-12 08:21:07;2017-09-12 08:21:07	?
@@ -799,13 +538,6 @@ SAMEA3713713	?	ERR1193539;ERR1193534	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2016-01-14 14
 SAMEA3713712	?	ERR1193538;ERR1193533	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2016-01-14 14:55:16	?
 SAMEA3713711	?	ERR1193537;ERR1193532	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2016-01-14 14:55:16	?
 SAMEA3673143	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/487/065/GCA_001487065.1_Yersinia_pestis	?	Algeria 3	?	?	?	?	?	?	87	4637400	?	?	?	?	?	2015/12/15 00:00	?	?
-SAMEA3541828	?	ERR1019009;ERR1019008;ERR1019007;ERR1019006;ERR1019005;ERR1019004;ERR1019003;ERR1019002;ERR1019001;ERR1019000;ERR1018999;ERR1018998	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:25;2015-10-27 00:32:25	?
-SAMEA3541827	?	ERR1018984;ERR1018983;ERR1018982;ERR1018981;ERR1018980;ERR1018979;ERR1018978;ERR1018977;ERR1018976;ERR1018975;ERR1018974;ERR1018973;ERR1018972;ERR1018971;ERR1018970;ERR1018969;ERR1018968;ERR1018967;ERR1018966	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25	?
-SAMEA3541826	?	ERR1018965;ERR1018964;ERR1018963;ERR1018962;ERR1018961;ERR1018960;ERR1018959;ERR1018958;ERR1018957;ERR1018956;ERR1018955;ERR1018954;ERR1018953;ERR1018952;ERR1018951;ERR1018950;ERR1018949;ERR1018948;ERR1018947	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25	?
-SAMEA3541825	?	ERR1018926;ERR1018925;ERR1018924;ERR1018923;ERR1018922;ERR1018921;ERR1018920;ERR1018919;ERR1018918	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25	?
-SAMEA3541824	?	ERR1018946;ERR1018945;ERR1018944;ERR1018943;ERR1018942;ERR1018941;ERR1018940;ERR1018939;ERR1018938;ERR1018937;ERR1018936;ERR1018935;ERR1018934;ERR1018933;ERR1018932;ERR1018931;ERR1018930;ERR1018929;ERR1018928;ERR1018927	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25	?
-SAMEA3541823	?	ERR1018997;ERR1018996;ERR1018995;ERR1018994;ERR1018993;ERR1018992;ERR1018991;ERR1018990;ERR1018989;ERR1018988;ERR1018987;ERR1018986;ERR1018985	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25	?
-SAMEA3541822	?	ERR1018917;ERR1018916;ERR1018915;ERR1018914;ERR1018913;ERR1018912;ERR1018911;ERR1018910;ERR1018909;ERR1018908;ERR1018907;ERR1018906;ERR1018905;ERR1018904;ERR1018903;ERR1018902;ERR1018901;ERR1018900;ERR1018899;ERR1018898;ERR1018897;ERR1018896;ERR1018895;ERR1018894;ERR1018893;ERR1018892;ERR1018891;ERR1018890;ERR1018889;ERR1018888;ERR1018887	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:24;2015-10-27 00:32:24;2015-10-27 00:32:24;2015-10-27 00:32:24;2015-10-27 00:32:24;2015-10-27 00:32:24;2015-10-27 00:32:24	?
 SAMN07501781	?	SRR5930363	614F	missing	?	China: Qinghai	?	?	?	?	?	?	?	?	?	?	?	2019-01-01 00:14:48	?
 SAMN07488727	?	SRR5923939	S88	missing	?	China: Qinghai	?	?	?	?	?	?	?	?	?	?	?	2019-01-01 00:14:48	?
 SAMN07488721	?	SRR5923940	S56	missing	?	China: Qinghai	?	?	?	?	?	?	?	?	?	?	?	2019-01-01 00:14:48	?
@@ -816,6 +548,266 @@ SAMN10584522	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/965/935/GCA_00396593
 SAMN10584495	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/965/945/GCA_003965945.1_ASM396594v1	?	C-613	2017	Homo sapiens	Russia	?	?	?	38	3252236	?	3,326	?	176	1, 1, 1 (5S, 16S, 23S)	2018/12/23 00:00	?	?
 SAMN10584459	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/966/035/GCA_003966035.1_ASM396603v1	?	C-612	2017	Homo sapiens	Russia	?	?	?	41	3281623	?	3,336	?	174	1, 1, 1 (5S, 16S, 23S)	2018/12/23 00:00	?	?
 SAMN10584386	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/984/755/GCA_003984755.1_ASM398475v1	?	N1	29-Jan-2018	cow	Russia: Samara	?	?	?	58	3251534	?	3,328	?	180	1, 1, 1 (5S, 16S, 23S)	2018/12/23 00:00	?	?
+SAMN08162038	?	SRR6367029	Yp3992	1986	Calomys callosus	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Paraiso	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08162037	?	SRR6367027	Yp3990	1983	Galea spixii wellsi	Brazil:Ceara,Baturite,Mulungu,Sitio Camara	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08162033	?	SRR6367030	Yp3981	1982	Pulex irritans	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Garrancho Velho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08162030	?	SRR6367035	Yp3977	1979	rodent	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08162028	?	SRR6366831	Yp3974	1984	Xenopsylla cheopis	Brazil:Bahia,Feira de Santana,Feira de Santana,Fazenda Jurema I	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162027	?	SRR6366830	Yp3972	1986	Cerradomys subflavus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162026	?	SRR6366837	Yp3971	1986	Rattus rattus frugivorus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Cinco Lagoas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162021	?	SRR6366840	Yp3951	1979	Polygenis	Brazil:Pernambuco,Vale do Ipojuca,Tacaimbo,Sitio Paulista	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162020	?	SRR6366839	Yp3950	1979	Polygenis	Brazil:Pernambuco,Vale do Ipojuca,Sao Caitano,Sitio Campo Alegre	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162019	?	SRR6367133	Yp3949	1979	Cerradomys subflavus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Lagoa do Almeida	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08162018	?	SRR6366814	Yp3947	1979	Polygenis	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Boqueirao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162015	?	SRR6366956	Yp3925	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Granito,Sitio Catumbi	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08162014	?	SRR6366957	Yp3924	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Vicente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08162013	?	SRR6366958	Yp3905	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Povoado Serra Branca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08162012	?	SRR6366951	Yp3901	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08162010	?	SRR6366953	Yp3892	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Cachoeira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08162009	?	SRR6366954	Yp3884	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Cana Mansa	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08162007	?	SRR6366823	Yp3867	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Ludugerio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162002	?	SRR6366816	Yp3858	1974	Rattus rattus alexandrinus	Brazil:Ceara,Cariri,Santana do Cariri,Sitio Serra da Palmeira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162001	?	SRR6366815	Yp3856	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08162000	?	SRR6366818	Yp3855	1974	Galea spixii wellsi	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161998	?	SRR6366941	Yp3853	1974	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161997	?	SRR6366942	Yp3852	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161992	?	SRR6366935	Yp3847	1974	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161991	?	SRR6366936	Yp3845	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161989	?	SRR6366934	Yp3843	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161988	?	SRR6366992	Yp3842	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161981	?	SRR6367001	Yp3833	1972	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa da Rapadura	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161980	?	SRR6366932	Yp3832	1972	Polygenis	Brazil:Ceara,Ibiapaba,Sao Benedito,Sitio Pimenteira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161979	?	SRR6366931	Yp3830	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Jose	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161978	?	SRR6367120	Yp3829	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sussuanha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161977	?	SRR6367121	Yp3828	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Benedito	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161976	?	SRR6367111	Yp3826	1971	Homo sapiens	Brazil:Ceara,Ipu,Ipueiras,Povoado America	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161975	?	SRR6367112	Yp3825	1971	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Mato Grosso	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161974	?	SRR6367113	Yp3824	1971	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Serra da Matinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161973	?	SRR6367114	Yp3823	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Timbauba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161972	?	SRR6367115	Yp3822	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161969	?	SRR6367118	Yp3819	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Pocos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161966	?	SRR6366767	Yp3815	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161965	?	SRR6366766	Yp3813	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Aracaju	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161961	?	SRR6366770	Yp3809	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161959	?	SRR6366772	Yp3807	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Baixio do Meio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161958	?	SRR6366877	Yp3806	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161957	?	SRR6367068	Yp3805	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Manicoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161956	?	SRR6367079	Yp3803	1971	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Pamonha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161955	?	SRR6367080	Yp3802	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Entremontes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161954	?	SRR6366881	Yp3801	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Paraiso	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161952	?	SRR6366887	Yp3799	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Engenho Velho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161951	?	SRR6366888	Yp3797	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Entremontes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161950	?	SRR6366885	Yp3795	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Batinga	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161949	?	SRR6366886	Yp3794	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Batinga	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161948	?	SRR6366930	Yp3793	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Entremontes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161945	?	SRR6366923	Yp3790	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161940	?	SRR6366926	Yp3785	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161936	?	SRR6367052	Yp3774	1969	Ornithodoros	Brazil:Pernambuco,Araripina,Exu,Sitio Pedra Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161933	?	SRR6367055	Yp3765	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Bugao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161932	?	SRR6367048	Yp3763	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161931	?	SRR6367049	Yp3762	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Bugao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161930	?	SRR6367050	Yp3761	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Novo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161929	?	SRR6367051	Yp3759	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Serra Anastacio Barbosa	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161928	?	SRR6366999	Yp3757	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Gamba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161927	?	SRR6367000	Yp3756	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Luiz Ferreira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161925	?	SRR6366998	Yp3754	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Serra Janoca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161923	?	SRR6366996	Yp3752	1969	Homo sapiens	Brazil:Pernambuco,Salgueiro,Sao Jose do Belmonte,Sitio Baixio Velho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161922	?	SRR6366993	Yp3749	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Pamonha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161919	?	SRR6366920	Yp3744	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Joaquim Santana	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161918	?	SRR6366884	Yp3743	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161917	?	SRR6366883	Yp3742	1969	Pulex	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161915	?	SRR6367064	Yp3735	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Floresta	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161914	?	SRR6366880	Yp3731	1968	Pulex	Brazil:Pernambuco,Araripina,Exu,Sitio Barrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161913	?	SRR6366879	Yp3726	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Bodoco,Sitio Serra Pedro Paulino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161912	?	SRR6366874	Yp3725	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Bodoco,Sitio Taboquinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161911	?	SRR6366873	Yp3724	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Serra Cicero Mendes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161910	?	SRR6366876	Yp3723	1968	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Mamonas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161909	?	SRR6366875	Yp3722	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Bodoco,Sitio Queimada	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161908	?	SRR6367007	Yp3715	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Cascavel	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161907	?	SRR6367008	Yp3713	1968	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161906	?	SRR6367013	Yp3712	1968	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161905	?	SRR6367014	Yp3711	1968	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Sebastiao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161901	?	SRR6367010	Yp3707	1968	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio Gadelha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161899	?	SRR6367012	Yp3705	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Rua Coronel Bem Bem	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161896	?	SRR6366894	Yp3701	1967	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Serrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161895	?	SRR6366893	Yp3700	1967	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa do Ouro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161894	?	SRR6366892	Yp3699	1967	Homo sapiens	Brazil:Pernambuco,Vale de Ipojuca,Caruaru,Sitio Lagoa do Anjo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161893	?	SRR6366891	Yp3698	1967	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Jatoba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161891	?	SRR6366897	Yp3695	1967	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Liberdade	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161889	?	SRR6366895	Yp3692	1967	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Ludugerio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161887	?	SRR6367134	Yp3687	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161886	?	SRR6366828	Yp3686	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161884	?	SRR6366826	Yp3684	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Novo Horizonte	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161883	?	SRR6366827	Yp3683	1967	Rattus rattus frugivorus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161881	?	SRR6366833	Yp3681	1967	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161877	?	SRR6367131	Yp3669	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161875	?	SRR6367123	Yp3665	1967	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161873	?	SRR6367125	Yp3660	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161871	?	SRR6367127	Yp3658	1967	Rattus rattus frugivorus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161870	?	SRR6367130	Yp3656	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161868	?	SRR6367069	Yp3653	1967	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161864	?	SRR6367073	Yp3649	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161862	?	SRR6367075	Yp3647	1967	Rattus rattus frugivorus	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161859	?	SRR6367078	Yp3639	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161858	?	SRR6366990	Yp3638	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161855	?	SRR6366949	Yp3631	1967	Homo sapiens	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Santa Clara	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161854	?	SRR6366948	Yp3630	1967	Homo sapiens	Brazil:Pernambuco,Salgueiro,Sao Jose do Belmonte,Sitio Minador	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161853	?	SRR6366947	Yp3625	1966	Oligoryzomys nigripes	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Manoel Severino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161849	?	SRR6366943	Yp3621	1966	Rattus rattus frugivorus	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161848	?	SRR6366863	Yp3620	1966	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Serrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161847	?	SRR6366864	Yp3619	1966	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Serra Novo Mundo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161845	?	SRR6366872	Yp3600	1982	Rattus rattus alexandrinus	Brazil:Ceara,Baturite,Redencao,Sitio Miranda	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161844	?	SRR6366869	Yp3598	1982	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Baixinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161839	?	SRR6366866	Yp3584	1997	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Ipuzinho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161838	?	SRR6366755	Yp3583	1986	Homo sapiens	Brazil:Paraiba,Curimatau Ocidental,Remigio,Fazenda Serrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161837	?	SRR6366754	Yp3580	1986	Cerradomys subflavus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Bacalhau	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161836	?	SRR6366761	Yp3578	1986	Rattus rattus frugivorus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Cinco Lagoas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161835	?	SRR6366760	Yp3577	1986	Rattus rattus frugivorus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Bacalhau	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161834	?	SRR6366763	Yp3576	1986	Cerradomys subflavus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Cinco Lagoas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161831	?	SRR6366756	Yp3572	1986	Holochilus sciureus	Brazil:Paraiba,Curimatau Oriental,Solanea,Fazenda Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161828	?	SRR6366970	Yp3569	1986	Rattus rattus frugivorus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Valerio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161827	?	SRR6366969	Yp3568	1986	Rattus rattus frugivorus	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161826	?	SRR6366976	Yp3567	1986	Homo sapiens	Brazil:Paraiba,Curimatau Ocidental,Barra de Santa Rosa,Sitio Malhada da Catingueira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161825	?	SRR6366975	Yp3566	1986	Homo sapiens	Brazil:Paraiba,Curimatau Oriental,Solanea,Sitio Pedra d'agua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161820	?	SRR6366974	Yp3559	1980	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Baixa	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161816	?	SRR6367099	Yp3551	1979	Polygenis	Brazil:Pernambuco,Vale do Ipojuca,Tacaimbo,Sitio Malhada do Jua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161814	?	SRR6367097	Yp3548	1979	Polygenis	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Santa Tereza	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161813	?	SRR6367098	Yp3547	1979	Cerradomys subflavus	Brazil:Paraiba,Umbuzeiro,Natuba,Sitio Estivas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161812	?	SRR6367095	Yp3545	1979	Cerradomys subflavus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Salgada	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161811	?	SRR6367096	Yp3544	1979	Cerradomys subflavus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Conceicao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161806	?	SRR6366797	Yp3539	1979	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Macaco	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161805	?	SRR6366796	Yp3537	1979	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Taboca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161804	?	SRR6366795	Yp3536	1979	Calomys callosus	Brazil:Ceara,Baturite,Aratuba,Sitio Fernandes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161803	?	SRR6366794	Yp3535	1978	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Santo Amaro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161802	?	SRR6366801	Yp3534	1978	Homo sapiens	Brazil:Ceara,Ibiapaba,Sao Benedito,Sitio Carnauba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161801	?	SRR6366800	Yp3533	1978	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Sao Joao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161800	?	SRR6366799	Yp3532	1978	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Tabocal	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161799	?	SRR6366798	Yp3531	1978	rodent	Brazil:Bahia,Serrinha,Serrinha,Fazenda Flores	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161798	?	SRR6366917	Yp3529	1978	Rattus rattus	Brazil:Ceara,Ipu,Ipu,Sitio Almas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161797	?	SRR6366918	Yp3528	1978	Homo sapiens	Brazil:Ceara,Baturite,Aratuba,Sitio Serrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161796	?	SRR6366913	Yp3527	1978	Cerradomys subflavus	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Sao Jose dos Vianas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161794	?	SRR6366915	Yp3525	1978	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Cabeca Dantas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161792	?	SRR6366909	Yp3522	1978	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161791	?	SRR6366910	Yp3521	1977	Polygenis	Brazil:Pernambuco,Araripina,Araripina,Sitio Alto Alegre	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161790	?	SRR6366911	Yp3520	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Brejo Santo Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161789	?	SRR6366912	Yp3519	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Pedro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161788	?	SRR6367059	Yp3518	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Pedro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161787	?	SRR6367058	Yp3517	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Neco	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161786	?	SRR6367061	Yp3516	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Inhame	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161785	?	SRR6367060	Yp3515	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Lagoa do Alvino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161784	?	SRR6367063	Yp3512	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa do Ouro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161783	?	SRR6367062	Yp3511	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Cavaco	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161782	?	SRR6367065	Yp3510	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Vila Timorante	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161781	?	SRR6366842	Yp3509	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa Seca 2	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161780	?	SRR6367067	Yp3508	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Cacimbinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161779	?	SRR6367066	Yp3507	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Lagoa do Alvino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161778	?	SRR6366744	Yp3506	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Graca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161777	?	SRR6366745	Yp3505	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Pitombeira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161776	?	SRR6366748	Yp3504	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Serra Antonio Domingos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161775	?	SRR6366749	Yp3503	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Cacimbinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161774	?	SRR6366746	Yp3502	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Cacimbinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161773	?	SRR6366747	Yp3501	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Ipubi,Sitio Cacimbinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161772	?	SRR6366752	Yp3500	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Mulunguzinho	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161771	?	SRR6366753	Yp3499	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161770	?	SRR6366750	Yp3498	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161767	?	SRR6366853	Yp3495	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Bandeira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161766	?	SRR6366862	Yp3494	1975	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio Campo Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161765	?	SRR6366861	Yp3492	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Nascente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161764	?	SRR6366860	Yp3491	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Torre Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161763	?	SRR6366859	Yp3490	1975	Homo sapiens	Brazil:Piaui,Alto Medio Caninde,Simoes,Sitio Barrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161762	?	SRR6366858	Yp3489	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Batente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161761	?	SRR6366857	Yp3487	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Joaquim dos Ferreiras	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161760	?	SRR6366856	Yp3485	1975	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161759	?	SRR6366855	Yp3484	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161758	?	SRR6366987	Yp3483	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Canavieira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161757	?	SRR6366988	Yp3482	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161756	?	SRR6366979	Yp3481	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161755	?	SRR6366980	Yp3480	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio dos Pereira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161754	?	SRR6366981	Yp3479	1975	Oligoryzomys nigripes	Brazil:Pernambuco,Araripina,Exu,Sitio Canavieira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161752	?	SRR6366983	Yp3476	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Campo Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161751	?	SRR6366984	Yp3475	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Vira Mao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161750	?	SRR6366985	Yp3474	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Cansancao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161748	?	SRR6367110	Yp3472	1975	Thrichomys	Brazil:Pernambuco,Araripina,Araripina,Sitio Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161747	?	SRR6367109	Yp3471	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Serra da Torre	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161746	?	SRR6367106	Yp3470	1975	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161744	?	SRR6367108	Yp3466	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Saco Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161743	?	SRR6367107	Yp3465	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Patrimonio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161742	?	SRR6367102	Yp3464	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Nazare	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161741	?	SRR6367101	Yp3463	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Altair	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161740	?	SRR6367104	Yp3462	1975	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Barro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161739	?	SRR6367103	Yp3461	1974	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Exu	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161735	?	SRR6366811	Yp3457	1974	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Alto do Ferreira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:58	?
+SAMN08161732	?	SRR6366806	Yp3453	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Ludugerio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161731	?	SRR6366807	Yp3452	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Sao Luiz	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161730	?	SRR6366804	Yp3448	1974	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Mata Fresca	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161728	?	SRR6366900	Yp3446	1974	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Jurubeba	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:56	?
+SAMN08161726	?	SRR6366906	Yp3442	1974	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Saudade	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161725	?	SRR6366905	Yp3440	1974	Pulex	Brazil:Pernambuco,Araripina,Exu,Sitio Brejo Santo Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161724	?	SRR6366908	Yp3439	1974	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Brejo Santo Inacio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161723	?	SRR6366907	Yp3438	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Morada Nova	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161720	?	SRR6366904	Yp3431	1974	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Pau Casado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:55	?
+SAMN08161718	?	SRR6366784	Yp3413	1972	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Retiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161717	?	SRR6366785	Yp3412	1972	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Lagoa da Rapadura	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161715	?	SRR6366793	Yp3408	1972	Polygenis	Brazil:Pernambuco,Araripina,Bodoco,Sitio Araruna	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161714	?	SRR6366790	Yp3406	1972	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Macambira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161713	?	SRR6366791	Yp3405	1972	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161712	?	SRR6366788	Yp3404	1972	Homo sapiens	Brazil:Ceara,Ibiapaba,Sao Benedito,Sitio Pimenteira	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161711	?	SRR6366789	Yp3400	1971	Homo sapiens	Brazil:Ceara,Ipu,Ipu,Sitio Lagoa Velha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161710	?	SRR6366786	Yp3399	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Lagoa do Firmino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161709	?	SRR6366787	Yp3398	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Sao Felix	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161708	?	SRR6366733	Yp3396	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Santo Antonio dos Camelos	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161707	?	SRR6366732	Yp3393	1971	Homo sapiens	Brazil:Ceara,Ibiapaba,Guaraciaba do Norte,Sitio Buriti Apua	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161705	?	SRR6366730	Yp3386	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Misericordia	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161703	?	SRR6367140	Yp3381	1971	Calomys callosus	Brazil:Pernambuco,Araripina,Exu,Sitio Misericordia	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161701	?	SRR6367138	Yp3370	1971	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Pamonha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161700	?	SRR6367137	Yp3364	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Entremontes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161699	?	SRR6367136	Yp3362	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Entremontes	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161698	?	SRR6367046	Yp3358	1970	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Sapo	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161696	?	SRR6367038	Yp3352	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161692	?	SRR6367042	Yp3342	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161691	?	SRR6367043	Yp3341	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161689	?	SRR6367045	Yp3338	1970	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Cacimbas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:02	?
+SAMN08161687	?	SRR6366959	Yp3336	1969	Ornithodoros	Brazil:Pernambuco,Araripina,Exu,Sitio Pedra Grande	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161685	?	SRR6366961	Yp3334	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161683	?	SRR6366963	Yp3331	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161682	?	SRR6366966	Yp3330	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Espalhado	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161681	?	SRR6366965	Yp3329	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Patrimonio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161680	?	SRR6366968	Yp3328	1969	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Patrimonio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161679	?	SRR6366967	Yp3327	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Patrimonio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:54	?
+SAMN08161678	?	SRR6366843	Yp3325	1969	Homo sapiens	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Batinga	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161677	?	SRR6366844	Yp3322	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Bugao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161676	?	SRR6366847	Yp3316	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161675	?	SRR6366848	Yp3309	1969	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161674	?	SRR6366845	Yp3308	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161673	?	SRR6366846	Yp3306	1969	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Serra Odocil Peixoto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161672	?	SRR6366851	Yp3303	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161671	?	SRR6366852	Yp3299	1969	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Badreci	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161670	?	SRR6366849	Yp3298	1969	Pulex	Brazil:Pernambuco,Araripina,Exu,Sitio Cajueiro 3	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:57	?
+SAMN08161668	?	SRR6366783	Yp3296	1969	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Coqueiro	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161667	?	SRR6366782	Yp3292	1969	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Ambrosio	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161666	?	SRR6366777	Yp3291	1968	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio Barrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161665	?	SRR6366776	Yp3290	1968	Thrichomys	Brazil:Pernambuco,Araripina,Exu,Sitio Barrinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161664	?	SRR6366775	Yp3287	1968	Homo sapiens	Brazil:Pernambuco,Salgueiro,Sao Jose do Belmonte,Sitio Mata Redonda	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161663	?	SRR6366774	Yp3286	1968	Homo sapiens	Brazil:Pernambuco,Salgueiro,Sao Jose do Belmonte,Sitio Terra Nova	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161662	?	SRR6366781	Yp3285	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Caraiba do Avelino	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161661	?	SRR6366780	Yp3278	1968	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra da Farinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161660	?	SRR6366779	Yp3277	1968	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Serra da Farinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161659	?	SRR6366778	Yp3276	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Exu,Sitio Mamonas	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:59	?
+SAMN08161658	?	SRR6367081	Yp3274	1968	Homo sapiens	Brazil:Pernambuco,Salgueiro,Sao Jose do Belmonte,Sitio Baixa Verde	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161657	?	SRR6367082	Yp3272	1968	Homo sapiens	Brazil:Pernambuco,Araripina,Araripina,Sitio Aperto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161655	?	SRR6367088	Yp3247	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161652	?	SRR6367083	Yp3234	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161651	?	SRR6367084	Yp3233	1967	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161650	?	SRR6367085	Yp3232	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Barra Nova	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:01	?
+SAMN08161647	?	SRR6367025	Yp3229	1967	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161646	?	SRR6367022	Yp3228	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Viracao	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161644	?	SRR6367024	Yp3224	1967	Rattus rattus frugivorus	Brazil:Pernambuco,Araripina,Exu,Sitio Oriente	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161642	?	SRR6367018	Yp3221	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:37:53	?
+SAMN08161638	?	SRR6366743	Yp3202	1967	Xenopsylla	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161637	?	SRR6366742	Yp3201	1967	Polygenis	Brazil:Pernambuco,Araripina,Exu,Sitio Alagoinha	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161634	?	SRR6366741	Yp3193	1967	Rattus rattus alexandrinus	Brazil:Pernambuco,Araripina,Exu,Cidade	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161632	?	SRR6366735	Yp3191	1967	Cerradomys subflavus	Brazil:Pernambuco,Araripina,Exu,Sitio Alto	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
+SAMN08161630	?	SRR6366737	Yp3186	1966	Homo sapiens	Brazil:Pernambuco,Pajeu,Triunfo,Sitio Santa Clara	?	?	?	?	?	?	?	?	?	?	?	2018-12-13 00:38:00	?
 SAMN09397111	?	?	IP2666pIB1	01-Jan-2018	?	USA: Santa Cruz	?	?	?	?	?	?	?	?	?	?	?	?	?
 SAMN10340333	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/712/005/GCA_003712005.1_ASM371200v1	?	9760	1975	Homo sapiens	Russia: Rostov-on-Don	?	?	?	1293	5009321	?	5,546	?	194	8, 6, 3 (5S, 16S, 23S)	2018/11/05 00:00	?	?
 SAMN09464368	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/268/115/GCA_003268115.1_ASM326811v1	?	4802	Oct-2017	?	Viet Nam	?	?	?	149	7152164	?	7,518	?	443	1, 1, 1 (5S, 16S, 23S)	2018/06/26 00:00	?	?
@@ -860,22 +852,22 @@ SAMN03861513	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/295/055/GCA_00129505
 SAMN03861512	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/915/GCA_001294915.1_ASM129491v1	SRR2124186	SCPM-O-B-6536	25-Oct-1976	?	missing	Caucasica	?	?	204	4560069	4,243	?	234	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00	?
 SAMN03861510	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/295/025/GCA_001295025.1_ASM129502v1	SRR2511857	SCPM-O-B-6213	22-Aug-1972	?	missing	Ulegeica	?	?	189	4636905	4,288	?	228	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-25 00:00:00	?
 SAMN03861503	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/905/GCA_001294905.1_ASM129490v1	SRR2124185	SCPM-O-B-6300	19-Aug-1971	?	missing	Caucasica	?	?	202	4559661	4,250	?	278	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00	?
-SAMN03861500	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/985/GCA_001294985.1_ASM129498v1	SRR2124170;SRR2124169	SCPM-O-B-7832	09-Nov-1978	?	missing	Caucasica	?	?	205	4557841	4,265	?	326	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
+SAMN03861500	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/985/GCA_001294985.1_ASM129498v1	SRR2124169;SRR2124170	SCPM-O-B-7832	09-Nov-1978	?	missing	Caucasica	?	?	205	4557841	4,265	?	326	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
 SAMN03861486	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/295/115/GCA_001295115.1_ASM129511v1	SRR2124168	SCPM-O-B-7075	27-Jun-1961	?	missing	Altaica	?	?	229	4595298	4,263	?	260	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00	?
-SAMN03861484	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/295/065/GCA_001295065.1_ASM129506v1	SRR2124167;SRR2124165	SCPM-O-B-6984	03-Jul-1969	?	missing	Caucasica	?	?	231	4555511	4,251	?	307	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
-SAMN03861482	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/295/185/GCA_001295185.1_ASM129518v1	SRR2124156;SRR2124157	SCPM-O-B-6974	08-Dec-1967	?	missing	Caucasica	?	?	270	4522840	4,255	?	256	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
-SAMN03861481	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/975/GCA_001294975.1_ASM129497v1	SRR2124154;SRR2124155	SCPM-O-B-7019	28-Aug-1980	?	missing	Talassica	?	?	275	4626244	4,308	?	243	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
+SAMN03861484	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/295/065/GCA_001295065.1_ASM129506v1	SRR2124165;SRR2124167	SCPM-O-B-6984	03-Jul-1969	?	missing	Caucasica	?	?	231	4555511	4,251	?	307	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
+SAMN03861482	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/295/185/GCA_001295185.1_ASM129518v1	SRR2124157;SRR2124156	SCPM-O-B-6974	08-Dec-1967	?	missing	Caucasica	?	?	270	4522840	4,255	?	256	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
+SAMN03861481	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/975/GCA_001294975.1_ASM129497v1	SRR2124155;SRR2124154	SCPM-O-B-7019	28-Aug-1980	?	missing	Talassica	?	?	275	4626244	4,308	?	243	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
 SAMN03839881	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/965/GCA_001294965.1_ASM129496v1	SRR2094311	SCPM-O-B-7812	21-Sep-2002	?	missing	Altaica	?	?	223	4575487	4,261	?	239	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00	?
 SAMN03839880	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/295/045/GCA_001295045.1_ASM129504v1	SRR2094306	SCPM-O-B-6990	04-Aug-1971	?	missing	Caucasica	?	?	180	4561770	4,245	?	216	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00	?
 SAMN03839879	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/295/145/GCA_001295145.1_ASM129514v1	SRR2094300	SCPM-O-B-7074	06-Sep-1980	?	missing	Talassica	?	?	207	4565589	4,237	?	192	?	3, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00	?
 SAMN03839878	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/885/GCA_001294885.1_ASM129488v1	SRR2094296	SCPM-O-B-6304	13-Sep-1979	?	missing	Hissarica	?	?	209	4531080	4,169	?	248	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00	?
 SAMN03839877	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/805/GCA_001294805.1_ASM129480v1	SRR2094295	SCPM-O-B-6216	20-May-1984	?	missing	Xilingolensis	?	?	230	4587862	4,255	?	257	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00	?
 SAMN03839876	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/815/GCA_001294815.1_ASM129481v1	SRR2094294	SCPM-O-B-7761	22-Oct-1983	?	missing	Caucasica	?	?	207	4560303	4,249	?	165	?	2, 1, 2 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00	?
-SAMN03839871	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/825/GCA_001294825.1_ASM129482v1	SRR2094287;SRR2094286	SCPM-O-B-6904	13-Jun-1984	?	missing	Caucasica	?	?	190	4510568	4,203	?	214	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
+SAMN03839871	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/825/GCA_001294825.1_ASM129482v1	SRR2094286;SRR2094287	SCPM-O-B-6904	13-Jun-1984	?	missing	Caucasica	?	?	190	4510568	4,203	?	214	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
 SAMN03839870	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/294/835/GCA_001294835.1_ASM129483v1	SRR2093957	SCPM-O-B-6706	24-Mar-1986	?	missing	Ulegeica	?	?	189	4636832	4,281	?	234	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00	?
 SAMN03262632	?	SRR1732014;SRR1732017	SCPM-O-B-7283	09-Nov-1971	missing	missing	Medievalis	?	?	?	?	?	?	?	?	?	?	2014-12-23 00:00:00;2014-12-23 00:00:00	?
 SAMN03262629	?	SRR1726695	SCPM-O-B-6986	10-Nov-1969	missing	missing	Caucasica	?	?	?	?	?	?	?	?	?	?	2014-12-22 00:00:00	?
-SAMN03256462	?	SRR1732010;SRR1732012	SCPM-O-B-7761	22-Oct-1983	missing	missing	Caucasica	?	?	?	?	?	?	?	?	?	?	2014-12-23 00:00:00;2014-12-23 00:00:00	?
+SAMN03256462	?	SRR1732012;SRR1732010	SCPM-O-B-7761	22-Oct-1983	missing	missing	Caucasica	?	?	?	?	?	?	?	?	?	?	2014-12-23 00:00:00;2014-12-23 00:00:00	?
 SAMN03256461	?	SRR1726428;SRR1726454	SCPM-O-B-7005	26-Jun-2010	missing	missing	Caucasica	?	?	?	?	?	?	?	?	?	?	2014-12-20 00:00:00;2014-12-20 00:00:00	?
 SAMN03256459	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/950/935/GCA_000950935.1_ASM95093v1	SRR1726089	SCPM-O-B-6906	27-Jun-1974	missing	missing	Ulegeica	?	?	477	4523215	4,306	?	240	?	4 (5S, 16S, 23S)	2015/03/11 00:00	2014-12-20 00:00:00	?
 SAMN03256423	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/950/945/GCA_000950945.1_ASM95094v1	SRR1725541	SCPM-O-B-6706	24-Mar-1986	missing	missing	Ulegeica	?	?	326	4624800	4,328	?	178	?	4 (5S, 16S, 23S)	2015/03/11 00:00	2014-12-20 00:00:00	?
@@ -892,7 +884,7 @@ SAMN09104983	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/130/495/GCA_00313049
 SAMN09104938	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/130/485/GCA_003130485.1_ASM313048v1	?	169D	1993-07-15	Homo sapiens	Russia: Dagestan	?	?	?	119	4102946	?	3,936	?	640	2, 1, 2 (5S, 16S, 23S)	2018/05/16 00:00	?	?
 SAMN09104650	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/130/475/GCA_003130475.1_ASM313047v1	?	41D	1998-10-17	Homo sapiens	Russia: Dagestan	?	?	?	140	4038688	?	3,862	?	633	2, 1, 1 (5S, 16S, 23S)	2018/05/16 00:00	?	?
 SAMN04992982	?	SRR3529522	SCPM-O-B-5938	18-Apr-1970	?	missing	Hissarica	?	?	?	?	?	?	?	?	?	?	2017-05-17 00:01:30	?
-SAMN03861483	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/295/105/GCA_001295105.1_ASM129510v1	SRR2124162;SRR2124163	SCPM-O-B-6557	12-Sep-1968	?	missing	Caucasica	?	?	228	4554747	4,253	?	223	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
+SAMN03861483	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/295/105/GCA_001295105.1_ASM129510v1	SRR2124163;SRR2124162	SCPM-O-B-6557	12-Sep-1968	?	missing	Caucasica	?	?	228	4554747	4,253	?	223	?	2, 1, 1 (5S, 16S, 23S)	2015/09/21 00:00	2015-09-24 00:00:00;2015-09-24 00:00:00	?
 SAMN08999467	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/096/115/GCA_003096115.1_ASM309611v1	?	Ogawa 18963	2007	missing	Russia: Rostov-on-Don	El Tor	?	?	66	3966209	?	3,843	?	60	4, 4, 1 (5S, 16S, 23S)	2018/05/07 00:00	?	?
 SAMN08892357	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/074/675/GCA_003074675.1_ASM307467v1	?	139	1966	Rhombomis opinus	Kazakhstan	?	?	?	4816	3963071	?	6,553	?	2,274	1, 1 (16S, 23S)	2018/04/30 00:00	?	?
 SAMN08866745	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/074/535/GCA_003074535.1_ASM307453v1	?	5M	1952	Oropsylla silantiewi	Kyrgyzstan	?	?	?	240	4531579	?	4,362	?	233	2, 1, 1 (5S, 16S, 23S)	2018/04/30 00:00	?	?
@@ -987,11 +979,11 @@ SAMN06075487	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/002/266/785/GCA_00226678
 SAMN06075483	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/002/266/775/GCA_002266775.1_ASM226677v1	?	I-216	1970	Homo sapiens	Russia	?	?	?	49	3286361	?	3,359	?	354	1, 1, 1 (5S, 16S, 23S)	2017/08/23 00:00	?	?
 SAMN05823560	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/002/266/765/GCA_002266765.1_ASM226676v1	?	I-349	1999	Homo sapiens	Russia	?	?	?	37	3282226	?	3,342	?	235	1, 1, 1 (5S, 16S, 23S)	2017/08/23 00:00	?	?
 SAMN05823553	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/002/266/745/GCA_002266745.1_ASM226674v1	?	KIV-L	2014	Homo sapiens	Russia	?	?	?	41	3282192	?	3,355	?	239	1, 1, 1 (5S, 16S, 23S)	2017/08/23 00:00	?	?
-SAMN06854807	?	?	CO92 (pCD1-), ?yyfB	2016	Homo sapiens	USA: Colorado	?	?	?	?	?	?	?	?	?	?	?	?	?
-SAMN06854806	?	?	CO92 (pCD1-), ?yyfA	2016	Homo sapiens	USA: Colorado	?	?	?	?	?	?	?	?	?	?	?	?	?
+SAMN06854807	?	?	CO92 (pCD1-), yyfB	2016	Homo sapiens	USA: Colorado	?	?	?	?	?	?	?	?	?	?	?	?	?
+SAMN06854806	?	?	CO92 (pCD1-), yyfA	2016	Homo sapiens	USA: Colorado	?	?	?	?	?	?	?	?	?	?	?	?	?
 SAMN06854805	?	?	CO92 (pCD1-)	2016	Homo sapiens	USA: Colorado	?	?	?	?	?	?	?	?	?	?	?	?	?
-SAMN06854160	?	?	CO92 (pCD1-), ?yyfB	2016	Homo sapiens	USA: Colorado	?	?	?	?	?	?	?	?	?	?	?	?	?
-SAMN06854159	?	?	CO92 (pCD1-), ?yyfA	2016	Homo sapiens	USA: Colorado	?	?	?	?	?	?	?	?	?	?	?	?	?
+SAMN06854160	?	?	CO92 (pCD1-), yyfB	2016	Homo sapiens	USA: Colorado	?	?	?	?	?	?	?	?	?	?	?	?	?
+SAMN06854159	?	?	CO92 (pCD1-), yyfA	2016	Homo sapiens	USA: Colorado	?	?	?	?	?	?	?	?	?	?	?	?	?
 SAMN06854158	?	?	CO92 (pCD1-)	2016	Homo sapiens	USA: Colorado	?	?	?	?	?	?	?	?	?	?	?	?	?
 SAMN06711158	?	?	617	missing	Homo sapiens	Ukraine: Piatikhatskii district	?	?	?	?	?	?	3,723	?	109	2, 1, 4 (5S, 16S, 23S)	?	?	?
 SAMN06806565	?	?	M1337	not collected	Homo sapiens	Russia: Astrakhan	?	?	?	?	?	?	?	?	?	?	?	?	?
@@ -1148,7 +1140,7 @@ SAMN03174669	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/834/825/GCA_00083482
 SAMN03074123	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/834/755/GCA_000834755.1_ASM83475v1	SRR2176138;SRR2176137	A1122	1939	?	USA: California	Orientalis	Thirty-Two Complete Genome Assemblies of Nine Yersinia Species, Including Y. pestis, Y. pseudotuberculosis, and Y. enterocolitica.	Johnson;Daligault;Davenport;Jaissle;Frey;Ladner;Broomall;Bishop-Lilly;Bruce;Coyne;Gibbons;Lo;Munk;Rosenzweig;Koroleva;Palacios;Redden;Xu;Minogue;Chain	3	4674565	?	?	?	?	?	2015/02/09 00:00	2015-08-25 11:01:37;2015-08-25 11:13:00	?
 SAMN03216587	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/834/905/GCA_000834905.1_ASM83490v1	SRR2175557;SRR2175556;SRR2175555	Java9	unknown	?	Indonesia	?	Thirty-Two Complete Genome Assemblies of Nine Yersinia Species, Including Y. pestis, Y. pseudotuberculosis, and Y. enterocolitica.	Johnson;Daligault;Davenport;Jaissle;Frey;Ladner;Broomall;Bishop-Lilly;Bruce;Coyne;Gibbons;Lo;Munk;Rosenzweig;Koroleva;Palacios;Redden;Xu;Minogue;Chain	5	4830559	?	?	?	?	?	2015/02/09 00:00	2015-08-24 16:15:31;2015-08-24 16:12:15;2015-08-24 16:20:07	?
 SAMN03074081	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/834/235/GCA_000834235.1_ASM83423v1	SRR2175566;SRR2175565;SRR2175564	PBM19	Unknown	?	Unknown	?	Thirty-Two Complete Genome Assemblies of Nine Yersinia Species, Including Y. pestis, Y. pseudotuberculosis, and Y. enterocolitica.	Johnson;Daligault;Davenport;Jaissle;Frey;Ladner;Broomall;Bishop-Lilly;Bruce;Coyne;Gibbons;Lo;Munk;Rosenzweig;Koroleva;Palacios;Redden;Xu;Minogue;Chain	4	4861517	?	?	?	?	?	2015/02/09 00:00	2017-10-17 01:51:03;2015-08-24 17:11:43;2015-08-24 17:30:14	?
-SAMN03177051	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/834/845/GCA_000834845.1_ASM83484v1	SRR2153450;SRR2891671;SRR2153449;SRR2891670	Angola	Unknown	?	Unknown	Pestoides	Thirty-Two Complete Genome Assemblies of Nine Yersinia Species, Including Y. pestis, Y. pseudotuberculosis, and Y. enterocolitica.	Johnson;Daligault;Davenport;Jaissle;Frey;Ladner;Broomall;Bishop-Lilly;Bruce;Coyne;Gibbons;Lo;Munk;Rosenzweig;Koroleva;Palacios;Redden;Xu;Minogue;Chain	4	4674610	?	?	?	?	?	2015/02/09 00:00	2015-08-15 10:24:19;2015-11-06 09:07:07;2015-08-15 10:31:27;2015-11-04 19:49:09	?
+SAMN03177051	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/834/845/GCA_000834845.1_ASM83484v1	SRR2891671;SRR2153450;SRR2153449;SRR2891670	Angola	Unknown	?	Unknown	Pestoides	Thirty-Two Complete Genome Assemblies of Nine Yersinia Species, Including Y. pestis, Y. pseudotuberculosis, and Y. enterocolitica.	Johnson;Daligault;Davenport;Jaissle;Frey;Ladner;Broomall;Bishop-Lilly;Bruce;Coyne;Gibbons;Lo;Munk;Rosenzweig;Koroleva;Palacios;Redden;Xu;Minogue;Chain	4	4674610	?	?	?	?	?	2015/02/09 00:00	2015-11-06 09:07:07;2015-08-15 10:24:19;2015-08-15 10:31:27;2015-11-04 19:49:09	?
 SAMN03160774	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/293/415/GCA_001293415.1_ASM129341v1	SRR2148796;SRR2148797	CO92	1992	?	USA: Colorado	O	Thirty-Two Complete Genome Assemblies of Nine Yersinia Species, Including Y. pestis, Y. pseudotuberculosis, and Y. enterocolitica.	Johnson;Daligault;Davenport;Jaissle;Frey;Ladner;Broomall;Bishop-Lilly;Bruce;Coyne;Gibbons;Lo;Munk;Rosenzweig;Koroleva;Palacios;Redden;Xu;Minogue;Chain	3	4722852	?	?	?	?	?	2015/02/09 00:00	2015-11-11 09:09:03;2015-08-11 21:44:48	?
 SAMN03121016	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/834/315/GCA_000834315.1_ASM83431v1	SRR2148411;SRR2148410;SRR2148409	Pestoides F	Unknown	?	USSR	Antiqua	Thirty-Two Complete Genome Assemblies of Nine Yersinia Species, Including Y. pestis, Y. pseudotuberculosis, and Y. enterocolitica.	Johnson;Daligault;Davenport;Jaissle;Frey;Ladner;Broomall;Bishop-Lilly;Bruce;Coyne;Gibbons;Lo;Munk;Rosenzweig;Koroleva;Palacios;Redden;Xu;Minogue;Chain	3	4728318	?	?	?	?	?	2015/02/09 00:00	2015-08-11 17:27:44;2015-08-11 17:17:32;2015-08-11 17:30:46	?
 SAMN03955854	?	?	?	not applicable	not applicable	not applicable	?	?	?	?	?	?	?	?	?	?	?	?	?
@@ -1431,7 +1423,7 @@ SAMN02141451	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/268/585/GCA_00026858
 SAMN02141450	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/268/565/GCA_000268565.1_ASM26856v1	?	PY-03	2006	black rat	Peru:Jaen, Santo Domingo de la Capilla, Chamana	?	?	?	751	4688983	?	?	?	?	?	2012/06/15 00:00	?	?
 SAMN02141449	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/268/325/GCA_000268325.1_ASM26832v1	?	PY-02	2006	black rat	Peru:Jaen, Santo Domingo de la Capilla, Chamana	?	?	?	578	4643211	?	?	?	?	?	2012/06/15 00:00	?	?
 SAMN02141448	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/268/545/GCA_000268545.1_ASM26854v1	?	PY-01	2006	house mouse	Peru:Chota, San Juan de Licupis, Los Porongos	?	?	?	568	4734683	?	?	?	?	?	2012/06/15 00:00	?	?
-SAMN00004706	?	SRR029368;SRR029367	KIM D27	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2009-11-02 15:46:40;2009-11-02 15:45:25	?
+SAMN00004706	?	SRR029367;SRR029368	KIM D27	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2009-11-02 15:45:25;2009-11-02 15:46:40	?
 SAMN02442728	?	SRR1048912	Justinian	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2014-01-28 00:00:00	?
 SAMN02442727	?	SRR1048911	Justinian	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2014-01-28 00:00:00	?
 SAMN02442726	?	SRR1048910	Justinian	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2014-01-28 00:00:00	?
@@ -1530,122 +1522,130 @@ SAMN00704240	?	SRR329389	PY-06	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2011-08-10 11:26:23	?
 SAMN00704239	?	SRR329388	PY-05	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2011-08-10 11:22:23	?
 SAMN00704077	?	SRR329043	PY-04	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2011-08-09 16:06:24	?
 SAMN00704075	?	SRR329038	PY-03	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2011-08-09 16:02:24	?
-SAMN00115251	?	SRR069216	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115250	?	SRR069215	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115249	?	SRR069214	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115248	?	SRR069213	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115247	?	SRR069212;SRR069211	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115246	?	SRR069210	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115245	?	SRR069209	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115244	?	SRR069208	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115243	?	SRR069207	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115242	?	SRR069206	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115241	?	SRR069205	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115240	?	SRR069204	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115239	?	SRR069203	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115238	?	SRR069202	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115237	?	SRR069201	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115236	?	SRR069200	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115235	?	SRR069199	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115234	?	SRR069198	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115233	?	SRR069197	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115232	?	SRR069196	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115231	?	SRR069195	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115230	?	SRR069194	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115229	?	SRR069193	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115228	?	SRR069192	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115227	?	SRR069191	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115226	?	SRR069190	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115225	?	SRR069189	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115224	?	SRR069188	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115223	?	SRR069187	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115222	?	SRR069186	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115221	?	SRR069185	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115220	?	SRR069184	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115219	?	SRR069183	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115218	?	SRR069182	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115217	?	SRR069181	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115216	?	SRR069180;SRR069179	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115215	?	SRR069178	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115214	?	SRR069177	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115213	?	SRR069176	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115212	?	SRR069175	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115211	?	SRR069174	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115210	?	SRR069173	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115209	?	SRR069172	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115208	?	SRR069171	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115207	?	SRR069170	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115206	?	SRR069169	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115205	?	SRR069168	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115204	?	SRR069167	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115203	?	SRR069166	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115202	?	SRR069165	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115201	?	SRR069164	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115200	?	SRR069163	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115199	?	SRR069162	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115198	?	SRR069161	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115197	?	SRR069160	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115196	?	SRR069159	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115195	?	SRR069158	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115194	?	SRR069157	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115193	?	SRR069156	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115192	?	SRR069155	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115191	?	SRR069154	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115190	?	SRR069153	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115189	?	SRR069152	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115188	?	SRR069151;SRR069150	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115187	?	SRR069149	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115186	?	SRR069148;SRR069147	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115185	?	SRR069146	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115184	?	SRR069145	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115183	?	SRR069144	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115182	?	SRR069143	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115181	?	SRR069142	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115180	?	SRR069141	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115179	?	SRR069140	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115178	?	SRR069139	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115177	?	SRR069138	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115176	?	SRR069137	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115175	?	SRR069136	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115174	?	SRR069135	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115173	?	SRR069134	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115172	?	SRR069133	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115171	?	SRR069132	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115170	?	SRR069131	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115169	?	SRR069130	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115168	?	SRR069129	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115167	?	SRR069128	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115166	?	SRR069127	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115165	?	SRR069126	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115164	?	SRR069125;SRR069124	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115163	?	SRR069123	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115162	?	SRR069122	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115161	?	SRR069121	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115160	?	SRR069120	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115159	?	SRR069119	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115158	?	SRR069118	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115157	?	SRR069117	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115156	?	SRR069116	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115155	?	SRR069115	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115154	?	SRR069114	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115153	?	SRR069113;SRR069112	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115152	?	SRR069111	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115151	?	SRR069110	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115150	?	SRR069109	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115149	?	SRR069108	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115148	?	SRR069107	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115147	?	SRR069106	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115146	?	SRR069105	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115145	?	SRR069104	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115144	?	SRR069103	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115143	?	SRR069102	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115142	?	SRR069101	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115141	?	SRR069100	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115140	?	SRR069099	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115139	?	SRR069098	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115138	?	SRR069097	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115137	?	SRR069096	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115136	?	SRR069095	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115135	?	SRR069094	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
-SAMN00115134	?	SRR069093	??	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115251	?	SRR069216	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115250	?	SRR069215	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115249	?	SRR069214	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115248	?	SRR069213	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115247	?	SRR069212;SRR069211	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115246	?	SRR069210	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115245	?	SRR069209	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115244	?	SRR069208	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115243	?	SRR069207	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115242	?	SRR069206	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115241	?	SRR069205	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115240	?	SRR069204	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115239	?	SRR069203	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115238	?	SRR069202	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115237	?	SRR069201	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115236	?	SRR069200	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115235	?	SRR069199	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115234	?	SRR069198	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115233	?	SRR069197	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115232	?	SRR069196	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115231	?	SRR069195	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115230	?	SRR069194	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115229	?	SRR069193	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115228	?	SRR069192	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115227	?	SRR069191	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115226	?	SRR069190	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115225	?	SRR069189	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115224	?	SRR069188	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115223	?	SRR069187	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115222	?	SRR069186	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115221	?	SRR069185	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115220	?	SRR069184	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115219	?	SRR069183	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115218	?	SRR069182	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115217	?	SRR069181	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115216	?	SRR069180;SRR069179	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115215	?	SRR069178	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115214	?	SRR069177	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115213	?	SRR069176	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115212	?	SRR069175	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115211	?	SRR069174	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115210	?	SRR069173	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115209	?	SRR069172	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115208	?	SRR069171	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115207	?	SRR069170	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115206	?	SRR069169	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115205	?	SRR069168	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115204	?	SRR069167	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115203	?	SRR069166	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115202	?	SRR069165	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115201	?	SRR069164	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115200	?	SRR069163	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115199	?	SRR069162	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115198	?	SRR069161	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115197	?	SRR069160	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115196	?	SRR069159	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115195	?	SRR069158	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115194	?	SRR069157	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115193	?	SRR069156	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115192	?	SRR069155	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115191	?	SRR069154	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115190	?	SRR069153	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115189	?	SRR069152	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115188	?	SRR069151;SRR069150	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115187	?	SRR069149	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115186	?	SRR069148;SRR069147	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115185	?	SRR069146	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115184	?	SRR069145	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115183	?	SRR069144	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115182	?	SRR069143	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115181	?	SRR069142	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115180	?	SRR069141	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115179	?	SRR069140	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115178	?	SRR069139	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115177	?	SRR069138	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115176	?	SRR069137	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115175	?	SRR069136	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115174	?	SRR069135	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115173	?	SRR069134	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115172	?	SRR069133	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115171	?	SRR069132	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115170	?	SRR069131	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115169	?	SRR069130	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115168	?	SRR069129	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115167	?	SRR069128	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115166	?	SRR069127	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115165	?	SRR069126	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115164	?	SRR069125;SRR069124	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115163	?	SRR069123	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115162	?	SRR069122	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115161	?	SRR069121	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115160	?	SRR069120	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115159	?	SRR069119	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115158	?	SRR069118	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115157	?	SRR069117	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115156	?	SRR069116	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115155	?	SRR069115	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115154	?	SRR069114	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115153	?	SRR069113;SRR069112	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115152	?	SRR069111	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115151	?	SRR069110	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115150	?	SRR069109	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115149	?	SRR069108	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115148	?	SRR069107	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115147	?	SRR069106	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115146	?	SRR069105	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115145	?	SRR069104	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115144	?	SRR069103	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115143	?	SRR069102	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115142	?	SRR069101	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115141	?	SRR069100	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115140	?	SRR069099	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115139	?	SRR069098	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115138	?	SRR069097	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115137	?	SRR069096	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115136	?	SRR069095	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115135	?	SRR069094	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
+SAMN00115134	?	SRR069093	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2012-01-01 00:00:00	?
 SAMN01902220	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/382/525/GCA_000382525.1_Yersinia_pestis_G3768_assembly	SRR653849	G3768	?	?	?	?	?	?	252	4523489	?	?	?	?	?	2013/04/25 00:00	2013-04-24 00:00:00	?
+SAMEA3541828	?	ERR1019009;ERR1019008;ERR1019007;ERR1019006;ERR1019005;ERR1019004;ERR1019003;ERR1019002;ERR1019001;ERR1019000;ERR1018999;ERR1018998	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:26;2015-10-27 00:32:25;2015-10-27 00:32:25	?
+SAMEA3541827	?	ERR1018984;ERR1018983;ERR1018982;ERR1018981;ERR1018980;ERR1018979;ERR1018978;ERR1018977;ERR1018976;ERR1018975;ERR1018974;ERR1018973;ERR1018972;ERR1018971;ERR1018970;ERR1018969;ERR1018968;ERR1018967;ERR1018966	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25	?
+SAMEA3541826	?	ERR1018965;ERR1018964;ERR1018963;ERR1018962;ERR1018961;ERR1018960;ERR1018959;ERR1018958;ERR1018957;ERR1018956;ERR1018955;ERR1018954;ERR1018953;ERR1018952;ERR1018951;ERR1018950;ERR1018949;ERR1018948;ERR1018947	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25	?
+SAMEA3541825	?	ERR1018926;ERR1018925;ERR1018924;ERR1018923;ERR1018922;ERR1018921;ERR1018920;ERR1018919;ERR1018918	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25	?
+SAMEA3541824	?	ERR1018946;ERR1018945;ERR1018944;ERR1018943;ERR1018942;ERR1018941;ERR1018940;ERR1018939;ERR1018938;ERR1018937;ERR1018936;ERR1018935;ERR1018934;ERR1018933;ERR1018932;ERR1018931;ERR1018930;ERR1018929;ERR1018928;ERR1018927	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25	?
+SAMEA3541823	?	ERR1018997;ERR1018996;ERR1018995;ERR1018994;ERR1018993;ERR1018992;ERR1018991;ERR1018990;ERR1018989;ERR1018988;ERR1018987;ERR1018986;ERR1018985	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25	?
+SAMEA3541822	?	ERR1018917;ERR1018916;ERR1018915;ERR1018914;ERR1018913;ERR1018912;ERR1018911;ERR1018910;ERR1018909;ERR1018908;ERR1018907;ERR1018906;ERR1018905;ERR1018904;ERR1018903;ERR1018902;ERR1018901;ERR1018900;ERR1018899;ERR1018898;ERR1018897;ERR1018896;ERR1018895;ERR1018894;ERR1018893;ERR1018892;ERR1018891;ERR1018890;ERR1018889;ERR1018888;ERR1018887	?	?	?	?	?	?	?	?	?	?	?	?	?	?	?	2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:25;2015-10-27 00:32:24;2015-10-27 00:32:24;2015-10-27 00:32:24;2015-10-27 00:32:24;2015-10-27 00:32:24;2015-10-27 00:32:24;2015-10-27 00:32:24	?
+SAMN13259076	?	?	347-16	2016	Homo sapiens	Russia: Kislovodsk	?	?	?	?	?	?	?	?	?	?	?	?	?
