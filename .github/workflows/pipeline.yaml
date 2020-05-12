@@ -17,17 +17,22 @@ on:
 
 jobs:
 
-  example:
+  pipeline:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Create Conda Environment
-      run: |
-        conda env create -f phylo-env.yaml --name phylo-env
-        conda activate phylo-env
+      - uses: actions/checkout@v2
+      - uses: goanpeca/setup-miniconda@v1
+        with:
+          activate-environment: phylo-env
+          environment-file: phylo-env.yaml
+          auto-activate-base: false
+      - shell: bash -l {0}
+        run: |
+          conda info
+          conda list
 
-    - name: Pipeline Test
-      run: |
-        nextflow run pipeline.nf \
-          --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-          --max_datasets 3
+      - name: Pipeline Test
+        run: |
+          nextflow run pipeline.nf \
+            --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+            --max_datasets 3
