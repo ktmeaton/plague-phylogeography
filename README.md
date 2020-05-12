@@ -16,13 +16,6 @@ conda env create -f phylo-env.yaml --name phylo-env
 conda activate phylo-env
 ```
 
-### Dev Dependencies for Docs
-```
-pip install sphinx sphinx-rtd-theme m2r
-```
-
-Everything from here on out is free form notes as I experiment and document.
-
 ## Reproduce from previously generated database
 ```
 nextflow run pipeline.nf \
@@ -37,7 +30,7 @@ nextflow run pipeline.nf \
 ```
 nextflow run pipeline.nf \
   --ncbimeta_create ncbimeta.yaml \
-  --outdir test \
+  --outdir results \
   --ncbimeta_update ncbimeta.yaml \
   --skip_assembly_download \
   --skip_reference_download
@@ -52,13 +45,9 @@ scripts/sqlite_NextStrain_tsv.py   \
   --no-data-char ? \
   --output ncbimeta_default_annot.txt
 ```
-Currently there's an issue with ' char being escaped. Change now, investigate later.
-```
-sed -i "s/\\\'/\\'/g" ncbimeta_default_annot.txt
-```
 
-2. Curate/Add metadata, example:
-Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows that are the wrong organism (manually).
+2. Curate/Add metadata with a text-editor, example:
+Add "REMOVE: Not Yersinia pestis" to the BioSampleComment column to any rows that are the wrong organism.
 Edit the collection data, geographic location, host etc. based on associated publication.
 
 3. Replace ? with empty "" for NCBImeta annotation script
@@ -72,7 +61,7 @@ Remember that this drops/deletes the Master tables every time it's rerun:
 nextflow run pipeline.nf \
   --ncbimeta_update ncbimeta.yaml \
   --ncbimeta_annot ncbimeta_annot.txt \
-  --outdir test \
+  --outdir results \
   --skip_sqlite_import \
   --skip_reference_download \
   -resume
@@ -84,4 +73,17 @@ nextflow run pipeline.nf \
   --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
   --max_datasets 2000 \
   -resume
+```
+
+
+### Developing
+Create the development conda environment
+```
+conda env create -f phylo-dev-env.yaml --name phylo-dev-env
+conda activate phylo-dev-env
+```
+Install pre-commit hooks, and test run against all files
+```
+pre-commit install
+pre-commit run --all-files
 ```
