@@ -27,7 +27,6 @@ jobs:
           environment-file: phylo-env.yaml
           auto-activate-base: false
       - shell: bash -l {0}
-      - name: Pipeline Test
         run: |
           conda info
           conda list
