@@ -942,7 +942,7 @@ if(!params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snipp
     iqtree \
       -s ${snippy_core_filter_aln} \
       -m MFP \
-      -T AUTO \
+      -nt AUTO \
       -o ${params.iqtree_outgroup} \
       -seed ${params.iqtree_rng} \
       -pre iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap \
