@@ -192,6 +192,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_ncbimeta_sqlite_import
     file ncbimeta_yaml
     file "${params.ncbimeta_output_dir}/log/*.log"
+    file "${params.ncbimeta_output_dir}/database/*.txt"
 
     // Shell script to execute
     script:
@@ -219,6 +220,8 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     NCBImetaJoin.py --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} --anchor ${params.ncbimeta_join_first_anchor} --accessory ${params.ncbimeta_join_first_accessory} --final ${params.ncbimeta_join_first_final} --unique ${params.ncbimeta_join_first_uniq}
     NCBImetaJoin.py --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} --anchor ${params.ncbimeta_join_second_anchor} --accessory ${params.ncbimeta_join_second_accessory} --final ${params.ncbimeta_join_second_final} --unique ${params.ncbimeta_join_second_uniq}
     NCBImetaJoin.py --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} --anchor ${params.ncbimeta_join_third_anchor} --accessory ${params.ncbimeta_join_third_accessory} --final ${params.ncbimeta_join_third_final} --unique ${params.ncbimeta_join_third_uniq}
+    # Export Tables
+    NCBImetaExport.py --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} --outputdir ${params.ncbimeta_output_dir}/database/
     """
   }
 }
