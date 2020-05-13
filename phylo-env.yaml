@@ -14,4 +14,4 @@ dependencies:
   - qualimap==2.2.2d
   - multiqc==1.8
   - nextflow==20.01.0
-  - iqtree==1.6.12
+  - iqtree==2.0.3
