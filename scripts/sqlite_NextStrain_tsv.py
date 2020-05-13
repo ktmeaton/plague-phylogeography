@@ -4,7 +4,7 @@
 
 Extract Assembly and SRA metadata from an NCBImeta sqlite database to create the tsv input file for NextStrain.
 
-./sqlite_NextStrain_tsv.py \
+./sqlite_extract.py \
   --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
   --query "SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate,BioSampleComment FROM Master WHERE (BioSampleComment NOT LIKE '%REMOVE%' AND TRIM(AssemblyFTPGenbank) > '')" \
   --no-data-char ? \
@@ -111,7 +111,7 @@ record_exists = cur.fetchall()
 
 for record in record_exists:
     # Use list comprehension to replace empty DB values with the NextStrain  NO_DATA_CHAR
-    record = [word if word != "" else word.replace("", NO_DATA_CHAR) for word in record]
+    record = [str(word) if word != "" else word.replace("", NO_DATA_CHAR) for word in record]
     out_file.write("\t".join(record) + "\n")
 
 
