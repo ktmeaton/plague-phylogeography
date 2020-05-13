@@ -360,7 +360,8 @@ if (!params.skip_reference_download){
      ch_reference_genome_snpeff_build_db (gb): The reference genome for process snpeff_build_db
 
      Publish:
-     reference_genome_fna_local (fasta): The locally downloaded reference genome.
+     reference_genome_fna_local (fasta): The locally downloaded reference fasta.
+     reference_genome_gb_local (fasta): The locally downloaded reference annotations.
     */
 
     // Other variables and config
@@ -402,25 +403,42 @@ if (!params.skip_reference_download){
      reference_genome_gb (gb): The reference genome gbff from process reference_download.
 
      Output:
+     snpEff.config (text): Edited SnpEff configuration file for process snippy_pairwise.
 
      Publish:
-     reference_genome_fna_local (fasta): The locally downloaded reference genome.
+     snpEff.config (text): Edited SnpEff configuration file.
+
     */
     // Other variables and config
-    tag "$reference_genome_db"
-    echo true
+    tag "$reference_genome_gb"
+    publishDir "${outdir}/reference_genome", mode: 'copy'
 
     // IO and conditional behavior
     input:
-    file reference_genome_db from ch_reference_genome_snpeff_build_db
+    file reference_genome_gb from ch_reference_genome_snpeff_build_db
 
     output:
-
+    file "snpEff.config" into ch_snpeff_config_snippy_pairwise
 
     // Shell script to execute
     script:
     """
-    echo ${reference_genome_db}
+    # Locate SnpEff directories in miniconda home
+    ref=${reference_genome_gb.baseName}
+    snpeffDir=~/miniconda3/envs/${params.conda_env}/share/snpeff-4.3.1t-3
+    snpeffData=\$snpeffDir/data;
+    # Create a new reference data directory
+    mkdir -p \$snpeffData/\$ref;
+    # Move over the ref genome genbank annotations and rename
+    cp ${outdir}/reference_genome/${reference_genome_gb} \$snpeffData/\$ref/genes.gbk;
+    # Add the new annotation entry to the snpeff config file
+    configLine="${reference_genome_gb.baseName}.genome : ${reference_genome_gb.baseName}"
+    # Search for the genome entry in the snpEff config file
+    if [[ -z `grep "\$configLine" \$snpeffDir/snpEff.config` ]]; then
+      echo "\$configLine" >> \$snpeffDir/snpEff.config;
+    fi;
+    # Copy over snpEff.config just to track it
+    cp \$snpeffDir/snpEff.config `pwd`
     """
   }
 
@@ -539,6 +557,7 @@ if(!params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sql
     Input:
     ch_assembly_fna_snippy_pairwise (fasta): The genomic assembly from process assembly_download.
     ch_reference_genome_snippy_pairwise (fasta): The reference genome from process reference_download.
+    ch_snpeff_config_snippy_pairwise (text): Edited SnpEff configuration file from process snpeff_build_db.
 
     Output:
     ch_snippy_snps_variant_summary (text): Table of summarized SNP counts for process variant_summary.
@@ -561,6 +580,7 @@ if(!params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sql
     input:
     file assembly_fna from ch_assembly_fna_snippy_pairwise
     file reference_genome_fna from ch_reference_genome_snippy_pairwise
+    file snpeff_config from ch_snpeff_config_snippy_pairwise
 
     output:
     file "output${params.snippy_ctg_depth}X/*/*"
