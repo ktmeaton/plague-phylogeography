@@ -17,6 +17,9 @@ on:
   pull_request:
     branches:
       - '*'
+  # Also on a published release
+  release:
+    types: [published]
 
 jobs:
 

@@ -14,6 +14,9 @@ on:
   pull_request:
     branches:
       - '*'
+  # Also on a published release
+  release:
+    types: [published]
 
 jobs:
 
@@ -30,7 +33,8 @@ jobs:
         run: |
           nextflow run pipeline.nf \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-            --max_datasets 4
+            --max_datasets_assembly 4
+            --max_datasets_sra 4
 
       - name: artifact SQLite import
         uses: actions/upload-artifact@v2
