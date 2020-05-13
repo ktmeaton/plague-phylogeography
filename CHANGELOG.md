@@ -16,15 +16,15 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Automate SNPEff db creation
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Deal with nextstrain augur not working with phylogeny with branch support values
-- Fixup the metadata for nextstrain
 - Rethink if statements controlling processes in pipeline
-- Allow variable inputs depending on the if statements
 
 ## [v0.1.2] - 2020-05-07 - Metadata
 
 ### Added
 
 - scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py scripts/geocode_NextStrain.py
+- pre-commit and linting
+- gh-actions workflow
 
 ### Changed
 
@@ -115,3 +115,5 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 [Development]: https://github.com/ktmeaton/paper-phylogeography/compare/HEAD...dev
 [v0.1.0]: https://github.com/ktmeaton/paper-phylogeography/compare/de952505c2a4ebbfdd7a6747896e3e7372c8030b...v0.1.0
+
+<!-- markdownlint-disable-file MD024 -->
