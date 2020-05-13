@@ -34,3 +34,4 @@ repos:
     hooks:
       - id: rst-linter
         description: "rst-linter"
+        entry: "rst-linter"
