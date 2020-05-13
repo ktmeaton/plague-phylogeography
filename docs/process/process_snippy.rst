@@ -10,7 +10,8 @@ Pairwise align contigs to reference genome with snippy.
 Input                                     Type                        Description
 ========================================= =========================== ===========================
 ch_assembly_fna_snippy_pairwise           fasta                       The genomic assembly from process :ref:`assembly_download<Assembly Download>`.
-ch_reference_genome_snippy_pairwise       fasta                       The reference genome from process :ref:`reference_download<Reference Download>`.
+ch_reference_gb_snippy_pairwise           gbff                        The reference annotations from process :ref:`reference_download<Reference Download>`.
+ch_snpeff_config_snippy_pairwise          text                        Edited SnpEff configuration file from process :ref:`snpeff_build_db<SnpEff Build DB>`.
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
@@ -63,7 +64,7 @@ assembly_fna_snippy.\*                      misc                        All defa
 
     # SnpEff csv Stats
     mv \$snippy_snps_csv \$snippy_snps_rename
-    snpEff -v -csvStats \$snippy_snps_csv ${params.snpeff_db} \$snippy_snps_filt
+    snpEff -c ${snpeff_config} -v -csvStats \$snippy_snps_csv ${reference_genome_gb.baseName} \$snippy_snps_filt
 
 ------------
 
