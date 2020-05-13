@@ -16,6 +16,7 @@ dependencies:
   - multiqc==1.8
   - nextflow==20.01.0
   - iqtree==1.6.12
+  - geopy==1.11.0
   - sphinx_rtd_theme==0.4.3
   - sphinxcontrib-applehelp==1.0.2
   - sphinxcontrib-devhelp==1.0.2
