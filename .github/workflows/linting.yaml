@@ -54,6 +54,8 @@ jobs:
       - name: Run yaml-lint
         run: yamllint $(find ${GITHUB_WORKSPACE} -type f -name "*.yaml")
 
+  # TO DO: Python linting for scripts/ dir
+
   # Disable RST linting for now, rethink for sphinx
   #rst_lint:
   #  runs-on: ubuntu-latest

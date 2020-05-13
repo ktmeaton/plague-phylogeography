@@ -8,7 +8,8 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [Development]
 
 - Rewrite shell scripts in python?
-- Overabundance of files in database update and snippy_filtering
+- Then add python linting
+- Overabundance of files in database update
 - Deal with the fail to publish issue with NCBImeta db
 - Add exact-repeats and tandem repeats detection
 - Add GeoPy to phylo-env environment
@@ -25,6 +26,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py scripts/geocode_NextStrain.py
 - pre-commit and linting
 - gh-actions workflow
+- Automate SNPEff db creation
 
 ### Changed
 
