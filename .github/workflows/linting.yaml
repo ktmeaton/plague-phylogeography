@@ -37,7 +37,7 @@ jobs:
       - name: Run Markdownlint
         run: |
           markdownlint CHANGELOG.md -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
-          markdownlint README.md -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml -r ~MD029
+          markdownlint README.md -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
 
   # YAML template from nf-core eager to trial
   yaml_lint:
