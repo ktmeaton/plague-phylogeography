@@ -28,10 +28,3 @@ repos:
         language: node
         types: [markdown]
         minimum_pre_commit_version: 0.15.0
-
-  - repo: https://github.com/Lucas-C/pre-commit-hooks-markup
-    rev: v1.0.0
-    hooks:
-      - id: rst-linter
-        description: "rst-linter"
-        entry: "rst-linter"
