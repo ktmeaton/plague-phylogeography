@@ -18,17 +18,18 @@ reference_genome_gb_ftp                   gbff.gz                     The refere
 ========================================= =========================== ===========================
 Output                                    Type                        Description
 ========================================= =========================== ===========================
-ch_reference_genome_snippy_pairwise       fasta                       The reference genome for process :ref:`snippy_pairwise<Snippy Pairwise>`.
 ch_reference_detect_repeats               fasta                       The reference genome for process :ref:`detect_repeats<Reference Detect Repeats>`.
 ch_reference_genome_detect_low_complexity fasta                       The reference genome for process :ref:`detect_low_complexity<Reference Detect Low Complexity>`.
-ch_reference_genome_snippy_multiple       gbff                        The reference genome for process :ref:`snippy_multi<Snippy Multi>`.
+ch_reference_gb_snippy_pairwise           gbff                        The reference genome for process :ref:`snippy_pairwise<Snippy Pairwise>`.
+ch_reference_genome_snippy_multi          gbff                        The reference genome for process :ref:`snippy_multi<Snippy Multi>`.
+ch_reference_genome_snpeff_build_db       gbff                        The reference genome for process :ref:`snpeff_build_db<SnpEff Build DB>`
 ========================================= =========================== ===========================
 
 ========================================= =========================== ===========================
 Publish                                   Type                        Description
 ========================================= =========================== ===========================
 reference_genome_fna_local                fasta                       The locally downloaded reference fasta.
-reference_genome_gb_local                 gbff                        The locally downloaded reference genbank annotation.
+reference_genome_gb_local                 gbff                        The locally downloaded reference annotations.
 ========================================= =========================== ===========================
 
 
@@ -45,6 +46,63 @@ reference_genome_gb_local                 gbff                        The locall
         sed -i "s/\${FNA_LOCI[\$i]}/\${GB_LOCI[\$i]}/g" ${reference_genome_fna_local.baseName};
         i=\$(( \$i + 1));
       done
+
+------------
+SnpEff Build DB
+---------------
+
+Build a SnpEff database for the reference genome annotations.
+
+========================================= =========================== ===========================
+Input                                     Type                        Description
+========================================= =========================== ===========================
+reference_genome_gb                       gbff                        The reference genome gbff from process :ref:`reference_download<Reference Download>`.
+========================================= =========================== ===========================
+
+========================================= =========================== ===========================
+Output                                    Type                        Description
+========================================= =========================== ===========================
+ch_snpeff_config_snippy_pairwise          text                        Edited SnpEff configuration file for process :ref:`snippy_pairwise<Snippy Pairwise>`.
+========================================= =========================== ===========================
+
+========================================= =========================== ===========================
+Publish                                   Type                        Description
+========================================= =========================== ===========================
+snpEff.config                             text                        Edited SnpEff configuration file.
+snpEffectPredictor.bin                    gzip text                   SnpEff database.
+========================================= =========================== ===========================
+
+
+**Shell script**::
+
+      # Locate SnpEff directories in miniconda home
+      ref=${reference_genome_gb.baseName}
+      snpeffDir=~/miniconda3/envs/${params.conda_env}/share/snpeff-4.3.1t-3
+      snpeffData=\$snpeffDir/data;
+
+      # Create a new reference data directory
+      mkdir -p \$snpeffData/\$ref;
+
+      # Move over the ref genome genbank annotations and rename
+      cp ${outdir}/reference_genome/${reference_genome_gb} \$snpeffData/\$ref/genes.gbk;
+
+      # Add the new annotation entry to the snpeff config file
+      configLine="${reference_genome_gb.baseName}.genome : ${reference_genome_gb.baseName}"
+
+      # Search for the genome entry in the snpEff config file
+      if [[ -z `grep "\$configLine" \$snpeffDir/snpEff.config` ]]; then
+        echo "\$configLine" >> \$snpeffDir/snpEff.config;
+      fi;
+
+      # Copy over snpEff.config to become an output channel
+      snpEff build -v -genbank ${reference_genome_gb.baseName}
+      cp \$snpeffDir/snpEff.config `pwd`
+
+      # Move SnpEff database to the correct path
+      mkdir -p data/
+      mkdir -p data/${reference_genome_gb.baseName}/
+      cp \$snpeffData/${reference_genome_gb.baseName}/snpEffectPredictor.bin data/${reference_genome_gb.baseName}/
+
 
 ------------
 
