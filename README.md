@@ -42,7 +42,8 @@ nextflow run pipeline.nf \
 
 ### Customize and Curate the Annotations
 
-Curate metadata with a DB Browser (SQLite), example:
+Curate metadata with a DB Browser (SQLite), examples:
+
 * ex. Add "REMOVE: Not Yersinia pestis" to the column BioSampleComment.
 * ex. Add collection data, geographic location, host etc. from literature.
 
@@ -69,6 +70,7 @@ scripts/sqlite_NextStrain_tsv.py   \
 ```
 
 ### Run the sqlite import command to see what samples will be run
+
 ```bash
 nextflow run pipeline.nf \
   --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
