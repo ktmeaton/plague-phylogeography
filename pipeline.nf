@@ -356,7 +356,8 @@ if (!params.skip_reference_download){
      ch_reference_genome_snippy_pairwise (fasta): The compressed reference genome for process snippy_pairwise.
      ch_reference_detect_repeats (fasta): The reference genome for process detect_repeats.
      ch_reference_genome_detect_low_complexity (fasta): The reference genome for process detect_low_complexity.
-     ch_reference_genome_snippy_multiple (gb): The reference genome for process snippy_multi.
+     ch_reference_gb_snippy_pairwise (gb): The reference genome for process snippy_pairwise.
+     ch_reference_gb_snippy_multi (gb): The reference genome for process snippy_multi.
      ch_reference_genome_snpeff_build_db (gb): The reference genome for process snpeff_build_db
 
      Publish:
@@ -376,7 +377,7 @@ if (!params.skip_reference_download){
 
     output:
     file "${reference_genome_fna_local.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity
-    file "${reference_genome_gb_local.baseName}" into ch_reference_genome_snippy_multi, ch_reference_genome_snpeff_build_db
+    file "${reference_genome_gb_local.baseName}" into ch_reference_gb_snippy_pairwise, ch_reference_gb_snippy_multi, ch_reference_genome_snpeff_build_db
 
     // Shell script to execute
     script:
@@ -556,7 +557,7 @@ if(!params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sql
 
     Input:
     ch_assembly_fna_snippy_pairwise (fasta): The genomic assembly from process assembly_download.
-    ch_reference_genome_snippy_pairwise (fasta): The reference genome from process reference_download.
+    ch_reference_gb_snippy_pairwise (gb): The reference annotations from process reference_download.
     ch_snpeff_config_snippy_pairwise (text): Edited SnpEff configuration file from process snpeff_build_db.
 
     Output:
@@ -579,7 +580,7 @@ if(!params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sql
     // IO and conditional behavior
     input:
     file assembly_fna from ch_assembly_fna_snippy_pairwise
-    file reference_genome_fna from ch_reference_genome_snippy_pairwise
+    file reference_genome_gb from ch_reference_gb_snippy_pairwise
     file snpeff_config from ch_snpeff_config_snippy_pairwise
 
     output:
@@ -595,7 +596,7 @@ if(!params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sql
     snippy \
       --prefix ${assembly_fna.baseName}_snippy \
       --cpus ${task.cpus} \
-      --reference ${reference_genome_fna} \
+      --reference ${reference_genome_gb} \
       --outdir output${params.snippy_ctg_depth}X/${assembly_fna.baseName} \
       --ctgs ${assembly_fna} \
       --mapqual ${params.snippy_map_qual} \
@@ -792,7 +793,7 @@ if(!params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.sk
     Perform a multiple genome alignment with snippy-core.
 
     Input:
-    ch_reference_genome_snippy_multi (gbff): The reference genome from process reference_download.
+    ch_reference_gb_snippy_multi (gbff): The reference genome from process reference_download.
     ch_bed_mask_snippy_multi (bed): Master masking BED file from process snippy_merge_mask_bed.
 
     Output:
@@ -808,7 +809,7 @@ if(!params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.sk
 
     // IO and conditional behavior
     input:
-    file reference_genome_gb from ch_reference_genome_snippy_multi
+    file reference_genome_gb from ch_reference_gb_snippy_multi
     file bed_mask from ch_bed_mask_snippy_multi
 
     output:
