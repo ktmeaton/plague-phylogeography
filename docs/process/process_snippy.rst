@@ -64,7 +64,12 @@ assembly_fna_snippy.\*                      misc                        All defa
 
     # SnpEff csv Stats
     mv \$snippy_snps_csv \$snippy_snps_rename
-    snpEff -c ${snpeff_config} -v -csvStats \$snippy_snps_csv ${reference_genome_gb.baseName} \$snippy_snps_filt
+    snpEff -c ${snpeff_config} \
+      -dataDir ${outdir}/reference_genome/data/ \
+      -v \
+      -csvStats \$snippy_snps_csv \
+      ${reference_genome_gb.baseName} \
+      \$snippy_snps_filt
 
 ------------
 

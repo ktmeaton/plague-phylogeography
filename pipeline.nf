@@ -450,9 +450,6 @@ if (!params.skip_reference_download){
 
     # Build the snpEff databse
     snpEff build -dataDir ./data/ -v -genbank ${reference_genome_gb.baseName}
-
-    pwd
-    ls -l
     """
   }
 
@@ -635,7 +632,12 @@ if(!params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sql
 
     # SnpEff csv Stats
     mv \$snippy_snps_csv \$snippy_snps_rename
-    snpEff -c ${snpeff_config} -v -csvStats \$snippy_snps_csv ${reference_genome_gb.baseName} \$snippy_snps_filt
+    snpEff -c ${snpeff_config} \
+      -dataDir ${outdir}/reference_genome/data/ \
+      -v \
+      -csvStats \$snippy_snps_csv \
+      ${reference_genome_gb.baseName} \
+      \$snippy_snps_filt
     """
   }
 
