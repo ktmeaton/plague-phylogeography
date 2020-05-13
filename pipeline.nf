@@ -158,6 +158,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     Publish:
     ncbimeta_yaml (yaml): NCBImeta config file.
     *.log (text): Text logs of NCBImeta database update.
+    *.txt (text): Text export of NCBImeta database.
     */
 
     // Other variables and config

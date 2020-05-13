@@ -59,6 +59,7 @@ Publish                                    Type                        Descripti
 ${params.ncbimeta_sqlite_db}              sqlite                      NCBImeta SQLite database.
 ncbimeta_yaml                             yaml                        NCBImeta config file.
 \*.log                                    text                        Text logs of NCBImeta database update.
+\*.txt                                    text                        Text export of NCBImeta database.
 ========================================= =========================== ===========================
 
 **Shell script**::
