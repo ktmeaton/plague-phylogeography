@@ -404,10 +404,11 @@ if (!params.skip_reference_download){
      reference_genome_gb (gb): The reference genome gbff from process reference_download.
 
      Output:
-     snpEff.config (text): Edited SnpEff configuration file for process snippy_pairwise.
+     ch_snpeff_config_snippy_pairwise (text): Edited SnpEff configuration file for process snippy_pairwise.
 
      Publish:
      snpEff.config (text): Edited SnpEff configuration file.
+     snpEffectPredictor.bin (gzip text): SnpEff database.
 
     */
     // Other variables and config
@@ -420,6 +421,7 @@ if (!params.skip_reference_download){
 
     output:
     file "snpEff.config" into ch_snpeff_config_snippy_pairwise
+    file "data/${reference_genome_gb.baseName}/snpEffectPredictor.bin"
 
     // Shell script to execute
     script:
@@ -428,18 +430,29 @@ if (!params.skip_reference_download){
     ref=${reference_genome_gb.baseName}
     snpeffDir=~/miniconda3/envs/${params.conda_env}/share/snpeff-4.3.1t-3
     snpeffData=\$snpeffDir/data;
+
     # Create a new reference data directory
     mkdir -p \$snpeffData/\$ref;
+
     # Move over the ref genome genbank annotations and rename
     cp ${outdir}/reference_genome/${reference_genome_gb} \$snpeffData/\$ref/genes.gbk;
+
     # Add the new annotation entry to the snpeff config file
     configLine="${reference_genome_gb.baseName}.genome : ${reference_genome_gb.baseName}"
+
     # Search for the genome entry in the snpEff config file
     if [[ -z `grep "\$configLine" \$snpeffDir/snpEff.config` ]]; then
       echo "\$configLine" >> \$snpeffDir/snpEff.config;
     fi;
-    # Copy over snpEff.config just to track it
+
+    # Copy over snpEff.config to become an output channel
+    snpEff build -v -genbank ${reference_genome_gb.baseName}
     cp \$snpeffDir/snpEff.config `pwd`
+
+    # Move SnpEff database to the correct path
+    mkdir -p data/
+    mkdir -p data/${reference_genome_gb.baseName}/
+    cp \$snpeffData/${reference_genome_gb.baseName}/snpEffectPredictor.bin data/${reference_genome_gb.baseName}/
     """
   }
 
@@ -622,7 +635,7 @@ if(!params.skip_snippy_pairwise && !params.skip_assembly_download && (params.sql
 
     # SnpEff csv Stats
     mv \$snippy_snps_csv \$snippy_snps_rename
-    snpEff -v -csvStats \$snippy_snps_csv ${params.snpeff_db} \$snippy_snps_filt
+    snpEff -c ${snpeff_config} -v -csvStats \$snippy_snps_csv ${reference_genome_gb.baseName} \$snippy_snps_filt
     """
   }
 
