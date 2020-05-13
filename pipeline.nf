@@ -357,6 +357,7 @@ if (!params.skip_reference_download){
      ch_reference_detect_repeats (fasta): The reference genome for process detect_repeats.
      ch_reference_genome_detect_low_complexity (fasta): The reference genome for process detect_low_complexity.
      ch_reference_genome_snippy_multiple (gb): The reference genome for process snippy_multi.
+     ch_reference_genome_snpeff_build_db (gb): The reference genome for process snpeff_build_db
 
      Publish:
      reference_genome_fna_local (fasta): The locally downloaded reference genome.
@@ -374,7 +375,7 @@ if (!params.skip_reference_download){
 
     output:
     file "${reference_genome_fna_local.baseName}" into ch_reference_genome_snippy_pairwise, ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity
-    file "${reference_genome_gb_local.baseName}" into ch_reference_genome_snippy_multi
+    file "${reference_genome_gb_local.baseName}" into ch_reference_genome_snippy_multi, ch_reference_genome_snpeff_build_db
 
     // Shell script to execute
     script:
@@ -390,6 +391,36 @@ if (!params.skip_reference_download){
       sed -i "s/\${FNA_LOCI[\$i]}/\${GB_LOCI[\$i]}/g" ${reference_genome_fna_local.baseName};
       i=\$(( \$i + 1));
     done
+    """
+  }
+
+  process snpeff_build_db{
+    /*
+     Build a SnpEff database for the reference genome annotations
+
+     Input:
+     reference_genome_gb (gb): The reference genome gbff from process reference_download.
+
+     Output:
+
+     Publish:
+     reference_genome_fna_local (fasta): The locally downloaded reference genome.
+    */
+    // Other variables and config
+    tag "$reference_genome_db"
+    echo true
+
+    // IO and conditional behavior
+    input:
+    file reference_genome_db from ch_reference_genome_snpeff_build_db
+
+    output:
+
+
+    // Shell script to execute
+    script:
+    """
+    echo ${reference_genome_db}
     """
   }
 
