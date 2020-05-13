@@ -425,9 +425,9 @@ if (!params.skip_reference_download){
     // Shell script to execute
     script:
     """
-    # Locate SnpEff directories in miniconda home
+    # Locate SnpEff directories in miniconda path
     ref=${reference_genome_gb.baseName}
-    snpeffDir=~/miniconda3/envs/${params.conda_env}/share/snpeff-4.3.1t-3
+    snpeffDir=\${CONDA_PREFIX}/share/snpeff*
     snpeffData=\$snpeffDir/data;
 
     # Create a new reference data directory
