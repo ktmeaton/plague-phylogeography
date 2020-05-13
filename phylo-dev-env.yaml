@@ -25,3 +25,4 @@ dependencies:
   - sphinxcontrib-serializinghtml==1.1.4
   - m2r==0.2.1
   - pre_commit==2.3.0
+  - sphinx==3.0.3
