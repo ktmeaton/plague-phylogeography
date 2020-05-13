@@ -54,18 +54,18 @@ jobs:
       - name: Run yaml-lint
         run: yamllint $(find ${GITHUB_WORKSPACE} -type f -name "*.yaml")
 
-  # RST linting
-  rst_lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.7'
-
-      - name: Install rst-lint
-        run: pip install restructuredtext-lint
-
-      - name: Run rst-lint
-        run: rst-lint $(find ${GITHUB_WORKSPACE} -type f -name "*.rst")
+  # Disable RST linting for now, rethink for sphinx
+  #rst_lint:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - name: Set up Python
+  #      uses: actions/setup-python@v1
+  #      with:
+  #        python-version: '3.7'
+  #
+  #    - name: Install rst-lint
+  #      run: pip install restructuredtext-lint
+  #
+  #    - name: Run rst-lint
+  #      run: rst-lint $(find ${GITHUB_WORKSPACE} -type f -name "*.rst")
