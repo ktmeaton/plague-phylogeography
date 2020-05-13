@@ -24,6 +24,7 @@ repos:
     rev: master
     hooks:
       - id: markdownlint
+        args: ['--help']
         name: markdownlint
         language: node
         types: [markdown]
