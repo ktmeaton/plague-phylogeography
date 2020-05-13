@@ -420,7 +420,7 @@ if (!params.skip_reference_download){
 
     output:
     file "snpEff.config" into ch_snpeff_config_snippy_pairwise
-    file "data/${reference_genome_gb.baseName}/snpEffectPredictor.bin"
+    file "data/${reference_genome_gb.baseName}/*"
 
     // Shell script to execute
     script:
@@ -430,28 +430,29 @@ if (!params.skip_reference_download){
     snpeffDir=\${CONDA_PREFIX}/share/snpeff*
     snpeffData=\$snpeffDir/data;
 
-    # Create a new reference data directory
-    mkdir -p \$snpeffData/\$ref;
+    # Make a SnpEff database dir
+    mkdir -p data/
+    mkdir -p data/\$ref/
 
-    # Move over the ref genome genbank annotations and rename
-    cp ${outdir}/reference_genome/${reference_genome_gb} \$snpeffData/\$ref/genes.gbk;
+    # Move over the reference genbank annotations and rename
+    cp ${reference_genome_gb} data/\$ref/genes.gbk;
+
+    # Copy over snpEff.config
+    cp \$snpeffDir/snpEff.config .
 
     # Add the new annotation entry to the snpeff config file
     configLine="${reference_genome_gb.baseName}.genome : ${reference_genome_gb.baseName}"
 
     # Search for the genome entry in the snpEff config file
-    if [[ -z `grep "\$configLine" \$snpeffDir/snpEff.config` ]]; then
-      echo "\$configLine" >> \$snpeffDir/snpEff.config;
+    if [[ -z `grep "\$configLine" snpEff.config` ]]; then
+      echo "\$configLine" >> snpEff.config;
     fi;
 
-    # Copy over snpEff.config to become an output channel
-    snpEff build -v -genbank ${reference_genome_gb.baseName}
-    cp \$snpeffDir/snpEff.config `pwd`
+    # Build the snpEff databse
+    snpEff build -dataDir ./data/ -v -genbank ${reference_genome_gb.baseName}
 
-    # Move SnpEff database to the correct path
-    mkdir -p data/
-    mkdir -p data/${reference_genome_gb.baseName}/
-    cp \$snpeffData/${reference_genome_gb.baseName}/snpEffectPredictor.bin data/${reference_genome_gb.baseName}/
+    pwd
+    ls -l
     """
   }
 

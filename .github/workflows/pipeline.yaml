@@ -28,8 +28,6 @@ jobs:
           auto-activate-base: false
       - shell: bash -l {0}
         run: |
-          conda info
-          conda list
           nextflow run pipeline.nf \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --max_datasets 4
