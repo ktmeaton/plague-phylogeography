@@ -19,18 +19,21 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Deal with nextstrain augur not working with phylogeny with branch support values
 - Rethink if statements controlling processes in pipeline
 
-## [v0.1.2] - 2020-05-07 - Metadata
+## [v0.1.2] - 2020-05-13 - Github Actions and Linting
 
 ### Added
 
 - scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py scripts/geocode_NextStrain.py
-- pre-commit and linting
-- gh-actions workflow
+- pre-commit linting and misc
+- workflows: pipeline, linting, docs
 - Automate SNPEff db creation
+- Split dependecies into user and dev conda env
 
 ### Changed
 
-- git update-index --add --chmod=+x scripts/geocode_NextStrain.py scripts/sqlite_EAGER_tsv.py scripts/sqlite_NextStrain_tsv.py
+- git update-index --add --chmod=+x scripts/*
+- IQTREE update to version 2
+- All BioSampleComment columns filled in for database
 
 ## [v0.1.1] - 2020-04-29 - Narratives and ReadtheDocs
 

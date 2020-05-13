@@ -100,7 +100,7 @@ conda env create -f phylo-dev-env.yaml --name phylo-dev-env
 conda activate phylo-dev-env
 ```
 
-Install pre-commit hooks, and test run against all files
+Install pre-commit hooks
 
 ```bash
 pre-commit install
