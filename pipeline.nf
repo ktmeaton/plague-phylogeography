@@ -58,22 +58,23 @@ def helpMessage() {
 
     DATABASE:
 
-    --ncbimeta_create      Path to yaml config file to create NCBImeta DB (ncbimeta.yaml).
-    --ncbimeta_update      Path to yaml config file to update NCBImeta DB (ncbimeta.yaml).
-    --ncbimeta_annot       Path to text annotation file for NCBImeta DB (annot.txt).
-    --sqlite               Path to sqlite database file from NCBImeta (my_db.sqlite).
+    --ncbimeta_create         Path to yaml config file to create NCBImeta DB (ncbimeta.yaml).
+    --ncbimeta_update         Path to yaml config file to update NCBImeta DB (ncbimeta.yaml).
+    --ncbimeta_annot          Path to text annotation file for NCBImeta DB (annot.txt).
+    --sqlite                  Path to sqlite database file from NCBImeta (my_db.sqlite).
 
 
     DOWNLOAD:
 
-    --max_datasets         Maximum number of datasets to download and analyze [100].
+    --max_datasets_assembly   Maximum number of assemblies to download and analyze [100].
+    --max_datasets_sra        Maximum number of SRA samples to download and analyze [100].
 
 
     OTHER:
 
-    --help                 Print this help message.
-    --version              Print the current version number.
-    --outdir               The output directory where results are saved [results].
+    --help                    Print this help message.
+    --version                 Print the current version number.
+    --outdir                  The output directory where results are saved [results].
 
     """
 }
@@ -273,7 +274,7 @@ if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import)
     script:
     """
     # Select the Genbank Assemblies
-    sqlite3 ${sqlite} ${params.sqlite_select_command_asm} | grep . | head -n ${params.max_datasets} | sed -E -e 's/ |;/\\n/g' | while read line;
+    sqlite3 ${sqlite} ${params.sqlite_select_command_asm} | grep . | head -n ${params.max_datasets_assembly} | sed -E -e 's/ |;/\\n/g' | while read line;
     do
       if [[ ! -z \$line ]]; then
         asm_ftp=`echo \$line | \
@@ -286,7 +287,7 @@ if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import)
       --database ${sqlite} \
       --query ${params.sqlite_select_command_sra} \
       --organism ${params.eager_organism} \
-      --max-datasets ${params.max_datasets} \
+      --max-datasets ${params.max_datasets_sra} \
       --output ${params.eager_tsv}
     """
   }

@@ -25,7 +25,8 @@ conda activate phylo-env
 ```bash
 nextflow run pipeline.nf \
   --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-  --max_datasets 2000
+  --max_datasets_assembly 2000 \
+  --max_datasets_sra 2000
 ```
 
 ## Step By Step (From Scratch)
@@ -85,7 +86,8 @@ nextflow run pipeline.nf \
 ```bash
 nextflow run pipeline.nf \
   --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-  --max_datasets 2000 \
+  --max_datasets_assembly 2000 \
+  --max_datasets_sra 2000  \
   -resume
 ```
 
