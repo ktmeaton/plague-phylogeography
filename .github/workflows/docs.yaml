@@ -1,0 +1,32 @@
+---
+name: Docs
+# This is a workflow for compiling sphinx docs
+
+on:
+  # Triggered on Push for all branches
+  push:
+    branches:
+      - '*'
+    # On change to workflow, docs
+    paths:
+      - '.github/workflows/docs.yaml'
+      - 'docs/*'
+  # Triggered on PR for all branches, any file
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+
+  # Compile the sphinx docs
+  sphinx_docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Sphinx
+        run: pip install sphinx sphinx-rtd-theme m2r
+
+      - name: Compile docs
+        run: |
+          cd docs/
+          make html
