@@ -24,7 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Sphinx
-        run: pip install sphinx sphinx-rtd-theme m2r
+        run: |
+          pip install sphinx sphinx-rtd-theme
+          sphinx-build --version
 
       - name: Compile docs
         run: |
