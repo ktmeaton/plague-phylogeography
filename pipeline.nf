@@ -268,7 +268,8 @@ if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import)
     file sqlite from ch_sqlite
     output:
     file params.file_assembly_for_download_ftp into ch_assembly_for_download_ftp
-    file params.eager_tsv into ch_eager_tsv_for_download_sra
+    file params.eager_tsv into ch_tsv_for_eager
+    file params.sra_tsv into ch_tsv_for_download_sra
 
     // Shell script to execute
     script:
@@ -289,6 +290,9 @@ if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import)
       --organism ${params.eager_organism} \
       --max-datasets ${params.max_datasets_sra} \
       --output ${params.eager_tsv}
+
+    accessionColumn=2
+    tail -n+2 ${params.eager_tsv} | cut -f \$accessionColumn | sort | uniq > ${params.sra_tsv}
     """
   }
 
@@ -355,23 +359,29 @@ if (!params.skip_sra_download && (params.sqlite || ( params.ncbimeta_update) ) &
     */
     // Other variables and config
     tag "SRATest"
+    tag "$sra_acc_file"
+    publishDir "${outdir}/sra_download", mode: 'copy'
     echo true
 
-    // Deal with new lines, split up ftp links by url
-    // By loading with file(), stages as local file
+    ch_tsv_for_download_sra
+      .splitText()
+      .map { it }
+      .set { ch_sra_acc_file }
 
-
-    // IO and conditional behavior
+      // IO and conditional behavior
     input:
+    file sra_acc_file from ch_sra_acc_file
     output:
-
+    stdout testout
 
     // Shell script to execute
     script:
     """
-    echo "TEST"
+    sraAcc=`cat ${sra_acc_file}`
+    prefetch -s \$sraAcc
     """
   }
+  testout.subscribe { println "A: $it" }
 }
 // -------------------------------------------------------------------------- //
 //                           Reference Genome Processing                      //
