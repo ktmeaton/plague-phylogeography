@@ -6,11 +6,11 @@ Extract SRA metadata from an NCBImeta sqlite database to create the tsv input fi
 
 ./sqlite_EAGER_tsv.py \
   --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-  --query "SELECT SRASampleName,SRARunAccession, SRALibraryLayout,SRAFileURL From Master WHERE ( BioSampleComment LIKE '%KEEP%')" \
+  --query "SELECT BioSampleAccession,SRARunAccession, SRALibraryLayout,SRAFileURL From Master WHERE ( BioSampleComment LIKE '%EAGER%')" \
   --organism "Yersinia pestis" \
   --max-datasets 3 \
-  --fastq-dir results/sra_download/fastq/ \
-  --output metadata.tsv
+  --fastq-dir testdir \
+  --output test.tsv
 """
 
 # This program should only be called from the command-line
@@ -144,6 +144,7 @@ for record in record_exists:
         break
     # Biosample Accession
     biosample_acc = record[BIOSAMPLE_ACC_IND]
+    print(biosample_acc)
     # SRA Run Accession
     sra_acc = record[SRA_ACC_IND]
     sra_acc_split = sra_acc.split(DB_SEP)
@@ -151,6 +152,7 @@ for record in record_exists:
     # Get FTP links, relying on them being in order
     ftp_url = record[FTP_URL_IND]
     ftp_url_split = ftp_url.split(DB_SEP)
+    print(ftp_url_split)
 
     # Remove URLs that are not from the FTP site
     ftp_url_split_edit = []
@@ -163,11 +165,31 @@ for record in record_exists:
     # Library Layout, SINGLE or PAIRED, convert to EAGER SE or PE
     library_layout_list = record[LIBRARY_LAYOUT_IND].split(";")
 
+    print(library_layout_list)
+
+    # Fix layout collapsing that happened in NCBImeta Join
+    # if multiple paired-end libraries have been collapsed into one "PAIRED"
+    if (len(library_layout_list) == 1 and
+        library_layout_list[0] == "PAIRED" and
+        len(ftp_url_split) != 2):
+            # Create a new list with multiple "PAIRED" elements
+            library_layout_list = ["PAIRED"] * int(len(ftp_url_split) / 2)
+
+    # if multiple single-end libraries have been collapsed into one "SINGLE"
+    if (len(library_layout_list) == 1 and
+        library_layout_list[0] == "SINGLE" and
+        len(ftp_url_split) != 1):
+            # Create a new list with multiple "PAIRED" elements
+            library_layout_list = ["SINGLE"] * int(len(ftp_url_split))
+
     # Iterate over each libary
     for library_layout in library_layout_list:
         # Initialize default path to NA
         R1_path = "NA"
         R2_path = "NA"
+        #print(sra_acc)
+        #print(library_layout)
+        #print(ftp_url_split)
         # Parse FTP url differently based on SINGLE or PAIRED
         if library_layout == "SINGLE":
             library_layout = "SE"
@@ -178,7 +200,6 @@ for record in record_exists:
                 #R1_path = ftp_url_split[0]
                 # Use fastq-dump download path instead of url
                 R1_path = os.path.join(fastq_dir, sra_acc_val + "_1.fastq.gz")
-
                 out_file.write(biosample_acc + "\t" +
                       sra_acc_val + "\t" +
                       LANE + "\t" +
