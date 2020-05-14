@@ -107,6 +107,7 @@ BAM="NA"
 GROUP="NA"
 POPULATIONS="NA"
 AGE="NA"
+UDG="NA"
 
 # By default assume double stranded for now
 STRANDEDNESS="DOUBLE"
@@ -144,61 +145,71 @@ for record in record_exists:
     ftp_url_split = ftp_url.split(DB_SEP)
 
     # Remove URLs that are not from the FTP site
+    ftp_url_split_edit = []
     for url_val in ftp_url_split:
-        if not url_val.startswith("http://ftp"):
-            ftp_url_split.remove(url_val)
+        if url_val.startswith("http://ftp"):
+            ftp_url_split_edit.append(url_val)
+
+    ftp_url_split = ftp_url_split_edit
 
     # Library Layout, SINGLE or PAIRED, convert to EAGER SE or PE
-    library_layout = record[LIBRARY_LAYOUT_IND]
-    # Initialize default path to NA
-    R1_path = "NA"
-    R2_path = "NA"
-    # Parse FTP url differently based on SINGLE or PAIRED
-    if library_layout == "SINGLE":
-        library_layout = "SE"
-        ftp_i = 0
-        sra_i = 0
+    library_layout_list = record[LIBRARY_LAYOUT_IND].split(";")
 
-        while ftp_i < len(ftp_url_split):
-            sra_acc_val = sra_acc_split[sra_i]
-            R1_path = ftp_url_split[ftp_i]
+    # Iterate over each libary
+    for library_layout in library_layout_list:
+        # Initialize default path to NA
+        R1_path = "NA"
+        R2_path = "NA"
+        # Parse FTP url differently based on SINGLE or PAIRED
+        if library_layout == "SINGLE":
+            library_layout = "SE"
+
+            sra_acc_val = sra_acc_split[0]
+            # Check for bam instead of fastq.gz
+            if ftp_url_split[0].endswith(".bam"):
+                BAM = ftp_url_split[0]
+            else:
+                R1_path = ftp_url_split[0]
             out_file.write(biosample_acc + "\t" +
                   sra_acc_val + "\t" +
                   LANE + "\t" +
                   library_layout + "\t" +
                   org_name + "\t" +
+                  STRANDEDNESS + "\t" +
+                  UDG + "\t" +
                   R1_path + "\t" +
                   R2_path + "\t" +
                   BAM + "\t" +
                   GROUP + "\t" +
                   POPULATIONS + "\t" +
                   AGE + "\n")
-            ftp_i += 1
-            sra_i += 1
+            # Remove the consumed ftp_url
+            ftp_url_split.remove(ftp_url_split[0])
+            # Reset the BAM variable to default
+            BAM = "NA"
 
+        elif library_layout == "PAIRED":
+            library_layout = "PE"
 
-
-    elif library_layout == "PAIRED":
-        library_layout = "PE"
-        ftp_i = 0
-        sra_i = 0
-        while ftp_i < len(ftp_url_split):
-            sra_acc_val = sra_acc_split[sra_i]
-            R1_path = ftp_url_split[ftp_i]
-            R2_path = ftp_url_split[ftp_i+1]
+            sra_acc_val = sra_acc_split[0]
+            R1_path = ftp_url_split[0]
+            R2_path = ftp_url_split[1]
             out_file.write(biosample_acc + "\t" +
                   sra_acc_val + "\t" +
                   LANE + "\t" +
                   library_layout + "\t" +
                   org_name + "\t" +
+                  STRANDEDNESS + "\t" +
+                  UDG + "\t" +
                   R1_path + "\t" +
                   R2_path + "\t" +
                   BAM + "\t" +
                   GROUP + "\t" +
                   POPULATIONS + "\t" +
                   AGE + "\n")
-            ftp_i+=2
-            sra_i+=1
+            # Remove the consumed ftp_url
+            ftp_url_split.remove(ftp_url_split[0])
+            ftp_url_split.remove(ftp_url_split[0])
 
     # Increment record counter by 1
     record_i+=1
