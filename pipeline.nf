@@ -623,6 +623,9 @@ if (!params.skip_eager && (params.sqlite || ( params.ncbimeta_update) ) && (!par
     // IO and conditional behavior
     input:
     file reference_genome_fna from ch_reference_genome_eager
+    file sra_fastq from ch_sra_fastq_eager
+    file eager_tsv from ch_tsv_for_eager
+
     output:
 
 
@@ -630,6 +633,14 @@ if (!params.skip_eager && (params.sqlite || ( params.ncbimeta_update) ) && (!par
     script:
     """
     echo "eventually run eager here"
+    echo ${reference_genome}
+    echo ${sra_fastq}
+    echo ${eager_tsv}
+    # In Development Eager Test Command
+    echo "nextflow run nf-core/eager -r b2b411b64b \
+      --tsv_input ${eager_tsv} \
+      --fasta ${reference_genome} \
+      --multiqc_config ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml"
     """
   }
 }
