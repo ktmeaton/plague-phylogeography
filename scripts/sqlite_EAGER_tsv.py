@@ -185,6 +185,8 @@ for record in record_exists:
                   AGE + "\n")
             # Remove the consumed ftp_url
             ftp_url_split.remove(ftp_url_split[0])
+            # Remove the consumed sra_accession
+            sra_acc_split.remove(sra_acc_split[0])
             # Reset the BAM variable to default
             BAM = "NA"
 
@@ -210,6 +212,8 @@ for record in record_exists:
             # Remove the consumed ftp_url
             ftp_url_split.remove(ftp_url_split[0])
             ftp_url_split.remove(ftp_url_split[0])
+            # Remove the consumed sra_accession
+            sra_acc_split.remove(sra_acc_split[0])
 
     # Increment record counter by 1
     record_i+=1
