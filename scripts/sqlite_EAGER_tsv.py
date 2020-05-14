@@ -144,7 +144,6 @@ for record in record_exists:
         break
     # Biosample Accession
     biosample_acc = record[BIOSAMPLE_ACC_IND]
-    print(biosample_acc)
     # SRA Run Accession
     sra_acc = record[SRA_ACC_IND]
     sra_acc_split = sra_acc.split(DB_SEP)
@@ -152,12 +151,12 @@ for record in record_exists:
     # Get FTP links, relying on them being in order
     ftp_url = record[FTP_URL_IND]
     ftp_url_split = ftp_url.split(DB_SEP)
-    print(ftp_url_split)
+    #print(ftp_url_split)
 
     # Remove URLs that are not from the FTP site
     ftp_url_split_edit = []
     for url_val in ftp_url_split:
-        if url_val.startswith("http://ftp"):
+        if url_val.startswith("https://sra-downloadb"):
             ftp_url_split_edit.append(url_val)
 
     ftp_url_split = ftp_url_split_edit
@@ -165,22 +164,15 @@ for record in record_exists:
     # Library Layout, SINGLE or PAIRED, convert to EAGER SE or PE
     library_layout_list = record[LIBRARY_LAYOUT_IND].split(";")
 
-    print(library_layout_list)
-
     # Fix layout collapsing that happened in NCBImeta Join
     # if multiple paired-end libraries have been collapsed into one "PAIRED"
-    if (len(library_layout_list) == 1 and
-        library_layout_list[0] == "PAIRED" and
-        len(ftp_url_split) != 2):
-            # Create a new list with multiple "PAIRED" elements
-            library_layout_list = ["PAIRED"] * int(len(ftp_url_split) / 2)
+    if len(library_layout_list) != len(ftp_url_split):
+        library_layout_list = library_layout_list * len(ftp_url_split)
 
-    # if multiple single-end libraries have been collapsed into one "SINGLE"
-    if (len(library_layout_list) == 1 and
-        library_layout_list[0] == "SINGLE" and
-        len(ftp_url_split) != 1):
-            # Create a new list with multiple "PAIRED" elements
-            library_layout_list = ["SINGLE"] * int(len(ftp_url_split))
+    print(biosample_acc)
+    print(library_layout_list)
+    print(ftp_url_split)
+    print("\n")
 
     # Iterate over each libary
     for library_layout in library_layout_list:
@@ -242,7 +234,6 @@ for record in record_exists:
                   POPULATIONS + "\t" +
                   AGE + "\n")
             # Remove the consumed ftp_url
-            ftp_url_split.remove(ftp_url_split[0])
             ftp_url_split.remove(ftp_url_split[0])
             # Remove the consumed sra_accession
             sra_acc_split.remove(sra_acc_split[0])
