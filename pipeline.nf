@@ -289,7 +289,8 @@ if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import)
       --query ${params.sqlite_select_command_sra} \
       --organism ${params.eager_organism} \
       --max-datasets ${params.max_datasets_sra} \
-      --output ${params.eager_tsv}
+      --output ${params.eager_tsv} \
+      --fastq-dir ${outdir}/sra_download/fastq/
 
     accessionColumn=2
     tail -n+2 ${params.eager_tsv} | cut -f \$accessionColumn | sort | uniq > ${params.sra_tsv}
@@ -372,16 +373,19 @@ if (!params.skip_sra_download && (params.sqlite || ( params.ncbimeta_update) ) &
     input:
     file sra_acc_file from ch_sra_acc_file
     output:
-    stdout testout
+    file "fastq/*.fastq.gz" into ch_sra_fastq_eager
 
     // Shell script to execute
     script:
     """
     sraAcc=`cat ${sra_acc_file}`
-    prefetch -s \$sraAcc
+    # Disable local caching to save disk space
+    # vdb-config -s cache-enabled=false
+    # Download fastq files from the SRA
+    fastq-dump --outdir fastq/ --skip-technical --gzip --split-files \$sraAcc
     """
   }
-  testout.subscribe { println "A: $it" }
+
 }
 // -------------------------------------------------------------------------- //
 //                           Reference Genome Processing                      //

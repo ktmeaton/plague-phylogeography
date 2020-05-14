@@ -9,6 +9,7 @@ Extract SRA metadata from an NCBImeta sqlite database to create the tsv input fi
   --query "SELECT SRASampleName,SRARunAccession, SRALibraryLayout,SRAFileURL From Master WHERE ( BioSampleComment LIKE '%KEEP%')" \
   --organism "Yersinia pestis" \
   --max-datasets 3 \
+  --fastq-dir results/sra_download/fastq/ \
   --output metadata.tsv
 """
 
@@ -62,6 +63,12 @@ parser.add_argument('--max-datasets',
                     dest = 'maxData',
                     required = True)
 
+parser.add_argument('--fastq-dir',
+                    help = 'Dir where SRA fastq files will be downloaded to.',
+                    action = 'store',
+                    dest = 'fastqDir',
+                    required = True)
+
 # Retrieve user parameters
 args = vars(parser.parse_args())
 
@@ -70,6 +77,7 @@ sql_query = args['sqlQuery']
 org_name = args['orgName']
 out_path = args['outPath']
 max_dataset = int(args['maxData'])
+fastq_dir = args['fastqDir']
 
 #------------------------------------------------------------------------------#
 #                            Error Catching                                    #
@@ -165,37 +173,40 @@ for record in record_exists:
             library_layout = "SE"
 
             sra_acc_val = sra_acc_split[0]
-            # Check for bam instead of fastq.gz
-            if ftp_url_split[0].endswith(".bam"):
-                BAM = ftp_url_split[0]
-            else:
-                R1_path = ftp_url_split[0]
-            out_file.write(biosample_acc + "\t" +
-                  sra_acc_val + "\t" +
-                  LANE + "\t" +
-                  library_layout + "\t" +
-                  org_name + "\t" +
-                  STRANDEDNESS + "\t" +
-                  UDG + "\t" +
-                  R1_path + "\t" +
-                  R2_path + "\t" +
-                  BAM + "\t" +
-                  GROUP + "\t" +
-                  POPULATIONS + "\t" +
-                  AGE + "\n")
+            # Skip BAM files
+            if not ftp_url_split[0].endswith(".bam"):
+                #R1_path = ftp_url_split[0]
+                # Use fastq-dump download path instead of url
+                R1_path = os.path.join(fastq_dir, sra_acc_val + "_1.fastq.gz")
+
+                out_file.write(biosample_acc + "\t" +
+                      sra_acc_val + "\t" +
+                      LANE + "\t" +
+                      library_layout + "\t" +
+                      org_name + "\t" +
+                      STRANDEDNESS + "\t" +
+                      UDG + "\t" +
+                      R1_path + "\t" +
+                      R2_path + "\t" +
+                      BAM + "\t" +
+                      GROUP + "\t" +
+                      POPULATIONS + "\t" +
+                      AGE + "\n")
+
             # Remove the consumed ftp_url
             ftp_url_split.remove(ftp_url_split[0])
             # Remove the consumed sra_accession
             sra_acc_split.remove(sra_acc_split[0])
-            # Reset the BAM variable to default
-            BAM = "NA"
 
         elif library_layout == "PAIRED":
             library_layout = "PE"
 
             sra_acc_val = sra_acc_split[0]
-            R1_path = ftp_url_split[0]
-            R2_path = ftp_url_split[1]
+            #R1_path = ftp_url_split[0]
+            #R2_path = ftp_url_split[1]
+            # Use fastq-dump download path instead of url
+            R1_path = os.path.join(fastq_dir, sra_acc_val + "_1.fastq.gz")
+            R2_path = os.path.join(fastq_dir, sra_acc_val + "_2.fastq.gz")
             out_file.write(biosample_acc + "\t" +
                   sra_acc_val + "\t" +
                   LANE + "\t" +
