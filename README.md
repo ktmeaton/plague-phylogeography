@@ -6,18 +6,25 @@ A **VERY** in-development work on the phylogeography of *Yersinia pestis*.
 
 **Workflow:** NextFlow
 **Database:** NCBImeta, sqlite3 (CLI)
-**Alignment:** snippy
+**Alignment:** snippy, eager
 **Masking, etc.:** dustmasker, mummer, vcftools
 **Phylogenetics:** iqtree
 **Statistics:** qualimap, multiqc
 
-### Conda Environment
+### Installation
 
-Create a conda environment with the required dependencies
+Create a conda environment with the required dependencies.
 
 ```bash
 conda env create -f phylo-env.yaml --name phylo-env
 conda activate phylo-env
+```
+
+Pull nf-core EAGER pipeline
+
+```bash
+nextflow pull nf-core/eager -r tsv-input
+cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
 ```
 
 ## Run full pipeline to reproduce previous analysis
