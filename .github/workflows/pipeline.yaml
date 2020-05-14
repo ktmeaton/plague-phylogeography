@@ -29,6 +29,13 @@ jobs:
           activate-environment: phylo-env
           environment-file: phylo-env.yaml
           auto-activate-base: false
+
+      - name: pull eager
+        shell: bash -l {0}
+        run: |
+          nextflow pull nf-core/eager -r tsv-input
+          cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
+
       - name: pipeline
         shell: bash -l {0}
         run: |
