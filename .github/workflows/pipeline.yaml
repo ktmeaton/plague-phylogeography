@@ -29,7 +29,8 @@ jobs:
           activate-environment: phylo-env
           environment-file: phylo-env.yaml
           auto-activate-base: false
-      - shell: bash -l {0}
+      - name: pipeline
+        shell: bash -l {0}
         run: |
           nextflow run pipeline.nf \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
