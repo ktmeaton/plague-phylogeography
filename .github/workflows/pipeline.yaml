@@ -42,7 +42,9 @@ jobs:
           nextflow run pipeline.nf \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --max_datasets_assembly 4 \
-            --max_datasets_sra 4
+            --max_datasets_sra 4 \
+            --skip_sra_download \
+            --outdir test
 
       - name: artifact SQLite import
         uses: actions/upload-artifact@v2
