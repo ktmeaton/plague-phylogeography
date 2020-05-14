@@ -268,7 +268,7 @@ if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import)
     file sqlite from ch_sqlite
     output:
     file params.file_assembly_for_download_ftp into ch_assembly_for_download_ftp
-    file params.eager_tsv into ch_sra_tsv_for_eager
+    file params.eager_tsv into ch_eager_tsv_for_download_sra
 
     // Shell script to execute
     script:
@@ -337,9 +337,12 @@ if (!params.skip_assembly_download && (params.sqlite || ( params.ncbimeta_update
 
 }
 
-if (!params.skip_eager && (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import){
+//-----------------------------Download SRA Data------------------------------//
 
-  process eager{
+if (!params.skip_sra_download && (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import){
+
+
+  process sra_download{
     /*
 
     Input:
@@ -351,20 +354,22 @@ if (!params.skip_eager && (params.sqlite || ( params.ncbimeta_update) ) && !para
     Publish:
     */
     // Other variables and config
-    tag "$eager_tsv"
-    conda 'eager-env.yaml'
+    tag "SRATest"
     echo true
+
+    // Deal with new lines, split up ftp links by url
+    // By loading with file(), stages as local file
+
 
     // IO and conditional behavior
     input:
-    file eager_tsv from ch_sra_tsv_for_eager
     output:
 
 
     // Shell script to execute
     script:
     """
-    echo ${eager_tsv}
+    echo "TEST"
     """
   }
 }
@@ -407,7 +412,7 @@ if (!params.skip_reference_download){
     file reference_genome_gb_local from file(params.reference_genome_gb_ftp)
 
     output:
-    file "${reference_genome_fna_local.baseName}" into ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity
+    file "${reference_genome_fna_local.baseName}" into ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity, ch_reference_genome_eager
     file "${reference_genome_gb_local.baseName}" into ch_reference_gb_snippy_pairwise, ch_reference_gb_snippy_multi, ch_reference_genome_snpeff_build_db
 
     // Shell script to execute
@@ -585,13 +590,43 @@ if (!params.skip_reference_detect_low_complexity && !params.skip_reference_downl
 
 }
 
+if (!params.skip_eager && (params.sqlite || ( params.ncbimeta_update) ) && (!params.skip_reference_download) && !params.skip_sqlite_import){
+
+  process eager{
+    /*
+
+    Input:
+    ch_():
+
+    Output:
+    ch_ ():
+
+    Publish:
+    */
+    // Other variables and config
+    echo true
+
+    // IO and conditional behavior
+    input:
+    file reference_genome_fna from ch_reference_genome_eager
+    output:
+
+
+    // Shell script to execute
+    script:
+    """
+    echo "eventually run eager here"
+    """
+  }
+}
+
 // -------------------------------------------------------------------------- //
 //                                  Snippy Pipeline                           //
 // -------------------------------------------------------------------------- //
 
 // --------------------------------Pairwise Alignment-------------------------//
 
-if(!params.skip_snippy_pairwise && (!params.skip_assembly_download && !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+if(!params.skip_snippy_pairwise && (!params.skip_assembly_download || !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
 
   process snippy_pairwise{
     /*
@@ -677,7 +712,7 @@ if(!params.skip_snippy_pairwise && (!params.skip_assembly_download && !params.sk
 
 // ------------------------Multi Sample Variant Summary-----------------------//
 
-if(!params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && (!params.skip_assembly_download && !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+if(!params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && (!params.skip_assembly_download || !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
 
   process snippy_variant_summary_collect{
     /*
@@ -716,7 +751,7 @@ if(!params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && (!para
 }
 // --------------------------Detect High SNP Density--------------------------//
 
-if(!params.skip_snippy_detect_snp_high_density && !params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && (!params.skip_assembly_download && !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+if(!params.skip_snippy_detect_snp_high_density && !params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && (!params.skip_assembly_download || !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
 
   process snippy_detect_snp_high_density{
     /*
@@ -783,7 +818,7 @@ if(!params.skip_snippy_detect_snp_high_density && !params.skip_snippy_variant_su
 }
 
 // --------------------------Merge Filtering BED Files------------------------//
-if(!params.skip_snippy_merge_mask_bed && !params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && (!params.skip_assembly_download && !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+if(!params.skip_snippy_merge_mask_bed && !params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && (!params.skip_assembly_download || !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
 
   process snippy_merge_mask_bed{
     /*
@@ -833,7 +868,7 @@ if(!params.skip_snippy_merge_mask_bed && !params.skip_snippy_variant_summary && 
 
 //------------------------------Multiple Alignment----------------------------//
 
-if(!params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download && !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+if(!params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download || !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
 
   process snippy_multi{
     /*
@@ -884,7 +919,7 @@ if(!params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.sk
 
 }
 
-if(!params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download && !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+if(!params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download || !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
 
   process snippy_multi_filter{
     /*
@@ -938,7 +973,7 @@ if(!params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip
 //                                ML Phylogeny                                //
 // -------------------------------------------------------------------------- //
 
-if(!params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download && !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+if(!params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download || !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
 
   process iqtree{
     /*
@@ -989,7 +1024,7 @@ if(!params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snipp
 //                           Visualization MultiQC                            //
 // -------------------------------------------------------------------------- //
 
-if(!params.skip_qualimap_snippy_pairwise && !params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download && !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+if(!params.skip_qualimap_snippy_pairwise && !params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download || !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
 
   process qualimap_snippy_pairwise{
     /*
@@ -1025,7 +1060,7 @@ if(!params.skip_qualimap_snippy_pairwise && !params.skip_iqtree && !params.skip_
   }
 }
 
-if(!params.skip_multiqc && !params.skip_qualimap_snippy_pairwise && !params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download && !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+if(!params.skip_multiqc && !params.skip_qualimap_snippy_pairwise && !params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download || !params.skip_eager) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
 
   process multiqc{
     /*
