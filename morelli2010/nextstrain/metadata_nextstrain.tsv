@@ -1,0 +1,16 @@
+BioSampleAccession	AssemblyFTPGenbank	BioSampleStrain	BioSampleCollectionDate	BioSampleGeographicLocation	BioSampleBiovar
+SAMN02404404	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/169/615/GCA_000169615.1_ASM16961v1	UG05-0454	2004	Uganda	Antiqua
+SAMN02404403	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/169/635/GCA_000169635.1_ASM16963v1	MG05-1020	2005	Madagascar	Orientalis
+SAMN02404402	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/169/655/GCA_000169655.1_ASM16965v1	K1973002	1973	China	Medievalis
+SAMN02404401	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/169/675/GCA_000169675.1_ASM16967v1	B42003004	2003	China	Antiqua
+SAMN02404400	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/169/695/GCA_000169695.1_ASM16969v1	E1979001	1979	China	Antiqua
+SAMN02404399	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/170/275/GCA_000170275.1_ASM17027v1	F1991016	1991	China	Orientalis
+SAMN02404398	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/168/235/GCA_000168235.2_ASM16823v2	IP275	1995	Madagascar: Ambalavao district	Orientalis
+SAMN02604093	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/006/645/GCA_000006645.1_ASM664v1	KIM10+	1968	Kurdistan	Medievalis
+SAMN02604042	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/018/805/GCA_000018805.1_ASM1880v1	Angola	<1984	Angola	Pestoides
+SAMN02602970	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/007/885/GCA_000007885.1_ASM788v1	91001	1970	China	Microtus
+SAMN02598373	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/016/445/GCA_000016445.1_ASM1644v1	Pestoides F	<1984	USSR	Pestoides
+SAMN02598369	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/013/825/GCA_000013825.1_ASM1382v1	Antiqua	1965	Congo	Antiqua
+SAMN02404406	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/168/835/GCA_000168835.1_ASM16883v1	FV-1	2001	USA	Orientalis
+SAMN02403941	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/182/485/GCA_000182485.1_ASM18248v1	Nepal516	1967?	Nepal	Antiqua
+SAMN02403940	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/181/455/GCA_000181455.2_ASM18145v2	CA88-4125	1988	USA	Orientalis

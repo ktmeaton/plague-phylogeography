@@ -1,0 +1,48 @@
+{
+ "title": "Plague Morelli et al. 2010",
+ "maintainers": [
+   {"name": "Katherine Eaton", "url": "https://github.com/ktmeaton"}
+ ],
+ "build_url": "https://github.com/ktmeaton/plague-phylogeography",
+ "colorings": [
+  {
+   "key": "num_date",
+   "title": "Sampling date",
+   "type": "continuous"
+  },
+  {
+    "key": "BioSampleGeographicLocation",
+    "title": "Country",
+    "type": "categorical"
+  },
+  {
+    "key": "BioSampleBiovar",
+    "title": "Biovar",
+    "type": "categorical"
+  },
+  {
+    "key": "AssemblyTotalLength",
+    "title": "Genome Length",
+    "type": "categorical"
+  }
+ ],
+ "filters": [
+  "BioSampleGeographicLocation",
+  "BioSampleBiovar"
+ ],
+ "geo_resolutions": [
+  "BioSampleGeographicLocation"
+  ],
+  "display_defaults": {
+    "color_by": "BioSampleBiovar",
+    "distance_measure": "div",
+    "geo_resolution": "BioSampleGeographicLocation",
+    "map_triplicate": true,
+    "branch_label": "none"
+  },
+  "panels": [
+    "tree",
+    "map",
+    "entropy"
+  ]
+}
