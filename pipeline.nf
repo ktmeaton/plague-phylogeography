@@ -253,6 +253,7 @@ if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import)
     // Other variables and config
     tag "$sqlite"
     publishDir "${outdir}/sqlite_import", mode: 'copy'
+
     // Set the sqlite channel to update or sqlite import depending on ncbimeta mode
     // TO DO: catch if both parameters are specified!!!
     if(params.ncbimeta_update){ch_sqlite = ch_ncbimeta_sqlite_import}
@@ -275,6 +276,7 @@ if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import)
     script:
     """
     # Select the Genbank Assemblies
+    sqlite3 ${sqlite} ${params.sqlite_select_command_asm}
     sqlite3 ${sqlite} ${params.sqlite_select_command_asm} | grep . | head -n ${params.max_datasets_assembly} | sed -E -e 's/ |;/\\n/g' | while read line;
     do
       if [[ ! -z \$line ]]; then
