@@ -4,7 +4,7 @@
 
 Extract Assembly and SRA metadata from an NCBImeta sqlite database to create the tsv input file for NextStrain.
 
-./sqlite_extract.py \
+./sqlite_NextStrain_tsv.py \
   --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
   --query "SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate,BioSampleComment FROM Master WHERE (BioSampleComment NOT LIKE '%REMOVE%' AND TRIM(AssemblyFTPGenbank) > '')" \
   --no-data-char ? \
