@@ -28,7 +28,7 @@ import copy                             # Allow deep copies of dictionary
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-parser = argparse.ArgumentParser(description='Extract Assembly and SRA metadata from an NCBImeta sqlite database to create the tsv input file for NextStrain..',
+parser = argparse.ArgumentParser(description='Geocode a location string into latitude and longtitude coordinates.',
                                  add_help=True)
 
 # Argument groups for the program
@@ -57,6 +57,12 @@ parser.add_argument('--out-lat-lon',
                     dest = 'outLatLon',
                     required = True)
 
+parser.add_argument('--div',
+                    help = 'Constrain all lat lon to division level [country].',
+                    action = 'store',
+                    dest = 'forceDiv',
+                    required = False)
+
 
 
 # Retrieve user parameters
@@ -66,6 +72,7 @@ in_path = args['inPath']
 col_name = args['colName']
 out_path = args['outPath']
 out_lat_lon = args['outLatLon']
+force_div = args['forceDiv']
 
 #------------------------------------------------------------------------------#
 #                            Error Catching                                    #
@@ -108,8 +115,8 @@ LOC_DIVISIONS = ['country', 'state', 'region', 'county', 'city', 'town']
 LOC_DIVISIONS_REV = LOC_DIVISIONS[:]
 LOC_DIVISIONS_REV.reverse()
 
-# Count number of lines in input file
-total_line_count=0
+# Count number of lines in input file (substract 1 for header)
+total_line_count=0-1
 for line in in_file:
     total_line_count += 1
 in_file.close()
@@ -189,15 +196,26 @@ while read_line:
 for geo_loc in geo_loc_dict:
     # Skip if latitude/longitude is empty
     if geo_loc_dict[geo_loc]['latitude'] == NO_DATA_CHAR: continue
-    # Write the highest resolution division and lat lon to different tsv
-    for loc_div in LOC_DIVISIONS_REV:
-        # Once a location is found, write that and break out
+    # If the division level is free to vary
+    if not force_div:
+        # Write the highest resolution division and lat lon to different tsv
+        for loc_div in LOC_DIVISIONS_REV:
+            # Once a location is found, write that and break out
+            if  geo_loc_dict[geo_loc]['address'][loc_div] != NO_DATA_CHAR:
+                out_lat_lon_file.write(loc_div + DELIM +
+                    geo_loc_dict[geo_loc]['address'][loc_div] + DELIM +
+                    geo_loc_dict[geo_loc]['latitude'] + DELIM +
+                    geo_loc_dict[geo_loc]['longitude'] + "\n")
+                break
+    else:
+        # Write the forced division and lat lon to different tsv
+        loc_div = force_div
         if  geo_loc_dict[geo_loc]['address'][loc_div] != NO_DATA_CHAR:
             out_lat_lon_file.write(loc_div + DELIM +
                 geo_loc_dict[geo_loc]['address'][loc_div] + DELIM +
                 geo_loc_dict[geo_loc]['latitude'] + DELIM +
                 geo_loc_dict[geo_loc]['longitude'] + "\n")
-            break
+
 
 #------------------------------------------------------------------------------#
 #                            Clean Up                                          #
