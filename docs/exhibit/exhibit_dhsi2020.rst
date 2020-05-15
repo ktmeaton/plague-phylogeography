@@ -148,7 +148,7 @@ Note: Investigate the  --sampling-bias-correction option.
           augur traits \
               --tree morelli2010/nextstrain/tree.nwk \
               --metadata morelli2010/nextstrain/metadata_nextstrain_edit.tsv \
-              --columns BioSampleGeographicLocation BioSampleBiovar AssemblyTotalLength \
+              --columns BioSampleGeographicLocation BioSampleBiovar \
               --confidence \
               --output morelli2010/nextstrain/traits.json
 
