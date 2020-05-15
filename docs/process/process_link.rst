@@ -1,5 +1,5 @@
 -------------------------------
-Plague Phylogeography Processes
+Pipeline Processes
 -------------------------------
 
 .. contents::

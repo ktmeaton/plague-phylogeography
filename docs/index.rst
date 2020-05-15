@@ -14,6 +14,7 @@ Welcome to the Plague Phylogeography documentation!
    README <README>
    Flowchart <flowchart>
    process/process_link.rst
+   exhibit/exhibit_link.rst
 
 
 Indices and tables
