@@ -1040,8 +1040,6 @@ if(!params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snipp
       -o ${params.iqtree_outgroup} \
       -seed ${params.iqtree_rng} \
       -pre iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap \
-      -bb 1000 \
-      -alrt 1000 \
       2>&1 | tee iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap.output
     """
   }
