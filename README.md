@@ -20,6 +20,8 @@ conda env create -f phylo-env.yaml --name phylo-env
 conda activate phylo-env
 ```
 
+NOTE: Eager needs graphviz installed
+
 Pull nf-core EAGER pipeline
 
 ```bash
