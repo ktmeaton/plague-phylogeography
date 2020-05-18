@@ -1,0 +1,92 @@
+TreeTime wrappers.py line 871
+leaf_to_attr is constructed, excluding attributes that are missing data
+873     print(leaf_to_attr)
+
+
+wrappers.py:769
+
+augur 7.0.2
+
+FIX
+augur traits.py:68 ADD
+traits_remove_missing = {taxon:trait for taxon, trait in traits.items() if trait != missing}
+traits = traits_remove_missing
+
+
+/home/ktmeaton/miniconda3/envs/phylo-env/lib/python3.7/site-packages/treetime/wrappers.py:def reconstruct_discrete_traits(tree, traits, missing_data='?', pc=1.0, sampling_bias_correction=None,
+/home/ktmeaton/miniconda3/envs/phylo-env/lib/python3.7/site-packages/treetime/wrappers.py:    mug, letter_to_state, reverse_alphabet = reconstruct_discrete_traits(params.tree, leaf_to_attr, missing_data=params.missing_data,
+(phylo-env) ktmeaton@LAPTOP-UCF8EO7L:/mnt/c/Users/ktmea/Projects/plague-phylogeography$ grep "reconstruct_discrete_traits" /home/ktmeaton/miniconda3/envs/phylo-env/lib/python3.7/site-packages/augur/\*.py
+/home/ktmeaton/miniconda3/envs/phylo-env/lib/python3.7/site-packages/augur/traits.py:    from treetime.wrappers import reconstruct_discrete_traits
+/home/ktmeaton/miniconda3/envs/phylo-env/lib/python3.7/site-packages/augur/traits.py:            reconstruct_discrete_traits(T, traits, missing_data=missing,
+
+
+treetime mugration --tree morelli2010/nextstrain/tree.nwk --attribute BioSampleBiovar --states morelli2010/nextstrain/metadata_nextstrain_edit.tsv --confidence
+
+{'A': 'Antiqua', 'B': 'Medievalis', 'C': 'Microtus', 'D': 'Orientalis', 'E': 'Pestoides'}
+{'A': 'Antiqua', 'B': 'Medievalis', 'C': 'Microtus', 'D': 'Orientalis', 'E': 'Pestoides', 'F': '?'}
+Assigned discrete traits to 15 out of 16 taxa.
+
+
+augur traits \
+    --tree morelli2010/nextstrain/tree.nwk \
+    --metadata morelli2010/nextstrain/metadata_nextstrain_edit.tsv \
+    --columns BioSampleBiovar \
+    --confidence \
+    --output morelli2010/nextstrain/traits.json
+
+  {'B': 'Antiqua', 'C': 'Medievalis', 'D': 'Microtus', 'E': 'Orientalis', 'F': 'Pestoides'}
+  {'B': 'Antiqua', 'C': 'Medievalis', 'D': 'Microtus', 'E': 'Orientalis', 'F': '?'}
+Assigned discrete traits to 13 out of 16 taxa.
+
+
+print(letter_to_state)
+n_states = len(alphabet)
+if missing_data not in letter_to_state.values():
+    missing_char = chr(65+n_states+1)
+else:
+    missing_char = chr(65+n_states)
+reverse_alphabet[missing_data]=missing_char
+letter_to_state[missing_char]=missing_data
+print(letter_to_state)
+
+---
+
+augur refine \
+    --tree morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
+    --alignment morelli2010/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+    --metadata morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
+    --timetree \
+    --root GCA_000016445.1_ASM1644v1_genomic \
+    --coalescent opt \
+    --output-tree morelli2010/nextstrain/tree.nwk \
+    --output-node-data morelli2010/nextstrain/branch_lengths.json;
+
+Metadata Hosts:
+    ?
+    Cynomys gunnisoni
+    Eothenomys miletus
+    Homo sapiens
+    Marmota baibacina
+    Marmota himalayana
+    Microtus brandti
+    Rattus flavipectus
+
+No Edits (Base Augur)
+B:      Cynomys gunnisoni
+C:      Eothenomys miletus
+D:      Homo sapiens
+E:      Marmota baibacina
+F:      Marmota himalayana
+G:      Microtus brandti
+H:      ?
+(Lost Rattus)
+
+With Edits (Mod Augur)
+A:      Cynomys gunnisoni
+B:      Eothenomys miletus
+C:      Homo sapiens
+D:      Marmota baibacina
+E:      Marmota himalayana
+F:      Microtus brandti
+G:      Rattus flavipectus
+H:      ?

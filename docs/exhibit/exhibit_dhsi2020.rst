@@ -223,6 +223,18 @@ Replace the division name 'country' with our column name 'BioSampleGeographicLoc
 
       sed -i 's/country/BioSampleGeographicLocation/g' cui2013/nextstrain/lat_longs.tsv
 
+Last Fixups. Standarize biovar spelling.
+
+**Morelli 2010 Dataset**::
+
+      sed -i 's/Mediaevalis/Medievalis/g' morelli2010/nextstrain/metadata_nextstrain_geocode.tsv
+
+
+**Cui 2013 Dataset**::
+
+      sed -i 's/Mediaevalis/Medievalis/g' cui2013/nextstrain/metadata_nextstrain_geocode.tsv
+
+
 ------------
 
 TimeTree Phylogeny
@@ -235,14 +247,27 @@ Estimate a time-scaled phylogeny. Re-root with strain Pestoides F (Accession: GC
 
       augur refine \
           --tree morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
-          --alignment morelli2010/snippy_multi/snippy-core.full_CHROM.fasta \
-          --vcf-reference morelli2010/reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
-          --metadata morelli2010/nextstrain/metadata_nextstrain_edit.tsv \
+          --alignment morelli2010/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+          --metadata morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
           --timetree \
           --root GCA_000016445.1_ASM1644v1_genomic \
           --coalescent opt \
           --output-tree morelli2010/nextstrain/tree.nwk \
-          --output-node-data morelli2010/nextstrain/branch_lengths.json;
+          --output-node-data morelli2010/nextstrain/branch_lengths.json \
+          2>&1 | tee morelli2010/nextstrain/augur_refine.log
+
+**Cui 2013 Dataset**::
+
+      augur refine \
+          --tree cui2013/iqtree/iqtree.core-filter0_bootstrap.treefile \
+          --alignment cui2013/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+          --metadata cui2013/nextstrain/metadata_nextstrain_geocode.tsv \
+          --timetree \
+          --root GCA_000016445.1_ASM1644v1_genomic \
+          --coalescent opt \
+          --output-tree cui2013/nextstrain/tree.nwk \
+          --output-node-data cui2013/nextstrain/branch_lengths.json \
+          2>&1 | tee cui2013/nextstrain/augur_refine.log
 
 ------------
 
@@ -252,14 +277,26 @@ Ancestral Traits
 Reconstruction of ancestral traits.
 Note: Investigate the  --sampling-bias-correction option.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
-          augur traits \
-              --tree morelli2010/nextstrain/tree.nwk \
-              --metadata morelli2010/nextstrain/metadata_nextstrain_edit.tsv \
-              --columns BioSampleGeographicLocation BioSampleBiovar \
-              --confidence \
-              --output morelli2010/nextstrain/traits.json
+      augur traits \
+          --tree morelli2010/nextstrain/tree.nwk \
+          --metadata morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
+          --columns BioSampleGeographicLocation BioSampleBiovar BioSampleHost \
+          --confidence \
+          --output morelli2010/nextstrain/traits.json \
+          2>&1 | tee morelli2010/nextstrain/augur_traits.log
+
+
+**Cui 2013 Dataset**::
+
+      augur traits \
+          --tree cui2013/nextstrain/tree.nwk \
+          --metadata cui2013/nextstrain/metadata_nextstrain_geocode.tsv \
+          --columns BioSampleGeographicLocation BioSampleBiovar BioSampleHost \
+          --confidence \
+          --output cui2013/nextstrain/traits.json \
+          2>&1 | tee cui2013/nextstrain/augur_traits.log
 
 ------------
 
@@ -268,15 +305,25 @@ Export
 
 Export the json files for an auspice server.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
           augur export v2 \
               --tree morelli2010/nextstrain/tree.nwk \
-              --metadata morelli2010/nextstrain/metadata_nextstrain_edit.tsv \
+              --metadata morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
               --node-data morelli2010/nextstrain/branch_lengths.json morelli2010/nextstrain/traits.json \
               --auspice-config morelli2010/nextstrain/auspice_config.json \
               --output morelli2010/nextstrain/morelli2010.json \
               --lat-longs morelli2010/nextstrain/lat_longs.tsv
+
+**Cui 2013 Dataset**::
+
+          augur export v2 \
+              --tree cui2013/nextstrain/tree.nwk \
+              --metadata cui2013/nextstrain/metadata_nextstrain_edit.tsv \
+              --node-data cui2013/nextstrain/branch_lengths.json cui2013/nextstrain/traits.json \
+              --auspice-config cui2013/nextstrain/auspice_config.json \
+              --output cui2013/nextstrain/cui2013.json \
+              --lat-longs cui2013/nextstrain/lat_longs.tsv
 
 
 ------------
