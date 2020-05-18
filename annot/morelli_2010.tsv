@@ -1,18 +1,18 @@
-BioSampleAccession	BioSampleStrain	BioSampleBiovar	BioSampleGeographicLocation	BioSampleCollectionDate	BioSampleComment
-SAMN02598373	Pestoides F	Pestoides	USSR	<1984	KEEP: Assembly Morelli 2010
-SAMN02604042	Angola	Pestoides	Angola	<1984	KEEP: Assembly Morelli 2010
-SAMN02602970	91001	Microtus	China	1970	KEEP: Assembly Morelli 2010
-SAMN02404401	B42003004	Antiqua	China	2003	KEEP: Assembly Morelli 2010
-SAMN02404404	UG05-0454	Antiqua	Uganda	2004	KEEP: Assembly Morelli 2010
-SAMN02598369	Antiqua	Antiqua	Congo	1965	KEEP: Assembly Morelli 2010
-SAMN02404400	E1979001	Antiqua	China	1979	KEEP: Assembly Morelli 2010
-SAMN02403940	CA88-4125	Orientalis	USA	1988	KEEP: Assembly Morelli 2010
-SAMN02404406	FV-1	Orientalis	USA	2001	KEEP: Assembly Morelli 2010
-SAMEA1705942	CO92	Orientalis	USA	1992	KEEP: Assembly Morelli 2010
-SAMN02404399	F1991016	Orientalis	China	1991	KEEP: Assembly Morelli 2010
-SAMEA715985	IP674	Orientalis	Turkey	1952	KEEP: Enterobase Morelli 2010
-SAMN02404398	IP275	Orientalis	Madagascar: Ambalavao district	1995	KEEP: Assembly Morelli 2010
-SAMN02404403	MG05-1020	Orientalis	Madagascar	2005	KEEP: Assembly Morelli 2010
-SAMN02403941	Nepal516	Antiqua	Nepal	1967?	KEEP: Assembly Morelli 2010
-SAMN02604093	KIM10+	Medievalis	Kurdistan	1968	KEEP: Assembly Morelli 2010
-SAMN02404402	K1973002	Medievalis	China	1973	KEEP: Assembly Morelli 2010
+BioSampleAccession	BioSampleStrain	BioSampleBiovar	BioSampleGeographicLocation	BioSampleCollectionDate	BioSampleHost	BioSampleComment
+SAMN02602970	91001	Microtus	Inner Mongolia, China	1970	Microtus brandti	KEEP: Assembly Morelli 2010 Cui 2013
+SAMN02604042	Angola	Pestoides	Angola	<1984		KEEP: Assembly Morelli 2010 Cui 2013
+SAMN02598369	Antiqua	Antiqua	Republic of the Congo	1965	Homo sapiens	KEEP: Assembly Morelli 2010 Cui 2013
+SAMN02404401	B42003004	Antiqua	Xinjiang, China	2003	Marmota baibacina	KEEP: Assembly Morelli 2010 Cui 2013
+SAMN02403940	CA88-4125	Orientalis	California, USA	1988	Homo sapiens	KEEP: Assembly Morelli 2010 Cui 2013
+SAMEA1705942	CO92	Orientalis	Colorado, USA	1992	Homo sapiens	REMOVE: Reference Genome
+SAMN02404400	E1979001	Antiqua	Yunnan, China	1979	Eothenomys miletus	KEEP: Assembly Morelli 2010
+SAMN02404399	F1991016	Orientalis	Yunnan, China	1991	Rattus flavipectus	KEEP: Assembly Morelli 2010 Cui 2013
+SAMN02404406	FV-1	Orientalis	Flagstaff, Arizona, USA	2001	Cynomys gunnisoni	KEEP: Assembly Morelli 2010
+SAMN02404398	IP275	Orientalis	Ambalavao district, Madagascar	1995	Homo sapiens	KEEP: Assembly Morelli 2010 Cui 2013
+SAMEA715985	IP674	Orientalis	Turkey	1952		KEEP: Enterobase Morelli 2010
+SAMN02404402	K1973002	Medievalis	Xinjiang, China	1973	Marmota himalayana	KEEP: Assembly Morelli 2010
+SAMN02604093	KIM10+	Medievalis	Kurdistan	1968	Homo sapiens	KEEP: Assembly Morelli 2010 Cui 2013
+SAMN02404403	MG05-1020	Orientalis	Madagascar	2005	Homo sapiens	KEEP: Assembly Morelli 2010 Cui 2013
+SAMN02403941	Nepal516	Antiqua	Nepal	1967?	Homo sapiens	KEEP: Assembly Morelli 2010 Cui 2013
+SAMN02598373	Pestoides F	Pestoides	USSR	<1984		KEEP: Assembly Morelli 2010 Cui 2013
+SAMN02404404	UG05-0454	Antiqua	Uganda	2004	Homo sapiens	KEEP: Assembly Morelli 2010 Cui 2013
