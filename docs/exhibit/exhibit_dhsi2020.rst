@@ -21,20 +21,40 @@ Data Download
 
 Download the samples and reference found in the `Morelli et al. 2010 pulication <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2999892/>`_.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       nextflow run pipeline.nf \
         --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
         --outdir morelli2010 \
         --skip_sra_download \
         --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Morelli%'\"" \
-        --skip_assembly_download
+        --skip_assembly_download \
+        --skip_reference_download
 
 Check that there are 15 samples to be downloaded.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       wc -l morelli2010/sqlite_import/assembly_for_download.txt
+
+Download the samples and reference found in the `Cui et al. 2013 pulication <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3545753/>`_.
+
+**Cui 2013 Dataset**::
+
+      nextflow run pipeline.nf \
+        --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+        --outdir cui2013 \
+        --max_datasets_assembly 150 \
+        --skip_sra_download \
+        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Cui%'\"" \
+        --skip_assembly_download \
+        --skip_reference_download
+
+Check that there are 131 samples to be downloaded.
+
+**Cui 2013 Dataset**::
+
+      wc -l cui2013/sqlite_import/assembly_for_download.txt
 
 ------------
 
@@ -43,7 +63,7 @@ Basic Phylogeny Pipeline
 
 Run the full pipeline, including sample download, aligning to a reference genome, model selection, and phylogenetics.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       nextflow run pipeline.nf \
         --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
@@ -52,20 +72,30 @@ Run the full pipeline, including sample download, aligning to a reference genome
         --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Morelli%'\"" \
         -resume
 
+**Cui 2013 Dataset**::
+
+      nextflow run pipeline.nf \
+        --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+        --outdir cui2013 \
+        --max_datasets_assembly 150 \
+        --skip_sra_download \
+        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Cui%'\"" \
+        -resume
+
 ------------
 
 TimeTree Metadata
 -----------------
 
-Prepare a metadata file for timetree.
+Prepare metadata files for timetree/augur.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       mkdir -p morelli2010/nextstrain/
 
       scripts/sqlite_NextStrain_tsv.py \
         --database results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-        --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar FROM Master WHERE (BioSampleComment LIKE '%Morelli%' AND TRIM(AssemblyFTPGenbank) > '')" \
+        --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE (BioSampleComment LIKE '%Morelli%' AND TRIM(AssemblyFTPGenbank) > '')" \
         --no-data-char ? \
         --output morelli2010/nextstrain/metadata_nextstrain.tsv
 
@@ -76,6 +106,25 @@ Prepare a metadata file for timetree.
         tail -n +2 morelli2010/nextstrain/metadata_nextstrain.tsv  | \
           awk -F "\t" '{split($2,ftpSplit,"/"); name=ftpSplit[10]"_genomic"; print name"\t"$0}' \
           >> morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+
+**Cui 2013 Dataset**::
+
+      mkdir -p morelli2013/nextstrain/
+
+      scripts/sqlite_NextStrain_tsv.py \
+        --database results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+        --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE (BioSampleComment LIKE '%Cui%' AND TRIM(AssemblyFTPGenbank) > '')" \
+        --no-data-char ? \
+        --output morelli2013/nextstrain/metadata_nextstrain.tsv
+
+        head -n 1 morelli2010/nextstrain/metadata_nextstrain.tsv | \
+          awk -F "\t" '{print "strain\t"$0}' \
+          > morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+
+        tail -n +2 morelli2010/nextstrain/metadata_nextstrain.tsv  | \
+          awk -F "\t" '{split($2,ftpSplit,"/"); name=ftpSplit[10]"_genomic"; print name"\t"$0}' \
+          >> morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+
 
 Afterwards, change the BioSampleCollectionDate column to 'date'.
 
