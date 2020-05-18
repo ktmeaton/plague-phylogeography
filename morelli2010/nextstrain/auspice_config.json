@@ -21,14 +21,15 @@
     "type": "categorical"
   },
   {
-    "key": "AssemblyTotalLength",
-    "title": "Genome Length",
+    "key": "BioSampleHost",
+    "title": "Host",
     "type": "categorical"
   }
  ],
  "filters": [
   "BioSampleGeographicLocation",
-  "BioSampleBiovar"
+  "BioSampleBiovar",
+  "BioSampleHost"
  ],
  "geo_resolutions": [
   "BioSampleGeographicLocation"
