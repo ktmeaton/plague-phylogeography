@@ -13,6 +13,7 @@ Note: Requires `conda <https://docs.conda.io/projects/conda/en/latest/user-guide
       cd plague-phylogeography
       conda env create -f phylo-env.yaml --name phylo-env
       conda activate phylo-env
+      conda install geopy
 
 ------------
 
@@ -111,7 +112,7 @@ Prepare metadata files for timetree/augur.
         awk -F "\t" '{split($2,ftpSplit,"/"); name=ftpSplit[10]"_genomic"; print name"\t"$0}' \
         >> morelli2010/nextstrain/metadata_nextstrain_edit.tsv
 
-      sed -i 's/GCA_000009065.1_ASM906v1_genomic/Reference/g' morelli2010/nextstrain/metadata_nextstrain.tsv
+      sed -i 's/GCA_000009065.1_ASM906v1_genomic/Reference/g' morelli2010/nextstrain/metadata_nextstrain_edit.tsv
 
 **Cui 2013 Dataset**::
 
@@ -162,6 +163,21 @@ Afterwards, change the BioSampleCollectionDate column to 'date', remove uncertai
 
 Edit the BioSampleGeographicLocation column so that location is simply country name. Also change select country names.
 
+**Morelli 2010 Dataset**::
+
+      awk -F "\t" -v geoCol=6 'BEGIN{OFS=FS}{
+        if($geoCol != "BioSampleGeographicLocation" && $geoCol != "?"){
+          geoColLen=split($geoCol,geoColSplit,",");
+          $geoCol=geoColSplit[geoColLen];
+          gsub(/^ /,"",$geoCol)
+        }
+        print $0}' morelli2010/nextstrain/metadata_nextstrain_dates.tsv > morelli2010/nextstrain/metadata_nextstrain_country.tsv
+
+      sed -i 's/USSR/Russia/g' morelli2010/nextstrain/metadata_nextstrain_country.tsv
+      sed -i 's/Kurdistan/Iran/g' morelli2010/nextstrain/metadata_nextstrain_country.tsv
+      sed -i 's/USA/United States of America/g' morelli2010/nextstrain/metadata_nextstrain_country.tsv
+
+
 **Cui 2013 Dataset**::
 
       awk -F "\t" -v geoCol=6 'BEGIN{OFS=FS}{
@@ -177,37 +193,35 @@ Edit the BioSampleGeographicLocation column so that location is simply country n
       sed -i 's/USA/United States of America/g' cui2013/nextstrain/metadata_nextstrain_country.tsv
 
 
-**Cui 2013 Dataset**::
-
-      awk -F "\t" -v geoCol=6 'BEGIN{OFS=FS}{
-        if($geoCol != "BioSampleGeographicLocation" && $geoCol != "?"){
-          geoColLen=split($geoCol,geoColSplit,",");
-          $geoCol=geoColSplit[geoColLen];
-          gsub(/^ /,"",$geoCol)
-        }
-        print $0}' cui2013/nextstrain/metadata_nextstrain_dates.tsv | colview | less -S
-
-
 Geocode the GeographicLocation column to get lat lon coordinates.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       scripts/geocode_NextStrain.py \
-         --in-tsv morelli2010/nextstrain/metadata_nextstrain_edit.tsv \
+         --in-tsv morelli2010/nextstrain/metadata_nextstrain_country.tsv \
          --loc-col BioSampleGeographicLocation \
          --out-tsv morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
          --out-lat-lon morelli2010/nextstrain/lat_longs.tsv \
          --div country
 
-Replace the division name 'country' with our column name 'BioSampleGeographicLocation' in the lat lon file.
-Edit country names in the lat lon file to match our original metadata.
+**Cui 2013 Dataset**::
 
-**Shell script**::
+     scripts/geocode_NextStrain.py \
+        --in-tsv cui2013/nextstrain/metadata_nextstrain_country.tsv \
+        --loc-col BioSampleGeographicLocation \
+        --out-tsv cui2013/nextstrain/metadata_nextstrain_geocode.tsv \
+        --out-lat-lon cui2013/nextstrain/lat_longs.tsv \
+        --div country
+
+Replace the division name 'country' with our column name 'BioSampleGeographicLocation' in the lat lon file.
+
+**Morelli 2010 Dataset**::
 
       sed -i 's/country/BioSampleGeographicLocation/g' morelli2010/nextstrain/lat_longs.tsv
-      sed -i 's/Iran/Kurdistan/g' morelli2010/nextstrain/lat_longs.tsv
-      sed -i 's/United States of America/USA/g' morelli2010/nextstrain/lat_longs.tsv
-      sed -i 's/Republic of the Congo/Congo/g' morelli2010/nextstrain/lat_longs.tsv
+
+**Cui 2013 Dataset**::
+
+      sed -i 's/country/BioSampleGeographicLocation/g' cui2013/nextstrain/lat_longs.tsv
 
 ------------
 
@@ -217,7 +231,7 @@ TimeTree Phylogeny
 
 Estimate a time-scaled phylogeny. Re-root with strain Pestoides F (Accession: GCA_000016445.1_ASM1644v1).
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       augur refine \
           --tree morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
