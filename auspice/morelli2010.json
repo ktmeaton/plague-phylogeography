@@ -1,0 +1,948 @@
+{
+  "meta": {
+    "build_url": "https://github.com/ktmeaton/plague-phylogeography",
+    "colorings": [
+      {
+        "key": "num_date",
+        "title": "Sampling date",
+        "type": "continuous"
+      },
+      {
+        "key": "BioSampleGeographicLocation",
+        "title": "Country",
+        "type": "categorical"
+      },
+      {
+        "key": "BioSampleBiovar",
+        "title": "Biovar",
+        "type": "categorical"
+      }
+    ],
+    "display_defaults": {
+      "branch_label": "none",
+      "color_by": "BioSampleBiovar",
+      "distance_measure": "div",
+      "geo_resolution": "BioSampleGeographicLocation",
+      "map_triplicate": true
+    },
+    "filters": [
+      "BioSampleGeographicLocation",
+      "BioSampleBiovar"
+    ],
+    "geo_resolutions": [
+      {
+        "demes": {
+          "Angola": {
+            "latitude": -11.8775768,
+            "longitude": 17.5691241
+          },
+          "China": {
+            "latitude": 35.000074,
+            "longitude": 104.999927
+          },
+          "Congo": {
+            "latitude": -0.7264327,
+            "longitude": 15.6419155
+          },
+          "Kurdistan": {
+            "latitude": 35.672803,
+            "longitude": 47.0124376
+          },
+          "Madagascar": {
+            "latitude": -18.9249604,
+            "longitude": 46.4416422
+          },
+          "Nepal": {
+            "latitude": 28.1083929,
+            "longitude": 84.0917139
+          },
+          "Russia": {
+            "latitude": 64.6863136,
+            "longitude": 97.7453061
+          },
+          "USA": {
+            "latitude": 39.7837304,
+            "longitude": -100.4458825
+          },
+          "Uganda": {
+            "latitude": 1.5333554,
+            "longitude": 32.2166578
+          }
+        },
+        "key": "BioSampleGeographicLocation"
+      }
+    ],
+    "maintainers": [
+      {
+        "name": "Katherine Eaton",
+        "url": "https://github.com/ktmeaton"
+      }
+    ],
+    "panels": [
+      "tree",
+      "map"
+    ],
+    "title": "Plague Morelli et al. 2010",
+    "updated": "2020-05-15"
+  },
+  "tree": {
+    "branch_attrs": {},
+    "children": [
+      {
+        "branch_attrs": {},
+        "name": "GCA_000016445.1_ASM1644v1_genomic",
+        "node_attrs": {
+          "BioSampleBiovar": {
+            "confidence": {
+              "Pestoides": 1.0
+            },
+            "entropy": -1.000088900581841e-12,
+            "value": "Pestoides"
+          },
+          "BioSampleGeographicLocation": {
+            "confidence": {
+              "Russia": 1.0
+            },
+            "entropy": -1.000088900581841e-12,
+            "value": "Russia"
+          },
+          "div": 2.498269323272323e-05,
+          "num_date": {
+            "value": 1984.0013677901256
+          }
+        }
+      },
+      {
+        "branch_attrs": {},
+        "children": [
+          {
+            "branch_attrs": {},
+            "name": "GCA_000018805.1_ASM1880v1_genomic",
+            "node_attrs": {
+              "BioSampleBiovar": {
+                "confidence": {
+                  "Pestoides": 1.0
+                },
+                "entropy": -1.000088900581841e-12,
+                "value": "Pestoides"
+              },
+              "BioSampleGeographicLocation": {
+                "confidence": {
+                  "Angola": 1.0
+                },
+                "entropy": -1.000088900581841e-12,
+                "value": "Angola"
+              },
+              "div": 0.00033259316686886416,
+              "num_date": {
+                "value": 1984.9986355496885
+              }
+            }
+          },
+          {
+            "branch_attrs": {},
+            "children": [
+              {
+                "branch_attrs": {},
+                "name": "GCA_000007885.1_ASM788v1_genomic",
+                "node_attrs": {
+                  "BioSampleBiovar": {
+                    "confidence": {
+                      "Microtus": 1.0
+                    },
+                    "entropy": -1.000088900581841e-12,
+                    "value": "Microtus"
+                  },
+                  "BioSampleGeographicLocation": {
+                    "confidence": {
+                      "China": 1.0
+                    },
+                    "entropy": -1.000088900581841e-12,
+                    "value": "China"
+                  },
+                  "div": 0.00014418133547241006,
+                  "num_date": {
+                    "value": 1970.001371532921
+                  }
+                }
+              },
+              {
+                "branch_attrs": {},
+                "children": [
+                  {
+                    "branch_attrs": {},
+                    "name": "GCA_000169675.1_ASM16967v1_genomic",
+                    "node_attrs": {
+                      "BioSampleBiovar": {
+                        "confidence": {
+                          "Antiqua": 1.0
+                        },
+                        "entropy": -1.000088900581841e-12,
+                        "value": "Antiqua"
+                      },
+                      "BioSampleGeographicLocation": {
+                        "confidence": {
+                          "China": 1.0
+                        },
+                        "entropy": -1.000088900581841e-12,
+                        "value": "China"
+                      },
+                      "div": 0.00012237995251258133,
+                      "num_date": {
+                        "value": 2003.001371532921
+                      }
+                    }
+                  },
+                  {
+                    "branch_attrs": {},
+                    "children": [
+                      {
+                        "branch_attrs": {},
+                        "children": [
+                          {
+                            "branch_attrs": {},
+                            "name": "GCA_000182485.1_ASM18248v1_genomic",
+                            "node_attrs": {
+                              "BioSampleBiovar": {
+                                "confidence": {
+                                  "Antiqua": 1.0
+                                },
+                                "entropy": -1.000088900581841e-12,
+                                "value": "Antiqua"
+                              },
+                              "BioSampleGeographicLocation": {
+                                "confidence": {
+                                  "Nepal": 1.0
+                                },
+                                "entropy": -1.000088900581841e-12,
+                                "value": "Nepal"
+                              },
+                              "div": 0.00013912567886829655,
+                              "num_date": {
+                                "value": 1967.9986318068936
+                              }
+                            }
+                          },
+                          {
+                            "branch_attrs": {},
+                            "children": [
+                              {
+                                "branch_attrs": {},
+                                "name": "GCA_000006645.1_ASM664v1_genomic",
+                                "node_attrs": {
+                                  "BioSampleBiovar": {
+                                    "confidence": {
+                                      "Medievalis": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "Medievalis"
+                                  },
+                                  "BioSampleGeographicLocation": {
+                                    "confidence": {
+                                      "Kurdistan": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "Kurdistan"
+                                  },
+                                  "div": 0.00014814624123117405,
+                                  "num_date": {
+                                    "value": 1968.9986355496887
+                                  }
+                                }
+                              },
+                              {
+                                "branch_attrs": {},
+                                "name": "GCA_000169655.1_ASM16965v1_genomic",
+                                "node_attrs": {
+                                  "BioSampleBiovar": {
+                                    "confidence": {
+                                      "Medievalis": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "Medievalis"
+                                  },
+                                  "BioSampleGeographicLocation": {
+                                    "confidence": {
+                                      "China": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "China"
+                                  },
+                                  "div": 0.00013709776748962118,
+                                  "num_date": {
+                                    "value": 1973.001371532921
+                                  }
+                                }
+                              }
+                            ],
+                            "name": "NODE_0000010",
+                            "node_attrs": {
+                              "BioSampleBiovar": {
+                                "confidence": {
+                                  "Antiqua": 0.04283037901355443,
+                                  "Medievalis": 0.9539006866081534,
+                                  "Orientalis": 0.0012865133640087454,
+                                  "Pestoides": 0.0010232969533479463
+                                },
+                                "entropy": 0.20223080386743883,
+                                "value": "Medievalis"
+                              },
+                              "BioSampleGeographicLocation": {
+                                "confidence": {
+                                  "China": 0.5286470757005713,
+                                  "Kurdistan": 0.2769450127683783,
+                                  "Nepal": 0.10007997970711363,
+                                  "USA": 0.01839734317863694
+                                },
+                                "entropy": 1.314264586430598,
+                                "value": "China"
+                              },
+                              "div": 0.0001332761488280548,
+                              "num_date": {
+                                "value": 1956.4208300045086
+                              }
+                            }
+                          }
+                        ],
+                        "name": "NODE_0000009",
+                        "node_attrs": {
+                          "BioSampleBiovar": {
+                            "confidence": {
+                              "Antiqua": 0.9269062082950095,
+                              "Medievalis": 0.06524511724229594,
+                              "Orientalis": 0.003002259648750121,
+                              "Pestoides": 0.0024383593072152695
+                            },
+                            "entropy": 0.29507472780850963,
+                            "value": "Antiqua"
+                          },
+                          "BioSampleGeographicLocation": {
+                            "confidence": {
+                              "China": 0.4419872567006582,
+                              "Congo": 0.023710080108647662,
+                              "Kurdistan": 0.10038178567943587,
+                              "Nepal": 0.3315587482389027
+                            },
+                            "entropy": 1.4435357710986256,
+                            "value": "China"
+                          },
+                          "div": 0.00012450981830923032,
+                          "num_date": {
+                            "value": 1944.603419794652
+                          }
+                        }
+                      },
+                      {
+                        "branch_attrs": {},
+                        "children": [
+                          {
+                            "branch_attrs": {},
+                            "children": [
+                              {
+                                "branch_attrs": {},
+                                "name": "GCA_000013825.1_ASM1382v1_genomic",
+                                "node_attrs": {
+                                  "BioSampleBiovar": {
+                                    "confidence": {
+                                      "Antiqua": 0.9999999999999999
+                                    },
+                                    "entropy": -9.99866855976916e-13,
+                                    "value": "Antiqua"
+                                  },
+                                  "BioSampleGeographicLocation": {
+                                    "confidence": {
+                                      "Congo": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "Congo"
+                                  },
+                                  "div": 0.00014768971645251822,
+                                  "num_date": {
+                                    "value": 1965.9986318068936
+                                  }
+                                }
+                              },
+                              {
+                                "branch_attrs": {},
+                                "name": "GCA_000169615.1_ASM16961v1_genomic",
+                                "node_attrs": {
+                                  "BioSampleBiovar": {
+                                    "confidence": {
+                                      "Antiqua": 0.9999999999999999
+                                    },
+                                    "entropy": -9.99866855976916e-13,
+                                    "value": "Antiqua"
+                                  },
+                                  "BioSampleGeographicLocation": {
+                                    "confidence": {
+                                      "Uganda": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "Uganda"
+                                  },
+                                  "div": 0.00014988630339525725,
+                                  "num_date": {
+                                    "value": 2004.0013677901259
+                                  }
+                                }
+                              }
+                            ],
+                            "name": "NODE_0000007",
+                            "node_attrs": {
+                              "BioSampleBiovar": {
+                                "confidence": {
+                                  "Antiqua": 0.9987974372326577
+                                },
+                                "entropy": 0.010803093041096062,
+                                "value": "Antiqua"
+                              },
+                              "BioSampleGeographicLocation": {
+                                "confidence": {
+                                  "China": 0.16633710037358043,
+                                  "Congo": 0.3527155699980516,
+                                  "Nepal": 0.02649690375791272,
+                                  "Uganda": 0.35271556999805176
+                                },
+                                "entropy": 1.5247140886752737,
+                                "value": "Uganda"
+                              },
+                              "div": 0.00014629256403969054,
+                              "num_date": {
+                                "value": 1965.0960884532637
+                              }
+                            }
+                          },
+                          {
+                            "branch_attrs": {},
+                            "children": [
+                              {
+                                "branch_attrs": {},
+                                "name": "GCA_000169695.1_ASM16969v1_genomic",
+                                "node_attrs": {
+                                  "BioSampleBiovar": {
+                                    "confidence": {
+                                      "Antiqua": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "Antiqua"
+                                  },
+                                  "BioSampleGeographicLocation": {
+                                    "confidence": {
+                                      "China": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "China"
+                                  },
+                                  "div": 0.0001310722256326162,
+                                  "num_date": {
+                                    "value": 1979.001371532921
+                                  }
+                                }
+                              },
+                              {
+                                "branch_attrs": {},
+                                "children": [
+                                  {
+                                    "branch_attrs": {},
+                                    "children": [
+                                      {
+                                        "branch_attrs": {},
+                                        "name": "GCA_000181455.2_ASM18145v2_genomic",
+                                        "node_attrs": {
+                                          "BioSampleBiovar": {
+                                            "confidence": {
+                                              "Orientalis": 1.0
+                                            },
+                                            "entropy": -1.000088900581841e-12,
+                                            "value": "Orientalis"
+                                          },
+                                          "BioSampleGeographicLocation": {
+                                            "confidence": {
+                                              "USA": 0.9999999999999999
+                                            },
+                                            "entropy": -9.99866855976916e-13,
+                                            "value": "USA"
+                                          },
+                                          "div": 0.00013770792108636052,
+                                          "num_date": {
+                                            "value": 1988.0013677901259
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "branch_attrs": {},
+                                        "children": [
+                                          {
+                                            "branch_attrs": {},
+                                            "name": "GCA_000168835.1_ASM16883v1_genomic",
+                                            "node_attrs": {
+                                              "BioSampleBiovar": {
+                                                "confidence": {
+                                                  "Orientalis": 1.0
+                                                },
+                                                "entropy": -1.000088900581841e-12,
+                                                "value": "Orientalis"
+                                              },
+                                              "BioSampleGeographicLocation": {
+                                                "confidence": {
+                                                  "USA": 1.0
+                                                },
+                                                "entropy": -1.000088900581841e-12,
+                                                "value": "USA"
+                                              },
+                                              "div": 0.0002597076057291435,
+                                              "num_date": {
+                                                "value": 2001.9986318068936
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "branch_attrs": {},
+                                            "name": "Reference",
+                                            "node_attrs": {
+                                              "BioSampleBiovar": {
+                                                "confidence": {
+                                                  "Antiqua": 0.055424782472751136,
+                                                  "Medievalis": 0.03066500054199793,
+                                                  "Orientalis": 0.8510364264927027,
+                                                  "Pestoides": 0.03264712142505733
+                                                },
+                                                "entropy": 0.6219400440315492,
+                                                "value": "Orientalis"
+                                              },
+                                              "BioSampleGeographicLocation": {
+                                                "confidence": {
+                                                  "China": 0.10310620623765306,
+                                                  "Madagascar": 0.05018117989013444,
+                                                  "Russia": 0.05009266224103237,
+                                                  "USA": 0.5681897387430422
+                                                },
+                                                "entropy": 1.5604431212821042,
+                                                "value": "USA"
+                                              },
+                                              "div": 0.00014023583032391626,
+                                              "num_date": {
+                                                "value": 1966.1627091455234
+                                              }
+                                            }
+                                          }
+                                        ],
+                                        "name": "NODE_0000000",
+                                        "node_attrs": {
+                                          "BioSampleBiovar": {
+                                            "confidence": {
+                                              "Antiqua": 0.00630068047902438,
+                                              "Medievalis": 0.0015600183679004846,
+                                              "Orientalis": 0.9889759103103793,
+                                              "Pestoides": 0.0016449241950960572
+                                            },
+                                            "entropy": 0.07337074704817247,
+                                            "value": "Orientalis"
+                                          },
+                                          "BioSampleGeographicLocation": {
+                                            "confidence": {
+                                              "China": 0.045927038216311125,
+                                              "Madagascar": 0.013908896763345707,
+                                              "Russia": 0.009945358536705211,
+                                              "USA": 0.882650534145362
+                                            },
+                                            "entropy": 0.5784062362135901,
+                                            "value": "USA"
+                                          },
+                                          "div": 0.00013628969968259823,
+                                          "num_date": {
+                                            "value": 1959.9650462331213
+                                          }
+                                        }
+                                      }
+                                    ],
+                                    "name": "NODE_0000001",
+                                    "node_attrs": {
+                                      "BioSampleBiovar": {
+                                        "confidence": {
+                                          "Antiqua": 0.006248016318785356,
+                                          "Orientalis": 0.9927403338859638
+                                        },
+                                        "entropy": 0.047032051452330935,
+                                        "value": "Orientalis"
+                                      },
+                                      "BioSampleGeographicLocation": {
+                                        "confidence": {
+                                          "China": 0.0818184318224971,
+                                          "Madagascar": 0.01768981134576755,
+                                          "Nepal": 0.007989393611229145,
+                                          "USA": 0.8546258086855685
+                                        },
+                                        "entropy": 0.633944917729579,
+                                        "value": "USA"
+                                      },
+                                      "div": 0.0001358596720727292,
+                                      "num_date": {
+                                        "value": 1959.777757835566
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "branch_attrs": {},
+                                    "children": [
+                                      {
+                                        "branch_attrs": {},
+                                        "name": "GCA_000170275.1_ASM17027v1_genomic",
+                                        "node_attrs": {
+                                          "BioSampleBiovar": {
+                                            "confidence": {
+                                              "Orientalis": 1.0
+                                            },
+                                            "entropy": -1.000088900581841e-12,
+                                            "value": "Orientalis"
+                                          },
+                                          "BioSampleGeographicLocation": {
+                                            "confidence": {
+                                              "China": 1.0
+                                            },
+                                            "entropy": -1.000088900581841e-12,
+                                            "value": "China"
+                                          },
+                                          "div": 0.00014111836163398112,
+                                          "num_date": {
+                                            "value": 1991.001371532921
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "branch_attrs": {},
+                                        "children": [
+                                          {
+                                            "branch_attrs": {},
+                                            "name": "GCA_000168235.2_ASM16823v2_genomic",
+                                            "node_attrs": {
+                                              "BioSampleBiovar": {
+                                                "confidence": {
+                                                  "Orientalis": 1.0
+                                                },
+                                                "entropy": -1.000088900581841e-12,
+                                                "value": "Orientalis"
+                                              },
+                                              "BioSampleGeographicLocation": {
+                                                "confidence": {
+                                                  "Madagascar": 1.0
+                                                },
+                                                "entropy": -1.000088900581841e-12,
+                                                "value": "Madagascar"
+                                              },
+                                              "div": 0.00014048972888765736,
+                                              "num_date": {
+                                                "value": 1995.001371532921
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "branch_attrs": {},
+                                            "name": "GCA_000169635.1_ASM16963v1_genomic",
+                                            "node_attrs": {
+                                              "BioSampleBiovar": {
+                                                "confidence": {
+                                                  "Orientalis": 1.0
+                                                },
+                                                "entropy": -1.000088900581841e-12,
+                                                "value": "Orientalis"
+                                              },
+                                              "BioSampleGeographicLocation": {
+                                                "confidence": {
+                                                  "Madagascar": 1.0
+                                                },
+                                                "entropy": -1.000088900581841e-12,
+                                                "value": "Madagascar"
+                                              },
+                                              "div": 0.00014282649707153685,
+                                              "num_date": {
+                                                "value": 2005.001371532921
+                                              }
+                                            }
+                                          }
+                                        ],
+                                        "name": "NODE_0000004",
+                                        "node_attrs": {
+                                          "BioSampleBiovar": {
+                                            "confidence": {
+                                              "Orientalis": 0.9994405989410214
+                                            },
+                                            "entropy": 0.005305672444379753,
+                                            "value": "Orientalis"
+                                          },
+                                          "BioSampleGeographicLocation": {
+                                            "confidence": {
+                                              "China": 0.04307565327966565,
+                                              "Madagascar": 0.9305975137457466,
+                                              "Nepal": 0.003269093018511925,
+                                              "USA": 0.00764879816296318
+                                            },
+                                            "entropy": 0.3474808373681988,
+                                            "value": "Madagascar"
+                                          },
+                                          "div": 0.00013651133088694588,
+                                          "num_date": {
+                                            "value": 1985.083412311341
+                                          }
+                                        }
+                                      }
+                                    ],
+                                    "name": "NODE_0000003",
+                                    "node_attrs": {
+                                      "BioSampleBiovar": {
+                                        "confidence": {
+                                          "Antiqua": 0.003405319654381443,
+                                          "Orientalis": 0.996081493038462
+                                        },
+                                        "entropy": 0.027711940134769384,
+                                        "value": "Orientalis"
+                                      },
+                                      "BioSampleGeographicLocation": {
+                                        "confidence": {
+                                          "China": 0.5727951393920582,
+                                          "Madagascar": 0.2508266762490033,
+                                          "Nepal": 0.016535780557365935,
+                                          "USA": 0.087010035003081
+                                        },
+                                        "entropy": 1.254266809486806,
+                                        "value": "China"
+                                      },
+                                      "div": 0.0001345678553398649,
+                                      "num_date": {
+                                        "value": 1974.9178646447656
+                                      }
+                                    }
+                                  }
+                                ],
+                                "name": "NODE_0000002",
+                                "node_attrs": {
+                                  "BioSampleBiovar": {
+                                    "confidence": {
+                                      "Antiqua": 0.05768966459935517,
+                                      "Medievalis": 0.0013875615468518217,
+                                      "Orientalis": 0.9384414451875159,
+                                      "Pestoides": 0.0012847861863283594
+                                    },
+                                    "entropy": 0.24992789215321765,
+                                    "value": "Orientalis"
+                                  },
+                                  "BioSampleGeographicLocation": {
+                                    "confidence": {
+                                      "China": 0.5109124587227172,
+                                      "Congo": 0.02291339008129683,
+                                      "Madagascar": 0.0960165149624098,
+                                      "USA": 0.2731421709221744
+                                    },
+                                    "entropy": 1.3906527641912592,
+                                    "value": "China"
+                                  },
+                                  "div": 0.000134352763025519,
+                                  "num_date": {
+                                    "value": 1958.8425289162526
+                                  }
+                                }
+                              }
+                            ],
+                            "name": "NODE_0000005",
+                            "node_attrs": {
+                              "BioSampleBiovar": {
+                                "confidence": {
+                                  "Antiqua": 0.9330393362642379,
+                                  "Medievalis": 0.0023613952156571407,
+                                  "Orientalis": 0.06115740808005991,
+                                  "Pestoides": 0.001764928194739895
+                                },
+                                "entropy": 0.2717482651796514,
+                                "value": "Antiqua"
+                              },
+                              "BioSampleGeographicLocation": {
+                                "confidence": {
+                                  "China": 0.7263847124663056,
+                                  "Madagascar": 0.03837292112934129,
+                                  "USA": 0.08942113646934316,
+                                  "Uganda": 0.03616951672068573
+                                },
+                                "entropy": 1.1045892357071911,
+                                "value": "China"
+                              },
+                              "div": 0.00012805479913143716,
+                              "num_date": {
+                                "value": 1952.6381827228363
+                              }
+                            }
+                          }
+                        ],
+                        "name": "NODE_0000006",
+                        "node_attrs": {
+                          "BioSampleBiovar": {
+                            "confidence": {
+                              "Antiqua": 0.9913293914175336,
+                              "Medievalis": 0.0015768994635856632,
+                              "Orientalis": 0.005673143390988775
+                            },
+                            "entropy": 0.058447964764350734,
+                            "value": "Antiqua"
+                          },
+                          "BioSampleGeographicLocation": {
+                            "confidence": {
+                              "China": 0.5637656830712454,
+                              "Congo": 0.1097260500686501,
+                              "Nepal": 0.05888248261587433,
+                              "Uganda": 0.10972605006865015
+                            },
+                            "entropy": 1.510951806532486,
+                            "value": "China"
+                          },
+                          "div": 0.00012306113634091799,
+                          "num_date": {
+                            "value": 1942.1615203228016
+                          }
+                        }
+                      }
+                    ],
+                    "name": "NODE_0000008",
+                    "node_attrs": {
+                      "BioSampleBiovar": {
+                        "confidence": {
+                          "Antiqua": 0.9824480826463494,
+                          "Medievalis": 0.009073666798732881,
+                          "Microtus": 0.0032254170454579477,
+                          "Pestoides": 0.0029944247233286716
+                        },
+                        "entropy": 0.10972932956281463,
+                        "value": "Antiqua"
+                      },
+                      "BioSampleGeographicLocation": {
+                        "confidence": {
+                          "China": 0.6496615772754599,
+                          "Kurdistan": 0.04605831277128904,
+                          "Nepal": 0.12029697967035537,
+                          "Uganda": 0.043445199138528776
+                        },
+                        "entropy": 1.308661013623415,
+                        "value": "China"
+                      },
+                      "div": 0.00011894494149193742,
+                      "num_date": {
+                        "value": 1936.976893583458
+                      }
+                    }
+                  }
+                ],
+                "name": "NODE_0000011",
+                "node_attrs": {
+                  "BioSampleBiovar": {
+                    "confidence": {
+                      "Antiqua": 0.9487373240910492,
+                      "Medievalis": 0.005158174607933814,
+                      "Microtus": 0.022416508018630717,
+                      "Pestoides": 0.02027168417649545
+                    },
+                    "entropy": 0.2606633000217237,
+                    "value": "Antiqua"
+                  },
+                  "BioSampleGeographicLocation": {
+                    "confidence": {
+                      "Angola": 0.027454436500541815,
+                      "China": 0.8474590514247942,
+                      "Kurdistan": 0.017536376829994833,
+                      "Nepal": 0.03420827830508611
+                    },
+                    "entropy": 0.7348351426010892,
+                    "value": "China"
+                  },
+                  "div": 0.0001167841332863003,
+                  "num_date": {
+                    "value": 1934.495536281764
+                  }
+                }
+              }
+            ],
+            "name": "NODE_0000012",
+            "node_attrs": {
+              "BioSampleBiovar": {
+                "confidence": {
+                  "Antiqua": 0.3118606849868892,
+                  "Microtus": 0.35048360924137517,
+                  "Orientalis": 0.0120972153285245,
+                  "Pestoides": 0.3147348997186623
+                },
+                "entropy": 1.1970768642610525,
+                "value": "Microtus"
+              },
+              "BioSampleGeographicLocation": {
+                "confidence": {
+                  "Angola": 0.08035371057300739,
+                  "China": 0.788557177613724,
+                  "Nepal": 0.021575928555545385,
+                  "Russia": 0.03576641874924474
+                },
+                "entropy": 0.9024123171020043,
+                "value": "China"
+              },
+              "div": 9.140830034258643e-05,
+              "num_date": {
+                "value": 1851.4534459748447
+              }
+            }
+          }
+        ],
+        "name": "NODE_0000013",
+        "node_attrs": {
+          "BioSampleBiovar": {
+            "confidence": {
+              "Antiqua": 0.028329942834721754,
+              "Microtus": 0.032459643517840746,
+              "Orientalis": 0.002659533325856439,
+              "Pestoides": 0.9342616272002652
+            },
+            "entropy": 0.3054432630044359,
+            "value": "Pestoides"
+          },
+          "BioSampleGeographicLocation": {
+            "confidence": {
+              "Angola": 0.4218229454560033,
+              "China": 0.26808241416416057,
+              "Russia": 0.17018609061031995,
+              "USA": 0.02564086317946063
+            },
+            "entropy": 1.5438704075545944,
+            "value": "Angola"
+          },
+          "div": 8.942963364267408e-05,
+          "num_date": {
+            "value": 1838.2366869372288
+          }
+        }
+      }
+    ],
+    "name": "NODE_0000014",
+    "node_attrs": {
+      "BioSampleBiovar": {
+        "confidence": {
+          "Antiqua": 0.016226038768377596,
+          "Microtus": 0.01800515039761817,
+          "Orientalis": 0.0036550353762441865,
+          "Pestoides": 0.9589632048196777
+        },
+        "entropy": 0.2180398193117913,
+        "value": "Pestoides"
+      },
+      "BioSampleGeographicLocation": {
+        "confidence": {
+          "Angola": 0.18882648514614156,
+          "China": 0.12675371185389542,
+          "Russia": 0.5110188656836924,
+          "USA": 0.031019243496557606
+        },
+        "entropy": 1.5340360856651847,
+        "value": "Russia"
+      },
+      "div": 0,
+      "num_date": {
+        "value": 1817.181726960125
+      }
+    }
+  },
+  "version": "v2"
+}

@@ -27,7 +27,13 @@ treetime \
   --outdir default1/
 ```
 
-## Augur Refine Mimic
+## Augur vs. TreeTime
+
+Under some parameters, TreeTime will default to excluding samples that fall samples that fall 3 deviations/intervals away from the root-to-tip regression line. Samples with HIGH substitions are projected too far in the future (ex. in the year 3000/4000).
+
+Augur refine disables this parameter by default, allowing samples with overly high/low substitions to be part of the optimization process.
+
+### Augur Refine Mimic
 
 ```bash
 treetime \
@@ -125,18 +131,6 @@ branch_length_mode auto
 vary_rate False
 use_covariation True
 kwargs {'fixed_pi': None}
-
-## Add clock filter
-
-```bash
-treetime \
-  --tree  ../iqtree/iqtree.core-filter0_bootstrap.treefile \
-  --dates metadata_timetree_edit.tsv \
-  --aln ../snippy_multi/snippy-core.full_CHROM.fasta \
-  --reroot GCA_000016445.1_ASM1644v1_genomic \
-  --outdir clock_filter \
-  --clock-filter 3
-```
 
 ## Relaxed Clock
 
