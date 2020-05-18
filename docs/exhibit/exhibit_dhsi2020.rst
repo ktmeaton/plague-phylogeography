@@ -13,6 +13,7 @@ Note: Requires `conda <https://docs.conda.io/projects/conda/en/latest/user-guide
       cd plague-phylogeography
       conda env create -f phylo-env.yaml --name phylo-env
       conda activate phylo-env
+      conda install geopy
 
 ------------
 
@@ -21,20 +22,40 @@ Data Download
 
 Download the samples and reference found in the `Morelli et al. 2010 pulication <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2999892/>`_.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       nextflow run pipeline.nf \
         --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
         --outdir morelli2010 \
         --skip_sra_download \
         --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Morelli%'\"" \
-        --skip_assembly_download
+        --skip_assembly_download \
+        --skip_reference_download
 
 Check that there are 15 samples to be downloaded.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       wc -l morelli2010/sqlite_import/assembly_for_download.txt
+
+Download the samples and reference found in the `Cui et al. 2013 pulication <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3545753/>`_.
+
+**Cui 2013 Dataset**::
+
+      nextflow run pipeline.nf \
+        --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+        --outdir cui2013 \
+        --max_datasets_assembly 150 \
+        --skip_sra_download \
+        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Cui%'\"" \
+        --skip_assembly_download \
+        --skip_reference_download
+
+Check that there are 131 samples to be downloaded.
+
+**Cui 2013 Dataset**::
+
+      wc -l cui2013/sqlite_import/assembly_for_download.txt
 
 ------------
 
@@ -43,7 +64,7 @@ Basic Phylogeny Pipeline
 
 Run the full pipeline, including sample download, aligning to a reference genome, model selection, and phylogenetics.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       nextflow run pipeline.nf \
         --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
@@ -52,67 +73,167 @@ Run the full pipeline, including sample download, aligning to a reference genome
         --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Morelli%'\"" \
         -resume
 
+**Cui 2013 Dataset**::
+
+      nextflow run pipeline.nf \
+        --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+        --outdir cui2013 \
+        --max_datasets_assembly 150 \
+        --skip_sra_download \
+        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Cui%'\"" \
+        -resume
+
 ------------
 
 TimeTree Metadata
 -----------------
 
-Prepare a metadata file for timetree.
+Prepare metadata files for timetree/augur.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       mkdir -p morelli2010/nextstrain/
 
       scripts/sqlite_NextStrain_tsv.py \
         --database results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-        --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar FROM Master WHERE (BioSampleComment LIKE '%Morelli%' AND TRIM(AssemblyFTPGenbank) > '')" \
+        --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE (BioSampleComment LIKE '%Morelli%' AND TRIM(AssemblyFTPGenbank) > '')" \
         --no-data-char ? \
         --output morelli2010/nextstrain/metadata_nextstrain.tsv
 
-        head -n 1 morelli2010/nextstrain/metadata_nextstrain.tsv | \
-          awk -F "\t" '{print "strain\t"$0}' \
-          > morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+      sqlite3 results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+        "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE BioSampleComment LIKE '%Reference%'" | \
+        sed 's/|/\t/g' >> morelli2010/nextstrain/metadata_nextstrain.tsv
 
-        tail -n +2 morelli2010/nextstrain/metadata_nextstrain.tsv  | \
-          awk -F "\t" '{split($2,ftpSplit,"/"); name=ftpSplit[10]"_genomic"; print name"\t"$0}' \
-          >> morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+      head -n 1 morelli2010/nextstrain/metadata_nextstrain.tsv | \
+        awk -F "\t" '{print "strain\t"$0}' \
+        > morelli2010/nextstrain/metadata_nextstrain_edit.tsv
 
-Afterwards, change the BioSampleCollectionDate column to 'date'.
+      tail -n +2 morelli2010/nextstrain/metadata_nextstrain.tsv  | \
+        awk -F "\t" '{split($2,ftpSplit,"/"); name=ftpSplit[10]"_genomic"; print name"\t"$0}' \
+        >> morelli2010/nextstrain/metadata_nextstrain_edit.tsv
 
-**Shell script**::
+      sed -i 's/GCA_000009065.1_ASM906v1_genomic/Reference/g' morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+
+**Cui 2013 Dataset**::
+
+      mkdir -p cui2013/nextstrain/
+
+      scripts/sqlite_NextStrain_tsv.py \
+        --database results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+        --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE (BioSampleComment LIKE '%Cui%' AND TRIM(AssemblyFTPGenbank) > '')" \
+        --no-data-char ? \
+        --output cui2013/nextstrain/metadata_nextstrain.tsv;
+
+      sqlite3 results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+        "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE BioSampleComment LIKE '%Reference%'" | \
+        sed 's/|/\t/g' >> cui2013/nextstrain/metadata_nextstrain.tsv;
+
+      head -n 1 cui2013/nextstrain/metadata_nextstrain.tsv | \
+        awk -F "\t" '{print "strain\t"$0}' \
+        > cui2013/nextstrain/metadata_nextstrain_edit.tsv;
+
+      tail -n +2 cui2013/nextstrain/metadata_nextstrain.tsv  | \
+        awk -F "\t" '{split($2,ftpSplit,"/"); name=ftpSplit[10]"_genomic"; print name"\t"$0}' \
+        >> cui2013/nextstrain/metadata_nextstrain_edit.tsv;
+
+      sed -i 's/GCA_000009065.1_ASM906v1_genomic/Reference/g' cui2013/nextstrain/metadata_nextstrain_edit.tsv;
+
+Afterwards, change the BioSampleCollectionDate column to 'date', remove uncertainty characters in date (<, >) and change format to 2000-XX-XX.
+
+**Morelli 2010 Dataset**::
 
       sed -i 's/BioSampleCollectionDate/date/g' morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+      awk -F "\t" -v dateCol=5 'BEGIN{OFS=FS}{
+        if($dateCol != "date" && $dateCol != "?"){
+          gsub(/>|<|?/,"",$dateCol);
+          $dateCol=$dateCol"-XX-XX";
+        }
+        print $0}' morelli2010/nextstrain/metadata_nextstrain_edit.tsv > morelli2010/nextstrain/metadata_nextstrain_dates.tsv
 
-- remove uncertainty characters ex. <
-- change format to 2000-XX-XX.
 
-Edit the BioSampleGeographicLocation column so that:
+**Cui 2013 Dataset**::
 
-- Change everything just to country name
-- USSR to Russia
+      sed -i 's/BioSampleCollectionDate/date/g' morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+      awk -F "\t" -v dateCol=5 'BEGIN{OFS=FS}{
+        if($dateCol != "date" && $dateCol != "?"){
+          gsub(/>|<|?/,"",$dateCol);
+          $dateCol=$dateCol"-XX-XX";
+        }
+        print $0}' morelli2010/nextstrain/metadata_nextstrain_edit.tsv > morelli2010/nextstrain/metadata_nextstrain_dates.tsv
 
-Add a line for the Reference Genome that just says "Reference" under the strain column, and is question marks for all remaining columns. We will let the program infer the metadata and see how close it gets.
+Edit the BioSampleGeographicLocation column so that location is simply country name. Also change select country names.
+
+**Morelli 2010 Dataset**::
+
+      awk -F "\t" -v geoCol=6 'BEGIN{OFS=FS}{
+        if($geoCol != "BioSampleGeographicLocation" && $geoCol != "?"){
+          geoColLen=split($geoCol,geoColSplit,",");
+          $geoCol=geoColSplit[geoColLen];
+          gsub(/^ /,"",$geoCol)
+        }
+        print $0}' morelli2010/nextstrain/metadata_nextstrain_dates.tsv > morelli2010/nextstrain/metadata_nextstrain_country.tsv
+
+      sed -i 's/USSR/Russia/g' morelli2010/nextstrain/metadata_nextstrain_country.tsv
+      sed -i 's/Kurdistan/Iran/g' morelli2010/nextstrain/metadata_nextstrain_country.tsv
+      sed -i 's/USA/United States of America/g' morelli2010/nextstrain/metadata_nextstrain_country.tsv
+
+
+**Cui 2013 Dataset**::
+
+      awk -F "\t" -v geoCol=6 'BEGIN{OFS=FS}{
+        if($geoCol != "BioSampleGeographicLocation" && $geoCol != "?"){
+          geoColLen=split($geoCol,geoColSplit,",");
+          $geoCol=geoColSplit[geoColLen];
+          gsub(/^ /,"",$geoCol)
+        }
+        print $0}' cui2013/nextstrain/metadata_nextstrain_dates.tsv > cui2013/nextstrain/metadata_nextstrain_country.tsv
+
+      sed -i 's/USSR/Russia/g' cui2013/nextstrain/metadata_nextstrain_country.tsv
+      sed -i 's/Kurdistan/Iran/g' cui2013/nextstrain/metadata_nextstrain_country.tsv
+      sed -i 's/USA/United States of America/g' cui2013/nextstrain/metadata_nextstrain_country.tsv
+
 
 Geocode the GeographicLocation column to get lat lon coordinates.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       scripts/geocode_NextStrain.py \
-         --in-tsv morelli2010/nextstrain/metadata_nextstrain_edit.tsv \
+         --in-tsv morelli2010/nextstrain/metadata_nextstrain_country.tsv \
          --loc-col BioSampleGeographicLocation \
          --out-tsv morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
          --out-lat-lon morelli2010/nextstrain/lat_longs.tsv \
          --div country
 
-Replace the division name 'country' with our column name 'BioSampleGeographicLocation' in the lat lon file.
-Edit country names in the lat lon file to match our original metadata.
+**Cui 2013 Dataset**::
 
-**Shell script**::
+     scripts/geocode_NextStrain.py \
+        --in-tsv cui2013/nextstrain/metadata_nextstrain_country.tsv \
+        --loc-col BioSampleGeographicLocation \
+        --out-tsv cui2013/nextstrain/metadata_nextstrain_geocode.tsv \
+        --out-lat-lon cui2013/nextstrain/lat_longs.tsv \
+        --div country
+
+Replace the division name 'country' with our column name 'BioSampleGeographicLocation' in the lat lon file.
+
+**Morelli 2010 Dataset**::
 
       sed -i 's/country/BioSampleGeographicLocation/g' morelli2010/nextstrain/lat_longs.tsv
-      sed -i 's/Iran/Kurdistan/g' morelli2010/nextstrain/lat_longs.tsv
-      sed -i 's/United States of America/USA/g' morelli2010/nextstrain/lat_longs.tsv
-      sed -i 's/Republic of the Congo/Congo/g' morelli2010/nextstrain/lat_longs.tsv
+
+**Cui 2013 Dataset**::
+
+      sed -i 's/country/BioSampleGeographicLocation/g' cui2013/nextstrain/lat_longs.tsv
+
+Last Fixups. Standarize biovar spelling.
+
+**Morelli 2010 Dataset**::
+
+      sed -i 's/Mediaevalis/Medievalis/g' morelli2010/nextstrain/metadata_nextstrain_geocode.tsv
+
+
+**Cui 2013 Dataset**::
+
+      sed -i 's/Mediaevalis/Medievalis/g' cui2013/nextstrain/metadata_nextstrain_geocode.tsv
+
 
 ------------
 
@@ -122,18 +243,31 @@ TimeTree Phylogeny
 
 Estimate a time-scaled phylogeny. Re-root with strain Pestoides F (Accession: GCA_000016445.1_ASM1644v1).
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
       augur refine \
           --tree morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
-          --alignment morelli2010/snippy_multi/snippy-core.full_CHROM.fasta \
-          --vcf-reference morelli2010/reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
-          --metadata morelli2010/nextstrain/metadata_nextstrain_edit.tsv \
+          --alignment morelli2010/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+          --metadata morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
           --timetree \
           --root GCA_000016445.1_ASM1644v1_genomic \
           --coalescent opt \
           --output-tree morelli2010/nextstrain/tree.nwk \
-          --output-node-data morelli2010/nextstrain/branch_lengths.json;
+          --output-node-data morelli2010/nextstrain/branch_lengths.json \
+          2>&1 | tee morelli2010/nextstrain/augur_refine.log
+
+**Cui 2013 Dataset**::
+
+      augur refine \
+          --tree cui2013/iqtree/iqtree.core-filter0_bootstrap.treefile \
+          --alignment cui2013/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+          --metadata cui2013/nextstrain/metadata_nextstrain_geocode.tsv \
+          --timetree \
+          --root GCA_000016445.1_ASM1644v1_genomic \
+          --coalescent opt \
+          --output-tree cui2013/nextstrain/tree.nwk \
+          --output-node-data cui2013/nextstrain/branch_lengths.json \
+          2>&1 | tee cui2013/nextstrain/augur_refine.log
 
 ------------
 
@@ -143,14 +277,26 @@ Ancestral Traits
 Reconstruction of ancestral traits.
 Note: Investigate the  --sampling-bias-correction option.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
-          augur traits \
-              --tree morelli2010/nextstrain/tree.nwk \
-              --metadata morelli2010/nextstrain/metadata_nextstrain_edit.tsv \
-              --columns BioSampleGeographicLocation BioSampleBiovar \
-              --confidence \
-              --output morelli2010/nextstrain/traits.json
+      augur traits \
+          --tree morelli2010/nextstrain/tree.nwk \
+          --metadata morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
+          --columns BioSampleGeographicLocation BioSampleBiovar BioSampleHost \
+          --confidence \
+          --output morelli2010/nextstrain/traits.json \
+          2>&1 | tee morelli2010/nextstrain/augur_traits.log
+
+
+**Cui 2013 Dataset**::
+
+      augur traits \
+          --tree cui2013/nextstrain/tree.nwk \
+          --metadata cui2013/nextstrain/metadata_nextstrain_geocode.tsv \
+          --columns BioSampleGeographicLocation BioSampleBiovar BioSampleHost \
+          --confidence \
+          --output cui2013/nextstrain/traits.json \
+          2>&1 | tee cui2013/nextstrain/augur_traits.log
 
 ------------
 
@@ -159,15 +305,25 @@ Export
 
 Export the json files for an auspice server.
 
-**Shell script**::
+**Morelli 2010 Dataset**::
 
           augur export v2 \
               --tree morelli2010/nextstrain/tree.nwk \
-              --metadata morelli2010/nextstrain/metadata_nextstrain_edit.tsv \
+              --metadata morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
               --node-data morelli2010/nextstrain/branch_lengths.json morelli2010/nextstrain/traits.json \
               --auspice-config morelli2010/nextstrain/auspice_config.json \
               --output morelli2010/nextstrain/morelli2010.json \
               --lat-longs morelli2010/nextstrain/lat_longs.tsv
+
+**Cui 2013 Dataset**::
+
+          augur export v2 \
+              --tree cui2013/nextstrain/tree.nwk \
+              --metadata cui2013/nextstrain/metadata_nextstrain_edit.tsv \
+              --node-data cui2013/nextstrain/branch_lengths.json cui2013/nextstrain/traits.json \
+              --auspice-config cui2013/nextstrain/auspice_config.json \
+              --output cui2013/nextstrain/cui2013.json \
+              --lat-longs cui2013/nextstrain/lat_longs.tsv
 
 
 ------------
