@@ -6,8 +6,18 @@
  "build_url": "https://github.com/ktmeaton/plague-phylogeography",
  "colorings": [
   {
+    "key": "BioSampleAccession",
+    "title": "BioSample Accession",
+    "type": "categorical"
+  },
+  {
+    "key": "BioSampleStrain",
+    "title": "Strain",
+    "type": "categorical"
+  },
+  {
    "key": "num_date",
-   "title": "Sampling date",
+   "title": "Collection Date",
    "type": "continuous"
   },
   {
