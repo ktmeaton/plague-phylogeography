@@ -28,11 +28,11 @@ Download the samples and reference found in the `Morelli et al. 2010 pulication 
         --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
         --outdir morelli2010 \
         --skip_sra_download \
-        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Morelli%'\"" \
+        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%Morelli%' AND BioSampleComment NOT LIKE '%REMOVE%')\"" \
         --skip_assembly_download \
         --skip_reference_download
 
-Check that there are 15 samples to be downloaded.
+Check that there are 14 samples to be downloaded.
 
 **Morelli 2010 Dataset**::
 
@@ -47,11 +47,11 @@ Download the samples and reference found in the `Cui et al. 2013 pulication <htt
         --outdir cui2013 \
         --max_datasets_assembly 150 \
         --skip_sra_download \
-        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Cui%'\"" \
+        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%Cui%' AND BioSampleComment NOT LIKE '%REMOVE%')\"" \
         --skip_assembly_download \
         --skip_reference_download
 
-Check that there are 131 samples to be downloaded.
+Check that there are 130 samples to be downloaded.
 
 **Cui 2013 Dataset**::
 
@@ -70,7 +70,7 @@ Run the full pipeline, including sample download, aligning to a reference genome
         --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
         --outdir morelli2010 \
         --skip_sra_download \
-        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Morelli%'\"" \
+        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%Morelli%' AND BioSampleComment NOT LIKE '%REMOVE%')\"" \
         -resume
 
 **Cui 2013 Dataset**::
@@ -80,7 +80,7 @@ Run the full pipeline, including sample download, aligning to a reference genome
         --outdir cui2013 \
         --max_datasets_assembly 150 \
         --skip_sra_download \
-        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%Cui%'\"" \
+        --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%Cui%' AND BioSampleComment NOT LIKE '%REMOVE%')\"" \
         -resume
 
 ------------
@@ -274,7 +274,7 @@ Estimate a time-scaled phylogeny. Re-root with strain Pestoides F (Accession: GC
           --output-node-data morelli2010/nextstrain/branch_lengths.json \
           2>&1 | tee morelli2010/nextstrain/augur_refine.log
 
-**Morelli 2010 TreeTime**::
+**Morelli 2010 TreeTime Equivalent**::
 
       treetime \
         --tree  morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
@@ -286,9 +286,34 @@ Estimate a time-scaled phylogeny. Re-root with strain Pestoides F (Accession: GC
         --branch-length-mode auto \
         --max-iter 2 \
         --covariation \
-        --clock-filter 3 \
-        --relax 3.0 0 \
-        --outdir relax_slack3_uncorrelated_filter/
+        --clock-filter 0 \
+        --outdir morelli2010/treetime/augur_mimic_1
+
+**Morelli 2010 TreeTime Clock**::
+
+      treetime clock \
+        --tree  morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
+        --dates morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
+        --aln morelli2010/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+        --reroot GCA_000016445.1_ASM1644v1_genomic \
+        --outdir morelli2010/treetime/clock_default
+
+
+**Morelli 2010 TreeTime Improvement**::
+
+      treetime \
+        --tree  morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
+        --dates morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
+        --aln morelli2010/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+        --reroot GCA_000016445.1_ASM1644v1_genomic \
+        --gtr infer \
+        --coalescent opt \
+        --branch-length-mode auto \
+        --max-iter 2 \
+        --clock-filter 0 \
+        --relax 5.0 0 \
+        --confidence \
+        --outdir morelli2010/treetime/relax_slack5_uncorrelated_nocovar_conf
 
 **Cui 2013 Dataset**::
 

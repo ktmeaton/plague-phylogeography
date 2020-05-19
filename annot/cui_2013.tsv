@@ -120,7 +120,7 @@ SAMN02403106	YN2588	Orientalis	2000	Guangxi, China	Rattus flavipectus	24.8	105.3
 SAMN02403107	YN472	Orientalis	1957	Yunnan, China	Neopsyllini specialis	26.53	99.88 26.53	99.88	 KEEP: Assembly Cui 2013
 SAMN02403108	YN663	Orientalis	1982	Yunnan, China	Xenopsylla cneopis roths	24.33	97.96 24.33	97.96	 KEEP: Assembly Cui 2013
 SAMN02602970	91001	Microtus	1970	Inner Mongolia, China	Microtus brandti	44.03	114.97 44.03	114.97	 KEEP: Assembly Morelli 2010 Cui 2013
-SAMN02604042	Angola	Microtus	<1984	Angola					 KEEP: Assembly Morelli 2010 Cui 2013
+SAMN02604042	Angola	Microtus	<1984	Angola					 REMOVE: Assembly Morelli 2010 Cui 2013
 SAMN02598369	Antiqua	Antiqua	1965	Republic of the Congo	Homo sapiens				 KEEP: Assembly Morelli 2010 Cui 2013
 SAMN02404401	B42003004	Antiqua	2003	Xinjiang, China	Marmota baibacina	44.95	81.08 44.95	81.08	 KEEP: Assembly Morelli 2010 Cui 2013
 SAMN02403940	CA88-4125	Orientalis	1988	California, USA	Homo sapiens				 KEEP: Assembly Morelli 2010 Cui 2013
