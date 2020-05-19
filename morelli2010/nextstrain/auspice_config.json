@@ -21,6 +21,11 @@
    "type": "continuous"
   },
   {
+   "key": "raw_date",
+   "title": "Raw Date",
+   "type": "continuous"
+  },
+  {
     "key": "BioSampleGeographicLocation",
     "title": "Country",
     "type": "categorical"
