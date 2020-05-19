@@ -693,6 +693,7 @@ if(!params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.s
     file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf_detect_density
     file "output${params.snippy_ctg_depth}X/*/*_snippy.bam" into ch_snippy_bam_pairwise_qualimap
     file "output${params.snippy_ctg_depth}X/*/*_snippy.csv" into ch_snippy_csv_snpEff_multiqc
+    file "*output*/${assembly_fna.baseName}" into ch_snippy_outdir_assembly
 
     // Shell script to execute
     script:
@@ -708,6 +709,9 @@ if(!params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.s
       --minfrac ${params.snippy_min_frac} \
       --basequal ${params.snippy_base_qual} \
       --report;
+
+    # Save Output Dir for snippy_multi channel
+    snippyDir=`pwd`"/output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/"
 
     snippy_snps_in=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.txt
     snippy_snps_txt=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.summary.txt
@@ -734,6 +738,11 @@ if(!params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.s
       \$snippy_snps_filt
     """
   }
+
+  // Collect the snippy output dir for multi allDir
+  ch_snippy_outdir_assembly
+    .collect()
+    .set { ch_snippy_outdir_assembly_collect_multi }
 
 }
 
@@ -920,6 +929,7 @@ if(!params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.sk
     input:
     file reference_genome_gb from ch_reference_gb_snippy_multi
     file bed_mask from ch_bed_mask_snippy_multi
+    val snippy_outdir_path from ch_snippy_outdir_assembly_collect_multi
 
     output:
     file "snippy-core.aln" into ch_snippy_core_aln_filter
@@ -930,10 +940,11 @@ if(!params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.sk
     script:
     """
     # Store a list of all the Snippy output directories in a file
-    ls -d1 ${outdir}/snippy_pairwise/output${params.snippy_ctg_depth}X/* > allDir;
-    # Save the contents of that file as a variable
-    allDir=`cat allDir`;
-    echo \$allDir;
+    allDir=`for path in ${snippy_outdir_path};
+    do
+      echo \$path | sed 's/\\[\\|,\\|\\]//g' ;
+    done | tr '\n' ' ' `;
+
     # Perform multiple genome alignment (with custom filtering)
     snippy-core \
         --ref ${reference_genome_gb} \
