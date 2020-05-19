@@ -92,10 +92,10 @@ Extract metadata from the SQLite database.
 
 **Shell Scripts**::
 
-      project=morelli2010;
-      projectAuthor=Morelli;
-      #project=cui2013;
-      #projectAuthor=Cui;
+      #project=morelli2010;
+      #projectAuthor=Morelli;
+      project=cui2013;
+      projectAuthor=Cui;
 
       # Extract metadata from sqlite database
       mkdir -p $project/nextstrain/
@@ -148,7 +148,7 @@ Code in the uncertainty dates of the following strains:
           $dateCol=$dateCol"-XX-XX";
         }
         if ($strainCol == "Pestoides A" || $strainCol == "Pestoides F"){
-          $dateCol="[1950.00:1983.99]"
+          $dateCol="[1900.00:1983.99]"
         }
         if ($strainCol == "India195"){
           $dateCol="[1898.99:1950.00]"
@@ -169,8 +169,8 @@ Replace the division name 'country' with our column name 'BioSampleGeographicLoc
 
 **Geocoding**::
 
-      project=morelli2010;
-      #project=cui2013;
+      #project=morelli2010;
+      project=cui2013;
 
       awk -F "\t" -v geoCol=6 'BEGIN{OFS=FS}{
         if($geoCol != "BioSampleGeographicLocation" && $geoCol != "?"){
@@ -200,72 +200,53 @@ TimeTree Phylogeny
 
 Estimate a time-scaled phylogeny. Re-root with strain Pestoides F (Accession: GCA_000016445.1_ASM1644v1).
 
-**Morelli 2010 Dataset**::
+**Shell Script**::
+
+      #project=morelli2010;
+      project=cui2013;
 
       augur refine \
-          --tree morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
-          --alignment morelli2010/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
-          --metadata morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
+          --tree $project/iqtree/iqtree.core-filter0_bootstrap.treefile \
+          --alignment $project/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+          --metadata $project/nextstrain/metadata_nextstrain_geocode.tsv \
+          --output-tree $project/nextstrain/tree.nwk \
+          --output-node-data $project/nextstrain/branch_lengths.json \
           --timetree \
-          --root GCA_000016445.1_ASM1644v1_genomic \
           --coalescent opt \
-          --output-tree morelli2010/nextstrain/tree.nwk \
-          --output-node-data morelli2010/nextstrain/branch_lengths.json \
-          2>&1 | tee morelli2010/nextstrain/augur_refine.log
+          --no-covariance \
+          --date-confidence \
+          --date-inference joint \
+          --clock-filter-iqd 3 \
+          2>&1 | tee $project/nextstrain/augur_refine.log
 
-**Morelli 2010 TreeTime Equivalent**::
+      cp plots/* $project/nextstrain/
+
+**TreeTime Equivalent**::
+
+      project=morelli2010;
+      #project=cui2013;
 
       treetime \
-        --tree  morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
-        --dates morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
-        --aln morelli2010/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
-        --reroot GCA_000016445.1_ASM1644v1_genomic \
+        --tree  $project/iqtree/iqtree.core-filter0_bootstrap.treefile \
+        --dates $project/nextstrain/metadata_nextstrain_geocode.tsv \
+        --aln $project/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+        --outdir $project/treetime/augur_mimic_1 \
         --gtr infer \
         --coalescent opt \
         --branch-length-mode auto \
         --max-iter 2 \
-        --covariation \
-        --clock-filter 0 \
-        --outdir morelli2010/treetime/augur_mimic_1
+        --clock-filter 3 \
+        2>&1 | tee $project/treetime/augur_mimic_1/augur_mimic_1.log
 
-**Morelli 2010 TreeTime Clock**::
+**TreeTime Clock**::
 
       treetime clock \
-        --tree  morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
-        --dates morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
-        --aln morelli2010/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+        --tree  $project/iqtree/iqtree.core-filter0_bootstrap.treefile \
+        --dates $project/nextstrain/metadata_nextstrain_geocode.tsv \
+        --aln $project/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
         --reroot GCA_000016445.1_ASM1644v1_genomic \
-        --outdir morelli2010/treetime/clock_default
-
-
-**Morelli 2010 TreeTime Improvement**::
-
-      treetime \
-        --tree  morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
-        --dates morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
-        --aln morelli2010/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
-        --reroot GCA_000016445.1_ASM1644v1_genomic \
-        --gtr infer \
-        --coalescent opt \
-        --branch-length-mode auto \
-        --max-iter 2 \
-        --clock-filter 0 \
-        --relax 5.0 0 \
-        --confidence \
-        --outdir morelli2010/treetime/relax_slack5_uncorrelated_nocovar_conf
-
-**Cui 2013 Dataset**::
-
-      augur refine \
-          --tree cui2013/iqtree/iqtree.core-filter0_bootstrap.treefile \
-          --alignment cui2013/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
-          --metadata cui2013/nextstrain/metadata_nextstrain_geocode.tsv \
-          --timetree \
-          --root GCA_000016445.1_ASM1644v1_genomic \
-          --coalescent opt \
-          --output-tree cui2013/nextstrain/tree.nwk \
-          --output-node-data cui2013/nextstrain/branch_lengths.json \
-          2>&1 | tee cui2013/nextstrain/augur_refine.log
+        --outdir $project/treetime/clock_default \
+        2>&1 | tee $project/treetime/clock_default/clock_default.log
 
 ------------
 
@@ -275,26 +256,18 @@ Ancestral Traits
 Reconstruction of ancestral traits.
 Note: Investigate the  --sampling-bias-correction option.
 
-**Morelli 2010 Dataset**::
+**Shell Script**::
+
+      project=morelli2010;
+      #project=cui2013;
 
       augur traits \
-          --tree morelli2010/nextstrain/tree.nwk \
-          --metadata morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
+          --tree $project/nextstrain/tree.nwk \
+          --metadata $project/nextstrain/metadata_nextstrain_geocode.tsv \
           --columns BioSampleGeographicLocation BioSampleBiovar BioSampleHost \
           --confidence \
-          --output morelli2010/nextstrain/traits.json \
-          2>&1 | tee morelli2010/nextstrain/augur_traits.log
-
-
-**Cui 2013 Dataset**::
-
-      augur traits \
-          --tree cui2013/nextstrain/tree.nwk \
-          --metadata cui2013/nextstrain/metadata_nextstrain_geocode.tsv \
-          --columns BioSampleGeographicLocation BioSampleBiovar BioSampleHost \
-          --confidence \
-          --output cui2013/nextstrain/traits.json \
-          2>&1 | tee cui2013/nextstrain/augur_traits.log
+          --output $project/nextstrain/traits.json \
+          2>&1 | tee $project/nextstrain/augur_traits.log
 
 ------------
 
@@ -303,32 +276,41 @@ Export
 
 Export the json files for an auspice server.
 
-**Morelli 2010 Dataset**::
+**ShellScript**::
 
-          augur export v2 \
-              --tree morelli2010/nextstrain/tree.nwk \
-              --metadata morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
-              --node-data morelli2010/nextstrain/branch_lengths.json morelli2010/nextstrain/traits.json \
-              --auspice-config morelli2010/nextstrain/auspice_config.json \
-              --output morelli2010/nextstrain/morelli2010.json \
-              --lat-longs morelli2010/nextstrain/lat_longs.tsv
+      project=morelli2010;
+      #project=cui2013;
 
-            cp morelli2010/nextstrain/morelli2010.json auspice/morelli2010Local.json
-            cp morelli2010/nextstrain/morelli2010.json auspice/plague-phylogeography_morelli2010Remote.json
+      augur export v2 \
+          --tree $project/nextstrain/tree.nwk \
+          --metadata $project/nextstrain/metadata_nextstrain_geocode.tsv \
+          --node-data $project/nextstrain/branch_lengths.json ${project}/nextstrain/traits.json \
+          --auspice-config auspice/config/${project}_auspice_config.json \
+          --output $project/nextstrain/${project}.json \
+          --lat-longs $project/nextstrain/lat_longs.tsv
 
-**Cui 2013 Dataset**::
+        cp $project/nextstrain/${project}.json auspice/${project}Local.json
+        cp $project/nextstrain/${project}.json auspice/plague-phylogeography_${project}Remote.json
 
-          augur export v2 \
-              --tree cui2013/nextstrain/tree.nwk \
-              --metadata cui2013/nextstrain/metadata_nextstrain_edit.tsv \
-              --node-data cui2013/nextstrain/branch_lengths.json cui2013/nextstrain/traits.json \
-              --auspice-config cui2013/nextstrain/auspice_config.json \
-              --output cui2013/nextstrain/cui2013.json \
-              --lat-longs cui2013/nextstrain/lat_longs.tsv
+------------
 
-              cp cui2013/nextstrain/cui2013.json auspice/cui2013Local.json
-              cp cui2013/nextstrain/cui2013.json auspice/plague-phylogeography_cui2013Remote.json
+Export (Test)
+-------------
 
+Export test iqtree tree.
+
+**ShellScript**::
+
+        project=morelli2010;
+        #project=cui2013;
+
+        augur export v2 \
+            --tree $project/iqtree/iqtree.core-filter0_bootstrap.treefile \
+            --metadata $project/nextstrain/metadata_nextstrain_geocode.tsv \
+            --auspice-config auspice/config/${project}_auspice_config.json \
+            --node-data ${project}/nextstrain/traits.json \
+            --output $project/nextstrain/test.json \
+            --lat-longs $project/nextstrain/lat_longs.tsv
 
 ------------
 
