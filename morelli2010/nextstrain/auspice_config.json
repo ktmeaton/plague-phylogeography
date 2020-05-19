@@ -6,8 +6,18 @@
  "build_url": "https://github.com/ktmeaton/plague-phylogeography",
  "colorings": [
   {
+    "key": "BioSampleAccession",
+    "title": "BioSample Accession",
+    "type": "categorical"
+  },
+  {
+    "key": "BioSampleStrain",
+    "title": "Strain",
+    "type": "categorical"
+  },
+  {
    "key": "num_date",
-   "title": "Sampling date",
+   "title": "Collection Date",
    "type": "continuous"
   },
   {
@@ -21,14 +31,15 @@
     "type": "categorical"
   },
   {
-    "key": "AssemblyTotalLength",
-    "title": "Genome Length",
+    "key": "BioSampleHost",
+    "title": "Host",
     "type": "categorical"
   }
  ],
  "filters": [
   "BioSampleGeographicLocation",
-  "BioSampleBiovar"
+  "BioSampleBiovar",
+  "BioSampleHost"
  ],
  "geo_resolutions": [
   "BioSampleGeographicLocation"
