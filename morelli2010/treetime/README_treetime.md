@@ -1,6 +1,20 @@
 # Treetime Notes
 
 Note: I edited treetime's treeanc.py file to force verbosity to the highest level (6).
+Note: I edited augur refine.py at line 80 to include plotting code:
+
+```python
+import matplotlib.pyplot as plt
+from treetime import plot_vs_years
+from treetime import wrappers as ttwr
+leaf_count = tt.tree.count_terminals()
+label_func = lambda x: (x.name if x.is_terminal() and (leaf_count<30) else '')
+plot_vs_years(tt, show_confidence=False, label_func=label_func)
+tree_fname = ("plots/" + "timetree.pdf")
+plt.savefig(tree_fname)
+print("--- saved tree as \n\t %s\n"%tree_fname)
+ttwr.plot_rtt(tt, "plots/" + "timetree_rtt.pdf")
+```
 
 ## Parameters of Interest
 
@@ -132,7 +146,7 @@ vary_rate False
 use_covariation True
 kwargs {'fixed_pi': None}
 
-## Relaxed Clock
+## Add Relaxed Clock
 
 --relax
 Strength of the gaussian priors on branch specific rate deviation and the coupling of parent and offspring rates can be specified.
@@ -141,14 +155,57 @@ Values around 1.0 correspond to weak priors.
 Larger values constrain rate deviations more strongly.
 Coupling 0 (–relax 1.0 0) corresponds to an un-correlated clock.
 
+slack : float
+  Maximum change in substitution rate between parent and child nodes
+coupling : float
+  Maximum difference in substitution rates in sibling nodes
+
 ```bash
 treetime \
   --tree  ../iqtree/iqtree.core-filter0_bootstrap.treefile \
   --dates metadata_timetree_edit.tsv \
   --aln ../snippy_multi/snippy-core.full_CHROM.fasta \
   --reroot GCA_000016445.1_ASM1644v1_genomic \
+  --gtr infer \
+  --coalescent opt \
+  --branch-length-mode auto \
+  --max-iter 2 \
+  --covariation \
+  --clock-filter 0 \
   --relax 1.0 0 \
   --outdir relax_uncorrelated/
+```
+
+```bash
+treetime \
+  --tree  ../iqtree/iqtree.core-filter0_bootstrap.treefile \
+  --dates metadata_timetree_edit.tsv \
+  --aln ../snippy_multi/snippy-core.full_CHROM.fasta \
+  --reroot GCA_000016445.1_ASM1644v1_genomic \
+  --gtr infer \
+  --coalescent opt \
+  --branch-length-mode auto \
+  --max-iter 2 \
+  --covariation \
+  --clock-filter 0 \
+  --relax 3.0 0 \
+  --outdir relax_slack3_uncorrelated/
+```
+
+```bash
+treetime \
+  --tree  ../iqtree/iqtree.core-filter0_bootstrap.treefile \
+  --dates metadata_timetree_edit.tsv \
+  --aln ../snippy_multi/snippy-core.full_CHROM.fasta \
+  --reroot GCA_000016445.1_ASM1644v1_genomic \
+  --gtr infer \
+  --coalescent opt \
+  --branch-length-mode auto \
+  --max-iter 2 \
+  --covariation \
+  --clock-filter 3 \
+  --relax 3.0 0 \
+  --outdir relax_slack3_uncorrelated_filter/
 ```
 
 ## Model

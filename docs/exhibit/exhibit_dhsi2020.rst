@@ -139,14 +139,26 @@ Prepare metadata files for timetree/augur.
       sed -i 's/GCA_000009065.1_ASM906v1_genomic/Reference/g' cui2013/nextstrain/metadata_nextstrain_edit.tsv;
 
 Afterwards, change the BioSampleCollectionDate column to 'date', remove uncertainty characters in date (<, >) and change format to 2000-XX-XX.
+Change the uncertainty dates of the following strains:
+India195, Angola, Pestoides A, Pestoides F to 1950-1984
+G8786 to be generally in the 1900s.
 
 **Morelli 2010 Dataset**::
 
       sed -i 's/BioSampleCollectionDate/date/g' morelli2010/nextstrain/metadata_nextstrain_edit.tsv
-      awk -F "\t" -v dateCol=5 'BEGIN{OFS=FS}{
+      awk -F "\t" -v dateCol=5 -v strainCol=4 'BEGIN{OFS=FS}{
         if($dateCol != "date" && $dateCol != "?"){
           gsub(/>|<|?/,"",$dateCol);
           $dateCol=$dateCol"-XX-XX";
+        }
+        if ($strainCol == "Angola" || $strainCol == "Pestoides A" || $strainCol == "Pestoides F"){
+          $dateCol="[1950.00:1983.99]"
+        }
+        if ($strainCol == "India195"){
+          $dateCol="[1898.99:1950.00]"
+        }
+        if ($strainCol == "G8786"){
+          $dateCol="[1900.00:1999.99]"
         }
         print $0}' morelli2010/nextstrain/metadata_nextstrain_edit.tsv > morelli2010/nextstrain/metadata_nextstrain_dates.tsv
 
@@ -154,12 +166,21 @@ Afterwards, change the BioSampleCollectionDate column to 'date', remove uncertai
 **Cui 2013 Dataset**::
 
       sed -i 's/BioSampleCollectionDate/date/g' morelli2010/nextstrain/metadata_nextstrain_edit.tsv
-      awk -F "\t" -v dateCol=5 'BEGIN{OFS=FS}{
+      awk -F "\t" -v dateCol=5 -v strainCol=4 'BEGIN{OFS=FS}{
         if($dateCol != "date" && $dateCol != "?"){
           gsub(/>|<|?/,"",$dateCol);
           $dateCol=$dateCol"-XX-XX";
         }
-        print $0}' morelli2010/nextstrain/metadata_nextstrain_edit.tsv > morelli2010/nextstrain/metadata_nextstrain_dates.tsv
+        if ($strainCol == "Angola" || $strainCol == "Pestoides A" || $strainCol == "Pestoides F"){
+          $dateCol="[1950.00:1983.99]"
+        }
+        if ($strainCol == "India195"){
+          $dateCol="[1898.99:1950.00]"
+        }
+        if ($strainCol == "G8786"){
+          $dateCol="[1900.00:1999.99]"
+        }
+        print $0}' cui2013/nextstrain/metadata_nextstrain_edit.tsv > cui2013/nextstrain/metadata_nextstrain_dates.tsv
 
 Edit the BioSampleGeographicLocation column so that location is simply country name. Also change select country names.
 
@@ -229,17 +250,14 @@ Last Fixups. Standarize biovar spelling.
 
       sed -i 's/Mediaevalis/Medievalis/g' morelli2010/nextstrain/metadata_nextstrain_geocode.tsv
 
-
 **Cui 2013 Dataset**::
 
       sed -i 's/Mediaevalis/Medievalis/g' cui2013/nextstrain/metadata_nextstrain_geocode.tsv
-
 
 ------------
 
 TimeTree Phylogeny
 ------------------
-
 
 Estimate a time-scaled phylogeny. Re-root with strain Pestoides F (Accession: GCA_000016445.1_ASM1644v1).
 
@@ -255,6 +273,22 @@ Estimate a time-scaled phylogeny. Re-root with strain Pestoides F (Accession: GC
           --output-tree morelli2010/nextstrain/tree.nwk \
           --output-node-data morelli2010/nextstrain/branch_lengths.json \
           2>&1 | tee morelli2010/nextstrain/augur_refine.log
+
+**Morelli 2010 TreeTime**::
+
+      treetime \
+        --tree  morelli2010/iqtree/iqtree.core-filter0_bootstrap.treefile \
+        --dates morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
+        --aln morelli2010/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+        --reroot GCA_000016445.1_ASM1644v1_genomic \
+        --gtr infer \
+        --coalescent opt \
+        --branch-length-mode auto \
+        --max-iter 2 \
+        --covariation \
+        --clock-filter 3 \
+        --relax 3.0 0 \
+        --outdir relax_slack3_uncorrelated_filter/
 
 **Cui 2013 Dataset**::
 

@@ -90,3 +90,14 @@ E:      Marmota himalayana
 F:      Microtus brandti
 G:      Rattus flavipectus
 H:      ?
+
+
+
+
+---
+
+treetime mugration \
+  --tree morelli2010/nextstrain/tree.nwk \
+  --attribute BioSampleBiovar \
+  --states morelli2010/nextstrain/metadata_nextstrain_edit.tsv \
+  --confidence
