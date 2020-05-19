@@ -38,7 +38,7 @@ Check that there are 14 samples to be downloaded.
 
       wc -l morelli2010/sqlite_import/assembly_for_download.txt
 
-Download the samples and reference found in the `Cui et al. 2013 pulication <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3545753/>`_.
+Repeat for the `Cui et al. 2013 pulication <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3545753/>`_.
 
 **Cui 2013 Dataset**::
 
@@ -85,73 +85,69 @@ Run the full pipeline, including sample download, aligning to a reference genome
 
 ------------
 
-TimeTree Metadata
+Extract Metadata
 -----------------
 
-Prepare metadata files for timetree/augur.
+Extract metadata from the SQLite database.
 
-**Morelli 2010 Dataset**::
+**Shell Scripts**::
 
-      mkdir -p morelli2010/nextstrain/
+      project=morelli2010;
+      projectAuthor=Morelli;
+      #project=cui2013;
+      #projectAuthor=Cui;
 
+      # Extract metadata from sqlite database
+      mkdir -p $project/nextstrain/
       scripts/sqlite_NextStrain_tsv.py \
         --database results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-        --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE (BioSampleComment LIKE '%Morelli%' AND TRIM(AssemblyFTPGenbank) > '')" \
+        --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE (BioSampleComment LIKE '%$projectAuthor%' AND TRIM(AssemblyFTPGenbank) > '' AND BioSampleComment NOT LIKE '%REMOVE%')" \
         --no-data-char ? \
-        --output morelli2010/nextstrain/metadata_nextstrain.tsv
+        --output $project/nextstrain/metadata_nextstrain.tsv
 
+      # Add the reference genome metadata as a final line
       sqlite3 results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
         "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE BioSampleComment LIKE '%Reference%'" | \
-        sed 's/|/\t/g' >> morelli2010/nextstrain/metadata_nextstrain.tsv
+        sed 's/|/\t/g' >> $project/nextstrain/metadata_nextstrain.tsv
 
-      head -n 1 morelli2010/nextstrain/metadata_nextstrain.tsv | \
+      # Write header to a new edited metadata file, add col "strain"
+      head -n 1 $project/nextstrain/metadata_nextstrain.tsv | \
         awk -F "\t" '{print "strain\t"$0}' \
-        > morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+        > $project/nextstrain/metadata_nextstrain_edit.tsv
 
-      tail -n +2 morelli2010/nextstrain/metadata_nextstrain.tsv  | \
+      # Figure out the assembly file names by parsing the FTP url column, save to col "strain"
+      tail -n +2 $project/nextstrain/metadata_nextstrain.tsv  | \
         awk -F "\t" '{split($2,ftpSplit,"/"); name=ftpSplit[10]"_genomic"; print name"\t"$0}' \
-        >> morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+        >> $project/nextstrain/metadata_nextstrain_edit.tsv
 
-      sed -i 's/GCA_000009065.1_ASM906v1_genomic/Reference/g' morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+      # Change reference genome file name to "Reference"
+      sed -i 's/GCA_000009065.1_ASM906v1_genomic/Reference/g' $project/nextstrain/metadata_nextstrain_edit.tsv
+      # Standardize biovar nomenclature
+      sed -i 's/Mediaevalis/Medievalis/g' $project/nextstrain/metadata_nextstrain_edit.tsv
 
-**Cui 2013 Dataset**::
+------------
 
-      mkdir -p cui2013/nextstrain/
+Date Formatting
+---------------
 
-      scripts/sqlite_NextStrain_tsv.py \
-        --database results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-        --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE (BioSampleComment LIKE '%Cui%' AND TRIM(AssemblyFTPGenbank) > '')" \
-        --no-data-char ? \
-        --output cui2013/nextstrain/metadata_nextstrain.tsv;
+Change the BioSampleCollectionDate column to 'date' and change format to 2000-XX-XX.
+Code in the uncertainty dates of the following strains:
+* Pestoides A and Pestoides F to 1950-1984
+* G8786 to be generally in the 1900s.
+* India195 to be 1898-1950.
 
-      sqlite3 results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-        "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE BioSampleComment LIKE '%Reference%'" | \
-        sed 's/|/\t/g' >> cui2013/nextstrain/metadata_nextstrain.tsv;
+**Shell Script**::
 
-      head -n 1 cui2013/nextstrain/metadata_nextstrain.tsv | \
-        awk -F "\t" '{print "strain\t"$0}' \
-        > cui2013/nextstrain/metadata_nextstrain_edit.tsv;
+      project=morelli2010;
+      #project=cui2013;
 
-      tail -n +2 cui2013/nextstrain/metadata_nextstrain.tsv  | \
-        awk -F "\t" '{split($2,ftpSplit,"/"); name=ftpSplit[10]"_genomic"; print name"\t"$0}' \
-        >> cui2013/nextstrain/metadata_nextstrain_edit.tsv;
-
-      sed -i 's/GCA_000009065.1_ASM906v1_genomic/Reference/g' cui2013/nextstrain/metadata_nextstrain_edit.tsv;
-
-Afterwards, change the BioSampleCollectionDate column to 'date', remove uncertainty characters in date (<, >) and change format to 2000-XX-XX.
-Change the uncertainty dates of the following strains:
-India195, Angola, Pestoides A, Pestoides F to 1950-1984
-G8786 to be generally in the 1900s.
-
-**Morelli 2010 Dataset**::
-
-      sed -i 's/BioSampleCollectionDate/date/g' morelli2010/nextstrain/metadata_nextstrain_edit.tsv
+      sed -i 's/BioSampleCollectionDate/date/g' $project/nextstrain/metadata_nextstrain_edit.tsv
       awk -F "\t" -v dateCol=5 -v strainCol=4 'BEGIN{OFS=FS}{
         if($dateCol != "date" && $dateCol != "?"){
           gsub(/>|<|?/,"",$dateCol);
           $dateCol=$dateCol"-XX-XX";
         }
-        if ($strainCol == "Angola" || $strainCol == "Pestoides A" || $strainCol == "Pestoides F"){
+        if ($strainCol == "Pestoides A" || $strainCol == "Pestoides F"){
           $dateCol="[1950.00:1983.99]"
         }
         if ($strainCol == "India195"){
@@ -160,99 +156,42 @@ G8786 to be generally in the 1900s.
         if ($strainCol == "G8786"){
           $dateCol="[1900.00:1999.99]"
         }
-        print $0}' morelli2010/nextstrain/metadata_nextstrain_edit.tsv > morelli2010/nextstrain/metadata_nextstrain_dates.tsv
+        print $0}' $project/nextstrain/metadata_nextstrain_edit.tsv > $project/nextstrain/metadata_nextstrain_dates.tsv
 
+------------
 
-**Cui 2013 Dataset**::
-
-      sed -i 's/BioSampleCollectionDate/date/g' morelli2010/nextstrain/metadata_nextstrain_edit.tsv
-      awk -F "\t" -v dateCol=5 -v strainCol=4 'BEGIN{OFS=FS}{
-        if($dateCol != "date" && $dateCol != "?"){
-          gsub(/>|<|?/,"",$dateCol);
-          $dateCol=$dateCol"-XX-XX";
-        }
-        if ($strainCol == "Angola" || $strainCol == "Pestoides A" || $strainCol == "Pestoides F"){
-          $dateCol="[1950.00:1983.99]"
-        }
-        if ($strainCol == "India195"){
-          $dateCol="[1898.99:1950.00]"
-        }
-        if ($strainCol == "G8786"){
-          $dateCol="[1900.00:1999.99]"
-        }
-        print $0}' cui2013/nextstrain/metadata_nextstrain_edit.tsv > cui2013/nextstrain/metadata_nextstrain_dates.tsv
+Geocoding
+---------------
 
 Edit the BioSampleGeographicLocation column so that location is simply country name. Also change select country names.
-
-**Morelli 2010 Dataset**::
-
-      awk -F "\t" -v geoCol=6 'BEGIN{OFS=FS}{
-        if($geoCol != "BioSampleGeographicLocation" && $geoCol != "?"){
-          geoColLen=split($geoCol,geoColSplit,",");
-          $geoCol=geoColSplit[geoColLen];
-          gsub(/^ /,"",$geoCol)
-        }
-        print $0}' morelli2010/nextstrain/metadata_nextstrain_dates.tsv > morelli2010/nextstrain/metadata_nextstrain_country.tsv
-
-      sed -i 's/USSR/Russia/g' morelli2010/nextstrain/metadata_nextstrain_country.tsv
-      sed -i 's/Kurdistan/Iran/g' morelli2010/nextstrain/metadata_nextstrain_country.tsv
-      sed -i 's/USA/United States of America/g' morelli2010/nextstrain/metadata_nextstrain_country.tsv
-
-
-**Cui 2013 Dataset**::
-
-      awk -F "\t" -v geoCol=6 'BEGIN{OFS=FS}{
-        if($geoCol != "BioSampleGeographicLocation" && $geoCol != "?"){
-          geoColLen=split($geoCol,geoColSplit,",");
-          $geoCol=geoColSplit[geoColLen];
-          gsub(/^ /,"",$geoCol)
-        }
-        print $0}' cui2013/nextstrain/metadata_nextstrain_dates.tsv > cui2013/nextstrain/metadata_nextstrain_country.tsv
-
-      sed -i 's/USSR/Russia/g' cui2013/nextstrain/metadata_nextstrain_country.tsv
-      sed -i 's/Kurdistan/Iran/g' cui2013/nextstrain/metadata_nextstrain_country.tsv
-      sed -i 's/USA/United States of America/g' cui2013/nextstrain/metadata_nextstrain_country.tsv
-
-
 Geocode the GeographicLocation column to get lat lon coordinates.
-
-**Morelli 2010 Dataset**::
-
-      scripts/geocode_NextStrain.py \
-         --in-tsv morelli2010/nextstrain/metadata_nextstrain_country.tsv \
-         --loc-col BioSampleGeographicLocation \
-         --out-tsv morelli2010/nextstrain/metadata_nextstrain_geocode.tsv \
-         --out-lat-lon morelli2010/nextstrain/lat_longs.tsv \
-         --div country
-
-**Cui 2013 Dataset**::
-
-     scripts/geocode_NextStrain.py \
-        --in-tsv cui2013/nextstrain/metadata_nextstrain_country.tsv \
-        --loc-col BioSampleGeographicLocation \
-        --out-tsv cui2013/nextstrain/metadata_nextstrain_geocode.tsv \
-        --out-lat-lon cui2013/nextstrain/lat_longs.tsv \
-        --div country
-
 Replace the division name 'country' with our column name 'BioSampleGeographicLocation' in the lat lon file.
 
-**Morelli 2010 Dataset**::
+**Geocoding**::
 
-      sed -i 's/country/BioSampleGeographicLocation/g' morelli2010/nextstrain/lat_longs.tsv
+      project=morelli2010;
+      #project=cui2013;
 
-**Cui 2013 Dataset**::
+      awk -F "\t" -v geoCol=6 'BEGIN{OFS=FS}{
+        if($geoCol != "BioSampleGeographicLocation" && $geoCol != "?"){
+          geoColLen=split($geoCol,geoColSplit,",");
+          $geoCol=geoColSplit[geoColLen];
+          gsub(/^ /,"",$geoCol)
+        }
+        print $0}' $project/nextstrain/metadata_nextstrain_dates.tsv > $project/nextstrain/metadata_nextstrain_country.tsv
 
-      sed -i 's/country/BioSampleGeographicLocation/g' cui2013/nextstrain/lat_longs.tsv
+      sed -i 's/USSR/Russia/g' $project/nextstrain/metadata_nextstrain_country.tsv
+      sed -i 's/Kurdistan/Iran/g' $project/nextstrain/metadata_nextstrain_country.tsv
+      sed -i 's/USA/United States of America/g' $project/nextstrain/metadata_nextstrain_country.tsv
 
-Last Fixups. Standarize biovar spelling.
+      scripts/geocode_NextStrain.py \
+         --in-tsv $project/nextstrain/metadata_nextstrain_country.tsv \
+         --loc-col BioSampleGeographicLocation \
+         --out-tsv $project/nextstrain/metadata_nextstrain_geocode.tsv \
+         --out-lat-lon $project/nextstrain/lat_longs.tsv \
+         --div country
 
-**Morelli 2010 Dataset**::
-
-      sed -i 's/Mediaevalis/Medievalis/g' morelli2010/nextstrain/metadata_nextstrain_geocode.tsv
-
-**Cui 2013 Dataset**::
-
-      sed -i 's/Mediaevalis/Medievalis/g' cui2013/nextstrain/metadata_nextstrain_geocode.tsv
+      sed -i 's/country/BioSampleGeographicLocation/g' $project/nextstrain/lat_longs.tsv
 
 ------------
 
