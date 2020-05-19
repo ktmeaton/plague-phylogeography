@@ -688,12 +688,12 @@ if(!params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.s
     file snpeff_config from ch_snpeff_config_snippy_pairwise
 
     output:
+    file "*output*/${assembly_fna.baseName}" into ch_snippy_outdir_assembly
     file "output${params.snippy_ctg_depth}X/*/*"
     file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_variant_summary
     file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf_detect_density
     file "output${params.snippy_ctg_depth}X/*/*_snippy.bam" into ch_snippy_bam_pairwise_qualimap
     file "output${params.snippy_ctg_depth}X/*/*_snippy.csv" into ch_snippy_csv_snpEff_multiqc
-    file "*output*/${assembly_fna.baseName}" into ch_snippy_outdir_assembly
 
     // Shell script to execute
     script:
@@ -932,9 +932,9 @@ if(!params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.sk
     val snippy_outdir_path from ch_snippy_outdir_assembly_collect_multi
 
     output:
+    file "*"
     file "snippy-core.aln" into ch_snippy_core_aln_filter
     file "snippy-core.full.aln" into ch_snippy_core_full_aln_filter
-    file "*"
 
     // Shell script to execute
     script:
@@ -983,9 +983,9 @@ if(!params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip
     file snippy_core_full_aln from ch_snippy_core_full_aln_filter
 
     output:
-    file "${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_iqtree
     file "*.fasta"
     file "*.bed"
+    file "${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_iqtree
 
     // Shell script to execute
     script:
@@ -1036,8 +1036,8 @@ if(!params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snipp
     file snippy_core_filter_aln from ch_snippy_core_filter_iqtree
 
     output:
-    file "iqtree.core-filter*_bootstrap.treefile" into ch_iqtree_treefile_augur_refine
     file "iqtree*"
+    file "iqtree.core-filter*_bootstrap.treefile" into ch_iqtree_treefile_augur_refine
 
     // Shell script to execute
     script:
