@@ -315,6 +315,9 @@ Export the json files for an auspice server.
               --output morelli2010/nextstrain/morelli2010.json \
               --lat-longs morelli2010/nextstrain/lat_longs.tsv
 
+            cp morelli2010/nextstrain/morelli2010.json auspice/morelli2010Local.json
+            cp morelli2010/nextstrain/morelli2010.json auspice/plague-phylogeography_morelli2010Remote.json
+
 **Cui 2013 Dataset**::
 
           augur export v2 \
@@ -324,6 +327,9 @@ Export the json files for an auspice server.
               --auspice-config cui2013/nextstrain/auspice_config.json \
               --output cui2013/nextstrain/cui2013.json \
               --lat-longs cui2013/nextstrain/lat_longs.tsv
+
+              cp cui2013/nextstrain/cui2013.json auspice/cui2013Local.json
+              cp cui2013/nextstrain/cui2013.json auspice/plague-phylogeography_cui2013Remote.json
 
 
 ------------
