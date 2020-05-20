@@ -35,9 +35,10 @@ This is the exhibit abstract section.
 <!--                              Exhibit Format                             -->
 <!----------------------------------------------------------------------------->
 
-# [Exhibit Format](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?m=num_date&s=GCA_000013825.1_ASM1382v1_genomic)
+<!----------------------------------------------------------------------------->
+# [Exhibit](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?m=num_date&s=GCA_000013825.1_ASM1382v1_genomic)
 
-## Narrative Text
+---
 
 #### This demonstration explores a special form of a digital narrative. Scrollable text is presented in the left-side panel, with exhibit items and contextual images presented in the right-side panel.
 
@@ -54,7 +55,10 @@ This is the exhibit abstract section.
 
 ```
 
-# [Exhibit Data](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?m=num_date)
+<!----------------------------------------------------------------------------->
+# [Exhibit](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?m=num_date)
+
+---
 
 #### The exhibit objects here are samples of the plague bacterium, *Yersinia pestis*.
 
@@ -66,41 +70,63 @@ This is the exhibit abstract section.
 
 #### Through this analysis... purpose and questions....
 
+---
 
 ## Digital Exhibits
 
-* Built and powered by [NextStrain](https://nextstrain.org/).
-* Similar to [StoryMap](https://storymaps-classic.arcgis.com/en/).
+#### Built and powered by [NextStrain](https://nextstrain.org/).
+#### Digital Humanities Parallels: [StoryMap](https://storymaps-classic.arcgis.com/en/).
 
 <!----------------------------------------------------------------------------->
 <!--                             Idea Playground                             -->
 <!----------------------------------------------------------------------------->
 
-# [Playground of Ideas 1](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?m=num_date)
+<!----------------------------------------------------------------------------->
+# [Playground of Ideas](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remotel?d=map&p=full)
 
-## Heading
+---
 
-#### Writing
+## <b>Investigating Bias</b>
 
-# [Playground of Ideas 2](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote)
+#### Exhibits can be a powerful platform for discovering underlying problems and asking new questions.
 
-## Compare and Contextualize
+#### Recent human plague cases occurred most frequently in Madagascar, Congo, and Uganda.
 
-#### [Compare Datasets](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Local:community/ktmeaton/plague-phylogeography/cui2013Local?c=BioSampleGeographicLocation&m=num_date).
+<a href="https://www.economist.com/graphic-detail/2017/07/05/the-return-of-the-plague">
+  <img src="https://www.economist.com/img/b/1280/757/85/sites/default/files/20170708_WOM968_0.png" width="80%">
+        <p style='text-align: center;'>Reported Human Plague Cases (2010-2015)</p>
+</a>
 
-Example: Highlight the major increase in China samples.
-Also, deeper window into the past.
+#### Yet the DNA plague samples analyzed here don't reflect that. Instead there is a strong geographic bias towards samples collected in China.
+
+#### [Compare disease networks by study (2010 vs. 2013)](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Local:community/ktmeaton/plague-phylogeography/cui2013Local?c=BioSampleGeographicLocation&m=num_date).
+
+<!----------------------------------------------------------------------------->
+# [Playground of Ideas](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?d=map&m=num_date&p=full&animate=1300-01-01,2006-01-01,1,0,30000)
+
+---
+
+## <b>Compare and Contextualize</b>
+
+#### How do the results here on a spread reconstruction compare to historical reconstructions from archival documents?
+
+<a href="https://doi.org/10.13140/RG.2.2.25362.25281">
+  <img src="https://www.researchgate.net/profile/Anne_Laudisoit2/publication/315837122/figure/fig1/AS:652961457897473@1532689551350/a-leftThe-origin-and-spread-of-Justinian-plague.png" width="80%">
+        <p style='text-align: center;'>Origins and Spread of the Plague</p>
+</a>
 
 <!----------------------------------------------------------------------------->
 <!--                            Interdisciplinary                            -->
 <!----------------------------------------------------------------------------->
 
+<!----------------------------------------------------------------------------->
 # [Interdisciplinary 1](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?d=map&m=num_date&p=full&animate=1300-01-01,2006-01-01,1,0,30000)
 
 ## Archival Work
 
 Biraben Plague Documents
 
+<!----------------------------------------------------------------------------->
 # [Interdisciplinary 2](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?c=BioSampleHost&legend=open)
 
 ## Ecology
@@ -111,6 +137,7 @@ Cute Pictures of Rodents
 <!--                            Publish In Place                             -->
 <!----------------------------------------------------------------------------->
 
+<!----------------------------------------------------------------------------->
 # [Publish in Place](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote)
 
 ## Heading
@@ -121,6 +148,7 @@ Writing
 <!--                               Conclusion                                -->
 <!----------------------------------------------------------------------------->
 
+<!----------------------------------------------------------------------------->
 # [Conclusion](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote)
 
 ## Heading
