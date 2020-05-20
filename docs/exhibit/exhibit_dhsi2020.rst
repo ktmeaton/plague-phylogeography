@@ -138,8 +138,8 @@ Code in the uncertainty dates of the following strains:
 
 **Shell Script**::
 
-      project=morelli2010;
-      #project=cui2013;
+      #project=morelli2010;
+      project=cui2013;
 
       sed -i 's/BioSampleCollectionDate/date/g' $project/nextstrain/metadata_nextstrain_edit.tsv
       awk -F "\t" -v dateCol=5 -v strainCol=4 'BEGIN{OFS=FS}{
@@ -147,14 +147,8 @@ Code in the uncertainty dates of the following strains:
           gsub(/>|<|?/,"",$dateCol);
           $dateCol=$dateCol"-XX-XX";
         }
-        if ($strainCol == "Pestoides A" || $strainCol == "Pestoides F"){
-          $dateCol="[1900.00:1983.99]"
-        }
-        if ($strainCol == "India195"){
-          $dateCol="[1898.99:1950.00]"
-        }
-        if ($strainCol == "G8786"){
-          $dateCol="[1900.00:1999.99]"
+        if ($strainCol == "Pestoides A" || $strainCol == "Pestoides F" || $strainCol == "India195" || $strainCol == "G8786"){
+          $dateCol="20XX-XX-XX"
         }
         print $0}' $project/nextstrain/metadata_nextstrain_edit.tsv > $project/nextstrain/metadata_nextstrain_dates.tsv
 
@@ -198,9 +192,10 @@ Replace the division name 'country' with our column name 'BioSampleGeographicLoc
 TimeTree Phylogeny
 ------------------
 
-Estimate a time-scaled phylogeny. Re-root with strain Pestoides F (Accession: GCA_000016445.1_ASM1644v1).
+Estimate a time-scaled phylogeny. Broaden year bounds for cui2013 dataset.
 
-**Shell Script**::
+
+**Augur Refine**::
 
       #project=morelli2010;
       project=cui2013;
@@ -217,6 +212,7 @@ Estimate a time-scaled phylogeny. Re-root with strain Pestoides F (Accession: GC
           --date-confidence \
           --date-inference joint \
           --clock-filter-iqd 3 \
+          --year-bounds 1900 1984 \
           2>&1 | tee $project/nextstrain/augur_refine.log
 
       cp plots/* $project/nextstrain/
@@ -234,6 +230,7 @@ Estimate a time-scaled phylogeny. Re-root with strain Pestoides F (Accession: GC
         --gtr infer \
         --coalescent opt \
         --branch-length-mode auto \
+        --confidence \
         --max-iter 2 \
         --clock-filter 3 \
         2>&1 | tee $project/treetime/augur_mimic_1/augur_mimic_1.log
@@ -256,10 +253,10 @@ Ancestral Traits
 Reconstruction of ancestral traits.
 Note: Investigate the  --sampling-bias-correction option.
 
-**Shell Script**::
+**Augur Traits**::
 
-      project=morelli2010;
-      #project=cui2013;
+      #project=morelli2010;
+      project=cui2013;
 
       augur traits \
           --tree $project/nextstrain/tree.nwk \
@@ -278,8 +275,8 @@ Export the json files for an auspice server.
 
 **ShellScript**::
 
-      project=morelli2010;
-      #project=cui2013;
+      #project=morelli2010;
+      project=cui2013;
 
       augur export v2 \
           --tree $project/nextstrain/tree.nwk \
