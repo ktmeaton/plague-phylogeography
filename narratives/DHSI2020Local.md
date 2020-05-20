@@ -13,7 +13,7 @@ authorLinks:
   - https://www.biology.mcmaster.ca/component/comprofiler/userprofile/golding.html
   - https://socialsciences.mcmaster.ca/people/poinar-hendrik
 
-dataset: "http://localhost:4000/cui2013Local?d=map"
+dataset: "http://localhost:4000/cui2013Local?d=map&c=BioSampleGeographicLocation"
 abstract: "
 This is the exhibit abstract section.
 

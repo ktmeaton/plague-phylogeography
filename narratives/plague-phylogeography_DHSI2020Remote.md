@@ -13,7 +13,7 @@ authorLinks:
   - https://www.biology.mcmaster.ca/component/comprofiler/userprofile/golding.html
   - https://socialsciences.mcmaster.ca/people/poinar-hendrik
 
-dataset: "https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?d=map"
+dataset: "https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?d=map&c=BioSampleGeographicLocation"
 abstract: "
 This is the exhibit abstract section.
 
