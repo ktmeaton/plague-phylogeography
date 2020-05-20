@@ -50,7 +50,7 @@ http://localhost:4000/narratives/DHSI2020Local
 
 #### The exhibit in this demonstration explores a special form of a digital narrative.
 
-#### Scrollable text is presented in the left-side panel, with exhibit items and contextual images presented in the right-side panel.
+#### Scrollable text is presented in the left panel, with exhibit items and contextual images presented in the right panel.
 
 #### Just as in a traditional paper, the text and exhibit media should support each other.
 
@@ -78,23 +78,23 @@ http://localhost:4000/narratives/DHSI2020Local
 
 #### This pathogenic organism causes the debilitating disease "Plague" which is infamous for causing historic pandemics such as the Black Death (14th century).
 
-#### These plague samples were collected over a period of 100 years and the DNA has been sequenced and made publicly available.
+#### These plague samples were collected over a period of ~100 years and the DNA has been sequenced and made publicly available.
 
-#### The DNA sequences were compared against each other to group similar samples together, creating a "disease network" or phylogeny (middle panel).
+#### The DNA sequences were compared against each other to group similar samples together, creating a "disease network" or phylogenetic tree (middle panel).
 
 #### As location data is available, the samples and their network can be plotted on a map (right panel).
 
 ---
 
-#### Digital Humanities Parallels: [StoryMap](https://storymaps-classic.arcgis.com/en/).
 #### Built with [NextStrain](https://nextstrain.org/).
+#### Digital Humanities Parallels: [StoryMap](https://storymaps-classic.arcgis.com/en/).
 
 <!----------------------------------------------------------------------------->
 <!--                             Idea Playground                             -->
 <!----------------------------------------------------------------------------->
 
 <!----------------------------------------------------------------------------->
-# [Playground of Ideas](http://localhost:4000/cui2013Local?d=map&m=num_date&p=full&animate=1300-01-01,2006-01-01,1,0,30000)
+# [Playground of Ideas](http://localhost:4000/cui2013Local?c=BioSampleGeographicLocation&legend=closed&d=map&m=num_date&p=full&animate=-393,2006-01-05,1,1,15000)
 
 ---
 
@@ -112,7 +112,7 @@ http://localhost:4000/narratives/DHSI2020Local
 #### Why is there such a disparity?
 
 <!----------------------------------------------------------------------------->
-# [Playground of Ideas](http://localhost:4000/cui2013Locall?d=map&p=full)
+# [Playground of Ideas](http://localhost:4000/cui2013Locall?d=map&p=full&c=BioSampleGeographicLocation)
 
 ---
 
@@ -129,7 +129,9 @@ http://localhost:4000/narratives/DHSI2020Local
 
 #### Yet the DNA plague samples analyzed here don't reflect that. Instead there is a strong geographic bias towards samples collected in China.
 
-#### [Compare disease networks by study (2010 vs. 2013)](http://localhost:4000/morelli2010Local:cui2013Local?c=BioSampleGeographicLocation&m=num_date).
+#### Open up a new view commparing [disease networks from a study in 2010 vs. 2013](http://localhost:4000/morelli2010Local:cui2013Local?c=BioSampleGeographicLocation&m=num_date). Mouse over "China" in the legend, and 4/13 bubbles (31%) will enlarge on the left side (2010) and 110/131 (84%) will appear on the right side (2013).
+
+#### Considering how new studies influence the composition of public data is a critical part of digital scholarship.
 
 
 <!----------------------------------------------------------------------------->
@@ -141,9 +143,11 @@ http://localhost:4000/narratives/DHSI2020Local
 
 ---
 
-#### Possible integrations include other digital humanties projects such as [Biraben 2.0: A Black Death Digital Archive](https://www.radcliffe.harvard.edu/seminars-and-workshops/biraben-black-death-digital-archive). The critique and digitzation of of 7,000 archival mentions of plague from the 14th-18th century.
+## <b>Archaeology</b>
 
-#### Currently no European samples are included in the exhibit. However, over 50 plague DNA samples have been retrieved from the remains of victims of ancient outbreaks.
+#### In contrast to geographic over-sampling, currently no European samples are included in this exhibit.
+
+#### However, over 50 plague DNA samples have been retrieved from the remains of victims of ancient outbreaks.
 <a href="https://www.history.com/news/is-the-black-death-the-ancestor-of-all-modern-plagues">
   <img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
         <p style='text-align: center;'>London's East Smithfield "plague pits", Black Death.</p>
@@ -151,7 +155,9 @@ http://localhost:4000/narratives/DHSI2020Local
 
 #### A recent study even identified the plague bacterium in skeletal remains from [Sweden 4,900 years ago](https://doi.org/10.1016/j.cell.2018.11.005)!
 
-#### ...New perspectives on the past.
+## <b>Archives</b>
+
+#### Additional integrations include digital humanties projects such as [Biraben 2.0: A Black Death Digital Archive](https://www.radcliffe.harvard.edu/seminars-and-workshops/biraben-black-death-digital-archive). This project involves the critique and digitzation of of 7,000 archival mentions of plague from the 14th-18th century.
 
 ```auspiceMainDisplayMarkdown
 
@@ -171,7 +177,7 @@ http://localhost:4000/narratives/DHSI2020Local
 
 ## Ecology
 
-#### Highlighted plague samples collected from marmots (*Marmota*).
+#### In the accompanying data panel, plague samples collected from marmots (*Marmota*) have been highlighted.
 
 #### Marmots live all throughout Asia, Europe, and North America. But it appears that plague has only been isolated from marmots found in China and Mongolia.
 

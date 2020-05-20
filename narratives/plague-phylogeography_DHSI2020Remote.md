@@ -15,19 +15,27 @@ authorLinks:
 
 dataset: "https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?d=map&c=BioSampleGeographicLocation&legend=closed"
 abstract: "
-This is the exhibit abstract section.
+This demonstration explores how creating digital exhibits can be useful for in-development projects, not just those reaching the final stages.
 
-## Table of Contents
+### There are 3 main points that have stood out as I’ve experimented with different platforms and projects:
 
 ###
 <pre>
-   [Playgound of Ideas](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=1)
+   1. [Playgound of Ideas](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=1)
 <br>
-   [Interdisciplinary](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=1)
+   2. [Interdisciplinary Work](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=1)
 <br>
-   [Publish In Place](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=1)
+   3. [Publish In Place](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=1)
 </pre>
 </p>
+
+### We'll first begin with an introduction to this exhibit's format.
+
+### You can navigate through the exhibit with the arrows at the top and bottom of this panel, by using your keyboard arrow keys, or by scrolling with your mouse.
+
+### If you are viewing this as a video, the link to the exhibit is:
+
+https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote
 "
 ---
 
@@ -40,9 +48,15 @@ This is the exhibit abstract section.
 
 ---
 
-#### This demonstration explores a special form of a digital narrative. Scrollable text is presented in the left-side panel, with exhibit items and contextual images presented in the right-side panel.
+#### The exhibit in this demonstration explores a special form of a digital narrative.
 
-#### Presents an opportunity to present a guided narrative.
+#### Scrollable text is presented in the left panel, with exhibit items and contextual images presented in the right panel.
+
+#### Just as in a traditional paper, the text and exhibit media should support each other.
+
+#### An added benefit of digital publishing is that all images are hyperlinks, and when clicked, will take you to their source.
+
+#### The image to the right depicts the London plagues in the 17th century, and accompanies an article about the surprising similarities bewteen past and modern pandemics.
 
 ```auspiceMainDisplayMarkdown
 
@@ -55,28 +69,24 @@ This is the exhibit abstract section.
 
 ```
 
----------------------------------------
-
 <!----------------------------------------------------------------------------->
 # [Exhibit](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?m=num_date)
 
 ---
 
-#### The exhibit objects here are samples of the plague bacterium, *Yersinia pestis*.
+#### The 'objects' in this exhibit are samples of the plague bacterium, *Yersinia pestis*.
 
 #### This pathogenic organism causes the debilitating disease "Plague" which is infamous for causing historic pandemics such as the Black Death (14th century).
 
-#### These plague samples were collected over a period of 100 years and the DNA has been sequenced and made publicly available.
+#### These plague samples were collected over a period of ~100 years and the DNA has been sequenced and made publicly available.
 
-#### The DNA sequences were compared against each other to group similar samples together, creating a "disease network" (or phylogeny).
+#### The DNA sequences were compared against each other to group similar samples together, creating a "disease network" or phylogenetic tree (middle panel).
 
-#### Through this analysis... purpose and questions....
+#### As location data is available, the samples and their network can be plotted on a map (right panel).
 
 ---
 
-## Digital Exhibits
-
-#### Built and powered by [NextStrain](https://nextstrain.org/).
+#### Built with [NextStrain](https://nextstrain.org/).
 #### Digital Humanities Parallels: [StoryMap](https://storymaps-classic.arcgis.com/en/).
 
 <!----------------------------------------------------------------------------->
@@ -84,7 +94,25 @@ This is the exhibit abstract section.
 <!----------------------------------------------------------------------------->
 
 <!----------------------------------------------------------------------------->
-# [Playground of Ideas](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remotel?d=map&p=full)
+# [Playground of Ideas](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?c=BioSampleGeographicLocation&legend=closed&d=map&m=num_date&p=full&animate=-393,2006-01-05,1,1,15000)
+
+---
+
+## <b>Compare and Contextualize</b>
+
+#### How does the spread network based on DNA evidence compare to maps based on archival sources?
+
+<a href="https://doi.org/10.13140/RG.2.2.25362.25281">
+  <img src="https://www.researchgate.net/profile/Anne_Laudisoit2/publication/315837122/figure/fig1/AS:652961457897473@1532689551350/a-leftThe-origin-and-spread-of-Justinian-plague.png" width="80%">
+        <p style='text-align: center;'>Origins and Spread of the Plague</p>
+</a>
+
+#### This map proposed the northward movement of plague from East Africa into the Mediterranean. This connection isn't observed in the map to the right, and East Asian samples (ex. China, Mongolia) instead have a more pronounced presence.
+
+#### Why is there such a disparity?
+
+<!----------------------------------------------------------------------------->
+# [Playground of Ideas](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remotel?d=map&p=full&c=BioSampleGeographicLocation)
 
 ---
 
@@ -101,21 +129,10 @@ This is the exhibit abstract section.
 
 #### Yet the DNA plague samples analyzed here don't reflect that. Instead there is a strong geographic bias towards samples collected in China.
 
-#### [Compare disease networks by study (2010 vs. 2013)](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Local:community/ktmeaton/plague-phylogeography/cui2013Local?c=BioSampleGeographicLocation&m=num_date).
+#### Open up a new view commparing [disease networks from a study in 2010 vs. 2013](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Local:community/ktmeaton/plague-phylogeography/cui2013Local?c=BioSampleGeographicLocation&m=num_date). Mouse over "China" in the legend, and 4/13 bubbles (31%) will enlarge on the left side (2010) and 110/131 (84%) will appear on the right side (2013).
 
-<!----------------------------------------------------------------------------->
-# [Playground of Ideas](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?d=map&m=num_date&p=full&animate=1300-01-01,2006-01-01,1,0,30000)
+#### Considering how new studies influence the composition of public data is a critical part of digital scholarship.
 
----
-
-## <b>Compare and Contextualize</b>
-
-#### How do the results here on a spread reconstruction compare to historical reconstructions from archival documents?
-
-<a href="https://doi.org/10.13140/RG.2.2.25362.25281">
-  <img src="https://www.researchgate.net/profile/Anne_Laudisoit2/publication/315837122/figure/fig1/AS:652961457897473@1532689551350/a-leftThe-origin-and-spread-of-Justinian-plague.png" width="80%">
-        <p style='text-align: center;'>Origins and Spread of the Plague</p>
-</a>
 
 <!----------------------------------------------------------------------------->
 <!--                            Interdisciplinary                            -->
@@ -126,9 +143,11 @@ This is the exhibit abstract section.
 
 ---
 
-#### Possible integrations include other digital humanties projects such as [Biraben 2.0: A Black Death Digital Archive](https://www.radcliffe.harvard.edu/seminars-and-workshops/biraben-black-death-digital-archive). The critique and digitzation of of 7,000 archival mentions of plague from the 14th-18th century.
+## <b>Archaeology</b>
 
-#### Currently no European samples are included in the exhibit. However, over 50 plague DNA samples have been retrieved from the remains of victims of ancient outbreaks.
+#### In contrast to geographic over-sampling, currently no European samples are included in this exhibit.
+
+#### However, over 50 plague DNA samples have been retrieved from the remains of victims of ancient outbreaks.
 <a href="https://www.history.com/news/is-the-black-death-the-ancestor-of-all-modern-plagues">
   <img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
         <p style='text-align: center;'>London's East Smithfield "plague pits", Black Death.</p>
@@ -136,7 +155,9 @@ This is the exhibit abstract section.
 
 #### A recent study even identified the plague bacterium in skeletal remains from [Sweden 4,900 years ago](https://doi.org/10.1016/j.cell.2018.11.005)!
 
-#### ...New perspectives on the past.
+## <b>Archives</b>
+
+#### Additional integrations include digital humanties projects such as [Biraben 2.0: A Black Death Digital Archive](https://www.radcliffe.harvard.edu/seminars-and-workshops/biraben-black-death-digital-archive). This project involves the critique and digitzation of of 7,000 archival mentions of plague from the 14th-18th century.
 
 ```auspiceMainDisplayMarkdown
 
@@ -156,7 +177,7 @@ This is the exhibit abstract section.
 
 ## Ecology
 
-#### Highlighted plague samples collected from marmots (*Marmota*).
+#### In the accompanying data panel, plague samples collected from marmots (*Marmota*) have been highlighted.
 
 #### Marmots live all throughout Asia, Europe, and North America. But it appears that plague has only been isolated from marmots found in China and Mongolia.
 
@@ -193,7 +214,7 @@ https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2
 
 #### Link to the [2010 study interactive data](http://localhost:4000/morelli2010Local?m=num_date).
 
-https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Local?m=num_date
+http://localhost:4000/morelli2010Local?m=num_date
 
 ---
 
