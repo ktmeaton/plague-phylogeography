@@ -15,19 +15,27 @@ authorLinks:
 
 dataset: "http://localhost:4000/cui2013Local?d=map&c=BioSampleGeographicLocation&legend=closed"
 abstract: "
-This is the exhibit abstract section.
+This demonstration explores how creating digital exhibits can be useful for in-development projects, not just those reaching the final stages.
 
-## Table of Contents
+### There are 3 main points that have stood out as I’ve experimented with different platforms and projects:
 
 ###
 <pre>
-   [Playgound of Ideas](http://localhost:4000/narratives/DHSI2020Local?n=1)
+   1. [Playgound of Ideas](http://localhost:4000/narratives/DHSI2020Local?n=1)
 <br>
-   [Interdisciplinary](http://localhost:4000/narratives/DHSI2020Local?n=1)
+   2. [Interdisciplinary Work](http://localhost:4000/narratives/DHSI2020Local?n=1)
 <br>
-   [Publish In Place](http://localhost:4000/narratives/DHSI2020Local?n=1)
+   3. [Publish In Place](http://localhost:4000/narratives/DHSI2020Local?n=1)
 </pre>
 </p>
+
+### We'll first begin with an introduction to this exhibit's format.
+
+### You can navigate through the exhibit with the arrows at the top and bottom of this panel, by using your keyboard arrow keys, or by scrolling with your mouse.
+
+### If you are viewing this as a video, the link to the exhibit is:
+
+http://localhost:4000/narratives/DHSI2020Local
 "
 ---
 
@@ -40,9 +48,15 @@ This is the exhibit abstract section.
 
 ---
 
-#### This demonstration explores a special form of a digital narrative. Scrollable text is presented in the left-side panel, with exhibit items and contextual images presented in the right-side panel.
+#### The exhibit in this demonstration explores a special form of a digital narrative.
 
-#### Presents an opportunity to present a guided narrative.
+#### Scrollable text is presented in the left-side panel, with exhibit items and contextual images presented in the right-side panel.
+
+#### Just as in a traditional paper, the text and exhibit media should support each other.
+
+#### An added benefit of digital publishing is that all images are hyperlinks, and when clicked, will take you to their source.
+
+#### The image to the right depicts the London plagues in the 17th century, and accompanies an article about the surprising similarities bewteen past and modern pandemics.
 
 ```auspiceMainDisplayMarkdown
 
@@ -60,26 +74,42 @@ This is the exhibit abstract section.
 
 ---
 
-#### The exhibit objects here are samples of the plague bacterium, *Yersinia pestis*.
+#### The 'objects' in this exhibit are samples of the plague bacterium, *Yersinia pestis*.
 
 #### This pathogenic organism causes the debilitating disease "Plague" which is infamous for causing historic pandemics such as the Black Death (14th century).
 
 #### These plague samples were collected over a period of 100 years and the DNA has been sequenced and made publicly available.
 
-#### The DNA sequences were compared against each other to group similar samples together, creating a "disease network" (or phylogeny).
+#### The DNA sequences were compared against each other to group similar samples together, creating a "disease network" or phylogeny (middle panel).
 
-#### Through this analysis... purpose and questions....
+#### As location data is available, the samples and their network can be plotted on a map (right panel).
 
 ---
 
-## Digital Exhibits
-
-#### Built and powered by [NextStrain](https://nextstrain.org/).
 #### Digital Humanities Parallels: [StoryMap](https://storymaps-classic.arcgis.com/en/).
+#### Built with [NextStrain](https://nextstrain.org/).
 
 <!----------------------------------------------------------------------------->
 <!--                             Idea Playground                             -->
 <!----------------------------------------------------------------------------->
+
+<!----------------------------------------------------------------------------->
+# [Playground of Ideas](http://localhost:4000/cui2013Local?d=map&m=num_date&p=full&animate=1300-01-01,2006-01-01,1,0,30000)
+
+---
+
+## <b>Compare and Contextualize</b>
+
+#### How does the spread network based on DNA evidence compare to maps based on archival sources?
+
+<a href="https://doi.org/10.13140/RG.2.2.25362.25281">
+  <img src="https://www.researchgate.net/profile/Anne_Laudisoit2/publication/315837122/figure/fig1/AS:652961457897473@1532689551350/a-leftThe-origin-and-spread-of-Justinian-plague.png" width="80%">
+        <p style='text-align: center;'>Origins and Spread of the Plague</p>
+</a>
+
+#### This map proposed the northward movement of plague from East Africa into the Mediterranean. This connection isn't observed in the map to the right, and East Asian samples (ex. China, Mongolia) instead have a more pronounced presence.
+
+#### Why is there such a disparity?
 
 <!----------------------------------------------------------------------------->
 # [Playground of Ideas](http://localhost:4000/cui2013Locall?d=map&p=full)
@@ -101,19 +131,6 @@ This is the exhibit abstract section.
 
 #### [Compare disease networks by study (2010 vs. 2013)](http://localhost:4000/morelli2010Local:cui2013Local?c=BioSampleGeographicLocation&m=num_date).
 
-<!----------------------------------------------------------------------------->
-# [Playground of Ideas](http://localhost:4000/cui2013Local?d=map&m=num_date&p=full&animate=1300-01-01,2006-01-01,1,0,30000)
-
----
-
-## <b>Compare and Contextualize</b>
-
-#### How do the results here on a spread reconstruction compare to historical reconstructions from archival documents?
-
-<a href="https://doi.org/10.13140/RG.2.2.25362.25281">
-  <img src="https://www.researchgate.net/profile/Anne_Laudisoit2/publication/315837122/figure/fig1/AS:652961457897473@1532689551350/a-leftThe-origin-and-spread-of-Justinian-plague.png" width="80%">
-        <p style='text-align: center;'>Origins and Spread of the Plague</p>
-</a>
 
 <!----------------------------------------------------------------------------->
 <!--                            Interdisciplinary                            -->
