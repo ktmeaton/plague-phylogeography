@@ -21,7 +21,7 @@ This demonstration explores the role digital exhibits play in on-going work as o
 
 ###
 <pre>
-   1. [Playgound of Ideas](http://localhost:4000/narratives/DHSI2020Local?n=3)
+   1. [Playground of Ideas](http://localhost:4000/narratives/DHSI2020Local?n=3)
 <br>
    2. [Interdisciplinary Perspectives](http://localhost:4000/narratives/DHSI2020Local?n=5)
 <br>
@@ -56,7 +56,7 @@ http://localhost:4000/narratives/DHSI2020Local
 
 #### An added benefit of digital publishing is that all images are hyperlinks, and when clicked, will take you to their source.
 
-#### The image to the right depicts the London plagues in the 17th century, and accompanies an article about the surprising similarities bewteen past and modern pandemics.
+#### The image to the right depicts the London plagues in the 17th century, and accompanies an article about the surprising similarities between past and modern pandemics.
 
 ```auspiceMainDisplayMarkdown
 
@@ -131,7 +131,7 @@ http://localhost:4000/narratives/DHSI2020Local
 
 #### Yet the DNA plague samples analyzed here don't reflect that. Instead there is a strong geographic bias towards samples collected in China.
 
-#### Open up a new view commparing [disease networks from a study in 2010 vs. 2013](http://localhost:4000/morelli2010Local:cui2013Local?c=BioSampleGeographicLocation&m=num_date). Mouse over "China" in the legend, and 4/13 bubbles (31%) will enlarge on the left side (2010) and 110/131 (84%) will appear on the right side (2013).
+#### Open up a new view comparing [disease networks from a study in 2010 vs. 2013](http://localhost:4000/morelli2010Local:cui2013Local?c=BioSampleGeographicLocation&m=num_date). Mouse over "China" in the legend, and 4/13 bubbles (31%) will enlarge on the left side (2010) and 110/131 (84%) will appear on the right side (2013).
 
 #### Considering how new studies influence the composition of public data is a critical part of digital scholarship.
 
@@ -188,7 +188,7 @@ http://localhost:4000/narratives/DHSI2020Local
         <p style='text-align: center;'>Marmots in Qinghai Province, China. Jason Lee, Reuters.</p>
 </a>
 
-#### What about North American and European marmots? Are they immune?
+#### What about North American and European marmots? Are they immune? More likely, this is yet again geographic bias.
 
 <a href="https://commons.wikimedia.org/wiki/File:Marmot_on_rocks.jpg">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Marmot_on_rocks.jpg/800px-Marmot_on_rocks.jpg" width="70%">
@@ -252,7 +252,7 @@ https://plague-phylogeography.readthedocs.io/en/latest/exhibit/exhibit_link.html
 
 #### My rewarding experiences working with digital exhibits tend to encompass three features.
 
-#### 1. Many exhibit platforms can also serve as a tool for exploratory data analysis. Evoking the sensation of a [Playgound of Ideas](http://localhost:4000/narratives/DHSI2020Local?n=3) means feeling free to purse your research question, and to discover unexpected ones along the way.
+#### 1. Many exhibit platforms can also serve as a tool for exploratory data analysis. Evoking the sensation of a [Playground of Ideas](http://localhost:4000/narratives/DHSI2020Local?n=3) means feeling free to purse your research question, and to discover unexpected ones along the way.
 
 #### 2. Having to distill each page down to basic takeaways with supporting literature/multimedia, can get you out of tunnel vision and incorporate more [Interdisciplinary Perspectives](http://localhost:4000/narratives/DHSI2020Local?n=5).
 
