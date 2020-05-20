@@ -96,7 +96,7 @@ http://localhost:4000/narratives/DHSI2020Local
 <!----------------------------------------------------------------------------->
 
 <!----------------------------------------------------------------------------->
-# [Playground of Ideas](http://localhost:4000/cui2013Local?c=BioSampleGeographicLocation&legend=closed&d=map&m=num_date&p=full&animate=-393,2006-01-05,1,1,15000)
+# [Playground of Ideas](http://localhost:4000/cui2013Local?c=BioSampleGeographicLocation&legend=closed&d=map&m=num_date&p=full&animate=-393,2006-01-05,0,1,15000)
 
 ---
 

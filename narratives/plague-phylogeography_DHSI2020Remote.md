@@ -96,7 +96,7 @@ https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2
 <!----------------------------------------------------------------------------->
 
 <!----------------------------------------------------------------------------->
-# [Playground of Ideas](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?c=BioSampleGeographicLocation&legend=closed&d=map&m=num_date&p=full&animate=-393,2006-01-05,1,1,15000)
+# [Playground of Ideas](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?c=BioSampleGeographicLocation&legend=closed&d=map&m=num_date&p=full&animate=-393,2006-01-05,0,1,15000)
 
 ---
 
@@ -131,7 +131,7 @@ https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2
 
 #### Yet the DNA plague samples analyzed here don't reflect that. Instead there is a strong geographic bias towards samples collected in China.
 
-#### Open up a new view commparing [disease networks from a study in 2010 vs. 2013](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Local:community/ktmeaton/plague-phylogeography/cui2013Local?c=BioSampleGeographicLocation&m=num_date). Mouse over "China" in the legend, and 4/13 bubbles (31%) will enlarge on the left side (2010) and 110/131 (84%) will appear on the right side (2013).
+#### Open up a new view commparing [disease networks from a study in 2010 vs. 2013](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/morelli2010Local:community/narratives/ktmeaton/plague-phylogeography/cui2013Local?c=BioSampleGeographicLocation&m=num_date). Mouse over "China" in the legend, and 4/13 bubbles (31%) will enlarge on the left side (2010) and 110/131 (84%) will appear on the right side (2013).
 
 #### Considering how new studies influence the composition of public data is a critical part of digital scholarship.
 
@@ -222,7 +222,7 @@ https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2
 
 #### Link to the [2010 study interactive data](http://localhost:4000/morelli2010Local?m=num_date).
 
-http://localhost:4000/morelli2010Local?m=num_date
+https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Local?m=num_date
 
 ---
 
