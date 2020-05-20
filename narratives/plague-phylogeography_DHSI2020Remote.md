@@ -21,11 +21,11 @@ This is the exhibit abstract section.
 
 ###
 <pre>
-   [Playgound of Ideas](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/morelli2010Local?n=1)
+   [Playgound of Ideas](http://localhost:4000/narratives/morelli2010Local?n=1)
 <br>
-   [Interdisciplinary](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/morelli2010Local?n=1)
+   [Interdisciplinary](http://localhost:4000/narratives/morelli2010Local?n=1)
 <br>
-   [Publish In Place](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/morelli2010Local?n=1)
+   [Publish In Place](http://localhost:4000/narratives/morelli2010Local?n=1)
 </pre>
 </p>
 "
@@ -49,23 +49,25 @@ This is the exhibit abstract section.
 <!--                             Idea Playground                             -->
 <!----------------------------------------------------------------------------->
 
-# [Playground of Ideas](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Remote:cui2013Local)
+# [Playground of Ideas 1](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Remote)
 
 ## Heading
 
 #### Writing
 
+# [Playground of Ideas 2](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Remote)
+
 ## Compare and Contextualize
 
-#### [Compare Datasets](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Remote:cui2013Local).
+#### [Compare Datasets](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Remote:community/ktmeaton/plague-phylogeography/cui2013Remote).
 
 <!----------------------------------------------------------------------------->
 <!--                            Interdisciplinary                            -->
 <!----------------------------------------------------------------------------->
 
-# [Interdisciplinary 1](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Remote:cui2013Local)
+# [Interdisciplinary 1](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Remote)
 
-## Cross-Compare
+## Archival Work
 
 Biraben Plague Documents
 
@@ -75,17 +77,21 @@ Biraben Plague Documents
 
 Cute Pictures of Rodents
 
-# [Interdisciplinary 3](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Remote)
-
-## Archival Work
-
-Biraben Plague Documents
-
 <!----------------------------------------------------------------------------->
 <!--                            Publish In Place                             -->
 <!----------------------------------------------------------------------------->
 
 # [Publish in Place](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Remote)
+
+## Heading
+
+Writing
+
+<!----------------------------------------------------------------------------->
+<!--                               Conclusion                                -->
+<!----------------------------------------------------------------------------->
+
+# [Conclusion](https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Remote)
 
 ## Heading
 

@@ -49,11 +49,13 @@ This is the exhibit abstract section.
 <!--                             Idea Playground                             -->
 <!----------------------------------------------------------------------------->
 
-# [Playground of Ideas](http://localhost:4000/morelli2010Local:cui2013Local)
+# [Playground of Ideas 1](http://localhost:4000/morelli2010Local)
 
 ## Heading
 
 #### Writing
+
+# [Playground of Ideas 2](http://localhost:4000/morelli2010Local)
 
 ## Compare and Contextualize
 
@@ -63,9 +65,9 @@ This is the exhibit abstract section.
 <!--                            Interdisciplinary                            -->
 <!----------------------------------------------------------------------------->
 
-# [Interdisciplinary 1](http://localhost:4000/morelli2010Local:cui2013Local)
+# [Interdisciplinary 1](http://localhost:4000/morelli2010Local)
 
-## Cross-Compare
+## Archival Work
 
 Biraben Plague Documents
 
@@ -75,17 +77,21 @@ Biraben Plague Documents
 
 Cute Pictures of Rodents
 
-# [Interdisciplinary 3](http://localhost:4000/morelli2010Local)
-
-## Archival Work
-
-Biraben Plague Documents
-
 <!----------------------------------------------------------------------------->
 <!--                            Publish In Place                             -->
 <!----------------------------------------------------------------------------->
 
 # [Publish in Place](http://localhost:4000/morelli2010Local)
+
+## Heading
+
+Writing
+
+<!----------------------------------------------------------------------------->
+<!--                               Conclusion                                -->
+<!----------------------------------------------------------------------------->
+
+# [Conclusion](http://localhost:4000/morelli2010Local)
 
 ## Heading
 
