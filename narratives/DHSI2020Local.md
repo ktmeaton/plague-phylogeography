@@ -159,7 +159,7 @@ http://localhost:4000/narratives/DHSI2020Local
 
 ## <b>Archives</b>
 
-#### Additional integrations include digital humanties projects such as [Biraben 2.0: A Black Death Digital Archive](https://www.radcliffe.harvard.edu/seminars-and-workshops/biraben-black-death-digital-archive). This project involves the critique and digitzation of of 7,000 archival mentions of plague from the 14th-18th century.
+#### Additional European integrations could include digital humanities projects such as [Biraben 2.0: A Black Death Digital Archive](https://www.radcliffe.harvard.edu/seminars-and-workshops/biraben-black-death-digital-archive). This project involves the critique and digitization of 7,000 archival mentions of plague from the 14th-18th century.
 
 ```auspiceMainDisplayMarkdown
 

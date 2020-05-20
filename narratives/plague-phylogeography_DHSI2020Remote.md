@@ -159,7 +159,7 @@ https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2
 
 ## <b>Archives</b>
 
-#### Additional integrations include digital humanties projects such as [Biraben 2.0: A Black Death Digital Archive](https://www.radcliffe.harvard.edu/seminars-and-workshops/biraben-black-death-digital-archive). This project involves the critique and digitzation of of 7,000 archival mentions of plague from the 14th-18th century.
+#### Additional European integrations could include digital humanities projects such as [Biraben 2.0: A Black Death Digital Archive](https://www.radcliffe.harvard.edu/seminars-and-workshops/biraben-black-death-digital-archive). This project involves the critique and digitization of 7,000 archival mentions of plague from the 14th-18th century.
 
 ```auspiceMainDisplayMarkdown
 
@@ -220,9 +220,9 @@ https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2
 
 ---
 
-#### Link to the [2010 study interactive data](http://localhost:4000/morelli2010Local?m=num_date).
+#### Link to the [2010 study interactive data](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/morelli2010Local?m=num_date).
 
-https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Local?m=num_date
+https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/morelli2010Local?m=num_date
 
 ---
 
