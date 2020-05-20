@@ -120,18 +120,55 @@ This is the exhibit abstract section.
 <!----------------------------------------------------------------------------->
 
 <!----------------------------------------------------------------------------->
-# [Interdisciplinary 1](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?d=map&m=num_date&p=full&animate=1300-01-01,2006-01-01,1,0,30000)
+# [Interdisciplinary](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?d=map&m=num_date&p=full&animate=1300-01-01,2006-01-01,1,0,30000)
 
-## Archival Work
+---
 
-Biraben Plague Documents
+#### Possible integrations include other digital humanties projects such as [Biraben 2.0: A Black Death Digital Archive](https://www.radcliffe.harvard.edu/seminars-and-workshops/biraben-black-death-digital-archive). The critique and digitzation of of 7,000 archival mentions of plague from the 14th-18th century.
+
+#### Currently no European samples are included in the exhibit. However, over 50 plague DNA samples have been retrieved from the remains of victims of ancient outbreaks.
+<a href="https://www.history.com/news/is-the-black-death-the-ancestor-of-all-modern-plagues">
+  <img src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_686/MTU3ODc4NTk4NjgzOTI4Mjg3/image-placeholder-title.webp" width="70%">
+        <p style='text-align: center;'>London's East Smithfield "plague pits", Black Death.</p>
+</a>
+
+#### A recent study even identified the plague bacterium in skeletal remains from [Sweden 4,900 years ago](https://doi.org/10.1016/j.cell.2018.11.005)!
+
+#### ...New perspectives on the past.
+
+```auspiceMainDisplayMarkdown
+
+<div>
+<a href="https://doi.org/10.1038/s41598-017-13481-2">
+  <img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41598-017-13481-2/MediaObjects/41598_2017_13481_Fig1_HTML.jpg" width="80%">
+        <pre>                              Distribution of archival plague mentions and trade routes (1347-1760)                 </pre>
+</a>
+</div>
+
+```
 
 <!----------------------------------------------------------------------------->
-# [Interdisciplinary 2](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?c=BioSampleHost&legend=open)
+# [Interdisciplinary](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?c=BioSampleHost&legend=closed&f_BioSampleHost=Marmota%20baibacina,Marmota%20caudata,Marmota%20himalayana,Marmota%20sibirica&m=num_date)
+
+---
 
 ## Ecology
 
-Cute Pictures of Rodents
+#### Highlighted plague samples collected from marmots (*Marmota*).
+
+#### Marmots live all throughout Asia, Europe, and North America. But it appears that plague has only been isolated from marmots found in China and Mongolia.
+
+<a href="https://www.insider.com/mongolia-bubonic-plague-death-raw-marmot-meat-2019-5">
+  <img src="https://i.insider.com/5cd1614c93a152622611c785?width=1400&format=jpeg" width="70%">
+        <p style='text-align: center;'>Marmots in Qinghai Province, China. Jason Lee, Reuters.</p>
+</a>
+
+#### What about North American and European marmots?
+
+<a href="https://commons.wikimedia.org/wiki/File:Marmot_on_rocks.jpg">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Marmot_on_rocks.jpg/800px-Marmot_on_rocks.jpg" width="70%">
+        <p style='text-align: center;'>Yellow-bellied marmot at Yosemite National Park, USA. Inklein.</p>
+</a>
 
 <!----------------------------------------------------------------------------->
 <!--                            Publish In Place                             -->
@@ -140,9 +177,40 @@ Cute Pictures of Rodents
 <!----------------------------------------------------------------------------->
 # [Publish in Place](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote)
 
-## Heading
+---
 
-Writing
+#### Write as you work. Freeze the playground in place. Share. A different form of a working paper or conference presentation with different interactions.
+
+---
+
+#### Link to this [digital narrative](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote).
+
+https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote
+
+---
+
+#### Link to the [2010 study interactive data](http://localhost:4000/morelli2010Local?m=num_date).
+
+https://nextstrain.org/community/ktmeaton/plague-phylogeography/morelli2010Local?m=num_date
+
+---
+
+#### Link to the [2013 study interactive data](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?m=num_date).
+
+https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?m=num_date
+
+---
+
+#### Link to the [code repository](https://github.com/ktmeaton/plague-phylogeography).
+
+https://github.com/ktmeaton/plague-phylogeography
+
+---
+
+#### Link to the [reproducibility docs](https://plague-phylogeography.readthedocs.io/en/latest/exhibit/exhibit_link.html).
+
+https://plague-phylogeography.readthedocs.io/en/latest/exhibit/exhibit_link.html
+
 
 <!----------------------------------------------------------------------------->
 <!--                               Conclusion                                -->
