@@ -15,17 +15,17 @@ authorLinks:
 
 dataset: "https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?d=map&c=BioSampleGeographicLocation&legend=closed"
 abstract: "
-This demonstration explores how creating digital exhibits can be useful for in-development projects, not just those reaching the final stages.
+This demonstration explores the role digital exhibits play in on-going work as opposed to completed projects.
 
-### There are 3 main points that have stood out as I’ve experimented with different platforms and projects:
+### There are 3 main points that have stood out as I’ve experimented with different platforms and datasets:
 
 ###
 <pre>
-   1. [Playgound of Ideas](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=1)
+   1. [Playgound of Ideas](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=3)
 <br>
-   2. [Interdisciplinary Work](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=1)
+   2. [Interdisciplinary Perspectives](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=5)
 <br>
-   3. [Publish In Place](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=1)
+   3. [Publish In Place](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=7)
 </pre>
 </p>
 
@@ -84,6 +84,8 @@ https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2
 
 #### As location data is available, the samples and their network can be plotted on a map (right panel).
 
+#### To see more metadata, click EXPLORE THE DATA YOURSELF at the top right, and click a bubble in the middle panel.
+
 ---
 
 #### Built with [NextStrain](https://nextstrain.org/).
@@ -139,7 +141,7 @@ https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2
 <!----------------------------------------------------------------------------->
 
 <!----------------------------------------------------------------------------->
-# [Interdisciplinary](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?d=map&m=num_date&p=full&animate=1300-01-01,2006-01-01,1,0,30000)
+# [Interdisciplinary Perspectives](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?d=map&m=num_date&p=full&animate=1300-01-01,2006-01-01,1,0,30000)
 
 ---
 
@@ -171,11 +173,11 @@ https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2
 ```
 
 <!----------------------------------------------------------------------------->
-# [Interdisciplinary](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?c=BioSampleHost&legend=closed&f_BioSampleHost=Marmota%20baibacina,Marmota%20caudata,Marmota%20himalayana,Marmota%20sibirica&m=num_date)
+# [Interdisciplinary Perspectives](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote?c=BioSampleHost&legend=closed&f_BioSampleHost=Marmota%20baibacina,Marmota%20caudata,Marmota%20himalayana,Marmota%20sibirica&m=num_date)
 
 ---
 
-## Ecology
+## <b>Ecology</b>
 
 #### In the accompanying data panel, plague samples collected from marmots (*Marmota*) have been highlighted.
 
@@ -186,7 +188,7 @@ https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2
         <p style='text-align: center;'>Marmots in Qinghai Province, China. Jason Lee, Reuters.</p>
 </a>
 
-#### What about North American and European marmots?
+#### What about North American and European marmots? Are they immune?
 
 <a href="https://commons.wikimedia.org/wiki/File:Marmot_on_rocks.jpg">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Marmot_on_rocks.jpg/800px-Marmot_on_rocks.jpg" width="70%">
@@ -202,7 +204,13 @@ https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2
 
 ---
 
-#### Write as you work. Freeze the playground in place. Share. A different form of a working paper or conference presentation with different interactions.
+#### Datasets that are metadata-heavy can result in highly complex figures, or overly-simplified images where key information is missing.
+
+#### The ability to publish and share interactive visuals is a strong point for modern digital exhibits, where layers and panels can be shown or hidden.
+
+#### With the capability to incorporate text, you can freeze your idea playground in place and share it for feedback.
+
+#### In some cases, this also reduces the burden of requiring collaborators to have expensive or complex software to view proprietary file types.
 
 ---
 
@@ -242,6 +250,10 @@ https://plague-phylogeography.readthedocs.io/en/latest/exhibit/exhibit_link.html
 <!----------------------------------------------------------------------------->
 # [Conclusion](https://nextstrain.org/community/ktmeaton/plague-phylogeography/cui2013Remote)
 
-## Heading
+#### My rewarding experiences working with digital exhibits tend to encompass three features.
 
-Writing
+#### 1. Many exhibit platforms can also serve as a tool for exploratory data analysis. Evoking the sensation of a [Playgound of Ideas](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=3) means feeling free to purse your research question, and to discover unexpected ones along the way.
+
+#### 2. Having to distill each page down to basic takeaways with supporting literature/multimedia, can get you out of tunnel vision and incorporate more [Interdisciplinary Perspectives](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=5).
+
+#### 3. Fusing multiple stages of the research process in one software, which can be easily shared, provides alternatives for a number of collaborative hurdles. The ability to [Publish in Place](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote?n=7) without switching formats makes it more likely to get ideas out.
