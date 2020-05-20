@@ -73,6 +73,10 @@
             "latitude": -0.7264327,
             "longitude": 15.6419155
           },
+          "Russia": {
+            "latitude": 64.6863136,
+            "longitude": 97.7453061
+          },
           "Uganda": {
             "latitude": 1.5333554,
             "longitude": 32.2166578
@@ -103,10 +107,10 @@
     "children": [
       {
         "branch_attrs": {},
-        "name": "GCA_000007885.1_ASM788v1_genomic",
+        "name": "GCA_000016445.1_ASM1644v1_genomic",
         "node_attrs": {
           "BioSampleAccession": {
-            "value": "SAMN02602970"
+            "value": "SAMN02598373"
           },
           "BioSampleBiovar": {
             "confidence": {
@@ -117,31 +121,34 @@
           },
           "BioSampleGeographicLocation": {
             "confidence": {
-              "China": 1.0
+              "Russia": 1.0
             },
             "entropy": -1.000088900581841e-12,
-            "value": "China"
+            "value": "Russia"
           },
           "BioSampleHost": {
             "confidence": {
-              "Microtus brandti": 1.0
+              "Eothenomys miletus": 0.1442605172346924,
+              "Homo sapiens": 0.37886521881451146,
+              "Marmota himalayana": 0.14449042970643305,
+              "Microtus brandti": 0.1982212611179066
             },
-            "entropy": -1.000088900581841e-12,
-            "value": "Microtus brandti"
+            "entropy": 1.5168359629296841,
+            "value": "Homo sapiens"
           },
           "BioSampleStrain": {
-            "value": "91001"
+            "value": "Pestoides F"
           },
-          "div": 4.97754362714511e-05,
+          "div": 7.094922949623411e-05,
           "num_date": {
             "confidence": [
-              1970.101095890411,
-              1970.9986301369863
+              1950.0013698630137,
+              1984.9986338797814
             ],
-            "value": 1970.0013833947678
+            "value": 1984.998644850953
           },
           "raw_date": {
-            "value": "1970-XX-XX"
+            "value": "20XX-XX-XX"
           }
         }
       },
@@ -150,225 +157,45 @@
         "children": [
           {
             "branch_attrs": {},
-            "children": [
-              {
-                "branch_attrs": {},
-                "name": "GCA_000182485.1_ASM18248v1_genomic",
-                "node_attrs": {
-                  "BioSampleAccession": {
-                    "value": "SAMN02403941"
-                  },
-                  "BioSampleBiovar": {
-                    "confidence": {
-                      "Antiqua": 1.0
-                    },
-                    "entropy": -1.000088900581841e-12,
-                    "value": "Antiqua"
-                  },
-                  "BioSampleGeographicLocation": {
-                    "confidence": {
-                      "Nepal": 1.0
-                    },
-                    "entropy": -1.000088900581841e-12,
-                    "value": "Nepal"
-                  },
-                  "BioSampleHost": {
-                    "confidence": {
-                      "Homo sapiens": 1.0
-                    },
-                    "entropy": -1.000088900581841e-12,
-                    "value": "Homo sapiens"
-                  },
-                  "BioSampleStrain": {
-                    "value": "Nepal516"
-                  },
-                  "div": 4.613347152812435e-05,
-                  "num_date": {
-                    "confidence": [
-                      1967.0013698630137,
-                      1967.898904109589
-                    ],
-                    "value": 1967.0013833947678
-                  },
-                  "raw_date": {
-                    "value": "1967-XX-XX"
-                  }
-                }
-              },
-              {
-                "branch_attrs": {},
-                "children": [
-                  {
-                    "branch_attrs": {},
-                    "name": "GCA_000006645.1_ASM664v1_genomic",
-                    "node_attrs": {
-                      "BioSampleAccession": {
-                        "value": "SAMN02604093"
-                      },
-                      "BioSampleBiovar": {
-                        "confidence": {
-                          "Medievalis": 1.0
-                        },
-                        "entropy": -1.000088900581841e-12,
-                        "value": "Medievalis"
-                      },
-                      "BioSampleGeographicLocation": {
-                        "confidence": {
-                          "Iran": 1.0
-                        },
-                        "entropy": -1.000088900581841e-12,
-                        "value": "Iran"
-                      },
-                      "BioSampleHost": {
-                        "confidence": {
-                          "Homo sapiens": 1.0
-                        },
-                        "entropy": -1.000088900581841e-12,
-                        "value": "Homo sapiens"
-                      },
-                      "BioSampleStrain": {
-                        "value": "KIM10+"
-                      },
-                      "div": 5.8121931188216435e-05,
-                      "num_date": {
-                        "confidence": [
-                          1968.1052083468182,
-                          1968.9986338797814
-                        ],
-                        "value": 1968.9986474115356
-                      },
-                      "raw_date": {
-                        "value": "1968-XX-XX"
-                      }
-                    }
-                  },
-                  {
-                    "branch_attrs": {},
-                    "name": "GCA_000169655.1_ASM16965v1_genomic",
-                    "node_attrs": {
-                      "BioSampleAccession": {
-                        "value": "SAMN02404402"
-                      },
-                      "BioSampleBiovar": {
-                        "confidence": {
-                          "Medievalis": 0.9999999999999999
-                        },
-                        "entropy": -9.99866855976916e-13,
-                        "value": "Medievalis"
-                      },
-                      "BioSampleGeographicLocation": {
-                        "confidence": {
-                          "China": 1.0
-                        },
-                        "entropy": -1.000088900581841e-12,
-                        "value": "China"
-                      },
-                      "BioSampleHost": {
-                        "confidence": {
-                          "Marmota himalayana": 1.0
-                        },
-                        "entropy": -1.000088900581841e-12,
-                        "value": "Marmota himalayana"
-                      },
-                      "BioSampleStrain": {
-                        "value": "K1973002"
-                      },
-                      "div": 4.641892680336988e-05,
-                      "num_date": {
-                        "confidence": [
-                          1973.0013698630137,
-                          1973.898904109589
-                        ],
-                        "value": 1973.0013833947678
-                      },
-                      "raw_date": {
-                        "value": "1973-XX-XX"
-                      }
-                    }
-                  }
-                ],
-                "name": "NODE_0000010",
-                "node_attrs": {
-                  "BioSampleBiovar": {
-                    "confidence": {
-                      "Antiqua": 0.05973317784870082,
-                      "Medievalis": 0.9115701867093993,
-                      "Microtus": 0.013644628477878082,
-                      "Orientalis": 0.01505200696402182
-                    },
-                    "entropy": 0.3744769670021836,
-                    "value": "Medievalis"
-                  },
-                  "BioSampleGeographicLocation": {
-                    "confidence": {
-                      "China": 0.4961036882563121,
-                      "Iran": 0.3156681648692885,
-                      "Nepal": 0.06883904442098177,
-                      "Republic of the Congo": 0.043494902075425355
-                    },
-                    "entropy": 1.3110525869404979,
-                    "value": "China"
-                  },
-                  "BioSampleHost": {
-                    "confidence": {
-                      "Eothenomys miletus": 0.08579884244014664,
-                      "Homo sapiens": 0.5875922153674439,
-                      "Marmota himalayana": 0.18175178530872838,
-                      "Rattus flavipectus": 0.08832975642315687
-                    },
-                    "entropy": 1.2097964406118538,
-                    "value": "Homo sapiens"
-                  },
-                  "div": 4.32791313502384e-05,
-                  "num_date": {
-                    "confidence": [
-                      1855.219125459301,
-                      1881.6233616213271
-                    ],
-                    "value": 1863.3901846232632
-                  }
-                }
-              }
-            ],
-            "name": "NODE_0000009",
+            "name": "GCA_000007885.1_ASM788v1_genomic",
             "node_attrs": {
+              "BioSampleAccession": {
+                "value": "SAMN02602970"
+              },
               "BioSampleBiovar": {
                 "confidence": {
-                  "Antiqua": 0.5300807624732101,
-                  "Medievalis": 0.35957830710418415,
-                  "Microtus": 0.040698878768775856,
-                  "Orientalis": 0.06964205165382989
+                  "Microtus": 0.9999999999999999
                 },
-                "entropy": 1.0200941064566953,
-                "value": "Antiqua"
+                "entropy": -9.99866855976916e-13,
+                "value": "Microtus"
               },
               "BioSampleGeographicLocation": {
                 "confidence": {
-                  "China": 0.44648443698237755,
-                  "Iran": 0.1738060070838298,
-                  "Nepal": 0.1733724032712436,
-                  "Republic of the Congo": 0.0809304480648073
+                  "China": 1.0
                 },
-                "entropy": 1.569218672829056,
+                "entropy": -1.000088900581841e-12,
                 "value": "China"
               },
               "BioSampleHost": {
                 "confidence": {
-                  "Eothenomys miletus": 0.08801624055096445,
-                  "Homo sapiens": 0.6511098904020065,
-                  "Marmota himalayana": 0.10463695727778805,
-                  "Rattus flavipectus": 0.08554409303019955
+                  "Microtus brandti": 1.0
                 },
-                "entropy": 1.1270925008933907,
-                "value": "Homo sapiens"
+                "entropy": -1.000088900581841e-12,
+                "value": "Microtus brandti"
               },
-              "div": 3.443052050948914e-05,
+              "BioSampleStrain": {
+                "value": "91001"
+              },
+              "div": 6.863417719373642e-05,
               "num_date": {
                 "confidence": [
-                  1759.254585618088,
-                  1794.622625962501
+                  1970.0013698630137,
+                  1970.898904109589
                 ],
-                "value": 1770.738074720185
+                "value": 1970.0013808341855
+              },
+              "raw_date": {
+                "value": "1970-XX-XX"
               }
             }
           },
@@ -380,10 +207,10 @@
                 "children": [
                   {
                     "branch_attrs": {},
-                    "name": "GCA_000013825.1_ASM1382v1_genomic",
+                    "name": "GCA_000182485.1_ASM18248v1_genomic",
                     "node_attrs": {
                       "BioSampleAccession": {
-                        "value": "SAMN02598369"
+                        "value": "SAMN02403941"
                       },
                       "BioSampleBiovar": {
                         "confidence": {
@@ -394,10 +221,10 @@
                       },
                       "BioSampleGeographicLocation": {
                         "confidence": {
-                          "Republic of the Congo": 1.0
+                          "Nepal": 1.0
                         },
                         "entropy": -1.000088900581841e-12,
-                        "value": "Republic of the Congo"
+                        "value": "Nepal"
                       },
                       "BioSampleHost": {
                         "confidence": {
@@ -407,149 +234,18 @@
                         "value": "Homo sapiens"
                       },
                       "BioSampleStrain": {
-                        "value": "Antiqua"
+                        "value": "Nepal516"
                       },
-                      "div": 5.583843385455435e-05,
+                      "div": 6.806217682284678e-05,
                       "num_date": {
                         "confidence": [
-                          1965.1154380038543,
-                          1965.9986301369863
+                          1967.0013698630137,
+                          1967.8967595127801
                         ],
-                        "value": 1965.9986436687404
+                        "value": 1967.0013808341853
                       },
                       "raw_date": {
-                        "value": "1965-XX-XX"
-                      }
-                    }
-                  },
-                  {
-                    "branch_attrs": {},
-                    "name": "GCA_000169615.1_ASM16961v1_genomic",
-                    "node_attrs": {
-                      "BioSampleAccession": {
-                        "value": "SAMN02404404"
-                      },
-                      "BioSampleBiovar": {
-                        "confidence": {
-                          "Antiqua": 1.0
-                        },
-                        "entropy": -1.000088900581841e-12,
-                        "value": "Antiqua"
-                      },
-                      "BioSampleGeographicLocation": {
-                        "confidence": {
-                          "Uganda": 1.0
-                        },
-                        "entropy": -1.000088900581841e-12,
-                        "value": "Uganda"
-                      },
-                      "BioSampleHost": {
-                        "confidence": {
-                          "Homo sapiens": 0.9999999999999999
-                        },
-                        "entropy": -9.99866855976916e-13,
-                        "value": "Homo sapiens"
-                      },
-                      "BioSampleStrain": {
-                        "value": "UG05-0454"
-                      },
-                      "div": 5.840734039186023e-05,
-                      "num_date": {
-                        "confidence": [
-                          2004.1017361469053,
-                          2004.9986338797814
-                        ],
-                        "value": 2004.9986474115356
-                      },
-                      "raw_date": {
-                        "value": "2004-XX-XX"
-                      }
-                    }
-                  }
-                ],
-                "name": "NODE_0000007",
-                "node_attrs": {
-                  "BioSampleBiovar": {
-                    "confidence": {
-                      "Antiqua": 0.9985582731707834
-                    },
-                    "entropy": 0.012413520443065507,
-                    "value": "Antiqua"
-                  },
-                  "BioSampleGeographicLocation": {
-                    "confidence": {
-                      "China": 0.003824063021712454,
-                      "Republic of the Congo": 0.8254569435999716,
-                      "Uganda": 0.158255713263112,
-                      "United States of America": 0.003442749995525104
-                    },
-                    "entropy": 0.5432428386828948,
-                    "value": "Republic of the Congo"
-                  },
-                  "BioSampleHost": {
-                    "confidence": {
-                      "Eothenomys miletus": 0.001887382701519231,
-                      "Homo sapiens": 0.9931134147464344,
-                      "Marmota himalayana": 0.0018801335144572413,
-                      "Rattus flavipectus": 0.0023330965456373914
-                    },
-                    "entropy": 0.05026050394387455,
-                    "value": "Homo sapiens"
-                  },
-                  "div": 5.469668144643926e-05,
-                  "num_date": {
-                    "confidence": [
-                      1947.3679404889294,
-                      1961.7520073970775
-                    ],
-                    "value": 1955.8098085514985
-                  }
-                }
-              },
-              {
-                "branch_attrs": {},
-                "children": [
-                  {
-                    "branch_attrs": {},
-                    "name": "GCA_000169695.1_ASM16969v1_genomic",
-                    "node_attrs": {
-                      "BioSampleAccession": {
-                        "value": "SAMN02404400"
-                      },
-                      "BioSampleBiovar": {
-                        "confidence": {
-                          "Antiqua": 1.0
-                        },
-                        "entropy": -1.000088900581841e-12,
-                        "value": "Antiqua"
-                      },
-                      "BioSampleGeographicLocation": {
-                        "confidence": {
-                          "China": 1.0
-                        },
-                        "entropy": -1.000088900581841e-12,
-                        "value": "China"
-                      },
-                      "BioSampleHost": {
-                        "confidence": {
-                          "Eothenomys miletus": 0.9999999999999999
-                        },
-                        "entropy": -9.99866855976916e-13,
-                        "value": "Eothenomys miletus"
-                      },
-                      "BioSampleStrain": {
-                        "value": "E1979001"
-                      },
-                      "div": 3.928291576771114e-05,
-                      "num_date": {
-                        "confidence": [
-                          1979.0013698630137,
-                          1979.898904109589
-                        ],
-                        "value": 1979.0013833947678
-                      },
-                      "raw_date": {
-                        "value": "1979-XX-XX"
+                        "value": "1967-XX-XX"
                       }
                     }
                   },
@@ -558,131 +254,356 @@
                     "children": [
                       {
                         "branch_attrs": {},
-                        "children": [
-                          {
-                            "branch_attrs": {},
-                            "name": "GCA_000181455.2_ASM18145v2_genomic",
-                            "node_attrs": {
-                              "BioSampleAccession": {
-                                "value": "SAMN02403940"
-                              },
-                              "BioSampleBiovar": {
-                                "confidence": {
-                                  "Orientalis": 1.0
-                                },
-                                "entropy": -1.000088900581841e-12,
-                                "value": "Orientalis"
-                              },
-                              "BioSampleGeographicLocation": {
-                                "confidence": {
-                                  "United States of America": 0.9999999999999999
-                                },
-                                "entropy": -9.99866855976916e-13,
-                                "value": "United States of America"
-                              },
-                              "BioSampleHost": {
-                                "confidence": {
-                                  "Homo sapiens": 1.0
-                                },
-                                "entropy": -1.000088900581841e-12,
-                                "value": "Homo sapiens"
-                              },
-                              "BioSampleStrain": {
-                                "value": "CA88-4125"
-                              },
-                              "div": 4.841688925455545e-05,
-                              "num_date": {
-                                "confidence": [
-                                  1988.140036365205,
-                                  1988.9986338797814
-                                ],
-                                "value": 1988.0013796519727
-                              },
-                              "raw_date": {
-                                "value": "1988-XX-XX"
-                              }
-                            }
-                          },
-                          {
-                            "branch_attrs": {},
-                            "name": "Reference",
-                            "node_attrs": {
-                              "BioSampleAccession": {
-                                "value": "SAMEA1705942"
-                              },
-                              "BioSampleBiovar": {
-                                "confidence": {
-                                  "Orientalis": 0.9999999999999999
-                                },
-                                "entropy": -9.99866855976916e-13,
-                                "value": "Orientalis"
-                              },
-                              "BioSampleGeographicLocation": {
-                                "confidence": {
-                                  "United States of America": 1.0
-                                },
-                                "entropy": -1.000088900581841e-12,
-                                "value": "United States of America"
-                              },
-                              "BioSampleHost": {
-                                "confidence": {
-                                  "Homo sapiens": 1.0
-                                },
-                                "entropy": -1.000088900581841e-12,
-                                "value": "Homo sapiens"
-                              },
-                              "BioSampleStrain": {
-                                "value": "CO92"
-                              },
-                              "div": 5.1842135610916115e-05,
-                              "num_date": {
-                                "confidence": [
-                                  1992.1010928961748,
-                                  1992.9986338797814
-                                ],
-                                "value": 1992.9986474115356
-                              },
-                              "raw_date": {
-                                "value": "1992-XX-XX"
-                              }
-                            }
-                          }
-                        ],
-                        "name": "NODE_0000001",
+                        "name": "GCA_000006645.1_ASM664v1_genomic",
                         "node_attrs": {
+                          "BioSampleAccession": {
+                            "value": "SAMN02604093"
+                          },
                           "BioSampleBiovar": {
                             "confidence": {
-                              "Orientalis": 0.9998625287936777
+                              "Medievalis": 1.0
                             },
-                            "entropy": 0.0015098394393933848,
-                            "value": "Orientalis"
+                            "entropy": -1.000088900581841e-12,
+                            "value": "Medievalis"
                           },
                           "BioSampleGeographicLocation": {
                             "confidence": {
-                              "China": 0.00738543775492346,
-                              "Madagascar": 0.007622086173675245,
-                              "United States of America": 0.9829957253909879
+                              "Iran": 1.0
                             },
-                            "entropy": 0.10527880683920056,
-                            "value": "United States of America"
+                            "entropy": -1.000088900581841e-12,
+                            "value": "Iran"
                           },
                           "BioSampleHost": {
                             "confidence": {
-                              "Eothenomys miletus": 0.0031772949751419075,
-                              "Homo sapiens": 0.9850047205494079,
-                              "Marmota himalayana": 0.0027068071413702995,
-                              "Rattus flavipectus": 0.00847923226730934
+                              "Homo sapiens": 1.0
                             },
-                            "entropy": 0.09426225639650357,
+                            "entropy": -1.000088900581841e-12,
                             "value": "Homo sapiens"
                           },
-                          "div": 4.670427724547601e-05,
+                          "BioSampleStrain": {
+                            "value": "KIM10+"
+                          },
+                          "div": 8.00505740371123e-05,
                           "num_date": {
                             "confidence": [
-                              1957.55458506636,
-                              1971.4098223489514
+                              1968.1010928961748,
+                              1968.9986338797814
                             ],
-                            "value": 1949.6901117050347
+                            "value": 1968.998644850953
+                          },
+                          "raw_date": {
+                            "value": "1968-XX-XX"
+                          }
+                        }
+                      },
+                      {
+                        "branch_attrs": {},
+                        "name": "GCA_000169655.1_ASM16965v1_genomic",
+                        "node_attrs": {
+                          "BioSampleAccession": {
+                            "value": "SAMN02404402"
+                          },
+                          "BioSampleBiovar": {
+                            "confidence": {
+                              "Medievalis": 1.0
+                            },
+                            "entropy": -1.000088900581841e-12,
+                            "value": "Medievalis"
+                          },
+                          "BioSampleGeographicLocation": {
+                            "confidence": {
+                              "China": 1.0
+                            },
+                            "entropy": -1.000088900581841e-12,
+                            "value": "China"
+                          },
+                          "BioSampleHost": {
+                            "confidence": {
+                              "Marmota himalayana": 0.9999999999999999
+                            },
+                            "entropy": -9.99866855976916e-13,
+                            "value": "Marmota himalayana"
+                          },
+                          "BioSampleStrain": {
+                            "value": "K1973002"
+                          },
+                          "div": 6.834759475415589e-05,
+                          "num_date": {
+                            "confidence": [
+                              1973.0013698630137,
+                              1973.898904109589
+                            ],
+                            "value": 1973.0013808341853
+                          },
+                          "raw_date": {
+                            "value": "1973-XX-XX"
+                          }
+                        }
+                      }
+                    ],
+                    "name": "NODE_0000010",
+                    "node_attrs": {
+                      "BioSampleBiovar": {
+                        "confidence": {
+                          "Antiqua": 0.059671569644071734,
+                          "Medievalis": 0.9252614421502751,
+                          "Microtus": 0.003464426407869471,
+                          "Orientalis": 0.01160256179778387
+                        },
+                        "entropy": 0.3114153467415652,
+                        "value": "Medievalis"
+                      },
+                      "BioSampleGeographicLocation": {
+                        "confidence": {
+                          "China": 0.6587417941562081,
+                          "Iran": 0.22779556890924008,
+                          "Nepal": 0.04809895670028211,
+                          "Republic of the Congo": 0.026993091847401864
+                        },
+                        "entropy": 1.02677220886959,
+                        "value": "China"
+                      },
+                      "BioSampleHost": {
+                        "confidence": {
+                          "Eothenomys miletus": 0.07581770739994008,
+                          "Homo sapiens": 0.5916965866351797,
+                          "Marmota himalayana": 0.20514760361057155,
+                          "Rattus flavipectus": 0.07747064673941856
+                        },
+                        "entropy": 1.1787051680186151,
+                        "value": "Homo sapiens"
+                      },
+                      "div": 6.520779684045664e-05,
+                      "num_date": {
+                        "confidence": [
+                          1877.1999661047944,
+                          1899.023930724992
+                        ],
+                        "value": 1886.0529966019283
+                      }
+                    }
+                  }
+                ],
+                "name": "NODE_0000009",
+                "node_attrs": {
+                  "BioSampleBiovar": {
+                    "confidence": {
+                      "Antiqua": 0.5993771660415758,
+                      "Medievalis": 0.3300441681245706,
+                      "Microtus": 0.01273274464721307,
+                      "Orientalis": 0.0578459211866407
+                    },
+                    "entropy": 0.8930827909481709,
+                    "value": "Antiqua"
+                  },
+                  "BioSampleGeographicLocation": {
+                    "confidence": {
+                      "China": 0.6301672182770166,
+                      "Iran": 0.12551456597311894,
+                      "Nepal": 0.12238797842344493,
+                      "Republic of the Congo": 0.055646108745489184
+                    },
+                    "entropy": 1.2282222292228573,
+                    "value": "China"
+                  },
+                  "BioSampleHost": {
+                    "confidence": {
+                      "Eothenomys miletus": 0.08546463572679143,
+                      "Homo sapiens": 0.6534991642056994,
+                      "Marmota himalayana": 0.1132625685168258,
+                      "Rattus flavipectus": 0.08307101100390636
+                    },
+                    "entropy": 1.1187505571063323,
+                    "value": "Homo sapiens"
+                  },
+                  "div": 5.635926298838005e-05,
+                  "num_date": {
+                    "confidence": [
+                      1800.331890738811,
+                      1829.466586794592
+                    ],
+                    "value": 1810.4726678535853
+                  }
+                }
+              },
+              {
+                "branch_attrs": {},
+                "children": [
+                  {
+                    "branch_attrs": {},
+                    "children": [
+                      {
+                        "branch_attrs": {},
+                        "name": "GCA_000013825.1_ASM1382v1_genomic",
+                        "node_attrs": {
+                          "BioSampleAccession": {
+                            "value": "SAMN02598369"
+                          },
+                          "BioSampleBiovar": {
+                            "confidence": {
+                              "Antiqua": 1.0
+                            },
+                            "entropy": -1.000088900581841e-12,
+                            "value": "Antiqua"
+                          },
+                          "BioSampleGeographicLocation": {
+                            "confidence": {
+                              "Republic of the Congo": 1.0
+                            },
+                            "entropy": -1.000088900581841e-12,
+                            "value": "Republic of the Congo"
+                          },
+                          "BioSampleHost": {
+                            "confidence": {
+                              "Homo sapiens": 1.0
+                            },
+                            "entropy": -1.000088900581841e-12,
+                            "value": "Homo sapiens"
+                          },
+                          "BioSampleStrain": {
+                            "value": "Antiqua"
+                          },
+                          "div": 7.776720030016348e-05,
+                          "num_date": {
+                            "confidence": [
+                              1965.101095890411,
+                              1965.9986301369863
+                            ],
+                            "value": 1965.998641108158
+                          },
+                          "raw_date": {
+                            "value": "1965-XX-XX"
+                          }
+                        }
+                      },
+                      {
+                        "branch_attrs": {},
+                        "name": "GCA_000169615.1_ASM16961v1_genomic",
+                        "node_attrs": {
+                          "BioSampleAccession": {
+                            "value": "SAMN02404404"
+                          },
+                          "BioSampleBiovar": {
+                            "confidence": {
+                              "Antiqua": 1.0
+                            },
+                            "entropy": -1.000088900581841e-12,
+                            "value": "Antiqua"
+                          },
+                          "BioSampleGeographicLocation": {
+                            "confidence": {
+                              "Uganda": 1.0
+                            },
+                            "entropy": -1.000088900581841e-12,
+                            "value": "Uganda"
+                          },
+                          "BioSampleHost": {
+                            "confidence": {
+                              "Homo sapiens": 1.0
+                            },
+                            "entropy": -1.000088900581841e-12,
+                            "value": "Homo sapiens"
+                          },
+                          "BioSampleStrain": {
+                            "value": "UG05-0454"
+                          },
+                          "div": 8.033614295209531e-05,
+                          "num_date": {
+                            "confidence": [
+                              2004.0013661202186,
+                              2004.894805727729
+                            ],
+                            "value": 2004.0013770913902
+                          },
+                          "raw_date": {
+                            "value": "2004-XX-XX"
+                          }
+                        }
+                      }
+                    ],
+                    "name": "NODE_0000007",
+                    "node_attrs": {
+                      "BioSampleBiovar": {
+                        "confidence": {
+                          "Antiqua": 0.999164638583364
+                        },
+                        "entropy": 0.007518541941058056,
+                        "value": "Antiqua"
+                      },
+                      "BioSampleGeographicLocation": {
+                        "confidence": {
+                          "China": 0.004814489336404551,
+                          "Republic of the Congo": 0.8650810247860046,
+                          "Uganda": 0.12225484887913345,
+                          "United States of America": 0.0021065892440785606
+                        },
+                        "entropy": 0.4576837293681285,
+                        "value": "Republic of the Congo"
+                      },
+                      "BioSampleHost": {
+                        "confidence": {
+                          "Eothenomys miletus": 0.0016840084561590438,
+                          "Homo sapiens": 0.9940240486928892,
+                          "Marmota himalayana": 0.0017108150166480756,
+                          "Rattus flavipectus": 0.0018412475987251526
+                        },
+                        "entropy": 0.04454107036881799,
+                        "value": "Homo sapiens"
+                      },
+                      "div": 7.662546656890118e-05,
+                      "num_date": {
+                        "confidence": [
+                          1951.87098328815,
+                          1963.0244974282282
+                        ],
+                        "value": 1959.1540420672698
+                      }
+                    }
+                  },
+                  {
+                    "branch_attrs": {},
+                    "children": [
+                      {
+                        "branch_attrs": {},
+                        "name": "GCA_000169695.1_ASM16969v1_genomic",
+                        "node_attrs": {
+                          "BioSampleAccession": {
+                            "value": "SAMN02404400"
+                          },
+                          "BioSampleBiovar": {
+                            "confidence": {
+                              "Antiqua": 1.0
+                            },
+                            "entropy": -1.000088900581841e-12,
+                            "value": "Antiqua"
+                          },
+                          "BioSampleGeographicLocation": {
+                            "confidence": {
+                              "China": 0.9999999999999999
+                            },
+                            "entropy": -9.99866855976916e-13,
+                            "value": "China"
+                          },
+                          "BioSampleHost": {
+                            "confidence": {
+                              "Eothenomys miletus": 1.0
+                            },
+                            "entropy": -1.000088900581841e-12,
+                            "value": "Eothenomys miletus"
+                          },
+                          "BioSampleStrain": {
+                            "value": "E1979001"
+                          },
+                          "div": 6.121168646390183e-05,
+                          "num_date": {
+                            "confidence": [
+                              1979.0013698630137,
+                              1979.895920596843
+                            ],
+                            "value": 1979.0013808341853
+                          },
+                          "raw_date": {
+                            "value": "1979-XX-XX"
                           }
                         }
                       },
@@ -691,45 +612,131 @@
                         "children": [
                           {
                             "branch_attrs": {},
-                            "name": "GCA_000170275.1_ASM17027v1_genomic",
-                            "node_attrs": {
-                              "BioSampleAccession": {
-                                "value": "SAMN02404399"
+                            "children": [
+                              {
+                                "branch_attrs": {},
+                                "name": "GCA_000181455.2_ASM18145v2_genomic",
+                                "node_attrs": {
+                                  "BioSampleAccession": {
+                                    "value": "SAMN02403940"
+                                  },
+                                  "BioSampleBiovar": {
+                                    "confidence": {
+                                      "Orientalis": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "Orientalis"
+                                  },
+                                  "BioSampleGeographicLocation": {
+                                    "confidence": {
+                                      "United States of America": 0.9999999999999999
+                                    },
+                                    "entropy": -9.99866855976916e-13,
+                                    "value": "United States of America"
+                                  },
+                                  "BioSampleHost": {
+                                    "confidence": {
+                                      "Homo sapiens": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "Homo sapiens"
+                                  },
+                                  "BioSampleStrain": {
+                                    "value": "CA88-4125"
+                                  },
+                                  "div": 7.03456310176274e-05,
+                                  "num_date": {
+                                    "confidence": [
+                                      1988.7642828347027,
+                                      1988.9986338797814
+                                    ],
+                                    "value": 1988.0013770913902
+                                  },
+                                  "raw_date": {
+                                    "value": "1988-XX-XX"
+                                  }
+                                }
                               },
+                              {
+                                "branch_attrs": {},
+                                "name": "Reference",
+                                "node_attrs": {
+                                  "BioSampleAccession": {
+                                    "value": "SAMEA1705942"
+                                  },
+                                  "BioSampleBiovar": {
+                                    "confidence": {
+                                      "Orientalis": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "Orientalis"
+                                  },
+                                  "BioSampleGeographicLocation": {
+                                    "confidence": {
+                                      "United States of America": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "United States of America"
+                                  },
+                                  "BioSampleHost": {
+                                    "confidence": {
+                                      "Homo sapiens": 1.0
+                                    },
+                                    "entropy": -1.000088900581841e-12,
+                                    "value": "Homo sapiens"
+                                  },
+                                  "BioSampleStrain": {
+                                    "value": "CO92"
+                                  },
+                                  "div": 7.377085369146547e-05,
+                                  "num_date": {
+                                    "confidence": [
+                                      1992.2775138692323,
+                                      1992.9986338797814
+                                    ],
+                                    "value": 1992.998644850953
+                                  },
+                                  "raw_date": {
+                                    "value": "1992-XX-XX"
+                                  }
+                                }
+                              }
+                            ],
+                            "name": "NODE_0000001",
+                            "node_attrs": {
                               "BioSampleBiovar": {
                                 "confidence": {
-                                  "Orientalis": 1.0
+                                  "Orientalis": 0.9999228555625126
                                 },
-                                "entropy": -1.000088900581841e-12,
+                                "entropy": 0.0008801951821603867,
                                 "value": "Orientalis"
                               },
                               "BioSampleGeographicLocation": {
                                 "confidence": {
-                                  "China": 1.0
+                                  "China": 0.005306847908054447,
+                                  "Madagascar": 0.0028164561385248914,
+                                  "United States of America": 0.9911939381943394
                                 },
-                                "entropy": -1.000088900581841e-12,
-                                "value": "China"
+                                "entropy": 0.059051209991645676,
+                                "value": "United States of America"
                               },
                               "BioSampleHost": {
                                 "confidence": {
-                                  "Rattus flavipectus": 0.9999999999999999
+                                  "Eothenomys miletus": 0.002227212856350195,
+                                  "Homo sapiens": 0.9893795450438871,
+                                  "Marmota himalayana": 0.001809839815817826,
+                                  "Rattus flavipectus": 0.006123470358289623
                                 },
-                                "entropy": -9.99866855976916e-13,
-                                "value": "Rattus flavipectus"
+                                "entropy": 0.07033095208299897,
+                                "value": "Homo sapiens"
                               },
-                              "BioSampleStrain": {
-                                "value": "F1991016"
-                              },
-                              "div": 5.1556718417016434e-05,
+                              "div": 6.863300674068649e-05,
                               "num_date": {
                                 "confidence": [
-                                  1991.1078042882555,
-                                  1991.9986301369863
+                                  1963.4652945297755,
+                                  1975.935027734178
                                 ],
-                                "value": 1991.9986436687404
-                              },
-                              "raw_date": {
-                                "value": "1991-XX-XX"
+                                "value": 1960.4247405399854
                               }
                             }
                           },
@@ -738,10 +745,10 @@
                             "children": [
                               {
                                 "branch_attrs": {},
-                                "name": "GCA_000168235.2_ASM16823v2_genomic",
+                                "name": "GCA_000170275.1_ASM17027v1_genomic",
                                 "node_attrs": {
                                   "BioSampleAccession": {
-                                    "value": "SAMN02404398"
+                                    "value": "SAMN02404399"
                                   },
                                   "BioSampleBiovar": {
                                     "confidence": {
@@ -752,323 +759,413 @@
                                   },
                                   "BioSampleGeographicLocation": {
                                     "confidence": {
-                                      "Madagascar": 1.0
+                                      "China": 1.0
                                     },
                                     "entropy": -1.000088900581841e-12,
-                                    "value": "Madagascar"
+                                    "value": "China"
                                   },
                                   "BioSampleHost": {
                                     "confidence": {
-                                      "Homo sapiens": 1.0
+                                      "Rattus flavipectus": 1.0
                                     },
                                     "entropy": -1.000088900581841e-12,
-                                    "value": "Homo sapiens"
+                                    "value": "Rattus flavipectus"
                                   },
                                   "BioSampleStrain": {
-                                    "value": "IP275"
+                                    "value": "F1991016"
                                   },
-                                  "div": 5.0985807462723604e-05,
+                                  "div": 7.348543639021848e-05,
                                   "num_date": {
                                     "confidence": [
-                                      1995.101095890411,
-                                      1995.9986301369863
+                                      1991.1157467261353,
+                                      1991.9986301369863
                                     ],
-                                    "value": 1995.9986436687404
+                                    "value": 1991.998641108158
                                   },
                                   "raw_date": {
-                                    "value": "1995-XX-XX"
+                                    "value": "1991-XX-XX"
                                   }
                                 }
                               },
                               {
                                 "branch_attrs": {},
-                                "name": "GCA_000169635.1_ASM16963v1_genomic",
-                                "node_attrs": {
-                                  "BioSampleAccession": {
-                                    "value": "SAMN02404403"
+                                "children": [
+                                  {
+                                    "branch_attrs": {},
+                                    "name": "GCA_000168235.2_ASM16823v2_genomic",
+                                    "node_attrs": {
+                                      "BioSampleAccession": {
+                                        "value": "SAMN02404398"
+                                      },
+                                      "BioSampleBiovar": {
+                                        "confidence": {
+                                          "Orientalis": 0.9999999999999999
+                                        },
+                                        "entropy": -9.99866855976916e-13,
+                                        "value": "Orientalis"
+                                      },
+                                      "BioSampleGeographicLocation": {
+                                        "confidence": {
+                                          "Madagascar": 1.0
+                                        },
+                                        "entropy": -1.000088900581841e-12,
+                                        "value": "Madagascar"
+                                      },
+                                      "BioSampleHost": {
+                                        "confidence": {
+                                          "Homo sapiens": 1.0
+                                        },
+                                        "entropy": -1.000088900581841e-12,
+                                        "value": "Homo sapiens"
+                                      },
+                                      "BioSampleStrain": {
+                                        "value": "IP275"
+                                      },
+                                      "div": 7.291454681620295e-05,
+                                      "num_date": {
+                                        "confidence": [
+                                          1995.1144610016843,
+                                          1995.9986301369863
+                                        ],
+                                        "value": 1995.998641108158
+                                      },
+                                      "raw_date": {
+                                        "value": "1995-XX-XX"
+                                      }
+                                    }
                                   },
+                                  {
+                                    "branch_attrs": {},
+                                    "name": "GCA_000169635.1_ASM16963v1_genomic",
+                                    "node_attrs": {
+                                      "BioSampleAccession": {
+                                        "value": "SAMN02404403"
+                                      },
+                                      "BioSampleBiovar": {
+                                        "confidence": {
+                                          "Orientalis": 0.9999999999999999
+                                        },
+                                        "entropy": -9.99866855976916e-13,
+                                        "value": "Orientalis"
+                                      },
+                                      "BioSampleGeographicLocation": {
+                                        "confidence": {
+                                          "Madagascar": 1.0
+                                        },
+                                        "entropy": -1.000088900581841e-12,
+                                        "value": "Madagascar"
+                                      },
+                                      "BioSampleHost": {
+                                        "confidence": {
+                                          "Homo sapiens": 1.0
+                                        },
+                                        "entropy": -1.000088900581841e-12,
+                                        "value": "Homo sapiens"
+                                      },
+                                      "BioSampleStrain": {
+                                        "value": "MG05-1020"
+                                      },
+                                      "div": 7.405628915805187e-05,
+                                      "num_date": {
+                                        "confidence": [
+                                          2005.1582485615265,
+                                          2005.9986301369863
+                                        ],
+                                        "value": 2005.998641108158
+                                      },
+                                      "raw_date": {
+                                        "value": "2005-XX-XX"
+                                      }
+                                    }
+                                  }
+                                ],
+                                "name": "NODE_0000004",
+                                "node_attrs": {
                                   "BioSampleBiovar": {
                                     "confidence": {
-                                      "Orientalis": 1.0
+                                      "Orientalis": 0.9999050374098765
                                     },
-                                    "entropy": -1.000088900581841e-12,
+                                    "entropy": 0.0010690887631312372,
                                     "value": "Orientalis"
                                   },
                                   "BioSampleGeographicLocation": {
                                     "confidence": {
-                                      "Madagascar": 1.0
+                                      "China": 0.007586203367104342,
+                                      "Madagascar": 0.9866559550616237,
+                                      "United States of America": 0.0047387579911413675
                                     },
-                                    "entropy": -1.000088900581841e-12,
+                                    "entropy": 0.08412146143743482,
                                     "value": "Madagascar"
                                   },
                                   "BioSampleHost": {
                                     "confidence": {
-                                      "Homo sapiens": 1.0
+                                      "Eothenomys miletus": 0.0030830977872453352,
+                                      "Homo sapiens": 0.9849269072226061,
+                                      "Marmota himalayana": 0.002591016503574741,
+                                      "Rattus flavipectus": 0.008694888135110643
                                     },
-                                    "entropy": -1.000088900581841e-12,
+                                    "entropy": 0.09458429731081226,
                                     "value": "Homo sapiens"
                                   },
-                                  "BioSampleStrain": {
-                                    "value": "MG05-1020"
-                                  },
-                                  "div": 5.212756783105339e-05,
+                                  "div": 6.948931656492446e-05,
                                   "num_date": {
                                     "confidence": [
-                                      2005.1490642502154,
-                                      2005.9986301369863
+                                      1968.9350131217261,
+                                      1982.7375218705547
                                     ],
-                                    "value": 2005.9986436687404
-                                  },
-                                  "raw_date": {
-                                    "value": "2005-XX-XX"
+                                    "value": 1963.5841560522617
                                   }
                                 }
                               }
                             ],
-                            "name": "NODE_0000004",
+                            "name": "NODE_0000003",
                             "node_attrs": {
                               "BioSampleBiovar": {
                                 "confidence": {
-                                  "Orientalis": 0.9998476037372599
+                                  "Orientalis": 0.9997893182966275
                                 },
-                                "entropy": 0.0016589942133786743,
+                                "entropy": 0.002114175054681669,
                                 "value": "Orientalis"
                               },
                               "BioSampleGeographicLocation": {
                                 "confidence": {
-                                  "China": 0.007775487606137378,
-                                  "Madagascar": 0.9800207890485136,
-                                  "United States of America": 0.009823922981051248
+                                  "China": 0.6599018489207765,
+                                  "Madagascar": 0.16111253018802982,
+                                  "Republic of the Congo": 0.004863577004227047,
+                                  "United States of America": 0.16870772146092838
                                 },
-                                "entropy": 0.12043993635344627,
-                                "value": "Madagascar"
+                                "entropy": 0.9290459411305941,
+                                "value": "China"
                               },
                               "BioSampleHost": {
                                 "confidence": {
-                                  "Eothenomys miletus": 0.003544507480737488,
-                                  "Homo sapiens": 0.9831894562425441,
-                                  "Marmota himalayana": 0.0031130073927299537,
-                                  "Rattus flavipectus": 0.009381605580057748
+                                  "Eothenomys miletus": 0.00947404991603831,
+                                  "Homo sapiens": 0.9440140938509678,
+                                  "Marmota himalayana": 0.006593458473998119,
+                                  "Rattus flavipectus": 0.03814335069636093
                                 },
-                                "entropy": 0.10396837582774608,
+                                "entropy": 0.2674749110293131,
                                 "value": "Homo sapiens"
                               },
-                              "div": 4.75605835603848e-05,
+                              "div": 6.720583471835347e-05,
                               "num_date": {
                                 "confidence": [
-                                  1963.9130503486897,
-                                  1977.939423086196
+                                  1934.4716291639334,
+                                  1950.1525572689561
                                 ],
-                                "value": 1955.6992024229128
+                                "value": 1944.6881379971405
                               }
                             }
                           }
                         ],
-                        "name": "NODE_0000003",
+                        "name": "NODE_0000002",
                         "node_attrs": {
                           "BioSampleBiovar": {
                             "confidence": {
-                              "Orientalis": 0.9997322980067157
+                              "Orientalis": 0.9993931856374884
                             },
-                            "entropy": 0.0027059696180680476,
+                            "entropy": 0.0054238767611124806,
                             "value": "Orientalis"
                           },
                           "BioSampleGeographicLocation": {
                             "confidence": {
-                              "China": 0.47903392931391797,
-                              "Madagascar": 0.23884311283578188,
-                              "Republic of the Congo": 0.009777906200819388,
-                              "United States of America": 0.2606318404972363
+                              "China": 0.6580302446083447,
+                              "Madagascar": 0.1443728018299599,
+                              "Republic of the Congo": 0.005180975257911294,
+                              "United States of America": 0.18679594187542484
                             },
-                            "entropy": 1.154689518638734,
+                            "entropy": 0.9310224212272817,
                             "value": "China"
                           },
                           "BioSampleHost": {
                             "confidence": {
-                              "Eothenomys miletus": 0.01123781584257964,
-                              "Homo sapiens": 0.9361144221459876,
-                              "Marmota himalayana": 0.008675253209235857,
-                              "Rattus flavipectus": 0.04190037077957323
+                              "Eothenomys miletus": 0.009687031570332452,
+                              "Homo sapiens": 0.9467572276424189,
+                              "Marmota himalayana": 0.006533242567314332,
+                              "Rattus flavipectus": 0.03523330940851878
                             },
-                            "entropy": 0.29915584217056546,
+                            "entropy": 0.2587864637504552,
                             "value": "Homo sapiens"
                           },
-                          "div": 4.527709871381022e-05,
+                          "div": 6.69203958043052e-05,
                           "num_date": {
                             "confidence": [
-                              1919.779282900565,
-                              1940.3686796558984
+                              1932.5898386607928,
+                              1948.3642377658778
                             ],
-                            "value": 1930.7381471803742
+                            "value": 1942.8647871037567
                           }
                         }
                       }
                     ],
-                    "name": "NODE_0000002",
+                    "name": "NODE_0000005",
                     "node_attrs": {
                       "BioSampleBiovar": {
                         "confidence": {
-                          "Orientalis": 0.9992967708628031
+                          "Antiqua": 0.642927282530317,
+                          "Medievalis": 0.04129130524625282,
+                          "Microtus": 0.006673982201468101,
+                          "Orientalis": 0.3091074300219623
                         },
-                        "entropy": 0.006371163708599618,
-                        "value": "Orientalis"
+                        "entropy": 0.8119420601110732,
+                        "value": "Antiqua"
                       },
                       "BioSampleGeographicLocation": {
                         "confidence": {
-                          "China": 0.4757317061675269,
-                          "Madagascar": 0.21303246799947567,
-                          "Republic of the Congo": 0.010237394912244612,
-                          "United States of America": 0.2889632084369204
+                          "China": 0.7902837570776314,
+                          "Madagascar": 0.06663845945634503,
+                          "Republic of the Congo": 0.0266359633767216,
+                          "United States of America": 0.08710437586035202
                         },
-                        "entropy": 1.1543509645557632,
+                        "entropy": 0.8136377689756527,
                         "value": "China"
                       },
                       "BioSampleHost": {
                         "confidence": {
-                          "Eothenomys miletus": 0.011363263280669429,
-                          "Homo sapiens": 0.9392118210465674,
-                          "Marmota himalayana": 0.008576057408693978,
-                          "Rattus flavipectus": 0.038758674891879875
+                          "Eothenomys miletus": 0.1705723998659066,
+                          "Homo sapiens": 0.6358326497302424,
+                          "Marmota himalayana": 0.06945044309651204,
+                          "Rattus flavipectus": 0.0799221404030106
                         },
-                        "entropy": 0.28946977499797794,
+                        "entropy": 1.114673413504208,
                         "value": "Homo sapiens"
                       },
-                      "div": 4.4991663183234474e-05,
+                      "div": 5.8928193414144424e-05,
                       "num_date": {
                         "confidence": [
-                          1917.1682662631777,
-                          1937.6003106282499
+                          1866.6834494752086,
+                          1893.1190062764604
                         ],
-                        "value": 1928.3251083160196
+                        "value": 1886.0582239356543
                       }
                     }
                   }
                 ],
-                "name": "NODE_0000005",
+                "name": "NODE_0000006",
                 "node_attrs": {
                   "BioSampleBiovar": {
                     "confidence": {
-                      "Antiqua": 0.5616494554733839,
-                      "Medievalis": 0.04745410448237044,
-                      "Microtus": 0.024265809724400823,
-                      "Orientalis": 0.36663063031984494
+                      "Antiqua": 0.74557352897942,
+                      "Medievalis": 0.11350838164774056,
+                      "Microtus": 0.012545179509824629,
+                      "Orientalis": 0.1283729098630149
                     },
-                    "entropy": 0.926756871372353,
+                    "entropy": 0.7843359782826971,
                     "value": "Antiqua"
                   },
                   "BioSampleGeographicLocation": {
                     "confidence": {
-                      "China": 0.6258827044832315,
-                      "Madagascar": 0.11666612950593147,
-                      "Republic of the Congo": 0.043617453509812686,
-                      "United States of America": 0.15626600100278598
+                      "China": 0.6708116080216279,
+                      "Iran": 0.04955227358426711,
+                      "Republic of the Congo": 0.12032007758577072,
+                      "United States of America": 0.04685627710047107
                     },
-                    "entropy": 1.197796690336998,
+                    "entropy": 1.190982094092837,
                     "value": "China"
                   },
                   "BioSampleHost": {
                     "confidence": {
-                      "Eothenomys miletus": 0.14608848417871803,
-                      "Homo sapiens": 0.6467289969321475,
-                      "Marmota himalayana": 0.07439892735041242,
-                      "Rattus flavipectus": 0.08618519044282141
+                      "Eothenomys miletus": 0.10113330757448394,
+                      "Homo sapiens": 0.6538501242387607,
+                      "Marmota himalayana": 0.09003441306928918,
+                      "Rattus flavipectus": 0.08586197187933912
                     },
-                    "entropy": 1.1103233197433942,
+                    "entropy": 1.1217730195991158,
                     "value": "Homo sapiens"
                   },
-                  "div": 3.6999429605478595e-05,
+                  "div": 5.3790335213002685e-05,
                   "num_date": {
                     "confidence": [
-                      1839.0643034066454,
-                      1873.7388067677573
+                      1785.1238006205008,
+                      1819.9951400894643
                     ],
-                    "value": 1862.0107005998748
+                    "value": 1787.0415124849721
                   }
                 }
               }
             ],
-            "name": "NODE_0000006",
+            "name": "NODE_0000008",
             "node_attrs": {
               "BioSampleBiovar": {
                 "confidence": {
-                  "Antiqua": 0.6710704647542086,
-                  "Medievalis": 0.13135930340304625,
-                  "Microtus": 0.0403616525602926,
-                  "Orientalis": 0.15720857928245263
+                  "Antiqua": 0.6774221645898187,
+                  "Medievalis": 0.1960145630549103,
+                  "Microtus": 0.02203707863754465,
+                  "Orientalis": 0.10452619371772617
                 },
-                "entropy": 0.9547332700125075,
+                "entropy": 0.9033734177902839,
                 "value": "Antiqua"
               },
               "BioSampleGeographicLocation": {
                 "confidence": {
-                  "China": 0.48471041919467256,
-                  "Iran": 0.07363596283496407,
-                  "Republic of the Congo": 0.16263141766162892,
-                  "United States of America": 0.08443537775002968
+                  "China": 0.6726606681227267,
+                  "Iran": 0.07287902680618051,
+                  "Nepal": 0.06691435074423893,
+                  "Republic of the Congo": 0.09115950044434187
                 },
-                "entropy": 1.5793555267156867,
+                "entropy": 1.197252134607547,
                 "value": "China"
               },
               "BioSampleHost": {
                 "confidence": {
-                  "Eothenomys miletus": 0.09510758194437476,
-                  "Homo sapiens": 0.65708324016694,
-                  "Marmota himalayana": 0.08880401785955472,
-                  "Rattus flavipectus": 0.0854876222602141
+                  "Eothenomys miletus": 0.10026214737848964,
+                  "Homo sapiens": 0.6254594869982305,
+                  "Marmota himalayana": 0.1024502498895804,
+                  "Rattus flavipectus": 0.09184347294197097
                 },
-                "entropy": 1.1168704641435858,
+                "entropy": 1.1788553212989323,
                 "value": "Homo sapiens"
               },
-              "div": 3.186158959771396e-05,
+              "div": 4.979423372098765e-05,
               "num_date": {
                 "confidence": [
-                  1731.1715666854182,
-                  1783.1507524599026
+                  1725.5713810783593,
+                  1761.089166220216
                 ],
-                "value": 1741.2797074908794
+                "value": 1742.9454840397375
               }
             }
           }
         ],
-        "name": "NODE_0000008",
+        "name": "NODE_0000012",
         "node_attrs": {
           "BioSampleBiovar": {
             "confidence": {
-              "Antiqua": 0.6084595277468496,
-              "Medievalis": 0.21431844897719093,
-              "Microtus": 0.051337311900840954,
-              "Orientalis": 0.12588471137511842
+              "Antiqua": 0.32498389090242924,
+              "Medievalis": 0.1696573798130634,
+              "Microtus": 0.357463545976959,
+              "Orientalis": 0.1478951833075484
             },
-            "entropy": 1.045730753675897,
-            "value": "Antiqua"
+            "entropy": 1.3166385768890443,
+            "value": "Microtus"
           },
           "BioSampleGeographicLocation": {
             "confidence": {
-              "China": 0.4890406357495081,
-              "Iran": 0.10641338391930787,
-              "Nepal": 0.1008166750273507,
-              "Republic of the Congo": 0.1253831710614589
+              "China": 0.6918905314090367,
+              "Iran": 0.05105334942186954,
+              "Nepal": 0.047029692347368174,
+              "Republic of the Congo": 0.05283225341678452
             },
-            "entropy": 1.5824777980931466,
+            "entropy": 1.2140359369188845,
             "value": "China"
           },
           "BioSampleHost": {
             "confidence": {
-              "Eothenomys miletus": 0.09731047937743872,
-              "Homo sapiens": 0.6283869022034569,
-              "Marmota himalayana": 0.09840620400503715,
-              "Rattus flavipectus": 0.0907752803602908
+              "Eothenomys miletus": 0.14259205932001354,
+              "Homo sapiens": 0.38875559932232284,
+              "Marmota himalayana": 0.14286060121902625,
+              "Microtus brandti": 0.19299000184966028
             },
-            "entropy": 1.1743509883508572,
+            "entropy": 1.5086288839433075,
             "value": "Homo sapiens"
           },
-          "div": 2.786547925921388e-05,
+          "div": 2.0393851653986753e-05,
           "num_date": {
             "confidence": [
-              1666.8623268363626,
-              1710.8043254695604
+              1407.2576656812262,
+              1471.2461484146688
             ],
-            "value": 1687.7085510797438
+            "value": 1430.9198792891711
           }
         }
       }
@@ -1077,41 +1174,41 @@
     "node_attrs": {
       "BioSampleBiovar": {
         "confidence": {
-          "Antiqua": 0.4041782580370059,
-          "Medievalis": 0.20099239816258718,
-          "Microtus": 0.21711150749055652,
-          "Orientalis": 0.1777178363098504
+          "Antiqua": 0.27114881161882887,
+          "Medievalis": 0.16541042578258944,
+          "Microtus": 0.40735016069210606,
+          "Orientalis": 0.15609060190647556
         },
-        "entropy": 1.3272566189637218,
-        "value": "Antiqua"
+        "entropy": 1.3072439951457002,
+        "value": "Microtus"
       },
       "BioSampleGeographicLocation": {
         "confidence": {
-          "China": 0.5887136610891314,
-          "Iran": 0.07596890359687225,
-          "Nepal": 0.07469279925439025,
-          "Republic of the Congo": 0.06927540679221185
+          "China": 0.4765612541783611,
+          "Iran": 0.06483741690813015,
+          "Republic of the Congo": 0.06292070486985497,
+          "Russia": 0.1608734970496647
         },
-        "entropy": 1.4130263572351045,
+        "entropy": 1.6641663410873402,
         "value": "China"
       },
       "BioSampleHost": {
         "confidence": {
-          "Eothenomys miletus": 0.13646510106468576,
-          "Homo sapiens": 0.40785091799382567,
-          "Marmota himalayana": 0.13703833152788486,
-          "Microtus brandti": 0.1952603698716345
+          "Eothenomys miletus": 0.1440418620777995,
+          "Homo sapiens": 0.3803435157221241,
+          "Marmota himalayana": 0.144276674460165,
+          "Microtus brandti": 0.19735590388822358
         },
-        "entropy": 1.4870603613304678,
+        "entropy": 1.515665579729108,
         "value": "Homo sapiens"
       },
       "div": 0,
       "num_date": {
         "confidence": [
-          1272.4660980953336,
-          1370.106843934699
+          1174.580262569631,
+          1261.6978475999285
         ],
-        "value": 1302.7972055030075
+        "value": 1215.137729534691
       }
     }
   },
