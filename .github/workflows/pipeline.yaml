@@ -9,6 +9,7 @@ on:
     paths:
       - '.github/workflows/pipeline.yaml'
       - 'pipeline.nf'
+      - 'phylo-env.yaml'
 
   # Triggered on PR for all branches, pipeline
   pull_request:
