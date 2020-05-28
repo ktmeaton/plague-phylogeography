@@ -37,19 +37,31 @@ Database
 Database Curation
 -----------------
 
-Curate metadata with a DB Browser (SQLite), examples:
+Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleComment column:
 
 #. Exclude records that are not plague.
 
-   * Add "REMOVE: Not Yersinia pestis" to BioSampleComment.
+   * REMOVE: Not Yersinia pestis.
 
 #. Exclude synthetic/laboratory sequences.
 
-   * Add "REMOVE: Laboratory manipulation" to BioSampleComment.
+   * REMOVE: Laboratory manipulation.
 
 #. Identify records with a specific author/publication.
 
-   * Add "KEEP: Assembly Morelli 2010" to BioSampleComment.
+   * KEEP: Assembly Morelli 2010.
+
+#. Differentiate between modern assemblies and SRA data.
+
+   * KEEP: Assembly Modern
+   * KEEP: SRA Modern
+   * KEEP: Undetermined Modern
+
+#. Differentiate between ancient SRA data for EAGER pipeline.
+
+   * KEEP: EAGER Ancient
+   * KEEP: Undetermined Ancient
+   * KEEP: Undetermined
 
 #. Annotate with meaningful metadata.
 
