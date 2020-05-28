@@ -39,6 +39,18 @@ Database Curation
 
 Curate metadata with a DB Browser (SQLite), examples:
 
-* ex. Add "REMOVE: Not Yersinia pestis" to the column BioSampleComment.
-* ex. Add collection data, geographic location, host etc. from literature.
-* ex. Add "KEEP: Assembly Morelli 2010" to the column BioSampleComment.
+#. Exclude records that are not plague.
+
+   * Add "REMOVE: Not Yersinia pestis" to BioSampleComment.
+
+#. Exclude synthetic/laboratory sequences.
+
+   * Add "REMOVE: Laboratory manipulation" to BioSampleComment.
+
+#. Identify records with a specific author/publication.
+
+   * Add "KEEP: Assembly Morelli 2010" to BioSampleComment.
+
+#. Annotate with meaningful metadata.
+
+   * Add collection data, geographic location, host etc.
