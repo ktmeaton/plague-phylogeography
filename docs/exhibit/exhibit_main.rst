@@ -1,14 +1,14 @@
 Main Exhibit
-***************************
+************
 
 Code Installation
-=================
+-----------------
 
 | Follow the installation guide at the `Github Repository <https://github.com/ktmeaton/plague-phylogeography#installation>`_.
 | Note: Requires `conda <https://docs.conda.io/projects/conda/en/latest/user-guide/install/>`_.
 
 Clone Repository
-----------------
+^^^^^^^^^^^^^^^^
 
 ::
 
@@ -16,7 +16,7 @@ Clone Repository
   cd plague-phylogeography
 
 Create Environment
-------------------
+^^^^^^^^^^^^^^^^^^
 
 ::
 
@@ -26,10 +26,10 @@ Create Environment
 
 
 Database
-========
+--------
 
 Create
-------
+^^^^^^
 
 ::
 
@@ -40,7 +40,7 @@ Create
     --skip_reference_download
 
 Curate
-------
+^^^^^^
 
 Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleComment column:
 
@@ -73,7 +73,7 @@ Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleC
    * Add collection data, geographic location, host etc.
 
 Update, Annotate, Join
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
