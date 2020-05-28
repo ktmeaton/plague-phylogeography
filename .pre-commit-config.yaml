@@ -24,7 +24,7 @@ repos:
         args: [--config=.github/markdown_lint.yaml]
 
   # Rst Lint
-  #- repo: https://github.com/myint/rstcheck
-  #  rev: v3.3.1
-  #  hooks:
-  #    - id: rstcheck
+  - repo: https://github.com/myint/rstcheck
+    rev: master
+    hooks:
+      - id: rstcheck
