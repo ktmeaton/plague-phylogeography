@@ -33,7 +33,7 @@ jobs:
       - name: pull eager
         shell: bash -l {0}
         run: |
-          nextflow pull nf-core/eager -r tsv-input
+          nextflow pull nf-core/eager -r b2b411b
           cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
 
       - name: pipeline
