@@ -10,11 +10,9 @@ dependencies:
   - mummer==3.23
   - vcftools==0.1.16
   - pip==20.0.2
+  - ncbimeta==0.6.5
   - qualimap==2.2.2d
   - multiqc==1.8
   - nextflow==20.01.0
   - iqtree==2.0.3
   - sra-tools==2.10.3
-  - pip:
-    # Regular pip packages
-    - ncbimeta==0.6.6
