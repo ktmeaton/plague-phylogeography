@@ -97,23 +97,25 @@ Select records from the database that are marked as "KEEP".
   nextflow run pipeline.nf \
    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
    --outdir results \
-   --skip_sra_download \
    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%')\"" \
+   --max_datasets_assembly 2000 \
+   --max_datasets_sra 2000  \
    --skip_assembly_download \
+   --skip_sra_download \
    --skip_reference_download \
    -resume
 
-Check that there are XXX assemblies to be downloaded.
+Check that there are 483 assemblies to be downloaded.
 
 ::
 
      wc -l results/sqlite_import/assembly_for_download.txt
 
-Check that there are XXX SRA to be downloaded.
+Check that there are 4 SRA to be downloaded.
 
 ::
 
-  tail -n+2 morelli2010/sqlite_import/metadata_sra_eager.tsv | \
+  tail -n+2 results/sqlite_import/metadata_sra_eager.tsv | \
     cut -f 1 | \
     sort | \
     uniq | \
@@ -128,6 +130,7 @@ Assembly Pipeline
   nextflow run pipeline.nf \
     --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
     --outdir results \
+    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%')\"" \
     --max_datasets_assembly 2000 \
     --max_datasets_sra 2000  \
     --skip_sra_download \
