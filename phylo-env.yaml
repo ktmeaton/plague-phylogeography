@@ -10,7 +10,7 @@ dependencies:
   - mummer==3.23
   - vcftools==0.1.16
   - pip==20.0.2
-  - ncbimeta==0.6.5
+  - ncbimeta==0.6.6
   - qualimap==2.2.2d
   - multiqc==1.8
   - nextflow==20.01.0
