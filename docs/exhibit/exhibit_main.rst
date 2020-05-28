@@ -4,23 +4,26 @@ Main Exhibit
 Code Installation
 ------------------
 
-Follow the installation guide at the `Github Repository <https://github.com/ktmeaton/plague-phylogeography#installation>`_.
-Note: Requires `conda <https://docs.conda.io/projects/conda/en/latest/user-guide/install/>`_.
+| Follow the installation guide at the `Github Repository <https://github.com/ktmeaton/plague-phylogeography#installation>`_.
+| Note: Requires `conda <https://docs.conda.io/projects/conda/en/latest/user-guide/install/>`_.
 
-**Shell script**::
+**Clone Repository**::
 
   git clone https://github.com/ktmeaton/plague-phylogeography.git
   cd plague-phylogeography
+
+**Create Environment**::
+
   conda env create -f phylo-env.yaml --name phylo-env
   conda activate phylo-env
   conda install geopy
 
 ------------
 
-Database Creation
+Database
 -----------------
 
-**Shell script**::
+**Create**::
 
   nextflow run pipeline.nf \
     --ncbimeta_create ncbimeta.yaml \
