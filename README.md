@@ -2,16 +2,19 @@
 
 A **VERY** in-development work on the phylogeography of *Yersinia pestis*.
 
-## Dependencies
+## Pipeline Overview
 
-* **Workflow:** NextFlow
-* **Database:** NCBImeta, sqlite3 (CLI)
-* **Alignment:** snippy, eager
-* **Masking, etc.:** dustmasker, mummer, vcftools
-* **Phylogenetics:** iqtree
-* **Statistics:** qualimap, multiqc
+1. Create a metadata database of NCBI genomic assemblies and SRA data (```NCBImeta```)
+1. Download assemblies and SRA fastq files (```sra-tools```)
+1. Build SnpEff database from reference (```SnpEff```)
+1. Align to reference genome (```snippy```,```eager```)
+1. Mask problematic regions (```dustmasker```, ```mummer```, ```vcftools```)
+1. Evaluate statistics (```qualimap```, ```multiqc```)
+1. Construct a Maximum Likelihood phylogeny (```iqtree```)
+1. Optimze time-scaled phylogeny (```augur```, ```treetime```)
+1. Web-based narrative visualization (```auspice```)
 
-### Installation
+## Installation
 
 Create a conda environment with the required dependencies.
 
@@ -29,78 +32,11 @@ nextflow pull nf-core/eager -r tsv-input
 cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
 ```
 
-## Run full pipeline to reproduce previous analysis
+## Usage
 
-```bash
-nextflow run pipeline.nf \
-  --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-  --max_datasets_assembly 2000 \
-  --max_datasets_sra 2000
-```
+The current usage is described in the [Main Exhibit page](https://plague-phylogeography.readthedocs.io/en/latest/exhibit/exhibit_link.html#main-exhibit) at ReadTheDocs.
 
-## Step By Step (From Scratch)
-
-### Build NCBImeta metadata database
-
-```bash
-nextflow run pipeline.nf \
-  --ncbimeta_create ncbimeta.yaml \
-  --outdir results \
-  --skip_ncbimeta_update \
-  --skip_reference_download
-```
-
-### Customize and Curate the Annotations
-
-Curate metadata with a DB Browser (SQLite), examples:
-
-* ex. Add "REMOVE: Not Yersinia pestis" to the column BioSampleComment.
-* ex. Add collection data, geographic location, host etc. from literature.
-
-### Update and Join Database Tables
-
-```bash
-nextflow run pipeline.nf \
-  --ncbimeta_update ncbimeta.yaml \
-  --outdir results \
-  --skip_sqlite_import \
-  --skip_reference_download
-```
-
-### Export metadata for downstream visualization
-
-NextStrain metadata file preparation
-
-```bash
-scripts/sqlite_NextStrain_tsv.py   \
-  --database test/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite   \
-  --query "SELECT BioSampleAccession,AssemblyFTPGenbank,SRARunAccession,BioSampleStrain,BioSampleCollectionDate,BioSampleHost,BioSampleGeographicLocation,BioSampleBiovar,PubmedArticleTitle,PubmedAuthorsLastName,AssemblyContigCount,AssemblyTotalLength,NucleotideGenes,NucleotideGenesTotal,NucleotidePseudoGenes,NucleotidePseudoGenesTotal,NucleotiderRNAs,AssemblySubmissionDate,SRARunPublishDate,BioSampleComment FROM Master"   \
-  --no-data-char ? \
-  --output nextstrain_annot.txt
-```
-
-### Run the sqlite import command to see what samples will be run
-
-```bash
-nextflow run pipeline.nf \
-  --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-  --outdir results \
-  --skip_assembly_download \
-  --skip_reference_download \
-  -resume
-```
-
-### Run the full pipeline
-
-```bash
-nextflow run pipeline.nf \
-  --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-  --max_datasets_assembly 2000 \
-  --max_datasets_sra 2000  \
-  -resume
-```
-
-### Developing
+## Development
 
 Create the development conda environment
 
