@@ -81,7 +81,8 @@ Update, Annotate, Join
    --ncbimeta_update ncbimeta.yaml \
    --outdir results \
    --skip_sqlite_import \
-   --skip_reference_download
+   --skip_reference_download \
+   -resume
 
 Pipeline
 --------
@@ -99,7 +100,8 @@ Select records from the database that are marked as "KEEP".
    --skip_sra_download \
    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%')\"" \
    --skip_assembly_download \
-   --skip_reference_download
+   --skip_reference_download \
+   -resume
 
 Check that there are XXX assemblies to be downloaded.
 
@@ -116,3 +118,32 @@ Check that there are XXX SRA to be downloaded.
     sort | \
     uniq | \
     wc -l
+
+
+Assembly Pipeline
+^^^^^^^^^^^^^^^^^
+
+::
+
+  nextflow run pipeline.nf \
+    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+    --outdir results \
+    --max_datasets_assembly 2000 \
+    --max_datasets_sra 2000  \
+    --skip_sra_download \
+    -resume
+
+SRA Pipeline
+^^^^^^^^^^^^^^^^^
+
+To Be Implemented.
+
+::
+
+  nextflow run pipeline.nf \
+    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+    --outdir results \
+    --max_datasets_assembly 2000 \
+    --max_datasets_sra 2000  \
+    --skip_assembly_download \
+    -resume
