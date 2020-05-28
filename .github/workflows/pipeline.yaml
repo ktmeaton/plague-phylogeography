@@ -51,22 +51,22 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: sqlite-import
-          path: results/sqlite_import/
+          path: test/sqlite_import/
 
       - name: artifact multiqc
         uses: actions/upload-artifact@v2
         with:
           name: multiqc
-          path: results/multiqc/multiqc_report.html
+          path: test/multiqc/multiqc_report.html
 
       - name: artifact phylogeny
         uses: actions/upload-artifact@v2
         with:
           name: phylogeny
-          path: results/iqtree/
+          path: test/iqtree/
 
       - name: artifact trace
         uses: actions/upload-artifact@v2
         with:
           name: phylogeny
-          path: results/trace/
+          path: test/trace/
