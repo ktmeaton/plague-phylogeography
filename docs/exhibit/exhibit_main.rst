@@ -82,3 +82,37 @@ Update, Annotate, Join
    --outdir results \
    --skip_sqlite_import \
    --skip_reference_download
+
+Pipeline
+--------
+
+Verify Samples
+^^^^^^^^^^^^^^
+
+Select records from the database that are marked as "KEEP".
+
+::
+
+  nextflow run pipeline.nf \
+   --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+   --outdir results \
+   --skip_sra_download \
+   --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%')\"" \
+   --skip_assembly_download \
+   --skip_reference_download
+
+Check that there are XXX assemblies to be downloaded.
+
+::
+
+     wc -l results/sqlite_import/assembly_for_download.txt
+
+Check that there are XXX SRA to be downloaded.
+
+::
+
+  tail -n+2 morelli2010/sqlite_import/metadata_sra_eager.tsv | \
+    cut -f 1 | \
+    sort | \
+    uniq | \
+    wc -l
