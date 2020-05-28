@@ -26,7 +26,6 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 Release for the [DHSI2020 Conference and Colloquium](https://dhsi.org/dhsi-2020/#colloquium) Exhibit.
 
-
 ## [v0.1.2] - 2020-05-13 - Github Actions and Linting
 
 ### Added
