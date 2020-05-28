@@ -20,6 +20,13 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Rethink if statements controlling processes in pipeline
 - Fix the fail to copy errors that are due to non-specific output wildcards
 
+## [v0.1.4] - 2020-05-28 - TBD
+
+## [v0.1.3] - 2020-05-28 - DHSI2020 Exhibit
+
+Release for the [DHSI2020 Conference and Colloquium](https://dhsi.org/dhsi-2020/#colloquium) Exhibit.
+
+
 ## [v0.1.2] - 2020-05-13 - Github Actions and Linting
 
 ### Added
@@ -28,7 +35,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - pre-commit linting and misc
 - workflows: pipeline, linting, docs
 - Automate SNPEff db creation
-- Split dependecies into user and dev conda env
+- Split dependencies into user and dev conda env
 
 ### Changed
 
@@ -120,6 +127,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   ```
 
 [Development]: https://github.com/ktmeaton/paper-phylogeography/compare/HEAD...dev
+[v0.1.4]: https://github.com/ktmeaton/paper-phylogeography/compare/v0.1.3...HEAD
+[v0.1.3]: https://github.com/ktmeaton/paper-phylogeography/compare/v0.1.2...v0.1.3
+[v0.1.2]: https://github.com/ktmeaton/paper-phylogeography/compare/v0.1.1...v0.1.2
+[v0.1.1]: https://github.com/ktmeaton/paper-phylogeography/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/ktmeaton/paper-phylogeography/compare/de952505c2a4ebbfdd7a6747896e3e7372c8030b...v0.1.0
 
 <!-- markdownlint-disable-file MD024 -->
