@@ -1,6 +1,6 @@
 # Markdown_lint configuration file
 default: true,
 line-length: false
+no-trailing-punctuation: false
 no-duplicate-header:
     siblings_only: true
-ol-prefix: ordered

@@ -2,6 +2,7 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
+  # General Text + YAML Lint
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.3.0
     hooks:
@@ -14,17 +15,15 @@ repos:
         args: [--fix=lf]
       - id: detect-private-key
 
-  - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.23.0
+  # Markdown lint
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.23.1
     hooks:
-      - id: yamllint
-        args: ['-d {extends: default, rules: {line-length: disable}}']
+      - id: markdownlint
+        args: [--config=.github/markdown_lint.yaml]
 
-  #- repo: https://github.com/igorshubovych/markdownlint-cli
-  #  rev: master
+  # Rst Lint
+  #- repo: https://github.com/myint/rstcheck
+  #  rev: v3.3.1
   #  hooks:
-  #    - id: markdownlint
-  #      name: markdownlint
-  #      language: node
-  #      types: [markdown]
-  #      minimum_pre_commit_version: 0.15.0
+  #    - id: rstcheck

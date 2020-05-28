@@ -4,12 +4,12 @@ A **VERY** in-development work on the phylogeography of *Yersinia pestis*.
 
 ## Dependencies
 
-**Workflow:** NextFlow
-**Database:** NCBImeta, sqlite3 (CLI)
-**Alignment:** snippy, eager
-**Masking, etc.:** dustmasker, mummer, vcftools
-**Phylogenetics:** iqtree
-**Statistics:** qualimap, multiqc
+* **Workflow:** NextFlow
+* **Database:** NCBImeta, sqlite3 (CLI)
+* **Alignment:** snippy, eager
+* **Masking, etc.:** dustmasker, mummer, vcftools
+* **Phylogenetics:** iqtree
+* **Statistics:** qualimap, multiqc
 
 ### Installation
 
