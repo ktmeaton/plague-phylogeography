@@ -31,11 +31,11 @@ jobs:
           environment-file: phylo-env.yaml
           auto-activate-base: false
 
-      - name: pull eager
-        shell: bash -l {0}
-        run: |
-          nextflow pull nf-core/eager -r b2b411b
-          cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
+      #- name: pull eager
+      #  shell: bash -l {0}
+      #  run: |
+      #    nextflow pull nf-core/eager -r b2b411b
+      #    cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
 
       - name: pipeline
         shell: bash -l {0}
