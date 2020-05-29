@@ -11,6 +11,10 @@
 
 ## Problem
 
+* Why do plague trees disagree?
+* The Good - Genomic Sequencing - Lots of taxa, lots of sites
+* The Bad - Mixed opinions on whether this is advantageous or not.
+
 [@OptimalRatesPhylogenetic]:
 "Faced with a deluge of sequence data, the question of how to select data most appropriate for a given phylogenetic problem has become a major topic of interest (Salichos and Rokas 2013; Pisani et al. 2015; Shen et al. 2017)."
 However
@@ -27,7 +31,24 @@ However
 
 "Although there are cases where adding taxa reduces support and/or results in decreased phylogenetic accuracy (e.g., Poe and Swofford 1999; Sanderson and Wojciechowski 2000; Braun and Kimball 2002; Meiklejohn et al. 2014)"
 
-The questions of interest listed above are highly sensitive to taxon sampling bias.
+[@prasannaModelChoiceMissing2020]
+"examined biological and technical sources of incongruence around basal Basidiomycota nodes in concatenation and gene tree-based analyses. We have demonstrated that data set composition, taxon sampling, fast-evolving sites and the choice of analytical method and model all have an impact on resolving contentious relationships"
+"including all data without careful selection of genes/sites in phylogenomic analyses can result in incorrect estimates of support values and even tree topologies."
+". It is becoming more and more obvious that, despite initial expectations of genome-scale data sets erasing incongruence completely from phylogenetic studies (Gee 2003; Rokas et al. 2003), phylogenomic data sets bring about new types of challenges that may be even more difficult to resolve than those we faced in the age of multigene phylogenetics"
+
+* Biological - Missing data and/or lack of signal between sites. Hard polytomy (near simultaneous divergence of descendanyt lineages, so bifurcating trees are not a reasonable biological explanation of the data.)
+* Methodological - missing data between taxa. Long branch attraction, fast-evolving (noisy) sites, model complexity, taxon sampling.
+
+[@rosenbergIncompleteTaxonSampling2001]
+"incomplete taxon sampling has a much smaller effect on the accuracy of a phylogeny as compared with
+ the number of sites and substitution rates"
+"Poor character sampling with weak phylogenetic signal is more likely to be the cause."
+"Our simulation results appear to conflict with empirical studies that have reported improved performance with increased taxon sampling."
+"using more genes with longer sequences would be a better use of time and resources."
+
+[@pollockAssessingUnknownEvolutionary2000a]
+"Our results appear to conflict with some previous studies which have ascribed better results to increased sequence length rather than increased taxonomic sampling, or recommended avoidance of additional sequences outside the clade under consideration"
+Due to Parsimony vs. Maximum likelihood?
 
 ### Topology + Branch Lengths
 
