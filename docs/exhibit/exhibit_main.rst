@@ -139,14 +139,23 @@ Assembly Pipeline
 SRA Pipeline
 ^^^^^^^^^^^^^^^^^
 
-To Be Implemented.
+Black Death 8291 SRA Accession
+
+::
+
+  SRR341961
+
+Prep tsv input from pipeline.nf
 
 ::
 
   nextflow run pipeline.nf \
     --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
     --outdir results \
+    --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR341961')\"" \
     --max_datasets_assembly 2000 \
     --max_datasets_sra 2000  \
     --skip_assembly_download \
+    --skip_sra_download \
+    --skip_reference_download \
     -resume
