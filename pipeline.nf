@@ -292,7 +292,7 @@ if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import)
       --organism ${params.eager_organism} \
       --max-datasets ${params.max_datasets_sra} \
       --output ${params.eager_tsv} \
-      --fastq-dir ${outdir}/sra_download/fastq/
+      --fastq-dir ${outdir}/sra_download/
 
     accessionColumn=2
     tail -n+2 ${params.eager_tsv} | cut -f \$accessionColumn | sort | uniq > ${params.sra_tsv}
