@@ -6,7 +6,7 @@ Extract SRA metadata from an NCBImeta sqlite database to create the tsv input fi
 
 ./sqlite_EAGER_tsv.py \
   --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-  --query "SELECT BioSampleAccession,SRARunAccession, SRALibraryLayout,SRAFileURL From Master WHERE ( BioSampleComment LIKE '%EAGER%')" \
+  --query "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL From Master WHERE ( BioSampleComment LIKE '%EAGER%')" \
   --organism "Yersinia pestis" \
   --max-datasets 3 \
   --fastq-dir testdir \
@@ -101,7 +101,8 @@ out_file = open(out_path, 'w')
 #                              Default Variables                               #
 #------------------------------------------------------------------------------#
 # EAGER tsv input column names
-EAGER_HEADER="Sample_Name\tLibrary_ID\tLane\tSeqType\tOrganism\tStrandedness\tUDG_Treatment\tR1\tR2\tBAM\tGroup\tPopulations\tAge";
+#EAGER_HEADER="Sample_Name\tLibrary_ID\tLane\tSeqType\tOrganism\tStrandedness\tUDG_Treatment\tR1\tR2\tBAM\tGroup\tPopulations\tAge";
+EAGER_HEADER="Sample_Name\tLibrary_ID\tLane\tColour_Chemistry\tSeqType\tOrganism\tStrandedness\tUDG_Treatment\tR1\tR2\tBAM";
 
 # Indices for retrieved values
 BIOSAMPLE_ACC_IND = 0
@@ -111,14 +112,15 @@ FTP_URL_IND = 3
 
 # By default assume basic or NA values for these columns
 LANE="1"
+COLOR_CHEM="NA"
 BAM="NA"
-GROUP="NA"
-POPULATIONS="NA"
-AGE="NA"
+#GROUP="NA"
+#POPULATIONS="NA"
+#AGE="NA"
 UDG="NA"
 
 # By default assume double stranded for now
-STRANDEDNESS="DOUBLE"
+STRANDEDNESS="double"
 
 # Separator for record values
 DB_SEP = ";"
@@ -169,10 +171,10 @@ for record in record_exists:
     if len(library_layout_list) != len(ftp_url_split):
         library_layout_list = library_layout_list * len(ftp_url_split)
 
-    print(biosample_acc)
-    print(library_layout_list)
-    print(ftp_url_split)
-    print("\n")
+    #print(biosample_acc)
+    #print(library_layout_list)
+    #print(ftp_url_split)
+    #print("\n")
 
     # Iterate over each libary
     for library_layout in library_layout_list:
@@ -191,20 +193,21 @@ for record in record_exists:
             if not ftp_url_split[0].endswith(".bam"):
                 #R1_path = ftp_url_split[0]
                 # Use fastq-dump download path instead of url
-                R1_path = os.path.join(fastq_dir, sra_acc_val + "_1.fastq.gz")
+                R1_path = os.path.join(fastq_dir, "single", sra_acc_val + "_1.fastq.gz")
                 out_file.write(biosample_acc + "\t" +
                       sra_acc_val + "\t" +
                       LANE + "\t" +
+                      COLOR_CHEM + "\t" +
                       library_layout + "\t" +
                       org_name + "\t" +
                       STRANDEDNESS + "\t" +
                       UDG + "\t" +
                       R1_path + "\t" +
                       R2_path + "\t" +
-                      BAM + "\t" +
-                      GROUP + "\t" +
-                      POPULATIONS + "\t" +
-                      AGE + "\n")
+                      BAM + "\n")
+                      #GROUP + "\t" +
+                      #POPULATIONS + "\t" +
+                      #AGE + "\n")
 
             # Remove the consumed ftp_url
             ftp_url_split.remove(ftp_url_split[0])
@@ -218,21 +221,22 @@ for record in record_exists:
             #R1_path = ftp_url_split[0]
             #R2_path = ftp_url_split[1]
             # Use fastq-dump download path instead of url
-            R1_path = os.path.join(fastq_dir, sra_acc_val + "_1.fastq.gz")
-            R2_path = os.path.join(fastq_dir, sra_acc_val + "_2.fastq.gz")
+            R1_path = os.path.join(fastq_dir, "paired", sra_acc_val + "_1.fastq.gz")
+            R2_path = os.path.join(fastq_dir, "paired", sra_acc_val + "_2.fastq.gz")
             out_file.write(biosample_acc + "\t" +
                   sra_acc_val + "\t" +
                   LANE + "\t" +
+                  COLOR_CHEM + "\t" +
                   library_layout + "\t" +
                   org_name + "\t" +
                   STRANDEDNESS + "\t" +
                   UDG + "\t" +
                   R1_path + "\t" +
                   R2_path + "\t" +
-                  BAM + "\t" +
-                  GROUP + "\t" +
-                  POPULATIONS + "\t" +
-                  AGE + "\n")
+                  BAM + "\n")
+                  #GROUP + "\t" +
+                  #POPULATIONS + "\t" +
+                  #AGE + "\n")
             # Remove the consumed ftp_url
             ftp_url_split.remove(ftp_url_split[0])
             # Remove the consumed sra_accession
