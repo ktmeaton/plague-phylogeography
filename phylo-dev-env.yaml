@@ -17,6 +17,7 @@ dependencies:
   - nextflow==20.01.0
   - iqtree==2.0.3
   - sra-tools==2.10.3
+  - cutadapt==2.10
   - sphinx_rtd_theme==0.4.3
   - sphinxcontrib-applehelp==1.0.2
   - sphinxcontrib-devhelp==1.0.2

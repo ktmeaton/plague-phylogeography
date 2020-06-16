@@ -151,11 +151,70 @@ Prep tsv input from pipeline.nf
 
   nextflow run pipeline.nf \
     --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-    --outdir results \
+    --outdir test \
     --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR341961')\"" \
     --max_datasets_assembly 2000 \
     --max_datasets_sra 2000  \
     --skip_assembly_download \
     --skip_sra_download \
-    --skip_reference_download \
-    -resume
+    --skip_reference_download
+
+Make directories for SRA data
+
+::
+
+  mkdir test/sra_download;
+  mkdir test/sra_download/fastq;
+  mkdir test/sra_download/fastq/single;
+  mkdir test/sra_download/fastq/paired;
+
+Download single-end fastq files from the SRA
+
+::
+
+  grep -w "SE" test/sqlite_import/metadata_sra_eager.tsv | while read line;
+  do
+    runAcc=`echo "$line" | cut -f 2`
+    if [ ! -f test/sra_download/fastq/single/${runAcc}_1.fastq.gz ]; then
+      echo $runAcc;
+      fastq-dump \
+        --outdir test/sra_download/fastq/single \
+        --skip-technical \
+        --gzip \
+        --split-files $runAcc;
+    fi
+  done;
+
+Download paired-end fastq files from the SRA
+
+::
+
+  grep -w "PE" test/sqlite_import/metadata_sra_eager.tsv | while read line;
+  do
+    runAcc=`echo "$line" | cut -f 2`
+    if [ ! -f test/sra_download/fastq/paired/${runAcc}_1.fastq.gz ] ||
+       [ ! -f test/sra_download/fastq/paired/${runAcc}_2.fastq.gz ]; then
+      echo $runAcc;
+      fastq-dump \
+        --outdir test/sra_download/fastq/paired \
+        --skip-technical \
+        --gzip \
+        --split-files $runAcc;
+    fi
+  done;
+
+Split after base 75 into two separate files to maintain proper paired-end format.
+
+::
+
+  cutadapt \
+    -j 10  \
+    -u -75 \
+    -o  England8291.pass_1.fastq.gz \
+    $runAcc.pass_1.fastq.gz > England8291.pass_1.cutadapt.log
+
+  cutadapt \
+    -j 20  \
+    -u 75 \
+    -o  England8291.pass_2.fastq.gz \
+    England8291.pass.fastq.gz > England8291.pass_2.cutadapt.log
