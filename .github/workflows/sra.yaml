@@ -45,9 +45,6 @@ jobs:
         uses: goanpeca/setup-miniconda@v1
         with:
           environment-file: ~/.nextflow/assets/nf-core/eager/environment.yml
-        run: |
-          cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml \
-             ./multiqc_config_custom.yaml
 
       # 5. Setup the conda environment phylo-env
       - name: setup conda phylo-env
@@ -59,11 +56,10 @@ jobs:
 
       # Test the SRA EAGER Pipeline
       - name: sra pipeline
-        uses: goanpeca/setup-miniconda@v1
-        with:
-          activate-environment: phylo-env
         shell: bash -l {0}
         run: |
+          cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml \
+             ./multiqc_config_custom.yaml;
           nextflow run pipeline.nf \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --outdir test \
