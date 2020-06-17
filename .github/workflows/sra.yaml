@@ -34,19 +34,7 @@ jobs:
           wget -qO- get.nextflow.io | bash
           sudo mv nextflow /usr/local/bin/
 
-      # 3. Pull the EAGER pipeline
-      - name: pull eager
-        shell: bash -l {0}
-        run: |
-          nextflow pull nf-core/eager -r dev
-
-      # 4. Setup the conda environment EAGER
-      - name: setup conda eager-env
-        uses: goanpeca/setup-miniconda@v1
-        with:
-          environment-file: ~/.nextflow/assets/nf-core/eager/environment.yml
-
-      # 5. Setup the conda environment phylo-env
+      # 3. Setup the conda environment phylo-env
       - name: setup conda phylo-env
         uses: goanpeca/setup-miniconda@v1
         with:
@@ -54,12 +42,19 @@ jobs:
           environment-file: phylo-env.yaml
           auto-activate-base: false
 
+      # 4. Pull the EAGER pipeline
+      - name: pull eager
+        shell: bash -l {0}
+        run: |
+          nextflow pull nf-core/eager -r dev
+          conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
+          cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml \
+             ./multiqc_config_custom.yaml;
+
       # Test the SRA EAGER Pipeline
       - name: sra pipeline
         shell: bash -l {0}
         run: |
-          cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml \
-             ./multiqc_config_custom.yaml;
           nextflow run pipeline.nf \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --outdir test \
