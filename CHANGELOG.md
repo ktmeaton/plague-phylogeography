@@ -8,17 +8,15 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [Development]
 
 - Rewrite shell scripts in python?
-- Then add python linting
+- Lint all python scripts with black+flake8
 - Overabundance of files in database update
 - Deal with the fail to publish issue with NCBImeta db
 - Add exact-repeats and tandem repeats detection
 - Add GeoPy to phylo-env environment
 - Github actions, to build docs and remote narratives
-- Automate SNPEff db creation
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Deal with nextstrain augur not working with phylogeny with branch support values
 - Rethink if statements controlling processes in pipeline
-- Fix the fail to copy errors that are due to non-specific output wildcards
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
 - Add outgroup 2 x Y. pseudotuberculosis
 

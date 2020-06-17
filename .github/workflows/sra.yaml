@@ -34,8 +34,11 @@ jobs:
       - name: pull eager
         shell: bash -l {0}
         run: |
+          echo ${CONDA_PREFIX%/*}
+          ls -l ${CONDA_PREFIX%/*}
           nextflow pull nf-core/eager -r dev
           cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
+
 
       - name: pipeline
 

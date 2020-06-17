@@ -19,7 +19,7 @@ A **VERY** in-development work on the phylogeography of *Yersinia pestis*.
 Create a conda environment with the required dependencies.
 
 ```bash
-conda env create -f phylo-env.yaml --name phylo-env
+conda env create -f phylo-env.yaml
 conda activate phylo-env
 ```
 
@@ -29,6 +29,8 @@ Pull nf-core EAGER pipeline
 
 ```bash
 nextflow pull nf-core/eager -r dev
+conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
+OR
 cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
 ```
 

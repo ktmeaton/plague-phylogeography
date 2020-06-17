@@ -623,7 +623,7 @@ if (!params.skip_reference_detect_low_complexity && !params.skip_reference_downl
 if (!params.skip_eager && (!params.skip_sra_download) && (params.sqlite || ( params.ncbimeta_update) ) && (!params.skip_reference_download) && !params.skip_sqlite_import){
 
   process eager{
-    conda 'eager-env.yaml'
+    conda '/home/ktmeaton/miniconda3/envs/nf-core-eager-2.2.0dev/'
     /*
 
     Input:
