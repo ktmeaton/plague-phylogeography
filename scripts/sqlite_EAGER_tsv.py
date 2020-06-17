@@ -143,9 +143,11 @@ FTP_URL_IND = 3
 
 # By default assume basic or NA values for these columns
 LANE = "1"
-COLOR_CHEM = "NA"
+# For now, default to HiSeq color chemistry
+COLOR_CHEM = "4"
 BAM = "NA"
-UDG = "NA"
+# For now, default to no UDG treatment assumption
+UDG = "none"
 
 # By default assume double stranded for now
 STRANDEDNESS = "double"

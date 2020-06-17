@@ -4,7 +4,6 @@ test*/*
 src/*
 .nextflow*
 ncbimeta.yaml*
-eager-env.yaml
 pipeline.pdf*
 report.html*
 timeline.html*

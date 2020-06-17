@@ -31,19 +31,17 @@ jobs:
           environment-file: phylo-env.yaml
           auto-activate-base: false
 
-      #- name: pull eager
-      #  shell: bash -l {0}
-      #  run: |
-      #    nextflow pull nf-core/eager -r b2b411b
-      #    cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
+      - name: pull eager
+        shell: bash -l {0}
+        run: |
+          nextflow pull nf-core/eager -r dev
+          cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
 
       - name: pipeline
         shell: bash -l {0}
         run: |
           cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml \
              ./multiqc_config_custom.yaml
-          cp ~/.nextflow/assets/nf-core/eager/environment.yml \
-             ./eager-env.yaml;
 
           nextflow run pipeline.nf \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
@@ -58,6 +56,8 @@ jobs:
         with:
           name: sqlite-import
           path: test/sqlite_import/
+
+      - name: artifact EAGER
 
       - name: artifact trace
         uses: actions/upload-artifact@v2

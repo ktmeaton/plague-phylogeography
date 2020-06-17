@@ -635,7 +635,8 @@ if (!params.skip_eager && (!params.skip_sra_download) && (params.sqlite || ( par
     Publish:
     */
     // Other variables and config
-    echo true
+    tag "$eager_tsv"
+    publishDir "${outdir}/eager", mode: 'copy'
 
     // IO and conditional behavior
     input:
@@ -644,6 +645,13 @@ if (!params.skip_eager && (!params.skip_sra_download) && (params.sqlite || ( par
     file eager_tsv from ch_tsv_for_eager
 
     output:
+    file "damageprofiler/*"
+    file "deduplication/*" into ch_sra_fastq_snippy_pairwise
+    file "pipeline_info/*"
+    file "preseq/*"
+    file "qualimap/*"
+    file "MultiQC/*"
+    file "SoftwareVersions/*"
 
 
     // Shell script to execute
