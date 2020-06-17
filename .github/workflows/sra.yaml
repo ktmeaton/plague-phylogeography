@@ -1,5 +1,5 @@
-name: Pipeline
-#This is a workflow for minimal pipeline testing, triggered on a push or pull-request.
+name: SRA
+#This is a workflow for speciality pipeline feature, SRA Download
 on:
   # Triggered on Push for any branch
   push:
@@ -7,7 +7,7 @@ on:
       - '*'
     # On change to workflow, pipeline
     paths:
-      - '.github/workflows/pipeline.yaml'
+      - '.github/workflows/sra.yaml'
       - 'pipeline.nf'
       - 'phylo-env.yaml'
 
@@ -42,28 +42,19 @@ jobs:
         run: |
           nextflow run pipeline.nf \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-            --max_datasets_assembly 4 \
-            --max_datasets_sra 4 \
-            --skip_sra_download \
-            --outdir test
+            --outdir test \
+            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
+            --max_datasets_sra 10  \
+            --skip_assembly_download \
+            --skip_eager \
+            --skip_reference_download \
+            -resume
 
       - name: artifact SQLite import
         uses: actions/upload-artifact@v2
         with:
           name: sqlite-import
           path: test/sqlite_import/
-
-      - name: artifact multiqc
-        uses: actions/upload-artifact@v2
-        with:
-          name: multiqc
-          path: test/multiqc/multiqc_report.html
-
-      - name: artifact phylogeny
-        uses: actions/upload-artifact@v2
-        with:
-          name: phylogeny
-          path: test/iqtree/
 
       - name: artifact trace
         uses: actions/upload-artifact@v2
