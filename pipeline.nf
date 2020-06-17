@@ -374,17 +374,33 @@ if (!params.skip_sra_download && (params.sqlite || ( params.ncbimeta_update) ) &
     input:
     file sra_acc_file from ch_sra_acc_file
     output:
-    file "fastq/*.fastq.gz" into ch_sra_fastq_eager
+    file "fastq/*/*.fastq.gz" into ch_sra_fastq_eager
 
     // Shell script to execute
     script:
     """
-    echo "TEST"
     sraAcc=`cat ${sra_acc_file}`
     # Disable local caching to save disk space
     # vdb-config -s cache-enabled=false
+    # Create organization directories
+    mkdir fastq;
+    mkdir fastq/single;
+    mkdir fastq/paired;
+
     # Download fastq files from the SRA
-    echo "fastq-dump --outdir fastq/ --skip-technical --gzip --split-files \$sraAcc"
+    fastq-dump \
+      --outdir fastq/ \
+      --skip-technical \
+      --gzip \
+      --split-files \$sraAcc;
+
+    # If a paired-end or single-end file was downloaded
+    if [ -f fastq/\${sraAcc}_1.fastq.gz ] &&
+       [ -f fastq/\${sraAcc}_2.fastq.gz ]; then
+      mv fastq/\${sraAcc}*.fastq.gz fastq/paired/;
+    else
+      mv fastq/\${sraAcc}*.fastq.gz fastq/single/;
+    fi
     """
   }
 
