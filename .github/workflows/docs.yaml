@@ -38,7 +38,21 @@ jobs:
           pip install sphinx sphinx-rtd-theme
           sphinx-build --version
 
+      - name: Install Markdown 2 RST
+        run: |
+          pip install m2r
+          m2r --version
+
       - name: Compile docs
         run: |
+          m2r README.md
+          mv README.md README.rst
           cd docs/
           make html
+
+      # Artifact uploads
+      - name: artifact Docs HTML
+        uses: actions/upload-artifact@v2
+        with:
+          name: docs-build-html
+          path: docs/_build/*
