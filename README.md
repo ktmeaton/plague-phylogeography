@@ -16,22 +16,40 @@ A **VERY** in-development work on the phylogeography of *Yersinia pestis*.
 
 ## Installation
 
+Install Nextflow.
+
+```bash
+wget -qO- get.nextflow.io | bash
+sudo mv nextflow /usr/local/bin/
+```
+
 Create a conda environment with the required dependencies.
 
 ```bash
 conda env create -f phylo-env.yaml
-conda activate phylo-env
 ```
 
-NOTE: Eager needs graphviz installed
-
-Pull nf-core EAGER pipeline
+Pull the nf-core/eager pipeline and create a separate conda environment.
 
 ```bash
 nextflow pull nf-core/eager -r dev
 conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
-OR
-cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
+# Create a custom multiqc config file (avoids a later bug)
+cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml ./multiqc_config_custom.yaml;
+# Install graphviz for plotting
+conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
+```
+
+## Quick Start
+
+Test the installation runs correctly from a previously created database.
+
+```bash
+nextflow run pipeline.nf \
+  --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+  --max_datasets_assembly 4 \
+  --max_datasets_sra 2 \
+  --outdir test
 ```
 
 ## Usage
