@@ -38,6 +38,7 @@ jobs:
           cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
 
       - name: pipeline
+
         shell: bash -l {0}
         run: |
           cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml \
@@ -57,7 +58,11 @@ jobs:
           name: sqlite-import
           path: test/sqlite_import/
 
-      - name: artifact EAGER
+      - name: artifact EAGER MultiQC
+        uses: actions/upload-artifact@v2
+        with:
+          name: eager-multiqc
+          path: test/eager/MultiQC
 
       - name: artifact trace
         uses: actions/upload-artifact@v2
