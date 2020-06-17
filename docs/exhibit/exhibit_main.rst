@@ -240,6 +240,8 @@ Run EAGER pipeline
 
   mkdir test/eager;
   cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml ./multiqc_config_custom.yaml
+  conda activate eager-env;
+
   nextflow run nf-core/eager -r dev \
     --input test/sqlite_import/metadata_sra_eager.tsv \
     --outdir test/eager \
@@ -249,4 +251,42 @@ Run EAGER pipeline
     --preserve5p \
     --mergedonly \
     --mapper bwaaln \
+    --bwaalnn 0.01 \
+    --bwaalnl 16 \
+    --run_bam_filtering \
+    --bam_mapping_quality_threshold 30 \
+    --bam_discard_unmapped \
+    --bam_unmapped_type discard \
     -resume 35a03fea-8f18-4174-b273-05ee7cbfaaa0
+
+Repeat but include Barcelona3031 (SRARunAccession = 'ERR1368878')
+
+::
+
+  nextflow run pipeline.nf \
+    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+    --outdir test \
+    --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR341961' OR SRARunAccession = 'ERR1368878')\"" \
+    --max_datasets_assembly 2000 \
+    --max_datasets_sra 2000  \
+    --skip_assembly_download \
+    --skip_sra_download \
+    --skip_reference_detect_repeats \
+    --skip_reference_detect_low_complexity \
+    -resume ab34c580-164d-4420-9e6f-a5aa7aa1dd05
+
+Repeat but include everything marked for EAGER
+
+::
+
+  nextflow run pipeline.nf \
+    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+    --outdir test \
+    --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%EAGER%')\"" \
+    --max_datasets_assembly 2000 \
+    --max_datasets_sra 2000  \
+    --skip_assembly_download \
+    --skip_sra_download \
+    --skip_reference_detect_repeats \
+    --skip_reference_detect_low_complexity \
+    -resume ab34c580-164d-4420-9e6f-a5aa7aa1dd05
