@@ -24,24 +24,28 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: goanpeca/setup-miniconda@v1
+      # Setup the plague-phylo environment
+      - name: check-out repo
+        uses: actions/checkout@v2
+
+      # Setup the miniconda environment phylo-env
+      - name: setup conda phylo-env
+        uses: goanpeca/setup-miniconda@v1
         with:
           activate-environment: phylo-env
           environment-file: phylo-env.yaml
           auto-activate-base: false
 
+      # Pull the EAGER pipeline
       - name: pull eager
         shell: bash -l {0}
         run: |
           echo ${CONDA_PREFIX%/*}
           ls -l ${CONDA_PREFIX%/*}
           nextflow pull nf-core/eager -r dev
-          cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
+          conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
 
-
-      - name: pipeline
-
+      - name: sra pipeline
         shell: bash -l {0}
         run: |
           cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml \
