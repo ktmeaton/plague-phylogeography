@@ -360,10 +360,8 @@ if (!params.skip_sra_download && (params.sqlite || ( params.ncbimeta_update) ) &
     Publish:
     */
     // Other variables and config
-    tag "SRATest"
     tag "$sra_acc_file"
     publishDir "${outdir}/sra_download", mode: 'copy'
-    echo true
 
     ch_tsv_for_download_sra
       .splitText()
@@ -625,6 +623,7 @@ if (!params.skip_reference_detect_low_complexity && !params.skip_reference_downl
 if (!params.skip_eager && (!params.skip_sra_download) && (params.sqlite || ( params.ncbimeta_update) ) && (!params.skip_reference_download) && !params.skip_sqlite_import){
 
   process eager{
+    conda 'eager-env.yaml'
     /*
 
     Input:
@@ -650,15 +649,25 @@ if (!params.skip_eager && (!params.skip_sra_download) && (params.sqlite || ( par
     // Shell script to execute
     script:
     """
-    echo "eventually run eager here"
-    echo ${reference_genome}
-    echo ${sra_fastq}
-    echo ${eager_tsv}
+    # cp config file for multiqc (avoid bug error)
+    cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml multiqc_config_custom.yaml
+
     # In Development Eager Test Command
-    echo "nextflow run nf-core/eager -r b2b411b64b \
-      --tsv_input ${eager_tsv} \
-      --fasta ${reference_genome} \
-      --multiqc_config ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml"
+    nextflow run nf-core/eager -r dev \
+      --input ${eager_tsv} \
+      --outdir . \
+      --fasta ${reference_genome_fna} \
+      --multiqc_config multiqc_config_custom.yaml \
+      --clip_readlength 35 \
+      --preserve5p \
+      --mergedonly \
+      --mapper bwaaln \
+      --bwaalnn 0.01 \
+      --bwaalnl 16 \
+      --run_bam_filtering \
+      --bam_mapping_quality_threshold 30 \
+      --bam_discard_unmapped \
+      --bam_unmapped_type discard;
     """
   }
 }
