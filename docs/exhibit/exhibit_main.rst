@@ -23,6 +23,7 @@ Create Environment
   conda env create -f phylo-env.yaml --name phylo-env
   conda activate phylo-env
   conda install geopy
+  conda install cutadapt
 
 
 Database
@@ -84,22 +85,21 @@ Update, Annotate, Join
    --skip_reference_download \
    -resume
 
-Pipeline
---------
+Modern Assembly Analysis
+------------------------
 
 Verify Samples
 ^^^^^^^^^^^^^^
 
-Select records from the database that are marked as "KEEP".
+Select records from the database that are marked as "KEEP: Assembly".
 
 ::
 
   nextflow run pipeline.nf \
    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
    --outdir results \
-   --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%')\"" \
-   --max_datasets_assembly 2000 \
-   --max_datasets_sra 2000  \
+   --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP: Assembly%')\"" \
+   --max_datasets_assembly 500 \
    --skip_assembly_download \
    --skip_sra_download \
    --skip_reference_download \
@@ -111,33 +111,22 @@ Check that there are 483 assemblies to be downloaded.
 
      wc -l results/sqlite_import/assembly_for_download.txt
 
-Check that there are 4 SRA to be downloaded.
 
-::
-
-  tail -n+2 results/sqlite_import/metadata_sra_eager.tsv | \
-    cut -f 1 | \
-    sort | \
-    uniq | \
-    wc -l
-
-
-Assembly Pipeline
-^^^^^^^^^^^^^^^^^
+Run Pipeline
+^^^^^^^^^^^^
 
 ::
 
   nextflow run pipeline.nf \
     --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
     --outdir results \
-    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%')\"" \
-    --max_datasets_assembly 2000 \
-    --max_datasets_sra 2000  \
+    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP: Assembly%')\"" \
+    --max_datasets_assembly 500 \
     --skip_sra_download \
     -resume
 
-SRA Pipeline
-^^^^^^^^^^^^^^^^^
+Ancient Raw Data Analysis
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Prep tsv input from pipeline.nf, select only EAGER Ancient samples
 
