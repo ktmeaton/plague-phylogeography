@@ -28,7 +28,7 @@ NOTE: Eager needs graphviz installed
 Pull nf-core EAGER pipeline
 
 ```bash
-nextflow pull nf-core/eager -r tsv-input
+nextflow pull nf-core/eager -r dev
 cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
 ```
 

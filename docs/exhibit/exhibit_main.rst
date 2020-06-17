@@ -157,7 +157,8 @@ Prep tsv input from pipeline.nf
     --max_datasets_sra 2000  \
     --skip_assembly_download \
     --skip_sra_download \
-    --skip_reference_download
+    --skip_reference_detect_repeats \
+    --skip_reference_detect_low_complexity
 
 Make directories for SRA data
 
@@ -167,6 +168,7 @@ Make directories for SRA data
   mkdir test/sra_download/fastq;
   mkdir test/sra_download/fastq/single;
   mkdir test/sra_download/fastq/paired;
+  mkdir test/sra_download/info
 
 Download single-end fastq files from the SRA
 
@@ -207,14 +209,44 @@ Split after base 75 into two separate files to maintain proper paired-end format
 
 ::
 
-  cutadapt \
-    -j 10  \
-    -u -75 \
-    -o  England8291.pass_1.fastq.gz \
-    $runAcc.pass_1.fastq.gz > England8291.pass_1.cutadapt.log
+  mv test/sra_download/fastq/single/${runAcc}_1.fastq.gz \
+    test/sra_download/fastq/single/${runAcc}_unsplit.fastq.gz
 
   cutadapt \
-    -j 20  \
+    -j 5  \
+    -u -75 \
+    -o test/sra_download/fastq/paired/${runAcc}_1.fastq.gz \
+    test/sra_download/fastq/single/${runAcc}_unsplit.fastq.gz \
+    > test/sra_download/info/${runAcc}_1.cutadapt.log 2>&1
+
+  cutadapt \
+    -j 5  \
     -u 75 \
-    -o  England8291.pass_2.fastq.gz \
-    England8291.pass.fastq.gz > England8291.pass_2.cutadapt.log
+    -o test/sra_download/fastq/paired/${runAcc}_2.fastq.gz \
+    test/sra_download/fastq/single/${runAcc}_unsplit.fastq.gz \
+    > test/sra_download/info/${runAcc}_2.cutadapt.log 2>&1
+
+Remove original unsplit file
+
+::
+
+   rm test/sra_download/fastq/single/SRR341961_unsplit.fastq.gz
+
+Fix the metadata in the EAGER tsv input file to now be paired end, also mark full UDG!
+
+Run EAGER pipeline
+
+::
+
+  mkdir test/eager;
+  cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml ./multiqc_config_custom.yaml
+  nextflow run nf-core/eager -r dev \
+    --input test/sqlite_import/metadata_sra_eager.tsv \
+    --outdir test/eager \
+    --fasta test/reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
+    --multiqc_config multiqc_config_custom.yaml \
+    --clip_readlength 35 \
+    --preserve5p \
+    --mergedonly \
+    --mapper bwaaln \
+    -resume 35a03fea-8f18-4174-b273-05ee7cbfaaa0
