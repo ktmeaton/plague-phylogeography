@@ -84,7 +84,7 @@ parser.add_argument(
 
 parser.add_argument(
     "--fastq-dir",
-    help="Dir where SRA fastq files will be downloaded to.",
+    help="Directory where SRA fastq files will be downloaded to.",
     action="store",
     dest="fastqDir",
     required=True,
@@ -292,9 +292,9 @@ for record in record_exists:
     record_i += 1
 
 
-# ------------------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
 #                            Clean Up                                          #
-# ------------------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
 conn.commit()
 cur.close()
 out_file.close()
