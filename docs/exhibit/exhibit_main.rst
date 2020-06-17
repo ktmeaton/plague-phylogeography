@@ -139,21 +139,14 @@ Assembly Pipeline
 SRA Pipeline
 ^^^^^^^^^^^^^^^^^
 
-Black Death 8291 SRA Accession
-
-::
-
-  SRR341961
-
-Prep tsv input from pipeline.nf
+Prep tsv input from pipeline.nf, select only EAGER Ancient samples
 
 ::
 
   nextflow run pipeline.nf \
     --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-    --outdir test \
-    --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR341961')\"" \
-    --max_datasets_assembly 2000 \
+    --outdir EAGER_Ancient \
+    --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')\"" \
     --max_datasets_sra 2000  \
     --skip_assembly_download \
     --skip_sra_download \
@@ -164,11 +157,12 @@ Make directories for SRA data
 
 ::
 
-  mkdir test/sra_download;
-  mkdir test/sra_download/fastq;
-  mkdir test/sra_download/fastq/single;
-  mkdir test/sra_download/fastq/paired;
-  mkdir test/sra_download/info
+  outdir="EAGER_Ancient";
+  mkdir ${outdir}/sra_download;
+  mkdir ${outdir}/sra_download/fastq;
+  mkdir ${outdir}/sra_download/fastq/single;
+  mkdir ${outdir}/sra_download/fastq/paired;
+  mkdir ${outdir}/sra_download/info
 
 Download single-end fastq files from the SRA
 
@@ -275,14 +269,14 @@ Repeat but include Barcelona3031 (SRARunAccession = 'ERR1368878')
     --skip_reference_detect_low_complexity \
     -resume ab34c580-164d-4420-9e6f-a5aa7aa1dd05
 
-Repeat but include everything marked for EAGER
+Repeat but include everything marked for EAGER Ancient
 
 ::
 
   nextflow run pipeline.nf \
     --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-    --outdir test \
-    --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%EAGER%')\"" \
+    --outdir EAGER_Ancient \
+    --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')\"" \
     --max_datasets_assembly 2000 \
     --max_datasets_sra 2000  \
     --skip_assembly_download \
@@ -290,3 +284,6 @@ Repeat but include everything marked for EAGER
     --skip_reference_detect_repeats \
     --skip_reference_detect_low_complexity \
     -resume ab34c580-164d-4420-9e6f-a5aa7aa1dd05
+
+| Notes:
+| SAMN00715800: Split after base 75 into two separate files to maintain proper paired-end format.

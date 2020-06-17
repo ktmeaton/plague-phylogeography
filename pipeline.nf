@@ -58,9 +58,9 @@ def helpMessage() {
 
     DATABASE:
 
-    --ncbimeta_create         Path to yaml config file to create NCBImeta DB (ncbimeta.yaml).
-    --ncbimeta_update         Path to yaml config file to update NCBImeta DB (ncbimeta.yaml).
-    --ncbimeta_annot          Path to text annotation file for NCBImeta DB (annot.txt).
+    --ncbimeta_create         Path to config file to create NCBImeta DB (ncbimeta.yaml).
+    --ncbimeta_update         Path to config file to update NCBImeta DB (ncbimeta.yaml).
+    --ncbimeta_annot          Path to optional annotation file for NCBImeta DB (annot.txt).
     --sqlite                  Path to sqlite database file from NCBImeta (my_db.sqlite).
 
 
@@ -348,7 +348,6 @@ if (!params.skip_assembly_download && (params.sqlite || ( params.ncbimeta_update
 
 if (!params.skip_sra_download && (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import){
 
-
   process sra_download{
     /*
 
@@ -380,11 +379,12 @@ if (!params.skip_sra_download && (params.sqlite || ( params.ncbimeta_update) ) &
     // Shell script to execute
     script:
     """
+    echo "TEST"
     sraAcc=`cat ${sra_acc_file}`
     # Disable local caching to save disk space
     # vdb-config -s cache-enabled=false
     # Download fastq files from the SRA
-    fastq-dump --outdir fastq/ --skip-technical --gzip --split-files \$sraAcc
+    echo "fastq-dump --outdir fastq/ --skip-technical --gzip --split-files \$sraAcc"
     """
   }
 
@@ -653,7 +653,12 @@ if (!params.skip_eager && (!params.skip_sra_download) && (params.sqlite || ( par
 
 // --------------------------------Pairwise Alignment-------------------------//
 
-if(!params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.skip_eager && !params.skip_sra_download)) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+if(!params.skip_snippy_pairwise &&
+  (!params.skip_assembly_download ||
+    (!params.skip_eager && !params.skip_sra_download)
+  ) &&
+  (params.sqlite || params.ncbimeta_update) &&
+  !params.skip_sqlite_import){
 
   process snippy_pairwise{
     /*

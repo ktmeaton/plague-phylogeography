@@ -181,12 +181,12 @@ for record in record_exists:
     # Get FTP links, relying on them being in order
     ftp_url = record[FTP_URL_IND]
     ftp_url_split = ftp_url.split(DB_SEP)
-    # print(ftp_url_split)
+    print(ftp_url_split)
 
     # Remove URLs that are not from the FTP site
     ftp_url_split_edit = []
     for url_val in ftp_url_split:
-        if url_val.startswith("https://sra-downloadb"):
+        if url_val.startswith("https://sra-download"):
             ftp_url_split_edit.append(url_val)
 
     ftp_url_split = ftp_url_split_edit
