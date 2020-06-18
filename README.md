@@ -35,17 +35,21 @@ wget -qO- get.nextflow.io | bash
 sudo mv nextflow /usr/local/bin/
 ```
 
-Pull the ktmeaton/plague-phylogeography pipeline and create a conda environment.
+Pull the ktmeaton/plague-phylogeography pipeline and create a conda environment.  
+(Expect this to take >10min)
 
 ```bash
 nextflow pull ktmeaton/plague-phylogeography
-conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/phylo-env.yaml
+conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
 ```
 
 Pull the nf-core/eager pipeline and create a conda environment.
+Version control nf-core/eager to revision: 7b51863957.  
+(Expect this to take >10min)
 
 ```bash
-nextflow pull nf-core/eager -r dev
+nextflow pull nf-core/eager
+nextflow pull nf-core/eager -r 7b51863957
 conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
 ```
 

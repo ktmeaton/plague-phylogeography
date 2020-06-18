@@ -30,6 +30,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ### Changed
 
 - Rename pipeline.nf to main.nf for nextflow pull compatibility
+- Condense phylo-env environment files and rename to environment.yaml
 - Start moving config files to config/ directory
 
 ## [v0.1.3] - 2020-05-28 - DHSI2020 Exhibit

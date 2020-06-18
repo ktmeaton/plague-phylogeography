@@ -57,5 +57,6 @@ jobs:
           CONDA_ENV: "phylo-env"
         shell: bash -l {0}
         run: |
+          nextflow pull ktmeaton/plague-phylogeography
           nextflow pull ktmeaton/plague-phylogeography -r ${NF_REV}
-          conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/phylo-env.yaml
+          conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
