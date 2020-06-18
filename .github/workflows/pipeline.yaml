@@ -100,49 +100,49 @@ jobs:
           name: trace-assembly
           path: test/trace/
 
-    # Run the pipeline on sra data
-    sra:
-      needs: install
-      runs-on: ubuntu-latest
-      steps:
+  # Run the pipeline on sra data
+  sra:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
 
-        - name: sra download
-          shell: bash -l {0}
-          run: |
-            nextflow run ktmeaton/plague-phylogeography \
-              --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-              --outdir test \
-              --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
-              --max_datasets_sra 2  \
-              --skip_assembly_download \
-              --skip_eager \
-              --skip_snippy_pairwise
+      - name: sra download
+        shell: bash -l {0}
+        run: |
+          nextflow run ktmeaton/plague-phylogeography \
+            --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+            --outdir test \
+            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
+            --max_datasets_sra 2  \
+            --skip_assembly_download \
+            --skip_eager \
+            --skip_snippy_pairwise
 
-        - name: sra eager
-          shell: bash -l {0}
-          run: |
-            nextflow run ktmeaton/plague-phylogeography \
-              --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-              --outdir test \
-              --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
-              --max_datasets_sra 2  \
-              --skip_assembly_download \
-              --skip_snippy_pairwise
+      - name: sra eager
+        shell: bash -l {0}
+        run: |
+          nextflow run ktmeaton/plague-phylogeography \
+            --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+            --outdir test \
+            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
+            --max_datasets_sra 2  \
+            --skip_assembly_download \
+            --skip_snippy_pairwise
 
-        - name: artifact SQLite import
-          uses: actions/upload-artifact@v2
-          with:
-            name: sqlite-import-assembly
-            path: test/sqlite_import/metadata_sra_eager.txt
+      - name: artifact SQLite import
+        uses: actions/upload-artifact@v2
+        with:
+          name: sqlite-import-assembly
+          path: test/sqlite_import/metadata_sra_eager.txt
 
-        - name: artifact multiqc
-          uses: actions/upload-artifact@v2
-          with:
-            name: multiqc-assembly
-            path: test/eager/MultiQC
+      - name: artifact multiqc
+        uses: actions/upload-artifact@v2
+        with:
+          name: multiqc-assembly
+          path: test/eager/MultiQC
 
-        - name: artifact trace
-          uses: actions/upload-artifact@v2
-          with:
-            name: trace-sra
-            path: test/trace/
+      - name: artifact trace
+        uses: actions/upload-artifact@v2
+        with:
+          name: trace-sra
+          path: test/trace/
