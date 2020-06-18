@@ -34,7 +34,7 @@ jobs:
 
       # 2. Setup conda
       - name: setup conda
-      - uses: goanpeca/setup-miniconda@v1
+        uses: goanpeca/setup-miniconda@v1
         with:
           auto-update-conda: true
 
