@@ -51,6 +51,12 @@ jobs:
           conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow
           cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml \
              ./multiqc_config_custom.yaml;
+
+      - name: perl5lib Setup
+        shell: bash -l {0}
+        run: |
+          echo $PERL5LIB
+          export PERL5LIB=~/miniconda3/envs/phylo-env/lib/site_perl/5.26.2/:$PERL5LIB
           echo $PERL5LIB
 
       # Test the SRA EAGER Pipeline
