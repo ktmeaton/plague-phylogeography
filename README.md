@@ -43,13 +43,11 @@ nextflow pull nf-core/eager -r dev
 conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
 ```
 
-Install supplementary programs and config files to the eager environment
+Install supplementary programs to the eager environment
 
 ```bash
 conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow
 conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
-# Create a custom multiqc config file (avoids a later bug)
-cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml ./config/multiqc_config_eager.yaml;
 ```
 
 Create a separate conda environment for the phylogenetic pipeline.
