@@ -48,7 +48,7 @@ Test the installation runs correctly from a previously created database.
 nextflow run pipeline.nf \
   --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
   --max_datasets_assembly 4 \
-  --max_datasets_sra 2 \
+  --max_datasets_sra 1 \
   --outdir test
 ```
 

@@ -22,6 +22,11 @@ Create Environment
 
   conda env create -f phylo-env.yaml --name phylo-env
   conda activate phylo-env
+
+Install accessory tools that are being tested.
+
+::
+
   conda install geopy
   conda install cutadapt
 
@@ -97,7 +102,7 @@ Select records from the database that are marked as "KEEP: Assembly".
 
   nextflow run pipeline.nf \
    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-   --outdir results \
+   --outdir Assembly_Modern \
    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP: Assembly%')\"" \
    --max_datasets_assembly 500 \
    --skip_assembly_download \
@@ -119,7 +124,7 @@ Run Pipeline
 
   nextflow run pipeline.nf \
     --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-    --outdir results \
+    --outdir Assembly_Modern \
     --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP: Assembly%')\"" \
     --max_datasets_assembly 500 \
     --skip_sra_download \

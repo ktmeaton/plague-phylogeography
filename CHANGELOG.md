@@ -19,6 +19,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Rethink if statements controlling processes in pipeline
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
 - Add outgroup 2 x Y. pseudotuberculosis
+- Move config files to config directory
 
 ## [v0.1.4] - 2020-05-28 - TBD
 
