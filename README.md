@@ -65,7 +65,7 @@ conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 Test the installation runs correctly from a previously created database.
 
 ```bash
-nextflow run main.nf \
+nextflow run ktmeaton/plague-phylogeography \
   --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
   --max_datasets_assembly 4 \
   --max_datasets_sra 1 \
