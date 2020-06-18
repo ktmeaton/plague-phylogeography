@@ -5,15 +5,31 @@
 Extract SRA metadata from an NCBImeta sqlite database
 to create the tsv input file for EAGER.
 
+Example Usage:
+
 sqlite_EAGER_tsv.py \
-  --database yersinia_pestis_db.sqlite \
+  --database ../results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
   --query "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL
            FROM Master
            WHERE ( BioSampleComment LIKE '%EAGER%')" \
   --organism "Yersinia pestis" \
-  --max-datasets 3 \
-  --fastq-dir testdir \
-  --output metadata_eager.tsv
+  --max-datasets 2 \
+  --fastq-dir test/eager \
+  --output test.tsv
+
+Example Output:
+
+Sample_Name     Library_ID  Lane  Colour_Chemistry  SeqType  Organism         Strandedness  UDG_Treatment  R1                                       R2                                       BAM
+SAMEA5818833    ERR3457843  1     4                 SE       Yersinia pestis  double        none           test/eager/single/ERR3457843_1.fastq.gz  NA                                       NA
+SAMEA5818833    ERR3457842  1     4                 SE       Yersinia pestis  double        none           test/eager/single/ERR3457842_1.fastq.gz  NA                                       NA
+SAMEA5818833    ERR3457841  1     4                 SE       Yersinia pestis  double        none           test/eager/single/ERR3457841_1.fastq.gz  NA                                       NA
+SAMEA5818833    ERR3457840  1     4                 SE       Yersinia pestis  double        none           test/eager/single/ERR3457840_1.fastq.gz  NA                                       NA
+SAMEA5818833    ERR3457839  1     4                 SE       Yersinia pestis  double        none           test/eager/single/ERR3457839_1.fastq.gz  NA                                       NA
+SAMEA5818833    ERR3457838  1     4                 SE       Yersinia pestis  double        none           test/eager/single/ERR3457838_1.fastq.gz  NA                                       NA
+SAMEA5818817    ERR3457657  1     4                 SE       Yersinia pestis  double        none           test/eager/single/ERR3457657_1.fastq.gz  NA                                       NA
+SAMEA5818816    ERR3457868  1     4                 PE       Yersinia pestis  double        none           test/eager/paired/ERR3457868_1.fastq.gz  test/eager/paired/ERR3457868_2.fastq.gz  NA
+SAMEA5818815    ERR3457867  1     4                 PE       Yersinia pestis  double        none           test/eager/paired/ERR3457867_1.fastq.gz  test/eager/paired/ERR3457867_2.fastq.gz  NA
+SAMEA5818815    ERR3457656  1     4                 SE       Yersinia pestis  double        none           test/eager/single/ERR3457656_1.fastq.gz  NA                                       NA
 """
 
 # -----------------------------------------------------------------------------#
@@ -183,7 +199,7 @@ for record in record_exists:
     # Get FTP links, relying on them being in order
     ftp_url = record[FTP_URL_IND]
     ftp_url_split = ftp_url.split(DB_SEP)
-    print(ftp_url_split)
+    # print(ftp_url_split)
 
     # Remove URLs that are not from the FTP site
     ftp_url_split_edit = []
