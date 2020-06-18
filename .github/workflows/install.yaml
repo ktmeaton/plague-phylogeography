@@ -46,6 +46,7 @@ jobs:
         shell: bash -l {0}
         run: |
           nextflow pull nf-core/eager
+          nextflow pull nf-core/eager -r ${NF_REV}
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
           conda install -n ${CONDA_ENV} -c anaconda graphviz
 
