@@ -595,8 +595,8 @@ if (!params.skip_reference_detect_low_complexity && !params.skip_reference_downl
     ch_bed_ref_low_complex (bed): A bed file containing regions of low-complexity regions for process snippy_merge_mask_bed.
 
     Publish:
-    reference_genome_fna.dustmasker.intervals (intervals) Interval file containing regions of low-complexity.
-    reference_genome_fna.dustmasker.bed (bed) Bed file created from intervals and adjusted for 0-base system.
+    reference_genome_fna.dustmasker.intervals (intervals): Interval file containing regions of low-complexity.
+    reference_genome_fna.dustmasker.bed (bed): Bed file created from intervals and adjusted for 0-base system.
     */
     // Other variables and config
     tag "$reference_genome_fna"
@@ -620,23 +620,41 @@ if (!params.skip_reference_detect_low_complexity && !params.skip_reference_downl
 
 }
 
-if (!params.skip_eager && (!params.skip_sra_download) && (params.sqlite || ( params.ncbimeta_update) ) && (!params.skip_reference_download) && !params.skip_sqlite_import){
+if (!params.skip_eager &&
+   (!params.skip_sra_download) &&
+   (params.sqlite ||
+     ( params.ncbimeta_update) ) &&
+   (!params.skip_reference_download) &&
+   (!params.skip_sqlite_import)){
 
   process eager{
-    conda '/usr/share/miniconda/envs/nf-core-eager-2.2.0dev/'
+    //conda '/usr/share/miniconda/envs/nf-core-eager-2.2.0dev/'
+    //conda '/home/ktmeaton/miniconda3/envs/nf-core-eager-2.2.0dev/'
     /*
+    Run the nf-core/eager pipeline on SRA samples.
 
     Input:
-    ch_():
+    ch_reference_genome_eager (fna): The reference genome fasta from process reference_genome_download.
+    ch_sra_fastq_eager (fastq): The sra fastq sequences from process sra_download.
+    ch_tsv_for_eager (tsv): The sra metadata tsv from process sqlite_import.
 
     Output:
-    ch_ ():
+    ch_sra_bam_snippy_pairwise (fastq): The deduplicated aligned bam for process snippy_pairwise.
 
     Publish:
+    damageprofiler/* (misc): aDNA damage visualization and statistics.
+    deduplication/*  (misc): Deduplicated aligned bam and statistics.
+    pipeline_info/* (misc): Pipeline information.
+    preseq/* (misc): Preseq complexity statistics.
+    qualimap/* (misc): Genome coverage and depth visualization and statistics.
+    MultiQC/* (misc): Multi software visualizations and statistics.
+    SoftwareVersions/* (misc): Version of all software used in nf-core eager.
+
     */
     // Other variables and config
     tag "$eager_tsv"
     publishDir "${outdir}/eager", mode: 'copy'
+    echo true
 
     // IO and conditional behavior
     input:
@@ -646,7 +664,7 @@ if (!params.skip_eager && (!params.skip_sra_download) && (params.sqlite || ( par
 
     output:
     file "damageprofiler/*"
-    file "deduplication/*" into ch_sra_fastq_snippy_pairwise
+    file "deduplication/*" into ch_sra_bam_snippy_pairwise
     file "pipeline_info/*"
     file "preseq/*"
     file "qualimap/*"
@@ -657,15 +675,21 @@ if (!params.skip_eager && (!params.skip_sra_download) && (params.sqlite || ( par
     // Shell script to execute
     script:
     """
-    # cp config file for multiqc (avoid bug error)
-    cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml multiqc_config_custom.yaml
+    # The set command is to deal with PS1 errors
+    set +eu
+    # Enable conda activate support in this bash subshell
+    CONDA_BASE=\$(conda info --base) ;
+    source \$CONDA_BASE/etc/profile.d/conda.sh
+    # Activate the eager environment
+    conda activate nf-core-eager-2.2.0dev
 
-    # In Development Eager Test Command
+    # Run the eager command
     nextflow run nf-core/eager -r dev \
+      -work-dir $baseDir/${params.outdir}/eager/work \
       --input ${eager_tsv} \
       --outdir . \
       --fasta ${reference_genome_fna} \
-      --multiqc_config ${eager_multiqc_config} \
+      --multiqc_config ${params.eager_multiqc_config} \
       --clip_readlength 35 \
       --preserve5p \
       --mergedonly \
@@ -676,6 +700,10 @@ if (!params.skip_eager && (!params.skip_sra_download) && (params.sqlite || ( par
       --bam_mapping_quality_threshold 30 \
       --bam_discard_unmapped \
       --bam_unmapped_type discard;
+
+    # Deactivate the eager env
+    conda deactivate
+    set +eu
     """
   }
 }

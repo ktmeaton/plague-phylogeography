@@ -49,15 +49,9 @@ jobs:
           nextflow pull nf-core/eager -r dev
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
           conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow
+          conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
           cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml \
              ./config/multiqc_config_eager.yaml;
-
-      #- name: perl5lib Setup
-      #  shell: bash -l {0}
-      #  run: |
-      #    echo $PERL5LIB
-      #    export PERL5LIB=~/miniconda3/envs/phylo-env/lib/site_perl/5.26.2/:$PERL5LIB
-      #    echo $PERL5LIB
 
       # Test the SRA EAGER Pipeline
       - name: sra download
@@ -76,22 +70,14 @@ jobs:
       - name: eager test
         shell: bash -l {0}
         run: |
-          conda activate nf-core-eager-2.2.0dev
-          nextflow run nf-core/eager -r dev \
-            --input test/sqlite_import/metadata_sra_eager.tsv \
-            --outdir test/eager \
-            --fasta test/reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
-            --multiqc_config config/multiqc_config_eager.yaml \
-            --clip_readlength 35 \
-            --preserve5p \
-            --mergedonly \
-            --mapper bwaaln \
-            --bwaalnn 0.01 \
-            --bwaalnl 16 \
-            --run_bam_filtering \
-            --bam_mapping_quality_threshold 30 \
-            --bam_discard_unmapped \
-            --bam_unmapped_type discard;
+          nextflow run pipeline.nf \
+            --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+            --outdir test \
+            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
+            --max_datasets_sra 2  \
+            --skip_assembly_download \
+            --skip_snippy_pairwise \
+            -resume
 
       # Artifact uploads
       - name: artifact SQLite import
