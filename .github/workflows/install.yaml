@@ -22,7 +22,7 @@ on:
 
 jobs:
 
-  pipeline:
+  nextflow:
     runs-on: ubuntu-latest
     steps:
 
@@ -38,23 +38,23 @@ jobs:
         with:
           auto-update-conda: true
 
-      # 3. Install ktmeaton/plague-phylogeography
-      - name: install ktmeaton/plague-phylogeography
-        shell: bash -l {0}
-        run: |
-          nextflow pull ktmeaton/plague-phylogeography -r ${VER}
-          conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/phylo-env.yaml
-        env:
-          VER: "master"
-          ENV: "phylo-env"
-
       # 4. Install nf-core/eager
       - name: install nf-core/eager
+        env:
+          NF_REV: "7b51863957"
+          CONDA_ENV: "nf-core-eager-2.2.0dev"
         shell: bash -l {0}
         run: |
-          nextflow pull nf-core/eager -r ${VER}
+          nextflow pull nf-core/eager -r ${NF_REV}
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
-          conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
+          conda install -n ${CONDA_ENV} -c anaconda graphviz
+
+      # 3. Install ktmeaton/plague-phylogeography
+      - name: install ktmeaton/plague-phylogeography
         env:
-          VER: "7b51863957"
-          ENV: "nf-core-eager-2.2.0dev"
+          NF_REV: "master"
+          CONDA_ENV: "phylo-env"
+        shell: bash -l {0}
+        run: |
+          nextflow pull ktmeaton/plague-phylogeography -r ${NF_REV}
+          conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/phylo-env.yaml
