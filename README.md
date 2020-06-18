@@ -35,7 +35,7 @@ Pull the nf-core/eager pipeline and create a separate conda environment.
 nextflow pull nf-core/eager -r dev
 conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
 # Create a custom multiqc config file (avoids a later bug)
-cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml ./multiqc_config_custom.yaml;
+cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml ./config/multiqc_config_eager.yaml;
 # Install graphviz for plotting
 conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 ```

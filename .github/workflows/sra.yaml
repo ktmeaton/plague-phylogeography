@@ -50,7 +50,7 @@ jobs:
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
           conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow
           cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml \
-             ./multiqc_config_custom.yaml;
+             ./config/multiqc_config_eager.yaml;
 
       #- name: perl5lib Setup
       #  shell: bash -l {0}
@@ -81,7 +81,7 @@ jobs:
             --input test/sqlite_import/metadata_sra_eager.tsv \
             --outdir test/eager \
             --fasta test/reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
-            --multiqc_config multiqc_config_custom.yaml \
+            --multiqc_config config/multiqc_config_eager.yaml \
             --clip_readlength 35 \
             --preserve5p \
             --mergedonly \

@@ -665,7 +665,7 @@ if (!params.skip_eager && (!params.skip_sra_download) && (params.sqlite || ( par
       --input ${eager_tsv} \
       --outdir . \
       --fasta ${reference_genome_fna} \
-      --multiqc_config multiqc_config_custom.yaml \
+      --multiqc_config ${eager_multiqc_config} \
       --clip_readlength 35 \
       --preserve5p \
       --mergedonly \
