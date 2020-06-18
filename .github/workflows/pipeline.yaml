@@ -21,21 +21,51 @@ on:
 
 jobs:
 
-  pipeline:
+  # Install the pipeline and dependencies
+  install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: goanpeca/setup-miniconda@v1
-        with:
-          activate-environment: phylo-env
-          environment-file: phylo-env.yaml
-          auto-activate-base: false
 
-      #- name: pull eager
-      #  shell: bash -l {0}
-      #  run: |
-      #    nextflow pull nf-core/eager -r b2b411b
-      #    cp ~/.nextflow/assets/nf-core/eager/environment.yml eager-env.yaml
+      # 1. Install nextflow
+      - name: install nextflow
+        run: |
+          wget -qO- get.nextflow.io | bash
+          sudo mv nextflow /usr/local/bin/
+
+      # 2. Setup conda
+      - name: setup conda
+        uses: goanpeca/setup-miniconda@v1
+        with:
+          auto-update-conda: true
+
+      # 3. Install ktmeaton/plague-phylogeography
+      - name: install ktmeaton/plague-phylogeography
+        env:
+          NF_REV: "master"
+          CONDA_ENV: "phylo-env"
+        shell: bash -l {0}
+        run: |
+          nextflow pull ktmeaton/plague-phylogeography
+          nextflow pull ktmeaton/plague-phylogeography -r ${NF_REV}
+          conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
+
+      # 4. Install nf-core/eager
+      - name: install nf-core/eager
+        env:
+          NF_REV: "7b51863957"
+          CONDA_ENV: "nf-core-eager-2.2.0dev"
+        shell: bash -l {0}
+        run: |
+          nextflow pull nf-core/eager
+          nextflow pull nf-core/eager -r ${NF_REV}
+          conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
+          conda install -n ${CONDA_ENV} -c anaconda graphviz
+
+  # Run the pipeline on assembled data
+  assembly:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
 
       - name: pipeline
         shell: bash -l {0}
@@ -43,30 +73,76 @@ jobs:
           nextflow run pipeline.nf \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --max_datasets_assembly 4 \
-            --max_datasets_sra 4 \
             --skip_sra_download \
             --outdir test
 
       - name: artifact SQLite import
         uses: actions/upload-artifact@v2
         with:
-          name: sqlite-import
-          path: test/sqlite_import/
+          name: sqlite-import-assembly
+          path: test/sqlite_import/assembly_for_download.txt
 
       - name: artifact multiqc
         uses: actions/upload-artifact@v2
         with:
-          name: multiqc
+          name: multiqc-assembly
           path: test/multiqc/multiqc_report.html
 
       - name: artifact phylogeny
         uses: actions/upload-artifact@v2
         with:
-          name: phylogeny
+          name: iqtree-assembly
           path: test/iqtree/
 
       - name: artifact trace
         uses: actions/upload-artifact@v2
         with:
-          name: trace
+          name: trace-assembly
           path: test/trace/
+
+# Run the pipeline on sra data
+sra:
+  needs: install
+  runs-on: ubuntu-latest
+  steps:
+
+    - name: sra download
+      shell: bash -l {0}
+      run: |
+        nextflow run pipeline.nf \
+          --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+          --outdir test \
+          --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
+          --max_datasets_sra 2  \
+          --skip_assembly_download \
+          --skip_eager \
+          --skip_snippy_pairwise
+
+    - name: sra eager
+      shell: bash -l {0}
+      run: |
+        nextflow run pipeline.nf \
+          --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+          --outdir test \
+          --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
+          --max_datasets_sra 2  \
+          --skip_assembly_download \
+          --skip_snippy_pairwise
+
+    - name: artifact SQLite import
+      uses: actions/upload-artifact@v2
+      with:
+        name: sqlite-import-assembly
+        path: test/sqlite_import/metadata_sra_eager.txt
+
+    - name: artifact multiqc
+      uses: actions/upload-artifact@v2
+      with:
+        name: multiqc-assembly
+        path: test/eager/MultiQC
+
+    - name: artifact trace
+      uses: actions/upload-artifact@v2
+      with:
+        name: trace-sra
+        path: test/trace/
