@@ -60,7 +60,7 @@ jobs:
           echo $PERL5LIB
 
       # Test the SRA EAGER Pipeline
-      - name: sra pipeline
+      - name: sra download
         shell: bash -l {0}
         run: |
           nextflow run pipeline.nf \
@@ -69,7 +69,15 @@ jobs:
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --max_datasets_sra 2  \
             --skip_assembly_download \
+            --skip_eager \
             --skip_snippy_pairwise
+
+      # EAGER test
+      - name: eager test
+        shell: bash -l {0}
+        run: |
+          ls -l test/
+          ls -l test/sra_download/fastq/*
 
       # Artifact uploads
       - name: artifact SQLite import

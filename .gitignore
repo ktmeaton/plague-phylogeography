@@ -2,6 +2,7 @@ work/*
 results*/*
 test*/*
 src/*
+docs/_build/*
 .nextflow*
 ncbimeta.yaml*
 pipeline.pdf*
