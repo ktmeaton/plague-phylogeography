@@ -63,7 +63,7 @@ conda env create -f phylo-env.yaml
 Test the installation runs correctly from a previously created database.
 
 ```bash
-nextflow run pipeline.nf \
+nextflow run main.nf \
   --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
   --max_datasets_assembly 4 \
   --max_datasets_sra 1 \

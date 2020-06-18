@@ -697,7 +697,6 @@ if (!params.skip_eager &&
       --input ${eager_tsv} \
       --outdir . \
       --fasta ${reference_genome_fna} \
-      --multiqc_config ${params.eager_multiqc_config} \
       --clip_readlength 35 \
       --preserve5p \
       --mergedonly \

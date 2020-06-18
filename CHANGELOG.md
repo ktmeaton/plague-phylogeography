@@ -21,7 +21,16 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Add outgroup 2 x Y. pseudotuberculosis
 - Move config files to config directory
 
-## [v0.1.4] - 2020-05-28 - TBD
+## [v0.1.4] - 2020-06-18 - TBD
+
+### Added
+
+- sra_download and eager process
+
+### Changed
+
+- Rename pipeline.nf to main.nf for nextflow pull compatibility
+- Start moving config files to config/ directory
 
 ## [v0.1.3] - 2020-05-28 - DHSI2020 Exhibit
 
