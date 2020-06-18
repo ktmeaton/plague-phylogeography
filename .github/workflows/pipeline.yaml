@@ -61,13 +61,7 @@ jobs:
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
           conda install -n ${CONDA_ENV} -c anaconda graphviz
 
-  # Run the pipeline on assembled data
-  assembly:
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
-
-      - name: pipeline
+      - name: aseembly-pipeline
         shell: bash -l {0}
         run: |
           nextflow run ktmeaton/plague-phylogeography \
@@ -76,36 +70,25 @@ jobs:
             --skip_sra_download \
             --outdir test
 
-      - name: artifact SQLite import
-        uses: actions/upload-artifact@v2
-        with:
-          name: sqlite-import-assembly
-          path: test/sqlite_import/assembly_for_download.txt
-
-      - name: artifact multiqc
+      - name: artifact multiqc-assembly
         uses: actions/upload-artifact@v2
         with:
           name: multiqc-assembly
           path: test/multiqc/multiqc_report.html
 
-      - name: artifact phylogeny
+      - name: artifact iqtree-assembly
         uses: actions/upload-artifact@v2
         with:
           name: iqtree-assembly
           path: test/iqtree/
 
-      - name: artifact trace
+      - name: artifact trace-assembly
         uses: actions/upload-artifact@v2
         with:
           name: trace-assembly
           path: test/trace/
 
-  # Run the pipeline on sra data
-  sra:
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
-
+      # Test the SRA section
       - name: sra download
         shell: bash -l {0}
         run: |
@@ -129,19 +112,19 @@ jobs:
             --skip_assembly_download \
             --skip_snippy_pairwise
 
-      - name: artifact SQLite import
+      - name: artifact sqlite-import-sra
         uses: actions/upload-artifact@v2
         with:
-          name: sqlite-import-assembly
+          name: sqlite-import-sra
           path: test/sqlite_import/metadata_sra_eager.txt
 
-      - name: artifact multiqc
+      - name: artifact multiqc-sra
         uses: actions/upload-artifact@v2
         with:
-          name: multiqc-assembly
+          name: sra-multiqc
           path: test/eager/MultiQC
 
-      - name: artifact trace
+      - name: artifact trace-sra
         uses: actions/upload-artifact@v2
         with:
           name: trace-sra
