@@ -95,7 +95,13 @@ log.info pipelineHeader()
 // Prefix the baseDir in front of the outdir
 outdir = "$baseDir/${params.outdir}"
 outdir = outdir
-println ("The outdir is: $outdir")
+//println ("The outdir is: $outdir")
+
+// -------------------------------------------------------------------------- //
+//                                Channel Catalogue                           //
+// -------------------------------------------------------------------------- //
+
+ch_sqlite = Channel.empty()
 
 // -------------------------------------------------------------------------- //
 //                              NCBImeta Entry Point                          //
@@ -233,8 +239,6 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
 // -------------------------------------------------------------------------- //
 
 //-----------------------------SQLite database import FTP url-----------------//
-if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import){
-
   process sqlite_import{
     /*
     Import assembly FTP url from database, retrieve file names for web get, prepare TSV input of SRA metadata for EAGER pipeline.
@@ -262,15 +266,21 @@ if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import)
       ch_sqlite = Channel.fromPath(params.sqlite, checkIfExists: true)
                                   .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.sqlite}" }
     }
-    else{exit 1}
+    else{
+      println "NCBImeta SQLite database not found."
+      println "Please either supply --ncbimeta_update or --sqlite"
+      exit 1}
 
     // IO and conditional behavior
     input:
     file sqlite from ch_sqlite
+
     output:
     file params.file_assembly_for_download_ftp into ch_assembly_for_download_ftp
     file params.eager_tsv into ch_tsv_for_eager
     file params.sra_tsv into ch_tsv_for_download_sra
+    when:
+    !params.skip_sqlite_import
 
     // Shell script to execute
     script:
@@ -297,422 +307,404 @@ if( (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import)
     accessionColumn=2
     tail -n+2 ${params.eager_tsv} | cut -f \$accessionColumn | sort | uniq > ${params.sra_tsv}
     """
-  }
-
 }
+
 
 //-----------------------------Download Assembly Fasta------------------------//
 
-if (!params.skip_assembly_download && (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import){
+process assembly_download{
+  /*
+  Download genomic assembly fasta using FTP urls.
 
-  process assembly_download{
-    /*
-    Download genomic assembly fasta using FTP urls.
+  Input:
+  ch_assembly_fna_gz_local (fasta.gz): The genomic assembly accessed by url via FTP.
 
-    Input:
-    ch_assembly_fna_gz_local (fasta.gz): The genomic assembly accessed by url via FTP.
+  Output:
+  ch_assembly_fna_snippy_pairwise (fasta): The genomic assembly for process snippy_pairwise
 
-    Output:
-    ch_assembly_fna_snippy_pairwise (fasta): The genomic assembly for process snippy_pairwise
+  Publish:
+  genbank_assembly_fna_suffix (fasta): The locally downloaded genomic assembly.
 
-    Publish:
-    genbank_assembly_fna_suffix (fasta): The locally downloaded genomic assembly.
+  */
+  // Other variables and config
+  tag "$assembly_fna_gz"
+  publishDir "${outdir}/assembly_download", mode: 'copy'
+  // Deal with new lines, split up ftp links by url
+  // By loading with file(), stages as local file
+  ch_assembly_for_download_ftp.splitText()
+          .map { file(it.replaceFirst(/\n/,'')) }
+          .set { ch_assembly_fna_gz_local }
 
-    */
-    // Other variables and config
-    tag "$assembly_fna_gz"
-    publishDir "${outdir}/assembly_download", mode: 'copy'
-    // Deal with new lines, split up ftp links by url
-    // By loading with file(), stages as local file
-    ch_assembly_for_download_ftp.splitText()
-            .map { file(it.replaceFirst(/\n/,'')) }
-            .set { ch_assembly_fna_gz_local }
-
-      // IO and conditional behavior
-    input:
-    file assembly_fna_gz from ch_assembly_fna_gz_local
-    output:
-    file "*${params.genbank_assembly_fna_suffix}" into ch_assembly_fna_snippy_pairwise
-
-    // Shell script to execute
-    script:
-    """
-    # Use -f otherwise error due to too many levels of symbolic links
-    gunzip -f ${assembly_fna_gz}
-    """
-  }
-
+    // IO and conditional behavior
+  input:
+  file assembly_fna_gz from ch_assembly_fna_gz_local
+  output:
+  file "*${params.genbank_assembly_fna_suffix}" into ch_assembly_fna_snippy_pairwise
+  when:
+  !params.skip_assembly_download
+  // Shell script to execute
+  script:
+  """
+  # Use -f otherwise error due to too many levels of symbolic links
+  gunzip -f ${assembly_fna_gz}
+  """
 }
 
 //-----------------------------Download SRA Data------------------------------//
 
-if (!params.skip_sra_download && (params.sqlite || ( params.ncbimeta_update) ) && !params.skip_sqlite_import){
+process sra_download{
+  /*
 
-  process sra_download{
-    /*
+  Input:
+  ch_():
 
-    Input:
-    ch_():
+  Output:
+  ch_ ():
 
-    Output:
-    ch_ ():
+  Publish:
+  */
+  // Other variables and config
+  tag "$sra_acc_file"
+  publishDir "${outdir}/sra_download", mode: 'copy'
 
-    Publish:
-    */
-    // Other variables and config
-    tag "$sra_acc_file"
-    publishDir "${outdir}/sra_download", mode: 'copy'
+  ch_tsv_for_download_sra
+    .splitText()
+    .map { it }
+    .set { ch_sra_acc_file }
 
-    ch_tsv_for_download_sra
-      .splitText()
-      .map { it }
-      .set { ch_sra_acc_file }
+    // IO and conditional behavior
+  input:
+  file sra_acc_file from ch_sra_acc_file
+  output:
+  file "fastq/*/*.fastq.gz" into ch_sra_fastq_eager
+  when:
+  !params.skip_sra_download
 
-      // IO and conditional behavior
-    input:
-    file sra_acc_file from ch_sra_acc_file
-    output:
-    file "fastq/*/*.fastq.gz" into ch_sra_fastq_collect
+  // Shell script to execute
+  script:
+  """
+  sraAcc=`cat ${sra_acc_file}`
+  # Disable local caching to save disk space
+  # vdb-config -s cache-enabled=false
+  # Create organization directories
+  mkdir fastq;
+  mkdir fastq/single;
+  mkdir fastq/paired;
 
-    // Shell script to execute
-    script:
-    """
-    sraAcc=`cat ${sra_acc_file}`
-    # Disable local caching to save disk space
-    # vdb-config -s cache-enabled=false
-    # Create organization directories
-    mkdir fastq;
-    mkdir fastq/single;
-    mkdir fastq/paired;
+  # Download fastq files from the SRA
+  fastq-dump \
+    --outdir fastq/ \
+    --skip-technical \
+    --gzip \
+    --split-files \$sraAcc;
 
-    # Download fastq files from the SRA
-    fastq-dump \
-      --outdir fastq/ \
-      --skip-technical \
-      --gzip \
-      --split-files \$sraAcc;
-
-    # If a paired-end or single-end file was downloaded
-    if [ -f fastq/\${sraAcc}_1.fastq.gz ] &&
-       [ -f fastq/\${sraAcc}_2.fastq.gz ]; then
-      mv fastq/\${sraAcc}*.fastq.gz fastq/paired/;
-    else
-      mv fastq/\${sraAcc}*.fastq.gz fastq/single/;
-    fi
-    """
-  }
-
-  // Collect the sra download output fastq files
-  ch_sra_fastq_collect
-    .collect()
-    .set { ch_sra_fastq_eager }
-
-
+  # If a paired-end or single-end file was downloaded
+  if [ -f fastq/\${sraAcc}_1.fastq.gz ] &&
+     [ -f fastq/\${sraAcc}_2.fastq.gz ]; then
+    mv fastq/\${sraAcc}*.fastq.gz fastq/paired/;
+  else
+    mv fastq/\${sraAcc}*.fastq.gz fastq/single/;
+  fi
+  """
 }
+
 // -------------------------------------------------------------------------- //
 //                           Reference Genome Processing                      //
 // -------------------------------------------------------------------------- //
 
 // ----------------------------------Download---------------------------------//
 
-if (!params.skip_reference_download){
+process reference_download{
+  /*
+   Download the reference genome of interest from the FTP site.
 
-  process reference_download{
-    /*
-     Download the reference genome of interest from the FTP site.
+   Input:
+   reference_genome_fna_ftp (fasta.gz): The reference genome fasta accessed by url via FTP.
+   reference_genome_gb_ftp (fasta.gz): The reference genome gbff accessed by url via FTP.
 
-     Input:
-     reference_genome_fna_ftp (fasta.gz): The reference genome fasta accessed by url via FTP.
-     reference_genome_gb_ftp (fasta.gz): The reference genome gbff accessed by url via FTP.
+   Output:
+   ch_reference_detect_repeats (fasta): The reference genome for process detect_repeats.
+   ch_reference_genome_detect_low_complexity (fasta): The reference genome for process detect_low_complexity.
+   ch_reference_gb_snippy_pairwise (gbff): The reference genome for process snippy_pairwise.
+   ch_reference_gb_snippy_multi (gbff): The reference genome for process snippy_multi.
+   ch_reference_genome_snpeff_build_db (gbff): The reference genome for process snpeff_build_db.
 
-     Output:
-     ch_reference_detect_repeats (fasta): The reference genome for process detect_repeats.
-     ch_reference_genome_detect_low_complexity (fasta): The reference genome for process detect_low_complexity.
-     ch_reference_gb_snippy_pairwise (gbff): The reference genome for process snippy_pairwise.
-     ch_reference_gb_snippy_multi (gbff): The reference genome for process snippy_multi.
-     ch_reference_genome_snpeff_build_db (gbff): The reference genome for process snpeff_build_db.
+   Publish:
+   reference_genome_fna_local (fasta): The locally downloaded reference fasta.
+   reference_genome_gb_local (gbff): The locally downloaded reference annotations.
+  */
 
-     Publish:
-     reference_genome_fna_local (fasta): The locally downloaded reference fasta.
-     reference_genome_gb_local (gbff): The locally downloaded reference annotations.
-    */
+  // Other variables and config
+  tag "$reference_genome_fna_local"
+  echo true
+  publishDir "${outdir}/reference_genome", mode: 'copy'
 
-    // Other variables and config
-    tag "$reference_genome_fna_local"
-    echo true
-    publishDir "${outdir}/reference_genome", mode: 'copy'
+  // IO and conditional behavior
+  input:
+  file reference_genome_fna_local from file(params.reference_genome_fna_ftp)
+  file reference_genome_gb_local from file(params.reference_genome_gb_ftp)
 
-    // IO and conditional behavior
-    input:
-    file reference_genome_fna_local from file(params.reference_genome_fna_ftp)
-    file reference_genome_gb_local from file(params.reference_genome_gb_ftp)
+  output:
+  file "${reference_genome_fna_local.baseName}" into ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity, ch_reference_genome_eager
+  file "${reference_genome_gb_local.baseName}" into ch_reference_gb_snippy_pairwise, ch_reference_gb_snippy_multi, ch_reference_genome_snpeff_build_db
 
-    output:
-    file "${reference_genome_fna_local.baseName}" into ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity, ch_reference_genome_eager
-    file "${reference_genome_gb_local.baseName}" into ch_reference_gb_snippy_pairwise, ch_reference_gb_snippy_multi, ch_reference_genome_snpeff_build_db
+  when:
+  !params.skip_reference_download
 
-    // Shell script to execute
-    script:
-    """
-    gunzip -f ${reference_genome_fna_local}
-    gunzip -f ${reference_genome_gb_local}
-    # Edit the fasta headers to match the gb loci (for snippy)
-    GB_LOCI=(`grep LOCUS ${reference_genome_gb_local.baseName} | sed 's/ \\+/ /g' | cut -d " " -f 2`);
-    FNA_LOCI=(`grep ">" ${reference_genome_fna_local.baseName} | cut -d " " -f 1 | cut -d ">" -f 2`);
-    i=0;
-    while [ \$i -lt \${#GB_LOCI[*]} ];
-    do
-      sed -i "s/\${FNA_LOCI[\$i]}/\${GB_LOCI[\$i]}/g" ${reference_genome_fna_local.baseName};
-      i=\$(( \$i + 1));
-    done
-    """
-  }
-
-  process snpeff_build_db{
-    /*
-     Build a SnpEff database for the reference genome annotations.
-
-     Input:
-     reference_genome_gb (gbff): The reference genome gbff from process reference_download.
-
-     Output:
-     ch_snpeff_config_snippy_pairwise (text): Edited SnpEff configuration file for process snippy_pairwise.
-
-     Publish:
-     snpEff.config (text): Edited SnpEff configuration file.
-     snpEffectPredictor.bin (gzip text): SnpEff database.
-
-    */
-    // Other variables and config
-    tag "$reference_genome_gb"
-    publishDir "${outdir}/reference_genome", mode: 'copy'
-
-    // IO and conditional behavior
-    input:
-    file reference_genome_gb from ch_reference_genome_snpeff_build_db
-
-    output:
-    file "snpEff.config" into ch_snpeff_config_snippy_pairwise
-    file "data/${reference_genome_gb.baseName}/*"
-
-    // Shell script to execute
-    script:
-    """
-    # Locate SnpEff directories in miniconda path
-    ref=${reference_genome_gb.baseName}
-    snpeffDir=\${CONDA_PREFIX}/share/snpeff*
-    snpeffData=\$snpeffDir/data;
-
-    # Make a SnpEff database dir
-    mkdir -p data/
-    mkdir -p data/\$ref/
-
-    # Move over the reference genbank annotations and rename
-    cp ${reference_genome_gb} data/\$ref/genes.gbk;
-
-    # Copy over snpEff.config
-    cp \$snpeffDir/snpEff.config .
-
-    # Add the new annotation entry to the snpeff config file
-    configLine="${reference_genome_gb.baseName}.genome : ${reference_genome_gb.baseName}"
-
-    # Search for the genome entry in the snpEff config file
-    if [[ -z `grep "\$configLine" snpEff.config` ]]; then
-      echo "\$configLine" >> snpEff.config;
-    fi;
-
-    # Build the snpEff databse
-    snpEff build -dataDir ./data/ -v -genbank ${reference_genome_gb.baseName}
-    """
-  }
-
+  // Shell script to execute
+  script:
+  """
+  gunzip -f ${reference_genome_fna_local}
+  gunzip -f ${reference_genome_gb_local}
+  # Edit the fasta headers to match the gb loci (for snippy)
+  GB_LOCI=(`grep LOCUS ${reference_genome_gb_local.baseName} | sed 's/ \\+/ /g' | cut -d " " -f 2`);
+  FNA_LOCI=(`grep ">" ${reference_genome_fna_local.baseName} | cut -d " " -f 1 | cut -d ">" -f 2`);
+  i=0;
+  while [ \$i -lt \${#GB_LOCI[*]} ];
+  do
+    sed -i "s/\${FNA_LOCI[\$i]}/\${GB_LOCI[\$i]}/g" ${reference_genome_fna_local.baseName};
+    i=\$(( \$i + 1));
+  done
+  """
 }
+
+process snpeff_build_db{
+  /*
+   Build a SnpEff database for the reference genome annotations.
+
+   Input:
+   reference_genome_gb (gbff): The reference genome gbff from process reference_download.
+
+   Output:
+   ch_snpeff_config_snippy_pairwise (text): Edited SnpEff configuration file for process snippy_pairwise.
+
+   Publish:
+   snpEff.config (text): Edited SnpEff configuration file.
+   snpEffectPredictor.bin (gzip text): SnpEff database.
+
+  */
+  // Other variables and config
+  tag "$reference_genome_gb"
+  publishDir "${outdir}/reference_genome", mode: 'copy'
+
+  // IO and conditional behavior
+  input:
+  file reference_genome_gb from ch_reference_genome_snpeff_build_db
+
+  output:
+  file "snpEff.config" into ch_snpeff_config_snippy_pairwise
+  file "data/${reference_genome_gb.baseName}/*"
+
+  // Shell script to execute
+  script:
+  """
+  # Locate SnpEff directories in miniconda path
+  ref=${reference_genome_gb.baseName}
+  snpeffDir=\${CONDA_PREFIX}/share/snpeff*
+  snpeffData=\$snpeffDir/data;
+
+  # Make a SnpEff database dir
+  mkdir -p data/
+  mkdir -p data/\$ref/
+
+  # Move over the reference genbank annotations and rename
+  cp ${reference_genome_gb} data/\$ref/genes.gbk;
+
+  # Copy over snpEff.config
+  cp \$snpeffDir/snpEff.config .
+
+  # Add the new annotation entry to the snpeff config file
+  configLine="${reference_genome_gb.baseName}.genome : ${reference_genome_gb.baseName}"
+
+  # Search for the genome entry in the snpEff config file
+  if [[ -z `grep "\$configLine" snpEff.config` ]]; then
+    echo "\$configLine" >> snpEff.config;
+  fi;
+
+  # Build the snpEff databse
+  snpEff build -dataDir ./data/ -v -genbank ${reference_genome_gb.baseName}
+  """
+}
+
 // -----------------------------Detect Repeats--------------------------------//
 
-if (!params.skip_reference_detect_repeats && !params.skip_reference_download){
+process reference_detect_repeats{
+  /*
+   Detect in-exact repeats in reference genome using the program mummer.
+   Convert the identified regions file to a bed format.
 
-  process reference_detect_repeats{
-    /*
-     Detect in-exact repeats in reference genome using the program mummer.
-     Convert the identified regions file to a bed format.
+   Input:
+   ch_reference_genome_detect_repeats (fasta): The reference genome fasta from the process reference_download.
 
-     Input:
-     ch_reference_genome_detect_repeats (fasta): The reference genome fasta from the process reference_download.
+   Output:
+   ch_bed_ref_detect_repeats (bed): A bed file containing regions of in-exact repeats for process snippy_merge_mask_bed.
 
-     Output:
-     ch_bed_ref_detect_repeats (bed): A bed file containing regions of in-exact repeats for process snippy_merge_mask_bed.
+   Publish:
+   reference_genome_fna.inexact.coords (coords): Alignment coordinate file generated by mummer.
+   reference_genome_fna.inexact.repeats (coords): Filtered file for sequence similarity and self-alignments
+   reference_genome_fna.inexact.repeats.bed: Bed file created from filtered coordinates and adjusted for 0-base system.
+  */
+  // Other variables and config
+  tag "$reference_genome_fna"
+  publishDir "${outdir}/snippy_filtering", mode: 'copy'
 
-     Publish:
-     reference_genome_fna.inexact.coords (coords): Alignment coordinate file generated by mummer.
-     reference_genome_fna.inexact.repeats (coords): Filtered file for sequence similarity and self-alignments
-     reference_genome_fna.inexact.repeats.bed: Bed file created from filtered coordinates and adjusted for 0-base system.
-    */
-    // Other variables and config
-    tag "$reference_genome_fna"
-    publishDir "${outdir}/snippy_filtering", mode: 'copy'
+  // IO and conditional behavior
+  input:
+  file reference_genome_fna from ch_reference_genome_detect_repeats
 
-    // IO and conditional behavior
-    input:
-    file reference_genome_fna from ch_reference_genome_detect_repeats
+  output:
+  file "${reference_genome_fna.baseName}.inexact.repeats.bed" into ch_bed_ref_detect_repeats
+  file "${reference_genome_fna.baseName}.inexact.repeats"
+  file "${reference_genome_fna.baseName}.inexact.coords"
 
-    output:
-    file "${reference_genome_fna.baseName}.inexact.repeats.bed" into ch_bed_ref_detect_repeats
-    file "${reference_genome_fna.baseName}.inexact.repeats"
-    file "${reference_genome_fna.baseName}.inexact.coords"
+  when:
+  !params.skip_reference_detect_repeats
 
-    // Shell script to execute
-    script:
-    """
-    PREFIX=${reference_genome_fna.baseName}
-    # Align reference to itself to find inexact repeats
-    nucmer --maxmatch --nosimplify --prefix=\${PREFIX}.inexact ${reference_genome_fna} ${reference_genome_fna}
-    # Convert the delta file to a simplified, tab-delimited coordinate file
-    show-coords -r -c -l -T \${PREFIX}.inexact.delta | tail -n+5 > \${PREFIX}.inexact.coords
-    # Remove all "repeats" that are simply each reference aligned to itself
-    # also retain only repeats with more than 90% sequence similarity.
-    awk -F "\t" '{if (\$1 == \$3 && \$2 == \$4 && \$12 == \$13)
-          {next;}
-      else if (\$7 > 90)
-          {print \$0}}' \${PREFIX}.inexact.coords > \${PREFIX}.inexact.repeats
-    # Also exact and tandem repeats??
-    # Convert to bed file format, changing to 0-base position coordinates
-    awk -F "\t" '{print \$12 "\t" \$1-1 "\t" \$2-1;
-      if (\$3 > \$4){tmp=\$4; \$4=\$3; \$3=tmp;}
-      print \$13 "\t" \$3-1 "\t" \$4-1;}' \${PREFIX}.inexact.repeats | \
-    sort -k1,1 -k2,2n | \
-    bedtools merge > \${PREFIX}.inexact.repeats.bed
-    """
-  }
-
+  // Shell script to execute
+  script:
+  """
+  PREFIX=${reference_genome_fna.baseName}
+  # Align reference to itself to find inexact repeats
+  nucmer --maxmatch --nosimplify --prefix=\${PREFIX}.inexact ${reference_genome_fna} ${reference_genome_fna}
+  # Convert the delta file to a simplified, tab-delimited coordinate file
+  show-coords -r -c -l -T \${PREFIX}.inexact.delta | tail -n+5 > \${PREFIX}.inexact.coords
+  # Remove all "repeats" that are simply each reference aligned to itself
+  # also retain only repeats with more than 90% sequence similarity.
+  awk -F "\t" '{if (\$1 == \$3 && \$2 == \$4 && \$12 == \$13)
+        {next;}
+    else if (\$7 > 90)
+        {print \$0}}' \${PREFIX}.inexact.coords > \${PREFIX}.inexact.repeats
+  # Also exact and tandem repeats??
+  # Convert to bed file format, changing to 0-base position coordinates
+  awk -F "\t" '{print \$12 "\t" \$1-1 "\t" \$2-1;
+    if (\$3 > \$4){tmp=\$4; \$4=\$3; \$3=tmp;}
+    print \$13 "\t" \$3-1 "\t" \$4-1;}' \${PREFIX}.inexact.repeats | \
+  sort -k1,1 -k2,2n | \
+  bedtools merge > \${PREFIX}.inexact.repeats.bed
+  """
 }
+
 // -------------------------Detect Low Complexity-----------------------------//
 
-if (!params.skip_reference_detect_low_complexity && !params.skip_reference_download){
+process reference_detect_low_complexity{
+  /*
+  Detect low complexity regions with dustmasker.
+  Convert the identified regions file to a bed format.
 
-  process reference_detect_low_complexity{
-    /*
-    Detect low complexity regions with dustmasker.
-    Convert the identified regions file to a bed format.
+  Input:
+  ch_reference_genome_low_complexity (fasta): The reference genome fasta from the process reference_download.
 
-    Input:
-    ch_reference_genome_low_complexity (fasta): The reference genome fasta from the process reference_download.
+  Output:
+  ch_bed_ref_low_complex (bed): A bed file containing regions of low-complexity regions for process snippy_merge_mask_bed.
 
-    Output:
-    ch_bed_ref_low_complex (bed): A bed file containing regions of low-complexity regions for process snippy_merge_mask_bed.
+  Publish:
+  reference_genome_fna.dustmasker.intervals (intervals): Interval file containing regions of low-complexity.
+  reference_genome_fna.dustmasker.bed (bed): Bed file created from intervals and adjusted for 0-base system.
+  */
+  // Other variables and config
+  tag "$reference_genome_fna"
+  publishDir "${outdir}/snippy_filtering", mode: 'copy'
 
-    Publish:
-    reference_genome_fna.dustmasker.intervals (intervals): Interval file containing regions of low-complexity.
-    reference_genome_fna.dustmasker.bed (bed): Bed file created from intervals and adjusted for 0-base system.
-    */
-    // Other variables and config
-    tag "$reference_genome_fna"
-    publishDir "${outdir}/snippy_filtering", mode: 'copy'
+  // IO and conditional behavior
+  input:
+  file reference_genome_fna from ch_reference_genome_low_complexity
 
-    // IO and conditional behavior
-    input:
-    file reference_genome_fna from ch_reference_genome_low_complexity
+  output:
+  file "${reference_genome_fna.baseName}.dustmasker.intervals"
+  file "${reference_genome_fna.baseName}.dustmasker.bed" into ch_bed_ref_low_complex
 
-    output:
-    file "${reference_genome_fna.baseName}.dustmasker.intervals"
-    file "${reference_genome_fna.baseName}.dustmasker.bed" into ch_bed_ref_low_complex
+  when:
+  !params.skip_reference_detect_repeats
 
-    // Shell script to execute
-    script:
-    """
-    dustmasker -in ${reference_genome_fna} -outfmt interval > ${reference_genome_fna.baseName}.dustmasker.intervals
-    ${params.scriptdir}/intervals2bed.sh ${reference_genome_fna.baseName}.dustmasker.intervals ${reference_genome_fna.baseName}.dustmasker.bed
-    """
-  }
-
+  // Shell script to execute
+  script:
+  """
+  dustmasker -in ${reference_genome_fna} -outfmt interval > ${reference_genome_fna.baseName}.dustmasker.intervals
+  ${params.scriptdir}/intervals2bed.sh ${reference_genome_fna.baseName}.dustmasker.intervals ${reference_genome_fna.baseName}.dustmasker.bed
+  """
 }
 
-if (!params.skip_eager &&
-   (!params.skip_sra_download) &&
-   (params.sqlite ||
-     ( params.ncbimeta_update) ) &&
-   (!params.skip_reference_download) &&
-   (!params.skip_sqlite_import)){
 
-  process eager{
-    //conda '/usr/share/miniconda/envs/nf-core-eager-2.2.0dev/'
-    //conda '/home/ktmeaton/miniconda3/envs/nf-core-eager-2.2.0dev/'
-    /*
-    Run the nf-core/eager pipeline on SRA samples.
+process eager{
+  /*
+  Run the nf-core/eager pipeline on SRA samples.
 
-    Input:
-    ch_reference_genome_eager (fna): The reference genome fasta from process reference_genome_download.
-    ch_sra_fastq_eager (fastq): The sra fastq sequences from process sra_download.
-    ch_tsv_for_eager (tsv): The sra metadata tsv from process sqlite_import.
+  Input:
+  ch_reference_genome_eager (fna): The reference genome fasta from process reference_genome_download.
+  ch_sra_fastq_eager (fastq): The sra fastq sequences from process sra_download.
+  ch_tsv_for_eager (tsv): The sra metadata tsv from process sqlite_import.
 
-    Output:
-    ch_sra_bam_snippy_pairwise (fastq): The deduplicated aligned bam for process snippy_pairwise.
+  Output:
+  ch_sra_bam_snippy_pairwise (fastq): The deduplicated aligned bam for process snippy_pairwise.
 
-    Publish:
-    damageprofiler/* (misc): aDNA damage visualization and statistics.
-    deduplication/*  (misc): Deduplicated aligned bam and statistics.
-    pipeline_info/* (misc): Pipeline information.
-    preseq/* (misc): Preseq complexity statistics.
-    qualimap/* (misc): Genome coverage and depth visualization and statistics.
-    MultiQC/* (misc): Multi software visualizations and statistics.
-    SoftwareVersions/* (misc): Version of all software used in nf-core eager.
+  Publish:
+  damageprofiler/* (misc): aDNA damage visualization and statistics.
+  deduplication/*  (misc): Deduplicated aligned bam and statistics.
+  pipeline_info/* (misc): Pipeline information.
+  preseq/* (misc): Preseq complexity statistics.
+  qualimap/* (misc): Genome coverage and depth visualization and statistics.
+  MultiQC/* (misc): Multi software visualizations and statistics.
+  SoftwareVersions/* (misc): Version of all software used in nf-core eager.
 
-    */
-    // Other variables and config
-    tag "$eager_tsv"
-    publishDir "${outdir}/eager", mode: 'copy'
+  */
+  // Other variables and config
+  tag "$eager_tsv"
+  publishDir "${outdir}/eager", mode: 'copy'
 
-    // IO and conditional behavior
-    input:
-    file reference_genome_fna from ch_reference_genome_eager
-    file sra_fastq from ch_sra_fastq_eager
-    file eager_tsv from ch_tsv_for_eager
+  // IO and conditional behavior
+  input:
+  file reference_genome_fna from ch_reference_genome_eager
+  file sra_fastq from ch_sra_fastq_eager.collect()
+  file eager_tsv from ch_tsv_for_eager
 
-    output:
-    file "damageprofiler/*"
-    file "deduplication/*" into ch_sra_bam_snippy_pairwise
-    file "pipeline_info/*"
-    file "preseq/*"
-    file "qualimap/*"
-    file "MultiQC/*"
-    file ".nextflow.log"
-    file ".command.out"
+  output:
+  file "damageprofiler/*"
+  file "deduplication/*" into ch_sra_bam_snippy_pairwise
+  file "pipeline_info/*"
+  file "preseq/*"
+  file "qualimap/*"
+  file "MultiQC/*"
+  file ".nextflow.log"
+  file ".command.out"
 
-    // Shell script to execute
-    script:
-    """
-    # The set command is to deal with PS1 errors
-    set +eu
-    # Enable conda activate support in this bash subshell
-    CONDA_BASE=\$(conda info --base) ;
-    source \$CONDA_BASE/etc/profile.d/conda.sh
+  when:
+  !params.skip_eager
 
-    # Activate the eager environment
-    conda activate nf-core-eager-2.2.0dev
+  // Shell script to execute
+  script:
+  """
+  # The set command is to deal with PS1 errors
+  set +eu
+  # Enable conda activate support in this bash subshell
+  CONDA_BASE=\$(conda info --base) ;
+  source \$CONDA_BASE/etc/profile.d/conda.sh
 
-    # Run the eager command
-    nextflow \
-      -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
-      run nf-core/eager \
-      -r ${params.eager_rev} \
-      --input ${eager_tsv} \
-      --outdir . \
-      --fasta ${reference_genome_fna} \
-      --clip_readlength 35 \
-      --preserve5p \
-      --mergedonly \
-      --mapper bwaaln \
-      --bwaalnn 0.01 \
-      --bwaalnl 16 \
-      --run_bam_filtering \
-      --bam_mapping_quality_threshold 30 \
-      --bam_discard_unmapped \
-      --bam_unmapped_type discard
+  # Activate the eager environment
+  conda activate nf-core-eager-2.2.0dev
 
-    # Deactivate the eager env
-    conda deactivate
-    set +eu
-    """
-  }
+  # Run the eager command
+  nextflow \
+    -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
+    run nf-core/eager \
+    -r ${params.eager_rev} \
+    --input ${eager_tsv} \
+    --outdir . \
+    --fasta ${reference_genome_fna} \
+    --clip_readlength 35 \
+    --preserve5p \
+    --mergedonly \
+    --mapper bwaaln \
+    --bwaalnn 0.01 \
+    --bwaalnl 16 \
+    --run_bam_filtering \
+    --bam_mapping_quality_threshold 30 \
+    --bam_discard_unmapped \
+    --bam_unmapped_type discard
+
+  # Deactivate the eager env
+  conda deactivate
+  set +eu
+  """
 }
 
 // -------------------------------------------------------------------------- //
@@ -721,313 +713,299 @@ if (!params.skip_eager &&
 
 // --------------------------------Pairwise Alignment-------------------------//
 
-if(!params.skip_snippy_pairwise &&
-  (!params.skip_assembly_download ||
-    (!params.skip_eager && !params.skip_sra_download)
-  ) &&
-  (params.sqlite || params.ncbimeta_update) &&
-  !params.skip_sqlite_import){
+process snippy_pairwise{
+  /*
+  Pairwise align contigs to reference genome with snippy.
 
-  process snippy_pairwise{
-    /*
-    Pairwise align contigs to reference genome with snippy.
+  Input:
+  ch_assembly_fna_snippy_pairwise (fasta): The genomic assembly from process assembly_download.
+  ch_reference_gb_snippy_pairwise (gbff): The reference annotations from process reference_download.
+  ch_snpeff_config_snippy_pairwise (text): Edited SnpEff configuration file from process snpeff_build_db.
 
-    Input:
-    ch_assembly_fna_snippy_pairwise (fasta): The genomic assembly from process assembly_download.
-    ch_reference_gb_snippy_pairwise (gbff): The reference annotations from process reference_download.
-    ch_snpeff_config_snippy_pairwise (text): Edited SnpEff configuration file from process snpeff_build_db.
+  Output:
+  ch_snippy_snps_variant_summary (text): Table of summarized SNP counts for process variant_summary.
+  ch_snippy_subs_vcf_detect_density (vcf): Substitutions for process pairwise_detect_snp_high_density.
+  ch_snippy_bam_pairwise_qualimap (bam): Pairwise alignment file for process qualimap_snippy_pairwise.
+  ch_snippy_csv_snpEff_multiqc (csv): Variant summary statistics for process multiqc.
 
-    Output:
-    ch_snippy_snps_variant_summary (text): Table of summarized SNP counts for process variant_summary.
-    ch_snippy_subs_vcf_detect_density (vcf): Substitutions for process pairwise_detect_snp_high_density.
-    ch_snippy_bam_pairwise_qualimap (bam): Pairwise alignment file for process qualimap_snippy_pairwise.
-    ch_snippy_csv_snpEff_multiqc (csv): Variant summary statistics for process multiqc.
+  Publish:
+  assembly_fna_snippy.summary.txt (text): Table of summarized SNP counts.
+  assembly_fna_snippy.subs.vcf (vcf): Substitutions.
+  assembly_fna_snippy.csv (csv): SnpEff annotation and summary report.
+  assembly_fna_snippy.bam (bam): Snippy bam alignment file.
+  assembly_fna_snippy.* (misc): All default snippy pipeline output.
+  */
+  // Other variables and config
+  tag "$assembly_fna"
+  publishDir "${outdir}/snippy_pairwise", mode: 'copy'
 
-    Publish:
-    assembly_fna_snippy.summary.txt (text): Table of summarized SNP counts.
-    assembly_fna_snippy.subs.vcf (vcf): Substitutions.
-    assembly_fna_snippy.csv (csv): SnpEff annotation and summary report.
-    assembly_fna_snippy.bam (bam): Snippy bam alignment file.
-    assembly_fna_snippy.* (misc): All default snippy pipeline output.
-    */
-    // Other variables and config
-    tag "$assembly_fna"
-    publishDir "${outdir}/snippy_pairwise", mode: 'copy'
+  // IO and conditional behavior
+  input:
+  file assembly_fna from ch_assembly_fna_snippy_pairwise
+  file reference_genome_gb from ch_reference_gb_snippy_pairwise
+  file snpeff_config from ch_snpeff_config_snippy_pairwise
 
-    // IO and conditional behavior
-    input:
-    file assembly_fna from ch_assembly_fna_snippy_pairwise
-    file reference_genome_gb from ch_reference_gb_snippy_pairwise
-    file snpeff_config from ch_snpeff_config_snippy_pairwise
+  output:
+  file "*output*/${assembly_fna.baseName}" into ch_snippy_outdir_assembly_multi
+  file "output${params.snippy_ctg_depth}X/*/*"
+  file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_variant_summary
+  file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf_detect_density
+  file "output${params.snippy_ctg_depth}X/*/*_snippy.bam" into ch_snippy_bam_pairwise_qualimap
+  file "output${params.snippy_ctg_depth}X/*/*_snippy.csv" into ch_snippy_csv_snpEff_multiqc
 
-    output:
-    file "*output*/${assembly_fna.baseName}" into ch_snippy_outdir_assembly
-    file "output${params.snippy_ctg_depth}X/*/*"
-    file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_variant_summary
-    file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf_detect_density
-    file "output${params.snippy_ctg_depth}X/*/*_snippy.bam" into ch_snippy_bam_pairwise_qualimap
-    file "output${params.snippy_ctg_depth}X/*/*_snippy.csv" into ch_snippy_csv_snpEff_multiqc
+  when:
+  !params.skip_snippy_pairwise
 
-    // Shell script to execute
-    script:
-    """
-    snippy \
-      --prefix ${assembly_fna.baseName}_snippy \
-      --cpus ${task.cpus} \
-      --reference ${reference_genome_gb} \
-      --outdir output${params.snippy_ctg_depth}X/${assembly_fna.baseName} \
-      --ctgs ${assembly_fna} \
-      --mapqual ${params.snippy_map_qual} \
-      --mincov ${params.snippy_ctg_depth} \
-      --minfrac ${params.snippy_min_frac} \
-      --basequal ${params.snippy_base_qual} \
-      --report;
+  // Shell script to execute
+  script:
+  """
+  snippy \
+    --prefix ${assembly_fna.baseName}_snippy \
+    --cpus ${task.cpus} \
+    --reference ${reference_genome_gb} \
+    --outdir output${params.snippy_ctg_depth}X/${assembly_fna.baseName} \
+    --ctgs ${assembly_fna} \
+    --mapqual ${params.snippy_map_qual} \
+    --mincov ${params.snippy_ctg_depth} \
+    --minfrac ${params.snippy_min_frac} \
+    --basequal ${params.snippy_base_qual} \
+    --report;
 
-    # Save Output Dir for snippy_multi channel
-    snippyDir=`pwd`"/output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/"
+  # Save Output Dir for snippy_multi channel
+  snippyDir=`pwd`"/output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/"
 
-    snippy_snps_in=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.txt
-    snippy_snps_txt=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.summary.txt
+  snippy_snps_in=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.txt
+  snippy_snps_txt=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.summary.txt
 
-    COMPLEX=`awk 'BEGIN{count=0}{if (\$1 == "Variant-COMPLEX"){count=\$2}}END{print count}' \$snippy_snps_in;`
-    DEL=`awk 'BEGIN{count=0}{if (\$1 == "Variant-DEL"){count=\$2}}END{print count}' \$snippy_snps_in;`
-    INS=`awk 'BEGIN{count=0}{if (\$1 == "Variant-INS"){count=\$2}}END{print count}' \$snippy_snps_in;`
-    MNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-MNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
-    SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
-    TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' \$snippy_snps_in;`
-    echo -e output${params.snippy_ctg_depth}X/${assembly_fna.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
+  COMPLEX=`awk 'BEGIN{count=0}{if (\$1 == "Variant-COMPLEX"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  DEL=`awk 'BEGIN{count=0}{if (\$1 == "Variant-DEL"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  INS=`awk 'BEGIN{count=0}{if (\$1 == "Variant-INS"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  MNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-MNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' \$snippy_snps_in;`
+  echo -e output${params.snippy_ctg_depth}X/${assembly_fna.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
 
-    snippy_snps_filt=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.filt.vcf
-    snippy_snps_csv=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.csv
-    snippy_snps_rename=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.rename.csv
+  snippy_snps_filt=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.filt.vcf
+  snippy_snps_csv=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.csv
+  snippy_snps_rename=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.rename.csv
 
-    # SnpEff csv Stats
-    mv \$snippy_snps_csv \$snippy_snps_rename
-    snpEff -c ${snpeff_config} \
-      -dataDir ${outdir}/reference_genome/data/ \
-      -v \
-      -csvStats \$snippy_snps_csv \
-      ${reference_genome_gb.baseName} \
-      \$snippy_snps_filt
-    """
-  }
-
-  // Collect the snippy output dir for multi allDir
-  ch_snippy_outdir_assembly
-    .collect()
-    .set { ch_snippy_outdir_assembly_collect_multi }
-
+  # SnpEff csv Stats
+  mv \$snippy_snps_csv \$snippy_snps_rename
+  snpEff -c ${snpeff_config} \
+    -dataDir ${outdir}/reference_genome/data/ \
+    -v \
+    -csvStats \$snippy_snps_csv \
+    ${reference_genome_gb.baseName} \
+    \$snippy_snps_filt
+  """
 }
 
 // ------------------------Multi Sample Variant Summary-----------------------//
 
-if(!params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.skip_eager && !params.skip_sra_download)) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+process snippy_variant_summary_collect{
+  /*
+  Concatenate variant summary tables for all samples.
 
-  process snippy_variant_summary_collect{
-    /*
-    Concatenate variant summary tables for all samples.
+  Input:
+  ch_snippy_snps_variant_summary (text): Table of single-sample summarized SNP counts from process snippy_pairwise.
+  ch_snippy_variant_summary_multi_collect (text): Table of multi-sample summarized SNP counts.
 
-    Input:
-    ch_snippy_snps_variant_summary (text): Table of single-sample summarized SNP counts from process snippy_pairwise.
-    ch_snippy_variant_summary_multi_collect (text): Table of multi-sample summarized SNP counts.
+  Output:
+  ch_snippy_variant_summary_multiqc (text): Table of multi-sample summarized SNP counts for process multiqc.
 
-    Output:
-    ch_snippy_variant_summary_multiqc (text): Table of multi-sample summarized SNP counts for process multiqc.
+  Publish:
+  snippy_variant_summary.txt (text): Table of multi-sample summarized SNP counts.
+  */
+  // Other variables and config
+  tag "$variant_summary_collect"
+  publishDir "${outdir}/snippy_variant_summary", mode: 'copy', overwrite: 'true'
+  ch_snippy_snps_variant_summary
+        .collectFile(name: "${params.snippy_variant_summary}.txt",
+        newLine: false)
+        .set{ch_snippy_variant_summary_multi_collect}
 
-    Publish:
-    snippy_variant_summary.txt (text): Table of multi-sample summarized SNP counts.
-    */
-    // Other variables and config
-    tag "$variant_summary_collect"
-    publishDir "${outdir}/snippy_variant_summary", mode: 'copy', overwrite: 'true'
-    ch_snippy_snps_variant_summary
-          .collectFile(name: "${params.snippy_variant_summary}.txt",
-          newLine: false)
-          .set{ch_snippy_variant_summary_multi_collect}
+  // IO and conditional behavior
+  input:
+  file variant_summary_collect from ch_snippy_variant_summary_multi_collect
 
-    // IO and conditional behavior
-    input:
-    file variant_summary_collect from ch_snippy_variant_summary_multi_collect
+  output:
+  file "${params.snippy_variant_summary}.txt" into ch_snippy_variant_summary_multiqc
 
-    output:
-    file "${params.snippy_variant_summary}.txt" into ch_snippy_variant_summary_multiqc
-
-    // Shell script to execute
-    script:
-    """
-    """
-  }
+  // Shell script to execute
+  script:
+  """
+  """
 }
+
 // --------------------------Detect High SNP Density--------------------------//
 
-if(!params.skip_snippy_detect_snp_high_density && !params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.skip_eager && !params.skip_sra_download))  && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+process snippy_detect_snp_high_density{
+  /*
+  Detect regions of high SNP density.
 
-  process snippy_detect_snp_high_density{
-    /*
-    Detect regions of high SNP density.
+  Input:
+  ch_snippy_subs_vcf_detect_density (vcf): Substitutions from process snippy_pairwise.
 
-    Input:
-    ch_snippy_subs_vcf_detect_density (vcf): Substitutions from process snippy_pairwise.
+  Output:
+  ch_snippy_subs_bed_merge_density (bed): High-density SNP regions for process snippy_merge_snp_high_density
+  */
+  // Other variables and config
+  tag "$snippy_subs_vcf"
 
-    Output:
-    ch_snippy_subs_bed_merge_density (bed): High-density SNP regions for process snippy_merge_snp_high_density
-    */
-    // Other variables and config
-    tag "$snippy_subs_vcf"
+  // IO and conditional behavior
+  input:
+  file snippy_subs_vcf from ch_snippy_subs_vcf_detect_density
+  output:
+  file "*.subs.snpden" into ch_snippy_subs_bed_merge_density
+  when:
+  !params.skip_snippy_detect_snp_high_density
 
-    // IO and conditional behavior
-    input:
-    file snippy_subs_vcf from ch_snippy_subs_vcf_detect_density
-    output:
-    file "*.subs.snpden" into ch_snippy_subs_bed_merge_density
+  // Shell script to execute
+  script:
+  """
+  vcftools --vcf ${snippy_subs_vcf} --SNPdensity ${params.snippy_snp_density_window} --out ${snippy_subs_vcf.baseName}.tmp
+  tail -n+2 ${snippy_subs_vcf.baseName}.tmp.snpden | awk -F "\\t" '{if (\$3 > 1){print \$1 "\\t" \$2-10-1 "\\t" \$2}}' > ${snippy_subs_vcf.baseName}.snpden
+  """
+}
 
-    // Shell script to execute
-    script:
-    """
-    vcftools --vcf ${snippy_subs_vcf} --SNPdensity ${params.snippy_snp_density_window} --out ${snippy_subs_vcf.baseName}.tmp
-    tail -n+2 ${snippy_subs_vcf.baseName}.tmp.snpden | awk -F "\\t" '{if (\$3 > 1){print \$1 "\\t" \$2-10-1 "\\t" \$2}}' > ${snippy_subs_vcf.baseName}.snpden
-    """
-  }
+process snippy_sort_snp_high_density{
+  /*
+  Sort and merge regions of high SNP density.
 
-  process snippy_sort_snp_high_density{
-    /*
-    Sort and merge regions of high SNP density.
+  Input:
+  ch_snippy_subs_bed_sort_density (bed): High density SNP regions collected after process snippy_detect_snp_high_density.
 
-    Input:
-    ch_snippy_subs_bed_sort_density (bed): High density SNP regions collected after process snippy_detect_snp_high_density.
+  Output:
+  ch_snippy_subs_bed_density_multi (bed): Sorted and merged high density SNP regions for process snippy_multi.
 
-    Output:
-    ch_snippy_subs_bed_density_multi (bed): Sorted and merged high density SNP regions for process snippy_multi.
+  Publish:
+  snippy_variant_density(bed): Sorted and merged high density SNP regions.
+  */
+  // Other variables and config
+  tag "$snippy_subs_bed"
+  publishDir "${outdir}/snippy_filtering", mode: 'copy'
 
-    Publish:
-    snippy_variant_density(bed): Sorted and merged high density SNP regions.
-    */
-    // Other variables and config
-    tag "$snippy_subs_bed"
-    publishDir "${outdir}/snippy_filtering", mode: 'copy'
+  ch_snippy_subs_bed_merge_density
+      .collectFile(name: "${params.snippy_variant_density}_unsorted.txt")
+      .set{ch_snippy_subs_bed_sort_density}
 
-    ch_snippy_subs_bed_merge_density
-        .collectFile(name: "${params.snippy_variant_density}_unsorted.txt")
-        .set{ch_snippy_subs_bed_sort_density}
+  // IO and conditional behavior
+  input:
+  file snippy_subs_bed from ch_snippy_subs_bed_sort_density
 
-    // IO and conditional behavior
-    input:
-    file snippy_subs_bed from ch_snippy_subs_bed_sort_density
+  output:
+  file "${params.snippy_variant_density}.txt" into ch_snippy_subs_bed_density_multi
 
-    output:
-    file "${params.snippy_variant_density}.txt" into ch_snippy_subs_bed_density_multi
+  when:
+  !params.skip_snippy_detect_snp_high_density
 
-    // Shell script to execute
-    script:
-    """
-    sort -k1,1 -k2,2n ${snippy_subs_bed} | bedtools merge > ${params.snippy_variant_density}.txt
-    """
-  }
-
+  // Shell script to execute
+  script:
+  """
+  sort -k1,1 -k2,2n ${snippy_subs_bed} | bedtools merge > ${params.snippy_variant_density}.txt
+  """
 }
 
 // --------------------------Merge Filtering BED Files------------------------//
-if(!params.skip_snippy_merge_mask_bed && !params.skip_snippy_variant_summary && !params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.skip_eager && !params.skip_sra_download))  && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+process snippy_merge_mask_bed{
+  /*
+  Combine, merge, and sort all BED file regions for masking the multiple alignment.
 
-  process snippy_merge_mask_bed{
-    /*
-    Combine, merge, and sort all BED file regions for masking the multiple alignment.
+  Input:
+  ch_bed_ref_detect_repeats (bed): A bed file containing regions of in-exact repeats from process reference_detect_repeats.
+  ch_bed_ref_low_complex (bed): A bed file containing regions of low-complexity regions from process reference_detect_low_complexity.
+  ch_snippy_subs_bed_density_multi (bed): Sorted and merged high density SNP regions from process snippy_sort_snp_high_density.
+  ch_bed_mask_master_merge (bed): Combined BED files of repeats, low-complexity and (optional) high-density SNP regions.
 
-    Input:
-    ch_bed_ref_detect_repeats (bed): A bed file containing regions of in-exact repeats from process reference_detect_repeats.
-    ch_bed_ref_low_complex (bed): A bed file containing regions of low-complexity regions from process reference_detect_low_complexity.
-    ch_snippy_subs_bed_density_multi (bed): Sorted and merged high density SNP regions from process snippy_sort_snp_high_density.
-    ch_bed_mask_master_merge (bed): Combined BED files of repeats, low-complexity and (optional) high-density SNP regions.
+  Output:
+  ch_bed_mask_snippy_multi (bed): Master masking BED file for process snippy_multi.
 
-    Output:
-    ch_bed_mask_snippy_multi (bed): Master masking BED file for process snippy_multi.
-
-    Publish:
-    master.bed (bed): Master masking BED file.
-    */
-    // Other variables and config
-    tag "bed_snippy_subs_density"
-    publishDir "${outdir}/snippy_filtering", mode: 'copy'
-    if (params.skip_snippy_detect_snp_high_density){
-    ch_bed_ref_detect_repeats
-        .mix(ch_bed_ref_low_complex)
-        .collectFile(name: "master_unmerged_skip_snp_density.bed")
-        .set{ch_bed_mask_master_merge}
-    }
-
-    else{
-      ch_bed_ref_detect_repeats
-          .mix(ch_bed_ref_low_complex, ch_snippy_subs_bed_density_multi)
-          .collectFile(name: "master_unmerged.bed")
-          .set{ch_bed_mask_master_merge}
-    }
-    // IO and conditional behavior
-    input:
-    file bed_mask from ch_bed_mask_master_merge
-    output:
-    file "master.bed" into ch_bed_mask_snippy_multi
-
-    // Shell script to execute
-    script:
-    """
-    cat ${bed_mask} | sort -k1,1 -k2,2n | bedtools merge > master.bed
-    """
+  Publish:
+  master.bed (bed): Master masking BED file.
+  */
+  // Other variables and config
+  tag "bed_snippy_subs_density"
+  publishDir "${outdir}/snippy_filtering", mode: 'copy'
+  if (params.skip_snippy_detect_snp_high_density){
+  ch_bed_ref_detect_repeats
+      .mix(ch_bed_ref_low_complex)
+      .collectFile(name: "master_unmerged_skip_snp_density.bed")
+      .set{ch_bed_mask_master_merge}
   }
+
+  else{
+    ch_bed_ref_detect_repeats
+        .mix(ch_bed_ref_low_complex, ch_snippy_subs_bed_density_multi)
+        .collectFile(name: "master_unmerged.bed")
+        .set{ch_bed_mask_master_merge}
+  }
+  // IO and conditional behavior
+  input:
+  file bed_mask from ch_bed_mask_master_merge
+  output:
+  file "master.bed" into ch_bed_mask_snippy_multi
+  when:
+  !params.skip_snippy_merge_mask_bed
+
+  // Shell script to execute
+  script:
+  """
+  cat ${bed_mask} | sort -k1,1 -k2,2n | bedtools merge > master.bed
+  """
 }
 
 //------------------------------Multiple Alignment----------------------------//
 
-if(!params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.skip_eager && !params.skip_sra_download)) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+process snippy_multi{
+  /*
+  Perform a multiple genome alignment with snippy-core.
 
-  process snippy_multi{
-    /*
-    Perform a multiple genome alignment with snippy-core.
+  Input:
+  ch_reference_gb_snippy_multi (gbff): The reference genome from process reference_download.
+  ch_bed_mask_snippy_multi (bed): Master masking BED file from process snippy_merge_mask_bed.
 
-    Input:
-    ch_reference_gb_snippy_multi (gbff): The reference genome from process reference_download.
-    ch_bed_mask_snippy_multi (bed): Master masking BED file from process snippy_merge_mask_bed.
+  Output:
+  ch_snippy_core_aln_filter (fasta): Multi fasta of aligned core SNPs for process snippy_multi_filter.
+  ch_snippy_core_full_aln_filter (fasta): Multi fasta of aligned core genome for process snippy_multi_filter.
 
-    Output:
-    ch_snippy_core_aln_filter (fasta): Multi fasta of aligned core SNPs for process snippy_multi_filter.
-    ch_snippy_core_full_aln_filter (fasta): Multi fasta of aligned core genome for process snippy_multi_filter.
+  Publish:
+  * (misc): All default output from snippy-core.
+  */
+  // Other variables and config
+  tag "${reference_genome_gb}"
+  publishDir "${outdir}/snippy_multi", mode: 'copy', overwrite: 'true'
 
-    Publish:
-    * (misc): All default output from snippy-core.
-    */
-    // Other variables and config
-    tag "${reference_genome_gb}"
-    publishDir "${outdir}/snippy_multi", mode: 'copy', overwrite: 'true'
+  // IO and conditional behavior
+  input:
+  file reference_genome_gb from ch_reference_gb_snippy_multi
+  file bed_mask from ch_bed_mask_snippy_multi
+  val snippy_outdir_path from ch_snippy_outdir_assembly_multi.collect()
 
-    // IO and conditional behavior
-    input:
-    file reference_genome_gb from ch_reference_gb_snippy_multi
-    file bed_mask from ch_bed_mask_snippy_multi
-    val snippy_outdir_path from ch_snippy_outdir_assembly_collect_multi
+  output:
+  file "*"
+  file "snippy-core.aln" into ch_snippy_core_aln_filter
+  file "snippy-core.full.aln" into ch_snippy_core_full_aln_filter
 
-    output:
-    file "*"
-    file "snippy-core.aln" into ch_snippy_core_aln_filter
-    file "snippy-core.full.aln" into ch_snippy_core_full_aln_filter
+  when:
+  !params.skip_snippy_multi
 
-    // Shell script to execute
-    script:
-    """
-    # Store a list of all the Snippy output directories in a file
-    allDir=`for path in ${snippy_outdir_path};
-    do
-      echo \$path | sed 's/\\[\\|,\\|\\]//g' ;
-    done | tr '\n' ' ' `;
+  // Shell script to execute
+  script:
+  """
+  # Store a list of all the Snippy output directories in a file
+  allDir=`for path in ${snippy_outdir_path};
+  do
+    echo \$path | sed 's/\\[\\|,\\|\\]//g' ;
+  done | tr '\n' ' ' `;
 
-    # Perform multiple genome alignment (with custom filtering)
-    snippy-core \
-        --ref ${reference_genome_gb} \
-        --prefix snippy-core \
-        --mask ${bed_mask} \
-        --mask-char ${params.snippy_mask_char} \
-        \$allDir 2>&1 | tee snippy-core.log
-    """
-  }
-
+  # Perform multiple genome alignment (with custom filtering)
+  snippy-core \
+      --ref ${reference_genome_gb} \
+      --prefix snippy-core \
+      --mask ${bed_mask} \
+      --mask-char ${params.snippy_mask_char} \
+      \$allDir 2>&1 | tee snippy-core.log
+  """
 }
 
 if(!params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.skip_eager && !params.skip_sra_download)) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
