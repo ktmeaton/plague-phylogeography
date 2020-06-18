@@ -372,7 +372,7 @@ if (!params.skip_sra_download && (params.sqlite || ( params.ncbimeta_update) ) &
     input:
     file sra_acc_file from ch_sra_acc_file
     output:
-    file "fastq/*/*.fastq.gz" into ch_sra_fastq_eager
+    file "fastq/*/*.fastq.gz" into ch_sra_fastq_collect
 
     // Shell script to execute
     script:
@@ -401,6 +401,12 @@ if (!params.skip_sra_download && (params.sqlite || ( params.ncbimeta_update) ) &
     fi
     """
   }
+
+  // Collect the sra download output fastq files
+  ch_sra_fastq_collect
+    .collect()
+    .set { ch_sra_fastq_eager }
+
 
 }
 // -------------------------------------------------------------------------- //
@@ -654,7 +660,6 @@ if (!params.skip_eager &&
     // Other variables and config
     tag "$eager_tsv"
     publishDir "${outdir}/eager", mode: 'copy'
-    echo true
 
     // IO and conditional behavior
     input:
@@ -669,8 +674,8 @@ if (!params.skip_eager &&
     file "preseq/*"
     file "qualimap/*"
     file "MultiQC/*"
-    file "SoftwareVersions/*"
-
+    file ".nextflow.log"
+    file ".command.out"
 
     // Shell script to execute
     script:
@@ -680,12 +685,15 @@ if (!params.skip_eager &&
     # Enable conda activate support in this bash subshell
     CONDA_BASE=\$(conda info --base) ;
     source \$CONDA_BASE/etc/profile.d/conda.sh
+
     # Activate the eager environment
     conda activate nf-core-eager-2.2.0dev
 
     # Run the eager command
-    nextflow run nf-core/eager -r dev \
-      -work-dir $baseDir/${params.outdir}/eager/work \
+    nextflow \
+      -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
+      run nf-core/eager \
+      -r ${params.eager_rev} \
       --input ${eager_tsv} \
       --outdir . \
       --fasta ${reference_genome_fna} \
@@ -699,7 +707,7 @@ if (!params.skip_eager &&
       --run_bam_filtering \
       --bam_mapping_quality_threshold 30 \
       --bam_discard_unmapped \
-      --bam_unmapped_type discard;
+      --bam_unmapped_type discard
 
     # Deactivate the eager env
     conda deactivate
