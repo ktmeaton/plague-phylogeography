@@ -16,17 +16,24 @@ A **VERY** in-development work on the phylogeography of *Yersinia pestis*.
 
 ## Installation
 
-Install Nextflow.
+Install Conda.
+
+```bash
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod 755 Miniconda3-latest-Linux-x86_64.sh
+./Miniconda3-latest-Linux-x86_64.sh
+conda config --set auto_activate_base False
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+```
+
+Install Nextflow, move the binary to directory in PATH.
 
 ```bash
 wget -qO- get.nextflow.io | bash
 sudo mv nextflow /usr/local/bin/
-```
-
-Create a conda environment with the required dependencies.
-
-```bash
-conda env create -f phylo-env.yaml
+echo $PATH
 ```
 
 Pull the nf-core/eager pipeline and create a separate conda environment.
@@ -34,10 +41,21 @@ Pull the nf-core/eager pipeline and create a separate conda environment.
 ```bash
 nextflow pull nf-core/eager -r dev
 conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
+```
+
+Install supplementary programs and config files to the eager environment
+
+```bash
+conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow
+conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 # Create a custom multiqc config file (avoids a later bug)
 cp ~/.nextflow/assets/nf-core/eager/assets/multiqc_config.yaml ./config/multiqc_config_eager.yaml;
-# Install graphviz for plotting
-conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
+```
+
+Create a separate conda environment for the phylogenetic pipeline.
+
+```bash
+conda env create -f phylo-env.yaml
 ```
 
 ## Quick Start
