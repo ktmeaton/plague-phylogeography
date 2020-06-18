@@ -1,0 +1,60 @@
+name: Install
+#This is a workflow for installation testing.
+on:
+  # Triggered on Push for any branch
+  push:
+    branches:
+      - '*'
+    # On change to workflow, pipeline
+    paths:
+      - '.github/workflows/install.yaml'
+      - 'pipeline.nf'
+      - 'phylo-env.yaml'
+
+  # Triggered on PR for all branches, pipeline
+  pull_request:
+    branches:
+      - '*'
+  # Also on a published release
+  release:
+    types: [published]
+
+
+jobs:
+
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+
+      # 1. Install nextflow
+      - name: install nextflow
+        run: |
+          wget -qO- get.nextflow.io | bash
+          sudo mv nextflow /usr/local/bin/
+
+      # 2. Setup conda
+      - name: setup conda
+      - uses: goanpeca/setup-miniconda@v1
+        with:
+          auto-update-conda: true
+
+      # 3. Install ktmeaton/plague-phylogeography
+      - name: install ktmeaton/plague-phylogeography
+        shell: bash -l {0}
+        run: |
+          nextflow pull ktmeaton/plague-phylogeography -r ${VER}
+          conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/phylo-env.yaml
+        env:
+          VER: "master"
+          ENV: "phylo-env"
+
+      # 4. Install nf-core/eager
+      - name: install nf-core/eager
+        shell: bash -l {0}
+        run: |
+          nextflow pull nf-core/eager -r ${VER}
+          conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
+          conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
+        env:
+          VER: "7b51863957"
+          ENV: "nf-core-eager-2.2.0dev"

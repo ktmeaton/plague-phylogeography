@@ -28,15 +28,21 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-Install Nextflow, move the binary to directory in PATH.
+Install Nextflow, move the binary to a directory in PATH.
 
 ```bash
 wget -qO- get.nextflow.io | bash
 sudo mv nextflow /usr/local/bin/
-echo $PATH
 ```
 
-Pull the nf-core/eager pipeline and create a separate conda environment.
+Pull the ktmeaton/plague-phylogeography pipeline and create a conda environment.
+
+```bash
+nextflow pull ktmeaton/plague-phylogeography
+conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/phylo-env.yaml
+```
+
+Pull the nf-core/eager pipeline and create a conda environment.
 
 ```bash
 nextflow pull nf-core/eager -r dev
@@ -48,12 +54,6 @@ Install supplementary programs to the eager environment
 ```bash
 conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow
 conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
-```
-
-Create a separate conda environment for the phylogenetic pipeline.
-
-```bash
-conda env create -f phylo-env.yaml
 ```
 
 ## Quick Start
