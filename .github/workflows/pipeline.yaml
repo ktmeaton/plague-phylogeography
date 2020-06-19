@@ -22,7 +22,7 @@ on:
 jobs:
 
   # Install the pipeline and dependencies
-  install:
+  pipeline:
     runs-on: ubuntu-latest
     steps:
 
@@ -67,6 +67,7 @@ jobs:
           CONDA_ENV: "phylo-env"
         shell: bash -l {0}
         run: |
+          conda info --envs
           conda activate ${CONDA_ENV}
           nextflow run ktmeaton/plague-phylogeography -r ${NF_REV}\
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
