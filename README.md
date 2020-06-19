@@ -71,6 +71,7 @@ conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 * The outgroup (*Y. pseudotuberculosis*) is disabled as it's high divergence significantly extends runtime.
 
 ```bash
+conda activate plague-phylogeography-0.1.4dev
 nextflow run ktmeaton/plague-phylogeography \
   --max_datasets_assembly 4 \
   --max_datasets_sra 1 \

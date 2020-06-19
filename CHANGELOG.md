@@ -34,6 +34,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Condense phylo-env environment files and rename to environment.yaml
 - Moved config files to config/ directory
 - workflow: pipeline.yaml now tests assembly pipeline, sra download and eager
+- rename environment phylo-env to plague-phylogeography-0.1.4dev
 
 ## [v0.1.3] - 2020-05-28 - DHSI2020 Exhibit
 
