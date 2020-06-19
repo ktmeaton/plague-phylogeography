@@ -62,7 +62,10 @@ conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 
 ## Example Usage
 
-Test the installation runs correctly (default database).
+* Use the default organism database (*Yersinia pestis*)
+* Analyze 4 genomic assemblies (1 file each).
+* Analyze 1 ancient DNA sample (6 sequencing libraries).
+* The outgroup (*Y. pseudotuberculosis*) is disabled as it's high divergence significantly extends runtime.
 
 ```bash
 nextflow run ktmeaton/plague-phylogeography \
@@ -72,7 +75,7 @@ nextflow run ktmeaton/plague-phylogeography \
   --outdir test
 ```
 
-Example terminal output:
+* Example terminal output (v0.1.3)
 
 ```bash
 N E X T F L O W  ~  version 20.01.0
