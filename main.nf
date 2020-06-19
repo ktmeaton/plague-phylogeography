@@ -652,7 +652,7 @@ process outgroup_download{
   output:
   file "${outgroup_fna_local.baseName}" into ch_outgroup_fna_snippy_pairwise
   env(prefix) into ch_outgroup_file_iqtree
-  //env(taxid) into ch_outgroup_file_iqtree
+
   when:
   !params.skip_outgroup_download
 
@@ -804,11 +804,12 @@ process snippy_pairwise{
   file fna_bam from ch_assembly_fna_sra_bam_snippy_pairwise
 
   output:
-  file "*output*/${fna_bam.baseName}" into ch_snippy_outdir_assembly_multi
+  env(snippyDir) into ch_snippy_outdir_assembly_multi
   file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_variant_summary
   file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf_detect_density
   file "output${params.snippy_ctg_depth}X/*/*_snippy.bam" into ch_snippy_bam_pairwise_qualimap
   file "output${params.snippy_ctg_depth}X/*/*_snippy.csv" into ch_snippy_csv_snpEff_multiqc
+  file "output${params.snippy_ctg_depth}X/*/*{.fa,.bed,.filt.vcf,.genes.txt,.gff,.html,.log,.raw.vcf,.rename.csv,.report.txt,_snippy.tab,_snippy.txt,_snippy.vcf}"
 
   when:
   !params.skip_snippy_pairwise
