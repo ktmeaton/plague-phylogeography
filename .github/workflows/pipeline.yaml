@@ -70,7 +70,6 @@ jobs:
           conda info --envs
           conda activate ${CONDA_ENV}
           nextflow run ktmeaton/plague-phylogeography -r ${NF_REV}\
-            --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --max_datasets_assembly 4 \
             --skip_sra_download \
             --skip_outgroup_download \
@@ -103,7 +102,6 @@ jobs:
         run: |
           conda activate ${CONDA_ENV}
           nextflow run ktmeaton/plague-phylogeography -r ${NF_REV}\
-            --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --outdir test \
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --max_datasets_sra 2  \
@@ -120,7 +118,6 @@ jobs:
         run: |
           conda activate ${CONDA_ENV}
           nextflow run ktmeaton/plague-phylogeography -r ${NF_REV} \
-            --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --outdir test \
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --max_datasets_sra 2  \
