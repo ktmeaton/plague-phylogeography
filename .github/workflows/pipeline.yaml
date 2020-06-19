@@ -8,8 +8,8 @@ on:
     # On change to workflow, pipeline
     paths:
       - '.github/workflows/pipeline.yaml'
-      - 'pipeline.nf'
-      - 'phylo-env.yaml'
+      - 'main.nf'
+      - 'environment.yaml'
 
   # Triggered on PR for all branches, pipeline
   pull_request:
