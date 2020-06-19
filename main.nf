@@ -712,6 +712,15 @@ process eager{
 // -------------------------------------------------------------------------- //
 
 // --------------------------------Pairwise Alignment-------------------------//
+//ch_1 = ch_assembly_fna_snippy_pairwise
+//  .ifEmpty('Empty')
+//ch_2 = ch_sra_bam_snippy_pairwise
+//  .ifEmpty('Empty')
+
+//ch_1
+//  .combine(ch_2)
+//  .splitText()
+//  .set { ch_3 }
 
 process snippy_pairwise{
   /*
@@ -738,16 +747,19 @@ process snippy_pairwise{
   // Other variables and config
   tag "$assembly_fna"
   publishDir "${outdir}/snippy_pairwise", mode: 'copy'
+  echo true
 
   // IO and conditional behavior
   input:
-  file assembly_fna from ch_assembly_fna_snippy_pairwise
+  file assembly_fna from ch_assembly_fna_snippy_pairwise.ifEmpty('Empty')
   file reference_genome_gb from ch_reference_gb_snippy_pairwise
   file snpeff_config from ch_snpeff_config_snippy_pairwise
+  //file sra_bam from ch_sra_bam_snippy_pairwise.ifEmpty('Empty')
+  //file assembly_fna from ch_3
 
   output:
   file "*output*/${assembly_fna.baseName}" into ch_snippy_outdir_assembly_multi
-  file "output${params.snippy_ctg_depth}X/*/*"
+  //file "output${params.snippy_ctg_depth}X/*/*"
   file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_variant_summary
   file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf_detect_density
   file "output${params.snippy_ctg_depth}X/*/*_snippy.bam" into ch_snippy_bam_pairwise_qualimap
@@ -759,6 +771,19 @@ process snippy_pairwise{
   // Shell script to execute
   script:
   """
+  if [[ "${assembly_fna.extension}" == "fna" ]]; then
+    echo "FASTA";
+    echo ${assembly_fna}
+  elif  [[ "${assembly_fna.extension}" == "bam" ]]; then
+    echo "BAM";
+    echo ${assembly_fna}
+  else
+    echo "OTHER";
+    echo ${assembly_fna}
+  fi
+
+  exit;
+
   snippy \
     --prefix ${assembly_fna.baseName}_snippy \
     --cpus ${task.cpus} \
@@ -793,8 +818,8 @@ process snippy_pairwise{
   mv \$snippy_snps_csv \$snippy_snps_rename
   snpEff -c ${snpeff_config} \
     -dataDir ${outdir}/reference_genome/data/ \
-    -v \
     -csvStats \$snippy_snps_csv \
+    -quiet \
     ${reference_genome_gb.baseName} \
     \$snippy_snps_filt
   """
@@ -830,6 +855,9 @@ process snippy_variant_summary_collect{
 
   output:
   file "${params.snippy_variant_summary}.txt" into ch_snippy_variant_summary_multiqc
+
+  when:
+  !params.skip_snippy_variant_summary_collect
 
   // Shell script to execute
   script:
@@ -1008,177 +1036,176 @@ process snippy_multi{
   """
 }
 
-if(!params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.skip_eager && !params.skip_sra_download)) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+process snippy_multi_filter{
+  /*
+  Filter the multiple alignment for X% missing data and split by locus.
 
-  process snippy_multi_filter{
-    /*
-    Filter the multiple alignment for X% missing data and split by locus.
+  Input:
+  ch_snippy_core_full_aln_filter (fasta): Multi fasta of aligned core genome ffrom process snippy_multi.
 
-    Input:
-    ch_snippy_core_full_aln_filter (fasta): Multi fasta of aligned core genome ffrom process snippy_multi.
+  Output:
+  ch_snippy_core_filter_iqtree (fasta): Multi fasta of filtered core genome sites for process iqtree.
 
-    Output:
-    ch_snippy_core_filter_iqtree (fasta): Multi fasta of filtered core genome sites for process iqtree.
+  Publish:
+  snippy_core_full_aln.filter\*.fasta (fasta): Multi fasta of filtered chromosome genome sites.
+  *.fasta (fasta): All loci extracted fasta files.
+  *.bed (bed): All loci bed coordinate files for extraction.
+  */
+  // Other variables and config
+  tag "$snippy_core_full_aln"
+  publishDir "${outdir}/snippy_multi", mode: 'copy', overwrite: 'true'
 
-    Publish:
-    snippy_core_full_aln.filter\*.fasta (fasta): Multi fasta of filtered chromosome genome sites.
-    *.fasta (fasta): All loci extracted fasta files.
-    *.bed (bed): All loci bed coordinate files for extraction.
-    */
-    // Other variables and config
-    tag "$snippy_core_full_aln"
-    publishDir "${outdir}/snippy_multi", mode: 'copy', overwrite: 'true'
+  // IO and conditional behavior
+  input:
+  file snippy_core_full_aln from ch_snippy_core_full_aln_filter
 
-    // IO and conditional behavior
-    input:
-    file snippy_core_full_aln from ch_snippy_core_full_aln_filter
+  output:
+  file "*.fasta"
+  file "*.bed"
+  file "${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_iqtree
 
-    output:
-    file "*.fasta"
-    file "*.bed"
-    file "${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_iqtree
+  when:
+  !params.skip_snippy_multi_filter
 
-    // Shell script to execute
-    script:
-    """
-    # Split by LOCUS (generates snippy-core_%REPLICON.fasta)
-    ${params.scriptdir}/fasta_split_locus.sh ${snippy_core_full_aln}
-    # Filter full CHROMOSOME alignment (No Missing Data)
-    snp-sites -m -c -b -o ${snippy_core_full_aln.baseName}_CHROM.filter0.fasta ${snippy_core_full_aln.baseName}_CHROM.fasta;
-    # Optional: Filter full alignment to remove less missing data
-    if [[ ${params.snippy_multi_missing_data_text} > 0 ]]; then
-      ${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln.baseName}_CHROM.fasta > ${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta;
-      ${params.scriptdir}/fasta_filterGapsNs.sh \
-          ${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta \
-          ${params.snippy_multi_missing_data} \
-          ${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.backbone > \
-          ${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta;
-    fi;
-    """
-  }
+  // Shell script to execute
+  script:
+  """
+  # Split by LOCUS (generates snippy-core_%REPLICON.fasta)
+  ${params.scriptdir}/fasta_split_locus.sh ${snippy_core_full_aln}
+  # Filter full CHROMOSOME alignment (No Missing Data)
+  snp-sites -m -c -b -o ${snippy_core_full_aln.baseName}_CHROM.filter0.fasta ${snippy_core_full_aln.baseName}_CHROM.fasta;
+  # Optional: Filter full alignment to remove less missing data
+  if [[ ${params.snippy_multi_missing_data_text} > 0 ]]; then
+    ${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln.baseName}_CHROM.fasta > ${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta;
+    ${params.scriptdir}/fasta_filterGapsNs.sh \
+        ${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta \
+        ${params.snippy_multi_missing_data} \
+        ${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.backbone > \
+        ${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta;
+  fi;
+  """
 }
 
 // -------------------------------------------------------------------------- //
 //                                ML Phylogeny                                //
 // -------------------------------------------------------------------------- //
 
-if(!params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.skip_eager && !params.skip_sra_download)) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+process iqtree{
+  /*
+  Maximum likelihood tree search and model selection, iqtree phylogeny.
 
-  process iqtree{
-    /*
-    Maximum likelihood tree search and model selection, iqtree phylogeny.
+  Input:
+  ch_snippy_core_filter_iqtree (fasta): Multi fasta of filtered core genome sites from process snippy_multi_filter.
 
-    Input:
-    ch_snippy_core_filter_iqtree (fasta): Multi fasta of filtered core genome sites from process snippy_multi_filter.
+  Output:
+  ch_iqtree_treefile_augur_refine (newick): Newick treefile phylogeny with branch supports for process augur_refine.
 
-    Output:
-    ch_iqtree_treefile_augur_refine (newick): Newick treefile phylogeny with branch supports for process augur_refine.
+  Publish:
+  iqtree.core-filter*_bootstrap.treefile (newick): Newick treefile phylogeny with branch supports.
+  iqtree* (misc): All default output of iqtree.
+  */
+  // Other variables and config
+  tag "$snippy_core_filter_aln"
+  publishDir "${outdir}/iqtree", mode: 'copy', overwrite: 'true'
 
-    Publish:
-    iqtree.core-filter*_bootstrap.treefile (newick): Newick treefile phylogeny with branch supports.
-    iqtree* (misc): All default output of iqtree.
-    */
-    // Other variables and config
-    tag "$snippy_core_filter_aln"
-    publishDir "${outdir}/iqtree", mode: 'copy', overwrite: 'true'
+  // IO and conditional behavior
+  input:
+  file snippy_core_filter_aln from ch_snippy_core_filter_iqtree
 
-    // IO and conditional behavior
-    input:
-    file snippy_core_filter_aln from ch_snippy_core_filter_iqtree
+  output:
+  file "iqtree*"
+  file "iqtree.core-filter*_bootstrap.treefile" into ch_iqtree_treefile_augur_refine
 
-    output:
-    file "iqtree*"
-    file "iqtree.core-filter*_bootstrap.treefile" into ch_iqtree_treefile_augur_refine
+  when:
+  !params.skip_iqtree
 
-    // Shell script to execute
-    script:
-    """
-    # Remember to change outgroup here later
-    # A thorough tree search for model selection can be done with -m MF -mtree
-    iqtree \
-      -s ${snippy_core_filter_aln} \
-      -m MFP \
-      -nt AUTO \
-      -o ${params.iqtree_outgroup} \
-      -seed ${params.iqtree_rng} \
-      -pre iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap \
-      2>&1 | tee iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap.output
-    """
-  }
+  // Shell script to execute
+  script:
+  """
+  # Remember to change outgroup here later
+  # A thorough tree search for model selection can be done with -m MF -mtree
+  iqtree \
+    -s ${snippy_core_filter_aln} \
+    -m MFP \
+    -nt AUTO \
+    -o ${params.iqtree_outgroup} \
+    -seed ${params.iqtree_rng} \
+    -pre iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap \
+    2>&1 | tee iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap.output
+  """
 }
 
 // -------------------------------------------------------------------------- //
 //                           Visualization MultiQC                            //
 // -------------------------------------------------------------------------- //
 
-if(!params.skip_qualimap_snippy_pairwise && !params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.skip_eager && !params.skip_sra_download)) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+process qualimap_snippy_pairwise{
+  /*
 
-  process qualimap_snippy_pairwise{
-    /*
+  Run QualiMap on the output bam of snippy pairwise.
 
-    Run QualiMap on the output bam of snippy pairwise.
+  Input:
+  ch_snippy_bam_pairwise_qualimap (bam): Pairwise alignment file from process snippy_pairwise.
 
-    Input:
-    ch_snippy_bam_pairwise_qualimap (bam): Pairwise alignment file from process snippy_pairwise.
+  Output:
+  ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output for process multiqc.
 
-    Output:
-    ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output for process multiqc.
+  Publish:
+  * (misc): All default qualimap output.
+  */
+  // Other variables and config
+  tag "${snippy_bam}"
+  publishDir "${outdir}/snippy_pairwise/qualimap", mode: 'copy'
 
-    Publish:
-    * (misc): All default qualimap output.
-    */
-    // Other variables and config
-    tag "${snippy_bam}"
-    publishDir "${outdir}/snippy_pairwise/qualimap", mode: 'copy'
+  // IO and conditional behavior
+  input:
+  file snippy_bam from ch_snippy_bam_pairwise_qualimap
+  output:
+  file "*" into ch_snippy_pairwise_qualimap_multiqc
+  when:
+  !params.skip_qualimap_snippy_pairwise
 
-    // IO and conditional behavior
-    input:
-    file snippy_bam from ch_snippy_bam_pairwise_qualimap
-    output:
-    file "*" into ch_snippy_pairwise_qualimap_multiqc
-
-    // Shell script to execute
-    script:
-    """
-    qualimap bamqc -bam ${snippy_bam} --skip-duplicated -c -outformat "HTML" -outdir . -nt ${task.cpus}
-    qualimapDir=${snippy_bam.baseName}_stats
-    mv \$qualimapDir ${snippy_bam.baseName}
-    """
-  }
+  // Shell script to execute
+  script:
+  """
+  qualimap bamqc -bam ${snippy_bam} --skip-duplicated -c -outformat "HTML" -outdir . -nt ${task.cpus}
+  qualimapDir=${snippy_bam.baseName}_stats
+  mv \$qualimapDir ${snippy_bam.baseName}
+  """
 }
 
-if(!params.skip_multiqc && !params.skip_qualimap_snippy_pairwise && !params.skip_iqtree && !params.skip_snippy_multi_filter && !params.skip_snippy_multi && !params.skip_snippy_merge_mask_bed && !params.skip_snippy_pairwise && (!params.skip_assembly_download || (!params.skip_eager && !params.skip_sra_download)) && (params.sqlite || params.ncbimeta_update) && !params.skip_sqlite_import){
+process multiqc{
+  /*
+  Generate a MultiQC report from pipeline analyses.
 
-  process multiqc{
-    /*
-    Generate a MultiQC report from pipeline analyses.
+  Input:
+  ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output from process qualimap_snippy_pairwise.
 
-    Input:
-    ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output from process qualimap_snippy_pairwise.
+  Publish
+  multiqc_report.html (html): MultiQC report file.
+  *_data (misc): All default MultiQC data files.
+  */
+  // Other variables and config
+  tag "${qualimap_misc}"
+  publishDir "${outdir}/multiqc", mode: 'copy'
 
-    Publish
-    multiqc_report.html (html): MultiQC report file.
-    *_data (misc): All default MultiQC data files.
-    */
-    // Other variables and config
-    tag "${qualimap_misc}"
-    publishDir "${outdir}/multiqc", mode: 'copy'
+  // IO and conditional behavior
+  input:
+  file qualimap_misc from ch_snippy_pairwise_qualimap_multiqc.collect()
+  file snpeff_misc from ch_snippy_csv_snpEff_multiqc.collect()
 
-    // IO and conditional behavior
-    input:
-    file qualimap_misc from ch_snippy_pairwise_qualimap_multiqc.collect()
-    file snpeff_misc from ch_snippy_csv_snpEff_multiqc.collect()
+  output:
+  file "*multiqc_report.html"
+  file "*_data"
 
-    output:
-    file "*multiqc_report.html"
-    file "*_data"
+  when:
+  !params.skip_multiqc
 
-    // Shell script to execute
-    script:
-    """
-    multiqc --config ${params.multiqc_config} .
-    """
-  }
+  // Shell script to execute
+  script:
+  """
+  multiqc --config ${params.multiqc_config} .
+  """
 }
 
 /* Stock process
