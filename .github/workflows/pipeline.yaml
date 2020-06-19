@@ -69,7 +69,7 @@ jobs:
           conda info --envs
           conda activate ${PHYLO_CONDA_ENV}
           nextflow run ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV}\
-            --max_datasets_assembly 4 \
+            --max_datasets_assembly 2 \
             --skip_sra_download \
             --skip_outgroup_download \
             --iqtree_runs 1 \

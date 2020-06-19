@@ -1189,7 +1189,7 @@ process iqtree{
   fi
 
   # Setup the branch support param
-  if [[ ${params.skip_outgroup_download} == "true"  ]]; then
+  if [[ ${params.iqtree_branch_support} == "true"  ]]; then
     BRANCH_SUPPORT="--bnni --alrt ${params.iqtree_alrt} --ufboot ${params.iqtree_ufboot}";
     SUFFIX="_bootstrap";
   else
