@@ -637,7 +637,6 @@ process outgroup_download{
   // Other variables and config
   tag "$outgroup_fna_local"
   publishDir "${outdir}/outgroup_genome", mode: 'copy'
-  echo true
 
   Channel
       .of(params.outgroup_genome_fna_ftp)
@@ -1159,7 +1158,6 @@ process iqtree{
   // Other variables and config
   tag "$snippy_core_filter_aln"
   publishDir "${outdir}/iqtree", mode: 'copy', overwrite: 'true'
-  echo true
 
   // IO and conditional behavior
   input:
