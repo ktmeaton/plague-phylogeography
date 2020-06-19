@@ -68,7 +68,8 @@ conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 * Use the default organism database (*Yersinia pestis*)
 * Analyze 4 genomic assemblies (1 file each).
 * Analyze 1 ancient DNA sample (6 sequencing libraries).
-* The outgroup (*Y. pseudotuberculosis*) is disabled as it's high divergence significantly extends runtime.
+* The outgroup (*Y. pseudotuberculosis*) is skipped as it's high divergence significantly extends runtime.
+* Only perform 1 run of IQTREE for testing.
 
 ```bash
 conda activate plague-phylogeography-0.1.4dev
@@ -76,6 +77,7 @@ nextflow run ktmeaton/plague-phylogeography \
   --max_datasets_assembly 4 \
   --max_datasets_sra 1 \
   --skip_outgroup_download \
+  --iqtree_runs 1 \
   --outdir test
 ```
 

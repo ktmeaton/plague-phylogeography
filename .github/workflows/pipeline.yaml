@@ -72,6 +72,7 @@ jobs:
             --max_datasets_assembly 4 \
             --skip_sra_download \
             --skip_outgroup_download \
+            --iqtree_runs 1 \
             --outdir test
 
       - name: artifact multiqc-assembly
