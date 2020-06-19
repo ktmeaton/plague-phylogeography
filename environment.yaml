@@ -1,4 +1,4 @@
-name: phylo-dev-env
+name: phylo-env
 channels:
   - bioconda
   - conda-forge
