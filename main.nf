@@ -101,8 +101,6 @@ outdir = outdir
 //                                Channel Catalogue                           //
 // -------------------------------------------------------------------------- //
 
-ch_sqlite = Channel.empty()
-
 // -------------------------------------------------------------------------- //
 //                              NCBImeta Entry Point                          //
 // -------------------------------------------------------------------------- //
@@ -639,6 +637,7 @@ process outgroup_download{
   // Other variables and config
   tag "$outgroup_fna_local"
   publishDir "${outdir}/outgroup_genome", mode: 'copy'
+  echo true
 
   Channel
       .of(params.outgroup_genome_fna)
@@ -652,15 +651,40 @@ process outgroup_download{
 
   output:
   file "${outgroup_fna_local.baseName}" into ch_outgroup_fna_snippy_pairwise
-
+  env(prefix) into ch_outgroup_file_iqtree
+  //env(taxid) into ch_outgroup_file_iqtree
   when:
   !params.skip_outgroup_download
 
   // Shell script to execute
   script:
   """
-  echo ${outgroup_fna_local}
   gunzip -f ${outgroup_fna_local}
+  # Store the file basename/prefix for iqtree outgroup param
+  filename=${outgroup_fna_local}
+  fna="\${filename%.*}"
+  prefix="\${fna%.*}"
+  """
+}
+
+process outgroup_test{
+  echo true
+  input:
+  val outgroup_file from ch_outgroup_file_iqtree.collect().ifEmpty([])
+
+  output:
+
+  script:
+
+  """
+  if [[ ${params.skip_outgroup_download} == "false"  ]]; then
+    OUTGROUP="${outgroup_file}";
+    # Strip brackets and spaces from list
+    OUTGROUP=`echo "\$OUTGROUP" | sed 's/\\[\\| \\|\\]//g'`;
+  else
+    OUTGROUP="Reference"
+  fi
+  echo \$OUTGROUP
   """
 }
 
@@ -1055,9 +1079,13 @@ process snippy_multi{
   val snippy_outdir_path from ch_snippy_outdir_assembly_multi.collect()
 
   output:
-  file "*"
   file "snippy-core.aln" into ch_snippy_core_aln_filter
   file "snippy-core.full.aln" into ch_snippy_core_full_aln_filter
+  file "*.log"
+  file "*.fa"
+  file "*tab"
+  file "*.txt"
+  file "*.vcf"
 
   when:
   !params.skip_snippy_multi
@@ -1105,8 +1133,9 @@ process snippy_multi_filter{
   file snippy_core_full_aln from ch_snippy_core_full_aln_filter
 
   output:
-  file "*.fasta"
   file "*.bed"
+  file "${snippy_core_full_aln.baseName}_CHROM.fasta"
+  file "${snippy_core_full_aln.baseName}_p*.fasta"
   file "${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_iqtree
 
   when:
@@ -1147,24 +1176,25 @@ process iqtree{
 
   Publish:
   iqtree.core-filter*_bootstrap.treefile (newick): Newick treefile phylogeny with branch supports.
-  iqtree* (misc): All default output of iqtree.
+  !(*treefile) (misc): All default output of iqtree other than the treefile.
   */
   // Other variables and config
   tag "$snippy_core_filter_aln"
   publishDir "${outdir}/iqtree", mode: 'copy', overwrite: 'true'
-  // Generate a random number for iqtree seed
-  ch_iqtree_rng = Channel
-      .from( 100000..1000000 )
-      .randomSample( 1 )
+  echo true
 
   // IO and conditional behavior
   input:
   file snippy_core_filter_aln from ch_snippy_core_filter_iqtree
-  val iqtree_rng from ch_iqtree_rng
 
   output:
-  file "iqtree*"
-  file "iqtree.core-filter*_bootstrap.treefile" into ch_iqtree_treefile_augur_refine
+  file "iqtree*.treefile" into ch_iqtree_treefile_augur_refine
+  file "iqtree*.bionj"
+  file "iqtree*.ckp.gz"
+  file "iqtree*.log"
+  file "iqtree*.mldist"
+  file "iqtree*.model.gz"
+  file "iqtree*.output"
 
   when:
   !params.skip_iqtree
@@ -1179,7 +1209,7 @@ process iqtree{
     -m MFP \
     -nt AUTO \
     -o ${params.iqtree_outgroup} \
-    -seed ${iqtree_rng} \
+    -seed \$RANDOM \
     -pre iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap \
     2>&1 | tee iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap.output
   """
