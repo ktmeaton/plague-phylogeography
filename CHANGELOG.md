@@ -19,19 +19,21 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Add outgroup 2 x Y. pseudotuberculosis
 - Move config files to config directory
 
-## [v0.1.4] - 2020-06-18 - TBD
+## [v0.1.4] - 2020-06-18 - SRA and nf-core/eager
 
 ### Added
 
 - sra_download and eager process
-- dynamically change RNG for iqtree
-- workflow: install.yaml
+- outgroup_download and outgroup options for iqtree
+- extra parameters for iqtree (RNG, bootstrapping, multiple runs)
+- new workflow: install.yaml to test nextflow install method
 
 ### Changed
 
 - Rename pipeline.nf to main.nf for nextflow pull compatibility
 - Condense phylo-env environment files and rename to environment.yaml
-- Start moving config files to config/ directory
+- Moved config files to config/ directory
+- workflow: pipeline.yaml now tests assembly pipeline, sra download and eager
 
 ## [v0.1.3] - 2020-05-28 - DHSI2020 Exhibit
 
