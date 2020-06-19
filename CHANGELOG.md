@@ -16,8 +16,8 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Deal with nextstrain augur not working with phylogeny with branch support values
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
-- Add outgroup 2 x Y. pseudotuberculosis
-- Move config files to config directory
+- Allow input of own contig files (param)
+- Allow input of own fastq files (tsv concat)
 
 ## [v0.1.4] - 2020-06-18 - SRA and nf-core/eager
 

@@ -1188,6 +1188,15 @@ process iqtree{
     OUTGROUP=${params.iqtree_outgroup}
   fi
 
+  # Setup the branch support param
+  if [[ ${params.skip_outgroup_download} == "true"  ]]; then
+    BRANCH_SUPPORT="--bnni --alrt ${params.iqtree_alrt} --ufboot ${params.iqtree_ufboot}";
+    SUFFIX="_bootstrap";
+  else
+    BRANCH_SUPPORT="";
+    SUFFIX="";
+  fi
+
   # A thorough tree search for model selection can be done with -m MF -mtree
   iqtree \
     -s ${snippy_core_filter_aln} \
@@ -1195,12 +1204,10 @@ process iqtree{
     -nt AUTO \
     -o \$OUTGROUP \
     -seed \$RANDOM \
-    --bnni \
-    --alrt ${params.iqtree_alrt} \
-    --ufboot ${params.iqtree_ufboot} \
+    \${BRANCH_SUPPORT} \
     --runs ${params.iqtree_runs} \
-    -pre iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap \
-    2>&1 | tee iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap.output
+    -pre iqtree.core-filter${params.snippy_multi_missing_data_text}\${SUFFIX} \
+    2>&1 | tee iqtree.core-filter${params.snippy_multi_missing_data_text}\${SUFFIX}.output
   """
 }
 

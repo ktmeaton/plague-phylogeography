@@ -74,7 +74,7 @@ conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 ```bash
 conda activate plague-phylogeography-0.1.4dev
 nextflow run ktmeaton/plague-phylogeography \
-  --max_datasets_assembly 4 \
+  --max_datasets_assembly 2 \
   --max_datasets_sra 1 \
   --skip_outgroup_download \
   --iqtree_runs 1 \
