@@ -61,13 +61,18 @@ jobs:
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
           conda install -n ${CONDA_ENV} -c anaconda graphviz
 
-      - name: aseembly-pipeline
+      - name: assembly-pipeline
+        env:
+          NF_REV: "master"
+          CONDA_ENV: "phylo-env"
         shell: bash -l {0}
         run: |
-          nextflow run ktmeaton/plague-phylogeography \
+          conda activate ${CONDA_ENV}
+          nextflow run ktmeaton/plague-phylogeography -r ${NF_REV}\
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --max_datasets_assembly 4 \
             --skip_sra_download \
+            --skip_outgroup_download \
             --outdir test
 
       - name: artifact multiqc-assembly
@@ -90,21 +95,30 @@ jobs:
 
       # Test the SRA section
       - name: sra download
+        env:
+          NF_REV: "master"
+          CONDA_ENV: "phylo-env"
         shell: bash -l {0}
         run: |
-          nextflow run ktmeaton/plague-phylogeography \
+          conda activate ${CONDA_ENV}
+          nextflow run ktmeaton/plague-phylogeography -r ${NF_REV}\
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --outdir test \
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --max_datasets_sra 2  \
             --skip_assembly_download \
+            --skip_outgroup_download \
             --skip_eager \
             --skip_snippy_pairwise
 
       - name: sra eager
+        env:
+          NF_REV: "master"
+          CONDA_ENV: "phylo-env"
         shell: bash -l {0}
         run: |
-          nextflow run ktmeaton/plague-phylogeography \
+          conda activate ${CONDA_ENV}
+          nextflow run ktmeaton/plague-phylogeography -r ${NF_REV} \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
             --outdir test \
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
