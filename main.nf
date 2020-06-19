@@ -712,30 +712,20 @@ process eager{
 // -------------------------------------------------------------------------- //
 
 // --------------------------------Pairwise Alignment-------------------------//
-//ch_1 = ch_assembly_fna_snippy_pairwise_test.collect()
-//  .ifEmpty('Empty')
-//ch_2 = ch_sra_bam_snippy_pairwise_test.collect()
-//  .ifEmpty('Empty')
 
-ch_assembly_fna_snippy_pairwise_test.collect()
-  .ifEmpty('Empty')
+// Collect bam and fasta into a single channel, assign Empty if not run
+ch_assembly_fna_snippy_pairwise.collect()
+  .ifEmpty([])
   .combine (
-    ch_sra_bam_snippy_pairwise_test.collect()
-      .ifEmpty('Empty')
+    ch_sra_bam_snippy_pairwise.collect()
+      .ifEmpty([])
   )
   .flatten()
-  .set { ch_3 }
-
-ch_3.println()
-
-//ch_1
-//  .combine(ch_2)
-//  .flatten()
-//  .set { ch_3 }
-
+  .filter { it =~/.*.fna|.*.bam/ }
+  .set { ch_assembly_fna_sra_bam_snippy_pairwise }
 
 process snippy_pairwise{
-  /*cd P
+  /*
   Pairwise align contigs to reference genome with snippy.
 
   Input:
@@ -759,18 +749,15 @@ process snippy_pairwise{
   // Other variables and config
   tag "$assembly_fna"
   publishDir "${outdir}/snippy_pairwise", mode: 'copy'
-  echo true
 
   // IO and conditional behavior
   input:
-  file assembly_fna from ch_assembly_fna_snippy_pairwise.ifEmpty('Empty')
-  //file sra_bam from ch_sra_bam_snippy_pairwise.ifEmpty('Empty')
   file reference_genome_gb from ch_reference_gb_snippy_pairwise
   file snpeff_config from ch_snpeff_config_snippy_pairwise
-  //file assembly_fna from ch_3
+  file fna_bam from ch_assembly_fna_sra_bam_snippy_pairwise
 
   output:
-  file "*output*/${assembly_fna.baseName}" into ch_snippy_outdir_assembly_multi
+  file "*output*/${fna_bam.baseName}" into ch_snippy_outdir_assembly_multi
   //file "output${params.snippy_ctg_depth}X/*/*"
   file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_variant_summary
   file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf_detect_density
@@ -783,36 +770,37 @@ process snippy_pairwise{
   // Shell script to execute
   script:
   """
-  if [[ "${assembly_fna.extension}" == "fna" ]]; then
-    echo "FASTA";
-    echo ${assembly_fna}
-  elif  [[ "${assembly_fna.extension}" == "bam" ]]; then
-    echo "BAM";
-    echo ${assembly_fna}
-  else
-    echo "OTHER";
-    echo ${assembly_fna}
-  fi
-
-  exit;
-
-  snippy \
-    --prefix ${assembly_fna.baseName}_snippy \
-    --cpus ${task.cpus} \
-    --reference ${reference_genome_gb} \
-    --outdir output${params.snippy_ctg_depth}X/${assembly_fna.baseName} \
-    --ctgs ${assembly_fna} \
-    --mapqual ${params.snippy_map_qual} \
-    --mincov ${params.snippy_ctg_depth} \
-    --minfrac ${params.snippy_min_frac} \
-    --basequal ${params.snippy_base_qual} \
-    --report;
+  if [[ "${fna_bam.extension}" == "fna" ]]; then
+    snippy \
+      --prefix ${fna_bam.baseName}_snippy \
+      --cpus ${task.cpus} \
+      --reference ${reference_genome_gb} \
+      --outdir output${params.snippy_ctg_depth}X/${fna_bam.baseName} \
+      --ctgs ${fna_bam} \
+      --mapqual ${params.snippy_map_qual} \
+      --mincov ${params.snippy_ctg_depth} \
+      --minfrac ${params.snippy_min_frac} \
+      --basequal ${params.snippy_base_qual} \
+      --report;
+  elif  [[ "${fna_bam.extension}" == "bam" ]]; then
+    snippy \
+      --prefix ${fna_bam.baseName}_snippy \
+      --cpus ${task.cpus} \
+      --reference ${reference_genome_gb} \
+      --outdir output${params.snippy_ctg_depth}X/${fna_bam.baseName} \
+      --bam ${fna_bam} \
+      --mapqual ${params.snippy_map_qual} \
+      --mincov ${params.snippy_bam_depth} \
+      --minfrac ${params.snippy_min_frac} \
+      --basequal ${params.snippy_base_qual} \
+      --report;
+   fi;
 
   # Save Output Dir for snippy_multi channel
-  snippyDir=`pwd`"/output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/"
+  snippyDir=`pwd`"/output${params.snippy_ctg_depth}X/${fna_bam.baseName}/"
 
-  snippy_snps_in=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.txt
-  snippy_snps_txt=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.summary.txt
+  snippy_snps_in=output${params.snippy_ctg_depth}X/${fna_bam.baseName}/${fna_bam.baseName}_snippy.txt
+  snippy_snps_txt=output${params.snippy_ctg_depth}X/${fna_bam.baseName}/${fna_bam.baseName}_snippy.summary.txt
 
   COMPLEX=`awk 'BEGIN{count=0}{if (\$1 == "Variant-COMPLEX"){count=\$2}}END{print count}' \$snippy_snps_in;`
   DEL=`awk 'BEGIN{count=0}{if (\$1 == "Variant-DEL"){count=\$2}}END{print count}' \$snippy_snps_in;`
@@ -820,11 +808,11 @@ process snippy_pairwise{
   MNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-MNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
   SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
   TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' \$snippy_snps_in;`
-  echo -e output${params.snippy_ctg_depth}X/${assembly_fna.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
+  echo -e output${params.snippy_ctg_depth}X/${fna_bam.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
 
-  snippy_snps_filt=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.filt.vcf
-  snippy_snps_csv=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.csv
-  snippy_snps_rename=output${params.snippy_ctg_depth}X/${assembly_fna.baseName}/${assembly_fna.baseName}_snippy.rename.csv
+  snippy_snps_filt=output${params.snippy_ctg_depth}X/${fna_bam.baseName}/${fna_bam.baseName}_snippy.filt.vcf
+  snippy_snps_csv=output${params.snippy_ctg_depth}X/${fna_bam.baseName}/${fna_bam.baseName}_snippy.csv
+  snippy_snps_rename=output${params.snippy_ctg_depth}X/${fna_bam.baseName}/${fna_bam.baseName}_snippy.rename.csv
 
   # SnpEff csv Stats
   mv \$snippy_snps_csv \$snippy_snps_rename
