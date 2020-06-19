@@ -9,14 +9,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 - Rewrite shell scripts in python?
 - Lint all python scripts with black+flake8
-- Overabundance of files in database update
 - Deal with the fail to publish issue with NCBImeta db
 - Add exact-repeats and tandem repeats detection
 - Add GeoPy to phylo-env environment
 - Github actions, to build docs and remote narratives
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Deal with nextstrain augur not working with phylogeny with branch support values
-- Rethink if statements controlling processes in pipeline
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
 - Add outgroup 2 x Y. pseudotuberculosis
 - Move config files to config directory
@@ -26,6 +24,8 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ### Added
 
 - sra_download and eager process
+- dynamically change RNG for iqtree
+- workflow: install.yaml
 
 ### Changed
 

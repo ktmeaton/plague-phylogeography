@@ -667,28 +667,6 @@ process outgroup_download{
   """
 }
 
-process outgroup_test{
-  echo true
-  input:
-  val outgroup_file from ch_outgroup_file_iqtree.collect().ifEmpty([])
-
-  output:
-
-  script:
-
-  """
-  if [[ ${params.skip_outgroup_download} == "false"  ]]; then
-    OUTGROUP="${outgroup_file}";
-    # Strip brackets and spaces from list
-    OUTGROUP=`echo "\$OUTGROUP" | sed 's/\\[\\| \\|\\]//g'`;
-  else
-    OUTGROUP="Reference"
-  fi
-  echo \$OUTGROUP
-  """
-}
-
-
 process eager{
   /*
   Run the nf-core/eager pipeline on SRA samples.
@@ -1186,6 +1164,7 @@ process iqtree{
   // IO and conditional behavior
   input:
   file snippy_core_filter_aln from ch_snippy_core_filter_iqtree
+  val outgroup_file from ch_outgroup_file_iqtree.collect().ifEmpty([])
 
   output:
   file "iqtree*.treefile" into ch_iqtree_treefile_augur_refine
@@ -1202,13 +1181,21 @@ process iqtree{
   // Shell script to execute
   script:
   """
-  # Remember to change outgroup here later
+  # Setup the outgroup
+  if [[ ${params.skip_outgroup_download} == "false"  ]]; then
+    OUTGROUP="${outgroup_file}";
+    # Strip brackets and spaces from list
+    OUTGROUP=`echo "\$OUTGROUP" | sed 's/\\[\\| \\|\\]//g'`;
+  else
+    OUTGROUP="Reference"
+  fi
+
   # A thorough tree search for model selection can be done with -m MF -mtree
   iqtree \
     -s ${snippy_core_filter_aln} \
     -m MFP \
     -nt AUTO \
-    -o ${params.iqtree_outgroup} \
+    -o \$OUTGROUP \
     -seed \$RANDOM \
     -pre iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap \
     2>&1 | tee iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap.output
