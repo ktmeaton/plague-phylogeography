@@ -1,6 +1,11 @@
 # Plague Phylogeography
 
-A **VERY** in-development work on the phylogeography of *Yersinia pestis*.
+An open-source pipeline to construct a global phylogeny of the plague pathogen *Yersinia pestis*.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ktmeaton/plague-phylogeography/blob/master/LICENSE)
+[![Nextflow](https://img.shields.io/badge/nextflow-%E2%89%A520.01.0-blue.svg)](https://www.nextflow.io/)
+[![Build Status](https://github.com/ktmeaton/plague-phylogeography/workflows/Install/badge.svg?branch=master)](https://github.com/ktmeaton/NCBImeta/actions?query=workflow%3ABuilding+branch%3Amaster)
+[![GitHub issues](https://img.shields.io/github/issues/ktmeaton/plague-phylogeography.svg)](https://github.com/ktmeaton/plague-phylogeography/issues)
 
 ## Pipeline Overview
 
@@ -35,17 +40,15 @@ wget -qO- get.nextflow.io | bash
 sudo mv nextflow /usr/local/bin/
 ```
 
-Pull the ktmeaton/plague-phylogeography pipeline and create a conda environment.  
-(Expect this to take >10min)
+Pull the ```ktmeaton/plague-phylogeography``` pipeline and create a conda environment.  
 
 ```bash
 nextflow pull ktmeaton/plague-phylogeography
 conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
 ```
 
-Pull the nf-core/eager pipeline and create a conda environment.
-Version control nf-core/eager to revision: 7b51863957.  
-(Expect this to take >10min)
+Pull the ```nf-core/eager``` pipeline and create a conda environment.
+Version control ```nf-core/eager``` to revision: 7b51863957.  
 
 ```bash
 nextflow pull nf-core/eager
