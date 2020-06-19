@@ -1,6 +1,6 @@
-# Plague Phylogeography
+# ![ktmeaton/plague-phylogeography](docs/images/plague-phylo-logo.png)
 
-An open-source pipeline to construct a global phylogeny of the plague pathogen *Yersinia pestis*.
+**An open-source pipeline to construct a global phylogeny of the plague pathogen *Yersinia pestis*.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ktmeaton/plague-phylogeography/blob/master/LICENSE)
 [![Nextflow](https://img.shields.io/badge/nextflow-%E2%89%A520.01.0-blue.svg)](https://www.nextflow.io/)
@@ -111,3 +111,8 @@ executor >  local (3)
 ## Usage
 
 The current usage is described in the [Main Exhibit page](https://plague-phylogeography.readthedocs.io/en/latest/exhibit/exhibit_link.html#main-exhibit) at ReadTheDocs.
+
+## Credits
+
+Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)
+Logo: Emil Karpinski, [Katherine Eaton](https://github.com/ktmeaton)
