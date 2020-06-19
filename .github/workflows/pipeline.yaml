@@ -1,5 +1,13 @@
 name: Pipeline
-#This is a workflow for minimal pipeline testing, triggered on a push or pull-request.
+#This is a workflow for full pipeline testing.
+
+# Global workflow environment variables
+env:
+    PHYLO_NF_REV: "master"
+    EAGER_NF_REV: "7b51863957"
+    PHYLO_CONDA_ENV: "plague-phylogeography-0.1.4dev"
+    EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
+
 on:
   # Triggered on Push for any branch
   push:
@@ -40,36 +48,27 @@ jobs:
 
       # 3. Install ktmeaton/plague-phylogeography
       - name: install ktmeaton/plague-phylogeography
-        env:
-          NF_REV: "master"
-          CONDA_ENV: "phylo-env"
         shell: bash -l {0}
         run: |
           nextflow pull ktmeaton/plague-phylogeography
-          nextflow pull ktmeaton/plague-phylogeography -r ${NF_REV}
+          nextflow pull ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV}
           conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
 
       # 4. Install nf-core/eager
       - name: install nf-core/eager
-        env:
-          NF_REV: "7b51863957"
-          CONDA_ENV: "nf-core-eager-2.2.0dev"
         shell: bash -l {0}
         run: |
           nextflow pull nf-core/eager
-          nextflow pull nf-core/eager -r ${NF_REV}
+          nextflow pull nf-core/eager -r ${EAGER_NF_REV}
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
-          conda install -n ${CONDA_ENV} -c anaconda graphviz
+          conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
 
       - name: assembly-pipeline
-        env:
-          NF_REV: "master"
-          CONDA_ENV: "phylo-env"
         shell: bash -l {0}
         run: |
           conda info --envs
-          conda activate ${CONDA_ENV}
-          nextflow run ktmeaton/plague-phylogeography -r ${NF_REV}\
+          conda activate ${PHYLO_CONDA_ENV}
+          nextflow run ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV}\
             --max_datasets_assembly 4 \
             --skip_sra_download \
             --skip_outgroup_download \
@@ -95,13 +94,10 @@ jobs:
 
       # Test the SRA section
       - name: sra download
-        env:
-          NF_REV: "master"
-          CONDA_ENV: "phylo-env"
         shell: bash -l {0}
         run: |
-          conda activate ${CONDA_ENV}
-          nextflow run ktmeaton/plague-phylogeography -r ${NF_REV}\
+          conda activate ${PHYLO_CONDA_ENV}
+          nextflow run ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV}\
             --outdir test \
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --max_datasets_sra 2  \
@@ -111,18 +107,16 @@ jobs:
             --skip_snippy_pairwise
 
       - name: sra eager
-        env:
-          NF_REV: "master"
-          CONDA_ENV: "phylo-env"
         shell: bash -l {0}
         run: |
-          conda activate ${CONDA_ENV}
-          nextflow run ktmeaton/plague-phylogeography -r ${NF_REV} \
+          conda activate ${PHYLO_CONDA_ENV}
+          nextflow run ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV} \
             --outdir test \
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --max_datasets_sra 2  \
             --skip_assembly_download \
-            --skip_snippy_pairwise
+            --skip_snippy_pairwise \
+            -resume
 
       - name: artifact sqlite-import-sra
         uses: actions/upload-artifact@v2

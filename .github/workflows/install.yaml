@@ -1,4 +1,13 @@
 name: Install
+
+# Global workflow environment variables
+env:
+    PHYLO_NF_REV: "master"
+    EAGER_NF_REV: "7b51863957"
+    PHYLO_CONDA_ENV: "plague-phylogeography-0.1.4dev"
+    EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
+
+
 #This is a workflow for installation testing.
 on:
   # Triggered on Push for any branch
@@ -40,23 +49,17 @@ jobs:
 
       # 3. Install ktmeaton/plague-phylogeography
       - name: install ktmeaton/plague-phylogeography
-        env:
-          NF_REV: "master"
-          CONDA_ENV: "phylo-env"
         shell: bash -l {0}
         run: |
           nextflow pull ktmeaton/plague-phylogeography
-          nextflow pull ktmeaton/plague-phylogeography -r ${NF_REV}
+          nextflow pull ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV}
           conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
 
       # 4. Install nf-core/eager
       - name: install nf-core/eager
-        env:
-          NF_REV: "7b51863957"
-          CONDA_ENV: "nf-core-eager-2.2.0dev"
         shell: bash -l {0}
         run: |
           nextflow pull nf-core/eager
-          nextflow pull nf-core/eager -r ${NF_REV}
+          nextflow pull nf-core/eager -r ${EAGER_NF_REV}
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
-          conda install -n ${CONDA_ENV} -c anaconda graphviz
+          conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
