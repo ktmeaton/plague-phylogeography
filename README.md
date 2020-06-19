@@ -82,30 +82,34 @@ nextflow run ktmeaton/plague-phylogeography \
 
 ```bash
 N E X T F L O W  ~  version 20.01.0
-Launching `main.nf` [spontaneous_lichterman] - revision: 5906a149d0
+Launching `ktmeaton/plague-phylogeography` [elegant_gilbert] - revision: 7e7f2d1b4d [master]
 =========================================
-Plague Phlyogeography v0.1.3
+Plague Phylogeography v0.1.3
 =========================================
-executor >  local (3)
-[44/3a8a51] process > sqlite_import                   [100%] 1 of 1 ✔
-[1a/5880ac] process > assembly_download               [100%] 2 of 2 ✔
-[2c/17e47d] process > sra_download                    [100%] 6 of 6 ✔
-[c5/ea73a5] process > reference_download              [100%] 1 of 1 ✔
-[3c/bfae8f] process > snpeff_build_db                 [100%] 1 of 1 ✔
-[45/74d246] process > reference_detect_repeats        [100%] 1 of 1 ✔
-[2d/7cd1d8] process > reference_detect_low_complexity [100%] 1 of 1 ✔
+executor >  local (35)
+[81/6f7302] process > sqlite_import                   [100%] 1 of 1 ✔
+[28/ef6201] process > assembly_download               [100%] 4 of 4 ✔
+[a7/0aacda] process > sra_download                    [100%] 6 of 6 ✔
+[ed/915cb6] process > reference_download              [100%] 1 of 1 ✔
+[a8/b1d0f7] process > snpeff_build_db                 [100%] 1 of 1 ✔
+[08/a5e95c] process > reference_detect_repeats        [100%] 1 of 1 ✔
+[26/f8820d] process > reference_detect_low_complexity [100%] 1 of 1 ✔
 [-        ] process > outgroup_download               -
-[23/68b17e] process > eager                           [100%] 1 of 1 ✔
-[2c/0353b6] process > snippy_pairwise                 [100%] 2 of 2 ✔
-[c1/78ca4f] process > snippy_variant_summary_collect  [100%] 1 of 1 ✔
-[9b/d05147] process > snippy_detect_snp_high_density  [100%] 2 of 2 ✔
-[46/1d104a] process > snippy_sort_snp_high_density    [100%] 1 of 1 ✔
-[a7/f9e1bb] process > snippy_merge_mask_bed           [100%] 1 of 1 ✔
-[47/83531f] process > snippy_multi                    [100%] 1 of 1 ✔
-[6c/a0aec4] process > snippy_multi_filter             [100%] 1 of 1 ✔
-[8f/85f252] process > iqtree                          [100%] 1 of 1 ✔
-[21/8419e2] process > qualimap_snippy_pairwise        [100%] 2 of 2 ✔
-[c4/f4e925] process > multiqc                         [100%] 1 of 1 ✔
+[f7/6a3370] process > eager                           [100%] 1 of 1 ✔
+[0b/9785df] process > snippy_pairwise                 [100%] 4 of 4 ✔
+[98/7e2b16] process > snippy_variant_summary_collect  [100%] 1 of 1 ✔
+[ab/f8c6d3] process > snippy_detect_snp_high_density  [100%] 4 of 4 ✔
+[1c/802090] process > snippy_sort_snp_high_density    [100%] 1 of 1 ✔
+[22/ed602a] process > snippy_merge_mask_bed           [100%] 1 of 1 ✔
+[3b/550d6b] process > snippy_multi                    [100%] 1 of 1 ✔
+[72/0e4544] process > snippy_multi_filter             [100%] 1 of 1 ✔
+[21/b1f367] process > iqtree                          [100%] 1 of 1 ✔
+[fc/56b6c0] process > qualimap_snippy_pairwise        [100%] 4 of 4 ✔
+[ad/51ea3b] process > multiqc                         [100%] 1 of 1 ✔
+Completed at: 19-Jun-2020 17:08:20
+Duration    : 2h 8m 42s
+CPU hours   : 17.1
+Succeeded   : 35
 ```
 
 ## Usage
