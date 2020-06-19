@@ -2,7 +2,7 @@
 
 /*
 ========================================================================================
-                         Plague Pipeline
+                         Plague Phylogeography
 ========================================================================================
  Plague Phylogeography Pipeline
  Create 2020-02-06
@@ -267,9 +267,9 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
                                   .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.sqlite}" }
     }
     else{
-      println "NCBImeta SQLite database not found."
-      println "Please either supply --ncbimeta_update or --sqlite"
-      exit 1}
+      ch_sqlite = Channel.empty()
+      //exit 1
+    }
 
     // IO and conditional behavior
     input:
@@ -436,7 +436,6 @@ process reference_download{
 
   // Other variables and config
   tag "$reference_genome_fna_local"
-  echo true
   publishDir "${outdir}/reference_genome", mode: 'copy'
 
   // IO and conditional behavior
@@ -624,6 +623,47 @@ process reference_detect_low_complexity{
   """
 }
 
+process outgroup_download{
+  /*
+  Download the outgroup assemblies.
+
+  Input:
+  ch_():
+
+  Output:
+  ch_ ():
+
+  Publish:
+
+  */
+  // Other variables and config
+  tag "$outgroup_fna_local"
+  publishDir "${outdir}/outgroup_genome", mode: 'copy'
+
+  Channel
+      .of(params.outgroup_genome_fna)
+      .flatten()
+      .map { file(it) }
+      .set { ch_outgroup_genome_fna }
+
+  // IO and conditional behavior
+  input:
+  file outgroup_fna_local from ch_outgroup_genome_fna
+
+  output:
+  file "${outgroup_fna_local.baseName}" into ch_outgroup_fna_snippy_pairwise
+
+  when:
+  !params.skip_outgroup_download
+
+  // Shell script to execute
+  script:
+  """
+  echo ${outgroup_fna_local}
+  gunzip -f ${outgroup_fna_local}
+  """
+}
+
 
 process eager{
   /*
@@ -714,12 +754,17 @@ process eager{
 // --------------------------------Pairwise Alignment-------------------------//
 
 // Collect bam and fasta into a single channel, assign Empty if not run
+// Includes: Assembly fna, EAGER bam, outgroup fna
 ch_assembly_fna_snippy_pairwise.collect()
   .ifEmpty([])
   .combine (
     ch_sra_bam_snippy_pairwise.collect()
       .ifEmpty([])
   )
+  .combine (
+    ch_outgroup_fna_snippy_pairwise.collect()
+      .ifEmpty([])
+    )
   .flatten()
   .filter { it =~/.*.fna|.*.bam/ }
   .set { ch_assembly_fna_sra_bam_snippy_pairwise }
@@ -1107,10 +1152,15 @@ process iqtree{
   // Other variables and config
   tag "$snippy_core_filter_aln"
   publishDir "${outdir}/iqtree", mode: 'copy', overwrite: 'true'
+  // Generate a random number for iqtree seed
+  ch_iqtree_rng = Channel
+      .from( 100000..1000000 )
+      .randomSample( 1 )
 
   // IO and conditional behavior
   input:
   file snippy_core_filter_aln from ch_snippy_core_filter_iqtree
+  val iqtree_rng from ch_iqtree_rng
 
   output:
   file "iqtree*"
@@ -1129,7 +1179,7 @@ process iqtree{
     -m MFP \
     -nt AUTO \
     -o ${params.iqtree_outgroup} \
-    -seed ${params.iqtree_rng} \
+    -seed ${iqtree_rng} \
     -pre iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap \
     2>&1 | tee iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap.output
   """
