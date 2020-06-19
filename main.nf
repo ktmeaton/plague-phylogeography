@@ -93,7 +93,7 @@ log.info pipelineHeader()
 // -------------------------------------------------------------------------- //
 
 // Prefix the baseDir in front of the outdir
-outdir = "$baseDir/${params.outdir}"
+outdir = "$workflow.launchDir/${params.outdir}"
 outdir = outdir
 //println ("The outdir is: $outdir")
 
@@ -1165,13 +1165,13 @@ process iqtree{
   val outgroup_file from ch_outgroup_file_iqtree.collect().ifEmpty([])
 
   output:
-  file "iqtree*.treefile" into ch_iqtree_treefile_augur_refine
-  file "iqtree*.bionj"
-  file "iqtree*.ckp.gz"
-  file "iqtree*.log"
-  file "iqtree*.mldist"
-  file "iqtree*.model.gz"
-  file "iqtree*.output"
+  file "*.treefile" into ch_iqtree_treefile_augur_refine
+  file "*.bionj"
+  file "*.ckp.gz"
+  file "*.log"
+  file "*.mldist"
+  file "*.model.gz"
+  file "*.output"
 
   when:
   !params.skip_iqtree
