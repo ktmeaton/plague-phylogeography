@@ -640,7 +640,7 @@ process outgroup_download{
   echo true
 
   Channel
-      .of(params.outgroup_genome_fna)
+      .of(params.outgroup_genome_fna_ftp)
       .flatten()
       .map { file(it) }
       .set { ch_outgroup_genome_fna }
@@ -795,7 +795,7 @@ process snippy_pairwise{
   */
   // Other variables and config
   tag "$assembly_fna"
-  publishDir "${outdir}/snippy_pairwise", mode: 'copy'
+  publishDir "${outdir}/snippy_pairwise", mode: 'copy', overwrite: 'true'
 
   // IO and conditional behavior
   input:
@@ -805,7 +805,6 @@ process snippy_pairwise{
 
   output:
   file "*output*/${fna_bam.baseName}" into ch_snippy_outdir_assembly_multi
-  //file "output${params.snippy_ctg_depth}X/*/*"
   file "output${params.snippy_ctg_depth}X/*/*_snippy.summary.txt" into ch_snippy_snps_variant_summary
   file "output${params.snippy_ctg_depth}X/*/*_snippy.subs.vcf" into ch_snippy_subs_vcf_detect_density
   file "output${params.snippy_ctg_depth}X/*/*_snippy.bam" into ch_snippy_bam_pairwise_qualimap
@@ -1187,7 +1186,7 @@ process iqtree{
     # Strip brackets and spaces from list
     OUTGROUP=`echo "\$OUTGROUP" | sed 's/\\[\\| \\|\\]//g'`;
   else
-    OUTGROUP="Reference"
+    OUTGROUP=${params.iqtree_outgroup}
   fi
 
   # A thorough tree search for model selection can be done with -m MF -mtree
@@ -1197,6 +1196,10 @@ process iqtree{
     -nt AUTO \
     -o \$OUTGROUP \
     -seed \$RANDOM \
+    --bnni \
+    --alrt ${params.iqtree_alrt} \
+    --ufboot ${params.iqtree_ufboot} \
+    --runs ${params.iqtree_runs} \
     -pre iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap \
     2>&1 | tee iqtree.core-filter${params.snippy_multi_missing_data_text}_bootstrap.output
   """
