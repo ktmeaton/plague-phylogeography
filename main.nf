@@ -339,7 +339,7 @@ process assembly_download{
   input:
   file assembly_fna_gz from ch_assembly_fna_gz_local
   output:
-  file "*${params.genbank_assembly_fna_suffix}" into ch_assembly_fna_snippy_pairwise
+  file "*${params.genbank_assembly_fna_suffix}" into ch_assembly_fna_snippy_pairwise, ch_assembly_fna_snippy_pairwise_test
   when:
   !params.skip_assembly_download
   // Shell script to execute
@@ -659,7 +659,7 @@ process eager{
 
   output:
   file "damageprofiler/*"
-  file "deduplication/*" into ch_sra_bam_snippy_pairwise
+  file "deduplication/*" into ch_sra_bam_snippy_pairwise, ch_sra_bam_snippy_pairwise_test
   file "pipeline_info/*"
   file "preseq/*"
   file "qualimap/*"
@@ -712,18 +712,30 @@ process eager{
 // -------------------------------------------------------------------------- //
 
 // --------------------------------Pairwise Alignment-------------------------//
-//ch_1 = ch_assembly_fna_snippy_pairwise
+//ch_1 = ch_assembly_fna_snippy_pairwise_test.collect()
 //  .ifEmpty('Empty')
-//ch_2 = ch_sra_bam_snippy_pairwise
+//ch_2 = ch_sra_bam_snippy_pairwise_test.collect()
 //  .ifEmpty('Empty')
+
+ch_assembly_fna_snippy_pairwise_test.collect()
+  .ifEmpty('Empty')
+  .combine (
+    ch_sra_bam_snippy_pairwise_test.collect()
+      .ifEmpty('Empty')
+  )
+  .flatten()
+  .set { ch_3 }
+
+ch_3.println()
 
 //ch_1
 //  .combine(ch_2)
-//  .splitText()
+//  .flatten()
 //  .set { ch_3 }
 
+
 process snippy_pairwise{
-  /*
+  /*cd P
   Pairwise align contigs to reference genome with snippy.
 
   Input:
@@ -752,9 +764,9 @@ process snippy_pairwise{
   // IO and conditional behavior
   input:
   file assembly_fna from ch_assembly_fna_snippy_pairwise.ifEmpty('Empty')
+  //file sra_bam from ch_sra_bam_snippy_pairwise.ifEmpty('Empty')
   file reference_genome_gb from ch_reference_gb_snippy_pairwise
   file snpeff_config from ch_snpeff_config_snippy_pairwise
-  //file sra_bam from ch_sra_bam_snippy_pairwise.ifEmpty('Empty')
   //file assembly_fna from ch_3
 
   output:
