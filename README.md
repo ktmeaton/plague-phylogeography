@@ -21,7 +21,7 @@
 
 ## Installation
 
-Install Conda.
+### Install Conda
 
 ```bash
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -33,22 +33,19 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-Install Nextflow, move the binary to a directory in PATH.
+### Install Nextflow
 
 ```bash
 wget -qO- get.nextflow.io | bash
 sudo mv nextflow /usr/local/bin/
 ```
 
-Pull the ```ktmeaton/plague-phylogeography``` pipeline and create a conda environment.  
+### Install NextFlow Pipelines
 
 ```bash
 nextflow pull ktmeaton/plague-phylogeography
 conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
 ```
-
-Pull the ```nf-core/eager``` pipeline and create a conda environment.  
-Version control ```nf-core/eager``` to revision: 7b51863957.  
 
 ```bash
 nextflow pull nf-core/eager
@@ -56,7 +53,7 @@ nextflow pull nf-core/eager -r 7b51863957
 conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
 ```
 
-Install supplementary programs to the eager environment
+Install supplementary programs to the nf-core/eager environment
 
 ```bash
 conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow

@@ -700,7 +700,7 @@ process eager{
 
   output:
   file "damageprofiler/*"
-  file "deduplication/*" into ch_sra_bam_snippy_pairwise, ch_sra_bam_snippy_pairwise_test
+  file "deduplication/*/*bam" into ch_sra_bam_snippy_pairwise
   file "pipeline_info/*"
   file "preseq/*"
   file "qualimap/*"
@@ -741,6 +741,11 @@ process eager{
     --bam_mapping_quality_threshold 30 \
     --bam_discard_unmapped \
     --bam_unmapped_type discard
+
+  # Rename deduplication bam for snippy pairwise RG simplificity
+  dedup_bam=`ls deduplication/*/*_rmdup.bam`
+  prefix=`\${dedup_bam%_*}`
+  mv \${dedup_bam} \${dedup_bam%_*}.bam
 
   # Deactivate the eager env
   conda deactivate
