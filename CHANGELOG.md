@@ -19,6 +19,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Allow input of own contig files (param)
 - Allow input of own fastq files (tsv concat)
 - Version control the exhibit_dhsi2020 docs (add tags for install)
+- Fix assemblies (and SRA?) downloading before process begins (file needs to be after when)
 
 ## [v0.1.4] - 2020-06-18 - SRA and nf-core/eager
 

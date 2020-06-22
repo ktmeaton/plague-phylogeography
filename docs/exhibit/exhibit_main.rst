@@ -96,7 +96,7 @@ Select records from the database that are marked as "KEEP: Assembly".
 ::
 
   nextflow run ktmeaton/plague-phylogeography \
-   --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP: Assembly%')\"" \
+   --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \
    --max_datasets_assembly 500 \
    --skip_assembly_download \
    --skip_sra_download \
