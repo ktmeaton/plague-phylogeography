@@ -64,16 +64,16 @@ jobs:
           conda activate ${PHYLO_CONDA_ENV}
           conda deactivate
 
-      # 4. Install nf-core/eager
-      - name: install nf-core/eager
+      # 4a. Install nf-core/eager
+      - name: install nf nf-core/eager
         shell: bash -l {0}
         run: |
           nextflow pull nf-core/eager
           nextflow pull nf-core/eager -r ${EAGER_NF_REV}
           nextflow run nf-core/eager -r ${EAGER_NF_REV} --help
 
-      # 4. Install nf-core/eager
-      - name: install nf-core/eager
+      # 4b. Install nf-core/eager
+      - name: install conda nf-core/eager
         shell: bash -l {0}
         run: |
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
