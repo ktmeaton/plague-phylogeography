@@ -47,7 +47,7 @@ nextflow pull ktmeaton/plague-phylogeography
 conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
 ```
 
-Pull the ```nf-core/eager``` pipeline and create a conda environment.
+Pull the ```nf-core/eager``` pipeline and create a conda environment.  
 Version control ```nf-core/eager``` to revision: 7b51863957.  
 
 ```bash
@@ -66,18 +66,17 @@ conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 ## Example Usage
 
 * Use the default organism database (*Yersinia pestis*)
-* Analyze 4 genomic assemblies (1 file each).
+* Analyze 2 genomic assemblies (1 file each).
 * Analyze 1 ancient DNA sample (6 sequencing libraries).
 * The outgroup (*Y. pseudotuberculosis*) is skipped as it's high divergence significantly extends runtime.
-* Only perform 1 run of IQTREE for testing.
 
 ```bash
 conda activate plague-phylogeography-0.1.4dev
 nextflow run ktmeaton/plague-phylogeography \
   --max_datasets_assembly 2 \
-  --max_datasets_sra 1 \
+  --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
+  --max_datasets_sra 2 \
   --skip_outgroup_download \
-  --iqtree_runs 1 \
   --outdir test
 ```
 
