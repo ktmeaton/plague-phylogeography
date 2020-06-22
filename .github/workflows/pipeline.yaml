@@ -70,7 +70,7 @@ jobs:
           conda activate ${PHYLO_CONDA_ENV}
           nextflow run ktmeaton/plague-phylogeography \
             --max_datasets_assembly 2 \
-            --max_datasets_sra 1 \
+            --max_datasets_sra 2 \
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --skip_outgroup_download \
             --outdir test

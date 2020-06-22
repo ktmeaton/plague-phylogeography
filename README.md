@@ -66,8 +66,8 @@ conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 ## Example Usage
 
 * Use the default organism database (*Yersinia pestis*)
-* Analyze 2 genomic assemblies (1 file each).
-* Analyze 1 ancient DNA sample (6 sequencing libraries).
+* Analyze 2 genomic assemblies.
+* Analyze 2 ancient DNA samples.
 * The outgroup (*Y. pseudotuberculosis*) is skipped as it's high divergence significantly extends runtime.
 
 ```bash
