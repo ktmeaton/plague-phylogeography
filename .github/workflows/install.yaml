@@ -70,13 +70,14 @@ jobs:
         run: |
           nextflow pull nf-core/eager
           nextflow pull nf-core/eager -r ${EAGER_NF_REV}
-          nextflow run nf-core/eager --help
+          nextflow run nf-core/eager -r ${EAGER_NF_REV} --help
 
       # 4. Install nf-core/eager
       - name: install nf-core/eager
         shell: bash -l {0}
         run: |
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
+          conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow
           conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
           conda activate ${EAGER_CONDA_ENV}
           dot -v
