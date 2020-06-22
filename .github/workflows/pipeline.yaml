@@ -17,6 +17,7 @@ on:
     paths:
       - '.github/workflows/pipeline.yaml'
       - 'main.nf'
+      - 'nextflow.config'
       - 'environment.yaml'
 
   # Triggered on PR for all branches, pipeline

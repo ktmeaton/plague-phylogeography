@@ -64,12 +64,22 @@ wget -qO- get.nextflow.io | bash
 sudo mv nextflow /usr/local/bin/
 ```
 
-### Install NextFlow Pipelines
+### Install the Plague Phylogeography Pipelines
 
 ```bash
 nextflow pull ktmeaton/plague-phylogeography
 conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
 ```
+
+Confirm the install was successful:
+
+```bash
+nextflow run ktmeaton/plague-phylogeography --version
+conda activate plague-phylogeography-0.1.4dev
+conda deactivate
+```
+
+## Install the nfcore/eager pipeline:
 
 ```bash
 nextflow pull nf-core/eager
@@ -77,11 +87,20 @@ nextflow pull nf-core/eager -r 7b51863957
 conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
 ```
 
-Install supplementary programs to the nf-core/eager environment
+Install supplementary programs to the nf-core/eager environment:
 
 ```bash
 conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow
 conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
+```
+
+Confirm the install was successful:
+
+```bash
+nextflow run nf-core/eager -r 7b51863957 --help
+conda activate nf-core-eager-2.2.0dev
+dot -v
+conda deactivate
 ```
 
 ## Example Usage

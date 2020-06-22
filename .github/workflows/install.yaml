@@ -18,6 +18,7 @@ on:
     paths:
       - '.github/workflows/install.yaml'
       - 'main.nf'
+      - 'nextflow.config'
       - 'environment.yaml'
 
   # Triggered on PR for all branches, pipeline
@@ -47,13 +48,21 @@ jobs:
         with:
           auto-update-conda: true
 
-      # 3. Install ktmeaton/plague-phylogeography
-      - name: install ktmeaton/plague-phylogeography
+      # 3a. Install ktmeaton/plague-phylogeography
+      - name: install nf ktmeaton/plague-phylogeography
         shell: bash -l {0}
         run: |
           nextflow pull ktmeaton/plague-phylogeography
           nextflow pull ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV}
+          nextflow run ktmeaton/plague-phylogeography --version
+
+      # 3b. Install ktmeaton/plague-phylogeography
+      - name: install conda ktmeaton/plague-phylogeography
+        shell: bash -l {0}
+        run: |
           conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
+          conda activate ${PHYLO_CONDA_ENV}
+          conda deactivate
 
       # 4. Install nf-core/eager
       - name: install nf-core/eager
@@ -61,5 +70,15 @@ jobs:
         run: |
           nextflow pull nf-core/eager
           nextflow pull nf-core/eager -r ${EAGER_NF_REV}
+          nextflow run nf-core/eager --help
+
+      # 4. Install nf-core/eager
+      - name: install nf-core/eager
+        shell: bash -l {0}
+        run: |
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
           conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
+          conda activate ${EAGER_CONDA_ENV}
+          dot -v
+          nextflow -v
+          conda deactivate
