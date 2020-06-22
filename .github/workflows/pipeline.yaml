@@ -63,17 +63,35 @@ jobs:
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
           conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
 
-      - name: assembly-pipeline
+      - name: example pipeline
         shell: bash -l {0}
         run: |
           conda info --envs
           conda activate ${PHYLO_CONDA_ENV}
-          nextflow run ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV}\
+          nextflow run ktmeaton/plague-phylogeography \
             --max_datasets_assembly 2 \
-            --skip_sra_download \
+            --max_datasets_sra 1 \
+            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --skip_outgroup_download \
-            --iqtree_runs 1 \
             --outdir test
+
+      - name: artifact sqlite-import
+        uses: actions/upload-artifact@v2
+        with:
+          name: sqlite-import-sra
+          path: test/sqlite_import/
+
+      - name: artifact iqtree
+        uses: actions/upload-artifact@v2
+        with:
+          name: iqtree
+          path: test/iqtree/
+
+      - name: artifact multiqc-sra
+        uses: actions/upload-artifact@v2
+        with:
+          name: multiqc-sra
+          path: test/eager/MultiQC
 
       - name: artifact multiqc-assembly
         uses: actions/upload-artifact@v2
@@ -81,58 +99,8 @@ jobs:
           name: multiqc-assembly
           path: test/multiqc/multiqc_report.html
 
-      - name: artifact iqtree-assembly
+      - name: artifact trace
         uses: actions/upload-artifact@v2
         with:
-          name: iqtree-assembly
-          path: test/iqtree/
-
-      - name: artifact trace-assembly
-        uses: actions/upload-artifact@v2
-        with:
-          name: trace-assembly
-          path: test/trace/
-
-      # Test the SRA section
-      - name: sra download
-        shell: bash -l {0}
-        run: |
-          conda activate ${PHYLO_CONDA_ENV}
-          nextflow run ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV}\
-            --outdir test \
-            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
-            --max_datasets_sra 2  \
-            --skip_assembly_download \
-            --skip_outgroup_download \
-            --skip_eager \
-            --skip_snippy_pairwise
-
-      - name: sra eager
-        shell: bash -l {0}
-        run: |
-          conda activate ${PHYLO_CONDA_ENV}
-          nextflow run ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV} \
-            --outdir test \
-            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
-            --max_datasets_sra 2  \
-            --skip_assembly_download \
-            --skip_snippy_pairwise \
-            -resume
-
-      - name: artifact sqlite-import-sra
-        uses: actions/upload-artifact@v2
-        with:
-          name: sqlite-import-sra
-          path: test/sqlite_import/metadata_sra_eager.txt
-
-      - name: artifact multiqc-sra
-        uses: actions/upload-artifact@v2
-        with:
-          name: sra-multiqc
-          path: test/eager/MultiQC
-
-      - name: artifact trace-sra
-        uses: actions/upload-artifact@v2
-        with:
-          name: trace-sra
+          name: trace
           path: test/trace/
