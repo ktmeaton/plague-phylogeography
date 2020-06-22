@@ -743,9 +743,11 @@ process eager{
     --bam_unmapped_type discard
 
   # Rename deduplication bam for snippy pairwise RG simplificity
-  dedup_bam=`ls deduplication/*/*_rmdup.bam`
-  prefix=`\${dedup_bam%_*}`
-  mv \${dedup_bam} \${dedup_bam%_*}.bam
+  dedupBam=`ls deduplication/*/*_rmdup.bam`
+  for file in `ls \${dedupBam}`;
+  do
+    mv \$file \${file%_*}.bam
+  done
 
   # Deactivate the eager env
   conda deactivate
