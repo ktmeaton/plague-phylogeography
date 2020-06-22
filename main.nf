@@ -52,7 +52,7 @@ def helpMessage() {
     log.info"""
     Usage:
 
-    The typical command for executing the pipeline is:
+    The command for executing this pipeline is:
 
     nextflow run ${workflow.manifest.mainScript}
 
@@ -61,7 +61,7 @@ def helpMessage() {
     --ncbimeta_create         Path to config file to create NCBImeta DB (ncbimeta.yaml).
     --ncbimeta_update         Path to config file to update NCBImeta DB (ncbimeta.yaml).
     --ncbimeta_annot          Path to optional annotation file for NCBImeta DB (annot.txt).
-    --sqlite                  Path to sqlite database file from NCBImeta (my_db.sqlite).
+    --sqlite                  Path to existing NCBImeta DB [yersina_pestis_db.sqlite].
 
 
     DOWNLOAD:
@@ -94,8 +94,6 @@ log.info pipelineHeader()
 
 // Prefix the baseDir in front of the outdir
 outdir = "$workflow.launchDir/${params.outdir}"
-outdir = outdir
-//println ("The outdir is: $outdir")
 
 // -------------------------------------------------------------------------- //
 //                                Channel Catalogue                           //

@@ -5,7 +5,6 @@ Code Installation
 -----------------
 
 | Follow the installation guide at the `Github Repository <https://github.com/ktmeaton/plague-phylogeography#installation>`_.
-| Note: Requires `conda <https://docs.conda.io/projects/conda/en/latest/user-guide/install/>`_.
 
 Clone Repository
 ^^^^^^^^^^^^^^^^
@@ -14,16 +13,9 @@ Clone Repository
 
   git clone https://github.com/ktmeaton/plague-phylogeography.git
   cd plague-phylogeography
+  conda activate plague-phylogeography-0.1.4dev
 
-Create Environment
-^^^^^^^^^^^^^^^^^^
-
-::
-
-  conda env create -f phylo-env.yaml --name phylo-env
-  conda activate phylo-env
-
-Install accessory tools that are being tested.
+Install some accessory tools that are being tested.
 
 ::
 
@@ -39,7 +31,7 @@ Create
 
 ::
 
-  nextflow run pipeline.nf \
+  nextflow run ktmeaton/plague-phylogeography \
     --ncbimeta_create ncbimeta.yaml \
     --outdir results \
     --skip_ncbimeta_update \
@@ -50,6 +42,10 @@ Curate
 
 Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleComment column:
 
+#. The default comment should be.
+
+   * KEEP: Undetermined
+
 #. Exclude records that are not plague.
 
    * REMOVE: Not Yersinia pestis.
@@ -58,21 +54,20 @@ Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleC
 
    * REMOVE: Laboratory manipulation.
 
-#. Identify records with a specific author/publication.
-
-   * KEEP: Assembly Morelli 2010.
-
-#. Differentiate between modern assemblies and SRA data.
+#. Differentiate between modern assemblies and modern SRA data for EAGER pipeline.
 
    * KEEP: Assembly Modern
-   * KEEP: SRA Modern
+   * KEEP: EAGER Modern
    * KEEP: Undetermined Modern
 
 #. Differentiate between ancient SRA data for EAGER pipeline.
 
    * KEEP: EAGER Ancient
    * KEEP: Undetermined Ancient
-   * KEEP: Undetermined
+
+#. Identify records with a specific author/publication.
+
+   * KEEP: Assembly Modern Morelli 2010.
 
 #. Annotate with meaningful metadata.
 
@@ -83,7 +78,7 @@ Update, Annotate, Join
 
 ::
 
-  nextflow run pipeline.nf \
+  nextflow run ktmeaton/plague-phylogeography \
    --ncbimeta_update ncbimeta.yaml \
    --outdir results \
    --skip_sqlite_import \
@@ -100,14 +95,14 @@ Select records from the database that are marked as "KEEP: Assembly".
 
 ::
 
-  nextflow run pipeline.nf \
-   --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-   --outdir Assembly_Modern \
+  nextflow run ktmeaton/plague-phylogeography \
    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP: Assembly%')\"" \
    --max_datasets_assembly 500 \
    --skip_assembly_download \
    --skip_sra_download \
    --skip_reference_download \
+   --skip_outgroup_download \
+   --outdir Assembly_Modern_Outgroup \
    -resume
 
 Check that there are 483 assemblies to be downloaded.
@@ -122,9 +117,8 @@ Run Pipeline
 
 ::
 
-  nextflow run pipeline.nf \
-    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-    --outdir Assembly_Modern \
+  nextflow run ktmeaton/plague-phylogeography \
+    --outdir Assembly_Modern_Outgroup \
     --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP: Assembly%')\"" \
     --max_datasets_assembly 500 \
     --skip_sra_download \
@@ -133,12 +127,11 @@ Run Pipeline
 Ancient Raw Data Analysis
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Prep tsv input from pipeline.nf, select only EAGER Ancient samples
+Prep tsv input from ktmeaton/plague-phylogeography, select only EAGER Ancient samples
 
 ::
 
-  nextflow run pipeline.nf \
-    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+  nextflow run ktmeaton/plague-phylogeography \
     --outdir EAGER_Ancient \
     --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')\"" \
     --max_datasets_sra 2000  \
@@ -151,8 +144,7 @@ Download all samples, run through EAGER
 
 ::
 
-  nextflow run pipeline.nf \
-    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+  nextflow run ktmeaton/plague-phylogeography \
     --outdir EAGER_Ancient \
     --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')\"" \
     --max_datasets_sra 2000  \
