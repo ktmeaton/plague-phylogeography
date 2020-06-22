@@ -16,7 +16,7 @@
 1. Mask problematic regions (```dustmasker```, ```mummer```, ```vcftools```)
 1. Evaluate statistics (```qualimap```, ```multiqc```)
 1. Construct a Maximum Likelihood phylogeny (```iqtree```)
-1. Optimze time-scaled phylogeny (```augur```, ```treetime```)
+1. Optimize time-scaled phylogeny (```augur```, ```treetime```)
 1. Web-based narrative visualization (```auspice```)
 
 ## Showcase
