@@ -19,6 +19,19 @@
 1. Optimze time-scaled phylogeny (```augur```, ```treetime```)
 1. Web-based narrative visualization (```auspice```)
 
+## Showcase
+
+<div>
+<a href="https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote">
+<img src="docs/images/thumbnail_DHSI2020.png" alt="DHSI2020 NextStrain Exhibit" style="width:100%;">
+</a>
+</div>
+
+* **Presenting “The Plague”: Digital Exhibits as Interdisciplinary Method.**
+[DHSI Conference and Colloquium](https://dhsi.org/colloquium/). June 5, 2020.
+Katherine Eaton, Nukhet Varlik, Ann Carmichael, Brian Golding, Hendrik Poinar.
+[Digital Exhibit](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote) • [Talk](https://omekas.library.uvic.ca/files/original/bd5516ed57c38f589a6054df32e9aafcdfb1aeb9.mp4)
+
 ## Installation
 
 ### Install Conda
