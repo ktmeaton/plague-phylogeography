@@ -62,6 +62,7 @@ jobs:
           nextflow pull nf-core/eager -r ${EAGER_NF_REV}
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
           conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
+          dot -v
 
       - name: example pipeline
         shell: bash -l {0}
@@ -74,6 +75,27 @@ jobs:
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --skip_outgroup_download \
             --outdir test
+
+      - name: example eager
+        shell: bash -l {0}
+        run: |
+          conda activate ${EAGER_CONDA_ENV}
+          nextflow -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
+            run nf-core/eager \
+            -r 7b51863957 \
+            --input metadata_sra_eager.tsv \
+            --outdir . \
+            --fasta GCF_000009065.1_ASM906v1_genomic.fna \
+            --clip_readlength 35 \
+            --preserve5p \
+            --mergedonly \
+            --mapper bwaaln \
+            --bwaalnn 0.01 \
+            --bwaalnl 16
+            --run_bam_filtering \
+            --bam_mapping_quality_threshold 30 \
+            --bam_discard_unmapped \
+            --bam_unmapped_type discard
 
       - name: artifact sqlite-import
         uses: actions/upload-artifact@v2
