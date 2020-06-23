@@ -105,7 +105,7 @@ Select records from the database that are marked as "KEEP: Assembly".
    --outdir Assembly_Modern_Outgroup \
    -resume
 
-Check that there are 483 assemblies to be downloaded.
+Check that there are 481 assemblies to be downloaded.
 
 ::
 
@@ -119,7 +119,7 @@ Run Pipeline
 
   nextflow run ktmeaton/plague-phylogeography \
     --outdir Assembly_Modern_Outgroup \
-    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP: Assembly%')\"" \
+    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \
     --max_datasets_assembly 500 \
     --skip_sra_download \
     -resume
@@ -181,3 +181,22 @@ Remove original unsplit file
 
 | Fix the metadata in the EAGER tsv input file to now be paired end, (optional: mark full UDG!
 | Rerun EAGER pipeline
+
+Visualization
+-------------
+
+Extract Metadata
+^^^^^^^^^^^^^^^^
+
+Extract metadata from the SQLite database.
+
+**Shell Scripts**::
+
+      project=Assembly_Modern_Outgroup;
+      sqliteDB=~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
+      scriptsDir=~/.nextflow/assets/ktmeaton/plague-phylogeography/scripts
+
+      $scriptsDir/format_metadata_Assembly.sh \
+        $project \
+        $sqliteDB \
+        $scriptsDir

@@ -158,6 +158,14 @@ Succeeded   : 35
 
 The current usage is described in the [Main Exhibit page](https://plague-phylogeography.readthedocs.io/en/latest/exhibit/exhibit_link.html#main-exhibit) at ReadTheDocs.
 
+## Troubleshooting
+
+May possible require adjusting the perl library path.
+
+```bash
+export PERL5LIB=~/miniconda3/envs/plague-phylogeography-0.1.4dev/lib/site_perl/5.26.2/:$PERL5LIB
+```
+
 ## Credits
 
 Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)
