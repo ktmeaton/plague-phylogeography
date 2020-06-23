@@ -59,7 +59,7 @@ sed -i 's/GCA_000009065.1_ASM906v1_genomic/Reference/g' $project/nextstrain/meta
 # Standardize biovar nomenclature
 sed -i 's/Mediaevalis/Medievalis/g' $project/nextstrain/metadata_nextstrain_split_strain.tsv
 # Change missing and unknown
-sed -i 's/missing\|Missing\|unknown\|Unknown/?/g' $project/nextstrain/metadata_nextstrain.tsv
+sed -i 's/missing\|Missing\|unknown\|Unknown/?/g' $project/nextstrain/metadata_nextstrain_split_strain.tsv
 
 # Cleanup and rename
 rm $project/nextstrain/metadata_nextstrain_split.tsv
