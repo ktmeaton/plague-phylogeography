@@ -200,3 +200,28 @@ Extract metadata from the SQLite database.
         $project \
         $sqliteDB \
         $scriptsDir
+
+Date Formatting
+^^^^^^^^^^^^^^^
+
+Change the BioSampleCollectionDate column to 'date' and change format to 2000-XX-XX.
+Code in the uncertainty dates of the following strains:
+* Pestoides A and Pestoides F to 1950-1984
+* G8786 to be generally in the 1900s (1900-1999)
+* India195 to be 1898-1950.
+
+**Shell Script**::
+
+      #project=morelli2010;
+      project=cui2013;
+
+      sed -i 's/BioSampleCollectionDate/date/g' $project/nextstrain/metadata_nextstrain_edit.tsv
+      awk -F "\t" -v dateCol=5 -v strainCol=4 'BEGIN{OFS=FS}{
+        if($dateCol != "date" && $dateCol != "?"){
+          gsub(/>|<|?/,"",$dateCol);
+          $dateCol=$dateCol"-XX-XX";
+        }
+        if ($strainCol == "Pestoides A" || $strainCol == "Pestoides F" || $strainCol == "India195" || $strainCol == "G8786"){
+          $dateCol="20XX-XX-XX"
+        }
+        print $0}' $project/nextstrain/metadata_nextstrain_edit.tsv > $project/nextstrain/metadata_nextstrain_dates.tsv
