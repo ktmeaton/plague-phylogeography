@@ -13,6 +13,10 @@
 #   ~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
 #   ~/.nextflow/assets/ktmeaton/plague-phylogeography/scripts/
 
+project=$1
+sqliteDB=$2
+scriptsDir=$3
+
 # Extract metadata from sqlite database
 mkdir -p $project/nextstrain/
 $scriptsDir/sqlite_NextStrain_tsv.py \
