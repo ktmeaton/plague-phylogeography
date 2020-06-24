@@ -112,8 +112,8 @@ Check that there are 481 assemblies to be downloaded.
      wc -l results/sqlite_import/assembly_for_download.txt
 
 
-Run Pipeline
-^^^^^^^^^^^^
+Run Pipeline (With Outgroup)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
@@ -122,6 +122,20 @@ Run Pipeline
     --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \
     --max_datasets_assembly 500 \
     --skip_sra_download \
+    -resume
+
+Run Pipeline (Without Outgroup)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+  nextflow run ktmeaton/plague-phylogeography \
+    --outdir Assembly_Modern \
+    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \
+    --max_datasets_assembly 500 \
+    --skip_sra_download \
+    --skip_outgroup_download \
+    --iqtree_outgroup GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic \
     -resume
 
 Ancient Raw Data Analysis
@@ -212,10 +226,9 @@ Code in the uncertainty dates of the following strains:
 
 **Shell Script**::
 
-      #project=morelli2010;
-      project=cui2013;
+      project=Assembly_Modern_Outgroup;
 
-      sed -i 's/BioSampleCollectionDate/date/g' $project/nextstrain/metadata_nextstrain_edit.tsv
+      sed -i 's/BioSampleCollectionDate/date/g' $project/nextstrain/metadata_nextstrain.tsv
       awk -F "\t" -v dateCol=5 -v strainCol=4 'BEGIN{OFS=FS}{
         if($dateCol != "date" && $dateCol != "?"){
           gsub(/>|<|?/,"",$dateCol);
@@ -224,4 +237,4 @@ Code in the uncertainty dates of the following strains:
         if ($strainCol == "Pestoides A" || $strainCol == "Pestoides F" || $strainCol == "India195" || $strainCol == "G8786"){
           $dateCol="20XX-XX-XX"
         }
-        print $0}' $project/nextstrain/metadata_nextstrain_edit.tsv > $project/nextstrain/metadata_nextstrain_dates.tsv
+        print $0}' $project/nextstrain/metadata_nextstrain.tsv > $project/nextstrain/metadata_nextstrain_dates.tsv
