@@ -1,4 +1,4 @@
-name: nextstrain
+name: nextstrain-8.0.0
 channels:
 - bioconda
 - defaults
@@ -18,6 +18,8 @@ dependencies:
 - git
 - pip
 - pip:
-  - nextstrain-augur
-  - nextstrain-cli
+  - nextstrain-augur==8.0.0
+  - nextstrain-cli==2.0.0.post1
   - rethinkdb==2.3.0.post6
+  - seaborn
+  - dendropy

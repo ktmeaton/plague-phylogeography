@@ -103,6 +103,14 @@ dot -v
 conda deactivate
 ```
 
+## Install the Nextstrain Tools
+
+```bash
+conda env create -f config/nextstrain.yaml
+conda activate nextstrain-8.0.0
+npm install --global auspice@2.17.0
+```
+
 ## Example Usage
 
 * Use the default organism database (*Yersinia pestis*)

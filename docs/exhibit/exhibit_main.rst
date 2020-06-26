@@ -219,14 +219,10 @@ Date Formatting
 ^^^^^^^^^^^^^^^
 
 Change the BioSampleCollectionDate column to 'date' and change format to 2000-XX-XX.
-Code in the uncertainty dates of the following strains:
-* Pestoides A and Pestoides F to 1950-1984
-* G8786 to be generally in the 1900s (1900-1999)
-* India195 to be 1898-1950.
 
 **Shell Script**::
 
-      project=Assembly_Modern_Outgroup;
+      project=Assembly_Modern;
 
       sed -i 's/BioSampleCollectionDate/date/g' $project/nextstrain/metadata_nextstrain.tsv
       awk -F "\t" -v dateCol=5 -v strainCol=4 'BEGIN{OFS=FS}{
@@ -238,3 +234,67 @@ Code in the uncertainty dates of the following strains:
           $dateCol="20XX-XX-XX"
         }
         print $0}' $project/nextstrain/metadata_nextstrain.tsv > $project/nextstrain/metadata_nextstrain_dates.tsv
+
+Combine treetime and augur
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    conda activate nextstrain-8.0.0
+
+    treetime \
+      --aln ../data/h3n2_na/h3n2_na_20.fasta \
+      --tree ../data/h3n2_na/h3n2_na_20.nwk \
+      --dates ../data/h3n2_na/h3n2_na_20.metadata.csv \
+      --clock-filter 3 \
+      --reroot least-squares \
+      --gtr infer \
+      --confidence \
+      --keep-polytomies \
+      --relax 1.0 0 \
+      --max-iter 3 \
+      --coalescent skyline \
+      --covariation \
+      --no-tip-labels
+
+    $scriptsDir/nexus2newick.py \
+      --nexus 2020-06-26-0003_treetime/timetree.nexus \
+      --newick 2020-06-26-0003_treetime/timetree.nwk
+
+    sed -i "s/'//g" 2020-06-26-0002_treetime/timetree.nwk
+
+    augur refine \
+      --alignment ../data/h3n2_na/h3n2_na_20.fasta \
+      --tree 2020-06-26-0003_treetime/divergence_tree.nexus \
+      --metadata ../data/h3n2_na/h3n2_na_20.metadata.csv \
+      --output-tree 2020-06-26-0003_treetime/augur-refine-div.nwk \
+      --output-node-data 2020-06-26-0003_treetime/augur-refine-div-branch_lengths.json \
+      --keep-root
+
+    # rename attribute to mutation_length
+    sed -i 's/branch_length/mutation_length/g' 2020-06-26-0003_treetime/augur-refine-div-branch_lengths.json
+    # also need to double up for clock length from timetree?
+
+    augur refine \
+      --alignment ../data/h3n2_na/h3n2_na_20.fasta \
+      --tree 2020-06-26-0003_treetime/timetree.nexus \
+      --metadata ../data/h3n2_na/h3n2_na_20.metadata.csv \
+      --output-tree 2020-06-26-0003_treetime/augur-refine-timetree.nwk \
+      --output-node-data 2020-06-26-0003_treetime/augur-refine-timetree-branch_lengths.json \
+      --keep-root
+
+      Other fields we need:
+
+      "date": "2016-03-25",
+      "num_date_confidence": [
+        2016.23087431694,
+        2016.23087431694
+      ],
+      "numdate": 2016.23087431694,
+      "raw_date": "2016-03-25"
+
+
+     $scriptsDir/treetime_json_merge.py \
+       --div 2020-06-26-0003_treetime/augur-refine-div-branch_lengths.json \
+       --time 2020-06-26-0003_treetime/augur-refine-timetree-branch_lengths.json \
+       --dates 2020-06-26-0003_treetime/dates.tsv
