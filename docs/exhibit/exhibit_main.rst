@@ -242,10 +242,12 @@ Combine treetime and augur
 
     conda activate nextstrain-8.0.0
 
+    # What about mods to biopython and treetime?
+
     treetime \
-      --aln ../data/h3n2_na/h3n2_na_20.fasta \
-      --tree ../data/h3n2_na/h3n2_na_20.nwk \
-      --dates ../data/h3n2_na/h3n2_na_20.metadata.csv \
+      --aln ../results/aligned.fasta \
+      --tree ../results/tree_raw.nwk \
+      --dates ../data/metadata_treetime.tsv \
       --clock-filter 3 \
       --reroot least-squares \
       --gtr infer \
@@ -255,46 +257,43 @@ Combine treetime and augur
       --max-iter 3 \
       --coalescent skyline \
       --covariation \
-      --no-tip-labels
+      --outdir treetime_clock
 
-    $scriptsDir/nexus2newick.py \
-      --nexus 2020-06-26-0003_treetime/timetree.nexus \
-      --newick 2020-06-26-0003_treetime/timetree.nwk
+    treetime mugration \
+      --tree treetime_clock/timetree.nexus \
+      --attribute region \
+      --states ../data/metadata_treetime.tsv \
+      --confidence \
+      --outdir treetime_mugration_region/
 
-    sed -i "s/'//g" 2020-06-26-0002_treetime/timetree.nwk
-
-    augur refine \
-      --alignment ../data/h3n2_na/h3n2_na_20.fasta \
-      --tree 2020-06-26-0003_treetime/divergence_tree.nexus \
-      --metadata ../data/h3n2_na/h3n2_na_20.metadata.csv \
-      --output-tree 2020-06-26-0003_treetime/augur-refine-div.nwk \
-      --output-node-data 2020-06-26-0003_treetime/augur-refine-div-branch_lengths.json \
-      --keep-root
-
-    # rename attribute to mutation_length
-    sed -i 's/branch_length/mutation_length/g' 2020-06-26-0003_treetime/augur-refine-div-branch_lengths.json
-    # also need to double up for clock length from timetree?
+    mkdir -p augur/
+    mkdir -p auspice/
 
     augur refine \
-      --alignment ../data/h3n2_na/h3n2_na_20.fasta \
-      --tree 2020-06-26-0003_treetime/timetree.nexus \
-      --metadata ../data/h3n2_na/h3n2_na_20.metadata.csv \
-      --output-tree 2020-06-26-0003_treetime/augur-refine-timetree.nwk \
-      --output-node-data 2020-06-26-0003_treetime/augur-refine-timetree-branch_lengths.json \
+      --alignment ../results/aligned.fasta \
+      --tree treetime_clock/divergence_tree.nexus \
+      --metadata ../data/metadata_treetime.tsv \
+      --output-tree augur/augur-refine.nwk \
+      --output-node-data augur/mutation_length.json \
       --keep-root
 
-      Other fields we need:
+    sed -i 's/branch_length/mutation_length/g' augur/mutation_length.json
 
-      "date": "2016-03-25",
-      "num_date_confidence": [
-        2016.23087431694,
-        2016.23087431694
-      ],
-      "numdate": 2016.23087431694,
-      "raw_date": "2016-03-25"
+    $scriptsDir/treetime_dates_json.py \
+      --time treetime_clock/timetree.nexus \
+      --dates treetime_clock/dates.tsv \
+      --json augur/branch_lengths.json
 
+    $scriptsDir/treetime_mugration_json.py \
+        --tree treetime_mugration_region/annotated_tree.nexus \
+        --json augur/traits_region.json \
+        --conf treetime_mugration_region/confidence.csv \
+        --trait region
 
-     $scriptsDir/treetime_json_merge.py \
-       --div 2020-06-26-0003_treetime/augur-refine-div-branch_lengths.json \
-       --time 2020-06-26-0003_treetime/augur-refine-timetree-branch_lengths.json \
-       --dates 2020-06-26-0003_treetime/dates.tsv
+    augur export v2 \
+        --tree augur/augur-refine.nwk \
+        --metadata ../data/metadata_treetime.tsv \
+        --node-data augur/nt_muts.json augur/mutation_length.json augur/dates.json augur/traits_region.json \
+        --lat-longs ../config/lat_longs.tsv \
+        --auspice-config ../config/auspice_config.json \
+        --output auspice/auspice.json
