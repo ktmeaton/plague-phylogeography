@@ -32,10 +32,11 @@ Create
 ::
 
   nextflow run ktmeaton/plague-phylogeography \
-    --ncbimeta_create ncbimeta.yaml \
+    --ncbimeta_create config/ncbimeta.yaml \
     --outdir results \
-    --skip_ncbimeta_update \
-    --skip_reference_download
+    --skip_sqlite_import \
+    --skip_reference_download \
+    --skip_outgroup_download
 
 Curate
 ^^^^^^
@@ -54,18 +55,18 @@ Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleC
 
    * REMOVE: Laboratory manipulation.
 
-#. Differentiate between modern assemblies and modern SRA data for EAGER pipeline.
+#. Differentiate between data type for modern projects.
 
    * KEEP: Assembly Modern
    * KEEP: EAGER Modern
    * KEEP: Undetermined Modern
 
-#. Differentiate between ancient SRA data for EAGER pipeline.
+#. Differentiate between data type for ancient projects.
 
    * KEEP: EAGER Ancient
    * KEEP: Undetermined Ancient
 
-#. Identify records with a specific author/publication.
+#. Identify records with a specific author/publication (append info).
 
    * KEEP: Assembly Modern Morelli 2010.
 
@@ -79,10 +80,11 @@ Update, Annotate, Join
 ::
 
   nextflow run ktmeaton/plague-phylogeography \
-   --ncbimeta_update ncbimeta.yaml \
+   --ncbimeta_update config/ncbimeta.yaml \
    --outdir results \
    --skip_sqlite_import \
    --skip_reference_download \
+   --skip_outgroup_download \
    -resume
 
 Modern Assembly Analysis
@@ -206,7 +208,7 @@ Extract metadata from the SQLite database.
 
 **Shell Scripts**::
 
-      project=Assembly_Modern_Outgroup;
+      project=Assembly_Modern;
       sqliteDB=~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
       scriptsDir=~/.nextflow/assets/ktmeaton/plague-phylogeography/scripts
 
