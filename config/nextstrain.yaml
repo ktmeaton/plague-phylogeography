@@ -1,4 +1,4 @@
-name: nextstrain-8.0.0-test
+name: nextstrain-8.0.0
 channels:
 - bioconda
 - defaults
