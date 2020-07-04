@@ -64,7 +64,7 @@ wget -qO- get.nextflow.io | bash
 sudo mv nextflow /usr/local/bin/
 ```
 
-### Install the Plague Phylogeography Pipelines
+### Install the Plague Phylogeography Pipeline
 
 ```bash
 nextflow pull ktmeaton/plague-phylogeography
@@ -106,7 +106,7 @@ conda deactivate
 ## Install the Nextstrain Tools
 
 ```bash
-conda env create -f config/nextstrain.yaml
+conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml
 conda activate nextstrain-8.0.0
 npm install --global auspice@2.17.0
 ```

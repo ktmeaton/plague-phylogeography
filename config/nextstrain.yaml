@@ -1,4 +1,4 @@
-name: nextstrain-8.0.0
+name: nextstrain-8.0.0-test
 channels:
 - bioconda
 - defaults
@@ -23,3 +23,5 @@ dependencies:
   - rethinkdb==2.3.0.post6
   - seaborn
   - dendropy
+  - git+git://github.com/ktmeaton/biopython@newickio-comment
+  - git+git://github.com/ktmeaton/treetime@comment-concat

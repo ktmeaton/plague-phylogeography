@@ -11,7 +11,8 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Lint all python scripts with black+flake8
 - Deal with the fail to publish issue with NCBImeta db
 - Add exact-repeats and tandem repeats detection
-- Add GeoPy to phylo-env environment
+- Add GeoPy to plague-phylo environment
+- Add biopython and treetime to nextstrain environment
 - Github actions, to build docs and remote narratives
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Deal with nextstrain augur not working with phylogeny with branch support values

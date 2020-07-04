@@ -107,7 +107,7 @@ Select records from the database that are marked as "KEEP: Assembly".
    --outdir Assembly_Modern_Outgroup \
    -resume
 
-Check that there are 481 assemblies to be downloaded.
+Check that there are 475 assemblies to be downloaded.
 
 ::
 
@@ -124,6 +124,7 @@ Run Pipeline (With Outgroup)
     --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \
     --max_datasets_assembly 500 \
     --skip_sra_download \
+    --iqtree_branch_support \
     -resume
 
 Run Pipeline (Without Outgroup)
@@ -137,8 +138,11 @@ Run Pipeline (Without Outgroup)
     --max_datasets_assembly 500 \
     --skip_sra_download \
     --skip_outgroup_download \
+    --iqtree_branch_support \
     --iqtree_outgroup GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic \
     -resume
+
+   (latest resume id: 9112a035-a628-4f9d-8955-faa7732a1b73)
 
 Ancient Raw Data Analysis
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -209,49 +213,38 @@ Extract metadata from the SQLite database.
 **Shell Scripts**::
 
       project=Assembly_Modern;
-      sqliteDB=~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
-      scriptsDir=~/.nextflow/assets/ktmeaton/plague-phylogeography/scripts
+      sqliteDB=~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite;
+      scriptsDir=~/.nextflow/assets/ktmeaton/plague-phylogeography/scripts;
 
       $scriptsDir/format_metadata_Assembly.sh \
         $project \
         $sqliteDB \
         $scriptsDir
 
-Date Formatting
-^^^^^^^^^^^^^^^
-
-Change the BioSampleCollectionDate column to 'date' and change format to 2000-XX-XX.
-
-**Shell Script**::
-
-      project=Assembly_Modern;
-
-      sed -i 's/BioSampleCollectionDate/date/g' $project/nextstrain/metadata_nextstrain.tsv
-      awk -F "\t" -v dateCol=5 -v strainCol=4 'BEGIN{OFS=FS}{
-        if($dateCol != "date" && $dateCol != "?"){
-          gsub(/>|<|?/,"",$dateCol);
-          $dateCol=$dateCol"-XX-XX";
-        }
-        if ($strainCol == "Pestoides A" || $strainCol == "Pestoides F" || $strainCol == "India195" || $strainCol == "G8786"){
-          $dateCol="20XX-XX-XX"
-        }
-        print $0}' $project/nextstrain/metadata_nextstrain.tsv > $project/nextstrain/metadata_nextstrain_dates.tsv
-
 Combine treetime and augur
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Activate the nextstrain/treetime environment.
 
 ::
 
     conda activate nextstrain-8.0.0
+    pip install git+git://github.com/ktmeaton/biopython@newickio-comment
+    pip install git+git://github.com/ktmeaton/treetime@comment-concat
+
+::
+
+    #conda activate nextstrain-8.0.0
+    conda activate treetime-env
 
     # What about mods to biopython and treetime?
 
     treetime \
-      --aln ../results/aligned.fasta \
-      --tree ../results/tree_raw.nwk \
-      --dates ../data/metadata_treetime.tsv \
+      --aln $project/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+      --tree $project/iqtree/iqtree.core-filter0.treefile \
+      --dates $project/nextstrain/metadata_nextstrain.tsv \
       --clock-filter 3 \
-      --reroot least-squares \
+      --keep-root \
       --gtr infer \
       --confidence \
       --keep-polytomies \
@@ -259,7 +252,8 @@ Combine treetime and augur
       --max-iter 3 \
       --coalescent skyline \
       --covariation \
-      --outdir treetime_clock
+      --outdir $project/nextstrain/treetime_clock \
+      --date-column BioSampleCollectionDate
 
     treetime mugration \
       --tree treetime_clock/timetree.nexus \

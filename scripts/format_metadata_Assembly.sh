@@ -23,7 +23,8 @@ $scriptsDir/sqlite_NextStrain_tsv.py \
   --database $sqliteDB \
   --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')" \
   --no-data-char ? \
-  --output $project/nextstrain/metadata_nextstrain.tsv
+  --output $project/nextstrain/metadata_nextstrain.tsv \
+  --date-col BioSampleCollectionDate
 
 # Break up semi-colon separated FTP (two versions of assembly)
 awk -F "\t" -v colFTP=2 'BEGIN{OFS=FS}{
