@@ -143,6 +143,9 @@ address_dict = {
 if force_div == "state":
     address_dict["address"]["state"] = NO_DATA_CHAR
 
+# Initialize geo dict with no data char
+geo_loc_dict[NO_DATA_CHAR] = copy.deepcopy(address_dict)
+
 # Count number of lines in input file (substract 1 for header)
 total_line_count = 0 - 1
 for _line in in_file:
@@ -199,7 +202,8 @@ while read_line:
         geo_loc_target = NO_DATA_CHAR
     # Rejoin up with delimiter, for geocoding full location path
     geo_loc_join = GEO_DELIM.join(geo_loc_split)
-
+    print(geo_loc_join)
+    print(geo_loc_target)
     if geo_loc_target not in geo_loc_dict:
         # Copy in the blank address dictionary, not by reference!
         geo_loc_dict[geo_loc_target] = copy.deepcopy(address_dict)
@@ -232,6 +236,7 @@ while read_line:
         # Sleep to not overdo API requests
         time.sleep(SLEEP_TIME)
 
+    print(geo_loc_dict[geo_loc_target])
     # Write the division target and lat lon to the tsv metadata
     out_file.write(
         DELIM.join(split_line)

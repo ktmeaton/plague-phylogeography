@@ -226,6 +226,12 @@ Geocode
 
 Use the GeoPy module with Nominatim to geocode global addresses.
 
+Activate the nextstrain/treetime environment.
+
+::
+
+    conda activate nextstrain-8.0.0
+
 **Shell Scripts**::
 
       $scriptsDir/geocode_NextStrain.py \
@@ -244,12 +250,6 @@ Use the GeoPy module with Nominatim to geocode global addresses.
 
 Combine treetime and augur
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Activate the nextstrain/treetime environment.
-
-::
-
-    conda activate nextstrain-8.0.0
 
 Create a time-calibrated phylogeny.
 
@@ -283,10 +283,30 @@ Run mugration analysis to estimate biovar variable.
     treetime mugration \
       --tree $project/nextstrain/treetime_clock/timetree.nexus \
       --attribute BioSampleBiovar \
-      --states $project/nextstrain/metadata_nextstrain.tsv \
+      --states $project/nextstrain/metadata_nextstrain_geocode_state.tsv \
       --confidence \
       --outdir $project/nextstrain/treetime_mugration_biovar/ \
       --verbose 6 2>&1 | tee $project/nextstrain/treetime_mugration_biovar/treetime_mugration_biovar.log
+
+    mkdir -p $project/nextstrain/treetime_mugration_country/
+
+    treetime mugration \
+      --tree $project/nextstrain/treetime_clock/timetree.nexus \
+      --attribute country \
+      --states $project/nextstrain/metadata_nextstrain_geocode_state.tsv \
+      --confidence \
+      --outdir $project/nextstrain/treetime_mugration_country/ \
+      --verbose 6 2>&1 | tee $project/nextstrain/treetime_mugration_country/treetime_mugration_country.log
+
+    mkdir -p $project/nextstrain/treetime_mugration_state/
+
+    treetime mugration \
+      --tree $project/nextstrain/treetime_clock/timetree.nexus \
+      --attribute state \
+      --states $project/nextstrain/metadata_nextstrain_geocode_state.tsv \
+      --confidence \
+      --outdir $project/nextstrain/treetime_mugration_state/ \
+      --verbose 6 2>&1 | tee $project/nextstrain/treetime_mugration_state/treetime_mugration_state.log
 
 Use augur to create the needed json files for auspice.
 
@@ -321,16 +341,31 @@ Use augur to create the needed json files for auspice.
         --conf $project/nextstrain/treetime_mugration_biovar/confidence.csv \
         --trait biovar
 
+    $scriptsDir/treetime_mugration_json.py \
+        --tree $project/nextstrain/treetime_mugration_country/annotated_tree.nexus \
+        --json $project/nextstrain/augur/traits_country.json \
+        --conf $project/nextstrain/treetime_mugration_country/confidence.csv \
+        --trait country
+
+    $scriptsDir/treetime_mugration_json.py \
+        --tree $project/nextstrain/treetime_mugration_state/annotated_tree.nexus \
+        --json $project/nextstrain/augur/traits_state.json \
+        --conf $project/nextstrain/treetime_mugration_state/confidence.csv \
+        --trait state
+
     mkdir -p $project/nextstrain/auspice/
 
     augur export v2 \
         --tree $project/nextstrain/augur/augur-refine.nwk \
-        --metadata $project/nextstrain/metadata_nextstrain_geocode_country.tsv \
-        --node-data $project/nextstrain/augur/mutation_lengths.json \
-        --output $project/nextstrain/auspice/auspice.json \
-        --lat-long $project/nextstrain/lat_longs_country.tsv
-
+        --metadata $project/nextstrain/metadata_nextstrain_geocode_state.tsv \
         --node-data $project/nextstrain/augur/nt_muts.json \
                     $project/nextstrain/augur/mutation_lengths.json \
                     $project/nextstrain/augur/branch_lengths.json \
                     $project/nextstrain/augur/traits_biovar.json \
+                    $project/nextstrain/augur/traits_country.json \
+                    $project/nextstrain/augur/traits_state.json \
+        --output $project/nextstrain/auspice/auspice.json \
+        --lat-long $project/nextstrain/lat_longs_country.tsv \
+        --auspice-config ~/.nextflow/assets/ktmeaton/plague-phylogeography/auspice/config/modernAssembly_auspice_config.json
+
+    HOST="localhost" auspice view --datasetDir $project/nextstrain/auspice/
