@@ -248,7 +248,7 @@ Activate the nextstrain/treetime environment.
        --out-lat-lon $project/nextstrain/lat_longs_state.tsv \
        --div state
 
-       cat $project/nextstrain/lat_longs_*.tsv > $project/nextstrain/lat_longs_all.tsv
+       cat $project/nextstrain/lat_longs_country.tsv $project/nextstrain/lat_longs_state.tsv > $project/nextstrain/lat_longs_all.tsv
 
 Combine treetime and augur
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -359,7 +359,7 @@ Use augur to create the needed json files for auspice.
       --tree $project/nextstrain/augur/augur-refine.nwk \
       --mutations $project/nextstrain/augur/nt_muts.json \
                   $project/nextstrain/augur/aa_muts.json \
-      --clades ~/.nextflow/assets/ktmeaton/plague-phylogeography/auspice/config/clades.tsv \
+      --clades ~/.nextflow/assets/ktmeaton/plague-phylogeography/auspice/config/clades.csv \
       --output-node-data $project/nextstrain/augur/clades.json
 
 Convert the treetime output to augur json.
