@@ -15,7 +15,6 @@ dependencies:
 - nodejs=10
 - raxml
 - vcftools
-- geopy==2.0.0
 - git
 - pip
 - pip:
@@ -24,5 +23,6 @@ dependencies:
   - rethinkdb==2.3.0.post6
   - seaborn
   - dendropy
+  - geopy==2.0.0
   - git+git://github.com/ktmeaton/biopython@newickio-comment
   - git+git://github.com/ktmeaton/treetime@comment-concat

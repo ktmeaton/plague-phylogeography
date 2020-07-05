@@ -21,6 +21,7 @@ on:
       - 'main.nf'
       - 'nextflow.config'
       - 'environment.yaml'
+      - 'config/nextstrain.yaml'
 
   # Triggered on PR for all branches, pipeline
   pull_request:
