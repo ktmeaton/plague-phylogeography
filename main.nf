@@ -384,9 +384,9 @@ process sra_download{
   # Disable local caching to save disk space
   # vdb-config -s cache-enabled=false
   # Create organization directories
-  mkdir fastq;
-  mkdir fastq/single;
-  mkdir fastq/paired;
+  mkdir -p fastq;
+  mkdir -p fastq/single;
+  mkdir -p fastq/paired;
 
   # Download fastq files from the SRA
   fastq-dump \
