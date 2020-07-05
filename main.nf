@@ -273,6 +273,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
 
     output:
     file params.file_assembly_for_download_ftp into ch_assembly_for_download_ftp
+    file sqlite into ch_sqlite_nextstrain_metadata
     file params.eager_tsv into ch_tsv_for_eager
     file params.sra_tsv into ch_tsv_for_download_sra
     when:
@@ -438,10 +439,13 @@ process reference_download{
   input:
   file reference_genome_fna_local from file(params.reference_genome_fna_ftp)
   file reference_genome_gb_local from file(params.reference_genome_gb_ftp)
+  file reference_genome_gff_local from file(params.reference_genome_gff_ftp)
 
   output:
   file "${reference_genome_fna_local.baseName}" into ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity, ch_reference_genome_eager
   file "${reference_genome_gb_local.baseName}" into ch_reference_gb_snippy_pairwise, ch_reference_gb_snippy_multi, ch_reference_genome_snpeff_build_db
+  file "${reference_genome_gff_local.baseName}" into ch_reference_gff_nextstrain_json
+  file "*_CHROM.fna" into ch_reference_chrom_fna_nextstrain_json
 
   when:
   !params.skip_reference_download
@@ -451,6 +455,7 @@ process reference_download{
   """
   gunzip -f ${reference_genome_fna_local}
   gunzip -f ${reference_genome_gb_local}
+  gunzip -f ${reference_genome_gff_local}
   # Edit the fasta headers to match the gb loci (for snippy)
   GB_LOCI=(`grep LOCUS ${reference_genome_gb_local.baseName} | sed 's/ \\+/ /g' | cut -d " " -f 2`);
   FNA_LOCI=(`grep ">" ${reference_genome_fna_local.baseName} | cut -d " " -f 1 | cut -d ">" -f 2`);
@@ -460,6 +465,14 @@ process reference_download{
     sed -i "s/\${FNA_LOCI[\$i]}/\${GB_LOCI[\$i]}/g" ${reference_genome_fna_local.baseName};
     i=\$(( \$i + 1));
   done
+  # Extract chromosome sequence
+  CHROM=NC_003143
+  fnaName=${reference_genome_fna_local.baseName}
+  fnaNameCHROM=\${fnaName%.*}_CHROM.fna
+  samtools faidx ${reference_genome_fna_local.baseName};
+  samtools faidx ${reference_genome_fna_local.baseName} \${CHROM} \
+    > \$fnaNameCHROM
+
   """
 }
 
@@ -1063,11 +1076,11 @@ process snippy_multi{
   output:
   file "snippy-core.aln" into ch_snippy_core_aln_filter
   file "snippy-core.full.aln" into ch_snippy_core_full_aln_filter
+  file "snippy-core.vcf" into ch_snippy_core_vcf_nextstrain_json
   file "*.log"
   file "*.fa"
   file "*tab"
   file "*.txt"
-  file "*.vcf"
 
   when:
   !params.skip_snippy_multi
@@ -1118,7 +1131,7 @@ process snippy_multi_filter{
   file "*.bed"
   file "${snippy_core_full_aln.baseName}_CHROM.fasta"
   file "${snippy_core_full_aln.baseName}_p*.fasta"
-  file "${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_iqtree
+  file "${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_iqtree,ch_snippy_core_filter_nextstrain_treetime,ch_snippy_core_filter_nextstrain_json
 
   when:
   !params.skip_snippy_multi_filter
@@ -1170,7 +1183,7 @@ process iqtree{
   val outgroup_file from ch_outgroup_file_iqtree.collect().ifEmpty([])
 
   output:
-  file "*.treefile" into ch_iqtree_treefile_augur_refine
+  file "*.treefile" into ch_iqtree_treefile_augur_refine,ch_iqtree_treefile_nextstrain_treetime
   file "*.bionj"
   file "*.ckp.gz"
   file "*.log"
@@ -1254,6 +1267,310 @@ process qualimap_snippy_pairwise{
   mv \$qualimapDir ${snippy_bam.baseName}
   """
 }
+
+process nextstrain_metadata{
+  // Other variables and config
+  tag "${sqlite}"
+  publishDir "${outdir}", mode: 'copy'
+
+  // IO and conditional behavior
+  input:
+  file sqlite from ch_sqlite_nextstrain_metadata
+  output:
+  file "nextstrain/metadata_nextstrain.tsv" into ch_metadata_nextstrain_treetime,ch_metadata_nextstrain_mugration,ch_metadata_nextstrain_json
+  file "nextstrain/metadata_nextstrain_geocode_state.tsv" into ch_metadata_geocode_state_nextstrain_treetime,ch_metadata_geocode_state_nextstrain_json
+  file "nextstrain/metadata_nextstrain_geocode_country.tsv" into ch_metadata_geocode_country_nextstrain_treetime
+  file "nextstrain/lat_longs_all.tsv" into ch_lat_longs_nextstrain_json
+  file "nextstrain/lat_longs_country.tsv"
+  file "nextstrain/lat_longs_state.tsv"
+
+  when:
+  params.treetime
+
+
+  // Shell script to execute
+  script:
+  """
+  # The set command is to deal with PS1 errors
+  set +eu
+  # Enable conda activate support in this bash subshell
+  CONDA_BASE=\$(conda info --base) ;
+  source \$CONDA_BASE/etc/profile.d/conda.sh
+
+  # Activate the nextstrain environment
+  conda activate nextstrain-8.0.0
+
+  # Format metadata
+  ${params.scriptdir}/format_metadata_Assembly.sh . ${sqlite} ${params.scriptdir}
+
+  # Geocode
+  divisions="country state"
+  for div in \$divisions;
+  do
+    ${params.scriptdir}/geocode_NextStrain.py \
+     --in-tsv nextstrain/metadata_nextstrain.tsv \
+     --loc-col BioSampleGeographicLocation \
+     --out-tsv nextstrain/metadata_nextstrain_geocode_\${div}.tsv\
+     --out-lat-lon nextstrain/lat_longs_\${div}.tsv \
+     --div \${div};
+  done
+
+  cat \
+    nextstrain/lat_longs_country.tsv \
+    nextstrain/lat_longs_state.tsv > nextstrain/lat_longs_all.tsv
+
+
+  # Deactivate the nextstrain environment
+  conda deactivate
+  """
+}
+
+
+process nextstrain_treetime{
+  // Other variables and config
+  tag "${iqtree_treefile}"
+  publishDir "${outdir}", mode: 'copy'
+
+  // IO and conditional behavior
+  input:
+  file snippy_filter_aln from ch_snippy_core_filter_nextstrain_treetime
+  file iqtree_treefile from ch_iqtree_treefile_nextstrain_treetime
+  file metadata_nextstrain from ch_metadata_nextstrain_treetime
+
+  output:
+  file "nextstrain/treetime_clock/timetree.nexus" into ch_timetree_nextstrain_mugration,ch_timetree_nextstrain_json
+  file "nextstrain/treetime_clock/divergence_tree.nexus" into ch_divergencetree_nextstrain_json
+  file "nextstrain/treetime_clock/dates.tsv" into ch_timetree_dates_nextstrain_json
+  file "nextstrain/treetime_clock/*"
+
+
+  // Shell script to execute
+  script:
+  """
+  # The set command is to deal with PS1 errors
+  set +eu
+  # Enable conda activate support in this bash subshell
+  CONDA_BASE=\$(conda info --base) ;
+  source \$CONDA_BASE/etc/profile.d/conda.sh
+
+  # Activate the nextstrain environment
+  conda activate nextstrain-8.0.0
+
+  mkdir -p nextstrain/treetime_clock/;
+  treetime \
+    --aln ${snippy_filter_aln} \
+    --tree ${iqtree_treefile} \
+    --dates ${metadata_nextstrain} \
+    --clock-filter 3 \
+    --keep-root \
+    --gtr infer \
+    --confidence \
+    --keep-polytomies \
+    --relax 1.0 0 \
+    --max-iter 3 \
+    --coalescent skyline \
+    --covariation \
+    --outdir nextstrain/treetime_clock \
+    --date-column BioSampleCollectionDate \
+    --verbose 6 2>&1 | tee nextstrain/treetime_clock/treetime_clock.log;
+
+  # Deactivate env
+  conda deactivate
+  """
+}
+
+process nextstrain_mugration{
+  // Other variables and config
+  tag "${timetree}"
+  publishDir "${outdir}", mode: 'copy'
+
+  // IO and conditional behavior
+  input:
+  file timetree from ch_timetree_nextstrain_mugration
+  file geocode_state from ch_metadata_geocode_state_nextstrain_treetime
+  file geocode_country from ch_metadata_geocode_country_nextstrain_treetime
+  output:
+  file "nextstrain/treetime_mugration_biovar/annotated_tree_biovar.nexus" into ch_biovar_nexus_nextstrain_json
+  file "nextstrain/treetime_mugration_biovar/confidence_biovar.csv" into ch_biovar_conf_nextstrain_json
+  file "nextstrain/treetime_mugration_biovar/*"
+  file "nextstrain/treetime_mugration_country/annotated_tree_country.nexus" into ch_country_nexus_nextstrain_json
+  file "nextstrain/treetime_mugration_country/confidence_country.csv" into ch_country_conf_nextstrain_json
+  file "nextstrain/treetime_mugration_country/*"
+  file "nextstrain/treetime_mugration_state/annotated_tree_state.nexus" into ch_state_nexus_nextstrain_json
+  file "nextstrain/treetime_mugration_state/confidence_state.csv" into ch_state_conf_nextstrain_json
+  file "nextstrain/treetime_mugration_state/*"
+
+  // Shell script to execute
+  script:
+  """
+  # The set command is to deal with PS1 errors
+  set +eu
+  # Enable conda activate support in this bash subshell
+  CONDA_BASE=\$(conda info --base) ;
+  source \$CONDA_BASE/etc/profile.d/conda.sh
+
+  # Activate the nextstrain environment
+  conda activate nextstrain-8.0.0
+
+  mkdir -p nextstrain/treetime_mugration_biovar/;
+  mkdir -p nextstrain/treetime_mugration_country/;
+  mkdir -p nextstrain/treetime_mugration_state/;
+
+  treetime mugration \
+    --tree ${timetree} \
+    --attribute BioSampleBiovar \
+    --states ${geocode_state} \
+    --confidence \
+    --outdir nextstrain/treetime_mugration_biovar/ \
+    --verbose 6 2>&1 | tee nextstrain/treetime_mugration_biovar/treetime_mugration_biovar.log
+  mv nextstrain/treetime_mugration_biovar/annotated_tree.nexus nextstrain/treetime_mugration_biovar/annotated_tree_biovar.nexus;
+  mv nextstrain/treetime_mugration_biovar/confidence.csv nextstrain/treetime_mugration_biovar/confidence_biovar.csv  ;
+
+  treetime mugration \
+    --tree ${timetree} \
+    --attribute country \
+    --states ${geocode_state} \
+    --confidence \
+    --outdir nextstrain/treetime_mugration_country/ \
+    --verbose 6 2>&1 | tee nextstrain/treetime_mugration_country/treetime_mugration_country.log
+  mv nextstrain/treetime_mugration_country/annotated_tree.nexus nextstrain/treetime_mugration_country/annotated_tree_country.nexus;
+  mv nextstrain/treetime_mugration_country/confidence.csv nextstrain/treetime_mugration_country/confidence_country.csv  ;
+
+  treetime mugration \
+    --tree ${timetree} \
+    --attribute state \
+    --states ${geocode_state} \
+    --confidence \
+    --outdir nextstrain/treetime_mugration_state/ \
+    --verbose 6 2>&1 | tee nextstrain/treetime_mugration_state/treetime_mugration_state.log
+  mv nextstrain/treetime_mugration_state/annotated_tree.nexus nextstrain/treetime_mugration_state/annotated_tree_state.nexus;
+  mv nextstrain/treetime_mugration_state/confidence.csv nextstrain/treetime_mugration_state/confidence_state.csv  ;
+
+
+  # Deactivate env
+  conda deactivate
+  """
+}
+
+process nextstrain_json{
+  // Other variables and config
+  tag "${timetree}"
+  publishDir "${outdir}", mode: 'copy'
+
+  // IO and conditional behavior
+  input:
+  file snippy_filter_aln from ch_snippy_core_filter_nextstrain_json
+  file divergencetree from ch_divergencetree_nextstrain_json
+  file metadata_nextstrain from ch_metadata_nextstrain_json
+  file snippy_core_vcf from ch_snippy_core_vcf_nextstrain_json
+  file ref_chrom_fna from ch_reference_chrom_fna_nextstrain_json
+  file ref_gff from ch_reference_gff_nextstrain_json
+  file timetree from ch_timetree_nextstrain_json
+  file timetree_dates from ch_timetree_dates_nextstrain_json
+  file biovar_nexus from ch_biovar_nexus_nextstrain_json
+  file country_nexus from ch_country_nexus_nextstrain_json
+  file state_nexus from ch_state_nexus_nextstrain_json
+  file biovar_conf from ch_biovar_conf_nextstrain_json
+  file country_conf from ch_country_conf_nextstrain_json
+  file state_conf from ch_state_conf_nextstrain_json
+  file geocode_state from ch_metadata_geocode_state_nextstrain_json
+  file lat_longs from ch_lat_longs_nextstrain_json
+  output:
+  file "nextstrain/augur/"
+  file "nextstrain/auspice/"
+
+
+  // Shell script to execute
+  script:
+  """
+  # The set command is to deal with PS1 errors
+  set +eu
+  # Enable conda activate support in this bash subshell
+  CONDA_BASE=\$(conda info --base) ;
+  source \$CONDA_BASE/etc/profile.d/conda.sh
+
+  # Activate the nextstrain environment
+  conda activate nextstrain-8.0.0
+
+  mkdir -p nextstrain/augur/;
+  mkdir -p nextstrain/auspice/;
+
+  augur refine \
+    --alignment ${snippy_filter_aln} \
+    --tree ${divergencetree} \
+    --metadata ${metadata_nextstrain} \
+    --output-tree nextstrain/augur/augur-refine.nwk \
+    --output-node-data nextstrain/augur/mutation_lengths.json \
+    --keep-root
+
+  sed -i 's/branch_length/mutation_length/g' nextstrain/augur/mutation_lengths.json
+
+  augur ancestral \
+    --tree nextstrain/augur/augur-refine.nwk \
+    --alignment ${snippy_core_vcf}  \
+    --vcf-reference ${ref_chrom_fna} \
+    --output-node-data nextstrain/augur/nt_muts.json \
+    --output-vcf nextstrain/augur/augur-ancestral.vcf
+
+ augur translate \
+   --tree nextstrain/augur/augur-refine.nwk \
+   --vcf-reference ${ref_chrom_fna} \
+   --ancestral-sequences nextstrain/augur/augur-ancestral.vcf \
+   --genes ${baseDir}/auspice/config/genes.txt \
+   --reference-sequence ${ref_gff} \
+   --output-node-data nextstrain/augur/aa_muts.json
+
+ augur clades \
+   --tree nextstrain/augur/augur-refine.nwk \
+   --mutations nextstrain/augur/nt_muts.json \
+               nextstrain/augur/aa_muts.json \
+   --clades ${baseDir}/auspice/config/clades.csv \
+   --output-node-data nextstrain/augur/clades.json
+
+ ${params.scriptdir}/treetime_dates_json.py \
+   --time ${timetree} \
+   --dates ${timetree_dates} \
+   --json nextstrain/augur/branch_lengths.json
+
+ ${params.scriptdir}/treetime_mugration_json.py \
+     --tree ${biovar_nexus} \
+     --json nextstrain/augur/traits_biovar.json \
+     --conf ${biovar_conf} \
+     --trait biovar
+
+ ${params.scriptdir}/treetime_mugration_json.py \
+     --tree ${country_nexus} \
+     --json nextstrain/augur/traits_country.json \
+     --conf  ${country_conf} \
+     --trait country
+
+ ${params.scriptdir}/treetime_mugration_json.py \
+     --tree ${state_nexus} \
+     --json nextstrain/augur/traits_state.json \
+     --conf ${state_conf} \
+     --trait state
+
+ augur export v2 \
+     --tree nextstrain/augur/augur-refine.nwk \
+     --metadata ${geocode_state} \
+     --node-data nextstrain/augur/nt_muts.json \
+                 nextstrain/augur/aa_muts.json \
+                 nextstrain/augur/clades.json \
+                 nextstrain/augur/mutation_lengths.json \
+                 nextstrain/augur/branch_lengths.json \
+                 nextstrain/augur/traits_biovar.json \
+                 nextstrain/augur/traits_country.json \
+                 nextstrain/augur/traits_state.json \
+     --output nextstrain/auspice/auspice.json \
+     --lat-long ${lat_longs} \
+     --auspice-config ${baseDir}/auspice/config/modernAssembly_auspice_config.json
+
+
+  # Deactivate env
+  conda deactivate
+  """
+}
+
 
 process multiqc{
   /*

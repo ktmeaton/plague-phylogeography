@@ -239,14 +239,14 @@ Activate the nextstrain/treetime environment.
        --loc-col BioSampleGeographicLocation \
        --out-tsv $project/nextstrain/metadata_nextstrain_geocode_country.tsv\
        --out-lat-lon $project/nextstrain/lat_longs_country.tsv \
-       --div country
+       --div country;
 
       $scriptsDir/geocode_NextStrain.py \
        --in-tsv $project/nextstrain/metadata_nextstrain.tsv \
        --loc-col BioSampleGeographicLocation \
        --out-tsv $project/nextstrain/metadata_nextstrain_geocode_state.tsv\
        --out-lat-lon $project/nextstrain/lat_longs_state.tsv \
-       --div state
+       --div state;
 
        cat $project/nextstrain/lat_longs_country.tsv $project/nextstrain/lat_longs_state.tsv > $project/nextstrain/lat_longs_all.tsv
 
