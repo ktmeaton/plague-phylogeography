@@ -21,7 +21,7 @@ scriptsDir=$3
 mkdir -p $project/nextstrain/
 $scriptsDir/sqlite_NextStrain_tsv.py \
   --database $sqliteDB \
-  --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')" \
+  --query "SELECT BioSampleAccession,AssemblyFTPGenbank,BioSampleStrain,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleBiovar,BioSampleHost FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%' AND TRIM(AssemblyFTPGenbank) > '')" \
   --no-data-char ? \
   --output $project/nextstrain/metadata_nextstrain.tsv \
   --date-col BioSampleCollectionDate

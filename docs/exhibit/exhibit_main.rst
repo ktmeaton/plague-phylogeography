@@ -231,9 +231,9 @@ Use the GeoPy module with Nominatim to geocode global addresses.
       $scriptsDir/geocode_NextStrain.py \
        --in-tsv Assembly_Modern/nextstrain/metadata_nextstrain.tsv \
        --loc-col BioSampleGeographicLocation \
-       --out-tsv Assembly_Modern/nextstrain/metadata_nextstrain_geocode_state.tsv\
-       --out-lat-lon Assembly_Modern/nextstrain/lat_longs_state.tsv \
-       --div state
+       --out-tsv Assembly_Modern/nextstrain/metadata_nextstrain_geocode_country.tsv\
+       --out-lat-lon Assembly_Modern/nextstrain/lat_longs_country.tsv \
+       --div country
 
       $scriptsDir/geocode_NextStrain.py \
        --in-tsv Assembly_Modern/nextstrain/metadata_nextstrain.tsv \
@@ -326,6 +326,11 @@ Use augur to create the needed json files for auspice.
     augur export v2 \
         --tree $project/nextstrain/augur/augur-refine.nwk \
         --metadata $project/nextstrain/metadata_nextstrain_geocode_country.tsv \
-        --node-data $project/nextstrain/augur/mutation_lengths.json $project/nextstrain/augur/branch_lengths.json augur/traits_biovar.json \
+        --node-data $project/nextstrain/augur/mutation_lengths.json \
         --output $project/nextstrain/auspice/auspice.json \
         --lat-long $project/nextstrain/lat_longs_country.tsv
+
+        --node-data $project/nextstrain/augur/nt_muts.json \
+                    $project/nextstrain/augur/mutation_lengths.json \
+                    $project/nextstrain/augur/branch_lengths.json \
+                    $project/nextstrain/augur/traits_biovar.json \
