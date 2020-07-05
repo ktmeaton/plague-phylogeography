@@ -235,17 +235,17 @@ Activate the nextstrain/treetime environment.
 **Shell Scripts**::
 
       $scriptsDir/geocode_NextStrain.py \
-       --in-tsv Assembly_Modern/nextstrain/metadata_nextstrain.tsv \
+       --in-tsv $project/nextstrain/metadata_nextstrain.tsv \
        --loc-col BioSampleGeographicLocation \
-       --out-tsv Assembly_Modern/nextstrain/metadata_nextstrain_geocode_country.tsv\
-       --out-lat-lon Assembly_Modern/nextstrain/lat_longs_country.tsv \
+       --out-tsv $project/nextstrain/metadata_nextstrain_geocode_country.tsv\
+       --out-lat-lon $project/nextstrain/lat_longs_country.tsv \
        --div country
 
       $scriptsDir/geocode_NextStrain.py \
-       --in-tsv Assembly_Modern/nextstrain/metadata_nextstrain.tsv \
+       --in-tsv $project/nextstrain/metadata_nextstrain.tsv \
        --loc-col BioSampleGeographicLocation \
-       --out-tsv Assembly_Modern/nextstrain/metadata_nextstrain_geocode_state.tsv\
-       --out-lat-lon Assembly_Modern/nextstrain/lat_longs_state.tsv \
+       --out-tsv $project/nextstrain/metadata_nextstrain_geocode_state.tsv\
+       --out-lat-lon $project/nextstrain/lat_longs_state.tsv \
        --div state
 
        cat $project/nextstrain/lat_longs_*.tsv > $project/nextstrain/lat_longs_all.tsv
@@ -335,27 +335,31 @@ Use augur to create the needed json files for auspice.
 
     sed -i 's/branch_length/mutation_length/g' $project/nextstrain/augur/mutation_lengths.json
 
-    augur ancestral \
-      --tree $project/nextstrain/treetime_clock/divergence_tree.nexus \
-      --alignment $project/snippy_multi/snippy-core.full_CHROM.fasta \
-      --output-node-data $project/nextstrain/augur/nt_muts.json
+    # Prep reference
+    samtools faidx GCF_000009065.1_ASM906v1_genomic.fna
+    samtools faidx GCF_000009065.1_ASM906v1_genomic.fna NC_003143 > GCF_000009065.1_ASM906v1_genomic_NC_003143.fna
 
-    mkdir -p $project/nextstrain/augur_translate/
+    # Use vcf align
+    augur ancestral \
+      --tree $project/nextstrain/augur/augur-refine.nwk \
+      --alignment $project/snippy_multi/snippy-core.vcf \
+      --vcf-reference $project/reference_genome/GCF_000009065.1_ASM906v1_genomic_NC_003143.fna \
+      --output-node-data $project/nextstrain/augur/nt_muts.json \
+     --output-vcf $project/nextstrain/augur/augur-ancestral.vcf
 
     augur translate \
       --tree $project/nextstrain/augur/augur-refine.nwk \
-      --ancestral-sequences $project/nextstrain/augur/nt_muts_bak.json \
+      --vcf-reference $project/reference_genome/GCF_000009065.1_ASM906v1_genomic_NC_003143.fna \
+      --ancestral-sequences $project/nextstrain/augur/augur-ancestral.vcf \
       --genes ~/.nextflow/assets/ktmeaton/plague-phylogeography/auspice/config/genes.txt \
       --reference-sequence $project/reference_genome/GCF_000009065.1_ASM906v1_genomic.gff \
-      --output-node-data $project/nextstrain/augur/aa_muts.json \
-      --alignment-output $project/nextstrain/augur_translate/augur_translate.fasta
+      --output-node-data $project/nextstrain/augur/aa_muts.json
 
-    mkdir -p $project/nextstrain/augur_clades/
-
-    augur clades --tree $project/nextstrain/treetime_clock/divergence_tree.nexus \
+    augur clades \
+      --tree $project/nextstrain/augur/augur-refine.nwk \
       --mutations $project/nextstrain/augur/nt_muts.json \
                   $project/nextstrain/augur/aa_muts.json \
-      --clades ~/.nextflow/assets/ktmeaton/plague-phylogeography/auspice/config/clades.txt \
+      --clades ~/.nextflow/assets/ktmeaton/plague-phylogeography/auspice/config/clades.tsv \
       --output-node-data $project/nextstrain/augur/clades.json
 
 Convert the treetime output to augur json.
@@ -395,6 +399,8 @@ Export the auspice json.
         --tree $project/nextstrain/augur/augur-refine.nwk \
         --metadata $project/nextstrain/metadata_nextstrain_geocode_state.tsv \
         --node-data $project/nextstrain/augur/nt_muts.json \
+                    $project/nextstrain/augur/aa_muts.json \
+                    $project/nextstrain/augur/clades.json \
                     $project/nextstrain/augur/mutation_lengths.json \
                     $project/nextstrain/augur/branch_lengths.json \
                     $project/nextstrain/augur/traits_biovar.json \

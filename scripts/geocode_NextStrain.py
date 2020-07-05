@@ -202,6 +202,8 @@ while read_line:
         geo_loc_target = NO_DATA_CHAR
     # Rejoin up with delimiter, for geocoding full location path
     geo_loc_join = GEO_DELIM.join(geo_loc_split)
+
+    # Try to geocode
     if geo_loc_target not in geo_loc_dict:
         # Copy in the blank address dictionary, not by reference!
         geo_loc_dict[geo_loc_target] = copy.deepcopy(address_dict)
@@ -219,7 +221,7 @@ while read_line:
                 try:
                     geo_loc_dict[geo_loc_target]["address"]["state"] = geo_loc_split[1]
                 except IndexError:
-                    geo_loc_dict[geo_loc_target]["address"]["state"] = geo_loc_split[0]
+                    geo_loc_dict[geo_loc_target]["address"]["state"] = NO_DATA_CHAR
             # Write to the lat long file
             out_lat_lon_file.write(
                 force_div
@@ -233,6 +235,12 @@ while read_line:
             )
         # Sleep to not overdo API requests
         time.sleep(SLEEP_TIME)
+
+    # If there was no state value, make the dictionary just with country name
+    if geo_loc_target == NO_DATA_CHAR:
+        geo_loc_target = geo_loc_join
+        geo_loc_dict[geo_loc_target] = copy.deepcopy(address_dict)
+        geo_loc_dict[geo_loc_target]["address"]["country"] = geo_loc_split[0]
 
     # Write the division target and lat lon to the tsv metadata
     out_file.write(
