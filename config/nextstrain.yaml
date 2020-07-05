@@ -15,6 +15,7 @@ dependencies:
 - nodejs=10
 - raxml
 - vcftools
+- geopy==2.0.0
 - git
 - pip
 - pip:
