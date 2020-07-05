@@ -234,7 +234,6 @@ while read_line:
         # Sleep to not overdo API requests
         time.sleep(SLEEP_TIME)
 
-    print(geo_loc_dict[geo_loc_target])
     # Write the division target and lat lon to the tsv metadata
     out_file.write(
         DELIM.join(split_line)
