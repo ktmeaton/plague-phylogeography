@@ -4,11 +4,19 @@
 
 Geocode addresses in a tsv file.
 
- ./geocode_NextStrain.py \
-   --in-tsv ../metadata_assembly_nextstrain_edit_name.tsv \
+scripts/geocode_NextStrain.py \
+   --in-tsv Assembly_Modern/nextstrain/metadata_nextstrain.tsv \
    --loc-col BioSampleGeographicLocation \
-   --out-tsv ../metadata_assembly_nextstrain_edit_name_geocode.tsv \
-   --out-lat-lon ../metadata_assembly_nextstrain_edit_name_lat_lon.tsv
+   --out-tsv Assembly_Modern/nextstrain/metadata_nextstrain_geocode_country.tsv\
+   --out-lat-lon Assembly_Modern/nextstrain/lat_longs_country.tsv \
+   --div country
+
+scripts/geocode_NextStrain.py \
+   --in-tsv Assembly_Modern/nextstrain/metadata_nextstrain.tsv \
+   --loc-col BioSampleGeographicLocation \
+   --out-tsv Assembly_Modern/nextstrain/metadata_nextstrain_geocode_state.tsv\
+   --out-lat-lon Assembly_Modern/nextstrain/lat_longs_state.tsv \
+   --div state
 """
 
 # -----------------------------------------------------------------------#
@@ -73,10 +81,10 @@ parser.add_argument(
 
 parser.add_argument(
     "--div",
-    help="Constrain all lat lon to division level [country].",
+    help="Constrain all lat lon to country or state [country].",
     action="store",
     dest="forceDiv",
-    required=False,
+    required=True,
 )
 
 
@@ -108,29 +116,32 @@ out_lat_lon_file = open(out_lat_lon, "w")
 
 # Column delimiter
 DELIM = "\t"
+# Geo delimiter
+GEO_DELIM = ":"
 # No data values will be replaced by this char
 NO_DATA_CHAR = "?"
-MISSING_DATA_LIST = ["missing", "unknown"]
+
+# pick country or state
+DIV_INDEX_START = 0
+if force_div == "country":
+    DIV_INDEX_END = 1
+elif force_div == "state":
+    DIV_INDEX_END = 2
+else:
+    exit(1)
 
 # Dictionary to store latitude and longitude
-geo_loc_dict = (
-    {}
-)  # {'Location String' : {latitude: float, longitude: float, address_dict}}
+geo_loc_dict = {}
+# {'Location String' : {latitude: float, longitude: float, address_dict}}
 address_dict = {
-    "address": {
-        "country": NO_DATA_CHAR,
-        "region": NO_DATA_CHAR,
-        "state": NO_DATA_CHAR,
-        "county": NO_DATA_CHAR,
-        "city": NO_DATA_CHAR,
-        "town": NO_DATA_CHAR,
-    },
+    "address": {"country": NO_DATA_CHAR},
     "latitude": NO_DATA_CHAR,
     "longitude": NO_DATA_CHAR,
 }
-LOC_DIVISIONS = ["country", "region", "state", "county", "city", "town"]
-LOC_DIVISIONS_REV = LOC_DIVISIONS[:]
-LOC_DIVISIONS_REV.reverse()
+
+# If using the state division, add to dictionary
+if force_div == "state":
+    address_dict["address"]["state"] = NO_DATA_CHAR
 
 # Count number of lines in input file (substract 1 for header)
 total_line_count = 0 - 1
@@ -176,89 +187,65 @@ while read_line:
     process_line_count += 1
     print(str(process_line_count) + "/" + str(total_line_count))
     split_line = read_line.split(DELIM)
+    # Retrieve the geographic location column value
     geo_loc = split_line[geo_col_index]
-    if geo_loc not in geo_loc_dict:
+    # Retrieve only the specified division(s) as list
+    geo_loc_split = geo_loc.split(GEO_DELIM)[DIV_INDEX_START:DIV_INDEX_END]
+    # Store the target division
+    # Some addresses will not have extra divisions (ex. only country no state)
+    try:
+        geo_loc_target = geo_loc_split[DIV_INDEX_END - 1]
+    except IndexError:
+        geo_loc_target = NO_DATA_CHAR
+    # Rejoin up with delimiter, for geocoding full location path
+    geo_loc_join = GEO_DELIM.join(geo_loc_split)
+
+    if geo_loc_target not in geo_loc_dict:
         # Copy in the blank address dictionary, not by reference!
-        geo_loc_dict[geo_loc] = copy.deepcopy(address_dict)
-        if geo_loc != NO_DATA_CHAR and geo_loc.lower() not in MISSING_DATA_LIST:
-            # Geocode the string location
-            location = geolocator.geocode(geo_loc, language="en")
-            if location:
-                str_lat_lon = str(location.latitude) + ", " + str(location.longitude)
-                # Use reverse method to get more comprehensive location division values
-                loc_rev = geolocator.reverse(str_lat_lon, language="en")
-                # The raw attribute contains all the rich geographic metadata
-                data = loc_rev.raw
-                # Store string values for the different location division levels
-                for loc_div in LOC_DIVISIONS:
-                    try:
-                        geo_loc_dict[geo_loc]["address"][loc_div] = data["address"][
-                            loc_div
-                        ]
-                    except KeyError:
-                        None
+        geo_loc_dict[geo_loc_target] = copy.deepcopy(address_dict)
+        # Geocode the location string
+        location = geolocator.geocode(geo_loc_join, language="en",)
+        if location:
+            # Store latitude and longitude values
+            geo_loc_dict[geo_loc_target]["latitude"] = str(location.latitude)
+            geo_loc_dict[geo_loc_target]["longitude"] = str(location.longitude)
 
-                # Store latitude and longitude values
-                geo_loc_dict[geo_loc]["latitude"] = str(location.latitude)
-                geo_loc_dict[geo_loc]["longitude"] = str(location.longitude)
+            geo_loc_dict[geo_loc_target]["address"]["country"] = geo_loc_split[0]
+            # if the state division is requested, add the state name
+            if force_div == "state":
+                # Some addresses will not have extra divisions
+                try:
+                    geo_loc_dict[geo_loc_target]["address"]["state"] = geo_loc_split[1]
+                except IndexError:
+                    geo_loc_dict[geo_loc_target]["address"]["state"] = geo_loc_split[0]
+            # Write to the lat long file
+            out_lat_lon_file.write(
+                force_div
+                + DELIM
+                + geo_loc_dict[geo_loc_target]["address"][force_div]
+                + DELIM
+                + geo_loc_dict[geo_loc_target]["latitude"]
+                + DELIM
+                + geo_loc_dict[geo_loc_target]["longitude"]
+                + "\n"
+            )
+        # Sleep to not overdo API requests
+        time.sleep(SLEEP_TIME)
 
-                # Sleep to not overdo API requests
-                time.sleep(SLEEP_TIME)
-                # print(geo_loc_dict)
-
-    # Write the division and lat lon to the tsv metadata
+    # Write the division target and lat lon to the tsv metadata
     out_file.write(
         DELIM.join(split_line)
         + DELIM
-        + DELIM.join(geo_loc_dict[geo_loc]["address"].values())
+        + DELIM.join(geo_loc_dict[geo_loc_target]["address"].values())
         + DELIM
-        + geo_loc_dict[geo_loc]["latitude"]
+        + geo_loc_dict[geo_loc_target]["latitude"]
         + DELIM
-        + geo_loc_dict[geo_loc]["longitude"]
+        + geo_loc_dict[geo_loc_target]["longitude"]
         + "\n"
     )
 
-    # print(geo_loc_dict[geo_loc])
+    # Read in next line
     read_line = in_file.readline().strip()
-
-# ------------------------------------------------------------------------------#
-#                            Post-Processing                                   #
-# ------------------------------------------------------------------------------#
-for geo_loc in geo_loc_dict:
-    # Skip if latitude/longitude is empty
-    if geo_loc_dict[geo_loc]["latitude"] == NO_DATA_CHAR:
-        continue
-    # If the division level is free to vary
-    if not force_div:
-        # Write the highest resolution division and lat lon to different tsv
-        for loc_div in LOC_DIVISIONS_REV:
-            # Once a location is found, write that and break out
-            if geo_loc_dict[geo_loc]["address"][loc_div] != NO_DATA_CHAR:
-                out_lat_lon_file.write(
-                    loc_div
-                    + DELIM
-                    + geo_loc_dict[geo_loc]["address"][loc_div]
-                    + DELIM
-                    + geo_loc_dict[geo_loc]["latitude"]
-                    + DELIM
-                    + geo_loc_dict[geo_loc]["longitude"]
-                    + "\n"
-                )
-                break
-    else:
-        # Write the forced division and lat lon to different tsv
-        loc_div = force_div
-        if geo_loc_dict[geo_loc]["address"][loc_div] != NO_DATA_CHAR:
-            out_lat_lon_file.write(
-                loc_div
-                + DELIM
-                + geo_loc_dict[geo_loc]["address"][loc_div]
-                + DELIM
-                + geo_loc_dict[geo_loc]["latitude"]
-                + DELIM
-                + geo_loc_dict[geo_loc]["longitude"]
-                + "\n"
-            )
 
 
 # ------------------------------------------------------------------------------#

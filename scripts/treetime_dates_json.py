@@ -7,70 +7,79 @@ Convert treetime clock output to auspice json.
 ./treetime_dates_json.py
 """
 
-# This program should only be called from the command-line
-if __name__ != "__main__": quit()
-
-#-----------------------------------------------------------------------#
+# -----------------------------------------------------------------------#
 #                         Modules and Packages                          #
-#-----------------------------------------------------------------------#
-import argparse                         # Command-line argument parsing
+# -----------------------------------------------------------------------#
+import argparse  # Command-line argument parsing
 import os
 
 import json
 from Bio import Phylo
 
-#-----------------------------------------------------------------------#
-#                            Argument Parsing                           #
-#-----------------------------------------------------------------------#
+# This program should only be called from the command-line
+if __name__ != "__main__":
+    quit()
 
-parser = argparse.ArgumentParser(description='Convert treetime clock output to auspice json..',
-                                 add_help=True)
+# -----------------------------------------------------------------------#
+#                            Argument Parsing                           #
+# -----------------------------------------------------------------------#
+
+parser = argparse.ArgumentParser(
+    description="Convert treetime clock output to auspice json..", add_help=True
+)
 
 # Argument groups for the program
 
-parser.add_argument('--time',
-                    help = 'Path to the time tree.',
-                    action = 'store',
-                    dest = 'timePath',
-                    required = True)
+parser.add_argument(
+    "--time",
+    help="Path to the time tree.",
+    action="store",
+    dest="timePath",
+    required=True,
+)
 
-parser.add_argument('--dates',
-                    help = 'Path to the dates tsv.',
-                    action = 'store',
-                    dest = 'datesPath',
-                    required = True)
+parser.add_argument(
+    "--dates",
+    help="Path to the dates tsv.",
+    action="store",
+    dest="datesPath",
+    required=True,
+)
 
-parser.add_argument('--delim',
-                    help = 'Dates file delimiter.',
-                    action = 'store',
-                    dest = 'datesDelim',
-                    required = False,
-                    default = "\t")
+parser.add_argument(
+    "--delim",
+    help="Dates file delimiter.",
+    action="store",
+    dest="datesDelim",
+    required=False,
+    default="\t",
+)
 
-parser.add_argument('--json',
-                    help = 'Output json file.',
-                    action = 'store',
-                    dest = 'jsonPath',
-                    required = True)
+parser.add_argument(
+    "--json", help="Output json file.", action="store", dest="jsonPath", required=True
+)
 
 # Retrieve user parameters
 args = vars(parser.parse_args())
 
-time_path = args['timePath']
-dates_path = args['datesPath']
-dates_delim = args['datesDelim']
-json_path = args['jsonPath']
+time_path = args["timePath"]
+dates_path = args["datesPath"]
+dates_delim = args["datesDelim"]
+json_path = args["jsonPath"]
 
 filename, file_extension = os.path.splitext(time_path)
-if file_extension == ".nexus" or file_extension == ".nex": format = "nexus"
-elif file_extension == ".nwk" or file_extension == ".newick": format = "newick"
-else: exit(1)
+if file_extension == ".nexus" or file_extension == ".nex":
+    format = "nexus"
+elif file_extension == ".nwk" or file_extension == ".newick":
+    format = "newick"
+else:
+    exit(1)
 
 tree = Phylo.read(time_path, format)
 dates_tsv = open(dates_path, "r")
 output_json = open(json_path, "w")
 
-#node   date    numeric date    lower bound     upper bound
+# node   date    numeric date    lower bound     upper bound
 NAME_INDEX = 0
 DATE_INDEX = 1
 NUMERIC_INDEX = 2
@@ -105,5 +114,7 @@ while read_line:
 
     read_line = dates_tsv.readline().strip()
 
-json_string = json.dumps(node_dict, default=lambda o: o.__dict__, sort_keys=True, indent=2)
+json_string = json.dumps(
+    node_dict, default=lambda o: o.__dict__, sort_keys=True, indent=2
+)
 output_json.write(json_string)
