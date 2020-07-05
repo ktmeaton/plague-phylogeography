@@ -71,15 +71,7 @@ nextflow pull ktmeaton/plague-phylogeography
 conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
 ```
 
-Confirm the install was successful:
-
-```bash
-nextflow run ktmeaton/plague-phylogeography --version
-conda activate plague-phylogeography-0.1.4dev
-conda deactivate
-```
-
-## Install the nfcore/eager pipeline:
+### Install the nfcore/eager pipeline:
 
 ```bash
 nextflow pull nf-core/eager
@@ -94,16 +86,7 @@ conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow
 conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 ```
 
-Confirm the install was successful:
-
-```bash
-nextflow run nf-core/eager -r 7b51863957 --help
-conda activate nf-core-eager-2.2.0dev
-dot -v
-conda deactivate
-```
-
-## Install the Nextstrain Tools
+### Install the Nextstrain Tools
 
 ```bash
 conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml
@@ -169,7 +152,7 @@ The current usage is described in the [Main Exhibit page](https://plague-phyloge
 
 ## Troubleshooting
 
-May possible require adjusting the perl library path.
+May possibly require adjusting the perl library path.
 
 ```bash
 export PERL5LIB=~/miniconda3/envs/plague-phylogeography-0.1.4dev/lib/site_perl/5.26.2/:$PERL5LIB
