@@ -1,0 +1,65 @@
+{
+ "title": "Plague Modern Assemblies",
+ "maintainers": [
+   {"name": "Katherine Eaton", "url": "https://github.com/ktmeaton"}
+ ],
+ "build_url": "https://github.com/ktmeaton/plague-phylogeography",
+ "colorings": [
+  {
+    "key": "BioSampleAccession",
+    "title": "BioSample Accession",
+    "type": "categorical"
+  },
+  {
+    "key": "BioSampleStrain",
+    "title": "Strain",
+    "type": "categorical"
+  },
+  {
+   "key": "num_date",
+   "title": "Estimated Date",
+   "type": "continuous"
+  },
+  {
+    "key": "country",
+    "title": "Country",
+    "type": "categorical"
+  },
+  {
+    "key": "state",
+    "title": "State",
+    "type": "categorical"
+  },
+  {
+    "key": "BioSampleBiovar",
+    "title": "Biovar",
+    "type": "categorical"
+  },
+  {
+    "key": "BioSampleHost",
+    "title": "Host",
+    "type": "categorical"
+  }
+ ],
+ "filters": [
+  "country",
+  "state"
+  "BioSampleBiovar",
+  "BioSampleHost"
+ ],
+ "geo_resolutions": [
+  "country"
+  ],
+  "display_defaults": {
+    "color_by": "BioSampleBiovar",
+    "distance_measure": "time",
+    "geo_resolution": "country",
+    "map_triplicate": true,
+    "branch_label": "none"
+  },
+  "panels": [
+    "tree",
+    "map",
+    "entropy"
+  ]
+}
