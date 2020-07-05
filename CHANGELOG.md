@@ -7,6 +7,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
+- Download reference gff for augur
 - Rewrite shell scripts in python?
 - Lint all python scripts with black+flake8
 - Deal with the fail to publish issue with NCBImeta db

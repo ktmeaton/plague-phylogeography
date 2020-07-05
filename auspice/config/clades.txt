@@ -1,0 +1,2 @@
+clade gene  site  alt
+Test	nuc	166518	A

@@ -248,6 +248,8 @@ Activate the nextstrain/treetime environment.
        --out-lat-lon Assembly_Modern/nextstrain/lat_longs_state.tsv \
        --div state
 
+       cat $project/nextstrain/lat_longs_*.tsv > $project/nextstrain/lat_longs_all.tsv
+
 Combine treetime and augur
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -274,7 +276,7 @@ Create a time-calibrated phylogeny.
       --date-column BioSampleCollectionDate \
       --verbose 6 2>&1 | tee $project/nextstrain/treetime_clock/treetime_clock.log
 
-Run mugration analysis to estimate biovar variable.
+Run mugration analysis to estimate biovar.
 
 ::
 
@@ -288,6 +290,10 @@ Run mugration analysis to estimate biovar variable.
       --outdir $project/nextstrain/treetime_mugration_biovar/ \
       --verbose 6 2>&1 | tee $project/nextstrain/treetime_mugration_biovar/treetime_mugration_biovar.log
 
+Run mugration analysis to estimate country.
+
+::
+
     mkdir -p $project/nextstrain/treetime_mugration_country/
 
     treetime mugration \
@@ -297,6 +303,10 @@ Run mugration analysis to estimate biovar variable.
       --confidence \
       --outdir $project/nextstrain/treetime_mugration_country/ \
       --verbose 6 2>&1 | tee $project/nextstrain/treetime_mugration_country/treetime_mugration_country.log
+
+Run mugration analysis to estimate state.
+
+::
 
     mkdir -p $project/nextstrain/treetime_mugration_state/
 
@@ -327,8 +337,30 @@ Use augur to create the needed json files for auspice.
 
     augur ancestral \
       --tree $project/nextstrain/treetime_clock/divergence_tree.nexus \
-      --alignment $project/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+      --alignment $project/snippy_multi/snippy-core.full_CHROM.fasta \
       --output-node-data $project/nextstrain/augur/nt_muts.json
+
+    mkdir -p $project/nextstrain/augur_translate/
+
+    augur translate \
+      --tree $project/nextstrain/augur/augur-refine.nwk \
+      --ancestral-sequences $project/nextstrain/augur/nt_muts_bak.json \
+      --genes ~/.nextflow/assets/ktmeaton/plague-phylogeography/auspice/config/genes.txt \
+      --reference-sequence $project/reference_genome/GCF_000009065.1_ASM906v1_genomic.gff \
+      --output-node-data $project/nextstrain/augur/aa_muts.json \
+      --alignment-output $project/nextstrain/augur_translate/augur_translate.fasta
+
+    mkdir -p $project/nextstrain/augur_clades/
+
+    augur clades --tree $project/nextstrain/treetime_clock/divergence_tree.nexus \
+      --mutations $project/nextstrain/augur/nt_muts.json \
+                  $project/nextstrain/augur/aa_muts.json \
+      --clades ~/.nextflow/assets/ktmeaton/plague-phylogeography/auspice/config/clades.txt \
+      --output-node-data $project/nextstrain/augur/clades.json
+
+Convert the treetime output to augur json.
+
+::
 
     $scriptsDir/treetime_dates_json.py \
       --time $project/nextstrain/treetime_clock/timetree.nexus \
@@ -353,6 +385,10 @@ Use augur to create the needed json files for auspice.
         --conf $project/nextstrain/treetime_mugration_state/confidence.csv \
         --trait state
 
+Export the auspice json.
+
+::
+
     mkdir -p $project/nextstrain/auspice/
 
     augur export v2 \
@@ -365,7 +401,11 @@ Use augur to create the needed json files for auspice.
                     $project/nextstrain/augur/traits_country.json \
                     $project/nextstrain/augur/traits_state.json \
         --output $project/nextstrain/auspice/auspice.json \
-        --lat-long $project/nextstrain/lat_longs_country.tsv \
+        --lat-long $project/nextstrain/lat_longs_all.tsv \
         --auspice-config ~/.nextflow/assets/ktmeaton/plague-phylogeography/auspice/config/modernAssembly_auspice_config.json
+
+Run the auspice server to test.
+
+::
 
     HOST="localhost" auspice view --datasetDir $project/nextstrain/auspice/
