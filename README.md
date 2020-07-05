@@ -109,6 +109,7 @@ conda deactivate
 conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml
 conda activate nextstrain-8.0.0
 npm install --global auspice@2.17.0
+conda deactivate
 ```
 
 ## Example Usage
