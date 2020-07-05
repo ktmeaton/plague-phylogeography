@@ -99,12 +99,13 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate ${EAGER_CONDA_ENV}
+          mkdir -p test/eager
           nextflow -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
             run nf-core/eager \
             -r 7b51863957 \
-            --input metadata_sra_eager.tsv \
-            --outdir . \
-            --fasta GCF_000009065.1_ASM906v1_genomic.fna \
+            --input test/sqlite_import/metadata_sra_eager.tsv \
+            --outdir test/eager \
+            --fasta test/reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
             --clip_readlength 35 \
             --preserve5p \
             --mergedonly \
