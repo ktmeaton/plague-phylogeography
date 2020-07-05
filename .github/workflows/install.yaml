@@ -6,6 +6,7 @@ env:
     EAGER_NF_REV: "7b51863957"
     PHYLO_CONDA_ENV: "plague-phylogeography-0.1.4dev"
     EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
+    NEXTSTRAIN_CONDA_ENV: "nextstrain-8.0.0"
 
 
 #This is a workflow for installation testing.
@@ -82,4 +83,14 @@ jobs:
           conda activate ${EAGER_CONDA_ENV}
           dot -v
           nextflow -v
+          conda deactivate
+
+      # 5a. Install nextstrain
+      - name: install conda nextstrain
+        shell: bash -l {0}
+        run: |
+          conda env create -f ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml
+          conda activate ${NEXTSTRAIN_CONDA_ENV}
+          npm install --global auspice@2.17.0
+          auspice --version
           conda deactivate
