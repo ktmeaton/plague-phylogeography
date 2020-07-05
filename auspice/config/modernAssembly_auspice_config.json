@@ -48,12 +48,13 @@
   "BioSampleHost"
  ],
  "geo_resolutions": [
-  "country"
+  "country",
+  "state"
   ],
   "display_defaults": {
     "color_by": "biovar",
     "distance_measure": "num_date",
-    "geo_resolution": "country",
+    "geo_resolution": "state",
     "map_triplicate": true,
     "branch_label": "none"
   },

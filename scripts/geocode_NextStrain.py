@@ -202,8 +202,6 @@ while read_line:
         geo_loc_target = NO_DATA_CHAR
     # Rejoin up with delimiter, for geocoding full location path
     geo_loc_join = GEO_DELIM.join(geo_loc_split)
-    print(geo_loc_join)
-    print(geo_loc_target)
     if geo_loc_target not in geo_loc_dict:
         # Copy in the blank address dictionary, not by reference!
         geo_loc_dict[geo_loc_target] = copy.deepcopy(address_dict)
