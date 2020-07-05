@@ -43,7 +43,7 @@
  ],
  "filters": [
   "country",
-  "state"
+  "state",
   "BioSampleBiovar",
   "BioSampleHost"
  ],
