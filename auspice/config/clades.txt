@@ -1,2 +1,2 @@
 clade gene  site  alt
-Test	nuc	166518	A
+pcaCupstream	nuc	303243	T
