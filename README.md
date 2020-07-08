@@ -64,7 +64,7 @@ wget -qO- get.nextflow.io | bash
 sudo mv nextflow /usr/local/bin/
 ```
 
-### Install the Plague Phylogeography Pipeline
+### Install the plague-phylogeography Pipeline
 
 ```bash
 nextflow pull ktmeaton/plague-phylogeography
@@ -86,7 +86,7 @@ conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow
 conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 ```
 
-### Install the Nextstrain Tools
+### Install the nextstrain Tools
 
 ```bash
 conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml
@@ -151,6 +151,11 @@ Succeeded   : 35
 The current usage is described in the [Main Exhibit page](https://plague-phylogeography.readthedocs.io/en/latest/exhibit/exhibit_link.html#main-exhibit) at ReadTheDocs.
 
 ## Troubleshooting
+
+```bash
+------------- EXCEPTION: Bio::Root::Exception -------------
+  MSG: Can't build a GFF object with the unknown version 3
+```
 
 May possibly require adjusting the perl library path.
 
