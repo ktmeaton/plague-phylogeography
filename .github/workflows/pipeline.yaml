@@ -111,11 +111,12 @@ jobs:
             --mergedonly \
             --mapper bwaaln \
             --bwaalnn 0.01 \
-            --bwaalnl 16
+            --bwaalnl 16 \
             --run_bam_filtering \
             --bam_mapping_quality_threshold 30 \
             --bam_discard_unmapped \
-            --bam_unmapped_type discard
+            --bam_unmapped_type discard \
+            --max_memory "6.GB"
 
       - name: artifact sqlite-import
         uses: actions/upload-artifact@v2
