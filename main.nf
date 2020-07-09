@@ -384,7 +384,7 @@ process sra_download{
   # Disable local caching to save disk space
   # vdb-config -s cache-enabled=false
   # Change the download sra location
-  if [[ `ls ~/.ncbi/user-settings.mkfg` ]]; then
+  if [[ -f ~/.ncbi/user-settings.mkfg ]]; then
     if [[ -z `grep "/repository/user/main/public/root" ~/.ncbi/user-settings.mkfg` ]]; then
       echo '/repository/user/main/public/root = "${params.sra_fastq_dump_path}"' >> $HOME/.ncbi/user-settings.mkfg
     fi;
