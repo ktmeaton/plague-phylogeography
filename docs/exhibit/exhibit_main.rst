@@ -225,11 +225,25 @@ Run the nextstrain and treetime section of the pipeline.
 Regression Plot
 ^^^^^^^^^^^^^^^
 
-Python::
+**Python**::
 
   from Bio import Phylo
-  project = "Assembly_Modern"
-  PY-88 = "GCA_000269405.1_ASM26940v1_genomic"
-  MG05-1020 = "GCA_000169635.1_ASM16963v1_genomic"
+  outdir = "Assembly_Modern/nextstrain/treetime_clock/"
+  PY_88 = "GCA_000269405.1_ASM26940v1_genomic"
+  MG05_1020 = "GCA_000169635.1_ASM16963v1_genomic"
   India195 = "GCA_000182505.1_ASM18250v1_genomic"
-  tree = Phylo.read(project + "/nextstrain/treetime_clock/divergence_tree.nexus", "nexus")
+
+  tree = Phylo.read(outdir + divergence_tree.nexus", "nexus")
+  ori_subtree = tree.common_ancestor(PY_88, MG05_1020, India195)
+  Phylo.write(ori_subtree, open(outdir + "ori_subtree.nwk", "w"), "newick")
+
+**Shell Script**::
+
+  treetime clock \
+    --tree $project/nextstrain/treetime_clock/ori_subtree.nwk \
+    --dates $project/nextstrain/metadata_nextstrain_geocode_state.tsv \
+    --date-column BioSampleCollectionDate \
+    --aln $project/snippy_multi/snippy-core.full_CHROM.filter0.fasta \
+    --clock-filter 3 \
+    --keep-root \
+    --outdir $project/nextstrain/treetime_clock/ori_subtree/
