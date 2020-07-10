@@ -389,6 +389,9 @@ process sra_download{
     if [[ -z `grep "/repository/user/main/public/root" ~/.ncbi/user-settings.mkfg` ]]; then
       echo '/repository/user/main/public/root = "${params.sra_fastq_dump_path}"' >> $HOME/.ncbi/user-settings.mkfg
     fi;
+    if [[ -z `grep "/http/timeout/read" ~/.ncbi/user-settings.mkfg` ]]; then
+      echo '/http/timeout/read = "10000"' >> $HOME/.ncbi/user-settings.mkfg
+    fi;
   else
     echo '/repository/user/main/public/root = "${params.sra_fastq_dump_path}"' > $HOME/.ncbi/user-settings.mkfg
   fi
