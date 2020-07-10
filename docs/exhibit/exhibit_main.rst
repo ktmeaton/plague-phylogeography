@@ -221,3 +221,15 @@ Run the nextstrain and treetime section of the pipeline.
     -resume
 
    (latest resume id: 9112a035-a628-4f9d-8955-faa7732a1b73)
+
+Regression Plot
+^^^^^^^^^^^^^^^
+
+Python::
+
+  from Bio import Phylo
+  project = "Assembly_Modern"
+  PY-88 = "GCA_000269405.1_ASM26940v1_genomic"
+  MG05-1020 = "GCA_000169635.1_ASM16963v1_genomic"
+  India195 = "GCA_000182505.1_ASM18250v1_genomic"
+  tree = Phylo.read(project + "/nextstrain/treetime_clock/divergence_tree.nexus", "nexus")
