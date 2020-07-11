@@ -247,3 +247,31 @@ Regression Plot
     --clock-filter 3 \
     --keep-root \
     --outdir $project/nextstrain/treetime_clock/ori_subtree/
+
+
+MEGA
+^^^^
+
+**Shell Script**::
+
+  tail -n+2 $project/nextstrain/metadata_nextstrain_geocode_state.tsv | \
+    awk -F "\t" -v nameCol=1 -v dateCol=5 '{
+      if (substr($dateCol,1,1) == "[")
+      {
+        dates=substr($dateCol,2,length($dateCol)-2);
+        split(dates,dateSplit,":");
+        minTime=dateSplit[1];
+        maxTime=dateSplit[2];
+        print "!NodeName=" "\047" $nameCol "\047" " minTime=" minTime " maxTime=" maxTime;
+      }
+      else
+      {
+        print "!Taxa=" "\047" $nameCol "\047" " Time="$dateCol;
+    }}' | sed 's/_/ /g' > $project/nextstrain/metadata_MEGA_raw.txt
+
+  tail -n+2 $project/nextstrain/metadata_nextstrain_geocode_state.tsv | \
+    awk -F "\t" -v nameCol=1 -v dateCol=5 -v project="Assembly_Modern" '{
+      cmd = "grep "$nameCol " " project "/iqtree/iqtree.core-filter0_bootstrap.treefile"
+      print ( cmd | getline result )
+      close(cmd);
+    }'
