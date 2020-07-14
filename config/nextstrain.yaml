@@ -1,8 +1,12 @@
 name: nextstrain-8.0.0
 channels:
+- conda-forge
 - bioconda
+- anaconda
+- r
 - defaults
 dependencies:
+# Nextstrain and Treetime
 - cvxopt
 - datrie
 - fasttree
@@ -15,6 +19,12 @@ dependencies:
 - nodejs=10
 - raxml
 - vcftools
+# Jupyter Notebook Deps
+- anaconda::jupyter==1.0.0
+- conda-forge::r-base==3.5.1
+- r::r-irkernel==0.8.12
+- conda-forge::bash_kernel==0.7.2
+# Github and pip installs
 - git
 - pip
 - pip:
