@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Assumes unwrapped fasta, no spaces between records
+# Assumes missing/ambig data represented as "-","N", or "X"
 
 # File variables
 INFILE=$1
@@ -26,7 +27,7 @@ awk -v missFrac="$MISSINGFRAC" -v backBoneFile="$BACKBONEFILE" '{
          split($0, seq, "");
          for (i=1; i <= length($0); i++)
          {
-                 if(seq[i] == "-" || toupper(seq[i]) == "N")
+                 if(seq[i] == "-" || toupper(seq[i]) == "N" || toupper(seq[i]) == "X")
                  {
                      excludeArr[i]+= 1;
                  }
@@ -69,4 +70,3 @@ awk -v missFrac="$MISSINGFRAC" -v backBoneFile="$BACKBONEFILE" '{
          firstSeq = 0;
      }
      }' $INFILE
-
