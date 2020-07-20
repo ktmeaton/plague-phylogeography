@@ -102,7 +102,7 @@ jobs:
           mkdir -p test/eager
           nextflow -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
             run nf-core/eager \
-            -r 7b51863957 \
+            -r ${EAGER_NF_REV} \
             --input test/sqlite_import/metadata_sra_eager.tsv \
             --outdir test/eager \
             --fasta test/reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
