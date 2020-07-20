@@ -7,14 +7,14 @@ Geocode addresses in a tsv file.
 scripts/geocode_NextStrain.py \
    --in-tsv Assembly_Modern/nextstrain/metadata_nextstrain.tsv \
    --loc-col BioSampleGeographicLocation \
-   --out-tsv Assembly_Modern/nextstrain/metadata_nextstrain_geocode_country.tsv\
+   --out-tsvAssembly_Modern/nextstrain/metadata_nextstrain_geocode_country.tsv \
    --out-lat-lon Assembly_Modern/nextstrain/lat_longs_country.tsv \
    --div country
 
 scripts/geocode_NextStrain.py \
    --in-tsv Assembly_Modern/nextstrain/metadata_nextstrain.tsv \
    --loc-col BioSampleGeographicLocation \
-   --out-tsv Assembly_Modern/nextstrain/metadata_nextstrain_geocode_state.tsv\
+   --out-tsv Assembly_Modern/nextstrain/metadata_nextstrain_geocode_state.tsv \
    --out-lat-lon Assembly_Modern/nextstrain/lat_longs_state.tsv \
    --div state
 """
@@ -113,6 +113,9 @@ out_lat_lon_file = open(out_lat_lon, "w")
 # ------------------------------------------------------------------------------#
 #                      Constants and Variables                                 #
 # ------------------------------------------------------------------------------#
+
+# output files
+
 
 # Column delimiter
 DELIM = "\t"
