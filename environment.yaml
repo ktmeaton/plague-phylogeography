@@ -7,6 +7,7 @@ channels:
 dependencies:
   - sqlite==3.31.1
   - snippy==4.6.0
+  - bioconda/label/cf201901::vt==0.57721
   - blast==2.9.0
   - mummer==3.23
   - vcftools==0.1.16
