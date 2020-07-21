@@ -99,12 +99,20 @@ jobs:
           cat ${NEXTSTRAIN_CONDA_ENV}.yaml
           conda deactivate
 
-      # 6. Uplod conda export artifacts
+      # 6a. Install nextstrain
+      - name: check artifact files
+        shell: bash -l {0}
+        run: |
+          pwd
+          ls -l *.yaml
+
+      # 6b. Uplod conda export artifacts
       - name: artifact conda-export
         uses: actions/upload-artifact@v2
         with:
           name: conda-export
           path: |
-            ${PHYLO_CONDA_ENV}.yaml
-            ${EAGER_CONDA_ENV}.yaml
-            ${NEXTSTRAIN_CONDA_ENV}.yaml
+            ./nextstrain-8.0.0.yaml
+            ./${PHYLO_CONDA_ENV}.yaml
+            ./${EAGER_CONDA_ENV}.yaml
+            ./${NEXTSTRAIN_CONDA_ENV}.yaml
