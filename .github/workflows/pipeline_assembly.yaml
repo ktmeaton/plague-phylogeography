@@ -74,6 +74,7 @@ jobs:
             --skip_outgroup_download \
             --skip_snippy_multi \
             --outdir test
+          ls -l test/snippy_pairwise/output10X/GC*/
           cat test/snippy_pairwise/output10X/*/*.log
 
       - name: artifact sqlite-import
@@ -86,7 +87,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: snippy-pairwise
-          path: test/snippy_pairwise/output10X/*
+          path: test/snippy_pairwise/output10X/
 
       - name: artifact iqtree
         uses: actions/upload-artifact@v2
