@@ -89,11 +89,14 @@ if (params.help){
 log.info pipelineHeader()
 
 // -------------------------------------------------------------------------- //
-//                              Param Error Checking                          //
+//                           Workflow Variables                               //
 // -------------------------------------------------------------------------- //
 
 // Prefix the baseDir in front of the outdir
 outdir = "$workflow.launchDir/${params.outdir}"
+
+// sra download path
+sra_fastq_dump_path = "$workflow.launchDir/"
 
 // -------------------------------------------------------------------------- //
 //                                Channel Catalogue                           //
