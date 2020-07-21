@@ -99,14 +99,36 @@ jobs:
       - name: example eager
         shell: bash -l {0}
         run: |
-          conda activate ${PHYLO_CONDA_ENV}
-          nextflow run ktmeaton/plague-phylogeography \
-            --skip_assembly_download \
-            --max_datasets_assembly 1 \
-            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
-            --skip_outgroup_download \
-            --outdir test \
-            -resume
+          conda activate ${EAGER_CONDA_ENV}
+          mkdir -p test/eager
+
+          nextflow -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
+            run nf-core/eager \
+            -r ${EAGER_NF_REV} \
+            --input test/sqlite_import/metadata_sra_eager.tsv \
+            --outdir test/eager \
+            --fasta test/reference_genome/GCF_000009065.1_ASM906v1_genomic.fna \
+            --clip_readlength 35 \
+            --preserve5p \
+            --mergedonly \
+            --mapper bwaaln \
+            --bwaalnn 0.01 \
+            --bwaalnl 16 \
+            --run_bam_filtering \
+            --bam_mapping_quality_threshold 30 \
+            --bam_discard_unmapped \
+            --bam_unmapped_type discard \
+            --max_memory "6.GB" \
+            --max_cpus 2
+
+          # Rename deduplication bam for snippy pairwise RG simplificity
+          dedupBam=`ls test/eager/deduplication/*/*_rmdup.bam`
+          ls -l ${dedupBam};
+          for file in `ls ${dedupBam}`;
+          do
+            echo $file
+            mv $file ${file%_*}.bam
+          done
           conda deactivate
 
       - name: artifact sqlite-import
