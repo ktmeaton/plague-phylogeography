@@ -72,10 +72,7 @@ jobs:
             --skip_sra_download \
             --skip_eager \
             --skip_outgroup_download \
-            --skip_snippy_multi \
             --outdir test
-          ls -l test/snippy_pairwise/output10X/GC*/
-          cat test/snippy_pairwise/output10X/*/*.log
 
       - name: artifact sqlite-import
         uses: actions/upload-artifact@v2
