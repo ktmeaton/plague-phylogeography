@@ -90,6 +90,7 @@ jobs:
           conda activate ${PHYLO_CONDA_ENV}
           nextflow run ktmeaton/plague-phylogeography \
             --skip_assembly_download \
+            --max_datasets_assembly 1 \
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --skip_eager \
             --skip_outgroup_download \
@@ -100,6 +101,7 @@ jobs:
         run: |
           nextflow run ktmeaton/plague-phylogeography \
             --skip_assembly_download \
+            --max_datasets_assembly 1 \
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --skip_snippy_pairwise \
             --skip_outgroup_download \
