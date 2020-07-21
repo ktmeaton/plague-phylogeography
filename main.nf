@@ -99,8 +99,23 @@ outdir = "$workflow.launchDir/${params.outdir}"
 sra_fastq_dump_path = "$workflow.launchDir/"
 
 // -------------------------------------------------------------------------- //
-//                                Channel Catalogue                           //
+//                        Workflow Summary Before Pipeline                    //
 // -------------------------------------------------------------------------- //
+log.info"""
+User Name: ${workflow.userName}
+Home Directory: ${workflow.homeDir}
+Project Directory: ${workflow.projectDir}
+Launch Directory: ${workflow.launchDir}
+Output Directory: ${outdir}
+Config Files: ${workflow.configFiles}
+Run Name: ${workflow.runName}
+Session ID: ${workflow.sessionId}
+Profile: ${workflow.profile}
+Max CPUs: ${params.max_cpus}
+Max Memory: ${params.max_memory}
+Max Time: ${params.max_time}
+----------
+""".stripIndent()
 
 // -------------------------------------------------------------------------- //
 //                              NCBImeta Entry Point                          //
@@ -390,13 +405,13 @@ process sra_download{
   mkdir -p ~/.ncbi/
   if [[ -f ~/.ncbi/user-settings.mkfg ]]; then
     if [[ -z `grep "/repository/user/main/public/root" ~/.ncbi/user-settings.mkfg` ]]; then
-      echo '/repository/user/main/public/root = "${params.sra_fastq_dump_path}"' >> $HOME/.ncbi/user-settings.mkfg
+      echo '/repository/user/main/public/root = "${sra_fastq_dump_path}"' >> $HOME/.ncbi/user-settings.mkfg
     fi;
     if [[ -z `grep "/http/timeout/read" ~/.ncbi/user-settings.mkfg` ]]; then
       echo '/http/timeout/read = "10000"' >> $HOME/.ncbi/user-settings.mkfg
     fi;
   else
-    echo '/repository/user/main/public/root = "${params.sra_fastq_dump_path}"' > $HOME/.ncbi/user-settings.mkfg
+    echo '/repository/user/main/public/root = "${sra_fastq_dump_path}"' > $HOME/.ncbi/user-settings.mkfg
   fi
 
   # Create organization directories
