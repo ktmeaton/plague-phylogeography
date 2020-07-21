@@ -86,7 +86,6 @@ jobs:
       - name: example pipeline
         shell: bash -l {0}
         run: |
-          conda info --envs
           conda activate ${PHYLO_CONDA_ENV}
           nextflow run ktmeaton/plague-phylogeography \
             --skip_assembly_download \
@@ -95,16 +94,20 @@ jobs:
             --skip_eager \
             --skip_outgroup_download \
             --outdir test
+          conda deactivate
 
       - name: example eager
         shell: bash -l {0}
         run: |
+          conda activate ${PHYLO_CONDA_ENV}
           nextflow run ktmeaton/plague-phylogeography \
             --skip_assembly_download \
             --max_datasets_assembly 1 \
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --skip_outgroup_download \
-            --outdir test
+            --outdir test \
+            -resume
+          conda deactivate
 
       - name: artifact sqlite-import
         uses: actions/upload-artifact@v2
