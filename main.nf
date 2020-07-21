@@ -762,9 +762,7 @@ process eager{
     --bwaalnn 0.01 \
     --bwaalnl 16 \
     --run_bam_filtering \
-    --bam_mapping_quality_threshold 30 \
-    --bam_discard_unmapped \
-    --bam_unmapped_type discard
+    --bam_mapping_quality_threshold 30
 
   # Rename deduplication bam for snippy pairwise RG simplificity
   dedupBam=`ls deduplication/*/*_rmdup.bam`
