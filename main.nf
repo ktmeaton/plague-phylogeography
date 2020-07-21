@@ -772,14 +772,14 @@ process eager{
     --input ${eager_tsv} \
     --outdir . \
     --fasta ${reference_genome_fna} \
-    --clip_readlength ${params.clip_readlength} \
+    --clip_readlength ${params.eager_clip_readlength} \
     --preserve5p \
     --mergedonly \
     --mapper bwaaln \
     --bwaalnn ${params.eager_bwaalnn} \
     --bwaalnl ${params.eager_bwaalnl} \
     --run_bam_filtering \
-    --bam_mapping_quality_threshold ${params.snippy_mappy_qual} \
+    --bam_mapping_quality_threshold ${params.snippy_map_qual} \
     --bam_discard_unmapped \
     --bam_unmapped_type discard \
     --max_memory ${params.max_memory} \
