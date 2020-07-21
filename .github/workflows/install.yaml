@@ -18,7 +18,6 @@ on:
     # On change to workflow, pipeline
     paths:
       - '.github/workflows/install.yaml'
-      - 'main.nf'
       - 'nextflow.config'
       - 'environment.yaml'
       - 'config/nextstrain.yaml'
