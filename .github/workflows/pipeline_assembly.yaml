@@ -82,6 +82,12 @@ jobs:
           name: sqlite-import
           path: test/sqlite_import/
 
+      - name: artifact snippy-pairwise
+        uses: actions/upload-artifact@v2
+        with:
+          name: snippy-pairwise
+          path: test/snippy_pairwise/output10X/*
+
       - name: artifact iqtree
         uses: actions/upload-artifact@v2
         with:
