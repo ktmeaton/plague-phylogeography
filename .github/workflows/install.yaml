@@ -63,7 +63,8 @@ jobs:
         run: |
           conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
           conda activate ${PHYLO_CONDA_ENV}
-          conda list --export
+          conda list --export > ${PHYLO_CONDA_ENV}.yaml
+          cat ${PHYLO_CONDA_ENV}.yaml
           conda deactivate
 
       # 4a. Install nf-core/eager
@@ -82,7 +83,8 @@ jobs:
           conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow
           conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
           conda activate ${EAGER_CONDA_ENV}
-          conda list --export
+          conda list --export > ${EAGER_CONDA_ENV}.yaml
+          cat ${EAGER_CONDA_ENV}.yaml
           conda deactivate
 
       # 5a. Install nextstrain
@@ -93,5 +95,16 @@ jobs:
           conda activate ${NEXTSTRAIN_CONDA_ENV}
           npm install --global auspice@2.17.0
           auspice --version
-          conda list --export
+          conda list --export > ${NEXTSTRAIN_CONDA_ENV}.yaml
+          cat ${NEXTSTRAIN_CONDA_ENV}.yaml
           conda deactivate
+
+      # 6. Uplod conda export artifacts
+      - name: artifact conda-export
+        uses: actions/upload-artifact@v2
+        with:
+          name: conda-export
+          path: |
+            ${PHYLO_CONDA_ENV}.yaml
+            ${EAGER_CONDA_ENV}.yaml
+            ${NEXTSTRAIN_CONDA_ENV}.yaml
