@@ -766,21 +766,24 @@ process eager{
   conda activate nf-core-eager-2.2.0dev
 
   # Run the eager command
-  nextflow \
-    -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
+  nextflow -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
     run nf-core/eager \
     -r ${params.eager_rev} \
     --input ${eager_tsv} \
     --outdir . \
     --fasta ${reference_genome_fna} \
-    --clip_readlength 35 \
+    --clip_readlength ${params.clip_readlength} \
     --preserve5p \
     --mergedonly \
     --mapper bwaaln \
-    --bwaalnn 0.01 \
-    --bwaalnl 16 \
+    --bwaalnn ${params.eager_bwaalnn} \
+    --bwaalnl ${params.eager_bwaalnl} \
     --run_bam_filtering \
-    --bam_mapping_quality_threshold 30
+    --bam_mapping_quality_threshold ${params.snippy_mappy_qual} \
+    --bam_discard_unmapped \
+    --bam_unmapped_type discard \
+    --max_memory ${params.max_memory} \
+    --max_cpus ${params.max_cpus}
 
   # Rename deduplication bam for snippy pairwise RG simplificity
   dedupBam=`ls deduplication/*/*_rmdup.bam`
