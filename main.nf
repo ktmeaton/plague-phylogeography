@@ -840,6 +840,7 @@ process snippy_pairwise{
   file "output${params.snippy_ctg_depth}X/*/*_snippy.bam" into ch_snippy_bam_pairwise_qualimap
   file "output${params.snippy_ctg_depth}X/*/*_snippy.csv" into ch_snippy_csv_snpEff_multiqc
   file "output${params.snippy_ctg_depth}X/*/*{.fa,.bed,.filt.vcf,.genes.txt,.gff,.html,.log,.raw.vcf,.rename.csv,.report.txt,_snippy.tab,_snippy.txt,_snippy.vcf}"
+  file "output${params.snippy_ctg_depth}X/*/reference/"
 
   when:
   !params.skip_snippy_pairwise
