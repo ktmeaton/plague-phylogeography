@@ -32,11 +32,21 @@ jobs:
             /home/runner/conda_pkgs_dir
           #key: conda-cache-${{ runner.os }}-${{ hashFiles('./environment.yaml') }}
           key: conda-cache-${{ runner.os }}-test3
-      # Create nf-core/eager conda env, supplementary install
-      - name: test env
+      # Create env
+      - name: create env
         shell: bash -l {0}
         run: |
           conda create -n test-env
-          conda activate test-env
           conda install -n test-env -c bioconda nextflow
+      # Test env
+      - name: test env
+        shell: bash -l {0}
+        run: |
+          conda activate test-env
+          nextflow -v
           conda deactivate
+      # Check env
+      - name: check env
+        shell: bash -l {0}
+        run: |
+          conda env list
