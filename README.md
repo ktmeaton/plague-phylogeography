@@ -152,6 +152,16 @@ The current usage is described in the [Main Exhibit page](https://plague-phyloge
 
 ## Troubleshooting
 
+### Conda
+
+Detailed environment files for successful builds on GitHub Actions server can be found here:
+
+* [env-plague-phylogeography](https://github.com/ktmeaton/plague-phylogeography/suites/950969190/artifacts/11859138)
+* [env-eager](https://github.com/ktmeaton/plague-phylogeography/suites/950969190/artifacts/11859136)
+* [env-nextstrain](https://github.com/ktmeaton/plague-phylogeography/suites/950969190/artifacts/11859136)
+
+### Snippy
+
 ```bash
 ------------- EXCEPTION: Bio::Root::Exception -------------
   MSG: Can't build a GFF object with the unknown version 3
