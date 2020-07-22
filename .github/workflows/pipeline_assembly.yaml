@@ -3,7 +3,8 @@ name: Pipeline Assembly
 
 # Global workflow environment variables
 env:
-    PHYLO_NF_REV: "master"
+    CONDA_ENVS_PATH: "/home/runner/miniconda/envs:/usr/share/miniconda/envs"
+    CONDA_PKGS_DIRS: "/home/runner/miniconda/pkgs"
     PHYLO_CONDA_ENV: "plague-phylogeography-0.1.4dev"
 
 on:
@@ -16,7 +17,7 @@ on:
       - '.github/workflows/pipeline_assembly.yaml'
       - 'main.nf'
       - 'nextflow.config'
-      - 'environment.yaml'
+      #- 'environment.yaml'
 
   # Triggered on PR for all branches, pipeline
   pull_request:
@@ -45,7 +46,6 @@ jobs:
         shell: bash -l {0}
         run: |
           nextflow pull ktmeaton/plague-phylogeography
-          nextflow pull ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV}
           nextflow run ktmeaton/plague-phylogeography --version
           # Move env files into github workspace for hashing
           cp ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml \
@@ -71,8 +71,9 @@ jobs:
       #------------------------------------------------------------------------#
       #                             Test Pipeline                              #
       #------------------------------------------------------------------------#
-      # Run Assembly Pipeline
+      # Run Assembly Pipeline (only if cache restored)
       - name: assembly pipeline
+        if: steps.plague-phylogeography-env-cache.outputs.cache-hit == 'true'
         shell: bash -l {0}
         run: |
           conda activate ${PHYLO_CONDA_ENV}
