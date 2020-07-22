@@ -36,6 +36,12 @@ jobs:
           #key: conda-cache-${{ runner.os }}-${{ hashFiles('./environment.yaml') }}
           # Is the key a problem? conda-cache-Linux-test3 worked fine
           key: conda-env-cache-${{ runner.os }}-test1
+      # Check env pre
+      - name: check env pre
+        shell: bash -l {0}
+        run: |
+          conda env list
+          ls -l /home/runner/miniconda/envs/test-env
       # Create env
       - name: create env
         shell: bash -l {0}
