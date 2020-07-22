@@ -30,7 +30,7 @@ jobs:
       #------------------------------------------------------------------------#
       #                     Acquire env files and src code                     #
       #------------------------------------------------------------------------#
-      # Install nf-core/eager
+      # download nextflow pipelines
       - name: download nf-core/eager
         shell: bash -l {0}
         run: |
@@ -39,16 +39,19 @@ jobs:
           nextflow run nf-core/eager -r ${EAGER_NF_REV} --help
           # Move env file into github workspace for hashing
           cp ~/.nextflow/assets/nf-core/eager/environment.yml config/eager-environment.yaml
+      # download plague-phylogeography
+      #- name: download plague-phylogeography
+      #------------------------------------------------------------------------#
+      #                        Setup conda environments                        #
+      #------------------------------------------------------------------------#
       # Setup conda
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
-      # Cache and Restore the conda pkgs directory
-      # Only if the environment.yml file changes
+      # Restore (and later cache) the eager conda env if the yaml file changed
       - name: cache eager env
         uses: actions/cache@v2
         id: eager-env-cache
         with:
-          # Cache conda env, exclude test
           path: |
             /home/runner/miniconda/envs/nf-core-eager-2.2.0dev
           key: eager-env-cache-${{ runner.os }}-${{ hashFiles('config/eager-environment.yaml') }}
@@ -67,7 +70,9 @@ jobs:
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
           conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow
           conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
-
+      #------------------------------------------------------------------------#
+      #                        Test conda environments                         #
+      #------------------------------------------------------------------------#
       # Test env
       - name: test env
         shell: bash -l {0}
