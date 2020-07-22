@@ -2,11 +2,7 @@ name: Cache Test
 
 # Global workflow environment variables
 env:
-    PHYLO_NF_REV: "master"
-    EAGER_NF_REV: "7b51863957"
-    PHYLO_CONDA_ENV: "plague-phylogeography-0.1.4dev"
     EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
-    NEXTSTRAIN_CONDA_ENV: "nextstrain-8.0.0"
     CONDA_ENV_DIR: "/usr/share/miniconda/envs/"
     # Manually change this in the artifact section
 
@@ -45,7 +41,7 @@ jobs:
         with:
           path: |
             /usr/share/miniconda/pkgs
-          key: conda-cache-${{ runner.os }}-${PHYLO_CONDA_ENV}=${{ hashFiles('*') }}
+          key: conda-cache-${{ runner.os }}=${{ hashFiles('*') }}
 
       # 2. Setup conda
       - name: setup conda
