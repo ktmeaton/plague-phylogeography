@@ -29,10 +29,13 @@ jobs:
       - name: cache conda packages
         uses: actions/cache@v2
         with:
+          # Cache conda env, exclude base and test
           path: |
-            /home/runner/conda_pkgs_dir
+            /home/runner/miniconda/envs/test-env
+            !/home/runner/miniconda/envs/base
+            !/home/runner/miniconda/envs/test
           #key: conda-cache-${{ runner.os }}-${{ hashFiles('./environment.yaml') }}
-          key: conda-cache-${{ runner.os }}-test3
+          key: conda-env-cache-${{ runner.os }}-test1
       # Create env
       - name: create env
         shell: bash -l {0}
