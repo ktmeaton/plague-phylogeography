@@ -33,7 +33,6 @@ jobs:
           # Cache conda env, exclude test
           path: |
             /home/runner/miniconda/envs/test-env
-            !/home/runner/miniconda/envs/test
           #key: conda-cache-${{ runner.os }}-${{ hashFiles('./environment.yaml') }}
           key: conda-env-cache-${{ runner.os }}-test1
       # Create env
