@@ -27,6 +27,9 @@ jobs:
         run: |
           wget -qO- get.nextflow.io | bash
           sudo mv nextflow /usr/local/bin/
+      #------------------------------------------------------------------------#
+      #                     Acquire env files and src code                     #
+      #------------------------------------------------------------------------#
       # Install nf-core/eager
       - name: download nf-core/eager
         shell: bash -l {0}
@@ -46,13 +49,14 @@ jobs:
           # Cache conda env, exclude test
           path: |
             /home/runner/miniconda/envs/nf-core-eager-2.2.0dev
-          key: eager-env-cache-${{ runner.os }}-${{ hashFiles('~/.nextflow/assets/nf-core/eager/environment.yml') }}
+          key: eager-env-cache-${{ runner.os }}-${{ hashFiles('/home/runner/.nextflow/assets/nf-core/eager/environment.yml') }}
       # Check env pre
       - name: check env pre
         shell: bash -l {0}
         run: |
           conda env list
           ls -l /home/runner/miniconda/envs/
+          ls -l /home/runner/.nextflow/assets/nf-core/eager/environment.yml
       # Create env
       - name: create conda env
         if: steps.eager-env-cache.outputs.cache-hit != 'true'
