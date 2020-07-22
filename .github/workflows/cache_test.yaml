@@ -20,39 +20,27 @@ jobs:
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
-      # Install nextflow
-      - name: install nextflow
-        run: |
-          wget -qO- get.nextflow.io | bash
-          sudo mv nextflow /usr/local/bin/
       # Setup conda
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
       # Conda check
       - name: check conda
         run: |
-          ls -l /usr/share/miniconda/
-      # Cache and Restore the conda pkgs directory (eager)
+          ls -l /usr/share/miniconda/pkgs/
+      # Cache and Restore the conda pkgs directory
       # Only if the environment.yaml file changes
       - name: cache conda packages
         uses: actions/cache@v2
         with:
           path: |
             /usr/share/miniconda/pkgs
-          key: conda-cache-${{ runner.os }}-${{ hashFiles('./environment.yaml') }}
-      # Install nf-core/eager
-      - name: install nf-core/eager
-        shell: bash -l {0}
-        run: |
-          nextflow pull nf-core/eager
-          nextflow pull nf-core/eager -r ${EAGER_NF_REV}
-          nextflow run nf-core/eager -r ${EAGER_NF_REV} --help
+          #key: conda-cache-${{ runner.os }}-${{ hashFiles('./environment.yaml') }}
+          key: conda-cache-${{ runner.os }}-test
       # Create nf-core/eager conda env, supplementary install
-      - name: setup nf-core/eager
+      - name: test env
         shell: bash -l {0}
         run: |
-          conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
-          conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow
-          conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
-          conda activate ${EAGER_CONDA_ENV}
+          conda create -n test-env
+          conda activate test-env
+          conda install -n test-env -c bioconda nextflow
           conda deactivate
