@@ -25,7 +25,7 @@ jobs:
         run: |
           wget -qO- get.nextflow.io | bash
           sudo mv nextflow /usr/local/bin/
-      # Cache and Restore the conda pkgs directory
+      # Cache and Restore the conda pkgs directory (eager)
       # Only if the environment.yaml file changes
       - name: cache conda packages
         uses: actions/cache@v2
