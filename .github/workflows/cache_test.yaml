@@ -29,6 +29,7 @@ jobs:
       # Only if the environment.yaml file changes
       - name: cache conda packages
         uses: actions/cache@v2
+        id: cache-test
         with:
           # Cache conda env, exclude test
           path: |
@@ -44,7 +45,7 @@ jobs:
           ls -l /home/runner/miniconda/envs/test-env
       # Create env
       - name: create env
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache-test.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run: |
           conda create -n test-env
