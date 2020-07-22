@@ -7,6 +7,7 @@ env:
     PHYLO_CONDA_ENV: "plague-phylogeography-0.1.4dev"
     EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
     NEXTSTRAIN_CONDA_ENV: "nextstrain-8.0.0"
+    # Manually change this in the artifact section
 
 
 #This is a workflow for installation testing.
@@ -63,8 +64,8 @@ jobs:
         run: |
           conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
           conda activate ${PHYLO_CONDA_ENV}
-          conda list --export > ${PHYLO_CONDA_ENV}.yaml
-          cat ${PHYLO_CONDA_ENV}.yaml
+          conda list --export > ${PHYLO_CONDA_ENV}.txt
+          cat ${PHYLO_CONDA_ENV}.txt
           conda deactivate
 
       # 4a. Install nf-core/eager
@@ -83,8 +84,8 @@ jobs:
           conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow
           conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
           conda activate ${EAGER_CONDA_ENV}
-          conda list --export > ${EAGER_CONDA_ENV}.yaml
-          cat ${EAGER_CONDA_ENV}.yaml
+          conda list --export > ${EAGER_CONDA_ENV}.txt
+          cat ${EAGER_CONDA_ENV}.txt
           conda deactivate
 
       # 5a. Install nextstrain
@@ -95,8 +96,8 @@ jobs:
           conda activate ${NEXTSTRAIN_CONDA_ENV}
           npm install --global auspice@2.17.0
           auspice --version
-          conda list --export > ${NEXTSTRAIN_CONDA_ENV}.yaml
-          cat ${NEXTSTRAIN_CONDA_ENV}.yaml
+          conda list --export > ${NEXTSTRAIN_CONDA_ENV}.txt
+          cat ${NEXTSTRAIN_CONDA_ENV}.txt
           conda deactivate
 
       # 6a. Install nextstrain
@@ -107,12 +108,20 @@ jobs:
           ls -l *.yaml
 
       # 6b. Uplod conda export artifacts
-      - name: artifact conda-export
+      - name: artifact env-plague-phylogeography
         uses: actions/upload-artifact@v2
         with:
-          name: conda-export
-          path: |
-            ./nextstrain-8.0.0.yaml
-            ./${PHYLO_CONDA_ENV}.yaml
-            ./${EAGER_CONDA_ENV}.yaml
-            ./${NEXTSTRAIN_CONDA_ENV}.yaml
+          name: env-plague-phylogeography
+          path: ./plague-phylogeography-0.1.4dev.txt
+
+      - name: artifact env-eager
+        uses: actions/upload-artifact@v2
+        with:
+          name: env-eager
+          path: ./nf-core-eager-2.2.0dev.txt
+
+      - name: artifact env-nextstrain
+        uses: actions/upload-artifact@v2
+        with:
+          name: env-nextstrain
+          path: ./nextstrain-8.0.0.txt
