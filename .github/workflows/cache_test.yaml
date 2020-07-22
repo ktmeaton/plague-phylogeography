@@ -5,20 +5,16 @@ env:
     EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
     EAGER_NF_REV: "7b51863957"
 
-#This is a workflow for installation testing.
+
 on:
-  # Triggered on Push for any branch
   push:
     branches:
       - '*'
-    # On change to workflow, pipeline
     paths:
       - '.github/workflows/cache_test.yaml'
 
-
 jobs:
-
-  cache test:
+  cache_test:
     runs-on: ubuntu-latest
     steps:
 
@@ -27,11 +23,6 @@ jobs:
         run: |
           wget -qO- get.nextflow.io | bash
           sudo mv nextflow /usr/local/bin/
-
-      - name: conda info
-        run: |
-          conda info --envs
-          conda config --show
 
       # Cache and Restore the conda pkgs directory
       # Only if the environment.yaml file changes
