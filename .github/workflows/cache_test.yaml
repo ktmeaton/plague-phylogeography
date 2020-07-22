@@ -17,13 +17,14 @@ jobs:
   cache_test:
     runs-on: ubuntu-latest
     steps:
-
-      # 1. Install nextflow
+      # Checkout Repository
+      - name: checkout repo
+        uses: actions/checkout@v2
+      # Install nextflow
       - name: install nextflow
         run: |
           wget -qO- get.nextflow.io | bash
           sudo mv nextflow /usr/local/bin/
-
       # Cache and Restore the conda pkgs directory
       # Only if the environment.yaml file changes
       - name: cache conda packages
@@ -31,22 +32,19 @@ jobs:
         with:
           path: |
             /usr/share/miniconda/pkgs
-          key: conda-cache-${{ runner.os }}-${{ hashFiles('environment.yaml') }}
-
-      # 2. Setup conda
+          key: conda-cache-${{ runner.os }}-${{ hashFiles('./environment.yaml') }}
+      # Setup conda
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
-
-      # 3a. Install nf-core/eager
-      - name: install nf nf-core/eager
+      # Install nf-core/eager
+      - name: install nf-core/eager
         shell: bash -l {0}
         run: |
           nextflow pull nf-core/eager
           nextflow pull nf-core/eager -r ${EAGER_NF_REV}
           nextflow run nf-core/eager -r ${EAGER_NF_REV} --help
-
-      # 3b. Install nf-core/eager
-      - name: install conda nf-core/eager
+      # Create nf-core/eager conda env, supplementary install
+      - name: setup nf-core/eager
         shell: bash -l {0}
         run: |
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
