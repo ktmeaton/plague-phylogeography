@@ -127,7 +127,11 @@ jobs:
           which nextflow
           nextflow -v
           conda deactivate
+          echo "conda activate ${NEXTSTRAIN_CONDA_ENV}"
           conda activate ${NEXTSTRAIN_CONDA_ENV}
+          echo "which auspice"
           which auspice
-          auspice --version
+          echo "auspice -v"
+          auspice -v
+          echo "conda deactivate"
           conda deactivate
