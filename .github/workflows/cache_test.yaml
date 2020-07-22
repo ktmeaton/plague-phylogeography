@@ -74,20 +74,31 @@ jobs:
             /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
           key: plague-phylogeography-env-cache-${{ runner.os }}-test2-${{ hashFiles('./ktmeaton-plague-phylogeography.yaml') }}
       # Create env
-      - name: create conda env
+      - name: create nf-core/eager env
         if: steps.eager-env-cache.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run: |
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
-          conda install -n ${EAGER_CONDA_ENV} -c anaconda nextflow==${NF_VER}
+          conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow==${NF_VER}
           conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
+      # Create env
+      - name: create plague-phylogeography env
+        if: steps.plague-phylogeography-env-cache.outputs.cache-hit != 'true'
+        shell: bash -l {0}
+        run: |
+          conda env create -f ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
       #------------------------------------------------------------------------#
       #                        Test conda environments                         #
       #------------------------------------------------------------------------#
       # Test env
-      - name: test env
+      - name: test environments
         shell: bash -l {0}
         run: |
           conda activate ${EAGER_CONDA_ENV}
+          which nextflow
+          nextflow -v
+          conda deactivate
+          conda activate ${PHYLO_CONDA_ENV}
+          which nextflow
           nextflow -v
           conda deactivate
