@@ -20,12 +20,12 @@ jobs:
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
-      # Make conda envs and pkgs local
-      - name: make conda local
-        run: export CONDA_ENVS_PATH=/home/runner/miniconda/envs:/usr/share/miniconda/envs
       # Setup conda
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
+      # Make conda envs and pkgs local
+      - name: make conda local
+        run: export CONDA_ENVS_PATH=/home/runner/miniconda/envs:/usr/share/miniconda/envs
       # Cache and Restore the conda pkgs directory
       # Only if the environment.yaml file changes
       - name: cache conda packages
