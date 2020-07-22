@@ -108,7 +108,7 @@ jobs:
         run: |
           conda env create -f ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml
           conda activate ${NEXTSTRAIN_CONDA_ENV}
-          npm install --global auspice@${AUSPICE_VER}
+          npm install auspice@${AUSPICE_VER}
           conda deactivate
       #------------------------------------------------------------------------#
       #                        Test conda environments                         #
