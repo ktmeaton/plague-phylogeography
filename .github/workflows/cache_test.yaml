@@ -4,6 +4,7 @@ name: Cache Test
 env:
     EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
     EAGER_NF_REV: "7b51863957"
+    CONDA_PKGS_DIR: "/home/runner/conda_pkgs_dir"
 
 
 on:
@@ -23,19 +24,15 @@ jobs:
       # Setup conda
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
-      # Conda check
-      - name: check conda
-        run: |
-          ls -l /usr/share/miniconda/pkgs/
       # Cache and Restore the conda pkgs directory
       # Only if the environment.yaml file changes
       - name: cache conda packages
         uses: actions/cache@v2
         with:
           path: |
-            /usr/share/miniconda/pkgs
+            ${{ CONDA_PKGS_DIR }}
           #key: conda-cache-${{ runner.os }}-${{ hashFiles('./environment.yaml') }}
-          key: conda-cache-${{ runner.os }}-test
+          key: conda-cache-${{ runner.os }}-test2
       # Create nf-core/eager conda env, supplementary install
       - name: test env
         shell: bash -l {0}
