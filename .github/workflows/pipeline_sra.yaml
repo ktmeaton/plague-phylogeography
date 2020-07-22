@@ -1,5 +1,5 @@
 name: Pipeline SRA
-#This is a workflow for full pipeline testing.
+#This is a workflow for sra/eager pipeline testing.
 
 # Global workflow environment variables
 env:
