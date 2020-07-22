@@ -25,6 +25,13 @@ jobs:
         run: |
           wget -qO- get.nextflow.io | bash
           sudo mv nextflow /usr/local/bin/
+      # Setup conda
+      - name: setup conda
+        uses: goanpeca/setup-miniconda@v1
+      # Conda check
+      - name: check conda
+        run: |
+          ls -l /usr/share/miniconda/
       # Cache and Restore the conda pkgs directory (eager)
       # Only if the environment.yaml file changes
       - name: cache conda packages
@@ -33,9 +40,6 @@ jobs:
           path: |
             /usr/share/miniconda/pkgs
           key: conda-cache-${{ runner.os }}-${{ hashFiles('./environment.yaml') }}
-      # Setup conda
-      - name: setup conda
-        uses: goanpeca/setup-miniconda@v1
       # Install nf-core/eager
       - name: install nf-core/eager
         shell: bash -l {0}
