@@ -2,7 +2,6 @@ name: Cache Test
 
 # Global workflow environment variables
 env:
-    CONDA_PKGS_DIR: "/home/runner/conda_pkgs_dir"
     EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
     EAGER_NF_REV: "7b51863957"
 
@@ -29,9 +28,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ${CONDA_PKGS_DIR}
+            /home/runner/conda_pkgs_dir
           #key: conda-cache-${{ runner.os }}-${{ hashFiles('./environment.yaml') }}
-          key: conda-cache-${{ runner.os }}-test2
+          key: conda-cache-${{ runner.os }}-test3
       # Create nf-core/eager conda env, supplementary install
       - name: test env
         shell: bash -l {0}
