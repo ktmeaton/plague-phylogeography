@@ -20,9 +20,6 @@ jobs:
   cache_test:
     runs-on: ubuntu-latest
     steps:
-      # Checkout Repository
-      - name: checkout repo
-        uses: actions/checkout@v2
       # Install nextflow
       - name: install nextflow
         run: |
@@ -39,23 +36,43 @@ jobs:
           nextflow pull nf-core/eager -r ${EAGER_NF_REV}
           nextflow run nf-core/eager -r ${EAGER_NF_REV} --help
           # Move env file into github workspace for hashing
-          cp ~/.nextflow/assets/nf-core/eager/environment.yml config/eager-environment.yaml
-      # download plague-phylogeography
-      #- name: download plague-phylogeography
+          cp ~/.nextflow/assets/nf-core/eager/environment.yml \
+            ./nf-core-eager.yaml
+      - name: download ktmeaton/plague-phylogeography
+        shell: bash -l {0}
+        run: |
+          nextflow pull ktmeaton/plague-phylogeography
+          nextflow pull ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV}
+          nextflow run ktmeaton/plague-phylogeography --version
+          # Move env files into github workspace for hashing
+          cp ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml \
+            ./ktmeaton-plague-phylogeography.yaml
+          cp ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml \
+            ./nextstrain.yaml
       #------------------------------------------------------------------------#
       #                        Setup conda environments                        #
       #------------------------------------------------------------------------#
       # Setup conda
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
-      # Restore (and later cache) the eager conda env if the yaml file changed
+      # Restore (and later cache) the nf-core/eager conda env
+      # Only if the environment yaml file changed
       - name: cache eager env
         uses: actions/cache@v2
         id: eager-env-cache
         with:
           path: |
             /home/runner/miniconda/envs/nf-core-eager-2.2.0dev
-          key: eager-env-cache-${{ runner.os }}-test1-${{ hashFiles('config/eager-environment.yaml') }}
+          key: eager-env-cache-${{ runner.os }}-test2-${{ hashFiles('./nf-core-eager.yaml') }}
+      # Restore (and later cache) the plague-phylogeography conda env
+      # Only if the environment yaml file changed
+      - name: cache plague-phylogeography env
+        uses: actions/cache@v2
+        id: plague-phylogeography-env-cache
+        with:
+          path: |
+            /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
+          key: plague-phylogeography-env-cache-${{ runner.os }}-test2-${{ hashFiles('./ktmeaton-plague-phylogeography.yaml') }}
       # Create env
       - name: create conda env
         if: steps.eager-env-cache.outputs.cache-hit != 'true'
