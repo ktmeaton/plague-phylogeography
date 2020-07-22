@@ -34,11 +34,18 @@ jobs:
           wget -qO- get.nextflow.io | bash
           sudo mv nextflow /usr/local/bin/
 
-      #- name: Cache Conda Packages
-      #  uses: actions/cache@v2
-      #  with:
-      #    path: /usr/share/miniconda/pkgs/
-      #    key: conda-cache-${{ runner.os }}-${PHYLO_CONDA_ENV}=${{ hashFiles('*') }}
+      - name: conda info
+        run: |
+          conda info --envs
+          conda config --show
+
+      # Cache and Restore the conda pkgs directory
+      - name: cache conda packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            /usr/share/miniconda/pkgs
+          key: conda-cache-${{ runner.os }}-${PHYLO_CONDA_ENV}=${{ hashFiles('*') }}
 
       # 2. Setup conda
       - name: setup conda
