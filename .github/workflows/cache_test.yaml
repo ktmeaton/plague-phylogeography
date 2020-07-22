@@ -3,9 +3,7 @@ name: Cache Test
 # Global workflow environment variables
 env:
     EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
-    CONDA_ENV_DIR: "/usr/share/miniconda/envs/"
-    # Manually change this in the artifact section
-
+    EAGER_NF_REV: "7b51863957"
 
 #This is a workflow for installation testing.
 on:
@@ -20,7 +18,7 @@ on:
 
 jobs:
 
-  nextflow:
+  cache test:
     runs-on: ubuntu-latest
     steps:
 
@@ -36,12 +34,13 @@ jobs:
           conda config --show
 
       # Cache and Restore the conda pkgs directory
+      # Only if the environment.yaml file changes
       - name: cache conda packages
         uses: actions/cache@v2
         with:
           path: |
             /usr/share/miniconda/pkgs
-          key: conda-cache-${{ runner.os }}=${{ hashFiles('*') }}
+          key: conda-cache-${{ runner.os }}-${{ hashFiles('environment.yaml') }}
 
       # 2. Setup conda
       - name: setup conda
