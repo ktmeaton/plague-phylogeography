@@ -7,6 +7,7 @@ env:
     PHYLO_CONDA_ENV: "plague-phylogeography-0.1.4dev"
     EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
     NEXTSTRAIN_CONDA_ENV: "nextstrain-8.0.0"
+    CONDA_ENV_DIR: "/usr/share/miniconda/envs/"
     # Manually change this in the artifact section
 
 
@@ -89,6 +90,21 @@ jobs:
           conda deactivate
 
       # 5a. Install nextstrain
+      # Cache node modules
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          # But does conda change this?
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
       - name: install conda nextstrain
         shell: bash -l {0}
         run: |
@@ -98,6 +114,8 @@ jobs:
           auspice --version
           conda list --export > ${NEXTSTRAIN_CONDA_ENV}.txt
           cat ${NEXTSTRAIN_CONDA_ENV}.txt
+          ls -al ~/.npm/
+          ls -al ${CONDA_ENV_DIR}/${NEXTSTRAIN_CONDA_ENV}/**/.npm/
           conda deactivate
 
       # 6. Uplod conda export artifacts
