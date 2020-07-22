@@ -1,0 +1,63 @@
+name: Cache Test
+
+# Global workflow environment variables
+env:
+    PHYLO_NF_REV: "master"
+    EAGER_NF_REV: "7b51863957"
+    PHYLO_CONDA_ENV: "plague-phylogeography-0.1.4dev"
+    EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
+    NEXTSTRAIN_CONDA_ENV: "nextstrain-8.0.0"
+    CONDA_ENV_DIR: "/usr/share/miniconda/envs/"
+    # Manually change this in the artifact section
+
+
+#This is a workflow for installation testing.
+on:
+  # Triggered on Push for any branch
+  push:
+    branches:
+      - '*'
+    # On change to workflow, pipeline
+    paths:
+      - '.github/workflows/cache_test.yaml'
+
+
+jobs:
+
+  nextflow:
+    runs-on: ubuntu-latest
+    steps:
+
+      # 1. Install nextflow
+      - name: install nextflow
+        run: |
+          wget -qO- get.nextflow.io | bash
+          sudo mv nextflow /usr/local/bin/
+
+      #- name: Cache Conda Packages
+      #  uses: actions/cache@v2
+      #  with:
+      #    path: /usr/share/miniconda/pkgs/
+      #    key: conda-cache-${{ runner.os }}-${PHYLO_CONDA_ENV}=${{ hashFiles('*') }}
+
+      # 2. Setup conda
+      - name: setup conda
+        uses: goanpeca/setup-miniconda@v1
+
+      # 3a. Install nf-core/eager
+      - name: install nf nf-core/eager
+        shell: bash -l {0}
+        run: |
+          nextflow pull nf-core/eager
+          nextflow pull nf-core/eager -r ${EAGER_NF_REV}
+          nextflow run nf-core/eager -r ${EAGER_NF_REV} --help
+
+      # 3b. Install nf-core/eager
+      - name: install conda nf-core/eager
+        shell: bash -l {0}
+        run: |
+          conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
+          conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow
+          conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
+          conda activate ${EAGER_CONDA_ENV}
+          conda deactivate
