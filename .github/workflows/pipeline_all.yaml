@@ -91,7 +91,9 @@ jobs:
             --max_datasets_assembly 2 \
             --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --skip_outgroup_download \
-            --iqtree
+            --iqtree \
+            #--iqtree_branch_support \
+            #--iqtree_runs 10 \
             --outdir test \
             --max_memory "6.GB" \
             --max_cpus 2
