@@ -1240,7 +1240,7 @@ process iqtree{
 
   # Setup the branch support param
   if [[ ${params.iqtree_branch_support} == "true"  ]]; then
-    BRANCH_SUPPORT="--bnni --ufboot ${params.iqtree_ufboot}";
+    BRANCH_SUPPORT="--bnni --ufboot ${params.iqtree_ufboot} --ufjack ${params.iqtree_ufjack} --jack-prop ${params.iqtree_jack_prop} --alrt ${params.iqtree_ufboot}";
     SUFFIX="_bootstrap";
   else
     BRANCH_SUPPORT="";
