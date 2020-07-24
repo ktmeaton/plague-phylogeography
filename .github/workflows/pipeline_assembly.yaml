@@ -91,12 +91,11 @@ jobs:
         run: |
           conda activate ${PHYLO_CONDA_ENV}
           nextflow run -r ${GITHUB_SHA} ${GITHUB_REPOSITORY} \
-            --max_datasets_assembly 4 \
+            --max_datasets_assembly 3 \
             --skip_sra_download \
             --skip_eager \
             --skip_outgroup_download \
             --iqtree_branch_support \
-            #--iqtree_runs 10 \
             --outdir test \
             -resume \
             ${GH_RESOURCES}
