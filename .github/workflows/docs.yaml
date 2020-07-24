@@ -52,6 +52,7 @@ jobs:
           cd docs/
           make html
           update=`git diff README.rst`
+          echo $update;
           echo "::set-output name={readme-update}::{$update}"
       #------------------------------------------------------------------------#
       # Commit and push the new README
