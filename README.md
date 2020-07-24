@@ -52,9 +52,6 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod 755 Miniconda3-latest-Linux-x86_64.sh
 ./Miniconda3-latest-Linux-x86_64.sh
 conda config --set auto_activate_base False
-conda config --add channels defaults
-conda config --add channels bioconda
-conda config --add channels conda-forge
 ```
 
 ### Install Nextflow
@@ -82,7 +79,7 @@ conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
 Install supplementary programs to the nf-core/eager environment:
 
 ```bash
-conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow
+conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow==20.01.0
 conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
 ```
 
