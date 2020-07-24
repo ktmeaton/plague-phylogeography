@@ -74,7 +74,7 @@ jobs:
         with:
           path: |
             /home/runner/miniconda/envs/nf-core-eager-2.2.0dev
-          key: eager-env-cache-${{ runner.os }}-test2-${{ hashFiles('./nf-core-eager.yaml') }}
+          key: eager-env-${{ runner.os }}-${{ hashFiles('./nf-core-eager.yaml') }}
 
       - name: cache plague-phylogeography env
         uses: actions/cache@v2
@@ -82,7 +82,7 @@ jobs:
         with:
           path: |
             /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
-          key: plague-phylogeography-env-cache-${{ runner.os }}-test2-${{ hashFiles('./plague-phylogeography.yaml') }}
+          key: plague-phylogeography-env-${{ runner.os }}-${{ hashFiles('./plague-phylogeography.yaml') }}
 
       - name: cache nextstrain env
         uses: actions/cache@v2
@@ -90,7 +90,7 @@ jobs:
         with:
           path: |
             /home/runner/miniconda/envs/nextstrain-8.0.0
-          key: nextstrain-env-cache-${{ runner.os }}-test2-${{ hashFiles('./nextstrain.yaml') }}
+          key: nextstrain-env-${{ runner.os }}-${{ hashFiles('./nextstrain.yaml') }}
 
       #------------------------------------------------------------------------#
       # create conda environments (if not restored)
