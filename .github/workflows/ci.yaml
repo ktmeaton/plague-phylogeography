@@ -1,5 +1,6 @@
+#------------------------------------------------------------------------------#
 name: Continuous Integration
-
+#------------------------------------------------------------------------------#
 # Global workflow environment variables
 env:
     EAGER_CONDA_ENV: "nf-core-eager-2.2.0dev"
@@ -10,29 +11,28 @@ env:
     CONDA_PKGS_DIRS: "/home/runner/miniconda/pkgs"
     NF_VER: "20.01.0"
     AUSPICE_VER: "2.17.0"
-
+#------------------------------------------------------------------------------#
+# Workflow conditions
 on:
   push:
     branches:
-      - '*'
+      - 'master'
     paths:
       - '.github/workflows/ci.yaml'
       - 'environment.yaml'
-
+#------------------------------------------------------------------------------#
 jobs:
   #----------------------------------------------------------------------------#
-  #                       Dependency Installation                              #
-  #----------------------------------------------------------------------------#
+  # Install dependencies
   install :
     runs-on: ubuntu-latest
     steps:
+      #------------------------------------------------------------------------#
       # Install nextflow
       - name: install nextflow
         run: |
           wget -qO- get.nextflow.io | bash
           sudo mv nextflow /usr/local/bin/
-      #------------------------------------------------------------------------#
-      #                     Acquire env files and src code                     #
       #------------------------------------------------------------------------#
       # download nextflow pipelines
       - name: download nf-core/eager
@@ -44,6 +44,7 @@ jobs:
           # Move env file into github workspace for hashing
           cp ~/.nextflow/assets/nf-core/eager/environment.yml \
             ./nf-core-eager.yaml
+
       - name: download ktmeaton/plague-phylogeography
         shell: bash -l {0}
         run: |
@@ -56,13 +57,10 @@ jobs:
           cp ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml \
             ./nextstrain.yaml
       #------------------------------------------------------------------------#
-      #                      Restore (cache) conda environments                #
-      #------------------------------------------------------------------------#
-      # Setup conda
+      #  Restore (cache) conda environments
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
-      # Restore (and later cache) the nf-core/eager conda env
-      # Only if the environment yaml file changed
+
       - name: cache eager env
         uses: actions/cache@v2
         id: eager-env-cache
@@ -70,8 +68,7 @@ jobs:
           path: |
             /home/runner/miniconda/envs/nf-core-eager-2.2.0dev
           key: eager-env-cache-${{ runner.os }}-test2-${{ hashFiles('./nf-core-eager.yaml') }}
-      # Restore (and later cache) the plague-phylogeography conda env
-      # Only if the environment yaml file changed
+
       - name: cache plague-phylogeography env
         uses: actions/cache@v2
         id: plague-phylogeography-env-cache
@@ -79,8 +76,7 @@ jobs:
           path: |
             /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
           key: plague-phylogeography-env-cache-${{ runner.os }}-test2-${{ hashFiles('./ktmeaton-plague-phylogeography.yaml') }}
-      # Restore (and later cache) the nextstrain conda env
-      # Only if the nextstrain yaml file changed
+
       - name: cache nextstrain env
         uses: actions/cache@v2
         id: nextstrain-env-cache
@@ -90,9 +86,7 @@ jobs:
           key: nextstrain-env-cache-${{ runner.os }}-test2-${{ hashFiles('./nextstrain.yaml') }}
 
       #------------------------------------------------------------------------#
-      #                      Create conda environments                         #
-      #------------------------------------------------------------------------#
-      # create eager env
+      # create conda environments (if not restored)
       - name: create nf-core/eager env
         if: steps.eager-env-cache.outputs.cache-hit != 'true'
         shell: bash -l {0}
@@ -100,13 +94,13 @@ jobs:
           conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
           conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow==${NF_VER}
           conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
-      # Create plague-phylogeography env
+
       - name: create ktmeaton/plague-phylogeography env
         if: steps.plague-phylogeography-env-cache.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run: |
           conda env create -f ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
-      # Create nextstrain env
+
       - name: create nextstrain env
         if: steps.nextstrain-env-cache.outputs.cache-hit != 'true'
         shell: bash -l {0}
@@ -116,9 +110,7 @@ jobs:
           npm install --global auspice@${AUSPICE_VER}
           conda deactivate
       #------------------------------------------------------------------------#
-      #                        Test conda environments                         #
-      #------------------------------------------------------------------------#
-      # test eager env
+      # Test conda environments
       - name: test eager env
         shell: bash -l {0}
         run: |
@@ -126,7 +118,7 @@ jobs:
           which nextflow
           nextflow -v
           conda deactivate
-      # test plague-phylogeography env
+
       - name: test plague-phylogeography env
         shell: bash -l {0}
         run: |
@@ -134,7 +126,7 @@ jobs:
           which nextflow
           nextflow -v
           conda deactivate
-      # test nextstrain env
+
       - name: test nextstrain env
         shell: bash -l {0}
         run: |
@@ -148,32 +140,27 @@ jobs:
           conda deactivate
 
   #----------------------------------------------------------------------------#
-  #                       Assembled Genome Test                                #
-  #----------------------------------------------------------------------------#
+  # Assembled Genome Test
   assembly:
     needs: install
     runs-on: ubuntu-latest
     steps:
       #------------------------------------------------------------------------#
-      #                      Restore (cache) conda environments                #
-      #------------------------------------------------------------------------#
-      # Setup conda
+      #  Restore (cache) conda environments
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
-      # Restore the plague-phylogeography conda env
-      - name: cache plague-phylogeography env
+
+      - name: restore plague-phylogeography env
         uses: actions/cache@v2
-        id: plague-phylogeography-env-cache
+        id: plague-phylogeography-env-cache-restore
         with:
           path: |
             /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
           key: plague-phylogeography-env-cache-${{ runner.os }}-test2-${{ hashFiles('./ktmeaton-plague-phylogeography.yaml') }}
       #------------------------------------------------------------------------#
-      #                             Test Pipeline                              #
-      #------------------------------------------------------------------------#
-      # Run Assembly Pipeline (only if cache restored)
+      #  Test Pipeline
       - name: assembly pipeline
-        if:  steps.plague-phylogeography-env-cache.outputs.cache-hit == 'true'
+        if:  steps.plague-phylogeography-env-cache-restore.outputs.cache-hit == 'true'
         shell: bash -l {0}
         run: |
           conda activate ${PHYLO_CONDA_ENV}
@@ -184,33 +171,31 @@ jobs:
             --skip_outgroup_download \
             --outdir test
       #------------------------------------------------------------------------#
-      #                             Artifact Upload                            #
-      #------------------------------------------------------------------------#
-      # Sqlite Import
+      #  Artifact Upload
       - name: artifact sqlite-import
         uses: actions/upload-artifact@v2
         with:
           name: sqlite-import
           path: test/sqlite_import/
-      # Snippy Pairwise
+
       - name: artifact snippy-pairwise
         uses: actions/upload-artifact@v2
         with:
           name: snippy-pairwise
           path: test/snippy_pairwise/output10X/
-      # IQTREE
+
       - name: artifact iqtree
         uses: actions/upload-artifact@v2
         with:
           name: iqtree
           path: test/iqtree/
-      # MultiQC
+
       - name: artifact multiqc
         uses: actions/upload-artifact@v2
         with:
           name: multiqc
           path: test/multiqc/multiqc_report.html
-      # Trace
+
       - name: artifact trace
         uses: actions/upload-artifact@v2
         with:
