@@ -57,7 +57,7 @@ jobs:
       #------------------------------------------------------------------------#
       # Commit and push the new README
       - name: add and commit README
-        if: steps.compile-docs.outputs.readme-update == 'true'
+        #if: steps.compile-docs.outputs.readme-update == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -65,6 +65,7 @@ jobs:
           git commit -m "update docs README"
 
       - name: push README
+        #if: steps.compile-docs.outputs.readme-update == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
