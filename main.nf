@@ -261,11 +261,11 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     ch_sqlite (sqlite): NCBImeta SQLite database from process ncbimeta_db_update or params.sqlite
 
     Output:
-    ch_assembly_for_download_ftp (text): FTP url for process assembly_download.
-    ch_sra_tsv_for_eager (tsv): TSV metadata input for process eager.
+    ch_assembly_download_ftp (text): FTP url for process assembly_download.
+    ch_sra_tsv_eager (tsv): TSV metadata input for process eager.
 
     Publish:
-    file_assembly_for_download_ftp (text): List of FTP urls for genomic assembly download.
+    file_assembly_download_ftp (text): List of FTP urls for genomic assembly download.
     eager_tsv (tsv): TSV metadata input for EAGER pipeline.
     */
     // Other variables and config
@@ -290,10 +290,10 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     file sqlite from ch_sqlite
 
     output:
-    file params.file_assembly_for_download_ftp into ch_assembly_for_download_ftp
+    file params.file_assembly_download_ftp into ch_assembly_download_ftp
     file sqlite into ch_sqlite_nextstrain_metadata
-    file params.eager_tsv into ch_tsv_for_eager
-    file params.sra_tsv into ch_tsv_for_download_sra
+    file params.eager_tsv into ch_tsv_eager
+    file params.sra_tsv into ch_tsv_download_sra
     when:
     !params.skip_sqlite_import
 
@@ -307,7 +307,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
       if [[ ! -z \$line ]]; then
         asm_ftp=`echo \$line | \
             awk -F "/" -v suffix=${params.genbank_assembly_gz_suffix} '{print \$0 FS \$NF suffix}'`;
-        echo \$asm_ftp >> ${params.file_assembly_for_download_ftp}
+        echo \$asm_ftp >> ${params.file_assembly_download_ftp}
       fi;
     done;
     # Extract SRA Metadata for EAGER tsv
@@ -346,7 +346,7 @@ process assembly_download{
   publishDir "${outdir}/assembly_download", mode: 'copy'
   // Deal with new lines, split up ftp links by url
   // By loading with file(), stages as local file
-  ch_assembly_for_download_ftp.splitText()
+  ch_assembly_download_ftp.splitText()
           .map { file(it.replaceFirst(/\n/,'')) }
           .set { ch_assembly_fna_gz_local }
 
@@ -382,7 +382,7 @@ process sra_download{
   tag "$sra_acc_file"
   publishDir "${outdir}/sra_download", mode: 'copy'
 
-  ch_tsv_for_download_sra
+  ch_tsv_download_sra
     .splitText()
     .map { it }
     .set { ch_sra_acc_file }
@@ -715,7 +715,7 @@ process eager{
   Input:
   ch_reference_genome_eager (fna): The reference genome fasta from process reference_genome_download.
   ch_sra_fastq_eager (fastq): The sra fastq sequences from process sra_download.
-  ch_tsv_for_eager (tsv): The sra metadata tsv from process sqlite_import.
+  ch_tsv_eager (tsv): The sra metadata tsv from process sqlite_import.
 
   Output:
   ch_sra_bam_snippy_pairwise (fastq): The deduplicated aligned bam for process snippy_pairwise.
@@ -738,7 +738,7 @@ process eager{
   input:
   file reference_genome_fna from ch_reference_genome_eager
   file sra_fastq from ch_sra_fastq_eager.collect()
-  file eager_tsv from ch_tsv_for_eager
+  file eager_tsv from ch_tsv_eager
 
   output:
   file "damageprofiler/*"
