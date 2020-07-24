@@ -43,54 +43,22 @@ Katherine Eaton, Nukhet Varlik, Ann Carmichael, Brian Golding, Hendrik Poinar.
 Katherine Eaton  
 [Digital Exhibit](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote) • [Blog Post 1](https://scds.ca/constructing-a-digital-disease-exhibit/) • [Blog Post 2](https://scds.ca/plagues-of-the-past-and-present/) *
 
-## Installation
+## Install
 
-### Install Conda
-
-```bash
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-chmod 755 Miniconda3-latest-Linux-x86_64.sh
-./Miniconda3-latest-Linux-x86_64.sh
-conda config --set auto_activate_base False
-```
-
-### Install Nextflow
+### Clone Repository
 
 ```bash
-wget -qO- get.nextflow.io | bash
-sudo mv nextflow /usr/local/bin/
+git clone git clone https://github.com/ktmeaton/plague-phylogeography.git
+cd plague-phylogeography
 ```
 
-### Install the plague-phylogeography Pipeline
+### Run Install Script
 
 ```bash
-nextflow pull ktmeaton/plague-phylogeography
-conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
+sudo scripts/install.sh /usr/local/bin
 ```
 
-### Install the nfcore/eager Pipeline.
-
-```bash
-nextflow pull nf-core/eager
-nextflow pull nf-core/eager -r 7b51863957
-conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
-```
-
-Install supplementary programs to the nf-core/eager environment:
-
-```bash
-conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow==20.01.0
-conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
-```
-
-### Install the nextstrain Tools
-
-```bash
-conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml
-conda activate nextstrain-8.0.0
-npm install --global auspice@2.17.0
-conda deactivate
-```
+\* The second parameter only controls where the nextflow binary should be installed.
 
 ## Example Usage
 
@@ -166,10 +134,16 @@ Detailed environment files for successful builds on GitHub Actions server can be
   MSG: Can't build a GFF object with the unknown version 3
 ```
 
-May possibly require adjusting the perl library path.
+May possibly require adjusting the perl library path:
 
 ```bash
 export PERL5LIB=~/miniconda3/envs/plague-phylogeography-0.1.4dev/lib/site_perl/5.26.2/:$PERL5LIB
+```
+
+## Uninstall
+
+```bash
+scripts/uninstall.sh
 ```
 
 ## Credits
