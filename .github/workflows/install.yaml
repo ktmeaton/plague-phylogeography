@@ -21,6 +21,11 @@ on:
       - '.github/workflows/install.yaml'
       - 'environment.yaml'
       - 'config/nextstrain.yaml'
+  pull_request:
+    branches:
+      - '*'
+  release:
+    types: [published]
 #------------------------------------------------------------------------------#
 jobs:
   #----------------------------------------------------------------------------#

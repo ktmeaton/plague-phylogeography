@@ -17,6 +17,11 @@ on:
       - '.github/workflows/pipeline_assembly.yaml'
       - 'main.nf'
       - 'nextflow.config'
+  pull_request:
+    branches:
+      - '*'
+  release:
+    types: [published]
 #------------------------------------------------------------------------------#
 jobs:
   #----------------------------------------------------------------------------#
@@ -89,7 +94,7 @@ jobs:
             --skip_sra_download \
             --skip_eager \
             --iqtree_branch_support \
-            --iqtree_runs 10 \
+            #--iqtree_runs 10 \
             --outdir test \
             -resume \
             ${GH_RESOURCES}
