@@ -68,5 +68,5 @@ jobs:
       - name: artifact Docs HTML
         uses: actions/upload-artifact@v2
         with:
-          nam e: docs-build-html
+          name: docs-build-html
           path: docs/_build/*
