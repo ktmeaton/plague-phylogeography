@@ -1,35 +1,36 @@
----
+#------------------------------------------------------------------------------#
 name: Linting
-# This is a workflow for linting
-
+#------------------------------------------------------------------------------#
+# Workflow conditions
 on:
-  # Triggered on Push for all branches
   push:
     branches:
       - '*'
-    # On change to workflow, README, CHANGELOG, yaml
     paths:
       - '.github/workflows/linting.yaml'
-      - '.github/markdown_lint.yaml'
+      - '.github/workflows/*.yaml'
+      - '.github/*.yaml'
       - 'README.md'
       - 'CHANGELOG.md'
       - '*.yaml'
-  # Triggered on PR for all branches, any file
   pull_request:
     branches:
       - '*'
-  # Also on a published release
   release:
     types: [published]
-
+#------------------------------------------------------------------------------#
 jobs:
-
+  #----------------------------------------------------------------------------#
   # Markdown template from nf-core eager to trial
   # Only select files for now to prevent full workflow from failing
   markdown_lint:
     runs-on: ubuntu-latest
     steps:
+      #------------------------------------------------------------------------#
+      # Checkout repo
       - uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # Install dependencies
       - uses: actions/setup-node@v1
         with:
           node-version: '10'
@@ -42,11 +43,16 @@ jobs:
           markdownlint CHANGELOG.md -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
           markdownlint README.md -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
 
+  #----------------------------------------------------------------------------#
   # YAML template from nf-core eager to trial
   yaml_lint:
     runs-on: ubuntu-latest
     steps:
+      #------------------------------------------------------------------------#
+      # Checkout repo
       - uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # Install dependencies
       - uses: actions/setup-node@v1
         with:
           node-version: '10'

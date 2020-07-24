@@ -1,33 +1,30 @@
----
+#------------------------------------------------------------------------------#
 name: Docs
-# This is a workflow for compiling sphinx docs
-
+#------------------------------------------------------------------------------#
+# Workflow conditions
 on:
-  # Triggered on Push for all branches
   push:
     branches:
       - '*'
-    # On change to workflow, docs
     paths:
       - '.github/workflows/docs.yaml'
       - 'docs/*'
-      - 'process/*'
-      - 'images/*'
-  # Triggered on PR for all branches, any file
   pull_request:
     branches:
       - '*'
-  # Also on a published release
   release:
     types: [published]
-
+#------------------------------------------------------------------------------#
 jobs:
-
+  #----------------------------------------------------------------------------#
   # Compile the sphinx docs
   sphinx_docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: checkout repo
+        uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # Install Dependencies
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
@@ -42,15 +39,16 @@ jobs:
         run: |
           pip install m2r
           m2r --version
-
+      #------------------------------------------------------------------------#
+      # Build Docs
       - name: Compile docs
         run: |
           m2r README.md
           mv README.md README.rst
           cd docs/
           make html
-
-      # Artifact uploads
+      #------------------------------------------------------------------------#
+      # Artifact Uploads
       - name: artifact Docs HTML
         uses: actions/upload-artifact@v2
         with:
