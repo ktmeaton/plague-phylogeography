@@ -18,8 +18,9 @@ on:
     branches:
       - '*'
     paths:
-      - '.github/workflows/ci.yaml'
+      - '.github/workflows/install.yaml'
       - 'environment.yaml'
+      - 'config/nextstrain.yaml'
 #------------------------------------------------------------------------------#
 jobs:
   #----------------------------------------------------------------------------#
