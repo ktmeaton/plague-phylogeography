@@ -30,7 +30,7 @@ jobs:
   # Install dependencies
   install :
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 30
     steps:
       #------------------------------------------------------------------------#
       # Install nextflow
