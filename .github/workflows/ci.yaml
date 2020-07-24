@@ -16,7 +16,7 @@ on:
     branches:
       - '*'
     paths:
-      - '.github/workflows/cache_test.yaml'
+      - '.github/workflows/ci.yaml'
       - 'environment.yaml'
 
 jobs:
@@ -177,4 +177,37 @@ jobs:
             --skip_eager \
             --skip_outgroup_download \
             --outdir test
+      #------------------------------------------------------------------------#
+      #                             Artifact Upload                            #
+      #------------------------------------------------------------------------#
+      # Sqlite Import
+      - name: artifact sqlite-import
+        uses: actions/upload-artifact@v2
+        with:
+          name: sqlite-import
+          path: test/sqlite_import/
+      # Snippy Pairwise
+      - name: artifact snippy-pairwise
+        uses: actions/upload-artifact@v2
+        with:
+          name: snippy-pairwise
+          path: test/snippy_pairwise/output10X/
+      # IQTREE
+      - name: artifact iqtree
+        uses: actions/upload-artifact@v2
+        with:
+          name: iqtree
+          path: test/iqtree/
+      # MultiQC
+      - name: artifact multiqc
+        uses: actions/upload-artifact@v2
+        with:
+          name: multiqc
+          path: test/multiqc/multiqc_report.html
+      # Trace
+      - name: artifact trace
+        uses: actions/upload-artifact@v2
+        with:
+          name: trace
+          path: test/trace/
 #  sra :
