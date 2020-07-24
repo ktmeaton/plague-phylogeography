@@ -49,10 +49,6 @@ jobs:
         run: |
           m2r README.md
           mv README.rst docs/README.rst
-          echo "git diff README.md"
-          git diff README.md
-          echo "git diff docs/README.rst"
-          git diff docs/README.rst
           cd docs/
           if [[ `git diff README.rst` ]]; then
             echo "::set-output name=readme-update::true"
