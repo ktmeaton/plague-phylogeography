@@ -46,16 +46,16 @@ jobs:
           cp ~/.nextflow/assets/nf-core/eager/environment.yml \
             ./nf-core-eager.yaml
 
-      - name: download ktmeaton/plague-phylogeography
+      - name: download plague-phylogeography
         shell: bash -l {0}
         run: |
-          nextflow pull ktmeaton/plague-phylogeography
-          nextflow pull ktmeaton/plague-phylogeography -r ${GITHUB_SHA}
-          nextflow run ktmeaton/plague-phylogeography --version
+          nextflow pull ${GITHUB_REPOSITORY}
+          nextflow pull ${GITHUB_REPOSITORY} -r ${GITHUB_SHA}
+          nextflow run ${GITHUB_REPOSITORY} --version
           # Move env files into github workspace for hashing
-          cp ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml \
-            ./ktmeaton-plague-phylogeography.yaml
-          cp ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml \
+          cp ~/.nextflow/assets/${GITHUB_REPOSITORY}/environment.yaml \
+            ./plague-phylogeography.yaml
+          cp ~/.nextflow/assets/${GITHUB_REPOSITORY}/config/nextstrain.yaml \
             ./nextstrain.yaml
       #------------------------------------------------------------------------#
       #  Restore (cache) conda environments
@@ -76,7 +76,7 @@ jobs:
         with:
           path: |
             /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
-          key: plague-phylogeography-env-cache-${{ runner.os }}-test2-${{ hashFiles('./ktmeaton-plague-phylogeography.yaml') }}
+          key: plague-phylogeography-env-cache-${{ runner.os }}-test2-${{ hashFiles('./plague-phylogeography.yaml') }}
 
       - name: cache nextstrain env
         uses: actions/cache@v2
@@ -96,17 +96,17 @@ jobs:
           conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow==${NF_VER}
           conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
 
-      - name: create ktmeaton/plague-phylogeography env
+      - name: create plague-phylogeography env
         if: steps.plague-phylogeography-env-cache.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run: |
-          conda env create -f ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
+          conda env create -f ~/.nextflow/assets/${GITHUB_REPOSITORY}/environment.yaml
 
       - name: create nextstrain env
         if: steps.nextstrain-env-cache.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run: |
-          conda env create -f ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml
+          conda env create -f ~/.nextflow/assets/${GITHUB_REPOSITORY}/config/nextstrain.yaml
           conda activate ${NEXTSTRAIN_CONDA_ENV}
           npm install --global auspice@${AUSPICE_VER}
           conda deactivate
