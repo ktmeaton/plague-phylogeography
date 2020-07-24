@@ -19,6 +19,11 @@ on:
       - '.github/workflows/pipeline_sra.yaml'
       - 'main.nf'
       - 'nextflow.config'
+  pull_request:
+    branches:
+      - '*'
+  release:
+    types: [published]
 #------------------------------------------------------------------------------#
 jobs:
   #----------------------------------------------------------------------------#
