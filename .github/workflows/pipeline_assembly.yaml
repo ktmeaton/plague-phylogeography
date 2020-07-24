@@ -57,7 +57,7 @@ jobs:
         with:
           path: |
             /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
-          key: plague-phylogeography-env-cache-${{ runner.os }}-test2-${{ hashFiles('./plague-phylogeography.yaml') }}
+          key: plague-phylogeography-env-${{ runner.os }}-${{ hashFiles('./plague-phylogeography.yaml') }}
       #------------------------------------------------------------------------#
       # Check conda environments
       - name: check cache
@@ -67,6 +67,7 @@ jobs:
         if:  steps.plague-phylogeography-env-cache-restore.outputs.cache-hit != 'true'
         run: |
           echo "plague-phylogeography cache failed to load."
+          echo "Try rerunning workflow after install workflow finishes."
           exit 1
       #------------------------------------------------------------------------#
       #  Test Pipeline - Small
@@ -84,13 +85,13 @@ jobs:
             ${GH_RESOURCES}
           conda deactivate
       #  Test Pipeline - Long
-      - name: pipeline large
+      - name: pipeline long
         if:  steps.plague-phylogeography-env-cache-restore.outputs.cache-hit == 'true'
         shell: bash -l {0}
         run: |
           conda activate ${PHYLO_CONDA_ENV}
           nextflow run -r ${GITHUB_SHA} ${GITHUB_REPOSITORY} \
-            --max_datasets_assembly 2 \
+            --max_datasets_assembly 4 \
             --skip_sra_download \
             --skip_eager \
             --skip_outgroup_download \

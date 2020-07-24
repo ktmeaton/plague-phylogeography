@@ -70,7 +70,7 @@ jobs:
         with:
           path: |
             /home/runner/miniconda/envs/nf-core-eager-2.2.0dev
-          key: eager-env-cache-${{ runner.os }}-test2-${{ hashFiles('./nf-core-eager.yaml') }}
+          key: eager-env-${{ runner.os }}-${{ hashFiles('./nf-core-eager.yaml') }}
 
       - name: restore plague-phylogeography cache
         uses: actions/cache@v2
@@ -78,7 +78,7 @@ jobs:
         with:
           path: |
             /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
-          key: plague-phylogeography-env-cache-${{ runner.os }}-test2-${{ hashFiles('./plague-phylogeography.yaml') }}
+          key: plague-phylogeography-env-${{ runner.os }}-${{ hashFiles('./plague-phylogeography.yaml') }}
       #------------------------------------------------------------------------#
       # Check conda environments
       - name: check cache
@@ -88,11 +88,13 @@ jobs:
         if:  steps.eager-env-cache-restore.outputs.cache-hit != 'true'
         run: |
           echo "eager cache failed to load."
+          echo "Try rerunning workflow after install workflow finishes."
           exit 1
       - name: fail plague-phylogeography cache
         if:  steps.plague-phylogeography-env-cache-restore.outputs.cache-hit != 'true'
         run: |
           echo "plague-phylogeography cache failed to load."
+          echo "Try rerunning workflow after install workflow finishes."
           exit 1
       #------------------------------------------------------------------------#
       #  Download SRA Data
