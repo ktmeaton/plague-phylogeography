@@ -50,14 +50,14 @@ jobs:
           m2r README.md
           mv README.rst docs/README.rst
           cd docs/
+          if [[ `git diff README.rst` ]]; then
+            echo "::set-output name=readme-update::true"
+          fi
           make html
-          update=`git diff README.rst`
-          echo $update;
-          echo "::set-output name={readme-update}::{$update}"
       #------------------------------------------------------------------------#
       # Commit and push the new README
       - name: add and commit README
-        if: steps.compile-docs.outputs.readme-update != ''
+        if: steps.compile-docs.outputs.readme-update == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
