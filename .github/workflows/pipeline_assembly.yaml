@@ -22,6 +22,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       #------------------------------------------------------------------------#
+      # Install nextflow
+      - name: install nextflow
+        run: |
+          wget -qO- get.nextflow.io | bash
+          sudo mv nextflow /usr/local/bin/
+      #------------------------------------------------------------------------#
+      # download nextflow pipelines
+      - name: download ktmeaton/plague-phylogeography
+        shell: bash -l {0}
+        run: |
+          nextflow pull ktmeaton/plague-phylogeography
+      #------------------------------------------------------------------------#
       #  Restore (cache) conda environments
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
@@ -32,10 +44,13 @@ jobs:
         with:
           path: |
             /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
-          key: plague-phylogeography-env-cache-${{ runner.os }}-test2-${{ hashFiles('./ktmeaton-plague-phylogeography.yaml') }}
+          key: plague-phylogeography-env-cache-${{ runner.os }}-test2-${{ hashFiles('~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml') }}
       #------------------------------------------------------------------------#
-      #  Fail workflow if cache not restored
+      # Check conda environments
       - name: check cache
+        run: conda info --envs
+      #  Fail workflow if cache not restored
+      - name: fail cache
         if:  steps.plague-phylogeography-env-cache-restore.outputs.cache-hit != 'true'
         run: exit 1
       #------------------------------------------------------------------------#
