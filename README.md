@@ -106,6 +106,8 @@ nextflow run ktmeaton/plague-phylogeography \
   --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
   --max_datasets_sra 2 \
   --skip_outgroup_download \
+  --max_cpus 8 \
+  --max_memory 8.GB \
   --outdir test
 ```
 
