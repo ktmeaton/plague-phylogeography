@@ -61,7 +61,7 @@ jobs:
 
       - name: restore eager cache
         uses: actions/cache@v2
-        id: eager-env-cache
+        id: eager-env-cache-restore
         with:
           path: |
             /home/runner/miniconda/envs/nf-core-eager-2.2.0dev
@@ -69,7 +69,7 @@ jobs:
 
       - name: restore plague-phylogeography cache
         uses: actions/cache@v2
-        id: plague-phylogeography-env-cache
+        id: plague-phylogeography-env-cache-restore
         with:
           path: |
             /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
@@ -103,5 +103,20 @@ jobs:
             --skip_eager \
             --skip_outgroup_download \
             --outdir test \
+            ${GH_RESOURCES}
+          conda deactivate
+      #  SRA Analysis Pipeline
+      - name: pipeline sra analysis
+        if:  steps.plague-phylogeography-env-cache-restore.outputs.cache-hit == 'true' && steps.eager-env-cache-restore.outputs.cache-hit == 'true'
+        shell: bash -l {0}
+        run: |
+          conda activate ${PHYLO_CONDA_ENV}
+          nextflow run -r ${GITHUB_SHA} ${GITHUB_REPOSITORY} \
+            --skip_assembly_download \
+            --max_datasets_assembly 1 \
+            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
+            --skip_outgroup_download \
+            --outdir test \
+            -resume \
             ${GH_RESOURCES}
           conda deactivate
