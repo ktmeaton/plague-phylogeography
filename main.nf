@@ -1222,6 +1222,11 @@ process iqtree{
   file "*.mldist"
   file "*.model.gz"
   file "*.output"
+  file "*.iqtree"
+  file "*.contree" optional true
+  file "*.splits.nex" optional true
+  file "*.ufboot" optional true
+  file "*.runtrees" optional true
 
   when:
   !params.skip_iqtree
