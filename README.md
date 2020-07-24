@@ -68,7 +68,7 @@ nextflow pull ktmeaton/plague-phylogeography
 conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
 ```
 
-### Install the nfcore/eager pipeline:
+### Install the nfcore/eager Pipeline.
 
 ```bash
 nextflow pull nf-core/eager
