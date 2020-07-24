@@ -45,14 +45,18 @@ jobs:
       #------------------------------------------------------------------------#
       # Build Docs
       - name: Compile docs
+        id: compile-docs
         run: |
           m2r README.md
-          mv README.md docs/README.rst
+          mv README.rst docs/README.rst
           cd docs/
           make html
+          update=`git diff README.rst`
+          echo "::set-output name={readme-update}::{$update}"
       #------------------------------------------------------------------------#
       # Commit and push the new README
       - name: add and commit README
+        if: steps.compile-docs.outputs.readme-update != ''
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
