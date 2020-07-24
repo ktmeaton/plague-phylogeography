@@ -23,6 +23,9 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
       #------------------------------------------------------------------------#
       # Install Dependencies
       - name: Set up Python
@@ -48,9 +51,22 @@ jobs:
           cd docs/
           make html
       #------------------------------------------------------------------------#
+      # Commit and push the new README
+      - name: add and commit README
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/README.rst
+          git commit -m "update docs README"
+
+      - name: push README
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      #------------------------------------------------------------------------#
       # Artifact Uploads
       - name: artifact Docs HTML
         uses: actions/upload-artifact@v2
         with:
-          name: docs-build-html
+          nam e: docs-build-html
           path: docs/_build/*
