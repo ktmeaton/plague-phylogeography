@@ -1,4 +1,4 @@
-name: Cache Test
+name: Continuous Integration
 
 # Global workflow environment variables
 env:
@@ -159,6 +159,9 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
+      # Setup conda
+      - name: setup conda
+        uses: goanpeca/setup-miniconda@v1
       #------------------------------------------------------------------------#
       #                             Test Pipeline                              #
       #------------------------------------------------------------------------#
