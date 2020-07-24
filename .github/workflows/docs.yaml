@@ -44,7 +44,7 @@ jobs:
       - name: Compile docs
         run: |
           m2r README.md
-          mv README.md README.rst
+          mv README.md docs/README.rst
           cd docs/
           make html
       #------------------------------------------------------------------------#
