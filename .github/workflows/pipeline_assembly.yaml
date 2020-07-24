@@ -91,6 +91,7 @@ jobs:
             --iqtree_branch_support \
             --iqtree_runs 10 \
             --outdir test \
+            -resume \
             ${GH_RESOURCES}
           conda deactivate
       #------------------------------------------------------------------------#
