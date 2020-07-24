@@ -96,6 +96,7 @@ jobs:
             --skip_eager \
             --skip_outgroup_download \
             --iqtree_branch_support \
+            --iqtree_runs 2 \
             --outdir test \
             -resume \
             ${GH_RESOURCES}
