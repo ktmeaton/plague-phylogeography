@@ -3,16 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the Plague Phylogeography documentation!
-============================================================
+.. include:: README.rst
 
 .. toctree::
+   :hidden:
    :maxdepth: 2
    :glob:
    :caption: Table of Contents:
 
    README <README>
-   Flowchart <flowchart>
    process/process_link.rst
    exhibit/exhibit_link.rst
 
