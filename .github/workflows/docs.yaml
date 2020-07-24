@@ -49,10 +49,12 @@ jobs:
         run: |
           m2r README.md
           mv README.rst docs/README.rst
+          git diff README.md
+          git diff docs/README.rst
           cd docs/
-          #if [[ `git diff README.rst` ]]; then
-          #  echo "::set-output name=readme-update::true"
-          #fi
+          if [[ `git diff README.rst` ]]; then
+            echo "::set-output name=readme-update::true"
+          fi
           make html
       #------------------------------------------------------------------------#
       # Commit and push the new README
