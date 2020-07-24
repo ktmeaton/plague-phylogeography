@@ -16,7 +16,7 @@ env:
 on:
   push:
     branches:
-      - 'master'
+      - '*'
     paths:
       - '.github/workflows/ci.yaml'
       - 'environment.yaml'
@@ -49,7 +49,7 @@ jobs:
         shell: bash -l {0}
         run: |
           nextflow pull ktmeaton/plague-phylogeography
-          nextflow pull ktmeaton/plague-phylogeography -r ${PHYLO_NF_REV}
+          nextflow pull ktmeaton/plague-phylogeography -r ${GITHUB_SHA}
           nextflow run ktmeaton/plague-phylogeography --version
           # Move env files into github workspace for hashing
           cp ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml \
