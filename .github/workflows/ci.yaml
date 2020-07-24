@@ -20,8 +20,16 @@ on:
       - 'environment.yaml'
 
 jobs:
+  #----------------------------------------------------------------------------#
+  #                       Dependency Installation                              #
+  #----------------------------------------------------------------------------#
   install :
     runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      plague-phylogeography-cache-hit: ${{ steps.plague-phylogeography-env-cache.outputs.cache-hit }}
+      eager-cache-hit: ${{ steps.eager-env-cache.outputs.cache-hit }}
+      nextstrain-cache-hit: ${{ steps.nextstrain-env-cache.outputs.cache-hit }}
     steps:
       # Install nextflow
       - name: install nextflow
@@ -143,3 +151,27 @@ jobs:
           auspice -v
           echo "conda deactivate"
           conda deactivate
+
+  #----------------------------------------------------------------------------#
+  #                       Assembled Genome Test                                #
+  #----------------------------------------------------------------------------#
+  assembly:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      #------------------------------------------------------------------------#
+      #                             Test Pipeline                              #
+      #------------------------------------------------------------------------#
+      # Run Assembly Pipeline (only if cache restored)
+      - name: assembly pipeline
+        if:  needs.install.outputs.plague-phylogeography-cache-hit == 'true'
+        shell: bash -l {0}
+        run: |
+          conda activate ${PHYLO_CONDA_ENV}
+          nextflow run ktmeaton/plague-phylogeography \
+            --max_datasets_assembly 2 \
+            --skip_sra_download \
+            --skip_eager \
+            --skip_outgroup_download \
+            --outdir test
+#  sra :
