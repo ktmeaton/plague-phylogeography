@@ -3,6 +3,7 @@ results*/*
 test*/*
 src/*
 docs/_build/*
+docs/README.rst
 .nextflow*
 ncbimeta.yaml*
 pipeline.pdf*
