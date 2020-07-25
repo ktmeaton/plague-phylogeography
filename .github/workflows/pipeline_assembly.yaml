@@ -95,8 +95,8 @@ jobs:
             --skip_sra_download \
             --skip_eager \
             --skip_outgroup_download \
-            --snippy_multi_missing_data = 0.05 \
-            --snippy_multi_missing_data_text = 5 \
+            --snippy_multi_missing_data 0.05 \
+            --snippy_multi_missing_data_text 5 \
             --iqtree_branch_support \
             --iqtree_runs 2 \
             --outdir test \
