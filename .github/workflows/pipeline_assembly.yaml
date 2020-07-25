@@ -31,44 +31,33 @@ jobs:
     timeout-minutes: 120
     steps:
       #------------------------------------------------------------------------#
+      # Checkout Repository
+      - name: checkout repo
+        uses: actions/checkout@v2
       # Install nextflow
       - name: install nextflow
         run: |
           wget -qO- get.nextflow.io | bash
           sudo mv nextflow /usr/local/bin/
-      #------------------------------------------------------------------------#
-      # download nextflow pipelines
-      - name: download plague-phylogeography
-        shell: bash -l {0}
-        run: |
-          nextflow pull ${GITHUB_REPOSITORY}
-          nextflow pull ${GITHUB_REPOSITORY} -r ${GITHUB_SHA}
-          # Move env files into github workspace for hashing
-          cp ~/.nextflow/assets/${GITHUB_REPOSITORY}/environment.yaml \
-            ./plague-phylogeography.yaml
-      #------------------------------------------------------------------------#
-      #  Restore (cache) conda environments
+      # Setup conda
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
-
-      - name: restore plague-phylogeography cache
+      #------------------------------------------------------------------------#
+      #  Restore (cache) conda environments
+      - name: cache plague-phylogeography env
         uses: actions/cache@v2
-        id: plague-phylogeography-env-cache-restore
         with:
-          path: |
-            /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
-          key: plague-phylogeography-env-${{ runner.os }}-${{ hashFiles('./plague-phylogeography.yaml') }}
+          path: /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
+          key: plague-phylogeography-env-${{ runner.os }}-${{ hashFiles('environment.yaml') }}
       #------------------------------------------------------------------------#
       # Check conda environments
       - name: check cache
         run: conda info --envs
-      #  Fail workflows if cache not restored
-      - name: fail plague-phylogeography cache
-        if:  steps.plague-phylogeography-env-cache-restore.outputs.cache-hit != 'true'
-        run: |
-          echo "plague-phylogeography cache failed to load."
-          echo "Try rerunning workflow after install workflow finishes."
-          exit 1
+      #------------------------------------------------------------------------#
+      # Download pipelines and install
+      - name: install
+        shell: bash -l {0}
+        run: scripts/install.sh
       #------------------------------------------------------------------------#
       #  Test Pipeline - Small
       - name: pipeline small
