@@ -15,12 +15,12 @@ EAGER_NF_REV="7b51863957"
 AUSPICE_VER="2.17.0"
 
 # Install the plague-phylogeography pipeline
-echo "[1/${STEPS}] Installing the plague-phylogeography nextflow pipeline."
-nextflow pull ${repo}
-nextflow pull ${repo} -r ${SHA}
+echo "[1/${STEPS}] Installing the ${REPO} nextflow pipeline - ${SHA}."
+nextflow pull ${REPO}
+nextflow pull ${REPO} -r ${SHA}
 # Create the plague-phylogeography conda environment
 echo "[2/${STEPS}] Creating the plague-phylogeography conda environment."
-conda env create -f  ~/.nextflow/assets/${repo}/environment.yaml
+conda env create -f  ~/.nextflow/assets/${REPO}/environment.yaml
 
 
 # Install the nfcore/eager pipeline
