@@ -843,14 +843,14 @@ process snippy_pairwise{
   assembly_fna_snippy.* (misc): All default snippy pipeline output.
   */
   // Other variables and config
-  tag "$assembly_fna"
+  tag "$fna_bam"
   publishDir "${outdir}/snippy_pairwise", mode: 'copy', overwrite: 'true'
 
   // IO and conditional behavior
   input:
+  file fna_bam from ch_assembly_fna_sra_bam_snippy_pairwise
   file reference_genome_gb from ch_reference_gb_snippy_pairwise
   file snpeff_config from ch_snpeff_config_snippy_pairwise
-  file fna_bam from ch_assembly_fna_sra_bam_snippy_pairwise
 
   output:
   env(snippyDir) into ch_snippy_outdir_assembly_multi
