@@ -65,7 +65,10 @@ jobs:
         with:
           path: /home/runner/miniconda/envs/nextstrain-8.0.0
           key: nextstrain-env-${{ runner.os }}-${{ hashFiles('config/nextstrain.yaml') }}
-
+      #------------------------------------------------------------------------#
+      # Check conda environments
+      - name: check cache
+        run: conda info --envs
       #------------------------------------------------------------------------#
       # Download pipelines and install
       - name: install
