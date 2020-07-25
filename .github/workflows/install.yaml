@@ -21,6 +21,7 @@ on:
       - '.github/workflows/install.yaml'
       - 'environment.yaml'
       - 'config/nextstrain.yaml'
+      - 'scripts/install.sh'
   pull_request:
     branches:
       - '*'
@@ -35,87 +36,42 @@ jobs:
     timeout-minutes: 30
     steps:
       #------------------------------------------------------------------------#
+      # Checkout Repository
+      - name: checkout repo
+        uses: actions/checkout@v2
       # Install nextflow
       - name: install nextflow
         run: |
           wget -qO- get.nextflow.io | bash
           sudo mv nextflow /usr/local/bin/
-      #------------------------------------------------------------------------#
-      # download nextflow pipelines
-      - name: download nf-core/eager
-        shell: bash -l {0}
-        run: |
-          nextflow pull nf-core/eager
-          nextflow pull nf-core/eager -r ${EAGER_NF_REV}
-          nextflow run nf-core/eager -r ${EAGER_NF_REV} --help
-          # Move env file into github workspace for hashing
-          cp ~/.nextflow/assets/nf-core/eager/environment.yml \
-            ./nf-core-eager.yaml
-
-      - name: download plague-phylogeography
-        shell: bash -l {0}
-        run: |
-          nextflow pull ${GITHUB_REPOSITORY}
-          nextflow pull ${GITHUB_REPOSITORY} -r ${GITHUB_SHA}
-          nextflow run ${GITHUB_REPOSITORY} --version
-          # Move env files into github workspace for hashing
-          cp ~/.nextflow/assets/${GITHUB_REPOSITORY}/environment.yaml \
-            ./plague-phylogeography.yaml
-          cp ~/.nextflow/assets/${GITHUB_REPOSITORY}/config/nextstrain.yaml \
-            ./nextstrain.yaml
-      #------------------------------------------------------------------------#
-      #  Restore (cache) conda environments
+      # Setup conda
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
-
+      #------------------------------------------------------------------------#
+      #  Restore (cache) conda environments
       - name: cache eager env
         uses: actions/cache@v2
-        id: eager-env-cache
         with:
-          path: |
-            /home/runner/miniconda/envs/nf-core-eager-2.2.0dev
-          key: eager-env-${{ runner.os }}-${{ hashFiles('./nf-core-eager.yaml') }}
+          path: /home/runner/miniconda/envs/nf-core-eager-2.2.0dev
+          key: eager-env-${{ runner.os }}-7b51863957
 
       - name: cache plague-phylogeography env
         uses: actions/cache@v2
-        id: plague-phylogeography-env-cache
         with:
-          path: |
-            /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
-          key: plague-phylogeography-env-${{ runner.os }}-${{ hashFiles('./plague-phylogeography.yaml') }}
+          path: /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
+          key: plague-phylogeography-env-${{ runner.os }}-${{ hashFiles('environment.yaml') }}
 
       - name: cache nextstrain env
         uses: actions/cache@v2
-        id: nextstrain-env-cache
         with:
-          path: |
-            /home/runner/miniconda/envs/nextstrain-8.0.0
-          key: nextstrain-env-${{ runner.os }}-${{ hashFiles('./nextstrain.yaml') }}
+          path: /home/runner/miniconda/envs/nextstrain-8.0.0
+          key: nextstrain-env-${{ runner.os }}-${{ hashFiles('config/nextstrain.yaml') }}
 
       #------------------------------------------------------------------------#
-      # create conda environments (if not restored)
-      - name: create nf-core/eager env
-        if: steps.eager-env-cache.outputs.cache-hit != 'true'
+      # Download pipelines and install
+      - name: install
         shell: bash -l {0}
-        run: |
-          conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
-          conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow==${NF_VER}
-          conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
-
-      - name: create plague-phylogeography env
-        if: steps.plague-phylogeography-env-cache.outputs.cache-hit != 'true'
-        shell: bash -l {0}
-        run: |
-          conda env create -f ~/.nextflow/assets/${GITHUB_REPOSITORY}/environment.yaml
-
-      - name: create nextstrain env
-        if: steps.nextstrain-env-cache.outputs.cache-hit != 'true'
-        shell: bash -l {0}
-        run: |
-          conda env create -f ~/.nextflow/assets/${GITHUB_REPOSITORY}/config/nextstrain.yaml
-          conda activate ${NEXTSTRAIN_CONDA_ENV}
-          npm install --global auspice@${AUSPICE_VER}
-          conda deactivate
+        run: scripts/install.sh
       #------------------------------------------------------------------------#
       # Test conda environments
       - name: test eager env
@@ -139,9 +95,6 @@ jobs:
         run: |
           echo "conda activate ${NEXTSTRAIN_CONDA_ENV}"
           conda activate ${NEXTSTRAIN_CONDA_ENV}
-          echo "which auspice"
           which auspice
-          echo "auspice -v"
           auspice -v
-          echo "conda deactivate"
           conda deactivate

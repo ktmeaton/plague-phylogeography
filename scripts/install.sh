@@ -29,7 +29,7 @@ if [[ ! `conda env list | grep ${PHYLO_CONDA_ENV}` ]]; then
 fi
 
 # Install the nfcore/eager pipeline
-echo "[3/${STEPS}] Installing the nf-core/eager nextflow pipeline."
+echo "[3/${STEPS}] Installing the nf-core/eager nextflow pipeline - ${EAGER_NF_REV}."
 nextflow pull nf-core/eager
 nextflow pull nf-core/eager -r ${EAGER_NF_REV}
 
