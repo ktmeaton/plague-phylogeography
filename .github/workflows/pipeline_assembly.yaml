@@ -61,7 +61,6 @@ jobs:
       #------------------------------------------------------------------------#
       #  Test Pipeline - Small
       - name: pipeline small
-        if:  steps.plague-phylogeography-env-cache-restore.outputs.cache-hit == 'true'
         shell: bash -l {0}
         run: |
           conda activate ${PHYLO_CONDA_ENV}
@@ -75,7 +74,6 @@ jobs:
           conda deactivate
       #  Test Pipeline - Long
       - name: pipeline long
-        if:  steps.plague-phylogeography-env-cache-restore.outputs.cache-hit == 'true'
         shell: bash -l {0}
         run: |
           conda activate ${PHYLO_CONDA_ENV}
