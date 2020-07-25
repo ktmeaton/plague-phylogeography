@@ -1,53 +1,49 @@
-#!/bin/bash -x
+#!/bin/bash
 
-# Configure install location prefix
-# Default is /usr/local/bin (assumes sudo)
-prefix=$1
-if [[ -z $PREFIX ]]; then
-  prefix="/usr/local/bin";
-fi
+# Install the plague-phylogeography pipeline and it's dependencies.
 
-# Number of install steps
+# Command-line arguments:
+# 1. Github repository (default: ktmeaton/plague-phylogeography)
+REPO=${1:-"ktmeaton/plague-phylogeography"}
+# 2. Github commit sha, branch, tag (default: master)
+SHA=${2:-"master"}
+
+# Gloabl script variables
 STEPS="7"
-
-# Install conda (not tested)
-if [[ -z `which conda` ]]; then
-  echo "[Pre/${STEPS}] Installing conda."
-  wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-  chmod 755 Miniconda3-latest-Linux-x86_64.sh
-  ./Miniconda3-latest-Linux-x86_64.sh
-  conda config --set auto_activate_base False
-fi
-
-# Install nextflow (not tested)
-if [[ -z `which nextflow` ]]; then
-  echo "[Pre/${STEPS}] Installing nextflow."
-  wget -qO- get.nextflow.io | bash
-  mv nextflow /usr/local/bin/
-fi
+NF_VER="20.01.0"
+EAGER_NF_REV="7b51863957"
+AUSPICE_VER="2.17.0"
 
 # Install the plague-phylogeography pipeline
 echo "[1/${STEPS}] Installing the plague-phylogeography nextflow pipeline."
-nextflow pull ktmeaton/plague-phylogeography
+nextflow pull ${repo}
+nextflow pull ${repo} -r ${SHA}
 # Create the plague-phylogeography conda environment
 echo "[2/${STEPS}] Creating the plague-phylogeography conda environment."
-conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/environment.yaml
+conda env create -f  ~/.nextflow/assets/${repo}/environment.yaml
+
 
 # Install the nfcore/eager pipeline
 echo "[3/${STEPS}] Installing the nf-core/eager nextflow pipeline."
 nextflow pull nf-core/eager
-nextflow pull nf-core/eager -r 7b51863957
+nextflow pull nf-core/eager -r ${EAGER_NF_REV}
+
 # Create the nf-core/eager conda environment
 echo "[4/${STEPS}] Creating the nf-core/eager conda environment."
+EAGER_CONDA_ENV=`head -n 1 ~/.nextflow/assets/nf-core/eager/environment.yml | \
+                 cut -d " " -f 2`
 conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
 echo "[5/${STEPS}] Installing supplementary programs to the nf-core/eager environment."
-conda install -n nf-core-eager-2.2.0dev -c bioconda nextflow==20.01.0
-conda install -n nf-core-eager-2.2.0dev -c anaconda graphviz
+conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow==${NF_VER}
+conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
+
 
 # Create the nextstrain conda environment
 echo "[6/${STEPS}] Creating the nextstrain conda environment."
-conda env create -f  ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml
+conda env create -f  ~/.nextflow/assets/${REPO}/config/nextstrain.yaml
+NEXTSTRAIN_CONDA_ENV=`head -n 1 ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml | \
+                      cut -d " " -f 2`
 echo "[7/${STEPS}] Installing supplementary programs to the nextstrain environment."
-conda activate nextstrain-8.0.0
-npm install --global auspice@2.17.0
+conda activate ${NEXTSTRAIN_CONDA_ENV}
+npm install --global auspice@${AUSPICE_VER}
 conda deactivate

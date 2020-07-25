@@ -45,6 +45,11 @@ Katherine Eaton
 
 ## Install
 
+### Dependencies
+
+* [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
+* [Nextflow](https://www.nextflow.io/) ([v20.01.0](https://github.com/nextflow-io/nextflow/releases/download/v20.01.0/nextflow))
+
 ### Clone Repository
 
 ```bash
@@ -52,13 +57,11 @@ git clone git clone https://github.com/ktmeaton/plague-phylogeography.git
 cd plague-phylogeography
 ```
 
-### Run Install Script
+### Install Pipelines
 
 ```bash
-sudo scripts/install.sh /usr/local/bin
+scripts/install.sh
 ```
-
-\* The second parameter only controls where the nextflow binary should be installed.
 
 ## Example Usage
 
