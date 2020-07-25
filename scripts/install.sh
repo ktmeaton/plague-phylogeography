@@ -30,7 +30,7 @@ nextflow pull nf-core/eager -r ${EAGER_NF_REV}
 
 # Create the nf-core/eager conda environment
 echo "[4/${STEPS}] Creating the nf-core/eager conda environment."
-EAGER_CONDA_ENV=`head -n 1 ~/.nextflow/assets/nf-core/eager/environment.yml | \
+EAGER_CONDA_ENV=`grep "name:" ~/.nextflow/assets/nf-core/eager/environment.yml | \
                  cut -d " " -f 2`
 conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
 echo "[5/${STEPS}] Installing supplementary programs to the nf-core/eager environment."
@@ -41,7 +41,7 @@ conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
 # Create the nextstrain conda environment
 echo "[6/${STEPS}] Creating the nextstrain conda environment."
 conda env create -f  ~/.nextflow/assets/${REPO}/config/nextstrain.yaml
-NEXTSTRAIN_CONDA_ENV=`head -n 1 ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml | \
+NEXTSTRAIN_CONDA_ENV=`grep "name:" ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml | \
                       cut -d " " -f 2`
 echo "[7/${STEPS}] Installing supplementary programs to the nextstrain environment."
 conda activate ${NEXTSTRAIN_CONDA_ENV}
