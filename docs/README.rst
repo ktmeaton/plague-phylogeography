@@ -84,6 +84,13 @@ Showcase
 Install
 -------
 
+Dependencies
+^^^^^^^^^^^^
+
+
+* `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`_
+* `Nextflow <https://www.nextflow.io/>`_ (\ `v20.01.0 <https://github.com/nextflow-io/nextflow/releases/download/v20.01.0/nextflow>`_\ )
+
 Clone Repository
 ^^^^^^^^^^^^^^^^
 
@@ -92,14 +99,12 @@ Clone Repository
    git clone git clone https://github.com/ktmeaton/plague-phylogeography.git
    cd plague-phylogeography
 
-Run Install Script
-^^^^^^^^^^^^^^^^^^
+Install Pipelines
+^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
-   sudo scripts/install.sh /usr/local/bin
-
-* The second parameter only controls where the nextflow binary should be installed.
+   scripts/install.sh
 
 Example Usage
 -------------
