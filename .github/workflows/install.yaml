@@ -73,26 +73,20 @@ jobs:
         run: scripts/install.sh
       #------------------------------------------------------------------------#
       # Test conda environments
-      - name: test eager env
+      - name: test environments
         shell: bash -l {0}
         run: |
+          echo ${EAGER_CONDA_ENV}
           conda activate ${EAGER_CONDA_ENV}
           which nextflow
           nextflow -v
           conda deactivate
-
-      - name: test plague-phylogeography env
-        shell: bash -l {0}
-        run: |
+          echo ${PHYLO_CONDA_ENV}
           conda activate ${PHYLO_CONDA_ENV}
           which nextflow
           nextflow -v
           conda deactivate
-
-      - name: test nextstrain env
-        shell: bash -l {0}
-        run: |
-          echo "conda activate ${NEXTSTRAIN_CONDA_ENV}"
+          echo ${NEXTSTRAIN_CONDA_ENV}
           conda activate ${NEXTSTRAIN_CONDA_ENV}
           which auspice
           auspice -v
