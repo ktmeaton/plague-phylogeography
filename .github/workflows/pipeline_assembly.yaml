@@ -81,7 +81,7 @@ jobs:
             --skip_sra_download \
             --skip_eager \
             --skip_outgroup_download \
-            --outdir shortTest \
+            --outdir test \
             ${GH_RESOURCES}
           conda deactivate
       #  Test Pipeline - Long
