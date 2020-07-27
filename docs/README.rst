@@ -123,44 +123,62 @@ Example Usage
      --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
      --max_datasets_sra 2 \
      --skip_outgroup_download \
-     --max_cpus 8 \
+     --max_cpus 4 \
      --max_memory 8.GB \
+     --max_time 4.h \
      --outdir test
 
 
-* Example terminal output (v0.1.3)
+* Example terminal output (v0.1.4)
 
 .. code-block:: bash
 
    N E X T F L O W  ~  version 20.01.0
-   Launching `ktmeaton/plague-phylogeography` [elegant_gilbert] - revision: 7e7f2d1b4d [master]
+   Launching `ktmeaton/plague-phylogeography` [mad_turing] - revision: 487ec9e4f3 [master]
    =========================================
-   Plague Phylogeography v0.1.3
+   Plague Phylogeography v0.1.4
    =========================================
-   executor >  local (35)
-   [81/6f7302] process > sqlite_import                   [100%] 1 of 1 ✔
-   [28/ef6201] process > assembly_download               [100%] 4 of 4 ✔
-   [a7/0aacda] process > sra_download                    [100%] 6 of 6 ✔
-   [ed/915cb6] process > reference_download              [100%] 1 of 1 ✔
-   [a8/b1d0f7] process > snpeff_build_db                 [100%] 1 of 1 ✔
-   [08/a5e95c] process > reference_detect_repeats        [100%] 1 of 1 ✔
-   [26/f8820d] process > reference_detect_low_complexity [100%] 1 of 1 ✔
+   User Name: ktmeaton
+   Home Directory: /home/ktmeaton
+   Project Directory: /home/ktmeaton/.nextflow/assets/ktmeaton/plague-phylogeography
+   Launch Directory: /scratch/ktmeaton/plague-phylogeography
+   Output Directory: /scratch/ktmeaton/plague-phylogeography/test
+   Config Files: [/home/ktmeaton/.nextflow/assets/ktmeaton/plague-phylogeography/nextflow.config]
+   Run Name: mad_turing
+   Session ID: ea66c6e9-4c5c-4beb-a836-136311cc6768
+   Profile: standard
+   Max CPUs: 4
+   Max Memory: 8.GB
+   Max Time: 4.h
+   ----------
+   executor >  local (29)
+   [f7/a7a498] process > sqlite_import                   [100%] 1 of 1 ✔
+   [76/182637] process > assembly_download               [100%] 2 of 2 ✔
+   [e3/376ee1] process > sra_download                    [100%] 2 of 2 ✔
+   [ab/b8e1d6] process > reference_download              [100%] 1 of 1 ✔
+   [b5/527630] process > snpeff_build_db                 [100%] 1 of 1 ✔
+   [70/772209] process > reference_detect_repeats        [100%] 1 of 1 ✔
+   [cc/7894be] process > reference_detect_low_complexity [100%] 1 of 1 ✔
    [-        ] process > outgroup_download               -
-   [f7/6a3370] process > eager                           [100%] 1 of 1 ✔
-   [0b/9785df] process > snippy_pairwise                 [100%] 4 of 4 ✔
-   [98/7e2b16] process > snippy_variant_summary_collect  [100%] 1 of 1 ✔
-   [ab/f8c6d3] process > snippy_detect_snp_high_density  [100%] 4 of 4 ✔
-   [1c/802090] process > snippy_sort_snp_high_density    [100%] 1 of 1 ✔
-   [22/ed602a] process > snippy_merge_mask_bed           [100%] 1 of 1 ✔
-   [3b/550d6b] process > snippy_multi                    [100%] 1 of 1 ✔
-   [72/0e4544] process > snippy_multi_filter             [100%] 1 of 1 ✔
-   [21/b1f367] process > iqtree                          [100%] 1 of 1 ✔
-   [fc/56b6c0] process > qualimap_snippy_pairwise        [100%] 4 of 4 ✔
-   [ad/51ea3b] process > multiqc                         [100%] 1 of 1 ✔
-   Completed at: 19-Jun-2020 17:08:20
-   Duration    : 2h 8m 42s
-   CPU hours   : 17.1
-   Succeeded   : 35
+   [2f/f7bbfe] process > eager                           [100%] 1 of 1 ✔
+   [c1/3938cf] process > snippy_pairwise                 [100%] 4 of 4 ✔
+   [13/bab1bf] process > snippy_variant_summary_collect  [100%] 1 of 1 ✔
+   [53/288f16] process > snippy_detect_snp_high_density  [100%] 4 of 4 ✔
+   [ea/a67350] process > snippy_sort_snp_high_density    [100%] 1 of 1 ✔
+   [a3/7917d8] process > snippy_merge_mask_bed           [100%] 1 of 1 ✔
+   [6e/185c2f] process > snippy_multi                    [100%] 1 of 1 ✔
+   [9c/f5deee] process > snippy_multi_filter             [100%] 1 of 1 ✔
+   [53/01dc48] process > iqtree                          [100%] 1 of 1 ✔
+   [86/9eaeb7] process > qualimap_snippy_pairwise        [100%] 4 of 4 ✔
+   [-        ] process > nextstrain_metadata             -
+   [-        ] process > nextstrain_treetime             -
+   [-        ] process > nextstrain_mugration            -
+   [-        ] process > nextstrain_json                 -
+   [c4/6fb42b] process > multiqc                         [100%] 1 of 1 ✔
+   Completed at: 25-Jul-2020 17:39:04
+   Duration    : 7m 56s
+   CPU hours   : 0.5
+   Succeeded   : 29
 
 Usage
 -----
