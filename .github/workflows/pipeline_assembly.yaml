@@ -96,6 +96,7 @@ jobs:
             --skip_outgroup_download \
             --snippy_multi_missing_data 0.05 \
             --snippy_multi_missing_data_text 5 \
+            --iqtree_model K3Pu+F+I \
             --iqtree_branch_support \
             --iqtree_runs 2 \
             --outdir test \
