@@ -405,16 +405,27 @@ process sra_download{
   """
   # Change the download sra location and timeout settings
   mkdir -p ~/.ncbi/
-  if [[ -f ~/.ncbi/user-settings.mkfg ]]; then
-    if [[ -z `grep "/repository/user/main/public/root" ~/.ncbi/user-settings.mkfg` ]]; then
-      echo '/repository/user/main/public/root = "${sra_fastq_dump_path}"' >> $HOME/.ncbi/user-settings.mkfg
+  # Default sra cache path
+  sra_fastq_dump_path=${sra_fastq_dump_path}
+
+  if [[ -f $HOME/.ncbi/user-settings.mkfg ]]; then
+    if [[ -z `grep "/repository/user/main/public/root" $HOME/.ncbi/user-settings.mkfg` ]]; then\
+      # Set SRA Cache Path
+      echo '/repository/user/main/public/root = "\${sra_fastq_dump_path}"' >> $HOME/.ncbi/user-settings.mkfg
+    else
+      # Retrieve SRA Cache Path
+      sra_fastq_dump_path=`grep "/repository/user/main/public/root" $HOME/.ncbi/user-settings.mkfg | \
+        cut -d " " -f 3 | \
+        sed 's/"//g'`
     fi;
     if [[ -z `grep "/http/timeout/read" ~/.ncbi/user-settings.mkfg` ]]; then
       echo '/http/timeout/read = "10000"' >> $HOME/.ncbi/user-settings.mkfg
     fi;
   else
-    echo '/repository/user/main/public/root = "${sra_fastq_dump_path}"' > $HOME/.ncbi/user-settings.mkfg
+    echo '/repository/user/main/public/root = "\${sra_fastq_dump_path}"' > $HOME/.ncbi/user-settings.mkfg
   fi
+
+  echo "SRA Cache:" \${sra_fastq_dump_path}
 
   # Create organization directories
   mkdir -p ${sra_biosample_val}
@@ -437,13 +448,13 @@ process sra_download{
         --gzip \
         --split-files \$sraAcc;
       # Validate sra file
-      ls -l ${sra_fastq_dump_path}/sra/\${sraAcc}.sra*
-      validate_str=`vdb-validate ${sra_fastq_dump_path}/sra/\${sraAcc}.sra* 2>&1`
+      ls -l \${sra_fastq_dump_path}/sra/\${sraAcc}.sra*
+      validate_str=`vdb-validate \${sra_fastq_dump_path}/sra/\${sraAcc}.sra* 2>&1`
       echo \${validate_str}
       if [[ \${validate_str} != *"corrupt"* ]]; then
         validate='true'
       else
-        rm ${sra_fastq_dump_path}/sra/\${sraAcc}.sra*
+        rm \${sra_fastq_dump_path}/sra/\${sraAcc}.sra*
       fi
     done
 
