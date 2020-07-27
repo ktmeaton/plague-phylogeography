@@ -4,7 +4,7 @@ Main Exhibit
 Code Installation
 -----------------
 
-| Follow the installation guide at the `Github Repository <https://github.com/ktmeaton/plague-phylogeography#installation>`_.
+| Follow the installation guide at the `Github Repository <https://github.com/ktmeaton/plague-phylogeography#install>`_.
 
 Clone Repository
 ^^^^^^^^^^^^^^^^
@@ -14,14 +14,6 @@ Clone Repository
   git clone https://github.com/ktmeaton/plague-phylogeography.git
   cd plague-phylogeography
   conda activate plague-phylogeography-0.1.4dev
-
-Install some accessory tools that are being tested.
-
-**Shell**::
-
-  conda install geopy
-  conda install cutadapt
-
 
 Database
 --------
@@ -90,32 +82,10 @@ Update, Annotate, Join
 Modern Assembly Analysis
 ------------------------
 
-Verify Samples
-^^^^^^^^^^^^^^
-
-Select records from the database that are marked as "KEEP: Assembly".
-
-**Shell**::
-
-  nextflow run ktmeaton/plague-phylogeography \
-   --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \
-   --max_datasets_assembly 500 \
-   --skip_assembly_download \
-   --skip_sra_download \
-   --skip_reference_download \
-   --skip_outgroup_download \
-   --outdir Assembly_Modern_Outgroup \
-   -resume
-
-Check that there are 475 assemblies to be downloaded.
-
-**Shell**::
-
-     wc -l results/sqlite_import/assembly_for_download.txt
-
-
 Run Pipeline (With Outgroup)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Construct a phylogeny including the outgroup (*Yersinia pseudotuberculosis*) to identify an appropriate *Yersinia pestis* clade to use as intra-species rooting.
 
 **Shell**::
 
@@ -127,8 +97,13 @@ Run Pipeline (With Outgroup)
     --iqtree_branch_support \
     -resume
 
+| *Y. pestis* clade closest to root:
+| GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic
+
 Run Pipeline (Without Outgroup)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Construct an intraspecies phylogeny of *Y. pestis* genomic assemblies.
 
 **Shell**::
 
@@ -136,40 +111,33 @@ Run Pipeline (Without Outgroup)
     --outdir Assembly_Modern \
     --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \
     --max_datasets_assembly 500 \
+    --max_datasets_sra 150  \
     --skip_sra_download \
     --skip_outgroup_download \
+    --snippy_multi_missing_data 0.05 \
+    --snippy_multi_missing_data_text 5 \
+    --iqtre_model K3Pu+F+I \
     --iqtree_branch_support \
+    --iqtree_runs 10 \
     --iqtree_outgroup GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic \
     -resume
-
-   (latest resume id: 9112a035-a628-4f9d-8955-faa7732a1b73)
 
 Ancient Raw Data Analysis
 -------------------------
 
-Prep tsv input from ktmeaton/plague-phylogeography, select only EAGER Ancient samples
+| Prep tsv input from ktmeaton/plague-phylogeography.
+| Select only EAGER Ancient samples.
 
 **Shell**::
 
   nextflow run ktmeaton/plague-phylogeography \
     --outdir EAGER_Ancient \
     --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')\"" \
-    --max_datasets_sra 2000  \
+    --max_datasets_assembly 500 \
+    --max_datasets_sra 150  \
     --skip_assembly_download \
-    --skip_sra_download \
-    --skip_reference_download
-
-
-Download all samples, run through EAGER
-
-**Shell**::
-
-  nextflow run ktmeaton/plague-phylogeography \
-    --outdir EAGER_Ancient \
-    --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')\"" \
-    --max_datasets_sra 2000  \
-    --skip_assembly_download \
-    --skip_snippy_pairwise \
+    --skip_outgroup_download \
+    --skip_snippy_multi \
     -resume
 
 SAMN00715800: Split after base 75 into two separate files to maintain proper paired-end format.
