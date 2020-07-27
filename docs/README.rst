@@ -222,5 +222,5 @@ Uninstall
 Credits
 -------
 
-Author: `Katherine Eaton <https://github.com/ktmeaton>`_ (ktmeaton@gmail.com)
-Logo: Emil Karpinski, `Katherine Eaton <https://github.com/ktmeaton>`_
+Author: `Katherine Eaton <https://github.com/ktmeaton>`_ (ktmeaton@gmail.com)\ :raw-html-m2r:`<br>`
+Logo: Emil Karpinski, `Katherine Eaton <https://github.com/ktmeaton>`_  
