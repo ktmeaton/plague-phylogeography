@@ -169,5 +169,5 @@ scripts/uninstall.sh
 
 ## Credits
 
-Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)
-Logo: Emil Karpinski, [Katherine Eaton](https://github.com/ktmeaton)
+Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)  
+Logo: Emil Karpinski, [Katherine Eaton](https://github.com/ktmeaton)  
