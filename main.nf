@@ -408,24 +408,34 @@ process sra_download{
   # Default sra cache path
   sra_fastq_dump_path=${sra_fastq_dump_path}
 
-  if [[ -f $HOME/.ncbi/user-settings.mkfg ]]; then
-    if [[ -z `grep "/repository/user/main/public/root" $HOME/.ncbi/user-settings.mkfg` ]]; then\
-      # Set SRA Cache Path
-      echo '/repository/user/main/public/root = "\${sra_fastq_dump_path}"' >> $HOME/.ncbi/user-settings.mkfg
-    else
-      # Retrieve SRA Cache Path
-      sra_fastq_dump_path=`grep "/repository/user/main/public/root" $HOME/.ncbi/user-settings.mkfg | \
-        cut -d " " -f 3 | \
-        sed 's/"//g'`
-    fi;
-    if [[ -z `grep "/http/timeout/read" ~/.ncbi/user-settings.mkfg` ]]; then
-      echo '/http/timeout/read = "10000"' >> $HOME/.ncbi/user-settings.mkfg
-    fi;
-  else
+  # Create SRA config file if it doesn't exist
+  if [[ ! -f $HOME/.ncbi/user-settings.mkfg ]]; then
     echo '/repository/user/main/public/root = "\${sra_fastq_dump_path}"' > $HOME/.ncbi/user-settings.mkfg
   fi
 
+  # Set cache enabled if not set
+  if [[ -z `grep "/cache-enabled" $HOME/.ncbi/user-settings.mkfg` ]]; then
+    echo '/cache-enabled = "true"' >> $HOME/.ncbi/user-settings.mkfg
+  fi;
+
+  # Set the cache path
+  if [[ -z `grep "/repository/user/main/public/root" $HOME/.ncbi/user-settings.mkfg` ]]; then\
+    # Set SRA Cache Path
+    echo '/repository/user/main/public/root = "\${sra_fastq_dump_path}"' >> $HOME/.ncbi/user-settings.mkfg
+  else
+    # Retrieve SRA Cache Path
+    sra_fastq_dump_path=`grep "/repository/user/main/public/root" $HOME/.ncbi/user-settings.mkfg | \
+      cut -d " " -f 3 | \
+      sed 's/"//g'`
+  fi;
+
+  # Set the timeout
+  if [[ -z `grep "/http/timeout/read" $HOME/.ncbi/user-settings.mkfg` ]]; then
+    echo '/http/timeout/read = "10000"' >> $HOME/.ncbi/user-settings.mkfg
+  fi;
+
   echo "SRA Cache:" \${sra_fastq_dump_path}
+  echo "NCBI settings:" `cat $HOME/.ncbi/user-settings.mkfg`
 
   # Create organization directories
   mkdir -p ${sra_biosample_val}
@@ -454,6 +464,7 @@ process sra_download{
       if [[ \${validate_str} != *"corrupt"* ]]; then
         validate='true'
       else
+        echo "Removing \${sraAcc} from the SRA cache."
         rm \${sra_fastq_dump_path}/sra/\${sraAcc}.sra*
       fi
     done
