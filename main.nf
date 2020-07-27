@@ -107,6 +107,7 @@ Home Directory: ${workflow.homeDir}
 Project Directory: ${workflow.projectDir}
 Launch Directory: ${workflow.launchDir}
 Output Directory: ${outdir}
+SRA Cache: ${sra_fastq_dump_path}
 Config Files: ${workflow.configFiles}
 Run Name: ${workflow.runName}
 Session ID: ${workflow.sessionId}
@@ -292,8 +293,8 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     output:
     file params.file_assembly_download_ftp into ch_assembly_download_ftp
     file sqlite into ch_sqlite_nextstrain_metadata
-    file params.eager_tsv into ch_tsv_eager
-    file params.sra_tsv into ch_tsv_download_sra
+    file params.eager_tsv into ch_tsv_sra_download,ch_tsv_eager
+    file params.sra_biosample into ch_biosample_file_download_sra
     when:
     !params.skip_sqlite_import
 
@@ -319,8 +320,9 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
       --output ${params.eager_tsv} \
       --fastq-dir ${outdir}/sra_download/fastq/
 
+    biosampleColumn=1
     accessionColumn=2
-    tail -n+2 ${params.eager_tsv} | cut -f \$accessionColumn | sort | uniq > ${params.sra_tsv}
+    tail -n+2 ${params.eager_tsv} | cut -f \$biosampleColumn | sort | uniq > ${params.sra_biosample}
     """
 }
 
@@ -354,7 +356,7 @@ process assembly_download{
   input:
   file assembly_fna_gz from ch_assembly_fna_gz_local
   output:
-  file "*${params.genbank_assembly_fna_suffix}" into ch_assembly_fna_snippy_pairwise, ch_assembly_fna_snippy_pairwise_test
+  file "*${params.genbank_assembly_fna_suffix}" into ch_assembly_fna_snippy_pairwise
   when:
   !params.skip_assembly_download
   // Shell script to execute
@@ -379,29 +381,28 @@ process sra_download{
   Publish:
   */
   // Other variables and config
-  tag "$sra_acc_file"
+  tag "$sra_biosample"
   publishDir "${outdir}/sra_download", mode: 'copy'
 
-  ch_tsv_download_sra
+  ch_biosample_file_download_sra
     .splitText()
-    .map { it }
-    .set { ch_sra_acc_file }
+    .map { it.replaceFirst(/\n/,'') }
+    .set { ch_biosample_val_sra }
 
-    // IO and conditional behavior
+  // IO and conditional behavior
+  // Use 'each' to force this to repeat for each sample
   input:
-  file sra_acc_file from ch_sra_acc_file
+  each sra_biosample_val from ch_biosample_val_sra
+  file tsv_eager from ch_tsv_sra_download
   output:
-  file "fastq/*/*.fastq.gz" into ch_sra_fastq_eager
+  val sra_biosample_val into ch_biosample_val_eager
   when:
   !params.skip_sra_download
 
   // Shell script to execute
   script:
   """
-  sraAcc=`cat ${sra_acc_file}`
-  # Disable local caching to save disk space
-  # vdb-config -s cache-enabled=false
-  # Change the download sra location
+  # Change the download sra location and timeout settings
   mkdir -p ~/.ncbi/
   if [[ -f ~/.ncbi/user-settings.mkfg ]]; then
     if [[ -z `grep "/repository/user/main/public/root" ~/.ncbi/user-settings.mkfg` ]]; then
@@ -419,20 +420,26 @@ process sra_download{
   mkdir -p fastq/single;
   mkdir -p fastq/paired;
 
-  # Download fastq files from the SRA
-  fastq-dump \
-    --outdir fastq/ \
-    --skip-technical \
-    --gzip \
-    --split-files \$sraAcc;
+  # Retrieve sra accessions for the biosample
+  accessionCol=2
+  sraAccList=`grep -w ${sra_biosample_val} ${tsv_eager} | cut -f \$accessionCol`;
+  for sraAcc in \$sraAccList;
+  do
+    # Download fastq files from the SRA
+    fastq-dump \
+      --outdir fastq/ \
+      --skip-technical \
+      --gzip \
+      --split-files \$sraAcc;
 
-  # If a paired-end or single-end file was downloaded
-  if [ -f fastq/\${sraAcc}_1.fastq.gz ] &&
-     [ -f fastq/\${sraAcc}_2.fastq.gz ]; then
-    mv fastq/\${sraAcc}*.fastq.gz fastq/paired/;
-  else
-    mv fastq/\${sraAcc}*.fastq.gz fastq/single/;
-  fi
+    # If a paired-end or single-end file was downloaded
+    if [ -f fastq/\${sraAcc}_1.fastq.gz ] &&
+       [ -f fastq/\${sraAcc}_2.fastq.gz ]; then
+      mv fastq/\${sraAcc}*.fastq.gz fastq/paired/;
+    else
+      mv fastq/\${sraAcc}*.fastq.gz fastq/single/;
+    fi
+  done
   """
 }
 
@@ -731,13 +738,13 @@ process eager{
 
   */
   // Other variables and config
-  tag "$eager_tsv"
+  tag "$sra_biosample_val"
   publishDir "${outdir}/eager", mode: 'copy'
 
   // IO and conditional behavior
   input:
+  each sra_biosample_val from ch_biosample_val_eager
   file reference_genome_fna from ch_reference_genome_eager
-  file sra_fastq from ch_sra_fastq_eager.collect()
   file eager_tsv from ch_tsv_eager
 
   output:
@@ -756,6 +763,10 @@ process eager{
   // Shell script to execute
   script:
   """
+  # Create biosample specific tsv input for eager
+  head -n 1 ${eager_tsv} > metadata_${sra_biosample_val}.tsv
+  grep -w ${sra_biosample_val} ${eager_tsv} >> metadata_${sra_biosample_val}.tsv
+
   # The set command is to deal with PS1 errors
   set +eu
   # Enable conda activate support in this bash subshell
@@ -766,10 +777,11 @@ process eager{
   conda activate nf-core-eager-2.2.0dev
 
   # Run the eager command
+  task_mem_reformat=`echo ${task.memory} | sed 's/ /./g'`
   nextflow -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
     run nf-core/eager \
     -r ${params.eager_rev} \
-    --input ${eager_tsv} \
+    --input metadata_${sra_biosample_val}.tsv \
     --outdir . \
     --fasta ${reference_genome_fna} \
     --clip_readlength ${params.eager_clip_readlength} \
@@ -782,8 +794,9 @@ process eager{
     --bam_mapping_quality_threshold ${params.snippy_map_qual} \
     --bam_discard_unmapped \
     --bam_unmapped_type discard \
-    --max_memory ${params.max_memory} \
-    --max_cpus ${params.max_cpus}
+    --max_memory \${task_mem_reformat} \
+    --max_cpus ${task.cpus} \
+    --max_time ${task.time}
 
   # Rename deduplication bam for snippy pairwise RG simplificity
   dedupBam=`ls deduplication/*/*_rmdup.bam`
@@ -1243,6 +1256,13 @@ process iqtree{
     OUTGROUP=${params.iqtree_outgroup}
   fi
 
+  # Setup the model or model testing
+  if [[ ${params.iqtree_model} == "false"  ]]; then
+    MODEL="MFP"
+  else
+    MODEL="${params.iqtree_model}"
+  fi
+
   # Setup the branch support param
   if [[ ${params.iqtree_branch_support} == "true"  ]]; then
     BRANCH_SUPPORT="--bnni --ufboot ${params.iqtree_ufboot} --alrt ${params.iqtree_ufboot}";
@@ -1255,7 +1275,7 @@ process iqtree{
   # A thorough tree search for model selection can be done with -m MF -mtree
   iqtree \
     -s ${snippy_core_filter_aln} \
-    -m MFP \
+    -m \$MODEL \
     -nt AUTO \
     -o \$OUTGROUP \
     -seed \$RANDOM \
