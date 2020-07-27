@@ -318,7 +318,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
       --organism ${params.eager_organism} \
       --max-datasets ${params.max_datasets_sra} \
       --output ${params.eager_tsv} \
-      --fastq-dir ${outdir}/sra_download/fastq/
+      --fastq-dir ${outdir}/sra_download/
 
     biosampleColumn=1
     accessionColumn=2
@@ -381,7 +381,7 @@ process sra_download{
   Publish:
   */
   // Other variables and config
-  tag "$sra_biosample"
+  tag "$sra_biosample_val"
   publishDir "${outdir}/sra_download", mode: 'copy'
 
   ch_biosample_file_download_sra
@@ -396,6 +396,7 @@ process sra_download{
   file tsv_eager from ch_tsv_sra_download
   output:
   val sra_biosample_val into ch_biosample_val_eager
+  file "${sra_biosample_val}/*/*.fastq.gz" into ch_sra_fastq_eager
   when:
   !params.skip_sra_download
 
@@ -416,28 +417,42 @@ process sra_download{
   fi
 
   # Create organization directories
-  mkdir -p fastq;
-  mkdir -p fastq/single;
-  mkdir -p fastq/paired;
+  mkdir -p ${sra_biosample_val}
+  mkdir -p ${sra_biosample_val}/single;
+  mkdir -p ${sra_biosample_val}/paired;
 
   # Retrieve sra accessions for the biosample
   accessionCol=2
   sraAccList=`grep -w ${sra_biosample_val} ${tsv_eager} | cut -f \$accessionCol`;
   for sraAcc in \$sraAccList;
   do
-    # Download fastq files from the SRA
-    fastq-dump \
-      --outdir fastq/ \
-      --skip-technical \
-      --gzip \
-      --split-files \$sraAcc;
+    validate='false'
+    # Keep trying to download until valid file is acquired
+    while [ \$validate == 'false' ]
+    do
+      # Download fastq files from the SRA
+      fastq-dump \
+        --outdir ${sra_biosample_val}/ \
+        --skip-technical \
+        --gzip \
+        --split-files \$sraAcc;
+      # Validate sra file
+      ls -l ${sra_fastq_dump_path}/sra/\${sraAcc}.sra*
+      validate_str=`vdb-validate ${sra_fastq_dump_path}/sra/\${sraAcc}.sra* 2>&1`
+      echo \${validate_str}
+      if [[ \${validate_str} != *"corrupt"* ]]; then
+        validate='true'
+      else
+        rm ${sra_fastq_dump_path}/sra/\${sraAcc}.sra*
+      fi
+    done
 
     # If a paired-end or single-end file was downloaded
-    if [ -f fastq/\${sraAcc}_1.fastq.gz ] &&
-       [ -f fastq/\${sraAcc}_2.fastq.gz ]; then
-      mv fastq/\${sraAcc}*.fastq.gz fastq/paired/;
+    if [ -f ${sra_biosample_val}/\${sraAcc}_1.fastq.gz ] &&
+       [ -f ${sra_biosample_val}/\${sraAcc}_2.fastq.gz ]; then
+      mv ${sra_biosample_val}/\${sraAcc}*.fastq.gz ${sra_biosample_val}/paired/;
     else
-      mv fastq/\${sraAcc}*.fastq.gz fastq/single/;
+      mv ${sra_biosample_val}/\${sraAcc}*.fastq.gz ${sra_biosample_val}/single/;
     fi
   done
   """
@@ -745,7 +760,8 @@ process eager{
   input:
   each sra_biosample_val from ch_biosample_val_eager
   file reference_genome_fna from ch_reference_genome_eager
-  file eager_tsv from ch_tsv_eager
+  file eager_tsv from file("${outdir}/sqlite_import/${params.eager_tsv}")
+  // Eventually need conditional input on fastq files if manually edited
 
   output:
   file "damageprofiler/*"
@@ -1233,9 +1249,9 @@ process iqtree{
   file "*.ckp.gz"
   file "*.log"
   file "*.mldist"
-  file "*.model.gz"
   file "*.output"
   file "*.iqtree"
+  file "*.model.gz" optional true
   file "*.contree" optional true
   file "*.splits.nex" optional true
   file "*.ufboot" optional true
