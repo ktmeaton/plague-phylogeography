@@ -12,6 +12,7 @@
    :caption: Table of Contents:
 
    README <README>
+   trace/trace_link.rst
    process/process_link.rst
    exhibit/exhibit_link.rst
 
