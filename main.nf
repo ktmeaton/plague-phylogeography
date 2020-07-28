@@ -786,8 +786,8 @@ process eager{
   // Eventually need conditional input on fastq files if manually edited
 
   output:
+  file "final_bams/*.bam" into ch_sra_bam_snippy_pairwise
   file "damageprofiler/*"
-  file "deduplication/*/*bam" into ch_sra_bam_snippy_pairwise
   file "pipeline_info/*"
   file "preseq/*"
   file "qualimap/*"
@@ -837,11 +837,18 @@ process eager{
     --max_time ${task.time}
 
   # Rename deduplication bam for snippy pairwise RG simplificity
-  dedupBam=`ls deduplication/*/*_rmdup.bam`
-  for file in `ls \${dedupBam}`;
-  do
-    mv \$file \${file%_*}.bam
-  done
+  dir="final_bams"
+  mkdir -p \$dir;
+  if [[ -d merged_bams/ ]]; then
+    mergedBam=`ls merged_bams/*/*.bam`;
+  else
+    mergedBam=`ls deduplication/*/*.bam`;
+  fi
+  for file in `ls \${mergedBam}`;
+    do
+      outfile=\$dir/${sra_biosample_val}.bam;
+      mv \$file \$outfile;
+    done
 
   # Deactivate the eager env
   conda deactivate
