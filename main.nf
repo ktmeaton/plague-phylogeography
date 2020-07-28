@@ -836,7 +836,11 @@ process eager{
     --max_cpus ${task.cpus} \
     --max_time ${task.time}
 
-  # Rename deduplication bam for snippy pairwise RG simplificity
+  # Deactivate the eager env
+  conda deactivate
+  set +eu
+
+  # Rename deduplication bam for snippy pairwise RG
   dir="final_bams"
   mkdir -p \$dir;
   if [[ -d merged_bams/ ]]; then
@@ -845,14 +849,10 @@ process eager{
     mergedBam=`ls deduplication/*/*.bam`;
   fi
   for file in `ls \${mergedBam}`;
-    do
-      outfile=\$dir/${sra_biosample_val}.bam;
-      mv \$file \$outfile;
-    done
-
-  # Deactivate the eager env
-  conda deactivate
-  set +eu
+  do
+    outfile=\$dir/${sra_biosample_val}.bam;
+    samtools addreplacerg -r ID:${sra_biosample_val} -r SM:${sra_biosample_val} -o \$outfile \$file
+  done
   """
 }
 
