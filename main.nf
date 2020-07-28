@@ -1310,7 +1310,7 @@ process iqtree{
 
   # Setup the branch support param
   if [[ ${params.iqtree_branch_support} == "true"  ]]; then
-    BRANCH_SUPPORT="--bnni --ufboot ${params.iqtree_ufboot} --alrt ${params.iqtree_ufboot}";
+    BRANCH_SUPPORT="--ufboot ${params.iqtree_ufboot} --alrt ${params.iqtree_ufboot}";
     SUFFIX="_bootstrap";
   else
     BRANCH_SUPPORT="";
@@ -1321,6 +1321,7 @@ process iqtree{
   iqtree \
     -s ${snippy_core_filter_aln} \
     -m \$MODEL \
+    --threads-max ${task.cpus} \
     -nt AUTO \
     -o \$OUTGROUP \
     -seed \$RANDOM \
