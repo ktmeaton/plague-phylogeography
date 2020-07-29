@@ -116,11 +116,14 @@ Construct an intraspecies phylogeny of *Y. pestis* genomic assemblies.
     --skip_outgroup_download \
     --snippy_multi_missing_data 0.05 \
     --snippy_multi_missing_data_text 5 \
-    --iqtre_model K3Pu+F+I \
+    --iqtree_model K3Pu+F+I \
     --iqtree_branch_support \
     --iqtree_runs 10 \
     --iqtree_outgroup GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic \
-    -resume
+    --max_cpus 20 \
+    --max_memory 24.GB \
+    --max_time 100.h \
+    -resume 9112a035-a628-4f9d-8955-faa7732a1b73 \
 
 Ancient Raw Data Analysis
 -------------------------

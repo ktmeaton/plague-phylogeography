@@ -18,10 +18,4 @@ morelli2010/*
 cui2013/*
 EAGER_Ancient/*
 notebooks/.ipynb_checkpoints/
-notebooks/*png
-notebooks/*pdf
-notebooks/*txt
-notebooks/*nexus
-notebooks/*csv
-notebooks/*nwk
-notebooks/*tsv
+notebooks/output/

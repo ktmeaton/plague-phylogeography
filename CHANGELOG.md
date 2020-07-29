@@ -7,16 +7,13 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
-- Download reference gff for augur
 - Rewrite shell scripts in python?
 - Lint all python scripts with black+flake8
 - Deal with the fail to publish issue with NCBImeta db
 - Add exact-repeats and tandem repeats detection
 - Add GeoPy to plague-phylo environment
-- Add biopython and treetime to nextstrain environment
-- Github actions, to build docs and remote narratives
+- Github actions, to remote narratives
 - Make the snippy multi filter locus splitting be generic (not plague specific)
-- Deal with nextstrain augur not working with phylogeny with branch support values
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
 - Allow input of own contig files (param)
 - Allow input of own fastq files (tsv concat)
@@ -27,10 +24,13 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ### Added
 
-- sra_download and eager process
-- outgroup_download and outgroup options for iqtree
-- extra parameters for iqtree (RNG, bootstrapping, multiple runs)
-- new workflow: install.yaml to test nextflow install method
+- SRA pipeline (download and eager)
+- Outgroup downloading
+- Extra params for IQTREE (branch support, model, runs, RNG)
+- gh workflows: install, docs, pipeline_assembly, pipeline_sra, pipeline_combine
+- install and uninstall scripts
+- Download reference gff for augur
+- Use custom versions of biopython and treetime for post-phylo analysis
 
 ### Changed
 
