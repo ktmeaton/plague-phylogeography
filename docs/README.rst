@@ -88,7 +88,7 @@ Dependencies
 ^^^^^^^^^^^^
 
 
-* `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`_
+* `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`_ (\ `v4.8.3 <https://repo.anaconda.com/miniconda/Miniconda3-py37_4.8.3-Linux-x86_64.sh>`_\ )
 * `Nextflow <https://www.nextflow.io/>`_ (\ `v20.01.0 <https://github.com/nextflow-io/nextflow/releases/download/v20.01.0/nextflow>`_\ )
 
 Clone Repository
