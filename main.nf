@@ -856,7 +856,7 @@ process eager{
 
   # Move pipeline trace and multiqc into named sample folder
   mkdir -p pipeline_info/${sra_biosample_val}/
-  pipeline_info/*txt pipeline_info/*html pipeline_info/*svg pipeline_info/${sra_biosample_val}/
+  mv pipeline_info/*txt pipeline_info/*html pipeline_info/*svg pipeline_info/${sra_biosample_val}/
   mkdir -p MultiQC/${sra_biosample_val}/
   mv MultiQC/multiqc_data/ MultiQC/multiqc_report.html MultiQC/${sra_biosample_val}/
   """
