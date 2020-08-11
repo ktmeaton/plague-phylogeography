@@ -83,7 +83,7 @@ jobs:
             --skip_assembly_download \
             --skip_outgroup_download \
             --skip_sra_download \
-            --eager_tsv "custom/metadata_custom_sample.tsv" \
+            --eager_tsv "custom/local_data_eager.tsv" \
             --assembly_local "custom/*.fna" \
             --outdir test \
             ${GH_RESOURCES}
