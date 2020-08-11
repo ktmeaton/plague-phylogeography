@@ -73,7 +73,7 @@ jobs:
       # Download pipelines and install
       - name: install
         shell: bash -l {0}
-        run: scripts/install.sh
+        run: scripts/install.sh ${{github.repository}} ${{ github.sha }}
       #------------------------------------------------------------------------#
       # Test conda environments
       - name: test environments
