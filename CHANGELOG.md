@@ -8,14 +8,17 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [Development]
 
 ### High Priority
+
 - Deal with the fail to publish issue with NCBImeta db
 
 ### Medium Priority
+
 - Add exact-repeats and tandem repeats detection
 - Convert local to remote narratives
 - Version control the exhibit_dhsi2020 docs (add tags for install)
 
 ### Low Priority
+
 - Rewrite shell scripts in python?
 - Lint all python scripts with black+flake8
 - Github Actions: Convert local to remote narratives
