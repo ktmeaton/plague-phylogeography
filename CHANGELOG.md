@@ -15,8 +15,8 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Github actions, to remote narratives
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
-- Allow input of own contig files (param)
-- Allow input of own fastq files (tsv concat)
+- Allow input of own contig files (param for snippy channel)
+- Allow input of own fastq files (custom eager tsv)
 - Version control the exhibit_dhsi2020 docs (add tags for install)
 - Fix assemblies (and SRA?) downloading before process begins (file needs to be after when)
 
