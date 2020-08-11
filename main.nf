@@ -140,14 +140,16 @@ process local_reads_prep{
   file custom_tsv_eager from ch_custom_tsv_eager_prep
   output:
   file custom_tsv_eager into ch_custom_tsv_eager
-  file "metadata_custom_biosample.txt" into ch_custom_biosample_val_eager
+  file "${custom_tsv_eager.baseName}.txt" into ch_custom_biosample_val_eager
   when:
   params.eager_tsv
 
   shell:
   '''
   biosampleColumn=1
-  tail -n+2 !{custom_tsv_eager} | cut -f ${biosampleColumn} | sort | uniq > metadata_custom_biosample.txt
+  inTSV=!{params.eager_tsv}
+  outTSV=`basename ${inTSV%.*}.txt`
+  tail -n+2 !{custom_tsv_eager} | cut -f ${biosampleColumn} | sort | uniq > ${outTSV}
   '''
 }
 
