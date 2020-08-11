@@ -26,8 +26,8 @@
 1. **Install dependencies, including developer prerequisites.**
 
   ```bash
-  conda env create -f phylo-dev-env.yaml --name phylo-dev-env
-  conda activate phylo-dev-env
+  conda env create -f environment.yaml
+  conda activate plague-phylogeography-0.1.4dev
   ```
 
 1. **Install pre-commit hooks for linting and miscellaneous formatting. Check to make sure all files lint before beginning your contribution.**
