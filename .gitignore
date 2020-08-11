@@ -1,7 +1,7 @@
 work/*
 results*/*
 test*/*
-src/*
+sra/*
 docs/_build/*
 docs/README.rst
 .nextflow*
