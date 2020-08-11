@@ -7,27 +7,30 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
+### High Priority
+- Deal with the fail to publish issue with NCBImeta db
+
+### Medium Priority
+- Add exact-repeats and tandem repeats detection
+- Convert local to remote narratives
+- Version control the exhibit_dhsi2020 docs (add tags for install)
+
+### Low Priority
 - Rewrite shell scripts in python?
 - Lint all python scripts with black+flake8
-- Deal with the fail to publish issue with NCBImeta db
-- Add exact-repeats and tandem repeats detection
-- Add GeoPy to plague-phylo environment
-- Github actions, to remote narratives
+- Github Actions: Convert local to remote narratives
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
-- Allow input of own contig files (param for snippy channel)
-- Allow input of own fastq files (custom eager tsv)
-- Version control the exhibit_dhsi2020 docs (add tags for install)
-- Fix assemblies (and SRA?) downloading before process begins (file needs to be after when)
 
-## [v0.1.4] - 2020-06-18 - SRA and nf-core/eager
+## [v0.1.4] - 2020-0811 - SRA and Local Data
 
 ### Added
 
 - SRA pipeline (download and eager)
+- Local Data pipeline (assemblies and reads)
 - Outgroup downloading
 - Extra params for IQTREE (branch support, model, runs, RNG)
-- gh workflows: install, docs, pipeline_assembly, pipeline_sra, pipeline_combine
+- gh workflows: install, docs, pipeline_assembly, pipeline_sra, pipeline_local
 - install and uninstall scripts
 - Download reference gff for augur
 - Use custom versions of biopython and treetime for post-phylo analysis
@@ -37,7 +40,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Rename pipeline.nf to main.nf for nextflow pull compatibility
 - Condense phylo-env environment files and rename to environment.yaml
 - Moved config files to config/ directory
-- workflow: pipeline.yaml now tests assembly pipeline, sra download and eager
+- workflow: pipeline.yaml split into multiple versions
 - rename environment phylo-env to plague-phylogeography-0.1.4dev
 
 ## [v0.1.3] - 2020-05-28 - DHSI2020 Exhibit
