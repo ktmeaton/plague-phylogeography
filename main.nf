@@ -118,6 +118,65 @@ Max Time: ${params.max_time}
 ----------
 """.stripIndent()
 
+
+// -------------------------------------------------------------------------- //
+//                          Local Data Entry Point                            //
+// -------------------------------------------------------------------------- //
+
+process local_reads_prep{
+  /* Prepare custom read data as eager tsv.
+  */
+  tag "$custom_tsv_eager"
+  publishDir "${outdir}/custom/", mode: 'copy'
+
+  // If a custom tsv for eager was supplied
+  if (params.eager_tsv){
+    ch_custom_tsv_eager_prep=Channel.fromPath(params.eager_tsv, checkIfExists: true)
+                        .ifEmpty { exit 1, "Custom EAGER tsv file not found: ${params.eager_tsv}" }
+  }
+  else{ch_custom_tsv_eager_prep=Channel.empty()}
+
+  input:
+  file custom_tsv_eager from ch_custom_tsv_eager_prep
+  output:
+  file custom_tsv_eager into ch_custom_tsv_eager
+  file "metadata_custom_biosample.txt" into ch_custom_biosample_val_eager
+  when:
+  params.eager_tsv
+
+  shell:
+  '''
+  biosampleColumn=1
+  tail -n+2 !{custom_tsv_eager} | cut -f ${biosampleColumn} | sort | uniq > metadata_custom_biosample.txt
+  '''
+}
+
+process local_assembly_prep{
+  /* Prepare custom assembly data as file list.
+  */
+  tag "$custom_asm"
+
+  // If a custom assembly file list was supplied
+  if (params.assembly_local){
+    ch_custom_asm_prep=Channel.fromPath(params.assembly_local, checkIfExists: true)
+                              .ifEmpty { exit 1, "Custom assembly files not found: ${params.assembly_local}" }
+  }
+  else{ch_custom_asm_prep=Channel.empty()}
+
+  input:
+  file custom_asm from ch_custom_asm_prep
+  output:
+  file custom_asm into ch_custom_asm_snippy_pairwise
+  when:
+  params.assembly_local
+
+  shell:
+  '''
+  '''
+}
+
+
+
 // -------------------------------------------------------------------------- //
 //                              NCBImeta Entry Point                          //
 // -------------------------------------------------------------------------- //
@@ -291,39 +350,46 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     file sqlite from ch_sqlite
 
     output:
-    file params.file_assembly_download_ftp into ch_assembly_download_ftp
     file sqlite into ch_sqlite_nextstrain_metadata
-    file params.eager_tsv into ch_tsv_sra_download,ch_tsv_eager
-    file params.sra_biosample into ch_biosample_file_download_sra
+    file params.file_assembly_download_ftp optional true into ch_assembly_download_ftp
+    file "metadata_sra_eager.tsv" optional true into ch_tsv_sra_download
+    file "metadata_sra_biosample.tsv" optional true into ch_biosample_file_download_sra
     when:
     !params.skip_sqlite_import
 
     // Shell script to execute
-    script:
-    """
+    shell:
+    '''
     # Select the Genbank Assemblies
-    sqlite3 ${sqlite} ${params.sqlite_select_command_asm}
-    sqlite3 ${sqlite} ${params.sqlite_select_command_asm} | grep . | head -n ${params.max_datasets_assembly} | sed -E -e 's/ |;/\\n/g' | while read line;
-    do
-      if [[ ! -z \$line ]]; then
-        asm_ftp=`echo \$line | \
-            awk -F "/" -v suffix=${params.genbank_assembly_gz_suffix} '{print \$0 FS \$NF suffix}'`;
-        echo \$asm_ftp >> ${params.file_assembly_download_ftp}
-      fi;
-    done;
-    # Extract SRA Metadata for EAGER tsv
-    ${params.scriptdir}/sqlite_EAGER_tsv.py \
-      --database ${sqlite} \
-      --query ${params.sqlite_select_command_sra} \
-      --organism ${params.eager_organism} \
-      --max-datasets ${params.max_datasets_sra} \
-      --output ${params.eager_tsv} \
-      --fastq-dir ${outdir}/sra_download/
+    if [[ !{params.sqlite_select_command_asm} != "false"  ]]; then
+      sqlite3 !{sqlite} !{params.sqlite_select_command_asm} | \
+        grep . | \
+        head -n !{params.max_datasets_assembly} | \
+        sed -E -e 's/ |;/\\n/g' | \
+        while read line;
+          do
+            if [[ ! -z ${line} ]]; then
+              asm_ftp=`echo ${line} | \
+                  awk -F "/" -v suffix=!{params.genbank_assembly_gz_suffix} '{print $0 FS $NF suffix}'`;
+              echo ${asm_ftp} >> !{params.file_assembly_download_ftp}
+            fi;
+          done;
+    fi;
 
-    biosampleColumn=1
-    accessionColumn=2
-    tail -n+2 ${params.eager_tsv} | cut -f \$biosampleColumn | sort | uniq > ${params.sra_biosample}
-    """
+    # Extract SRA Metadata for EAGER tsv
+    if [[ !{params.sqlite_select_command_sra} != "false"  ]]; then
+      !{params.scriptdir}/sqlite_EAGER_tsv.py \
+        --database !{sqlite} \
+        --query !{params.sqlite_select_command_sra} \
+        --organism !{params.eager_organism} \
+        --max-datasets !{params.max_datasets_sra} \
+        --output metadata_sra_eager.tsv \
+        --fastq-dir !{outdir}/sra_download/
+      biosampleColumn=1
+      accessionColumn=2
+      tail -n+2 metadata_sra_eager.tsv | cut -f $biosampleColumn | sort | uniq > metadata_sra_biosample.tsv
+    fi;
+    '''
 }
 
 
@@ -348,10 +414,13 @@ process assembly_download{
   publishDir "${outdir}/assembly_download", mode: 'copy'
   // Deal with new lines, split up ftp links by url
   // By loading with file(), stages as local file
-  ch_assembly_download_ftp.splitText()
-          .map { file(it.replaceFirst(/\n/,'')) }
-          .set { ch_assembly_fna_gz_local }
-
+  if (!params.skip_assembly_download){
+    ch_assembly_fna_gz_local = ch_assembly_download_ftp.splitText()
+                                                       .map { file(it.replaceFirst(/\n/,'')) }
+  }
+  else{
+    ch_assembly_fna_gz_local = Channel.empty()
+  }
     // IO and conditional behavior
   input:
   file assembly_fna_gz from ch_assembly_fna_gz_local
@@ -395,8 +464,9 @@ process sra_download{
   each sra_biosample_val from ch_biosample_val_sra
   file tsv_eager from ch_tsv_sra_download
   output:
-  val sra_biosample_val into ch_biosample_val_eager
+  val sra_biosample_val into ch_sra_biosample_val_eager
   file "${sra_biosample_val}/*/*.fastq.gz" into ch_sra_fastq_eager
+  file tsv_eager into ch_sra_tsv_eager
   when:
   !params.skip_sra_download
 
@@ -775,14 +845,28 @@ process eager{
 
   */
   // Other variables and config
-  tag "$sra_biosample_val"
+  tag "$biosample_val"
   publishDir "${outdir}/eager", mode: 'copy'
+
+  // If a custom tsv was supplied
+  if (params.eager_tsv){
+    ch_tsv_eager=ch_custom_tsv_eager
+    //ch_biosample_val_eager=ch_custom_biosample_val_eager
+    ch_biosample_val_eager = ch_custom_biosample_val_eager
+                              .splitText()
+                              .map { it.replaceFirst(/\n/,'') }
+  }
+  // If the tsv was generated from sra download
+  else{
+    ch_tsv_eager=ch_sra_tsv_eager
+    ch_biosample_val_eager=ch_sra_biosample_val_eager
+  }
 
   // IO and conditional behavior
   input:
-  each sra_biosample_val from ch_biosample_val_eager
+  each biosample_val from ch_biosample_val_eager
   file reference_genome_fna from ch_reference_genome_eager
-  file eager_tsv from file("${outdir}/sqlite_import/${params.eager_tsv}")
+  file eager_tsv from ch_tsv_eager
   // Eventually need conditional input on fastq files if manually edited
 
   output:
@@ -799,42 +883,42 @@ process eager{
   !params.skip_eager
 
   // Shell script to execute
-  script:
-  """
+  shell:
+  '''
   # Create biosample specific tsv input for eager
-  head -n 1 ${eager_tsv} > metadata_${sra_biosample_val}.tsv
-  grep -w ${sra_biosample_val} ${eager_tsv} >> metadata_${sra_biosample_val}.tsv
+  head -n 1 !{eager_tsv} > metadata_!{biosample_val}.tsv
+  grep -w !{biosample_val} !{eager_tsv} >> metadata_!{biosample_val}.tsv
 
   # The set command is to deal with PS1 errors
   set +eu
   # Enable conda activate support in this bash subshell
-  CONDA_BASE=\$(conda info --base) ;
-  source \$CONDA_BASE/etc/profile.d/conda.sh
+  CONDA_BASE=$(conda info --base) ;
+  source ${CONDA_BASE}/etc/profile.d/conda.sh
 
   # Activate the eager environment
   conda activate nf-core-eager-2.2.0dev
 
   # Run the eager command
-  task_mem_reformat=`echo ${task.memory} | sed 's/ /./g'`
+  task_mem_reformat=`echo !{task.memory} | sed 's/ /./g'`
   nextflow -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
     run nf-core/eager \
-    -r ${params.eager_rev} \
-    --input metadata_${sra_biosample_val}.tsv \
+    -r !{params.eager_rev} \
+    --input metadata_!{biosample_val}.tsv \
     --outdir . \
-    --fasta ${reference_genome_fna} \
-    --clip_readlength ${params.eager_clip_readlength} \
+    --fasta !{reference_genome_fna} \
+    --clip_readlength !{params.eager_clip_readlength} \
     --preserve5p \
     --mergedonly \
     --mapper bwaaln \
-    --bwaalnn ${params.eager_bwaalnn} \
-    --bwaalnl ${params.eager_bwaalnl} \
+    --bwaalnn !{params.eager_bwaalnn} \
+    --bwaalnl !{params.eager_bwaalnl} \
     --run_bam_filtering \
-    --bam_mapping_quality_threshold ${params.snippy_map_qual} \
+    --bam_mapping_quality_threshold !{params.snippy_map_qual} \
     --bam_discard_unmapped \
     --bam_unmapped_type discard \
-    --max_memory \${task_mem_reformat} \
-    --max_cpus ${task.cpus} \
-    --max_time ${task.time}
+    --max_memory ${task_mem_reformat} \
+    --max_cpus !{task.cpus} \
+    --max_time !{task.time}
 
   # Deactivate the eager env
   conda deactivate
@@ -842,24 +926,24 @@ process eager{
 
   # Rename deduplication bam for snippy pairwise RG
   dir="final_bams"
-  mkdir -p \$dir;
+  mkdir -p $dir;
   if [[ -d merged_bams/ ]]; then
     mergedBam=`ls merged_bams/*/*.bam`;
   else
     mergedBam=`ls deduplication/*/*.bam`;
   fi
-  for file in `ls \${mergedBam}`;
+  for file in `ls ${mergedBam}`;
   do
-    outfile=\$dir/${sra_biosample_val}.bam;
-    samtools addreplacerg -r ID:${sra_biosample_val} -r SM:${sra_biosample_val} -o \$outfile \$file
+    outfile=$dir/!{biosample_val}.bam;
+    samtools addreplacerg -r ID:!{biosample_val} -r SM:!{biosample_val} -o $outfile $file
   done
 
   # Move pipeline trace and multiqc into named sample folder
-  mkdir -p pipeline_info/${sra_biosample_val}/
-  mv pipeline_info/*txt pipeline_info/*html pipeline_info/*svg pipeline_info/${sra_biosample_val}/
-  mkdir -p MultiQC/${sra_biosample_val}/
-  mv MultiQC/multiqc_data/ MultiQC/multiqc_report.html MultiQC/${sra_biosample_val}/
-  """
+  mkdir -p pipeline_info/!{biosample_val}/
+  mv pipeline_info/*txt pipeline_info/*html pipeline_info/*svg pipeline_info/!{biosample_val}/
+  mkdir -p MultiQC/!{biosample_val}/
+  mv MultiQC/multiqc_data/ MultiQC/multiqc_report.html MultiQC/!{biosample_val}/
+  '''
 }
 
 // -------------------------------------------------------------------------- //
@@ -870,18 +954,26 @@ process eager{
 
 // Collect bam and fasta into a single channel, assign Empty if not run
 // Includes: Assembly fna, EAGER bam, outgroup fna
-ch_assembly_fna_snippy_pairwise.collect()
+ch_assembly_fna_snippy_pairwise
+  .collect()
   .ifEmpty([])
   .combine (
-    ch_sra_bam_snippy_pairwise.collect()
+    ch_sra_bam_snippy_pairwise
+      .collect()
       .ifEmpty([])
   )
   .combine (
-    ch_outgroup_fna_snippy_pairwise.collect()
-      .ifEmpty([])
+    ch_outgroup_fna_snippy_pairwise
+       .collect()
+       .ifEmpty([])
     )
+  .combine (
+    ch_custom_asm_snippy_pairwise
+      .collect()
+      .ifEmpty([])
+  )
   .flatten()
-  .filter { it =~/.*.fna|.*.bam/ }
+  .filter { it =~/.*.fna|.*.bam|.*.fasta/ }
   .set { ch_assembly_fna_sra_bam_snippy_pairwise }
 
 process snippy_pairwise{

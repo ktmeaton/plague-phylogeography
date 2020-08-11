@@ -66,9 +66,10 @@ scripts/install.sh
 
 ## Example Usage
 
-* Use the default organism database (*Yersinia pestis*)
-* Analyze 2 genomic assemblies.
-* Analyze 2 ancient DNA samples.
+### Remote Data
+
+* Analyze 2 genomic assemblies from Genbank.
+* Analyze 2 ancient DNA samples from the SRA.
 * The outgroup (*Y. pseudotuberculosis*) is skipped as it's high divergence significantly extends runtime.
 
 ```bash
@@ -81,7 +82,7 @@ nextflow run ktmeaton/plague-phylogeography \
   --max_cpus 4 \
   --max_memory 8.GB \
   --max_time 4.h \
-  --outdir test
+  --outdir test_remote
 ```
 
 * Example terminal output (v0.1.4)
@@ -133,6 +134,24 @@ Completed at: 25-Jul-2020 17:39:04
 Duration    : 7m 56s
 CPU hours   : 0.5
 Succeeded   : 29
+```
+
+### Local Data
+
+* Prepare a tsv file for locally stored sequence data.
+* Input the path to the locally stored assembly data.
+
+```bash
+nextflow run main.nf \
+  --skip_assembly_download \
+  --skip_outgroup_download \
+  --skip_sra_download \
+  --eager_tsv "custom/metadata_custom_sample.tsv" \
+  --assembly_local "custom/*.fna" \
+  --max_cpus 4 \
+  --max_memory 8.GB \
+  --max_time 4.h \
+  --outdir test_local
 ```
 
 ## Usage

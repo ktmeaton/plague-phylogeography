@@ -9,6 +9,8 @@ env:
     CONDA_ENVS_PATH: "/home/runner/miniconda/envs:/usr/share/miniconda/envs"
     CONDA_PKGS_DIRS: "/home/runner/miniconda/pkgs"
     GH_RESOURCES:    "--max_memory 6.GB --max_cpus 2"
+    SQLITE_DB_PATH:  "/home/runner/.nextflow/assets/${GITHUB_REPOSITORY}/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite"
+
 #------------------------------------------------------------------------------#
 # Workflow conditions
 on:
@@ -80,14 +82,14 @@ jobs:
           conda activate ${PHYLO_CONDA_ENV}
           nextflow run -r ${GITHUB_SHA} ${GITHUB_REPOSITORY} \
             --skip_assembly_download \
-            --max_datasets_assembly 1 \
-            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
-            --max_datasets_sra 2 \
-            --skip_eager \
             --skip_outgroup_download \
+            --skip_eager \
+            --sqlite ${SQLITE_DB_PATH} \
+            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --outdir test \
             ${GH_RESOURCES}
           conda deactivate
+
       #  SRA Analysis Pipeline
       - name: pipeline sra analysis
         shell: bash -l {0}
@@ -95,11 +97,47 @@ jobs:
           conda activate ${PHYLO_CONDA_ENV}
           nextflow run -r ${GITHUB_SHA} ${GITHUB_REPOSITORY} \
             --skip_assembly_download \
-            --max_datasets_assembly 1 \
-            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
-            --max_datasets_sra 2 \
             --skip_outgroup_download \
+            --sqlite ${SQLITE_DB_PATH} \
+            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
             --outdir test \
-            -resume \
-            ${GH_RESOURCES}
+            ${GH_RESOURCES} \
+            -resume
           conda deactivate
+      #------------------------------------------------------------------------#
+      #  Artifact Upload
+      - name: artifact sqlite-import
+        uses: actions/upload-artifact@v2
+        with:
+          name: sqlite-import
+          path: test/sqlite_import/
+
+      - name: artifact multiqc-eager
+        uses: actions/upload-artifact@v2
+        with:
+          name: multiqc-eager
+          path: test/eager/MultiQC/
+
+      - name: artifact snippy-pairwise
+        uses: actions/upload-artifact@v2
+        with:
+          name: snippy-pairwise
+          path: test/snippy_pairwise/output10X/
+
+      - name: artifact iqtree
+        uses: actions/upload-artifact@v2
+        with:
+          name: iqtree
+          path: test/iqtree/
+
+      - name: artifact multiqc
+        uses: actions/upload-artifact@v2
+        with:
+          name: multiqc
+          path: test/multiqc/multiqc_report.html
+
+      - name: artifact trace
+        uses: actions/upload-artifact@v2
+        with:
+          name: trace
+          path: test/trace/
