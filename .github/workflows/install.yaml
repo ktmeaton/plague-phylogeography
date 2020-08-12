@@ -68,7 +68,11 @@ jobs:
       #------------------------------------------------------------------------#
       # Check conda environments
       - name: check cache
-        run: conda info --envs
+        run: |
+          conda info --envs
+          ls -l /etc/profile.d
+          ls -l ~/miniconda3/
+          ls -l ~/miniconda3/etc
       #------------------------------------------------------------------------#
       # Download pipelines and install
       - name: install
