@@ -66,6 +66,21 @@ Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleC
 
    * Add collection data, geographic location, host etc.
 
+Backup Curated Entries
+^^^^^^^^^^^^^^^^^^^^^^
+
+**Shell**::
+
+    SQLITE_DB=~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
+    SQLITE_COL="BioSample_id,BioSampleAccession,BioSampleAccessionSecondary,BioSampleBioProjectAccession,BioSampleSRAAccession,BioSampleStrain,BioSampleBiovar,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleHost,BioSampleLat,BioSampleLatLon,BioSampleLon,BioSampleComment"
+    SQLITE_BACKUP=`basename $SQLITE_DB .sqlite`"_"`date +'%m-%d-%Y'`".tsv"
+
+    sqlite3 \
+      -header \
+      -separator $'\t' \
+      ${SQLITE_DB} \
+      "SELECT ${SQLITE_COL} FROM BioSample" > results/ncbimeta_db/update/${SQLITE_BACKUP}
+
 Update, Annotate, Join
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -91,6 +106,7 @@ Construct a phylogeny including the outgroup (*Yersinia pseudotuberculosis*) to 
 
   nextflow run ktmeaton/plague-phylogeography \
     --outdir Assembly_Modern_Outgroup \
+    --sqlite ~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
     --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \
     --max_datasets_assembly 500 \
     --skip_sra_download \
@@ -109,6 +125,7 @@ Construct an intraspecies phylogeny of *Y. pestis* genomic assemblies.
 
   nextflow run ktmeaton/plague-phylogeography \
     --outdir Assembly_Modern \
+    --sqlite ~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
     --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \
     --max_datasets_assembly 500 \
     --max_datasets_sra 150  \
@@ -135,6 +152,7 @@ Ancient Raw Data Analysis
 
   nextflow run ktmeaton/plague-phylogeography \
     --outdir EAGER_Ancient \
+    --sqlite ~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
     --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')\"" \
     --max_datasets_assembly 500 \
     --max_datasets_sra 150  \
