@@ -70,6 +70,7 @@ jobs:
       - name: check cache
         run: |
           conda info --envs
+          echo "CONDA EXE:" ${CONDA_EXE}
           ls -l /usr/share/miniconda/etc/profile.d/
       #------------------------------------------------------------------------#
       # Download pipelines and install
