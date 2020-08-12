@@ -51,7 +51,15 @@ NEXTSTRAIN_CONDA_ENV=`grep "name:" ~/.nextflow/assets/ktmeaton/plague-phylogeogr
 # Check if environment already exists
 if [[ ! `conda env list | grep ${NEXTSTRAIN_CONDA_ENV}` ]]; then
   conda env create -f  ~/.nextflow/assets/${REPO}/config/nextstrain.yaml
-  source ~/miniconda3/etc/profile.d/conda.sh
+  # Find conda sh path
+  if [[ -f  ${HOME}/miniconda3/etc/profile.d/conda.sh ]];
+  then
+    CONDA_SH="${HOME}/miniconda3/etc/profile.d/conda.sh";
+  elif [[ -f /usr/share/miniconda/etc/profile.d/conda.sh ]];
+  then
+    CONDA_SH="/usr/share/miniconda/etc/profile.d/conda.sh";
+  fi
+  source ${CONDA_SH}
   conda activate ${NEXTSTRAIN_CONDA_ENV}
   npm install --global auspice@${AUSPICE_VER}
   conda deactivate
