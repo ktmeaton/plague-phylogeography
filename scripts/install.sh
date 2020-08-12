@@ -9,7 +9,7 @@ REPO=${1:-"ktmeaton/plague-phylogeography"}
 SHA=${2:-"master"}
 
 # Gloabl script variables
-STEPS="5"
+STEPS="4"
 NF_VER="20.01.0"
 EAGER_NF_REV="7b51863957"
 AUSPICE_VER="2.17.0"
@@ -42,25 +42,4 @@ if [[ ! `conda env list | grep ${EAGER_CONDA_ENV}` ]]; then
   conda env create -f ~/.nextflow/assets/nf-core/eager/environment.yml
   conda install -n ${EAGER_CONDA_ENV} -c bioconda nextflow==${NF_VER}
   conda install -n ${EAGER_CONDA_ENV} -c anaconda graphviz
-fi
-
-# Create the nextstrain conda environment
-echo "[5/${STEPS}] Creating the nextstrain conda environment."
-NEXTSTRAIN_CONDA_ENV=`grep "name:" ~/.nextflow/assets/ktmeaton/plague-phylogeography/config/nextstrain.yaml | \
-                      cut -d " " -f 2`
-# Check if environment already exists
-if [[ ! `conda env list | grep ${NEXTSTRAIN_CONDA_ENV}` ]]; then
-  conda env create -f  ~/.nextflow/assets/${REPO}/config/nextstrain.yaml
-  # Find conda sh path
-  if [[ -f  ${HOME}/miniconda3/etc/profile.d/conda.sh ]];
-  then
-    CONDA_SH="${HOME}/miniconda3/etc/profile.d/conda.sh";
-  elif [[ -f /usr/share/miniconda/etc/profile.d/conda.sh ]];
-  then
-    CONDA_SH="/usr/share/miniconda/etc/profile.d/conda.sh";
-  fi
-  source ${CONDA_SH}
-  conda activate ${NEXTSTRAIN_CONDA_ENV}
-  npm install --global auspice@${AUSPICE_VER}
-  conda deactivate
 fi
