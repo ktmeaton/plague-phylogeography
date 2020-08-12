@@ -20,6 +20,7 @@ on:
       - '.github/workflows/pipeline_local.yaml'
       - 'main.nf'
       - 'nextflow.config'
+      - 'custom/local_data_eager.tsv'
   pull_request:
     branches:
       - '*'
