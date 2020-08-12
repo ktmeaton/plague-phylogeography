@@ -45,6 +45,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Moved config files to config/ directory
 - workflow: pipeline.yaml split into multiple versions
 - rename environment phylo-env to plague-phylogeography-0.1.4dev
+- update ncbimeta dependency from 0.6.5 to 0.6.6
 
 ## [v0.1.3] - 2020-05-28 - DHSI2020 Exhibit
 
