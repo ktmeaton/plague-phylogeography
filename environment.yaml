@@ -1,21 +1,21 @@
 name: plague-phylogeography-0.1.4dev
 channels:
-  - defaults
   - bioconda
-  - anaconda
   - conda-forge
+  - defaults
+  - anaconda
 dependencies:
-- bioconda::nextflow=20.01.0
-- bioconda/label/cf201901::vt=2015.11.10
-- bioconda::snippy=4.6.0
-- bioconda::ncbimeta=0.6.6
-- bioconda::iqtree>=2.0.3
-- bioconda::blast>=2.9.0
-- bioconda::mummer>=3.23
-- bioconda::vcftools>=0.1.16
-- anaconda::pip>=20.0.2
-- bioconda::qualimap>=2.2.2d
-- bioconda::multiqc>=1.8
-- anaconda::sqlite>=3.31.1
-- bioconda::sra-tools>=2.10.3
-- anaconda::graphviz>=2.40.1
+  - sqlite==3.31.1
+  - bioconda/label/cf201901::vt==2015.11.10
+  - snippy==4.6.0
+  - blast==2.9.0
+  - mummer==3.23
+  - vcftools==0.1.16
+  - pip==20.0.2
+  - ncbimeta==0.6.6
+  - qualimap==2.2.2d
+  - multiqc==1.8
+  - nextflow==20.01.0
+  - iqtree==2.0.3
+  - sra-tools==2.10.3
+  - graphviz==2.40.1
