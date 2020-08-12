@@ -85,7 +85,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate ${PHYLO_CONDA_ENV}
-          nextflow run -r ${GITHUB_SHA} ${GITHUB_REPOSITORY} \
+          nextflow run -r ${{ github.sha }} ${{github.repository}} \
             --ncbimeta_create ${SQLITE_CONFIG} \
             --sqlite ${SQLITE_DB} \
             --skip_sqlite_import \
@@ -99,7 +99,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate ${PHYLO_CONDA_ENV}
-          nextflow run -r ${GITHUB_SHA} ${GITHUB_REPOSITORY} \
+          nextflow run -r ${{ github.sha }} ${{github.repository}} \
            --ncbimeta_update ${SQLITE_CONFIG} \
            --ncbimeta_annot ${SQLITE_BACKUP} \
            --ncbimeta_annot_table ${SQLITE_TABLE} \
