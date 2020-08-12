@@ -76,6 +76,7 @@ scripts/install.sh
 conda activate plague-phylogeography-0.1.4dev
 nextflow run ktmeaton/plague-phylogeography \
   --max_datasets_assembly 2 \
+  --sqlite "~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite" \
   --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
   --max_datasets_sra 2 \
   --skip_outgroup_download \
@@ -146,8 +147,8 @@ nextflow run main.nf \
   --skip_assembly_download \
   --skip_outgroup_download \
   --skip_sra_download \
-  --eager_tsv "custom/metadata_custom_sample.tsv" \
-  --assembly_local "custom/*.fna" \
+  --eager_tsv "~/.nextflow/assets/ktmeaton/plague-phylogeography/custom/metadata_custom_sample.tsv" \
+  --assembly_local "~/.nextflow/assets/ktmeaton/plague-phylogeography/custom/*.fna" \
   --max_cpus 4 \
   --max_memory 8.GB \
   --max_time 4.h \
