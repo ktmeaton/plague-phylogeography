@@ -32,7 +32,7 @@ jobs:
   # Install dependencies
   install :
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
