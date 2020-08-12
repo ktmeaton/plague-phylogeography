@@ -70,11 +70,7 @@ jobs:
       - name: check cache
         run: |
           conda info --envs
-          ls -l /etc/profile.d
-          ls -l /usr/share/miniconda
-          ls -l /usr/share/miniconda/etc/
-          ls -l ~/miniconda/
-          ls -l ~/miniconda/etc
+          ls -l /usr/share/miniconda/etc/profile.d/
       #------------------------------------------------------------------------#
       # Download pipelines and install
       - name: install
