@@ -45,6 +45,8 @@ jobs:
       # Setup conda
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
+        with:
+          auto-update-conda: true        
       #------------------------------------------------------------------------#
       #  Restore (cache) conda environments
       - name: cache eager env
@@ -72,7 +74,7 @@ jobs:
       # Download pipelines and install
       - name: install
         shell: bash -l {0}
-        run: scripts/install.sh
+        run: scripts/install.sh ${{github.repository}} ${{ github.sha }}
       #------------------------------------------------------------------------#
       #  Analyze Local Data
       - name: pipeline local
