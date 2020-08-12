@@ -21,6 +21,7 @@ on:
       - '.github/workflows/install.yaml'
       - 'environment.yaml'
       - 'config/nextstrain.yaml'
+      - 'scripts/install.sh'
   pull_request:
     branches:
       - '*'
