@@ -79,7 +79,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate ${PHYLO_CONDA_ENV}
-          nextflow run -r ${GITHUB_SHA} ${GITHUB_REPOSITORY} \
+          nextflow run -r ${{ github.sha }} ${{github.repository}} \
             --sqlite ${SQLITE_DB_PATH} \
             --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%KEEP: Assembly%'\"" \
             --max_datasets_assembly 2 \
@@ -93,7 +93,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate ${PHYLO_CONDA_ENV}
-          nextflow run -r ${GITHUB_SHA} ${GITHUB_REPOSITORY} \
+          nextflow run -r ${{ github.sha }} ${{github.repository}} \
             --sqlite ${SQLITE_DB_PATH} \
             --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE BioSampleComment LIKE '%KEEP: Assembly%'\"" \
             --max_datasets_assembly 3 \

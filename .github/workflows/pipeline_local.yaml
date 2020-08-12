@@ -46,7 +46,7 @@ jobs:
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
         with:
-          auto-update-conda: true        
+          auto-update-conda: true
       #------------------------------------------------------------------------#
       #  Restore (cache) conda environments
       - name: cache eager env
@@ -81,7 +81,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate ${PHYLO_CONDA_ENV}
-          nextflow run -r ${GITHUB_SHA} ${GITHUB_REPOSITORY} \
+          nextflow run -r ${{ github.sha }} ${{github.repository}} \
             --skip_assembly_download \
             --skip_outgroup_download \
             --skip_sra_download \
