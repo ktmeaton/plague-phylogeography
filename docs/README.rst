@@ -89,6 +89,7 @@ Dependencies
 
 
 * `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`_ (\ `v4.8.3 <https://repo.anaconda.com/miniconda/Miniconda3-py37_4.8.3-Linux-x86_64.sh>`_\ )
+* Java Runtime Environment 11 (default-jre, `openjdk <https://github.com/openjdk/jdk>`_\ )
 * `Nextflow <https://www.nextflow.io/>`_ (\ `v20.01.0 <https://github.com/nextflow-io/nextflow/releases/download/v20.01.0/nextflow>`_\ )
 
 Clone Repository
@@ -109,10 +110,12 @@ Install Pipelines
 Example Usage
 -------------
 
+Remote Data
+^^^^^^^^^^^
 
-* Use the default organism database (\ *Yersinia pestis*\ )
-* Analyze 2 genomic assemblies.
-* Analyze 2 ancient DNA samples.
+
+* Analyze 2 genomic assemblies from Genbank.
+* Analyze 2 ancient DNA samples from the SRA.
 * The outgroup (\ *Y. pseudotuberculosis*\ ) is skipped as it's high divergence significantly extends runtime.
 
 .. code-block:: bash
@@ -120,13 +123,14 @@ Example Usage
    conda activate plague-phylogeography-0.1.4dev
    nextflow run ktmeaton/plague-phylogeography \
      --max_datasets_assembly 2 \
+     --sqlite "~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite" \
      --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
      --max_datasets_sra 2 \
      --skip_outgroup_download \
      --max_cpus 4 \
      --max_memory 8.GB \
      --max_time 4.h \
-     --outdir test
+     --outdir test_remote
 
 
 * Example terminal output (v0.1.4)
@@ -179,6 +183,26 @@ Example Usage
    Duration    : 7m 56s
    CPU hours   : 0.5
    Succeeded   : 29
+
+Local Data
+^^^^^^^^^^
+
+
+* Prepare a tsv file for locally stored sequence data.
+* Input the path to the locally stored assembly data.
+
+.. code-block:: bash
+
+   nextflow run main.nf \
+     --skip_assembly_download \
+     --skip_outgroup_download \
+     --skip_sra_download \
+     --eager_tsv "~/.nextflow/assets/ktmeaton/plague-phylogeography/custom/metadata_custom_sample.tsv" \
+     --assembly_local "~/.nextflow/assets/ktmeaton/plague-phylogeography/custom/*.fna" \
+     --max_cpus 4 \
+     --max_memory 8.GB \
+     --max_time 4.h \
+     --outdir test_local
 
 Usage
 -----
