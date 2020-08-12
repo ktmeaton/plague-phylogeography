@@ -71,8 +71,10 @@ jobs:
         run: |
           conda info --envs
           ls -l /etc/profile.d
-          ls -l ~/miniconda3/
-          ls -l ~/miniconda3/etc
+          ls -l /usr/share/miniconda
+          ls -l /usr/share/miniconda/etc/
+          ls -l ~/miniconda/
+          ls -l ~/miniconda/etc
       #------------------------------------------------------------------------#
       # Download pipelines and install
       - name: install
