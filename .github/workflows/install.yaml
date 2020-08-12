@@ -47,6 +47,8 @@ jobs:
       # Setup conda
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
+        with:
+          update-conda: true
       #------------------------------------------------------------------------#
       #  Restore (cache) conda environments
       - name: cache eager env
