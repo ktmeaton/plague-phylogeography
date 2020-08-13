@@ -79,7 +79,7 @@ with open(nf_path, "r") as nf_file:
             rst_file.write("\n"
                           + format_process_name
                           + "\n"
-                          + H2_CHAR * len(format_process_name)
+                          + H3_CHAR * len(format_process_name)
                           + "\n\n")
             line = nf_file.readline().strip()
             # Begin the process docstring
@@ -87,25 +87,38 @@ with open(nf_path, "r") as nf_file:
                 # Write the process description.
                 process_description = nf_file.readline().strip()
                 rst_file.write(process_description
-                               + "\n")
+                               + "\n\n")
                 # Process the IO docs
                 line  = nf_file.readline().strip()
 
                 io_doc_exists = False
                 while not line == ("*/"):
                     # Blank lines signal table line
-                    if not line:
+                    # If line is blank and no io docstring found yet
+                    if not line and not io_doc_exists:
+                        line = nf_file.readline().strip()
+                        continue
+                    # If line is blank and io docstring has been found
+                    if not line and io_doc_exists:
+                        rst_file.write(TABLE_CHAR * TABLE_COL_WIDTH
+                                       + " "
+                                       + TABLE_CHAR * TABLE_COL_WIDTH
+                                       + " "
+                                       + TABLE_CHAR * TABLE_COL_WIDTH
+                                       + "\n\n")
+                        line = nf_file.readline().strip()
+                        continue
+                    # Process a subsection of the docstring
+                    if line in ["Input:", "Output:", "Publish:"]:
+                        io_doc_exists = True
+                        io_section = line
+                        # Write top border
                         rst_file.write(TABLE_CHAR * TABLE_COL_WIDTH
                                        + " "
                                        + TABLE_CHAR * TABLE_COL_WIDTH
                                        + " "
                                        + TABLE_CHAR * TABLE_COL_WIDTH
                                        + "\n")
-                        line = nf_file.readline().strip()
-                        continue
-                    if line in ["Input:", "Output:", "Publish:"]:
-                        io_doc_exists = True
-                        io_section = line
                         # Write input column headers
                         rst_file.write(io_section
                                         + " " * (TABLE_COL_WIDTH - len(io_section) + 1)
@@ -163,7 +176,7 @@ with open(nf_path, "r") as nf_file:
             # Check if the immediate next line is """ or '''
             line =  nf_file.readline().strip()
             if line != "'''" and line != '"""':
-                rst_file.write("\n" + "**" + script_type + "**::" + "\n")
+                rst_file.write("**" + script_type + "**::" + "\n\n")
                 while line != "'''" and line != '"""':
                     rst_file.write("\t" + line + "\n")
                     line  = nf_file.readline().strip()

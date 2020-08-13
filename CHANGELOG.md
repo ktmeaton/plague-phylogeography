@@ -24,6 +24,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Github Actions: Convert local to remote narratives
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
+- Create a script to automatically create process docs.
 
 ## [v0.1.4] - 2020-0811 - SRA and Local Data
 

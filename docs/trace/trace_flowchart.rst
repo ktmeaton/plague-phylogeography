@@ -1,6 +1,6 @@
------------
-Flowchart
------------
+------------------
+Pipeline Flowchart
+------------------
 
 .. figure:: ./trace_pipeline.pdf
    :scale: 50 %

@@ -6,14 +6,24 @@ Code Installation
 
 | Follow the installation guide at the `Github Repository <https://github.com/ktmeaton/plague-phylogeography#install>`_.
 
+
+Shell Variables
+^^^^^^^^^^^^^^^
+
+**Shell**::
+  SQLITE_DB=~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
+  SQLITE_CONFIG=~/.nextflow/assets/ktmeaton/plague-phylogeography/config/ncbimeta.yaml
+  PHYLO_CONDA_ENV=plague-phylogeography-0.1.4dev
+  PHYLO_NF_REV=master
+
 Clone Repository
 ^^^^^^^^^^^^^^^^
 
 **Shell**::
 
-  git clone https://github.com/ktmeaton/plague-phylogeography.git
+  git clone -b ${PHYLO_NF_REV} https://github.com/ktmeaton/plague-phylogeography.git
   cd plague-phylogeography
-  conda activate plague-phylogeography-0.1.4dev
+  conda activate ${PHYLO_CONDA_ENV}
 
 Database
 --------
@@ -23,12 +33,13 @@ Create
 
 **Shell**::
 
-  nextflow run ktmeaton/plague-phylogeography \
-    --ncbimeta_create config/ncbimeta.yaml \
-    --outdir results \
+  nextflow run -r ${PHYLO_NF_REV} ktmeaton/plague-phylogeography \
+    --ncbimeta_create ${SQLITE_CONFIG} \
+    --sqlite ${SQLITE_DB} \
     --skip_sqlite_import \
     --skip_reference_download \
-    --skip_outgroup_download
+    --skip_outgroup_download \
+    --outdir results
 
 Curate
 ^^^^^^
@@ -71,27 +82,30 @@ Backup Curated Entries
 
 **Shell**::
 
-    SQLITE_DB=~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
+    SQLITE_TABLE="BioSample"
     SQLITE_COL="BioSample_id,BioSampleAccession,BioSampleAccessionSecondary,BioSampleBioProjectAccession,BioSampleSRAAccession,BioSampleStrain,BioSampleBiovar,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleHost,BioSampleLat,BioSampleLatLon,BioSampleLon,BioSampleComment"
-    SQLITE_BACKUP=`basename $SQLITE_DB .sqlite`"_"`date +'%m-%d-%Y'`".tsv"
+    SQLITE_BACKUP=results/ncbimeta_db/update/latest/`basename $SQLITE_DB .sqlite`"_${SQLITE_TABLE}.tsv"
 
     sqlite3 \
       -header \
       -separator $'\t' \
       ${SQLITE_DB} \
-      "SELECT ${SQLITE_COL} FROM BioSample" > results/ncbimeta_db/update/${SQLITE_BACKUP}
+      "SELECT ${SQLITE_COL} FROM ${SQLITE_TABLE}" > ${SQLITE_BACKUP}
 
 Update, Annotate, Join
 ^^^^^^^^^^^^^^^^^^^^^^
 
 **Shell**::
 
-  nextflow run ktmeaton/plague-phylogeography \
-   --ncbimeta_update config/ncbimeta.yaml \
-   --outdir results \
+  nextflow run -r ${PHYLO_NF_REV} ktmeaton/plague-phylogeography \
+   --ncbimeta_update ${SQLITE_CONFIG} \
+   --ncbimeta_annot ${SQLITE_BACKUP} \
+   --ncbimeta_annot_table ${SQLITE_TABLE} \
+   --sqlite ${SQLITE_DB} \
    --skip_sqlite_import \
    --skip_reference_download \
    --skip_outgroup_download \
+   --outdir results \
    -resume
 
 Modern Assembly Analysis
@@ -104,7 +118,7 @@ Construct a phylogeny including the outgroup (*Yersinia pseudotuberculosis*) to 
 
 **Shell**::
 
-  nextflow run ktmeaton/plague-phylogeography \
+  nextflow run -r ${PHYLO_NF_REV} ktmeaton/plague-phylogeography \
     --outdir Assembly_Modern_Outgroup \
     --sqlite ~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
     --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \

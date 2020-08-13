@@ -1,5 +1,5 @@
 -------------------------------
-Pipeline Processes
+Pipeline Trace
 -------------------------------
 
 .. contents::
