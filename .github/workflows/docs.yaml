@@ -44,6 +44,10 @@ jobs:
           pip install m2r
           m2r --version
       #------------------------------------------------------------------------#
+      # Parse Docstrings
+      - name: Parse docstrings
+        run: |
+          scripts/process_docs.py --nf main.nf --rst docs/process/process_all.rst
       # Build Docs
       - name: Compile docs
         id: compile-docs
