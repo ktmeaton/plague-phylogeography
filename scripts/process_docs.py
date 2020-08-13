@@ -5,6 +5,7 @@
 Generate process docs for ReadTheDocs from nextflow file.
 
 ./process_docs.py --nf ../main.nf --rst ../docs/process/process_all.rst
+
 """
 
 # -----------------------------------------------------------------------------#
