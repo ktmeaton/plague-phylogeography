@@ -59,6 +59,9 @@ jobs:
           if [[ `git diff README.rst` ]]; then
             echo "::set-output name=readme-update::true"
           fi
+          if [[ `git diff process/process_all.rst` ]]; then
+            echo "::set-output name=process-all-update::true"
+          fi
           make html
       #------------------------------------------------------------------------#
       # Commit and push the new README
@@ -70,8 +73,16 @@ jobs:
           git add -f docs/README.rst
           git commit -m "update docs README"
 
-      - name: push README
-        if: steps.compile-docs.outputs.readme-update == 'true'
+      - name: add and commit process_all
+        if: steps.compile-docs.outputs.process-all-update == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -f docs/process/process_all.rst
+          git commit -m "update docs process_all"
+
+      - name: push README and process_all
+        if: steps.compile-docs.outputs.readme-update == 'true' || steps.compile-docs.outputs.process-all-update == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
