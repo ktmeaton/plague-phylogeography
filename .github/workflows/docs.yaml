@@ -8,6 +8,7 @@ on:
       - '*'
     paths:
       - '.github/workflows/docs.yaml'
+      - 'scripts/process_docs.py'
       - 'docs/*'
       - 'README.md'
   pull_request:
