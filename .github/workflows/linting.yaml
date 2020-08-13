@@ -13,6 +13,7 @@ on:
       - 'README.md'
       - 'CHANGELOG.md'
       - '*.yaml'
+      - 'scripts/*.py'
   pull_request:
     branches:
       - '*'
@@ -63,7 +64,30 @@ jobs:
       - name: Run yaml-lint
         run: yamllint $(find ${GITHUB_WORKSPACE} -type f -name "*.yaml")
 
-  # TO DO: Python linting for scripts/ dir
+  #----------------------------------------------------------------------------#
+  # Pythonh linting with flake8 and black
+  python_lint:
+    runs-on: ubuntu-latest
+    steps:
+      #------------------------------------------------------------------------#
+      # Checkout repo
+      - uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # Install dependencies
+      - name: Set up python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+
+      - name: Install linters
+        run: pip install black flake8 flake8-bugbear
+
+      #------------------------------------------------------------------------#
+      # Lint python files (selective for now)
+      - name: Lint python files
+        run: |
+          black scripts/*.py
+          flake8 scripts/*.py
 
   # Disable RST linting for now, rethink for sphinx
   #rst_lint:
