@@ -16,15 +16,14 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Add exact-repeats and tandem repeats detection
 - Convert local to remote narratives
 - Version control the exhibit_dhsi2020 docs (add tags for install)
+- Tidy docstrings
 
 ### Low Priority
 
 - Rewrite shell scripts in python?
-- Lint all python scripts with black+flake8
 - Github Actions: Convert local to remote narratives
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
-- Create a script to automatically create process docs.
 
 ## [v0.1.4] - 2020-0811 - SRA and Local Data
 
@@ -38,6 +37,8 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - install and uninstall scripts
 - Download reference gff for augur
 - Use custom versions of biopython and treetime for post-phylo analysis
+- Script (scripts/process_docs.py) and workflow to automatically create process docs.
+- Lint all python scripts with black+flake8
 
 ### Changed
 
