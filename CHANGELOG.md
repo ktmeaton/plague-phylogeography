@@ -48,6 +48,17 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - rename environment phylo-env to plague-phylogeography-0.1.4dev
 - update ncbimeta dependency from 0.6.5 to 0.6.6
 
+### Removed
+
+- don't track docs output
+
+```bash
+git rm --cached -- docs/README.rst docs/process/process_all.rst
+git add -u .
+git commit
+git push
+```
+
 ## [v0.1.3] - 2020-05-28 - DHSI2020 Exhibit
 
 Release for the [DHSI2020 Conference and Colloquium](https://dhsi.org/dhsi-2020/#colloquium) Exhibit.

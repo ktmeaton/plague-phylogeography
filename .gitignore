@@ -4,6 +4,7 @@ test*/*
 sra/*
 docs/_build/*
 docs/README.rst
+docs/process/process_all.rst
 .nextflow*
 ncbimeta.yaml*
 pipeline.pdf*
