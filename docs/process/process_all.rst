@@ -1,3 +1,5 @@
+Local Data
+**********
 
 Local Reads Prep
 ----------------
@@ -16,6 +18,8 @@ Local Assembly Prep
 
 Prepare custom assembly data as file list.
 
+Database
+********
 
 Ncbimeta Db Create
 ------------------
@@ -157,6 +161,8 @@ eager_tsv                                tsv                                    
 	accessionColumn=2
 	tail -n+2 metadata_sra_eager.tsv | cut -f $biosampleColumn | sort | uniq > metadata_sra_biosample.tsv
 	fi;
+Download
+********
 
 Assembly Download
 -----------------
@@ -320,6 +326,21 @@ reference_genome_gb_local                gbff                                   
 	> \$fnaNameCHROM
 	
 
+Outgroup Download
+-----------------
+
+Download the outgroup assemblies.
+
+**script**::
+
+	gunzip -f ${outgroup_fna_local}
+	# Store the file basename/prefix for iqtree outgroup param
+	filename=${outgroup_fna_local}
+	fna="\${filename%.*}"
+	prefix="\${fna%.*}"
+Annotation and Masking
+**********************
+
 Snpeff Build Db
 ---------------
 
@@ -446,19 +467,8 @@ reference_genome_fna.dustmasker.bed      bed                                    
 
 	dustmasker -in ${reference_genome_fna} -outfmt interval > ${reference_genome_fna.baseName}.dustmasker.intervals
 	${params.scriptdir}/intervals2bed.sh ${reference_genome_fna.baseName}.dustmasker.intervals ${reference_genome_fna.baseName}.dustmasker.bed
-
-Outgroup Download
------------------
-
-Download the outgroup assemblies.
-
-**script**::
-
-	gunzip -f ${outgroup_fna_local}
-	# Store the file basename/prefix for iqtree outgroup param
-	filename=${outgroup_fna_local}
-	fna="\${filename%.*}"
-	prefix="\${fna%.*}"
+Read Pre-processing
+*******************
 
 Eager
 -----
@@ -551,6 +561,8 @@ SoftwareVersions/*                       misc                                   
 	mv pipeline_info/*txt pipeline_info/*html pipeline_info/*svg pipeline_info/!{biosample_val}/
 	mkdir -p MultiQC/!{biosample_val}/
 	mv MultiQC/multiqc_data/ MultiQC/multiqc_report.html MultiQC/!{biosample_val}/
+Pairwise Alignment
+******************
 
 Snippy Pairwise
 ---------------
@@ -742,6 +754,8 @@ master.bed                               bed                                    
 **script**::
 
 	cat ${bed_mask} | sort -k1,1 -k2,2n | bedtools merge > master.bed
+Multiple Alignment
+******************
 
 Snippy Multi
 ------------
@@ -824,6 +838,8 @@ snippy_core_full_aln.filter\*.fasta      fasta                                  
 	${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.backbone > \
 	${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta;
 	fi;
+Phylogeny
+*********
 
 Iqtree
 ------
@@ -888,35 +904,8 @@ iqtree.core-filter*_bootstrap.treefile   newick                                 
 	--runs ${params.iqtree_runs} \
 	-pre iqtree.core-filter${params.snippy_multi_missing_data_text}\${SUFFIX} \
 	2>&1 | tee iqtree.core-filter${params.snippy_multi_missing_data_text}\${SUFFIX}.output
-
-Qualimap Snippy Pairwise
-------------------------
-
-Run QualiMap on the output bam of snippy pairwise.
-
-======================================== ======================================== ========================================
-Input:                                   Type                                     Description                              
-======================================== ======================================== ========================================
-ch_snippy_bam_pairwise_qualimap          bam                                      Pairwise alignment file from process :ref:`snippy_pairwise<Snippy_Pairwise>`
-======================================== ======================================== ========================================
-
-======================================== ======================================== ========================================
-Output:                                  Type                                     Description                              
-======================================== ======================================== ========================================
-ch_snippy_pairwise_qualimap_multiqc      misc                                     All default qualimap output for process :ref:`multiqc<Multiqc>`
-======================================== ======================================== ========================================
-
-======================================== ======================================== ========================================
-Publish:                                 Type                                     Description                              
-======================================== ======================================== ========================================
-\*                                       misc                                     All default qualimap output.             
-======================================== ======================================== ========================================
-
-**script**::
-
-	qualimap bamqc -bam ${snippy_bam} --skip-duplicated -c -outformat "HTML" -outdir . -nt ${task.cpus}
-	qualimapDir=${snippy_bam.baseName}_stats
-	mv \$qualimapDir ${snippy_bam.baseName}
+Nextstrain
+**********
 
 Nextstrain Metadata
 -------------------
@@ -1132,6 +1121,37 @@ Nextstrain Json
 	
 	# Deactivate env
 	conda deactivate
+Quality Control
+***************
+
+Qualimap Snippy Pairwise
+------------------------
+
+Run QualiMap on the output bam of snippy pairwise.
+
+======================================== ======================================== ========================================
+Input:                                   Type                                     Description                              
+======================================== ======================================== ========================================
+ch_snippy_bam_pairwise_qualimap          bam                                      Pairwise alignment file from process :ref:`snippy_pairwise<Snippy_Pairwise>`
+======================================== ======================================== ========================================
+
+======================================== ======================================== ========================================
+Output:                                  Type                                     Description                              
+======================================== ======================================== ========================================
+ch_snippy_pairwise_qualimap_multiqc      misc                                     All default qualimap output for process :ref:`multiqc<Multiqc>`
+======================================== ======================================== ========================================
+
+======================================== ======================================== ========================================
+Publish:                                 Type                                     Description                              
+======================================== ======================================== ========================================
+\*                                       misc                                     All default qualimap output.             
+======================================== ======================================== ========================================
+
+**script**::
+
+	qualimap bamqc -bam ${snippy_bam} --skip-duplicated -c -outformat "HTML" -outdir . -nt ${task.cpus}
+	qualimapDir=${snippy_bam.baseName}_stats
+	mv \$qualimapDir ${snippy_bam.baseName}
 
 Multiqc
 -------
