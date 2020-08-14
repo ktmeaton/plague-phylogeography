@@ -73,7 +73,12 @@ TABLE_COL_WIDTH = 40
 with open(nf_path, "r") as nf_file:
     for line in nf_file:
         line = line.strip()
-        # Skip everything that is not process
+        # Use the Section comments to make headers
+        if line.startswith("// Section: "):
+            split_section = line.split("Section: ")
+            section_name = split_section[1]
+            rst_file.write(section_name + "\n" + H2_CHAR * len(section_name) + "\n")
+        # Skip everything else that is not process
         if line.startswith("process"):
             # Parse the process lines
             split_process = line.split(" ")

@@ -120,7 +120,7 @@ Max Time: ${params.max_time}
 
 
 // -------------------------------------------------------------------------- //
-//                          Local Data Entry Point                            //
+// Section: Local Data
 // -------------------------------------------------------------------------- //
 
 process local_reads_prep{
@@ -179,10 +179,8 @@ process local_assembly_prep{
   '''
 }
 
-
-
 // -------------------------------------------------------------------------- //
-//                              NCBImeta Entry Point                          //
+// Section: Database
 // -------------------------------------------------------------------------- //
 
 // For now, use if statements rather than the internal 'when' directive
@@ -313,9 +311,6 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
   }
 }
 
-// -------------------------------------------------------------------------- //
-//                            Downloading Genomic Assemblies                  //
-// -------------------------------------------------------------------------- //
 
 //-----------------------------SQLite database import FTP url-----------------//
   process sqlite_import{
@@ -399,7 +394,9 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
 }
 
 
-//-----------------------------Download Assembly Fasta------------------------//
+// -------------------------------------------------------------------------- //
+// Section: Download
+// -------------------------------------------------------------------------- //
 
 process assembly_download{
   /*
@@ -441,8 +438,6 @@ process assembly_download{
   gunzip -f ${assembly_fna_gz}
   """
 }
-
-//-----------------------------Download SRA Data------------------------------//
 
 process sra_download{
   /*
@@ -549,12 +544,6 @@ process sra_download{
   """
 }
 
-// -------------------------------------------------------------------------- //
-//                           Reference Genome Processing                      //
-// -------------------------------------------------------------------------- //
-
-// ----------------------------------Download---------------------------------//
-
 process reference_download{
   /*
    Download the reference genome of interest from the FTP site.
@@ -621,6 +610,46 @@ process reference_download{
   """
 }
 
+process outgroup_download{
+  /*
+  Download the outgroup assemblies.
+  */
+  // Other variables and config
+  tag "$outgroup_fna_local"
+  publishDir "${outdir}/outgroup_genome", mode: 'copy'
+
+  Channel
+      .of(params.outgroup_genome_fna_ftp)
+      .flatten()
+      .map { file(it) }
+      .set { ch_outgroup_genome_fna }
+
+  // IO and conditional behavior
+  input:
+  file outgroup_fna_local from ch_outgroup_genome_fna
+
+  output:
+  file "${outgroup_fna_local.baseName}" into ch_outgroup_fna_snippy_pairwise
+  env(prefix) into ch_outgroup_file_iqtree
+
+  when:
+  !params.skip_outgroup_download
+
+  // Shell script to execute
+  script:
+  """
+  gunzip -f ${outgroup_fna_local}
+  # Store the file basename/prefix for iqtree outgroup param
+  filename=${outgroup_fna_local}
+  fna="\${filename%.*}"
+  prefix="\${fna%.*}"
+  """
+}
+
+// -------------------------------------------------------------------------- //
+// Section: Annotation and Masking
+// -------------------------------------------------------------------------- //
+
 process snpeff_build_db{
   /*
    Build a SnpEff database for the reference genome annotations.
@@ -679,8 +708,6 @@ process snpeff_build_db{
   """
 }
 
-// -----------------------------Detect Repeats--------------------------------//
-
 process reference_detect_repeats{
   /*
    Detect in-exact repeats in reference genome with mummer and convert the identified regions file to bed format.
@@ -737,8 +764,6 @@ process reference_detect_repeats{
   """
 }
 
-// -------------------------Detect Low Complexity-----------------------------//
-
 process reference_detect_low_complexity{
   /*
   Detect low complexity regions with dustmasker and convert the identified regions file to bed format.
@@ -777,41 +802,9 @@ process reference_detect_low_complexity{
   """
 }
 
-process outgroup_download{
-  /*
-  Download the outgroup assemblies.
-  */
-  // Other variables and config
-  tag "$outgroup_fna_local"
-  publishDir "${outdir}/outgroup_genome", mode: 'copy'
-
-  Channel
-      .of(params.outgroup_genome_fna_ftp)
-      .flatten()
-      .map { file(it) }
-      .set { ch_outgroup_genome_fna }
-
-  // IO and conditional behavior
-  input:
-  file outgroup_fna_local from ch_outgroup_genome_fna
-
-  output:
-  file "${outgroup_fna_local.baseName}" into ch_outgroup_fna_snippy_pairwise
-  env(prefix) into ch_outgroup_file_iqtree
-
-  when:
-  !params.skip_outgroup_download
-
-  // Shell script to execute
-  script:
-  """
-  gunzip -f ${outgroup_fna_local}
-  # Store the file basename/prefix for iqtree outgroup param
-  filename=${outgroup_fna_local}
-  fna="\${filename%.*}"
-  prefix="\${fna%.*}"
-  """
-}
+// -------------------------------------------------------------------------- //
+// Section: Read Pre-processing
+// -------------------------------------------------------------------------- //
 
 process eager{
   /*
@@ -938,10 +931,8 @@ process eager{
 }
 
 // -------------------------------------------------------------------------- //
-//                                  Snippy Pipeline                           //
+// Section: Pairwise Alignment
 // -------------------------------------------------------------------------- //
-
-// --------------------------------Pairwise Alignment-------------------------//
 
 // Collect bam and fasta into a single channel, assign Empty if not run
 // Includes: Assembly fna, EAGER bam, outgroup fna
@@ -1069,8 +1060,6 @@ process snippy_pairwise{
   """
 }
 
-// ------------------------Multi Sample Variant Summary-----------------------//
-
 process snippy_variant_summary_collect{
   /*
   Concatenate variant summary tables for all samples.
@@ -1109,8 +1098,6 @@ process snippy_variant_summary_collect{
   """
   """
 }
-
-// --------------------------Detect High SNP Density--------------------------//
 
 process snippy_detect_snp_high_density{
   /*
@@ -1181,7 +1168,6 @@ process snippy_sort_snp_high_density{
   """
 }
 
-// --------------------------Merge Filtering BED Files------------------------//
 process snippy_merge_mask_bed{
   /*
   Combine, merge, and sort all BED file regions for masking the multiple alignment.
@@ -1230,7 +1216,9 @@ process snippy_merge_mask_bed{
   """
 }
 
-//------------------------------Multiple Alignment----------------------------//
+// -------------------------------------------------------------------------- //
+// Section: Multiple Alignment
+// -------------------------------------------------------------------------- //
 
 process snippy_multi{
   /*
@@ -1342,7 +1330,7 @@ process snippy_multi_filter{
 }
 
 // -------------------------------------------------------------------------- //
-//                                ML Phylogeny                                //
+// Section: Phylogeny
 // -------------------------------------------------------------------------- //
 
 process iqtree{
@@ -1430,43 +1418,8 @@ process iqtree{
 }
 
 // -------------------------------------------------------------------------- //
-//                           Visualization MultiQC                            //
+// Section: Nextstrain
 // -------------------------------------------------------------------------- //
-
-process qualimap_snippy_pairwise{
-  /*
-  Run QualiMap on the output bam of snippy pairwise.
-
-  Input:
-  ch_snippy_bam_pairwise_qualimap (bam): Pairwise alignment file from process snippy_pairwise.
-
-  Output:
-  ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output for process multiqc.
-
-  Publish:
-  \* (misc): All default qualimap output.
-
-  */
-  // Other variables and config
-  tag "${snippy_bam}"
-  publishDir "${outdir}/snippy_pairwise/qualimap", mode: 'copy'
-
-  // IO and conditional behavior
-  input:
-  file snippy_bam from ch_snippy_bam_pairwise_qualimap
-  output:
-  file "*" into ch_snippy_pairwise_qualimap_multiqc
-  when:
-  !params.skip_qualimap_snippy_pairwise
-
-  // Shell script to execute
-  script:
-  """
-  qualimap bamqc -bam ${snippy_bam} --skip-duplicated -c -outformat "HTML" -outdir . -nt ${task.cpus}
-  qualimapDir=${snippy_bam.baseName}_stats
-  mv \$qualimapDir ${snippy_bam.baseName}
-  """
-}
 
 process nextstrain_metadata{
   // Other variables and config
@@ -1771,6 +1724,44 @@ process nextstrain_json{
   """
 }
 
+// -------------------------------------------------------------------------- //
+// Section: Quality Control
+// -------------------------------------------------------------------------- //
+
+process qualimap_snippy_pairwise{
+  /*
+  Run QualiMap on the output bam of snippy pairwise.
+
+  Input:
+  ch_snippy_bam_pairwise_qualimap (bam): Pairwise alignment file from process snippy_pairwise.
+
+  Output:
+  ch_snippy_pairwise_qualimap_multiqc (misc): All default qualimap output for process multiqc.
+
+  Publish:
+  \* (misc): All default qualimap output.
+
+  */
+  // Other variables and config
+  tag "${snippy_bam}"
+  publishDir "${outdir}/snippy_pairwise/qualimap", mode: 'copy'
+
+  // IO and conditional behavior
+  input:
+  file snippy_bam from ch_snippy_bam_pairwise_qualimap
+  output:
+  file "*" into ch_snippy_pairwise_qualimap_multiqc
+  when:
+  !params.skip_qualimap_snippy_pairwise
+
+  // Shell script to execute
+  script:
+  """
+  qualimap bamqc -bam ${snippy_bam} --skip-duplicated -c -outformat "HTML" -outdir . -nt ${task.cpus}
+  qualimapDir=${snippy_bam.baseName}_stats
+  mv \$qualimapDir ${snippy_bam.baseName}
+  """
+}
 
 process multiqc{
   /*
