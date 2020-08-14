@@ -66,7 +66,7 @@ H1_CHAR = "-"
 H2_CHAR = "*"
 H3_CHAR = "-"
 TABLE_CHAR = "="
-TABLE_COL_WIDTH = 40
+TABLE_COL_WIDTH = 50
 # -----------------------------------------------------------------------------#
 #                               Processing                                     #
 # -----------------------------------------------------------------------------#
@@ -77,7 +77,9 @@ with open(nf_path, "r") as nf_file:
         if line.startswith("// Section: "):
             split_section = line.split("Section: ")
             section_name = split_section[1]
-            rst_file.write(section_name + "\n" + H2_CHAR * len(section_name) + "\n")
+            rst_file.write(
+                "\n" + section_name + "\n" + H2_CHAR * len(section_name) + "\n"
+            )
         # Skip everything else that is not process
         if line.startswith("process"):
             # Parse the process lines

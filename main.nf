@@ -199,7 +199,7 @@ if (!params.skip_ncbimeta_db_create && params.ncbimeta_create){
      Publish:
      ncbimeta_sqlite_db (sqlite): NCBImeta SQLite database.
      ncbimeta_yaml (yaml): NCBImeta config file.
-     *.log (text): Text logs of NCBImeta database creation.
+     \*.log (text): Text logs of NCBImeta database creation.
 
     */
 
@@ -240,8 +240,8 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
 
     Publish:
     ncbimeta_yaml (yaml): NCBImeta config file.
-    *.log (text): Text logs of NCBImeta database update.
-    *.txt (text): Text export of NCBImeta database.
+    \*.log (text): Text logs of NCBImeta database update.
+    \*.txt (text): Text export of NCBImeta database.
 
     */
 
@@ -1289,8 +1289,8 @@ process snippy_multi_filter{
 
   Publish:
   snippy_core_full_aln.filter\*.fasta (fasta): Multi fasta of filtered chromosome genome sites.
-  *.fasta (fasta): All loci extracted fasta files.
-  *.bed (bed): All loci bed coordinate files for extraction.
+  \*.fasta (fasta): All loci extracted fasta files.
+  \*.bed (bed): All loci bed coordinate files for extraction.
 
   */
   // Other variables and config
@@ -1772,7 +1772,7 @@ process multiqc{
 
   Publish:
   multiqc_report.html (html): MultiQC report file.
-  *_data (misc): All default MultiQC data files.
+  \*_data (misc): All default MultiQC data files.
 
   */
   // Other variables and config
