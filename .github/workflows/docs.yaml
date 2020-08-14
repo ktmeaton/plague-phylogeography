@@ -56,9 +56,13 @@ jobs:
           m2r README.md
           mv README.rst docs/README.rst
           cd docs/
+          # Show for debugging
+          git diff README.rst
           if [[ `git diff README.rst` ]]; then
             echo "::set-output name=readme-update::true"
           fi
+          # Show for debugging
+          git diff process/process_all.rst
           if [[ `git diff process/process_all.rst` ]]; then
             echo "::set-output name=process-all-update::true"
           fi
