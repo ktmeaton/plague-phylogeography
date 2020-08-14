@@ -56,40 +56,17 @@ jobs:
           m2r README.md
           mv README.rst docs/README.rst
           cd docs/
-          # Show for debugging
-          git diff README.rst
-          if [[ `git diff README.rst` ]]; then
-            echo "::set-output name=readme-update::true"
-          fi
-          # Show for debugging
-          git diff process/process_all.rst
-          if [[ `git diff process/process_all.rst` ]]; then
-            echo "::set-output name=process-all-update::true"
-          fi
           make html
       #------------------------------------------------------------------------#
       # Commit and push the new README
-      - name: add and commit README
-        if: steps.compile-docs.outputs.readme-update == 'true'
+      - name: add and commit docs
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -f docs/README.rst
-          git commit -m "update docs README"
+          git add -f docs/README.rst docs/process/process_all.rst
+          git commit -m 'update docs' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
 
-      - name: add and commit process_all
-        if: steps.compile-docs.outputs.process-all-update == 'true'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -f docs/process/process_all.rst
-          git commit -m "update docs process_all"
-
-      - name: push README and process_all
-        if: steps.compile-docs.outputs.readme-update == 'true' || steps.compile-docs.outputs.process-all-update == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
       #------------------------------------------------------------------------#
       # Artifact Uploads
       - name: artifact Docs HTML
