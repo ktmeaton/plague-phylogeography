@@ -59,11 +59,6 @@ jobs:
           path: /home/runner/miniconda/envs/plague-phylogeography-0.1.4dev
           key: plague-phylogeography-env-${{ runner.os }}-${{ hashFiles('environment.yaml') }}
 
-      - name: cache nextstrain env
-        uses: actions/cache@v2
-        with:
-          path: /home/runner/miniconda/envs/nextstrain-8.0.0
-          key: nextstrain-env-${{ runner.os }}-${{ hashFiles('config/nextstrain.yaml') }}
       #------------------------------------------------------------------------#
       # Check conda environments
       - name: check cache
