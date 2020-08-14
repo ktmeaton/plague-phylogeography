@@ -9,6 +9,7 @@ on:
     paths:
       - '.github/workflows/docs.yaml'
       - 'scripts/process_docs.py'
+      - 'main.nf'
       - 'docs/*'
       - 'README.md'
   pull_request:
@@ -65,7 +66,11 @@ jobs:
           git config --local user.name "GitHub Action"
           git add -f docs/README.rst docs/process/process_all.rst
           git commit -m 'update docs' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
+
+      - name: push docs
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       #------------------------------------------------------------------------#
       # Artifact Uploads
