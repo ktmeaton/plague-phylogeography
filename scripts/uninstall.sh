@@ -8,7 +8,7 @@
 REPO=${1:-"ktmeaton/plague-phylogeography"}
 
 # Number of uninstall steps
-STEPS="5"
+STEPS="4"
 
 #------------------------------------------------------------------------------#
 # Remove the plague-phylogeography pipeline and conda environment
@@ -36,16 +36,4 @@ fi
 echo "[4/${STEPS}] Removing the nf-core/eager conda environment."
 if [[ `conda env list | grep ${EAGER_CONDA_ENV}` ]]; then
   conda remove -n ${EAGER_CONDA_ENV} --all
-fi
-
-#------------------------------------------------------------------------------#
-# Remove the nextstrain conda env
-NEXTSTRAIN_CONDA_ENV="nextstrain-8.0.0"
-echo "[5/${STEPS}] Removing the nextstrain conda environment."
-if [[ -f ~/.nextflow/assets/${REPO}/config/nextstrain.yaml ]]; then
-  NEXTSTRAIN_CONDA_ENV=`grep "name:" ~/.nextflow/assets/${REPO}/config/nextstrain.yaml |  \
-                   cut -d " " -f 2`
-fi
-if [[ `conda env list | grep ${NEXTSTRAIN_CONDA_ENV}` ]]; then
-  conda remove -n ${NEXTSTRAIN_CONDA_ENV} --all
 fi
