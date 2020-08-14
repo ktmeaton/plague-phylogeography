@@ -132,15 +132,15 @@ process local_reads_prep{
 
   // If a custom tsv for eager was supplied
   if (params.eager_tsv){
-    ch_custom_tsv_eager_prep=Channel.fromPath(params.eager_tsv, checkIfExists: true)
+    ch_tsv_custom_eager_prep=Channel.fromPath(params.eager_tsv, checkIfExists: true)
                         .ifEmpty { exit 1, "Custom EAGER tsv file not found: ${params.eager_tsv}" }
   }
-  else{ch_custom_tsv_eager_prep=Channel.empty()}
+  else{ch_tsv_custom_eager_prep=Channel.empty()}
 
   input:
-  file custom_tsv_eager from ch_custom_tsv_eager_prep
+  file custom_tsv_eager from ch_tsv_custom_eager_prep
   output:
-  file custom_tsv_eager into ch_custom_tsv_eager
+  file custom_tsv_eager into ch_tsv_custom_eager
   file "${custom_tsv_eager.baseName}.txt" into ch_custom_biosample_val_eager
   when:
   params.eager_tsv
@@ -353,7 +353,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     output:
     file sqlite into ch_sqlite_nextstrain_metadata
     file params.file_assembly_download_ftp optional true into ch_assembly_download_ftp
-    file "metadata_sra_eager.tsv" optional true into ch_tsv_sra_download
+    file "metadata_sra_eager.tsv" optional true into ch_tsv_sra_download,ch_tsv_sra_eager
     file "metadata_sra_biosample.tsv" optional true into ch_biosample_file_download_sra
     when:
     !params.skip_sqlite_import
@@ -460,7 +460,6 @@ process sra_download{
   output:
   val sra_biosample_val into ch_sra_biosample_val_eager
   file "${sra_biosample_val}/*/*.fastq.gz" into ch_sra_fastq_eager
-  file tsv_eager into ch_sra_tsv_eager
   when:
   !params.skip_sra_download
 
@@ -834,16 +833,17 @@ process eager{
 
   // If a custom tsv was supplied
   if (params.eager_tsv){
-    ch_tsv_eager=ch_custom_tsv_eager
+    ch_tsv_custom_eager.set{ ch_tsv_eager }
     //ch_biosample_val_eager=ch_custom_biosample_val_eager
-    ch_biosample_val_eager = ch_custom_biosample_val_eager
+    ch_custom_biosample_val_eager
                               .splitText()
                               .map { it.replaceFirst(/\n/,'') }
+                              .set { ch_biosample_val_eager}
   }
   // If the tsv was generated from sra download
   else{
-    ch_tsv_eager=ch_sra_tsv_eager
-    ch_biosample_val_eager=ch_sra_biosample_val_eager
+    ch_tsv_sra_eager.set{ ch_tsv_eager }
+    ch_sra_biosample_val_eager.set{ ch_biosample_val_eager }
   }
 
   // IO and conditional behavior
