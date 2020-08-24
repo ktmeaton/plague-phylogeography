@@ -49,9 +49,13 @@ ncbimeta_yaml                                      yaml                         
 \*.log                                             text                                               Text logs of NCBImeta database creation.           
 ================================================== ================================================== ==================================================
 
-**script**::
+**shell**::
 
-	NCBImeta.py --config ${ncbimeta_yaml}
+	if [[ !{params.ncbimeta_api_param}  != "false" ]]; then
+	NCBImeta.py --config !{ncbimeta_yaml} !{params.ncbimeta_api_param};
+	else
+	NCBImeta.py --config !{ncbimeta_yaml}
+	fi
 
 Ncbimeta Db Update
 ------------------
