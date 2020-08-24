@@ -5,6 +5,7 @@ channels:
   - defaults
   - anaconda
 dependencies:
+  - python=3.7
   - sqlite==3.31.1
   - bioconda/label/cf201901::vt==2015.11.10
   - snippy==4.6.0
