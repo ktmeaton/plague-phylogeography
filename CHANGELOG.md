@@ -9,6 +9,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ### High Priority
 
+- Troubleshoot NCBImeta temp_b encode errors
 - Deal with the fail to publish issue with NCBImeta db
 
 ### Medium Priority
