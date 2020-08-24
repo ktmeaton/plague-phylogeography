@@ -9,7 +9,6 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ### High Priority
 
-- Troubleshoot NCBImeta temp_b encode errors
 - Deal with the fail to publish issue with NCBImeta db
 
 ### Medium Priority
@@ -26,7 +25,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Make the snippy multi filter locus splitting be generic (not plague specific)
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
 
-## [v0.1.4] - 2020-0811 - SRA and Local Data
+## [v0.1.4] - 2020-0824 - SRA and Local Data
 
 ### Added
 
@@ -49,6 +48,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - workflow: pipeline.yaml split into multiple versions
 - rename environment phylo-env to plague-phylogeography-0.1.4dev
 - update ncbimeta dependency from 0.6.5 to 0.6.6
+- restrict biopython to =1.74 because of string/byte encoding bugs.
 
 ### Removed
 
