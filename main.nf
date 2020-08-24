@@ -218,9 +218,13 @@ if (!params.skip_ncbimeta_db_create && params.ncbimeta_create){
     file "${params.ncbimeta_output_dir}/log/*.log"
 
     // Shell script to execute
-    script:
+    shell:
     """
-    NCBImeta.py --config ${ncbimeta_yaml}
+    if [[ !{params.ncbimeta_api_param}  != "false" ]]; then
+      NCBImeta.py --config !{ncbimeta_yaml} !{params.ncbimeta_api_param};
+    else
+      NCBImeta.py --config !{ncbimeta_yaml}
+    fi
     """
   }
 }

@@ -89,6 +89,7 @@ jobs:
           conda activate ${PHYLO_CONDA_ENV}
           nextflow run -r ${{ github.sha }} ${{github.repository}} \
             --ncbimeta_create ${SQLITE_CONFIG} \
+            --ncbimeta_api_param "--force-pause-seconds 0 --email ${{secrets.EMAIL}} --api ${{secrets.NCBI_API}}"
             --skip_sqlite_import \
             --skip_reference_download \
             --skip_outgroup_download \
