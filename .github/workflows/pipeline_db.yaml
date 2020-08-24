@@ -75,6 +75,7 @@ jobs:
         run: scripts/install.sh ${{github.repository}} ${{ github.sha }}
       #------------------------------------------------------------------------#
       # Configure DB Yaml
+      # Remove this after update to ncbimeta v0.7.0?
       - name: configure DB Yaml
         run: |
           sed -i "s/EMAIL : myusername@domain.com/EMAIL : ${{ secrets.EMAIL }}/g" config/ncbimeta.yaml
