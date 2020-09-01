@@ -207,6 +207,8 @@ if (!params.skip_ncbimeta_db_create && params.ncbimeta_create){
     tag "$ncbimeta_yaml"
     publishDir "${outdir}/ncbimeta_db/create", mode: 'copy'
     publishDir "${outdir}/ncbimeta_db/update/latest", mode: 'copy'
+    echo true
+
     ch_ncbimeta_yaml_create = Channel.fromPath(params.ncbimeta_create, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta-create}" }
     // IO and conditional behavior
@@ -254,6 +256,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     // ISSUE: Can these be a symlink to each other (update and update/latest)?
     publishDir "${outdir}/ncbimeta_db/update/${workflow.start}_${workflow.runName}", mode: 'copy'
     publishDir "${outdir}/ncbimeta_db/update/latest", mode: 'copy', overwrite: 'true'
+    echo true
 
     // The config file, annotation file, and database file, are being read from paths, not channels
     ch_ncbimeta_yaml_update = Channel.fromPath(params.ncbimeta_update, checkIfExists: true)
@@ -834,6 +837,7 @@ process eager{
   // Other variables and config
   tag "$biosample_val"
   publishDir "${outdir}/eager", mode: 'copy'
+  echo true
 
   // If a custom tsv was supplied
   if (params.eager_tsv){
