@@ -75,14 +75,6 @@ jobs:
         shell: bash -l {0}
         run: scripts/install.sh ${{github.repository}} ${{ github.sha }}
       #------------------------------------------------------------------------#
-      # Configure DB Yaml
-      # Remove this after update to ncbimeta v0.7.0?
-      - name: configure DB Yaml
-        run: |
-          sed -i "s/EMAIL : myusername@domain.com/EMAIL : ${{ secrets.EMAIL }}/g" config/ncbimeta.yaml
-          sed -i "s/API_KEY :/API_KEY : ${{ secrets.NCBI_API }}/g" config/ncbimeta.yaml
-          sed -i "s/FORCE_PAUSE_SECONDS : 1/FORCE_PAUSE_SECONDS : 0/g" config/ncbimeta.yaml
-      #------------------------------------------------------------------------#
       #  Create the database
       - name: pipeline db create
         shell: bash -l {0}
