@@ -11,6 +11,7 @@ Shell Variables
 ^^^^^^^^^^^^^^^
 
 **Shell**::
+
   SQLITE_DB=~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
   SQLITE_CONFIG=~/.nextflow/assets/ktmeaton/plague-phylogeography/config/ncbimeta.yaml
   PHYLO_CONDA_ENV=plague-phylogeography-0.1.4dev
@@ -83,7 +84,7 @@ Backup Curated Entries
 **Shell**::
 
     SQLITE_TABLE="BioSample"
-    SQLITE_COL="BioSample_id,BioSampleAccession,BioSampleAccessionSecondary,BioSampleBioProjectAccession,BioSampleSRAAccession,BioSampleStrain,BioSampleBiovar,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleHost,BioSampleLat,BioSampleLatLon,BioSampleLon,BioSampleComment"
+    SQLITE_COL="BioSampleAccession,BioSampleAccessionSecondary,BioSampleBioProjectAccession,BioSampleSRAAccession,BioSampleStrain,BioSampleBiovar,BioSampleCollectionDate,BioSampleGeographicLocation,BioSampleHost,BioSampleLat,BioSampleLatLon,BioSampleLon,BioSampleComment"
     SQLITE_BACKUP=results/ncbimeta_db/update/latest/`basename $SQLITE_DB .sqlite`"_${SQLITE_TABLE}.tsv"
 
     sqlite3 \
