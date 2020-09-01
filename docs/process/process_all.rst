@@ -51,7 +51,7 @@ ncbimeta_yaml                                      yaml                         
 
 **shell**::
 
-	if [[ !{params.ncbimeta_api_param}  != "false" ]]; then
+	if [[ "!{params.ncbimeta_api_param}"  != "false" ]]; then
 	NCBImeta.py --config !{ncbimeta_yaml} !{params.ncbimeta_api_param};
 	else
 	NCBImeta.py --config !{ncbimeta_yaml}
