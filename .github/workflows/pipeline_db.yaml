@@ -24,6 +24,7 @@ on:
       - 'config/ncbimeta.yaml'
       - 'main.nf'
       - 'nextflow.config'
+      - 'environment.yaml'
   pull_request:
     branches:
       - '*'
