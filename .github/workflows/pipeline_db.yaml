@@ -36,7 +36,7 @@ jobs:
   # Install dependencies
   local :
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 180
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
@@ -102,5 +102,6 @@ jobs:
            --skip_sqlite_import \
            --skip_reference_download \
            --skip_outgroup_download \
-           --outdir test
+           --outdir test \
+           -resume
           conda deactivate
