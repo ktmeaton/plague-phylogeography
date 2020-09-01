@@ -46,6 +46,11 @@ jobs:
         run: |
           wget -qO- get.nextflow.io | bash
           sudo mv nextflow /usr/local/bin/
+      #------------------------------------------------------------------------#
+      # Check working directory
+      - name: check pwd
+        shell: bash -l {0}
+        run: pwd
       # Setup conda
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
@@ -87,11 +92,6 @@ jobs:
             --skip_outgroup_download \
             --outdir test
           conda deactivate
-      #------------------------------------------------------------------------#
-      # Check working directory
-      - name: check pwd
-        shell: bash -l {0}
-        run: pwd
       #------------------------------------------------------------------------#
       #  Update the database
       - name: pipeline db update
