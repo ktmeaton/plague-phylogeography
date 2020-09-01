@@ -12,6 +12,7 @@ env:
     SQLITE_CONFIG:   "/home/runner/.nextflow/assets/ktmeaton/plague-phylogeography/config/ncbimeta.yaml"
     SQLITE_TABLE:    "BioSample"
     SQLITE_BACKUP:   "/home/runner/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/yersinia_pestis_db_BioSample.tsv"
+    SQLITE_TEST_DB: "/home/runner/work/plague-phylogeography/plague-phylogeography/test/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite"
 #------------------------------------------------------------------------------#
 # Workflow conditions
 on:
@@ -86,7 +87,7 @@ jobs:
           conda activate ${PHYLO_CONDA_ENV}
           nextflow run -r ${{ github.sha }} ${{github.repository}} \
             --ncbimeta_create ${SQLITE_CONFIG} \
-            --ncbimeta_api_param "--force-pause-seconds 0 --email ${{secrets.EMAIL}} --api ${{secrets.NCBI_API}}"
+            --ncbimeta_api_param "--force-pause-seconds 0 --email ${{secrets.EMAIL}} --api ${{secrets.NCBI_API}}" \
             --skip_sqlite_import \
             --skip_reference_download \
             --skip_outgroup_download \
@@ -102,7 +103,7 @@ jobs:
            --ncbimeta_update ${SQLITE_CONFIG} \
            --ncbimeta_annot ${SQLITE_BACKUP} \
            --ncbimeta_annot_table ${SQLITE_TABLE} \
-           --sqlite `pwd`/test/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+           --sqlite ${SQLITE_TEST_DB} \
            --skip_sqlite_import \
            --skip_reference_download \
            --skip_outgroup_download \
