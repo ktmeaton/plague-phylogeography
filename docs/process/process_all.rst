@@ -67,6 +67,7 @@ Input:                                             Type                         
 ================================================== ================================================== ==================================================
 ch_ncbimeta_yaml_update                            yaml                                               NCBImeta config file from process :ref:`ncbimeta_db_create<Ncbimeta_Db_Create>`
 ch_ncbimeta_sqlite_update                          sqlite                                             NCBImeta SQLite database from process :ref:`ncbimeta_db_create<Ncbimeta_Db_Create>`
+ch_ncbimeta_annot                                  tsv                                                NCBImeta annotation file.                          
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
