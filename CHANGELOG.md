@@ -7,6 +7,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
+### High Priority
+
+- Some processes don't use resume if a new outdir is supplied.
+
 ### Medium Priority
 
 - Add exact-repeats and tandem repeats detection
@@ -18,7 +22,6 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 - Rewrite shell scripts in python?
 - Github Actions: Convert local to remote narratives
-- Make the snippy multi filter locus splitting be generic (not plague specific)
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
 
 ## [v0.1.4] - 2020-0824 - SRA and Local Data
@@ -46,6 +49,8 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - update ncbimeta dependency from 0.6.5 to 0.6.6
 - restrict biopython to =1.74 because of string/byte encoding bugs.
 - Fixed the fail to publish issue with NCBImeta db
+- Switched reference genome from RefSeq to Genbank
+- Make the snippy multi filter locus splitting be generic (not plague specific)
 
 ### Removed
 
