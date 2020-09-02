@@ -207,7 +207,6 @@ if (!params.skip_ncbimeta_db_create && params.ncbimeta_create){
     tag "$ncbimeta_yaml"
     publishDir "${outdir}/ncbimeta_db/create", mode: 'copy'
     publishDir "${outdir}/ncbimeta_db/update/latest", mode: 'copy'
-    echo true
 
     ch_ncbimeta_yaml_create = Channel.fromPath(params.ncbimeta_create, checkIfExists: true)
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta-create}" }
@@ -232,6 +231,9 @@ if (!params.skip_ncbimeta_db_create && params.ncbimeta_create){
 }
 
 if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
+
+  ncbimeta_sqlite_db_latest = "${params.outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
+  println "${ncbimeta_sqlite_db_latest}"
 
   process ncbimeta_db_update{
     /*
@@ -263,23 +265,27 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
                          .ifEmpty { exit 1, "NCBImeta config file not found: ${params.ncbimeta_update}" }
 
     // If create and update not in same run (not fully reproducing finished pipeline)
+"${params.outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
     if (!params.ncbimeta_create){
-        ch_ncbimeta_sqlite_update = Channel.fromPath(params.ncbimeta_sqlite_db_latest, checkIfExists: true)
-                                .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${params.ncbimeta_sqlite_db_latest}" }
+        ch_ncbimeta_sqlite_update = Channel.fromPath("${ncbimeta_sqlite_db_latest}", checkIfExists: true)
+                                .ifEmpty { exit 1, "NCBImeta SQLite database not found: ${ncbimeta_sqlite_db_latest}" }
     }
 
     // If an annotation file has been supplied, the annotation script will be run
     if (params.ncbimeta_annot){
-    Channel
-      .fromPath(params.ncbimeta_annot, checkIfExists: true)
-      .ifEmpty { exit 1, "NCBImeta annotation file not found: ${params.ncbimeta_annot}" }
-      .collectFile(name: 'dummy_annot.txt', newLine: true, storeDir: "${workDir}")
+    ch_ncbimeta_annot = Channel
+                          .fromPath(params.ncbimeta_annot, checkIfExists: true)
+                          .ifEmpty { exit 1, "NCBImeta annotation file not found: ${params.ncbimeta_annot}" }
+    }
+    else{
+      ch_ncbimeta_annot = Channel.empty()
     }
 
     // IO and conditional behavior
     input:
     file ncbimeta_yaml from ch_ncbimeta_yaml_update
     file ncbimeta_sqlite from ch_ncbimeta_sqlite_update
+    file ncbimeta_annot from ch_ncbimeta_annot
     output:
     file "${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}" into ch_ncbimeta_sqlite_import
     file ncbimeta_yaml
@@ -299,10 +305,8 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     # Execute NCBImeta
     NCBImeta.py --config ${ncbimeta_yaml}
     # If annotation file supplied, run the annotation script
-    if [[ ${params.ncbimeta_annot} != "false" ]]; then
-      ANNOT_FILE=`basename ${params.ncbimeta_annot}`
-      mv ${workDir}/dummy_annot.txt `pwd`/\$ANNOT_FILE;
-      NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${params.ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
+    if [[ "${params.ncbimeta_annot}" != "false" ]]; then
+      NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
     fi
     # Drop old or outdated join tables
     sqlite3 ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} "DROP TABLE IF EXISTS MasterFirst"
@@ -837,7 +841,6 @@ process eager{
   // Other variables and config
   tag "$biosample_val"
   publishDir "${outdir}/eager", mode: 'copy'
-  echo true
 
   // If a custom tsv was supplied
   if (params.eager_tsv){
