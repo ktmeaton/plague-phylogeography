@@ -32,9 +32,7 @@ on:
     types: [published]
 #------------------------------------------------------------------------------#
 jobs:
-  #----------------------------------------------------------------------------#
-  # Install dependencies
-  local :
+database:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
