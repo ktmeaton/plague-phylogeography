@@ -233,7 +233,6 @@ if (!params.skip_ncbimeta_db_create && params.ncbimeta_create){
 if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
 
   ncbimeta_sqlite_db_latest = "${params.outdir}/ncbimeta_db/update/latest/${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}"
-  println "${ncbimeta_sqlite_db_latest}"
 
   process ncbimeta_db_update{
     /*
