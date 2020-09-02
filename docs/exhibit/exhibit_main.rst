@@ -136,49 +136,49 @@ Construct a phylogeny including the outgroup (*Yersinia pseudotuberculosis*) to 
 Run Pipeline (Without Outgroup)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Construct an intraspecies phylogeny of *Y. pestis* genomic assemblies.
+Download and pre-process modern *Y. pestis* genomic assemblies.
 
 **Shell**::
 
   nextflow run ktmeaton/plague-phylogeography \
-    --outdir Assembly_Modern \
-    --sqlite ~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \
+    --outdir results \
+    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+    --sqlite_select_command_asm "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')" \
+    --sqlite_select_command_sra "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')" \
     --max_datasets_assembly 500 \
     --max_datasets_sra 150  \
-    --skip_sra_download \
     --skip_outgroup_download \
-    --snippy_multi_missing_data 0.05 \
-    --snippy_multi_missing_data_text 5 \
-    --iqtree_model K3Pu+F+I \
-    --iqtree_branch_support \
-    --iqtree_runs 10 \
-    --iqtree_outgroup GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic \
+    --skip_snippy_multi \
     --max_cpus 20 \
     --max_memory 24.GB \
     --max_time 100.h \
-    -resume 9112a035-a628-4f9d-8955-faa7732a1b73 \
+    --skip_sra_download \
+    -resume
 
 Ancient Raw Data Analysis
 -------------------------
 
-| Prep tsv input from ktmeaton/plague-phylogeography.
-| Select only EAGER Ancient samples.
+Download and ancient *Y. pestis* genomic sequences.
 
 **Shell**::
 
   nextflow run ktmeaton/plague-phylogeography \
-    --outdir EAGER_Ancient \
-    --sqlite ~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-    --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')\"" \
+    --outdir results/ \
+    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+    --sqlite_select_command_asm "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')" \
+    --sqlite_select_command_sra "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')" \
     --max_datasets_assembly 500 \
     --max_datasets_sra 150  \
-    --skip_assembly_download \
     --skip_outgroup_download \
     --skip_snippy_multi \
+    --max_cpus 20 \
+    --max_memory 24.GB \
+    --max_time 100.h \
+    --skip_assembly_download \
     -resume
 
 SAMN00715800: Split after base 75 into two separate files to maintain proper paired-end format.
+Change to a local data pipeline version.
 
 **Shell**::
 
@@ -207,6 +207,32 @@ Remove original unsplit file
 
 | Fix the metadata in the EAGER tsv input file to now be paired end, (optional: mark full UDG!)
 | Rerun EAGER pipeline
+
+Phylogeny
+-------------------------
+
+Estimate a phylogeny with all the datasets.
+
+**Shell**::
+
+  nextflow run ktmeaton/plague-phylogeography \
+    --outdir results \
+    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+    --sqlite_select_command_asm "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')" \
+    --max_datasets_assembly 500 \
+    --max_datasets_sra 150  \
+    --skip_sra_download \
+    --skip_outgroup_download \
+    --snippy_multi_missing_data 0.05 \
+    --snippy_multi_missing_data_text 5 \
+    --iqtree_model K3Pu+F+I \
+    --iqtree_branch_support \
+    --iqtree_runs 10 \
+    --iqtree_outgroup GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic \
+    --max_cpus 20 \
+    --max_memory 24.GB \
+    --max_time 100.h \
+    -resume
 
 Treetime
 ------------
