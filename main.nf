@@ -257,7 +257,6 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     // ISSUE: Can these be a symlink to each other (update and update/latest)?
     publishDir "${outdir}/ncbimeta_db/update/${workflow.start}_${workflow.runName}", mode: 'copy'
     publishDir "${outdir}/ncbimeta_db/update/latest", mode: 'copy', overwrite: 'true'
-    echo true
 
     // The config file, annotation file, and database file, are being read from paths, not channels
     ch_ncbimeta_yaml_update = Channel.fromPath(params.ncbimeta_update, checkIfExists: true)
@@ -342,7 +341,6 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     // Other variables and config
     tag "$sqlite"
     publishDir "${outdir}/sqlite_import", mode: 'copy'
-    echo true
 
     // Set the sqlite channel to update or sqlite import depending on ncbimeta mode
     // TO DO: catch if both parameters are specified!!!
@@ -589,7 +587,7 @@ process reference_download{
   file "${reference_genome_fna_local.baseName}" into ch_reference_genome_detect_repeats, ch_reference_genome_low_complexity, ch_reference_genome_eager
   file "${reference_genome_gb_local.baseName}" into ch_reference_gb_snippy_pairwise, ch_reference_gb_snippy_multi, ch_reference_genome_snpeff_build_db
   file "${reference_genome_gff_local.baseName}" into ch_reference_gff_nextstrain_json
-  file "*_CHROM.fna" into ch_reference_chrom_fna_nextstrain_json
+  file "*_${params.reference_locus}.fna" into ch_reference_locus_fna_nextstrain_json
 
   when:
   !params.skip_reference_download
@@ -609,13 +607,11 @@ process reference_download{
     sed -i "s/\${FNA_LOCI[\$i]}/\${GB_LOCI[\$i]}/g" ${reference_genome_fna_local.baseName};
     i=\$(( \$i + 1));
   done
-  # Extract chromosome sequence
-  CHROM=NC_003143
+  # Extract LOCUS sequence
   fnaName=${reference_genome_fna_local.baseName}
-  fnaNameCHROM=\${fnaName%.*}_CHROM.fna
+  fnaNameLOCUS=\${fnaName%.*}_${params.reference_locus}.fna
   samtools faidx ${reference_genome_fna_local.baseName};
-  samtools faidx ${reference_genome_fna_local.baseName} \${CHROM} \
-    > \$fnaNameCHROM
+  samtools faidx ${reference_genome_fna_local.baseName} ${params.reference_locus} > \$fnaNameLOCUS
 
   """
 }
@@ -1258,8 +1254,8 @@ process snippy_multi{
   val snippy_outdir_path from ch_snippy_outdir_assembly_multi.collect()
 
   output:
-  file "snippy-core.aln" into ch_snippy_core_aln_filter
-  file "snippy-core.full.aln" into ch_snippy_core_full_aln_filter
+  file "snippy-core.fna" into ch_snippy_core_aln_filter
+  file "snippy-core.full.fna" into ch_snippy_core_full_aln_filter
   file "snippy-core.vcf" into ch_snippy_core_vcf_nextstrain_json
   file "*.log"
   file "*.fa"
@@ -1285,6 +1281,9 @@ process snippy_multi{
       --mask ${bed_mask} \
       --mask-char ${params.snippy_mask_char} \
       \$allDir 2>&1 | tee snippy-core.log
+  # Rename to remove aln prefix
+  mv snippy-core.aln snippy-core.fna
+  mv snippy-core.full.aln snippy-core.full.fna
   """
 }
 
@@ -1299,14 +1298,15 @@ process snippy_multi_filter{
   ch_snippy_core_filter_iqtree (fasta): Multi fasta of filtered core genome sites for process iqtree.
 
   Publish:
-  snippy_core_full_aln.filter\*.fasta (fasta): Multi fasta of filtered chromosome genome sites.
-  \*.fasta (fasta): All loci extracted fasta files.
+  snippy_core_full_aln.filter\*.fna (fasta): Multi fasta of filtered loci genome sites.
+  \*.fna (fasta): All loci extracted fasta files.
   \*.bed (bed): All loci bed coordinate files for extraction.
 
   */
   // Other variables and config
   tag "$snippy_core_full_aln"
   publishDir "${outdir}/snippy_multi", mode: 'copy', overwrite: 'true'
+  echo true
 
   // IO and conditional behavior
   input:
@@ -1314,9 +1314,8 @@ process snippy_multi_filter{
 
   output:
   file "*.bed"
-  file "${snippy_core_full_aln.baseName}_CHROM.fasta"
-  file "${snippy_core_full_aln.baseName}_p*.fasta"
-  file "${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta" into ch_snippy_core_filter_iqtree,ch_snippy_core_filter_nextstrain_treetime,ch_snippy_core_filter_nextstrain_json
+  file "${snippy_core_full_aln.baseName}_${params.reference_locus}.fna"
+  file "${snippy_core_full_aln.baseName}_${params.reference_locus}.filter${params.snippy_multi_missing_data_text}.fna" into ch_snippy_core_filter_iqtree,ch_snippy_core_filter_nextstrain_treetime,ch_snippy_core_filter_nextstrain_json
 
   when:
   !params.skip_snippy_multi_filter
@@ -1324,18 +1323,28 @@ process snippy_multi_filter{
   // Shell script to execute
   script:
   """
-  # Split by LOCUS (generates snippy-core_%REPLICON.fasta)
-  ${params.scriptdir}/fasta_split_locus.sh ${snippy_core_full_aln}
-  # Filter full CHROMOSOME alignment (No Missing Data)
-  snp-sites -m -c -b -o ${snippy_core_full_aln.baseName}_CHROM.filter0.fasta ${snippy_core_full_aln.baseName}_CHROM.fasta;
+  samtools faidx ${snippy_core_full_aln}
+  # Extract target locus LOCUS (generates snippy-core_%LOCUS.fna)
+  ${params.scriptdir}/fasta_extract_locus.sh \
+    ${snippy_core_full_aln} \
+    ${params.reference_locus} \
+    ${params.reference_locus_start} \
+    ${params.reference_locus_end}
+  # Filter full LOCUS alignment (No Missing Data)
+  snp-sites \
+    -m -c -b \
+    -o ${snippy_core_full_aln.baseName}_${params.reference_locus}.filter0.fna \
+    ${snippy_core_full_aln.baseName}_${params.reference_locus}.fna;
   # Optional: Filter full alignment to remove less missing data
   if [[ ${params.snippy_multi_missing_data_text} > 0 ]]; then
-    ${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln.baseName}_CHROM.fasta > ${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta;
+    ${params.scriptdir}/fasta_unwrap.sh \
+      ${snippy_core_full_aln.baseName}_${params.reference_locus}.fna \
+      > ${snippy_core_full_aln.baseName}_${params.reference_locus}.unwrap.fna;
     ${params.scriptdir}/fasta_filterGapsNs.sh \
-        ${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta \
+        ${snippy_core_full_aln.baseName}_${params.reference_locus}.unwrap.fna \
         ${params.snippy_multi_missing_data} \
-        ${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.backbone > \
-        ${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta;
+        ${snippy_core_full_aln.baseName}_${params.reference_locus}.filter${params.snippy_multi_missing_data_text}.backbone > \
+        ${snippy_core_full_aln.baseName}_${params.reference_locus}.filter${params.snippy_multi_missing_data_text}.fna;
   fi;
   """
 }
@@ -1627,7 +1636,7 @@ process nextstrain_json{
   file divergencetree from ch_divergencetree_nextstrain_json
   file metadata_nextstrain from ch_metadata_nextstrain_json
   file snippy_core_vcf from ch_snippy_core_vcf_nextstrain_json
-  file ref_chrom_fna from ch_reference_chrom_fna_nextstrain_json
+  file ref_locus_fna from ch_reference_locus_fna_nextstrain_json
   file ref_gff from ch_reference_gff_nextstrain_json
   file timetree from ch_timetree_nextstrain_json
   file timetree_dates from ch_timetree_dates_nextstrain_json
@@ -1672,13 +1681,13 @@ process nextstrain_json{
   augur ancestral \
     --tree nextstrain/augur/augur-refine.nwk \
     --alignment ${snippy_core_vcf}  \
-    --vcf-reference ${ref_chrom_fna} \
+    --vcf-reference ${ch_locus_fna} \
     --output-node-data nextstrain/augur/nt_muts.json \
     --output-vcf nextstrain/augur/augur-ancestral.vcf
 
  augur translate \
    --tree nextstrain/augur/augur-refine.nwk \
-   --vcf-reference ${ref_chrom_fna} \
+   --vcf-reference ${ch_locus_fna} \
    --ancestral-sequences nextstrain/augur/augur-ancestral.vcf \
    --genes ${baseDir}/auspice/config/genes.txt \
    --reference-sequence ${ref_gff} \
