@@ -30,7 +30,7 @@ on:
 jobs:
   database:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 60
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
@@ -77,9 +77,9 @@ jobs:
           conda activate ${PHYLO_CONDA_ENV}
           nextflow run -r ${{ github.sha }} ${{github.repository}} \
             --ncbimeta_create example/ncbimeta_test.yaml \
+            --ncbimeta_sqlite_db test.sqlite \
             --ncbimeta_api_param "--force-pause-seconds 0 --email ${{secrets.EMAIL}} --api ${{secrets.NCBI_API}}" \
             --ncbimeta_output_dir test \
-            --ncbimeta_sqlite_db test.sqlite \
             --skip_sqlite_import \
             --skip_reference_download \
             --skip_outgroup_download \
@@ -98,7 +98,6 @@ jobs:
             --ncbimeta_output_dir test \
             --ncbimeta_annot example/ncbimeta_test_annot.txt \
             --ncbimeta_annot_table BioSample \
-            --sqlite test.sqlite \
             --skip_sqlite_import \
             --skip_reference_download \
             --skip_outgroup_download \
