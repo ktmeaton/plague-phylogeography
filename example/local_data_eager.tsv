@@ -1,3 +1,3 @@
 Sample_Name	Library_ID	Lane	Colour_Chemistry	SeqType	Organism	Strandedness	UDG_Treatment	R1	R2	BAM
-SAMN02442718	SRR1048902	1	4	PE	Yersinia pestis	double	none	../../../custom/SAMN02442718/paired/SRR1048902_1.fastq.gz	../../../custom/SAMN02442718/paired/SRR1048902_2.fastq.gz	NA
-SAMN02442721	SRR1048905	1	4	PE	Yersinia pestis	double	none	../../../custom/SAMN02442721/paired/SRR1048905_1.fastq.gz	../../../custom/SAMN02442721/paired/SRR1048905_2.fastq.gz	NA
+SAMN02442718	SRR1048902	1	4	PE	Yersinia pestis	double	none	../../../example/SAMN02442718/paired/SRR1048902_1.fastq.gz	../../../example/SAMN02442718/paired/SRR1048902_2.fastq.gz	NA
+SAMN02442721	SRR1048905	1	4	PE	Yersinia pestis	double	none	../../../example/SAMN02442721/paired/SRR1048905_1.fastq.gz	../../../example/SAMN02442721/paired/SRR1048905_2.fastq.gz	NA

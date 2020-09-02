@@ -125,23 +125,23 @@ Max Time: ${params.max_time}
 
 process local_reads_prep{
   /*
-  Prepare custom read data as eager tsv.
+  Prepare local read data as eager tsv.
   */
-  tag "$custom_tsv_eager"
-  publishDir "${outdir}/custom/", mode: 'copy'
+  tag "$local_tsv_eager"
+  publishDir "${outdir}/local/", mode: 'copy'
 
-  // If a custom tsv for eager was supplied
+  // If a local tsv for eager was supplied
   if (params.eager_tsv){
-    ch_tsv_custom_eager_prep=Channel.fromPath(params.eager_tsv, checkIfExists: true)
+    ch_tsv_local_eager_prep=Channel.fromPath(params.eager_tsv, checkIfExists: true)
                         .ifEmpty { exit 1, "Custom EAGER tsv file not found: ${params.eager_tsv}" }
   }
-  else{ch_tsv_custom_eager_prep=Channel.empty()}
+  else{ch_tsv_local_eager_prep=Channel.empty()}
 
   input:
-  file custom_tsv_eager from ch_tsv_custom_eager_prep
+  file local_tsv_eager from ch_tsv_local_eager_prep
   output:
-  file custom_tsv_eager into ch_tsv_custom_eager
-  file "${custom_tsv_eager.baseName}.txt" into ch_custom_biosample_val_eager
+  file local_tsv_eager into ch_tsv_local_eager
+  file "${local_tsv_eager.baseName}.txt" into ch_local_biosample_val_eager
   when:
   params.eager_tsv
 
@@ -150,27 +150,27 @@ process local_reads_prep{
   biosampleColumn=1
   inTSV=!{params.eager_tsv}
   outTSV=`basename ${inTSV%.*}.txt`
-  tail -n+2 !{custom_tsv_eager} | cut -f ${biosampleColumn} | sort | uniq > ${outTSV}
+  tail -n+2 !{local_tsv_eager} | cut -f ${biosampleColumn} | sort | uniq > ${outTSV}
   '''
 }
 
 process local_assembly_prep{
   /*
-  Prepare custom assembly data as file list.
+  Prepare local assembly data as file list.
   */
-  tag "$custom_asm"
+  tag "$local_asm"
 
-  // If a custom assembly file list was supplied
+  // If a local assembly file list was supplied
   if (params.assembly_local){
-    ch_custom_asm_prep=Channel.fromPath(params.assembly_local, checkIfExists: true)
+    ch_local_asm_prep=Channel.fromPath(params.assembly_local, checkIfExists: true)
                               .ifEmpty { exit 1, "Custom assembly files not found: ${params.assembly_local}" }
   }
-  else{ch_custom_asm_prep=Channel.empty()}
+  else{ch_local_asm_prep=Channel.empty()}
 
   input:
-  file custom_asm from ch_custom_asm_prep
+  file local_asm from ch_local_asm_prep
   output:
-  file custom_asm into ch_custom_asm_snippy_pairwise
+  file local_asm into ch_local_asm_snippy_pairwise
   when:
   params.assembly_local
 
@@ -373,7 +373,6 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     shell:
     '''
     # Select the Genbank Assemblies
-    echo "!{params.sqlite_select_command_asm}"
     if [[ "!{params.sqlite_select_command_asm}" != "false"  ]]; then
       sqlite3 !{sqlite} "!{params.sqlite_select_command_asm}" | \
         grep . | \
@@ -843,11 +842,11 @@ process eager{
   tag "$biosample_val"
   publishDir "${outdir}/eager", mode: 'copy'
 
-  // If a custom tsv was supplied
+  // If a local tsv was supplied
   if (params.eager_tsv){
-    ch_tsv_custom_eager.set{ ch_tsv_eager }
-    //ch_biosample_val_eager=ch_custom_biosample_val_eager
-    ch_custom_biosample_val_eager
+    ch_tsv_local_eager.set{ ch_tsv_eager }
+    //ch_biosample_val_eager=ch_local_biosample_val_eager
+    ch_local_biosample_val_eager
                               .splitText()
                               .map { it.replaceFirst(/\n/,'') }
                               .set { ch_biosample_val_eager}
@@ -962,7 +961,7 @@ ch_assembly_fna_snippy_pairwise
        .ifEmpty([])
     )
   .combine (
-    ch_custom_asm_snippy_pairwise
+    ch_local_asm_snippy_pairwise
       .collect()
       .ifEmpty([])
   )
