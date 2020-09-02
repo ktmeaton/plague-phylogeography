@@ -137,8 +137,9 @@ eager_tsv                                          tsv                          
 **shell**::
 
 	# Select the Genbank Assemblies
-	if [[ !{params.sqlite_select_command_asm} != "false"  ]]; then
-	sqlite3 !{sqlite} !{params.sqlite_select_command_asm} | \
+	echo "!{params.sqlite_select_command_asm}"
+	if [[ "!{params.sqlite_select_command_asm}" != "false"  ]]; then
+	sqlite3 !{sqlite} "!{params.sqlite_select_command_asm}" | \
 	grep . | \
 	head -n !{params.max_datasets_assembly} | \
 	sed -E -e 's/ |;/\\n/g' | \
@@ -153,10 +154,10 @@ eager_tsv                                          tsv                          
 	fi;
 	
 	# Extract SRA Metadata for EAGER tsv
-	if [[ !{params.sqlite_select_command_sra} != "false"  ]]; then
+	if [[ "!{params.sqlite_select_command_sra}" != "false"  ]]; then
 	!{params.scriptdir}/sqlite_EAGER_tsv.py \
 	--database !{sqlite} \
-	--query !{params.sqlite_select_command_sra} \
+	--query "!{params.sqlite_select_command_sra}" \
 	--organism !{params.eager_organism} \
 	--max-datasets !{params.max_datasets_sra} \
 	--output metadata_sra_eager.tsv \
