@@ -5,19 +5,19 @@ Local Data
 Local Reads Prep
 ----------------
 
-Prepare custom read data as eager tsv.
+Prepare local read data as eager tsv.
 
 **shell**::
 
 	biosampleColumn=1
 	inTSV=!{params.eager_tsv}
 	outTSV=`basename ${inTSV%.*}.txt`
-	tail -n+2 !{custom_tsv_eager} | cut -f ${biosampleColumn} | sort | uniq > ${outTSV}
+	tail -n+2 !{local_tsv_eager} | cut -f ${biosampleColumn} | sort | uniq > ${outTSV}
 
 Local Assembly Prep
 -------------------
 
-Prepare custom assembly data as file list.
+Prepare local assembly data as file list.
 
 
 Database
@@ -137,7 +137,6 @@ eager_tsv                                          tsv                          
 **shell**::
 
 	# Select the Genbank Assemblies
-	echo "!{params.sqlite_select_command_asm}"
 	if [[ "!{params.sqlite_select_command_asm}" != "false"  ]]; then
 	sqlite3 !{sqlite} "!{params.sqlite_select_command_asm}" | \
 	grep . | \
