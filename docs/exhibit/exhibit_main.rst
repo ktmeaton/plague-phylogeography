@@ -12,8 +12,8 @@ Shell Variables
 
 **Shell**::
 
-  SQLITE_DB=~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
-  SQLITE_CONFIG=~/.nextflow/assets/ktmeaton/plague-phylogeography/config/ncbimeta.yaml
+  SQLITE_DB=results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite
+  SQLITE_CONFIG=config/ncbimeta.yaml
   PHYLO_CONDA_ENV=plague-phylogeography-0.1.4dev
   PHYLO_NF_REV=master
 
@@ -36,7 +36,8 @@ Create
 
   nextflow run -r ${PHYLO_NF_REV} ktmeaton/plague-phylogeography \
     --ncbimeta_create ${SQLITE_CONFIG} \
-    --sqlite ${SQLITE_DB} \
+    --ncbimeta_output_dir output \
+    --ncbimeta_sqlite_db yersinia_pestis_db.sqlite \
     --skip_sqlite_import \
     --skip_reference_download \
     --skip_outgroup_download \
@@ -98,16 +99,17 @@ Update, Annotate, Join
 
 **Shell**::
 
-  nextflow run -r ${PHYLO_NF_REV} ktmeaton/plague-phylogeography \
-   --ncbimeta_update ${SQLITE_CONFIG} \
-   --ncbimeta_annot ${SQLITE_BACKUP} \
-   --ncbimeta_annot_table ${SQLITE_TABLE} \
-   --sqlite ${SQLITE_DB} \
-   --skip_sqlite_import \
-   --skip_reference_download \
-   --skip_outgroup_download \
-   --outdir results \
-   -resume
+   nextflow run -r ${{ github.sha }} ${{github.repository}} \
+     --ncbimeta_update ${SQLITE_CONFIG} \
+     --ncbimeta_sqlite_db yersinia_pestis_db.sqlite \
+     --ncbimeta_output_dir output \
+     --ncbimeta_annot ${SQLITE_BACKUP} \
+     --ncbimeta_annot_table ${SQLITE_TABLE} \
+     --skip_sqlite_import \
+     --skip_reference_download \
+     --skip_outgroup_download \
+     --outdir results \
+     -resume
 
 Modern Assembly Analysis
 ------------------------
@@ -120,12 +122,12 @@ Construct a phylogeny including the outgroup (*Yersinia pseudotuberculosis*) to 
 **Shell**::
 
   nextflow run -r ${PHYLO_NF_REV} ktmeaton/plague-phylogeography \
-    --outdir Assembly_Modern_Outgroup \
-    --sqlite ~/.nextflow/assets/ktmeaton/plague-phylogeography/results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-    --sqlite_select_command_asm "\"SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')\"" \
+    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+    --sqlite_select_command_asm "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')" \
     --max_datasets_assembly 500 \
     --skip_sra_download \
     --iqtree_branch_support \
+    --outdir Assembly_Modern_Outgroup \
     -resume
 
 | *Y. pestis* clade closest to root:
