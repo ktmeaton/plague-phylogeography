@@ -95,10 +95,8 @@ ncbimeta_yaml                                      yaml                         
 	# Execute NCBImeta
 	NCBImeta.py --config ${ncbimeta_yaml}
 	# If annotation file supplied, run the annotation script
-	if [[ ${params.ncbimeta_annot} != "false" ]]; then
-	ANNOT_FILE=`basename ${params.ncbimeta_annot}`
-	mv ${workDir}/dummy_annot.txt `pwd`/\$ANNOT_FILE;
-	NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${params.ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
+	if [[ "${params.ncbimeta_annot}" != "false" ]]; then
+	NCBImetaAnnotateReplace.py --table ${params.ncbimeta_annot_table} --annot ${ncbimeta_annot} --database ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db}
 	fi
 	# Drop old or outdated join tables
 	sqlite3 ${params.ncbimeta_output_dir}/database/${params.ncbimeta_sqlite_db} "DROP TABLE IF EXISTS MasterFirst"
