@@ -32,7 +32,7 @@ on:
     types: [published]
 #------------------------------------------------------------------------------#
 jobs:
-database:
+  database:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
