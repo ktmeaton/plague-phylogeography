@@ -322,13 +322,11 @@ reference_genome_gb_local                          gbff                         
 	sed -i "s/\${FNA_LOCI[\$i]}/\${GB_LOCI[\$i]}/g" ${reference_genome_fna_local.baseName};
 	i=\$(( \$i + 1));
 	done
-	# Extract chromosome sequence
-	CHROM=NC_003143
+	# Extract LOCUS sequence
 	fnaName=${reference_genome_fna_local.baseName}
-	fnaNameCHROM=\${fnaName%.*}_CHROM.fna
+	fnaNameLOCUS=\${fnaName%.*}_${params.reference_locus}.fna
 	samtools faidx ${reference_genome_fna_local.baseName};
-	samtools faidx ${reference_genome_fna_local.baseName} \${CHROM} \
-	> \$fnaNameCHROM
+	samtools faidx ${reference_genome_fna_local.baseName} ${params.reference_locus} > \$fnaNameLOCUS
 	
 
 Outgroup Download
@@ -806,6 +804,9 @@ Publish:                                           Type                         
 	--mask ${bed_mask} \
 	--mask-char ${params.snippy_mask_char} \
 	\$allDir 2>&1 | tee snippy-core.log
+	# Rename to remove aln prefix
+	mv snippy-core.aln snippy-core.fna
+	mv snippy-core.full.aln snippy-core.full.fna
 
 Snippy Multi Filter
 -------------------
@@ -827,25 +828,35 @@ ch_snippy_core_filter_iqtree                       fasta                        
 ================================================== ================================================== ==================================================
 Publish:                                           Type                                               Description                                        
 ================================================== ================================================== ==================================================
-snippy_core_full_aln.filter\*.fasta                fasta                                              Multi fasta of filtered chromosome genome sites.   
-\*.fasta                                           fasta                                              All loci extracted fasta files.                    
+snippy_core_full_aln.filter\*.fna                  fasta                                              Multi fasta of filtered loci genome sites.         
+\*.fna                                             fasta                                              All loci extracted fasta files.                    
 \*.bed                                             bed                                                All loci bed coordinate files for extraction.      
 ================================================== ================================================== ==================================================
 
 **script**::
 
-	# Split by LOCUS (generates snippy-core_%REPLICON.fasta)
-	${params.scriptdir}/fasta_split_locus.sh ${snippy_core_full_aln}
-	# Filter full CHROMOSOME alignment (No Missing Data)
-	snp-sites -m -c -b -o ${snippy_core_full_aln.baseName}_CHROM.filter0.fasta ${snippy_core_full_aln.baseName}_CHROM.fasta;
+	samtools faidx ${snippy_core_full_aln}
+	# Extract target locus LOCUS (generates snippy-core_%LOCUS.fna)
+	${params.scriptdir}/fasta_extract_locus.sh \
+	${snippy_core_full_aln} \
+	${params.reference_locus} \
+	${params.reference_locus_start} \
+	${params.reference_locus_end}
+	# Filter full LOCUS alignment (No Missing Data)
+	snp-sites \
+	-m -c -b \
+	-o ${snippy_core_full_aln.baseName}_${params.reference_locus}.filter0.fna \
+	${snippy_core_full_aln.baseName}_${params.reference_locus}.fna;
 	# Optional: Filter full alignment to remove less missing data
 	if [[ ${params.snippy_multi_missing_data_text} > 0 ]]; then
-	${params.scriptdir}/fasta_unwrap.sh ${snippy_core_full_aln.baseName}_CHROM.fasta > ${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta;
+	${params.scriptdir}/fasta_unwrap.sh \
+	${snippy_core_full_aln.baseName}_${params.reference_locus}.fna \
+	> ${snippy_core_full_aln.baseName}_${params.reference_locus}.unwrap.fna;
 	${params.scriptdir}/fasta_filterGapsNs.sh \
-	${snippy_core_full_aln.baseName}_CHROM.unwrap.fasta \
+	${snippy_core_full_aln.baseName}_${params.reference_locus}.unwrap.fna \
 	${params.snippy_multi_missing_data} \
-	${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.backbone > \
-	${snippy_core_full_aln.baseName}_CHROM.filter${params.snippy_multi_missing_data_text}.fasta;
+	${snippy_core_full_aln.baseName}_${params.reference_locus}.filter${params.snippy_multi_missing_data_text}.backbone > \
+	${snippy_core_full_aln.baseName}_${params.reference_locus}.filter${params.snippy_multi_missing_data_text}.fna;
 	fi;
 
 Phylogeny
@@ -1072,13 +1083,13 @@ Nextstrain Json
 	augur ancestral \
 	--tree nextstrain/augur/augur-refine.nwk \
 	--alignment ${snippy_core_vcf}  \
-	--vcf-reference ${ref_chrom_fna} \
+	--vcf-reference ${ch_locus_fna} \
 	--output-node-data nextstrain/augur/nt_muts.json \
 	--output-vcf nextstrain/augur/augur-ancestral.vcf
 	
 	augur translate \
 	--tree nextstrain/augur/augur-refine.nwk \
-	--vcf-reference ${ref_chrom_fna} \
+	--vcf-reference ${ch_locus_fna} \
 	--ancestral-sequences nextstrain/augur/augur-ancestral.vcf \
 	--genes ${baseDir}/auspice/config/genes.txt \
 	--reference-sequence ${ref_gff} \
