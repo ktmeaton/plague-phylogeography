@@ -241,6 +241,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     Input:
     ch_ncbimeta_yaml_update (yaml): NCBImeta config file from process ncbimeta_db_create.
     ch_ncbimeta_sqlite_update (sqlite): NCBImeta SQLite database from process ncbimeta_db_create.
+    ch_ncbimeta_annot (tsv): NCBImeta annotation file.
 
     Output:
     ch_ncbimeta_sqlite_import (sqlite): NCBImeta SQLite database for process sqlite_import.
