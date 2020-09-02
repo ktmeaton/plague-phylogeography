@@ -19,7 +19,7 @@ on:
       - '.github/workflows/pipeline_local.yaml'
       - 'main.nf'
       - 'nextflow.config'
-      - 'custom/local_data_eager.tsv'
+      - 'example/local_data_eager.tsv'
   pull_request:
     branches:
       - '*'
@@ -79,8 +79,8 @@ jobs:
             --skip_assembly_download \
             --skip_outgroup_download \
             --skip_sra_download \
-            --eager_tsv "custom/local_data_eager.tsv" \
-            --assembly_local "custom/*.fna" \
+            --eager_tsv "example/local_data_eager.tsv" \
+            --assembly_local "example/*.fna" \
             --outdir test \
             ${GH_RESOURCES}
           conda deactivate
