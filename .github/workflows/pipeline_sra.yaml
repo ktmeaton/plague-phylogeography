@@ -79,7 +79,7 @@ jobs:
             --skip_outgroup_download \
             --skip_eager \
             --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
-            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
+            --sqlite_select_command_sra "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')" \
             --outdir test \
             ${GH_RESOURCES}
           conda deactivate
@@ -93,7 +93,7 @@ jobs:
             --skip_assembly_download \
             --skip_outgroup_download \
             --sqlite ${SQLITE_DB_PATH} \
-            --sqlite_select_command_sra "\"SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')\"" \
+            --sqlite_select_command_sra "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')" \
             --outdir test \
             ${GH_RESOURCES} \
             -resume

@@ -342,6 +342,7 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     // Other variables and config
     tag "$sqlite"
     publishDir "${outdir}/sqlite_import", mode: 'copy'
+    echo true
 
     // Set the sqlite channel to update or sqlite import depending on ncbimeta mode
     // TO DO: catch if both parameters are specified!!!
@@ -372,8 +373,9 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     shell:
     '''
     # Select the Genbank Assemblies
-    if [[ !{params.sqlite_select_command_asm} != "false"  ]]; then
-      sqlite3 !{sqlite} !{params.sqlite_select_command_asm} | \
+    echo "!{params.sqlite_select_command_asm}"
+    if [[ "!{params.sqlite_select_command_asm}" != "false"  ]]; then
+      sqlite3 !{sqlite} "!{params.sqlite_select_command_asm}" | \
         grep . | \
         head -n !{params.max_datasets_assembly} | \
         sed -E -e 's/ |;/\\n/g' | \
@@ -388,10 +390,10 @@ if(!params.skip_ncbimeta_db_update && params.ncbimeta_update){
     fi;
 
     # Extract SRA Metadata for EAGER tsv
-    if [[ !{params.sqlite_select_command_sra} != "false"  ]]; then
+    if [[ "!{params.sqlite_select_command_sra}" != "false"  ]]; then
       !{params.scriptdir}/sqlite_EAGER_tsv.py \
         --database !{sqlite} \
-        --query !{params.sqlite_select_command_sra} \
+        --query "!{params.sqlite_select_command_sra}" \
         --organism !{params.eager_organism} \
         --max-datasets !{params.max_datasets_sra} \
         --output metadata_sra_eager.tsv \

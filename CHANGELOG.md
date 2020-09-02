@@ -7,10 +7,6 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
-### High Priority
-
-- Deal with the fail to publish issue with NCBImeta db
-
 ### Medium Priority
 
 - Add exact-repeats and tandem repeats detection
@@ -49,6 +45,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - rename environment phylo-env to plague-phylogeography-0.1.4dev
 - update ncbimeta dependency from 0.6.5 to 0.6.6
 - restrict biopython to =1.74 because of string/byte encoding bugs.
+- Fixed the fail to publish issue with NCBImeta db
 
 ### Removed
 
