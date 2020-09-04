@@ -243,6 +243,11 @@ Uninstall
 
    scripts/uninstall.sh
 
+Contributing
+------------
+
+Testing with `CodeSpaces <https://ktmeaton-plague-phylogeography-wg4r.github.dev/>`_.
+
 Credits
 -------
 
