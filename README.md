@@ -188,6 +188,10 @@ export PERL5LIB=~/miniconda3/envs/plague-phylogeography-0.1.4dev/lib/site_perl/5
 scripts/uninstall.sh
 ```
 
+## Contributing
+
+Testing with [CodeSpaces](https://ktmeaton-plague-phylogeography-wg4r.github.dev/).
+
 ## Credits
 
 Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)  
