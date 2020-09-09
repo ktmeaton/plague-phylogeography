@@ -122,7 +122,7 @@ Construct a phylogeny including the outgroup (*Yersinia pseudotuberculosis*) to 
 **Shell**::
 
   nextflow run -r ${PHYLO_NF_REV} ktmeaton/plague-phylogeography \
-    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+    --sqlite ${SQLITE_DB} \
     --sqlite_select_command_asm "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')" \
     --max_datasets_assembly 500 \
     --skip_sra_download \
@@ -142,7 +142,7 @@ Download and pre-process modern *Y. pestis* genomic assemblies.
 
   nextflow run ktmeaton/plague-phylogeography \
     --outdir results \
-    --sqlite results/ncbimeta_db/update/latest/output/database/yersinia_pestis_db.sqlite \
+    --sqlite ${SQLITE_DB} \
     --sqlite_select_command_asm "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')" \
     --sqlite_select_command_sra "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')" \
     --max_datasets_assembly 500 \
