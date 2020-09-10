@@ -11,6 +11,7 @@ snakemake --cores 1 --configfile config/snakemake.yaml
 #                             Modules and Packages                             #
 # -----------------------------------------------------------------------------#
 import os
+import subprocess
 from snakemake.remote.FTP import RemoteProvider as FTPRemoteProvider
 FTP = FTPRemoteProvider()
 from snakemake.remote.HTTP import RemoteProvider as HTTPRemoteProvider
@@ -36,6 +37,31 @@ rule help:
       if rule._output: print("output: ", rule._output)
       if rule._params: print("params: ", rule._params)
       print("")
+
+# -----------------------------------------------------------------------------#
+#                               Local Data                                     #
+# -----------------------------------------------------------------------------#
+
+biosample_col = 1
+biosample_val = subprocess.check_output("tail -n+2 example/local_data_eager.tsv | cut -f 1 | sort | uniq",
+                shell = True,
+                universal_newlines=True)
+biosample_val = biosample_val.strip().split("\n")
+
+rule local_reads_prep:
+    input:
+        tsv = config["eager_tsv"]
+    output:
+        expand("{outdir}/eager/metadata/metadata_{acc}.tsv", outdir=config["outdir"], acc=biosample_val)
+    shell:
+        "mkdir -p {config[outdir]}/eager; "
+        "mkdir -p {config[outdir]}/eager/metadata; "
+        "tail -n+2 {input.tsv} | cut -f {biosample_col} | sort | uniq | "
+        "while read biosample_val; do "
+        "  head -n 1 {input.tsv} > {config[outdir]}/eager/metadata/metadata_${{biosample_val}}.tsv; "
+        "  grep $biosample_val {input.tsv} >> {config[outdir]}/eager/metadata/metadata_${{biosample_val}}.tsv ; "
+        "done;"
+
 
 # -----------------------------------------------------------------------------#
 #                             Assembly Download                                #
@@ -65,7 +91,7 @@ rule assembly_download:
 #                            Reference Download                                #
 # -----------------------------------------------------------------------------#
 
-reference_download_dir = os.path.join(config["outdir"],"reference_download")
+reference_download_dir = os.path.join(config["outdir"],"reference_genome")
 # Reference fasta
 ref_remote_fna_split = config["reference_genome_remote_fna"].split("/")
 ref_local_fna = os.path.join(reference_download_dir,ref_remote_fna_split[-1]).strip(".gz")
@@ -76,20 +102,17 @@ ref_local_gb = os.path.join(reference_download_dir,ref_remote_gb_split[-1]).stri
 ref_remote_gff_split = config["reference_genome_remote_gff"].split("/")
 ref_local_gff = os.path.join(reference_download_dir,ref_remote_gff_split[-1]).strip(".gz")
 
-accessions = NCBI.search("SAMEA1705942", retmax=1)
-print(accessions)
-
 rule reference_download:
     """
     Download the reference genome of interest from the NCBI FTP site.
     """
     input:
-        fna = NCBI.remote("GCA_000009065.1_ASM906v1_genomic.fna", keep_local=True)
+        fna = HTTP.remote(config["reference_genome_remote_fna"], keep_local=True)
     output:
         ref_local_fna
     run:
-      shell("mkdir -p {reference_download_dir}")
-      shell("gunzip -c {input.fna} > {reference_download_dir}")
+        shell("mkdir -p {reference_download_dir}")
+        shell("gunzip -c {input.fna} > {reference_download_dir}")
 
 # -----------------------------------------------------------------------------#
 #                                  EAGER                                       #
@@ -99,8 +122,29 @@ rule eager:
     """
     Run the nf-core/eager pipeline on fastq data.
     """
-    input: "example/local_data_eager.tsv"
+    input:
+        tsv = expand("{outdir}/eager/metadata/metadata_{acc}.tsv", outdir=config["outdir"], acc=biosample_val),
+        ref_fna = ref_local_fna
     shell:
-        "set +eu; source `conda info --base`/etc/profile.d/conda.sh;"
-        "conda activate {config[conda_eager_env]};"
-        "which samtools "
+        "mkdir -p {config[outdir]}/eager/; "
+        # The set command is to deal with PS1 errors
+        "set +eu; "
+        # Enable conda activate support in this bash subshell
+        "source `conda info --base`/etc/profile.d/conda.sh; "
+        "conda activate {config[conda_eager_env]}; "
+        "nextflow -C ~/.nextflow/assets/nf-core/eager/nextflow.config "
+        "  run nf-core/eager"
+        "  -r {config[eager_rev]}"
+        "  --input {input.tsv}"
+        "  --outdir {config[outdir]}/eager/"
+        "  --fasta {input.ref_fna}"
+        "   --clip_readlength {config[eager_clip_readlength]}"
+        "    --preserve5p"
+        "    --mergedonly"
+        "    --mapper bwaaln"
+        "    --bwaalnn {config[eager_bwaalnn]}"
+        "    --bwaalnl {config[eager_bwaalnl]}"
+        "    --run_bam_filtering"
+        "    --bam_mapping_quality_threshold {config[snippy_map_qual]}"
+        "    --bam_discard_unmapped"
+        "    --bam_unmapped_type discard"
