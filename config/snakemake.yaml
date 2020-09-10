@@ -1,0 +1,19 @@
+# Snakemake Configuration File
+
+# General
+outdir : snakeTest
+
+# Conda Environments
+conda_eager_env : "nf-core-eager-2.2.0dev"
+
+# Reference genome download
+#reference_genome_fna_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.fna.gz"
+#reference_genome_gb_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gbff.gz"
+#reference_genome_gff_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gff.gz"
+reference_genome_remote_fna : "https://www.ncbi.nlm.nih.gov/projects/r_gencoll/ftp_service/nph-gc-ftp-service.cgi/?HistoryId=MCID_5f5a7ae1799410251c35917c&QueryKey=7&ReleaseType=GenBank&FileType=GENOME_FASTA&Flat=true"
+reference_genome_remote_gb : "https://www.ncbi.nlm.nih.gov/projects/r_gencoll/ftp_service/nph-gc-ftp-service.cgi/?HistoryId=MCID_5f5a7ae1799410251c35917c&QueryKey=7&ReleaseType=GenBank&FileType=GENOME_GB&Flat=true"
+reference_genome_remote_gff : "https://www.ncbi.nlm.nih.gov/projects/r_gencoll/ftp_service/nph-gc-ftp-service.cgi/?HistoryId=MCID_5f5a7ae1799410251c35917c&QueryKey=7&ReleaseType=GenBank&FileType=GENOME_GFF&Flat=true"
+
+reference_locus : "AL590842"
+reference_locus_start : "0"
+reference_locus_end : "4653728"
