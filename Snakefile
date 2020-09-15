@@ -39,112 +39,56 @@ rule help:
       print("")
 
 # -----------------------------------------------------------------------------#
-#                               Local Data                                     #
-# -----------------------------------------------------------------------------#
-
-biosample_col = 1
-biosample_val = subprocess.check_output("tail -n+2 example/local_data_eager.tsv | cut -f 1 | sort | uniq",
-                shell = True,
-                universal_newlines=True)
-biosample_val = biosample_val.strip().split("\n")
-
-rule local_reads_prep:
-    input:
-        tsv = config["eager_tsv"]
-    output:
-        expand("{outdir}/eager/metadata/metadata_{acc}.tsv", outdir=config["outdir"], acc=biosample_val)
-    shell:
-        "mkdir -p {config[outdir]}/eager; "
-        "mkdir -p {config[outdir]}/eager/metadata; "
-        "tail -n+2 {input.tsv} | cut -f {biosample_col} | sort | uniq | "
-        "while read biosample_val; do "
-        "  head -n 1 {input.tsv} > {config[outdir]}/eager/metadata/metadata_${{biosample_val}}.tsv; "
-        "  grep $biosample_val {input.tsv} >> {config[outdir]}/eager/metadata/metadata_${{biosample_val}}.tsv ; "
-        "done;"
-
-
-# -----------------------------------------------------------------------------#
-#                             Assembly Download                                #
-# -----------------------------------------------------------------------------#
-
-# Load the URLs for assembly_download
-assembly_download_path = os.path.join(config["outdir"],"sqlite_import/assembly_download.txt")
-assembly_download_dir = os.path.join(config["outdir"],"assembly_download")
-with open(assembly_download_path) as temp_file:
-    assembly_download_urls = [line.rstrip() for line in temp_file]
-assembly_download_files = [os.path.join(assembly_download_dir, url.split("/")[10]) for url in assembly_download_urls]
-
-rule assembly_download:
-    """
-    Download genomic assembly fasta files using FTP.
-    """
-    input:
-       FTP.remote(assembly_download_urls, keep_local=True, immediate_close=True)
-    output:
-       assembly_download_files
-    run:
-      shell("mkdir -p {assembly_download_dir}")
-      shell("echo {input}")
-      shell("mv {input} {assembly_download_dir}")
-
-# -----------------------------------------------------------------------------#
 #                            Reference Download                                #
 # -----------------------------------------------------------------------------#
 
-reference_download_dir = os.path.join(config["outdir"],"reference_genome")
 # Reference fasta
-ref_remote_fna_split = config["reference_genome_remote_fna"].split("/")
-ref_local_fna = os.path.join(reference_download_dir,ref_remote_fna_split[-1]).strip(".gz")
+ref_local_fna_gz = os.path.basename(config["reference_genome_remote_fna"])
+ref_local_fna = os.path.splitext(ref_local_fna_gz)[0]
 # Reference gb
-ref_remote_gb_split = config["reference_genome_remote_gb"].split("/")
-ref_local_gb = os.path.join(reference_download_dir,ref_remote_gb_split[-1]).strip(".gz")
+ref_local_gb_gz = os.path.basename(config["reference_genome_remote_gb"])
+ref_local_gb = os.path.splitext(ref_local_gb_gz)[0]
 # Reference gff
-ref_remote_gff_split = config["reference_genome_remote_gff"].split("/")
-ref_local_gff = os.path.join(reference_download_dir,ref_remote_gff_split[-1]).strip(".gz")
+ref_local_gff_gz = os.path.basename(config["reference_genome_remote_gff"])
+ref_local_gff = os.path.splitext(ref_local_gff_gz)[0]
 
 rule reference_download:
     """
     Download the reference genome of interest from the NCBI FTP site.
     """
     input:
-        fna = HTTP.remote(config["reference_genome_remote_fna"], keep_local=True)
+        fna_gz = FTP.remote(config["reference_genome_remote_fna"], keep_local=True),
+        gb_gz = FTP.remote(config["reference_genome_remote_gb"], keep_local=True),
+        gff_gz = FTP.remote(config["reference_genome_remote_gff"], keep_local=True)
     output:
-        ref_local_fna
-    run:
-        shell("mkdir -p {reference_download_dir}")
-        shell("gunzip -c {input.fna} > {reference_download_dir}")
+        fna = expand("{outdir}/reference_download/{ref_local_fna}", outdir=config["outdir"], ref_local_fna=ref_local_fna),
+        gb = expand("{outdir}/reference_download/{ref_local_gb}", outdir=config["outdir"], ref_local_gb=ref_local_gb),
+        gff = expand("{outdir}/reference_download/{ref_local_gff}", outdir=config["outdir"], ref_local_gff=ref_local_gff),
+    shell:
+        "gunzip -c {input.fna_gz} > {output.fna}; "
+        "gunzip -c {input.gb_gz} > {output.gb}; "
+        "gunzip -c {input.gff_gz} > {output.gff}; "
 
 # -----------------------------------------------------------------------------#
-#                                  EAGER                                       #
+#                            Assembly Download                                 #
 # -----------------------------------------------------------------------------#
 
-rule eager:
+
+# Load the URLs for assembly_download
+assembly_download_input = os.path.join(config["outdir"],"sqlite_import/assembly_download.txt")
+with open(assembly_download_input) as temp_file:
+    assembly_download_urls = [line.rstrip() for line in temp_file]
+assembly_download_fna = [os.path.splitext(os.path.basename(url))[0] for url in assembly_download_urls]
+
+rule assembly_download:
     """
-    Run the nf-core/eager pipeline on fastq data.
+    Download genomic assembly fasta files using FTP.
     """
     input:
-        tsv = expand("{outdir}/eager/metadata/metadata_{acc}.tsv", outdir=config["outdir"], acc=biosample_val),
-        ref_fna = ref_local_fna
-    shell:
-        "mkdir -p {config[outdir]}/eager/; "
-        # The set command is to deal with PS1 errors
-        "set +eu; "
-        # Enable conda activate support in this bash subshell
-        "source `conda info --base`/etc/profile.d/conda.sh; "
-        "conda activate {config[conda_eager_env]}; "
-        "nextflow -C ~/.nextflow/assets/nf-core/eager/nextflow.config "
-        "  run nf-core/eager"
-        "  -r {config[eager_rev]}"
-        "  --input {input.tsv}"
-        "  --outdir {config[outdir]}/eager/"
-        "  --fasta {input.ref_fna}"
-        "   --clip_readlength {config[eager_clip_readlength]}"
-        "    --preserve5p"
-        "    --mergedonly"
-        "    --mapper bwaaln"
-        "    --bwaalnn {config[eager_bwaalnn]}"
-        "    --bwaalnl {config[eager_bwaalnl]}"
-        "    --run_bam_filtering"
-        "    --bam_mapping_quality_threshold {config[snippy_map_qual]}"
-        "    --bam_discard_unmapped"
-        "    --bam_unmapped_type discard"
+       txt = expand("{outdir}/sqlite_import/assembly_download.txt", outdir=config["outdir"])
+    run:
+        with open(str(input.txt)) as temp_file:
+            assembly_download_urls = [line.rstrip() for line in temp_file]
+            for url in assembly_download_urls:
+                print(url)
+                FTP.remote(url, keep_local=True)

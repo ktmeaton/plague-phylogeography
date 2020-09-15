@@ -29,3 +29,8 @@ eager_bwaalnl : 16
 snippy_ctg_depth : 10
 snippy_bam_depth : 3
 snippy_map_qual : 30
+
+# Testing
+samples:
+    A: data/samples/A.fastq
+    B: data/samples/B.fastq
