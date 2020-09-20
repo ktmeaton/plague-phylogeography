@@ -6,6 +6,7 @@ channels:
   - anaconda
 dependencies:
   - python=3.7
+  - sqlite=3.31.1
   - snakemake=5.23.0
   - samtools=1.10
   - bwa=0.7.17

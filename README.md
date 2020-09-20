@@ -63,6 +63,7 @@ cd plague-phylogeography
 ```bash
 conda install -c conda-forge mamba
 mamba env create -f environment.yaml
+conda activate plague-phylogeography-0.1.5dev
 ```
 
 ## Contributing
