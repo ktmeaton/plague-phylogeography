@@ -25,6 +25,7 @@ include: "rules/sqlite_import.smk"
 include: "rules/download.smk"
 include: "rules/snippy.smk"
 include: "rules/phylogeny.smk"
+include: "rules/functions.smk"
 
 # -----------------------------------------------------------------------------#
 #                                 Setup                                        #
@@ -35,33 +36,10 @@ ref_local_fna_gz = os.path.basename(config["reference_genome_remote_fna"])
 ref_local_fna = os.path.splitext(ref_local_fna_gz)[0]
 ref_local = os.path.splitext(ref_local_fna)[0]
 
-def identify_reference_sample():
-    """ Parse the sqlite database to identify the reference genome name."""
-    sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
-    conn = sqlite3.connect(sqlite_db_path)
-    cur = conn.cursor()
-    ref_url = cur.execute(config["sqlite_select_command_ref"]).fetchone()[0]
-    ref_name = ref_url.split("/")[9] + "_genomic"
-    cur.close()
-    return ref_name
-
-def identify_assembly_sample():
-    """ Parse the sqlite database to identify the assembly genome names."""
-    sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
-    conn = sqlite3.connect(sqlite_db_path)
-    cur = conn.cursor()
-    # Assembled Genome URLs
-    asm_fna_urls = cur.execute(config["sqlite_select_command_asm"]).fetchall()
-    asm_name_list = []
-    for url_list in asm_fna_urls:
-        for url in url_list[0].split(";"):
-            if url:
-                asm_name_list.append(url.split("/")[9] + "_genomic")
-    # Filter based on max number of assemblies for analysis
-    asm_name_list = asm_name_list[0:config["max_datasets_assembly"]]
-    cur.close()
-    return asm_name_list
-
+rule all:
+    input:
+        "results/iqtree/iqtree.treefile"
+'''
 rule all:
     input:
         "results/sqlite_import/download_reference.txt",
@@ -70,7 +48,7 @@ rule all:
         "results/iqtree/iqtree.treefile",
         "results/download_reference/" + identify_reference_sample() + ".fna",
         expand("results/download_assembly/{sample}.fna", sample=identify_assembly_sample())
-
+'''
 
 # -----------------------------------------------------------------------------#
 #                             Help and Usage                                   #

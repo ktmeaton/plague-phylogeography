@@ -6,8 +6,8 @@ rule iqtree:
   Construct a maximum likelihood phylogeny.
   """
     input:
-        snp_aln = "{outdir}/snippy_multi/snippy-core.aln"
+        snp_aln = "{results_dir}/snippy_multi/snippy-core.aln"
     output:
-        tree = "{outdir}/iqtree/iqtree.treefile"
+        tree = "{results_dir}/iqtree/iqtree.treefile"
     run:
         shell("touch {output.tree}")
