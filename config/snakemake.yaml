@@ -11,14 +11,6 @@ sqlite_select_command_ref : "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSam
 max_datasets_assembly : 3
 max_datasets_sra : 2
 
-# Reference genome download
-#reference_genome_fna_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.fna.gz"
-#reference_genome_gb_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gbff.gz"
-#reference_genome_gff_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gff.gz"
-#reference_genome_remote_fna : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.fna.gz"
-#reference_genome_remote_gb : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gbff.gz"
-#reference_genome_remote_gff : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gff.gz"
-
 #reference_locus : "AL590842"
 #reference_locus_start : "0"
 #reference_locus_end : "4653728"
@@ -38,3 +30,10 @@ snippy_base_qual : 20
 snippy_map_qual : 30
 snippy_min_frac : 0.9
 snippy_mask_char : "X"
+snippy_missing_data : 0
+
+# IQTREE
+#iqtree_model = "K3Pu+F+I"
+iqtree_outgroup : "Reference"
+iqtree_other : "--ufboot 1000 --alrt 1000"
+iqtree_runs : 1

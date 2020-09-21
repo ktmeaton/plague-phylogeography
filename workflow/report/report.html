@@ -330,13 +330,13 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
         border-bottom: 1px solid #007bff;
       }
 
-      table.dataTable tbody > tr.selected,
+      table.dataTable tbody > tr.selected, 
       table.dataTable tbody > tr > .selected {
         background-color: transparent;
       }
 
-      table.dataTable tbody tr.selected a,
-      table.dataTable tbody th.selected a,
+      table.dataTable tbody tr.selected a, 
+      table.dataTable tbody th.selected a, 
       table.dataTable tbody td.selected a {
         color: #007bff;
       }
@@ -380,7 +380,7 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
         max-width: 20vw;
         max-height: 10vh;
       }
-
+	    
       .modal-lg {
     	max-width: 95%;
       }
@@ -392,14 +392,14 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
     <div id="loading-screen">
       <p class="animation">Loading Snakemake Report...</p>
       <p id="jswarning">Please enable Javascript in your browser to see this report.</p>
-      <p id="info">Loading 332 Bytes. For large reports, this can take a while.</p>
+      <p id="info">Loading 524 Bytes. For large reports, this can take a while.</p>
     </div>
 
     <nav class="navbar fixed-top navbar-dark bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="https://snakemake.readthedocs.io">Snakemake Report</a>
       <div class="nav navbar-nav navbar-center" id="brand"></div>
       <ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
-        <li class="text-white">Mon Sep 21 12:21:44 2020 EST</li>
+        <li class="text-white">Mon Sep 21 14:53:35 2020 EST</li>
         <li><a class="text-white" href="https://snakemake.readthedocs.io">Snakemake 5.24.0</a></li>
       </ul>
       <!--<input id="searchbar" class="invisible form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
@@ -437,9 +437,15 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
             </h5>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <a class="nav-link panel-link" data-panel="9a628194a4f2af9b526d752782dddc8b70312177edab8fee6d458a74d7758d50" href="javascript:void(0)">
+                <a class="nav-link panel-link" data-panel="9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338" href="javascript:void(0)">
                   <span data-feather="folder"></span>
-                  Snippy
+                  Alignment
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link panel-link" data-panel="149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83" href="javascript:void(0)">
+                  <span data-feather="folder"></span>
+                  Phylogenetics
                 </a>
               </li>
             </ul>
@@ -450,7 +456,7 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
           <div class="panel" id="workflow">
             <h2>Workflow</h2>
 
-            <p>This is a test workflow description.</p>
+            <p>The plague-phylogeography snakemake pipeline.</p>
 
 
             <div class="row justify-content-center">
@@ -463,11 +469,16 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
 
           </div>
 
-          <div class="panel category" id="9a628194a4f2af9b526d752782dddc8b70312177edab8fee6d458a74d7758d50">
-            <h2>Snippy</h2>
-            <h4>Multi</h4>
-            <table class="results-table table" data-category="9a628194a4f2af9b526d752782dddc8b70312177edab8fee6d458a74d7758d50" data-subcategory="dea894b8304550baf5f5d244b82e0e3db57381fffff65849da706a6aafd5365b"></table>
-          </div>
+          <div class="panel category" id="9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338">
+            <h2>Alignment</h2>
+            <h4>Snippy Multiple</h4>
+            <table class="results-table table" data-category="9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338" data-subcategory="89c2c8d8853dd13e72d46e2596bc2a54d4d386943d1831195251c84b9a9203d0"></table>
+          </div>  
+          <div class="panel category" id="149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83">
+            <h2>Phylogenetics</h2>
+            <h4>IQTREE</h4>
+            <table class="results-table table" data-category="149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83" data-subcategory="f45d217585788bd6882329ae31a29613c91100f69d1bf90718d35736589cd02a"></table>
+          </div>  
 
           <div class="panel" id="statistics">
             <h2>Statistics</h2>
@@ -536,8 +547,7 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
 36
 37
 38
-39
-40</pre></div></td><td class="code"><div class="source"><pre><span></span><code><span class="c1"># Snakemake Configuration File</span>
+39</pre></div></td><td class="code"><div class="source"><pre><span></span><code><span class="c1"># Snakemake Configuration File</span>
 
 <span class="c1"># Conda Environments</span>
 <span class="nt">conda_eager_env </span><span class="p">:</span> <span class="s">&quot;nf-core-eager-2.2.0dev&quot;</span>
@@ -549,14 +559,6 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
 <span class="nt">sqlite_select_command_ref </span><span class="p">:</span> <span class="s">&quot;SELECT</span><span class="nv"> </span><span class="s">AssemblyFTPGenbank</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">Master</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">(BioSampleComment</span><span class="nv"> </span><span class="s">LIKE</span><span class="nv"> </span><span class="s">&#39;%Reference%&#39;)&quot;</span>
 <span class="nt">max_datasets_assembly </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
 <span class="nt">max_datasets_sra </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
-
-<span class="c1"># Reference genome download</span>
-<span class="c1">#reference_genome_fna_ftp : &quot;ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.fna.gz&quot;</span>
-<span class="c1">#reference_genome_gb_ftp : &quot;ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gbff.gz&quot;</span>
-<span class="c1">#reference_genome_gff_ftp : &quot;ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gff.gz&quot;</span>
-<span class="c1">#reference_genome_remote_fna : &quot;ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.fna.gz&quot;</span>
-<span class="c1">#reference_genome_remote_gb : &quot;ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gbff.gz&quot;</span>
-<span class="c1">#reference_genome_remote_gff : &quot;ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gff.gz&quot;</span>
 
 <span class="c1">#reference_locus : &quot;AL590842&quot;</span>
 <span class="c1">#reference_locus_start : &quot;0&quot;</span>
@@ -577,6 +579,13 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
 <span class="nt">snippy_map_qual </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
 <span class="nt">snippy_min_frac </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.9</span>
 <span class="nt">snippy_mask_char </span><span class="p">:</span> <span class="s">&quot;X&quot;</span>
+<span class="nt">snippy_missing_data </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+
+<span class="c1"># IQTREE</span>
+<span class="c1">#iqtree_model = &quot;K3Pu+F+I&quot;</span>
+<span class="nt">iqtree_outgroup </span><span class="p">:</span> <span class="s">&quot;Reference&quot;</span>
+<span class="nt">iqtree_other </span><span class="p">:</span> <span class="s">&quot;--ufboot</span><span class="nv"> </span><span class="s">1000</span><span class="nv"> </span><span class="s">--alrt</span><span class="nv"> </span><span class="s">1000&quot;</span>
+<span class="nt">iqtree_runs </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
 </code></pre></div>
 </td></tr></table>
                       </div>
@@ -644,19 +653,32 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
                     <tr>
                       <td class="rule-property" colspan=2>
                         <ul>
-                            <li>results/iqtree/iqtree.treefile</li>
+                            <li>results/iqtree/iqtree.core-filter0.treefile</li>
+                            <li>results/iqtree/iqtree.core-filter0.treefile</li>
                         </ul>
                       </td>
                     </tr>
 
 
+                    <tr>
+                      <th scope="row" colspan=2>Conda software stack</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <ul>
+                            <li>iqtree=2.0.3</li>
+                        </ul>
+                      </td>
+                    </tr>
 
                     <tr>
                       <th scope="row" colspan=2>Code</th>
                     </tr>
                     <tr>
                       <td class="rule-property" colspan=2>
-                        <pre><code>source</code></pre>
+                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>iqtree             -s <span class="o">{</span>input.snp_aln<span class="o">}</span>             --threads-max <span class="o">{</span>threads<span class="o">}</span>             -nt AUTO             -o <span class="o">{</span>params.outgroup<span class="o">}</span>             -seed <span class="o">{</span>params.seed<span class="o">}</span>             --runs <span class="o">{</span>params.runs<span class="o">}</span>             <span class="o">{</span>params.other<span class="o">}</span>             -pre results/iqtree/iqtree.core-filter<span class="o">{</span>params.missing_data<span class="o">}</span>
+</code></pre></div>
+</td></tr></table>
                       </td>
                     </tr>
                   </tbody>
@@ -798,7 +820,7 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
                     </tr>
                     <tr>
                       <td class="rule-property" colspan=2>
-                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>snippy           --prefix <span class="o">{</span>wildcards.sample<span class="o">}</span>_snippy           --reference <span class="o">{</span>input.ref<span class="o">}</span>           --outdir <span class="o">{</span>output.snippy_dir<span class="o">}</span>           --ctgs <span class="o">{</span>input.asm_fna<span class="o">}</span>           --mapqual <span class="o">{</span>params.map_qual<span class="o">}</span>           --mincov <span class="o">{</span>params.ctg_depth<span class="o">}</span>           --minfrac <span class="o">{</span>params.min_frac<span class="o">}</span>           --basequal <span class="o">{</span>params.base_qual<span class="o">}</span>           --force           --report<span class="p">;</span>
+                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>snippy           --prefix <span class="o">{</span>wildcards.sample<span class="o">}</span>_snippy           --reference <span class="o">{</span>input.ref<span class="o">}</span>           --outdir <span class="o">{</span>output.snippy_dir<span class="o">}</span>           --ctgs <span class="o">{</span>input.asm_fna<span class="o">}</span>           --mapqual <span class="o">{</span>params.map_qual<span class="o">}</span>           --mincov <span class="o">{</span>params.ctg_depth<span class="o">}</span>           --minfrac <span class="o">{</span>params.min_frac<span class="o">}</span>           --basequal <span class="o">{</span>params.base_qual<span class="o">}</span>           --force           --cpus <span class="o">{</span>threads<span class="o">}</span>           --report<span class="p">;</span>
 </code></pre></div>
 </td></tr></table>
                       </td>
@@ -900,6 +922,61 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
                       <td class="rule-property" colspan=2>
                         <ul>
                             <li>results/{download_dir}/{sample}.fna</li>
+                        </ul>
+                      </td>
+                    </tr>
+
+
+
+                    <tr>
+                      <th scope="row" colspan=2>Code</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <pre><code>source</code></pre>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-rule="sqlite_import_reference" class="modal rule-properties" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Rule sqlite_import_reference</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="table w-auto table-sm table-borderless ruletable">
+                  <caption>Rule properties</caption>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Jobs</th><td>1</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" colspan=2>Input files</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <ul>
+                            <li>results/sqlite_db/yersinia_pestis_db.sqlite</li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" colspan=2>Output files</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <ul>
+                            <li>results/sqlite_import/download_reference.txt</li>
                         </ul>
                       </td>
                     </tr>
@@ -1451,25 +1528,45 @@ if (typeof module !== 'undefined') {
               name: "snippy-core.txt",
               path: "results/snippy_multi/snippy-core.txt",
               size: "332 Bytes",
-              caption: "<p>Test description of snippy multi output.</p>\n",
+              caption: "<p>Tab-separated columnar list of alignment/core-size statistics.</p>\n",
               job_properties: {
                 rule: "snippy_multi",
                 wildcards: "prefix=snippy-core",
                 params: "mask_char=X"
               },
-              data_uri: function() { return "data:text/plain;charset=utf8;filename=snippy-core.txt;base64,SUQJTEVOR1RICUFMSUdORUQJVU5BTElHTkVECVZBUklBTlQJSEVUCU1BU0tFRAlMT1dDT1YKR0NBXzAwOTY2OTU0NS4xX0FTTTk2Njk1NHYxX2dlbm9taWMJNDgyOTg1NQk0NDQxNjk3CTYzNTY5CTI1MAk1MDMJMjg5ODI4CTM0MjU4CkdDQV8wMDk2Njk1NTUuMV9BU005NjY5NTV2MV9nZW5vbWljCTQ4Mjk4NTUJNDQzMjQ5Ngk2NzI2NwkyNDcJNzI2CTI4OTgyOAkzOTUzOApHQ0FfMDA5NjY5NTY1LjFfQVNNOTY2OTU2djFfZ2Vub21pYwk0ODI5ODU1CTQ0MzYxOTcJNjU1NjYJMjUwCTY2MQkyODk4MjgJMzc2MDMKUmVmZXJlbmNlCTQ4Mjk4NTUJNDU0MDAyNwkwCTAJMAkyODk4MjgJMAo="; },
+              data_uri: function() { return "data:text/plain;charset=utf8;filename=snippy-core.txt;base64,SUQJTEVOR1RICUFMSUdORUQJVU5BTElHTkVECVZBUklBTlQJSEVUCU1BU0tFRAlMT1dDT1YKR0NBXzAwOTY2OTU0NS4xX0FTTTk2Njk1NHYxX2dlbm9taWMJNDgyOTg1NQk0NDQxNjkyCTYzNTY5CTI1MAk1NDQJMjg5ODI4CTM0MjIyCkdDQV8wMDk2Njk1NTUuMV9BU005NjY5NTV2MV9nZW5vbWljCTQ4Mjk4NTUJNDQzMjQ5MQk2NzI2NwkyNDcJNzMxCTI4OTgyOAkzOTUzOApHQ0FfMDA5NjY5NTY1LjFfQVNNOTY2OTU2djFfZ2Vub21pYwk0ODI5ODU1CTQ0MzYxOTcJNjU1NjYJMjUwCTY2MQkyODk4MjgJMzc2MDMKUmVmZXJlbmNlCTQ4Mjk4NTUJNDU0MDAyNwkwCTAJMAkyODk4MjgJMAo="; },
               thumbnail_uri: function() { return null; }
             }
-
-
+          
+        ,
+            "results/iqtree/iqtree.core-filter0.treefile": {
+              name: "iqtree.core-filter0.treefile",
+              path: "results/iqtree/iqtree.core-filter0.treefile",
+              size: "192 Bytes",
+              caption: "<p>Maximum likelihood phylogeny.</p>\n",
+              job_properties: {
+                rule: "iqtree",
+                wildcards: "",
+                params: "outgroup=Reference, seed=63153, other=--ufboot 1000 --alrt 1000, missing_data=0, runs=1"
+              },
+              data_uri: function() { return "data:text/plain;charset=utf8;filename=iqtree.core-filter0.treefile;base64,KEdDQV8wMDk2Njk1NDUuMV9BU005NjY5NTR2MV9nZW5vbWljOjAuMDAwMDAwMDIwNywoR0NBXzAwOTY2OTU1NS4xX0FTTTk2Njk1NXYxX2dlbm9taWM6MC4wMDAwMDA0NDgyLEdDQV8wMDk2Njk1NjUuMV9BU005NjY5NTZ2MV9nZW5vbWljOjAuMDAwMDAyMjU0OSkwLzMzOjAuMDAwMDAwMDIwNyxSZWZlcmVuY2U6MC4wMDAwNTY2NTYwKTsK"; },
+              thumbnail_uri: function() { return null; }
+            }
+          
+        
       };
     </script>
 
     <script>
       var categories = {
-        "9a628194a4f2af9b526d752782dddc8b70312177edab8fee6d458a74d7758d50": {
-          "dea894b8304550baf5f5d244b82e0e3db57381fffff65849da706a6aafd5365b": [
+        "9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338": {
+          "89c2c8d8853dd13e72d46e2596bc2a54d4d386943d1831195251c84b9a9203d0": [
             "results/snippy_multi/snippy-core.txt"
+          ]
+        },
+        "149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83": {
+          "f45d217585788bd6882329ae31a29613c91100f69d1bf90718d35736589cd02a": [
+            "results/iqtree/iqtree.core-filter0.treefile"
           ]
         }
       };
@@ -1491,7 +1588,7 @@ if (typeof module !== 'undefined') {
         modal.find(".modal-body img").attr("src", res.thumbnail_uri());
         modal.find(".modal-footer a.btn-download")
           .attr(
-            "href",
+            "href", 
             `javascript:download_result("${res.path}")`
           )
           .attr("download", res.name);
@@ -1502,7 +1599,7 @@ if (typeof module !== 'undefined') {
       function show_category(panel) {
         panel.find(".results-table").each(function() {
           var table = $(this);
-
+          
           // stop if this is already a datatable
           if ($.fn.DataTable.isDataTable(table)) {
             return;
@@ -1715,12 +1812,12 @@ if (typeof module !== 'undefined') {
       });
 
 
-
+      
 
       var runtimes_spec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
         "description": "Runtimes of jobs.",
-        "data": {"values": [{'rule': 'download_fna', 'runtime': 0.07900023460388184}, {'rule': 'download_fna', 'runtime': 0.07000088691711426}, {'rule': 'download_fna', 'runtime': 0.10000133514404297}, {'rule': 'download_fna', 'runtime': 0.08600068092346191}, {'rule': 'iqtree', 'runtime': 0.0689995288848877}, {'rule': 'snippy_multi', 'runtime': 10.662333965301514}, {'rule': 'snippy_pairwise_assembly', 'runtime': 136.27130246162415}, {'rule': 'snippy_pairwise_assembly', 'runtime': 187.90519833564758}, {'rule': 'snippy_pairwise_assembly', 'runtime': 179.71165537834167}, {'rule': 'sqlite_import_assembly', 'runtime': 0.13822603225708008}]},
+        "data": {"values": [{'rule': 'download_fna', 'runtime': 0.06399965286254883}, {'rule': 'download_fna', 'runtime': 0.06599974632263184}, {'rule': 'download_fna', 'runtime': 0.06599926948547363}, {'rule': 'download_fna', 'runtime': 0.07100105285644531}, {'rule': 'iqtree', 'runtime': 20.65047574043274}, {'rule': 'snippy_multi', 'runtime': 13.101479291915894}, {'rule': 'snippy_pairwise_assembly', 'runtime': 155.9773006439209}, {'rule': 'snippy_pairwise_assembly', 'runtime': 156.48982572555542}, {'rule': 'snippy_pairwise_assembly', 'runtime': 168.21147060394287}, {'rule': 'sqlite_import_assembly', 'runtime': 0.16951847076416016}, {'rule': 'sqlite_import_reference', 'runtime': 0.11452364921569824}]},
         "mark": "point",
         "encoding": {
           "x": {"field": "runtime", "type": "quantitative",
@@ -1737,7 +1834,7 @@ if (typeof module !== 'undefined') {
         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
         "description": "Timeline of jobs.",
         "data": {
-          "values": [{'rule': 'download_fna', 'starttime': '2020-09-20T23:00:57.042673', 'endtime': '2020-09-20T23:00:57.121674'}, {'rule': 'download_fna', 'starttime': '2020-09-21T11:29:41.290291', 'endtime': '2020-09-21T11:29:41.360292'}, {'rule': 'download_fna', 'starttime': '2020-09-21T11:23:31.789842', 'endtime': '2020-09-21T11:23:31.889843'}, {'rule': 'download_fna', 'starttime': '2020-09-21T11:29:37.096188', 'endtime': '2020-09-21T11:29:37.182188'}, {'rule': 'iqtree', 'starttime': '2020-09-21T11:42:56.447330', 'endtime': '2020-09-21T11:42:56.516329'}, {'rule': 'snippy_multi', 'starttime': '2020-09-21T12:15:23.945181', 'endtime': '2020-09-21T12:15:34.607515'}, {'rule': 'snippy_pairwise_assembly', 'starttime': '2020-09-21T11:29:41.428293', 'endtime': '2020-09-21T11:31:57.699595'}, {'rule': 'snippy_pairwise_assembly', 'starttime': '2020-09-21T11:26:19.394475', 'endtime': '2020-09-21T11:29:27.299673'}, {'rule': 'snippy_pairwise_assembly', 'starttime': '2020-09-21T11:31:57.844596', 'endtime': '2020-09-21T11:34:57.556251'}, {'rule': 'sqlite_import_assembly', 'starttime': '2020-09-21T11:23:26.932576', 'endtime': '2020-09-21T11:23:27.070802'}]
+          "values": [{'rule': 'download_fna', 'starttime': '2020-09-21T13:50:24.029697', 'endtime': '2020-09-21T13:50:24.093697'}, {'rule': 'download_fna', 'starttime': '2020-09-21T13:50:27.980221', 'endtime': '2020-09-21T13:50:28.046221'}, {'rule': 'download_fna', 'starttime': '2020-09-21T13:50:24.706697', 'endtime': '2020-09-21T13:50:24.772696'}, {'rule': 'download_fna', 'starttime': '2020-09-21T13:50:25.148696', 'endtime': '2020-09-21T13:50:25.219697'}, {'rule': 'iqtree', 'starttime': '2020-09-21T14:50:14.905388', 'endtime': '2020-09-21T14:50:35.555864'}, {'rule': 'snippy_multi', 'starttime': '2020-09-21T14:23:03.453967', 'endtime': '2020-09-21T14:23:16.555446'}, {'rule': 'snippy_pairwise_assembly', 'starttime': '2020-09-21T14:17:38.956196', 'endtime': '2020-09-21T14:20:14.933496'}, {'rule': 'snippy_pairwise_assembly', 'starttime': '2020-09-21T14:15:02.332365', 'endtime': '2020-09-21T14:17:38.822191'}, {'rule': 'snippy_pairwise_assembly', 'starttime': '2020-09-21T14:20:15.088496', 'endtime': '2020-09-21T14:23:03.299967'}, {'rule': 'sqlite_import_assembly', 'starttime': '2020-09-21T13:50:01.578176', 'endtime': '2020-09-21T13:50:01.747694'}, {'rule': 'sqlite_import_reference', 'starttime': '2020-09-21T13:50:01.517651', 'endtime': '2020-09-21T13:50:01.632175'}]
         },
         "mark": "point",
         "encoding": {
@@ -1757,7 +1854,7 @@ if (typeof module !== 'undefined') {
 
       $(".vega-actions a").addClass("btn btn-outline-secondary");
       $(".vega-actions").addClass("btn-group");
-
+      
       $("a.panel-link").click(function() {
         $("a.nav-link.active").removeClass("active");
         $(this).addClass("active");

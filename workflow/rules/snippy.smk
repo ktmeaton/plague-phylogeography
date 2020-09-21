@@ -51,8 +51,8 @@ rule snippy_multi:
     output:
         report("results/snippy_multi/{prefix}.txt",
                 caption=os.path.join(report_dir,"snippy_multi.rst"),
-                category="Snippy",
-                subcategory="Multi"),
+                category="Alignment",
+                subcategory="Snippy"),
         snp_aln = "results/snippy_multi/{prefix}.full.aln",
     log:
         os.path.join(logs_dir, "snippy_multi","{prefix}.log")
