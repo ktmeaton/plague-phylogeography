@@ -71,7 +71,8 @@ rule sqlite_import_sra:
     input:
         db = "results/sqlite_db/" + config["sqlite_db"]
     output:
-        eager_tsv = "results/sqlite_import/eager_sra.tsv"
+        sra_txt = "results/sqlite_import/download_sra.txt",
+        eager_tsv = "results/sqlite_import/eager_sra.tsv",
     run:
         shell("{scripts_dir}/sqlite_EAGER_tsv.py \
             --database {input.db} \
@@ -79,4 +80,5 @@ rule sqlite_import_sra:
             --organism \"{params.organism}\" \
             --max-datasets {params.max_sra} \
             --output {output.eager_tsv} \
-            --fastq-dir {wildcards.results_dir}/sra_download/")
+            --fastq-dir {results_dir}/sra_download/")
+        shell("tail -n+2 results/sqlite_import/eager_sra.tsv | cut -f 1 | uniq > {output.sra_txt}")

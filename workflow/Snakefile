@@ -32,12 +32,14 @@ configfile: os.path.join(project_dir, "config", "snakemake.yaml")
 # Sub snakefiles
 include: "rules/sqlite_import.smk"
 include: "rules/download.smk"
-include: "rules/snippy.smk"
+include: "rules/alignment.smk"
 include: "rules/phylogeny.smk"
 include: "rules/functions.smk"
 
 # Report file
 report: "report/workflow.rst"
+
+identify_sra_sample()
 
 # -----------------------------------------------------------------------------#
 #                                Main Target                                   #
@@ -48,7 +50,8 @@ rule all:
     The default pipeline target.
     """
     input:
-        expand("results/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"])
+        "results/sqlite_import/download_sra.txt"
+        #expand("results/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"])
 
 # -----------------------------------------------------------------------------#
 #                             Help and Usage                                   #

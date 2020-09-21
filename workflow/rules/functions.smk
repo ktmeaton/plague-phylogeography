@@ -31,5 +31,15 @@ def identify_assembly_sample():
 
 def identify_sra_sample():
     """ Parse the sqlite database to identify the SRA accessions."""
+    sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
+    conn = sqlite3.connect(sqlite_db_path)
+    cur = conn.cursor()
+    # Assembled Genome URLs
+    sra_acc_urls = cur.execute(config["sqlite_select_command_sra"]).fetchall()
     sra_acc_list = []
+    for item in sra_acc_urls:
+        sra_acc_list.append(item[0])
+    # Filter based on max number of sra samples for analysis
+    sra_acc_list = sra_acc_list[0:config["max_datasets_sra"]]
+    cur.close()
     return sra_acc_list
