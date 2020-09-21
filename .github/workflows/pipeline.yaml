@@ -64,7 +64,7 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake all --use-conda --profile profiles/gh-actions --report workflow/report/report.html;
+          snakemake all --use-conda --profile profiles/gh-actions;
           conda deactivate;
       #------------------------------------------------------------------------#
       #  Artifact Upload
