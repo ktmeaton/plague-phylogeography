@@ -1,5 +1,4 @@
 import random # generate a random seed for iqtree
-print(random)
 
 # -----------------------------------------------------------------------------#
 #                         Maximum Likelihood Phylogeny                         #

@@ -48,12 +48,12 @@ Katherine Eaton
 ### Dependencies
 
 * [Miniconda](https://docs.conda.io/en/latest/miniconda.html) ([v4.8.3](https://repo.anaconda.com/miniconda/Miniconda3-py37_4.8.3-Linux-x86_64.sh))
-* Mambda
+* Linux OS
 
 ### Clone Repository
 
 ```bash
-git clone git clone https://github.com/ktmeaton/plague-phylogeography.git
+git clone https://github.com/ktmeaton/plague-phylogeography.git
 cd plague-phylogeography
 ```
 
@@ -61,14 +61,17 @@ cd plague-phylogeography
 
 ```bash
 conda install -c conda-forge mamba
-mamba env create -f environment.yaml
-conda activate plague-phylogeography-0.1.5dev
+mamba env create -f workflow/envs/default.yaml
+conda activate default
 ```
 
 ## Usage
 
 ```bash
-snakemake --use-conda -j1 all --report workflow/report/report.html
+snakemake all \
+  --use-conda \
+  --profile profiles/gh-actions \
+  --report workflow/report/report.html
 ```
 
 ## Contributing
@@ -77,5 +80,5 @@ Testing with [CodeSpaces](https://ktmeaton-plague-phylogeography-wg4r.github.dev
 
 ## Credits
 
-Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)  
+Author: [Katherine Eaton](https://github.com/ktmeaton)  
 Logo: Emil Karpinski, [Katherine Eaton](https://github.com/ktmeaton)  
