@@ -2,7 +2,10 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 
-exclude: 'html'
+exclude: '''
+html
+auspice/.*.json
+'''
 
 repos:
 
@@ -43,9 +46,12 @@ repos:
     hooks:
       - id: markdownlint
         args: [--config=.github/markdown_lint.yaml]
+        exclude: narratives/.*.md
 
   # Rst Lint
   - repo: https://github.com/myint/rstcheck
     rev: master
     hooks:
       - id: rstcheck
+        # Exclude auto generated rst files
+        exclude: docs/README.rst

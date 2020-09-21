@@ -1,0 +1,139 @@
+#------------------------------------------------------------------------------#
+name: Lint
+#------------------------------------------------------------------------------#
+# Workflow conditions
+on:
+  push:
+    branches:
+      - '*'
+    paths:
+      - '.github/workflows/lint.yaml'
+      - '**/*.yaml'
+      - '**/*.md'
+      - 'workflow/report/*.rst'
+      - '**/*.py'
+      - '**/Snakefile'
+      - '**/*.smk'
+  pull_request:
+    branches:
+      - '*'
+  release:
+    types: [published]
+#------------------------------------------------------------------------------#
+jobs:
+#----------------------------------------------------------------------------#
+  # Check the pre-commit linters
+  pre_commit:
+    runs-on: ubuntu-latest
+    steps:
+      #------------------------------------------------------------------------#
+      # Checkout repo
+      - name: checkout repo
+        uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+        # Install dependencies
+      - name: setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+      - name: install pre-commit
+        run: |
+          pip install pre-commit==2.6.0
+          pre-commit install-hooks
+      # Lint all files
+      - name: pre-commit lint
+        run: pre-commit run --all-files
+  #----------------------------------------------------------------------------#
+  # Markdown template from nf-core eager to trial
+  # Only select files for now to prevent full workflow from failing
+  markdown_lint:
+    runs-on: ubuntu-latest
+    steps:
+      #------------------------------------------------------------------------#
+      # Checkout Repository
+      - name: checkout repo
+        uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # Install dependencies
+      - name: setup node
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+      - name: install markdownlint
+        run: npm install -g markdownlint-cli
+
+      # Lint files
+      - name: Run Markdownlint
+        run: |
+          markdownlint -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml $(find ${GITHUB_WORKSPACE} -name "*.md")
+  #----------------------------------------------------------------------------#
+  # YAML template from nf-core eager to trial
+  yaml_lint:
+    runs-on: ubuntu-latest
+    steps:
+      #------------------------------------------------------------------------#
+      # Checkout Repository
+      - name: checkout repo
+        uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # Install dependencies
+      - name: setup node
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+      - name: install yaml-lint
+        run: npm install -g yaml-lint
+      # Lint files
+      - name: run yaml-lint
+        run: yamllint $(find ${GITHUB_WORKSPACE} -name "*.yaml")
+
+  #----------------------------------------------------------------------------#
+  # Python linting with flake8 and black
+  python_lint:
+    runs-on: ubuntu-latest
+    steps:
+      #------------------------------------------------------------------------#
+      # Checkout Repository
+      - name: checkout repo
+        uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # Install dependencies
+      - name: setup python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+      - name: install linters
+        run: pip install black flake8 flake8-bugbear
+      # Lint snakemake main
+      - name: lint snakefile
+        run: |
+          black $(find . -name "Snakefile")
+          flake8 $(find . -name "Snakefile")
+      # Lint snakemake modules
+      - name: lint snakefile submodules
+        run: |
+          black $(find . -name "*.smk")
+          flake8 $(find . -name "*.smk")
+      - name: lint other python
+        run: |
+          black $(find . -name "*.py")
+          flake8 $(find . -name "*.py")
+  #----------------------------------------------------------------------------#
+  # RST lint
+  rst_lint:
+    runs-on: ubuntu-latest
+    steps:
+      #------------------------------------------------------------------------#
+      - name: checkout repo
+        uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # Install dependencies
+      - name: setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+      - name: Install rst-lint
+        run: pip install restructuredtext-lint
+      # Lint workflow report rst files
+      - name: Run rst-lint
+        run: rst-lint workflow/report/*.rst
