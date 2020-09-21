@@ -2,10 +2,10 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 
-exclude: '''
-html
-auspice/.*.json
-'''
+exclude:
+  .*.html | narratives/.*.md
+
+
 
 repos:
 
