@@ -1,0 +1,56 @@
+"""
+@author: Katherine Eaton
+
+plague-phylogeography snakemake pipeline.
+
+snakemake --cores 1 --configfile config/snakemake.yaml
+
+"""
+
+# -----------------------------------------------------------------------------#
+#                             Modules and Packages                             #
+# -----------------------------------------------------------------------------#
+import os # Path manipulation
+
+from snakemake.remote.FTP import RemoteProvider as FTPRemoteProvider
+FTP = FTPRemoteProvider()
+
+project_dir = os.path.dirname(workflow.basedir)
+results_dir = os.path.join(project_dir, "results")
+scripts_dir = os.path.join(project_dir, "workflow", "scripts")
+configfile: os.path.join(project_dir, "config", "config.yaml")
+
+# Sub snakefiles
+include: "rules/sqlite_import.smk"
+include: "rules/download.smk"
+
+# -----------------------------------------------------------------------------#
+#                                 Setup                                        #
+# -----------------------------------------------------------------------------#
+
+# Identify the name (prefix) of the reference genome
+ref_local_fna_gz = os.path.basename(config["reference_genome_remote_fna"])
+ref_local_fna = os.path.splitext(ref_local_fna_gz)[0]
+ref_local = os.path.splitext(ref_local_fna)[0]
+
+
+rule all:
+    input:
+        "{results_dir}/sqlite_import/download_reference.txt",
+        "{results_dir}/sqlite_import/download_assembly.txt"
+# -----------------------------------------------------------------------------#
+#                             Help and Usage                                   #
+# -----------------------------------------------------------------------------#
+
+rule help:
+  """
+  Print list of all targets with help.
+  """
+  run:
+    for rule in workflow.rules:
+      print("rule: ", rule.name )
+      print(rule.docstring )
+      if rule._input: print("input: ", rule._input)
+      if rule._output: print("output: ", rule._output)
+      if rule._params: print("params: ", rule._params)
+      print("")

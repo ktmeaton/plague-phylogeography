@@ -1,0 +1,40 @@
+# Snakemake Configuration File
+
+# General
+#outdir : snakeTest
+
+# Conda Environments
+conda_eager_env : "nf-core-eager-2.2.0dev"
+
+# SQLITE Parameters
+sqlite_db : "yersinia_pestis_db.sqlite"
+sqlite_select_command_asm : "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')"
+sqlite_select_command_sra : "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')"
+sqlite_select_command_ref : "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%Reference%')"
+max_datasets_assembly : 3
+max_datasets_sra : 2
+
+# Reference genome download
+#reference_genome_fna_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.fna.gz"
+#reference_genome_gb_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gbff.gz"
+#reference_genome_gff_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gff.gz"
+reference_genome_remote_fna : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.fna.gz"
+reference_genome_remote_gb : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gbff.gz"
+reference_genome_remote_gff : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gff.gz"
+
+reference_locus : "AL590842"
+reference_locus_start : "0"
+reference_locus_end : "4653728"
+
+# Eager param
+eager_tsv : "example/local_data_eager.tsv"
+eager_rev : "7b51863957"
+eager_clip_readlength : 35
+eager_bwaalnn : 0.01
+eager_bwaalnl : 16
+organism : "Yersinia pestis"
+
+# Snippy Parameters
+snippy_ctg_depth : 10
+snippy_bam_depth : 3
+snippy_map_qual : 30
