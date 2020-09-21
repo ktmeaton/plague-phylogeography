@@ -1,0 +1,2 @@
+resources : "mem_mb=6000"
+cores : "all"
