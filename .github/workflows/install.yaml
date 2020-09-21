@@ -31,16 +31,13 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v2
       #------------------------------------------------------------------------#
-      # Setup conda
+      # Setup conda with mamba
       - name: setup conda
         uses: goanpeca/setup-miniconda@v1
         with:
           auto-update-conda: true
-      # Install mamba
-      - name: install mamba
-        shell: bash -l {0}
-        run:
-          conda install -c conda-forge mamba
+          mamba-version: "*"
+          channels: conda-forge
       #------------------------------------------------------------------------#
       #  Restore (cache) conda environments
       - name: cache default env
@@ -57,5 +54,3 @@ jobs:
         shell: bash -l {0}
         run:
           mamba env create -f workflow/env/default.yaml
-          conda activate default
-          conda deactivate
