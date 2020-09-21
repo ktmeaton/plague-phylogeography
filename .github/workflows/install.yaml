@@ -64,5 +64,5 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake help --profile profiles/gh-actions;
+          snakemake help --use-conda --profile profiles/gh-actions;
           conda deactivate;

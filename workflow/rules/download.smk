@@ -5,7 +5,7 @@ rule download_fna:
   """
   Download fasta files, by seaching for sample name matches.
   """
-    message: "Downloading and decompressing fasta file {sample}."
+    message: "Downloading and decompressing fasta file {wildcards.sample}."
     input:
         "results/sqlite_import/{download_dir}.txt"
     output:
