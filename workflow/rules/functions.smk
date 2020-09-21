@@ -8,6 +8,10 @@ def identify_reference_sample():
     cur.close()
     return ref_name
 
+def identify_samples():
+    """ Return all assembly and SRA sample names."""
+    return identify_assembly_sample() + identify_sra_sample()
+
 def identify_assembly_sample():
     """ Parse the sqlite database to identify the assembly genome names."""
     sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
@@ -24,3 +28,8 @@ def identify_assembly_sample():
     asm_name_list = asm_name_list[0:config["max_datasets_assembly"]]
     cur.close()
     return asm_name_list
+
+def identify_sra_sample():
+    """ Parse the sqlite database to identify the SRA accessions."""
+    sra_acc_list = []
+    return sra_acc_list
