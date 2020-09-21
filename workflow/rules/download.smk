@@ -32,18 +32,8 @@ rule download_sra:
   conda:
     os.path.join(envs_dir,"sra.yaml")
   shell:
-    "{scripts_dir}/sra_config.sh {project_dir}"
-    "sraAccList=`grep {wildcards.sample} {input.eager_tsv} | cut -f 2 | tail -n 1`;"
-    "for sraAcc in $sraAccList; \
-     do \
-       echo $sraAcc; \
-       fastq-dump \
-         --outdir results/download_sra/{wildcards.sample} \
-         --skip-technical \
-         --gzip \
-         --split-files $sraAcc; \
-       done"
-    #shell("touch {output.fastq}")
+    "{scripts_dir}/download_sra.sh {project_dir} results/download_sra {wildcards.sample} {input.eager_tsv}; "
+    #"touch {output.fastq}"
 
 
 # -----------------------------------------------------------------------------#
