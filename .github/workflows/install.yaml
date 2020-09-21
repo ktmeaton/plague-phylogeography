@@ -13,6 +13,8 @@ on:
       - '*'
     paths:
       - '.github/workflows/install.yaml'
+      - 'workflow/Snakefile'
+      - 'workflow/rules/*.smk'
       - 'workflow/envs/default.yaml'
   pull_request:
     branches:
@@ -58,7 +60,7 @@ jobs:
           mamba env create -f workflow/envs/default.yaml
       #------------------------------------------------------------------------#
       #  Test pipeline
-      - name: verify pipeline install
+      - name: test pipeline
         shell: bash -l {0}
         run:
           conda activate default;
