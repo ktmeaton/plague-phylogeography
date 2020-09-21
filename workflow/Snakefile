@@ -23,6 +23,8 @@ configfile: os.path.join(project_dir, "config", "config.yaml")
 # Sub snakefiles
 include: "rules/sqlite_import.smk"
 include: "rules/download.smk"
+include: "rules/snippy.smk"
+include: "rules/phylogeny.smk"
 
 # -----------------------------------------------------------------------------#
 #                                 Setup                                        #
@@ -33,11 +35,23 @@ ref_local_fna_gz = os.path.basename(config["reference_genome_remote_fna"])
 ref_local_fna = os.path.splitext(ref_local_fna_gz)[0]
 ref_local = os.path.splitext(ref_local_fna)[0]
 
+def identify_reference_sample():
+    """ Parse the sqlite database to identify the reference genome name"""
+    sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
+    conn = sqlite3.connect(sqlite_db_path)
+    cur = conn.cursor()
+    ref_url = cur.execute(config["sqlite_select_command_ref"]).fetchone()[0]
+    ref_name = ref_url.split("/")[9] + "_genomic"
+    cur.close()
+    return ref_name
 
 rule all:
     input:
         "{results_dir}/sqlite_import/download_reference.txt",
-        "{results_dir}/sqlite_import/download_assembly.txt"
+        "{results_dir}/sqlite_import/download_assembly.txt",
+        "{results_dir}/sqlite_import/eager_sra.tsv",
+        "{results_dir}/iqtree/iqtree.treefile",
+
 # -----------------------------------------------------------------------------#
 #                             Help and Usage                                   #
 # -----------------------------------------------------------------------------#
