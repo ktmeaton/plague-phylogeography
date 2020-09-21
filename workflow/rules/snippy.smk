@@ -10,15 +10,17 @@ rule snippy_pairwise_assembly:
     input:
         asm_fna = "results/download_assembly/{sample}.fna",
         ref = expand("results/download_reference/{reference}.fna", reference=identify_reference_sample()),
+    output:
+        snippy_dir = directory("results/snippy_pairwise/{sample}/"),
+        snp_txt = "results/snippy_pairwise/{sample}/{sample}_snippy.txt",
+        snippy_aln = "results/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa",
     params:
         ctg_depth = config["snippy_ctg_depth"],
         min_frac = config["snippy_min_frac"],
         base_qual = config["snippy_base_qual"],
         map_qual = config["snippy_map_qual"],
-    output:
-        snippy_dir = directory("results/snippy_pairwise/{sample}/"),
-        snp_txt = "results/snippy_pairwise/{sample}/{sample}_snippy.txt",
-        snippy_aln = "results/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa",
+    threads:
+        workflow.cores,
     conda:
         os.path.join(envs_dir,"snippy.yaml")
     shell:
@@ -32,6 +34,7 @@ rule snippy_pairwise_assembly:
           --minfrac {params.min_frac} \
           --basequal {params.base_qual} \
           --force \
+          --cpus {threads} \
           --report;"
 
 # -----------------------------------------------------------------------------#
