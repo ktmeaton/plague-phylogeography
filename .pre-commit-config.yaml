@@ -3,9 +3,9 @@
 # See https://pre-commit.com/hooks.html for more hooks
 
 exclude:
-  .*.html | narratives/.*.md
-
-
+  .*.html |
+  narratives/.*.md |
+  auspice/.*.json
 
 repos:
 
