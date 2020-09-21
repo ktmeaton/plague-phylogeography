@@ -15,10 +15,19 @@ import os # Path manipulation
 from snakemake.remote.FTP import RemoteProvider as FTPRemoteProvider
 FTP = FTPRemoteProvider()
 
+# -----------------------------------------------------------------------------#
+#                                 Setup                                        #
+# -----------------------------------------------------------------------------#
+
 project_dir = os.path.dirname(workflow.basedir)
 results_dir = os.path.join(project_dir, "results")
 scripts_dir = os.path.join(project_dir, "workflow", "scripts")
-configfile: os.path.join(project_dir, "config", "config.yaml")
+envs_dir = os.path.join(project_dir, "workflow", "envs")
+logs_dir = os.path.join(project_dir, "workflow", "logs")
+report_dir = os.path.join(project_dir, "workflow", "report")
+
+# Include the config file
+configfile: os.path.join(project_dir, "config", "snakemake.yaml")
 
 # Sub snakefiles
 include: "rules/sqlite_import.smk"
@@ -27,28 +36,16 @@ include: "rules/snippy.smk"
 include: "rules/phylogeny.smk"
 include: "rules/functions.smk"
 
-# -----------------------------------------------------------------------------#
-#                                 Setup                                        #
-# -----------------------------------------------------------------------------#
+# Report file
+report: "report/workflow.rst"
 
-# Identify the name (prefix) of the reference genome
-ref_local_fna_gz = os.path.basename(config["reference_genome_remote_fna"])
-ref_local_fna = os.path.splitext(ref_local_fna_gz)[0]
-ref_local = os.path.splitext(ref_local_fna)[0]
+# -----------------------------------------------------------------------------#
+#                                Main Target                                   #
+# -----------------------------------------------------------------------------#
 
 rule all:
     input:
         "results/iqtree/iqtree.treefile"
-'''
-rule all:
-    input:
-        "results/sqlite_import/download_reference.txt",
-        "results/sqlite_import/download_assembly.txt",
-        "results/sqlite_import/eager_sra.tsv",
-        "results/iqtree/iqtree.treefile",
-        "results/download_reference/" + identify_reference_sample() + ".fna",
-        expand("results/download_assembly/{sample}.fna", sample=identify_assembly_sample())
-'''
 
 # -----------------------------------------------------------------------------#
 #                             Help and Usage                                   #

@@ -66,6 +66,12 @@ mamba env create -f environment.yaml
 conda activate plague-phylogeography-0.1.5dev
 ```
 
+## Usage
+
+```bash
+snakemake --use-conda -j1 all --report workflow/report/report.html
+```
+
 ## Contributing
 
 Testing with [CodeSpaces](https://ktmeaton-plague-phylogeography-wg4r.github.dev/).

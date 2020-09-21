@@ -12,9 +12,9 @@ rule sqlite_import_reference:
     params:
         sql_command = config["sqlite_select_command_ref"],
     input:
-        db = "{results_dir}/sqlite_db/" + config["sqlite_db"]
+        db = "results/sqlite_db/" + config["sqlite_db"]
     output:
-        ref_txt = "{results_dir}/sqlite_import/download_reference.txt"
+        ref_txt = "results/sqlite_import/download_reference.txt"
     run:
         conn = sqlite3.connect(input.db)
         cur = conn.cursor()
@@ -33,10 +33,10 @@ rule sqlite_import_assembly:
         sql_command = config["sqlite_select_command_asm"],
         max_assembly = config["max_datasets_assembly"]
     input:
-        db = "{results_dir}/sqlite_db/" + config["sqlite_db"]
+        db = "results/sqlite_db/" + config["sqlite_db"]
     output:
-        asm_txt = "{results_dir}/sqlite_import/download_assembly.txt",
-        asm_snippy_dir = "{results_dir}/snippy_multi/snippy_pairwise_assembly.txt"
+        asm_txt = "results/sqlite_import/download_assembly.txt",
+        asm_snippy_dir = "results/snippy_multi/snippy_pairwise_assembly.txt"
     run:
         conn = sqlite3.connect(input.db)
         cur = conn.cursor()
@@ -54,7 +54,7 @@ rule sqlite_import_assembly:
         with open(output.asm_txt, "w") as temp_url_file:
             with open(output.asm_snippy_dir, "w") as temp_snippy_file:
                 for url in asm_url_list:
-                    file_dir = url.split("/")[9]
+                    file_dir = url.split("/")[9] +"_genomic"
                     snippy_filepath = os.path.join(results_dir, "snippy_pairwise", file_dir)
                     temp_url_file.write(url + "\n")
                     temp_snippy_file.write(snippy_filepath + "\n")
@@ -69,9 +69,9 @@ rule sqlite_import_sra:
         organism = config["organism"],
         max_sra = config["max_datasets_sra"]
     input:
-        db = "{results_dir}/sqlite_db/" + config["sqlite_db"]
+        db = "results/sqlite_db/" + config["sqlite_db"]
     output:
-        eager_tsv = "{results_dir}/sqlite_import/eager_sra.tsv"
+        eager_tsv = "results/sqlite_import/eager_sra.tsv"
     run:
         shell("{scripts_dir}/sqlite_EAGER_tsv.py \
             --database {input.db} \

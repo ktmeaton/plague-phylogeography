@@ -1,9 +1,5 @@
 # Snakemake Configuration File
 
-# General
-outdir : snakeTest
-script_dir : scripts
-
 # Conda Environments
 conda_eager_env : "nf-core-eager-2.2.0dev"
 
@@ -19,23 +15,26 @@ max_datasets_sra : 2
 #reference_genome_fna_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.fna.gz"
 #reference_genome_gb_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gbff.gz"
 #reference_genome_gff_ftp : "ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gff.gz"
-reference_genome_remote_fna : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.fna.gz"
-reference_genome_remote_gb : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gbff.gz"
-reference_genome_remote_gff : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gff.gz"
+#reference_genome_remote_fna : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.fna.gz"
+#reference_genome_remote_gb : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gbff.gz"
+#reference_genome_remote_gff : "ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/009/065/GCA_000009065.1_ASM906v1/GCA_000009065.1_ASM906v1_genomic.gff.gz"
 
-reference_locus : "AL590842"
-reference_locus_start : "0"
-reference_locus_end : "4653728"
+#reference_locus : "AL590842"
+#reference_locus_start : "0"
+#reference_locus_end : "4653728"
 
 # Eager param
-eager_tsv : "example/local_data_eager.tsv"
-eager_rev : "7b51863957"
-eager_clip_readlength : 35
-eager_bwaalnn : 0.01
-eager_bwaalnl : 16
+#eager_tsv : "example/local_data_eager.tsv"
+#eager_rev : "7b51863957"
+#eager_clip_readlength : 35
+#eager_bwaalnn : 0.01
+#eager_bwaalnl : 16
 organism : "Yersinia pestis"
 
 # Snippy Parameters
 snippy_ctg_depth : 10
 snippy_bam_depth : 3
+snippy_base_qual : 20
 snippy_map_qual : 30
+snippy_min_frac : 0.9
+snippy_mask_char : "X"

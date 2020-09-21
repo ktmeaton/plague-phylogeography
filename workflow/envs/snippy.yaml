@@ -1,0 +1,6 @@
+channels:
+  - bioconda
+  - defaults
+dependencies:
+  - bioconda/label/cf201901::vt=2015.11.10
+  - snippy=4.6.0

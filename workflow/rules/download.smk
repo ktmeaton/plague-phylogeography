@@ -6,9 +6,9 @@ rule download_fna:
   Download fasta files, by seaching for sample name matches.
   """
     input:
-        "{outdir}/sqlite_import/{download_dir}.txt"
+        "results/sqlite_import/{download_dir}.txt"
     output:
-        "{outdir}/{download_dir}/{sample}.fna"
+        "results/{download_dir}/{sample}.fna"
     run:
         for file in input:
             with open(file) as temp_file:
