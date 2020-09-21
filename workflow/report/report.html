@@ -330,13 +330,13 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
         border-bottom: 1px solid #007bff;
       }
 
-      table.dataTable tbody > tr.selected, 
+      table.dataTable tbody > tr.selected,
       table.dataTable tbody > tr > .selected {
         background-color: transparent;
       }
 
-      table.dataTable tbody tr.selected a, 
-      table.dataTable tbody th.selected a, 
+      table.dataTable tbody tr.selected a,
+      table.dataTable tbody th.selected a,
       table.dataTable tbody td.selected a {
         color: #007bff;
       }
@@ -380,7 +380,7 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
         max-width: 20vw;
         max-height: 10vh;
       }
-	    
+
       .modal-lg {
     	max-width: 95%;
       }
@@ -467,7 +467,7 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
             <h2>Snippy</h2>
             <h4>Multi</h4>
             <table class="results-table table" data-category="9a628194a4f2af9b526d752782dddc8b70312177edab8fee6d458a74d7758d50" data-subcategory="dea894b8304550baf5f5d244b82e0e3db57381fffff65849da706a6aafd5365b"></table>
-          </div>  
+          </div>
 
           <div class="panel" id="statistics">
             <h2>Statistics</h2>
@@ -1460,8 +1460,8 @@ if (typeof module !== 'undefined') {
               data_uri: function() { return "data:text/plain;charset=utf8;filename=snippy-core.txt;base64,SUQJTEVOR1RICUFMSUdORUQJVU5BTElHTkVECVZBUklBTlQJSEVUCU1BU0tFRAlMT1dDT1YKR0NBXzAwOTY2OTU0NS4xX0FTTTk2Njk1NHYxX2dlbm9taWMJNDgyOTg1NQk0NDQxNjk3CTYzNTY5CTI1MAk1MDMJMjg5ODI4CTM0MjU4CkdDQV8wMDk2Njk1NTUuMV9BU005NjY5NTV2MV9nZW5vbWljCTQ4Mjk4NTUJNDQzMjQ5Ngk2NzI2NwkyNDcJNzI2CTI4OTgyOAkzOTUzOApHQ0FfMDA5NjY5NTY1LjFfQVNNOTY2OTU2djFfZ2Vub21pYwk0ODI5ODU1CTQ0MzYxOTcJNjU1NjYJMjUwCTY2MQkyODk4MjgJMzc2MDMKUmVmZXJlbmNlCTQ4Mjk4NTUJNDU0MDAyNwkwCTAJMAkyODk4MjgJMAo="; },
               thumbnail_uri: function() { return null; }
             }
-          
-        
+
+
       };
     </script>
 
@@ -1491,7 +1491,7 @@ if (typeof module !== 'undefined') {
         modal.find(".modal-body img").attr("src", res.thumbnail_uri());
         modal.find(".modal-footer a.btn-download")
           .attr(
-            "href", 
+            "href",
             `javascript:download_result("${res.path}")`
           )
           .attr("download", res.name);
@@ -1502,7 +1502,7 @@ if (typeof module !== 'undefined') {
       function show_category(panel) {
         panel.find(".results-table").each(function() {
           var table = $(this);
-          
+
           // stop if this is already a datatable
           if ($.fn.DataTable.isDataTable(table)) {
             return;
@@ -1715,7 +1715,7 @@ if (typeof module !== 'undefined') {
       });
 
 
-      
+
 
       var runtimes_spec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
@@ -1757,7 +1757,7 @@ if (typeof module !== 'undefined') {
 
       $(".vega-actions a").addClass("btn btn-outline-secondary");
       $(".vega-actions").addClass("btn-group");
-      
+
       $("a.panel-link").click(function() {
         $("a.nav-link.active").removeClass("active");
         $(this).addClass("active");
