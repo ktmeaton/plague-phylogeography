@@ -44,7 +44,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /home/runner/miniconda/envs/default
-          key: snakemake-default-${{ runner.os }}-${{ hashFiles('workflow/env/default.yaml') }}
+          key: snakemake-default-${{ runner.os }}-${{ hashFiles('workflow/envs/default.yaml') }}
       # Check conda environments
       - name: check cache
         run: |
@@ -53,4 +53,4 @@ jobs:
       - name: create default environment
         shell: bash -l {0}
         run:
-          mamba env create -f workflow/env/default.yaml
+          mamba env create -f workflow/envs/default.yaml
