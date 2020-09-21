@@ -44,6 +44,9 @@ report: "report/workflow.rst"
 # -----------------------------------------------------------------------------#
 
 rule all:
+    """
+    The default pipeline target.
+    """
     input:
         "results/iqtree/iqtree.treefile"
 
@@ -57,9 +60,32 @@ rule help:
   """
   run:
     for rule in workflow.rules:
+      print("-" * 80)
       print("rule: ", rule.name )
       print(rule.docstring )
-      if rule._input: print("input: ", rule._input)
-      if rule._output: print("output: ", rule._output)
-      if rule._params: print("params: ", rule._params)
-      print("")
+      # Rule Inputs
+      if rule._input:
+          print("\tinput:")
+          for in_file in rule.input:
+              print("\t\t" + in_file)
+          for in_file in rule.input.keys():
+              print("\t\t" + in_file + ": " + str(rule.input[in_file]))
+      if rule._output:
+          print("\toutput:")
+          for out_file in rule.output:
+              print("\t\t" + out_file)
+          for out_file in rule.output.keys():
+              print("\t\t" + out_file + ": " + str(rule.output[out_file]))
+      if rule._params:
+          print("\tparams:")
+          for param in rule.params.keys():
+              print("\t\t" + param + ": " + str(rule.params[param]))
+      if rule.resources:
+          print("\tresources:")
+          for resource in rule.resources.keys():
+              print("\t\t" + resource.strip("_") + ": " + str(rule.resources[resource]))
+      if rule.conda_env:
+          print("\t\tconda: ", rule.conda_env)
+      if rule._log:
+          print("\t\tlog: ", rule._log)
+      #print(rule.conda_env)
