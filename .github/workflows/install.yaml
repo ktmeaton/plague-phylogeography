@@ -54,3 +54,11 @@ jobs:
         shell: bash -l {0}
         run:
           mamba env create -f workflow/envs/default.yaml
+      #------------------------------------------------------------------------#
+      #  Test pipeline
+      - name: verify pipeline install
+        shell: bash -l {0}
+        run:
+          conda activate default
+          snakemake -j1 help
+          conda deactivate
