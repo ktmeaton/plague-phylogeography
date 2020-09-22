@@ -60,7 +60,7 @@ rule all:
         #download_ref_output,
         #download_sra_output,
         #---Alignment---#
-        #eager_sra_output2,
+        eager_sra_output2,
         #snippy_pairwise_fna_output,
         #results_dir + "/snippy_multi/snippy-core.txt"
         # IQTREE
