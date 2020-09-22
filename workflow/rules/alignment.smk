@@ -65,3 +65,21 @@ rule snippy_multi:
           --mask auto \
           --mask-char {params.mask_char} \
           `cat {input.all_dir_file}` 2> {log}"
+
+# -----------------------------------------------------------------------------#
+rule eager:
+  """
+  Pre-process and map SRA fastq samples to a reference genome with nf-core/eager.
+  """
+  input:
+    eager_tsv = "results/sqlite_import/eager_sra.tsv",
+    fastq = "results/download_{reads_origin}/{biosample}/{sra_acc}_1.fastq.gz",
+  output:
+    damageprofiler = "results/eager_{reads_origin}/damageprofiler/{sra_acc}_rmdup_{biosample}/DamagePlot.pdf"
+  conda:
+    os.path.join(envs_dir,"eager.yaml")
+  log:
+    os.path.join(logs_dir, "eager_{reads_origin}","{biosample}_{sra_acc}.log")
+  shell:
+    "echo testing nf-core/eager; "
+    "touch {output.damageprofiler}"

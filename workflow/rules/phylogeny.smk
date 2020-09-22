@@ -8,13 +8,13 @@ rule iqtree:
   Construct a maximum likelihood phylogeny.
   """
     input:
-        snp_aln = "results/snippy_multi/snippy-core.full.aln",
+        snp_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
     output:
-        report(expand("results/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"]),
+        report(expand(results_dir + "/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"]),
                 caption=os.path.join(report_dir,"iqtree.rst"),
                 category="Phylogenetics",
                 subcategory="IQTREE"),
-        tree = expand("results/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"]),
+        tree = expand(results_dir + "/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"]),
     params:
         outgroup = config["iqtree_outgroup"],
         seed = random.randint(0, 99999999),
@@ -36,4 +36,4 @@ rule iqtree:
             -seed {params.seed} \
             --runs {params.runs} \
             {params.other} \
-            -pre results/iqtree/iqtree.core-filter{params.missing_data}"
+            -pre {results_dir}/iqtree/iqtree.core-filter{params.missing_data}"

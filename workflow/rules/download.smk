@@ -9,9 +9,9 @@ rule download_fna:
   """
     message: "Downloading and decompressing fasta file {wildcards.sample}."
     input:
-        "results/sqlite_import/{download_dir}.txt"
+        results_dir + "/sqlite_import/{download_dir}.txt"
     output:
-        "results/{download_dir}/{sample}.fna"
+        results_dir + "/{download_dir}/{sample}.fna"
     run:
         for file in input:
             with open(file) as temp_file:
@@ -24,22 +24,16 @@ rule download_sra:
   """
   Download SRA fastq files.
   """
-  message: "Downloading and dumping fastq files for BioSample {wildcards.sample}."
+  message: "Downloading and dumping fastq files for BioSample {wildcards.biosample}."
   input:
-    eager_tsv = "results/sqlite_import/eager_sra.tsv"
+    eager_tsv = results_dir + "/sqlite_import/eager_sra.tsv"
   output:
-    fastq = "results/download_sra/{sample}.test"
+    fastq = results_dir + "/download_sra/{biosample}/{sra_acc}_1.fastq.gz"
   conda:
     os.path.join(envs_dir,"sra.yaml")
   shell:
-    "{scripts_dir}/download_sra.sh {project_dir} results/download_sra {wildcards.sample} {input.eager_tsv}; "
-    #"touch {output.fastq}"
-
-
-# -----------------------------------------------------------------------------#
-rule aggregate_sra:
-  """
-  Aggregate the needed sra files.
-  """
-  input:
-    expand("results/download_sra/{sample}.test", sample=identify_sra_sample()),
+    "{scripts_dir}/download_sra.sh \
+        {project_dir} \
+        {results_dir}/download_sra/ \
+        {wildcards.biosample} \
+        {wildcards.sra_acc}"

@@ -26,8 +26,11 @@ envs_dir = os.path.join(project_dir, "workflow", "envs")
 logs_dir = os.path.join(project_dir, "workflow", "logs")
 report_dir = os.path.join(project_dir, "workflow", "report")
 
+
 # Include the config file
 configfile: os.path.join(project_dir, "config", "snakemake.yaml")
+
+db_path = os.path.join(results_dir, "sqlite_db", config["sqlite_db"])
 
 # Sub snakefiles
 include: "rules/sqlite_import.smk"
@@ -39,8 +42,6 @@ include: "rules/functions.smk"
 # Report file
 report: "report/workflow.rst"
 
-identify_sra_sample()
-
 # -----------------------------------------------------------------------------#
 #                                Main Target                                   #
 # -----------------------------------------------------------------------------#
@@ -50,8 +51,20 @@ rule all:
     The default pipeline target.
     """
     input:
-        "results/sqlite_import/download_sra.txt"
-        #expand("results/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"])
+        #---Database Import---#
+        #results_dir + "/sqlite_import/download_reference.txt",
+        #results_dir + "/sqlite_import/download_assembly.txt",
+        #results_dir + "/sqlite_import/eager_sra.tsv",
+        #---Data Download---#
+        #download_fna_output,
+        #download_ref_output,
+        #download_sra_output,
+        #---Alignment---#
+        #eager_sra_output2,
+        #snippy_pairwise_fna_output,
+        #results_dir + "/snippy_multi/snippy-core.txt"
+        # IQTREE
+        iqtree_output
 
 # -----------------------------------------------------------------------------#
 #                             Help and Usage                                   #

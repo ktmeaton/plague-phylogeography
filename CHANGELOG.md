@@ -24,6 +24,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Github Actions: Convert local to remote narratives
 - Breakup snippy step in pipeline to snippy - snp stats - snpeff
 
+## [v0.2.0] - 2020-0922 - Snakemake
+
+- possible change "download" directories to data?
+
 ## [v0.1.4] - 2020-0824 - SRA and Local Data
 
 ### Added

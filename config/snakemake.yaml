@@ -6,18 +6,20 @@ conda_eager_env : "nf-core-eager-2.2.0dev"
 # SQLITE Parameters
 sqlite_db : "yersinia_pestis_db.sqlite"
 sqlite_select_command_asm : "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')"
-sqlite_select_command_sra : "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')"
+#sqlite_select_command_sra : "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')"
 sqlite_select_command_ref : "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%Reference%')"
 max_datasets_assembly : 3
 max_datasets_sra : 2
+
+# Testing queries
+sqlite_select_command_sra : "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')"
 
 #reference_locus : "AL590842"
 #reference_locus_start : "0"
 #reference_locus_end : "4653728"
 
 # Eager param
-#eager_tsv : "example/local_data_eager.tsv"
-#eager_rev : "7b51863957"
+eager_rev : "7b51863957"
 #eager_clip_readlength : 35
 #eager_bwaalnn : 0.01
 #eager_bwaalnl : 16

@@ -1,14 +1,17 @@
 #!/bin/bash
 
 # Usage:
-# download_sra.sh . SAMN12345 eager_sra.tsv
+# download_sra.sh . results/SAMN12345 SAMN12345 ERR1123
 
 CACHE_PATH=$1
 OUTDIR=$2
 BIOSAMPLE_ACC=$3
-EAGER_TSV=$4
+SRA_ACC=$4
 
 #------------------------------------------------------------------------------#
+#                                NCBI Configuration                            #
+#------------------------------------------------------------------------------#
+
 # Change the download sra location and timeout settings
 mkdir -p ~/.ncbi/
 
@@ -41,28 +44,40 @@ fi;
 # Echo for debugging
 #echo "SRA Cache:" ${CACHE_PATH}
 #echo "NCBI settings:" `cat $HOME/.ncbi/user-settings.mkfg`
-#------------------------------------------------------------------------------#
-sraAccList=`grep -w ${BIOSAMPLE_ACC} ${EAGER_TSV} | cut -f 2`
 
+#------------------------------------------------------------------------------#
+#                               SRA Download                                   #
+#------------------------------------------------------------------------------#
+
+# Make output directories
 mkdir -p ${OUTDIR}/
 mkdir -p ${OUTDIR}/${BIOSAMPLE_ACC}
-mkdir -p ${OUTDIR}/${BIOSAMPLE_ACC}/paired/
-mkdir -p ${OUTDIR}/${BIOSAMPLE_ACC}/single/
 
-for sraAcc in $sraAccList; \
+validate='false'
+# Keep trying to download until valid file is acquired
+while [ $validate == 'false' ]
 do
-  echo $sraAcc;
-  fastq-dump \
-    --outdir results/download_sra/ \
-    --skip-technical \
-    --gzip \
-    --split-files $sraAcc;
-
-  # If a paired-end or single-end file was downloaded
-  if [ -f ${OUTDIR}/${sraAcc}_1.fastq.gz ] &&
-     [ -f ${OUTDIR}/${sraAcc}_2.fastq.gz ]; then
-    mv ${OUTDIR}/${sraAcc}*.fastq.gz ${OUTDIR}/${BIOSAMPLE_ACC}/paired/;
+# Download fastq files from the SRA
+echo "SRA accession ${SRA_ACC} download started for Biosample ${BIOSAMPLE_ACC}."
+fastq-dump \
+  --outdir ${OUTDIR} \
+  --skip-technical \
+  --gzip \
+  --split-files ${SRA_ACC};
+  # Validate sra file
+  #ls -l ${CACHE_PATH}/sra/${SRA_ACC}.sra*
+  validate_str=`vdb-validate ${CACHE_PATH}/sra/${SRA_ACC}.sra* 2>&1`
+  #echo ${validate_str}
+  if [[ ${validate_str} != *"corrupt"* ]]; then
+    validate='true'
   else
-    mv ${OUTDIR}/${sraAcc}*.fastq.gz ${OUTDIR}/${BIOSAMPLE_ACC}/single/;
+    echo "Removing ${SRA_ACC} from the SRA cache due to corrupt file."
+    rm ${CACHE_PATH}/sra/${SRA_ACC}.sra*
+    echo "Restarting ${SRA_ACC} download."
   fi
 done
+
+echo "SRA accession ${SRA_ACC} download completed for Biosample ${BIOSAMPLE_ACC}."
+
+
+mv ${OUTDIR}/${SRA_ACC}*.fastq.gz ${OUTDIR}/${BIOSAMPLE_ACC};

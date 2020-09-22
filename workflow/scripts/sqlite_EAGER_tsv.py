@@ -235,7 +235,7 @@ for record in record_exists:
                 # R1_path = ftp_url_split[0]
                 # Use fastq-dump download path instead of url
                 R1_path = os.path.join(
-                    fastq_dir, biosample_acc, "single", sra_acc_val + "_1.fastq.gz"
+                    fastq_dir, biosample_acc, sra_acc_val + "_1.fastq.gz"
                 )
                 out_file.write(
                     biosample_acc
@@ -278,10 +278,10 @@ for record in record_exists:
             # R2_path = ftp_url_split[1]
             # Use fastq-dump download path instead of url
             R1_path = os.path.join(
-                fastq_dir, biosample_acc, "paired", sra_acc_val + "_1.fastq.gz"
+                fastq_dir, biosample_acc, sra_acc_val + "_1.fastq.gz"
             )
             R2_path = os.path.join(
-                fastq_dir, biosample_acc, "paired", sra_acc_val + "_2.fastq.gz"
+                fastq_dir, biosample_acc, sra_acc_val + "_2.fastq.gz"
             )
             out_file.write(
                 biosample_acc

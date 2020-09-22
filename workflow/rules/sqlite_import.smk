@@ -12,9 +12,9 @@ rule sqlite_import_reference:
     params:
         sql_command = config["sqlite_select_command_ref"],
     input:
-        db = "results/sqlite_db/" + config["sqlite_db"]
+        db = results_dir + "/sqlite_db/" + config["sqlite_db"]
     output:
-        ref_txt = "results/sqlite_import/download_reference.txt"
+        ref_txt = results_dir + "/sqlite_import/download_reference.txt"
     run:
         # Write the reference FTP url
         with open(output.ref_txt, "w") as temp_file:
@@ -25,10 +25,10 @@ rule sqlite_import_assembly:
     Import Assembly genome url from database.
     """
     input:
-        db = "results/sqlite_db/" + config["sqlite_db"]
+        db = results_dir + "/sqlite_db/" + config["sqlite_db"]
     output:
-        asm_txt = "results/sqlite_import/download_assembly.txt",
-        asm_snippy_dir = "results/snippy_multi/snippy_pairwise_assembly.txt"
+        asm_txt = results_dir + "/sqlite_import/download_assembly.txt",
+        asm_snippy_dir = results_dir + "/snippy_multi/snippy_pairwise_assembly.txt"
     run:
         # Write the assembly FTP url
         with open(output.asm_txt, "w") as temp_file:
@@ -49,9 +49,9 @@ rule sqlite_import_sra:
         organism = config["organism"],
         max_sra = config["max_datasets_sra"]
     input:
-        db = "results/sqlite_db/" + config["sqlite_db"]
+        db = results_dir + "/sqlite_db/" + config["sqlite_db"]
     output:
-        eager_tsv = "results/sqlite_import/eager_sra.tsv",
+        eager_tsv = results_dir + "/sqlite_import/eager_sra.tsv",
     shell:
         "{scripts_dir}/sqlite_EAGER_tsv.py \
             --database {input.db} \
