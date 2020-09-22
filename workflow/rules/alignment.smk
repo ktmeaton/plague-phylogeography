@@ -8,12 +8,12 @@ rule snippy_pairwise_assembly:
   Peform a pairwise alignment of assemblies to the reference genome.
   """
     input:
-        asm_fna = "results/download_assembly/{sample}.fna",
-        ref = expand("results/download_reference/{reference}.fna", reference=identify_reference_sample()),
+        asm_fna = results_dir + "/download_assembly/{sample}.fna",
+        ref = expand(results_dir + "/download_reference/{reference}.fna", reference=identify_reference_sample()),
     output:
-        snippy_dir = directory("results/snippy_pairwise/{sample}/"),
-        snp_txt = "results/snippy_pairwise/{sample}/{sample}_snippy.txt",
-        snippy_aln = "results/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa",
+        snippy_dir = directory(results_dir + "/snippy_pairwise/{sample}/"),
+        snp_txt = results_dir + "/snippy_pairwise/{sample}/{sample}_snippy.txt",
+        snippy_aln = results_dir + "/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa",
     params:
         ctg_depth = config["snippy_ctg_depth"],
         min_frac = config["snippy_min_frac"],
@@ -43,17 +43,17 @@ rule snippy_multi:
   Peform a multiple alignment from pairwise output.
   """
     input:
-        all_dir = expand("results/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa", sample=identify_assembly_sample()),
-        all_dir_file = "results/snippy_multi/snippy_pairwise_assembly.txt",
-        ref = expand("results/download_reference/{reference}.fna", reference=identify_reference_sample()),
+        all_dir = expand(results_dir + "/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa", sample=identify_assembly_sample()),
+        all_dir_file = results_dir + "/snippy_multi/snippy_pairwise_assembly.txt",
+        ref = expand(results_dir + "/download_reference/{reference}.fna", reference=identify_reference_sample()),
     params:
         mask_char = config["snippy_mask_char"],
     output:
-        report("results/snippy_multi/{prefix}.txt",
+        report(results_dir + "/snippy_multi/{prefix}.txt",
                 caption=os.path.join(report_dir,"snippy_multi.rst"),
                 category="Alignment",
                 subcategory="Snippy"),
-        snp_aln = "results/snippy_multi/{prefix}.full.aln",
+        snp_aln = results_dir + "/snippy_multi/{prefix}.full.aln",
     log:
         os.path.join(logs_dir, "snippy_multi","{prefix}.log")
     conda:
