@@ -38,6 +38,7 @@ include: "rules/download.smk"
 include: "rules/alignment.smk"
 include: "rules/phylogeny.smk"
 include: "rules/functions.smk"
+include: "rules/targets.smk"
 
 # Report file
 report: "report/workflow.rst"
