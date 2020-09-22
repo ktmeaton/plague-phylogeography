@@ -7,4 +7,4 @@ channels:
 dependencies:
   - python=3.7
   - sqlite=3.31.1
-  - snakemake=5.23.0
+  - snakemake=5.25.0
