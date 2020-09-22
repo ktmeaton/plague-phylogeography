@@ -16,49 +16,29 @@ rule sqlite_import_reference:
     output:
         ref_txt = "results/sqlite_import/download_reference.txt"
     run:
-        conn = sqlite3.connect(input.db)
-        cur = conn.cursor()
-        # Reference Genome URLs
-        ref_url = cur.execute(params.sql_command).fetchone()[0]
-        ref_fna_file = ref_url + "/" + ref_url.split("/")[9] + "_genomic.fna.gz"
+        # Write the reference FTP url
         with open(output.ref_txt, "w") as temp_file:
-            temp_file.write(ref_fna_file)
-        cur.close()
+            temp_file.write(identify_reference_ftp() + "\n")
 # -----------------------------------------------------------------------------#
 rule sqlite_import_assembly:
     """
-    Import Assembly genome url from database. Needs full path target.
+    Import Assembly genome url from database.
     """
-    params:
-        sql_command = config["sqlite_select_command_asm"],
-        max_assembly = config["max_datasets_assembly"]
     input:
         db = "results/sqlite_db/" + config["sqlite_db"]
     output:
         asm_txt = "results/sqlite_import/download_assembly.txt",
         asm_snippy_dir = "results/snippy_multi/snippy_pairwise_assembly.txt"
     run:
-        conn = sqlite3.connect(input.db)
-        cur = conn.cursor()
-        # Assembled Genome URLs
-        asm_fna_urls = cur.execute(params.sql_command).fetchall()
-        asm_url_list = []
-        for url_list in asm_fna_urls:
-            for url in url_list[0].split(";"):
-                if url:
-                    fna_gz_file = url + "/" + url.split("/")[9] + "_genomic.fna.gz"
-                    asm_url_list.append(fna_gz_file)
-        # Filter based on max number of assemblies for analysis
-        asm_url_list = asm_url_list[0:params.max_assembly]
-        # Write to files
-        with open(output.asm_txt, "w") as temp_url_file:
-            with open(output.asm_snippy_dir, "w") as temp_snippy_file:
-                for url in asm_url_list:
-                    file_dir = url.split("/")[9] +"_genomic"
-                    snippy_filepath = os.path.join(results_dir, "snippy_pairwise", file_dir)
-                    temp_url_file.write(url + "\n")
-                    temp_snippy_file.write(snippy_filepath + "\n")
-        cur.close()
+        # Write the assembly FTP url
+        with open(output.asm_txt, "w") as temp_file:
+            for url in identify_assembly_ftp():
+                temp_file.write(url + "\n")
+        # Write the assembly fna output for snipppy pairwise
+        with open(output.asm_snippy_dir, "w") as temp_file:
+            for sample in identify_assembly_sample():
+                snippy_dir = os.path.join(results_dir, "snippy_pairwise", sample)
+                temp_file.write(snippy_dir + "\n")
 # -----------------------------------------------------------------------------#
 rule sqlite_import_sra:
     """
@@ -71,14 +51,12 @@ rule sqlite_import_sra:
     input:
         db = "results/sqlite_db/" + config["sqlite_db"]
     output:
-        sra_txt = "results/sqlite_import/download_sra.txt",
         eager_tsv = "results/sqlite_import/eager_sra.tsv",
-    run:
-        shell("{scripts_dir}/sqlite_EAGER_tsv.py \
+    shell:
+        "{scripts_dir}/sqlite_EAGER_tsv.py \
             --database {input.db} \
             --query \"{params.sql_command}\" \
             --organism \"{params.organism}\" \
             --max-datasets {params.max_sra} \
             --output {output.eager_tsv} \
-            --fastq-dir {results_dir}/sra_download/")
-        shell("tail -n+2 results/sqlite_import/eager_sra.tsv | cut -f 1 | uniq > {output.sra_txt}")
+            --fastq-dir {results_dir}/sra_download/"
