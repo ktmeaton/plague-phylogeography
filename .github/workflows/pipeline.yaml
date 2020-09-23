@@ -16,6 +16,7 @@ on:
       - 'workflow/Snakefile'
       - 'workflow/rules/*.smk'
       - 'workflow/envs/*.yaml'
+      - 'workflow/scripts/*'
   pull_request:
     branches:
       - '*'
