@@ -12,7 +12,7 @@ rule sqlite_import_reference:
     params:
         sql_command = config["sqlite_select_command_ref"],
     input:
-        db = results_dir + "/sqlite_db/{config[sqlite_db]}"
+        db = results_dir + "/sqlite_db/" + config['sqlite_db']
     output:
         ref_txt = results_dir + "/sqlite_import/download_reference.txt"
     run:
@@ -49,7 +49,7 @@ rule sqlite_import_sra:
         organism = config["organism"],
         max_sra = config["max_datasets_sra"]
     input:
-        db = results_dir + "/sqlite_db" + config['sqlite_db'],
+        db = results_dir + "/sqlite_db/" + config['sqlite_db'],
     output:
         eager_tsv = results_dir + "/sqlite_import/eager_sra.tsv".format(results_dir=results_dir),
     shell:
