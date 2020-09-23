@@ -41,8 +41,8 @@ jobs:
           pip install pre-commit==2.6.0
           pre-commit install-hooks
       # Lint all files
-      - name: pre-commit lint
-        run: pre-commit run --all-files
+      #- name: pre-commit lint
+      #  run: pre-commit run --all-files
   #----------------------------------------------------------------------------#
   # Markdown template from nf-core eager to trial
   # Only select files for now to prevent full workflow from failing
