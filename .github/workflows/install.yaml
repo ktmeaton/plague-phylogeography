@@ -79,5 +79,5 @@ jobs:
         run:
           conda activate default;
           snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba help ;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --report workflow/report/report.html
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --report workflow/report/report.html; 
           conda deactivate;
