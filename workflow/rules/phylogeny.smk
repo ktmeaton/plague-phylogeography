@@ -26,7 +26,7 @@ rule iqtree:
     conda:
         os.path.join(envs_dir,"iqtree.yaml")
     log:
-        os.path.join(logs_dir, "iqtree","iqtree.core-filter{params.missing_data}.log")
+        os.path.join(logs_dir, "iqtree","iqtree.core-filter" + str(config["snippy_missing_data"]) + ".log")
     shell:
         "iqtree \
             -s {input.snp_aln} \

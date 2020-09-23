@@ -1,4 +1,5 @@
 import sqlite3
+import os
 
 def identify_reference_sample():
     """ Parse the sqlite database to identify the reference genome name."""
@@ -63,25 +64,37 @@ def identify_sra_sample():
     Parse the sqlite database to identify the SRA accessions.
     Return a list of accessions and layouts.
     """
+    sra_sample_dict = {}
     sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
     conn = sqlite3.connect(sqlite_db_path)
     cur = conn.cursor()
     sra_fetch = cur.execute(config["sqlite_select_command_sra"]).fetchall()
-    sra_sample_dict = {"biosample": [], "file_acc": []}
     for record in sra_fetch[0:config["max_datasets_sra"]]:
         if record:
             file_acc = record[1].split(";")
             # Duplicate the biosample accession to make it equivalent to sra
-            biosample = [record[0]] * len(file_acc)
-            sra_sample_dict["biosample"].extend(biosample)
-            sra_sample_dict["file_acc"].extend(file_acc)
+            biosample = record[0]
+            if biosample not in sra_sample_dict:
+                sra_sample_dict[biosample] = []
+            sra_sample_dict[biosample].extend(file_acc)
     cur.close()
     return sra_sample_dict
 
 def identify_local_sample():
     """Parse the local input directory for sample names."""
-    local_sample_dict = {"biosample": [], "file_acc": []}
-    return {"biosample": ["test1"], "file_acc": ["test1"]}
+    local_sample_dict = {}
+    data_dir = os.path.join(results_dir, "data_local")
+    for dir in os.listdir(data_dir):
+        sample_dir = os.path.join(data_dir, dir)
+        for file in os.listdir(sample_dir):
+            if "_1.fastq.gz" in file:
+                biosample = dir
+                # strip gz and fastq and prefix
+                file_acc = file.strip("_1.fastq.gz")
+                if biosample not in local_sample_dict:
+                    local_sample_dict[biosample] = []
+                local_sample_dict[biosample].append(file_acc)
+    return local_sample_dict
 
 def sql_select(sqlite_db, query, i=0):
     '''Run select query on the sqlite db.'''
