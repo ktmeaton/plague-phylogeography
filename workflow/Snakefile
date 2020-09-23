@@ -49,6 +49,7 @@ report: report_dir + "/workflow.rst"
 #                                Main Target                                   #
 # -----------------------------------------------------------------------------#
 
+
 rule all:
     """
     The default pipeline target.
@@ -72,7 +73,7 @@ rule help:
       if rule._input:
           print("\tinput:")
           for in_file in rule.input:
-              print("\t\t" + in_file)
+              print("\t\t" + str(in_file))
           for in_file in rule.input.keys():
               print("\t\t" + in_file + ": " + str(rule.input[in_file]))
       if rule._output:
