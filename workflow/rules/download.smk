@@ -9,9 +9,9 @@ rule download_fna:
   """
     message: "Downloading and decompressing fasta file {wildcards.sample}."
     input:
-        results_dir + "/sqlite_import/{download_dir}.txt"
+        results_dir + "/sqlite_import/download_{dir}.txt"
     output:
-        results_dir + "/{download_dir}/{sample}.fna"
+        results_dir + "/data_{dir}/{sample}.fna"
     run:
         for file in input:
             with open(file) as temp_file:
@@ -28,12 +28,12 @@ rule download_sra:
   input:
     eager_tsv = results_dir + "/sqlite_import/eager_sra.tsv"
   output:
-    fastq = results_dir + "/download_sra/{biosample}/{file_acc}_1.fastq.gz"
+    fastq = results_dir + "/data_sra/{biosample}/{file_acc}_1.fastq.gz"
   conda:
     os.path.join(envs_dir,"sra.yaml")
   shell:
     "{scripts_dir}/download_sra.sh \
         {project_dir} \
-        {results_dir}/download_sra/ \
+        {results_dir}/data_sra/ \
         {wildcards.biosample} \
         {wildcards.file_acc}"

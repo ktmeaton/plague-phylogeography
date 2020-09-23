@@ -17,20 +17,20 @@ rule test_sqlite_import_reference:
 # Data Download
 rule test_download_sra:
     input:
-        expand(results_dir + "/download_sra/{biosample}/{acc}_1.fastq.gz",
+        expand(results_dir + "/data_sra/{biosample}/{acc}_1.fastq.gz",
         zip,
         biosample=identify_sra_sample()["biosample"],
         acc=identify_sra_sample()["file_acc"])
 
 rule test_download_fna:
     input:
-        expand(results_dir + "/download_assembly/{sample}.fna",
+        expand(results_dir + "/data_assembly/{sample}.fna",
         sample=identify_assembly_sample(),
         )
 
 rule test_download_ref:
     input:
-        expand(results_dir + "/download_reference/{sample}.fna",
+        expand(results_dir + "/data_reference/{sample}.fna",
         sample=identify_reference_sample(),
         )
 # Alignment

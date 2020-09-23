@@ -8,8 +8,8 @@ rule snippy_pairwise_assembly:
   Peform a pairwise alignment of assemblies to the reference genome.
   """
     input:
-        asm_fna = results_dir + "/download_assembly/{sample}.fna",
-        ref = expand(results_dir + "/download_reference/{reference}.fna", reference=identify_reference_sample()),
+        asm_fna = results_dir + "/data_assembly/{sample}.fna",
+        ref = expand(results_dir + "/data_reference/{reference}.fna", reference=identify_reference_sample()),
     output:
         snippy_dir = directory(results_dir + "/snippy_pairwise/{sample}/"),
         snp_txt = results_dir + "/snippy_pairwise/{sample}/{sample}_snippy.txt",
@@ -45,7 +45,7 @@ rule snippy_multi:
     input:
         all_dir = expand(results_dir + "/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa", sample=identify_assembly_sample()),
         all_dir_file = results_dir + "/snippy_multi/snippy_pairwise_assembly.txt",
-        ref = expand(results_dir + "/download_reference/{reference}.fna", reference=identify_reference_sample()),
+        ref = expand(results_dir + "/data_reference/{reference}.fna", reference=identify_reference_sample()),
     params:
         mask_char = config["snippy_mask_char"],
     output:
@@ -74,7 +74,7 @@ rule eager:
   message: "Running the nf-core/eager pipeline for Biosample {wildcards.biosample}."
   input:
     eager_tsv = results_dir + "/sqlite_import/eager_{reads_origin}.tsv",
-    fastq = lambda wildcards: expand(results_dir + "/download_{{reads_origin}}/{{biosample}}/{file_acc}_1.fastq.gz",
+    fastq = lambda wildcards: expand(results_dir + "/data_{{reads_origin}}/{{biosample}}/{file_acc}_1.fastq.gz",
             file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()["file_acc"]),
   output:
     final_bam = results_dir + "/eager_{reads_origin}/final_bams/{biosample}.bam"
