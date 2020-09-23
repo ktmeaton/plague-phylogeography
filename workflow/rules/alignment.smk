@@ -78,6 +78,8 @@ rule eager:
             file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()[wildcards.biosample]),
   output:
     final_bam = results_dir + "/eager_{reads_origin}/final_bams/{biosample}.bam"
+  threads:
+    workflow.cores,
   conda:
     os.path.join(envs_dir,"eager.yaml")
   log:
