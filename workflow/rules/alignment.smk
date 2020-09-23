@@ -71,15 +71,20 @@ rule eager:
   """
   Pre-process and map SRA fastq samples to a reference genome with nf-core/eager.
   """
+  message: "Running the nf-core/eager pipeline for Biosample {wildcards.biosample}."
   input:
-    eager_tsv = results_dir + "/sqlite_import/eager_sra.tsv",
-    fastq = results_dir + "/download_{reads_origin}/{biosample}/{sra_acc}_1.fastq.gz",
+    eager_tsv = results_dir + "/sqlite_import/eager_{reads_origin}.tsv",
+    fastq = lambda wildcards: expand(results_dir + "/download_{{reads_origin}}/{{biosample}}/{file_acc}_1.fastq.gz",
+            file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()["file_acc"]),
   output:
-    damageprofiler = results_dir + "/eager_{reads_origin}/damageprofiler/{sra_acc}_rmdup_{biosample}/DamagePlot.pdf"
-  conda:
-    os.path.join(envs_dir,"eager.yaml")
+    final_bam = results_dir + "/eager_{reads_origin}/final_bams/{biosample}.bam"
+  #conda:
+  #  os.path.join(envs_dir,"eager.yaml")
   log:
-    os.path.join(logs_dir, "eager_{reads_origin}","{biosample}_{sra_acc}.log")
+    os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.log")
   shell:
     "echo testing nf-core/eager; "
-    "touch {output.damageprofiler}"
+    "touch {output.final_bam}"
+    #"mkdir -p {results_dir}/eager_{wildcards.reads_origin}/{wildcards.biosample}; "
+    #"head -n 1 {input.eager_tsv} > {results_dir}/eager_{wildcards.reads_origin}/metadata_{wildcards.biosample}.tsv; "
+    #"grep -w {wildcards.biosample} {input.eager_tsv} >> {results_dir}/eager_{wildcards.reads_origin}/{wildcards.biosample}/metadata_{wildcards.biosample}.tsv; "

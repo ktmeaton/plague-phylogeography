@@ -2,3 +2,4 @@ results/*
 test/*
 sra/*
 workflow/logs/*
+.snakemake/*

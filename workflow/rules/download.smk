@@ -28,7 +28,7 @@ rule download_sra:
   input:
     eager_tsv = results_dir + "/sqlite_import/eager_sra.tsv"
   output:
-    fastq = results_dir + "/download_sra/{biosample}/{sra_acc}_1.fastq.gz"
+    fastq = results_dir + "/download_sra/{biosample}/{file_acc}_1.fastq.gz"
   conda:
     os.path.join(envs_dir,"sra.yaml")
   shell:
@@ -36,4 +36,4 @@ rule download_sra:
         {project_dir} \
         {results_dir}/download_sra/ \
         {wildcards.biosample} \
-        {wildcards.sra_acc}"
+        {wildcards.file_acc}"

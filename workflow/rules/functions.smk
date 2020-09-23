@@ -50,12 +50,10 @@ def identify_assembly_ftp():
     # Assembled Genome URLs
     asm_fna_urls = cur.execute(config["sqlite_select_command_asm"]).fetchall()
     asm_ftp_list = []
-    for url_list in asm_fna_urls:
+    for url_list in asm_fna_urls[0:config["max_datasets_assembly"]]:
         for url in url_list[0].split(";"):
             if url:
                 asm_ftp_list.append(url + "/"+ url.split("/")[9] + "_genomic.fna.gz")
-    # Filter based on max number of assemblies for analysis
-    asm_ftp_list = asm_ftp_list[0:config["max_datasets_assembly"]]
     cur.close()
     return asm_ftp_list
 
@@ -69,12 +67,21 @@ def identify_sra_sample():
     conn = sqlite3.connect(sqlite_db_path)
     cur = conn.cursor()
     sra_fetch = cur.execute(config["sqlite_select_command_sra"]).fetchall()
-    sra_sample_dict = {"biosample": [], "sra_acc": []}
-    for record in sra_fetch:
+    sra_sample_dict = {"biosample": [], "file_acc": []}
+    for record in sra_fetch[0:config["max_datasets_sra"]]:
         if record:
-            sra_sample_dict["biosample"].append(record[0])
-            sra_sample_dict["sra_acc"].append(record[1])
-    return(sra_sample_dict)
+            file_acc = record[1].split(";")
+            # Duplicate the biosample accession to make it equivalent to sra
+            biosample = [record[0]] * len(file_acc)
+            sra_sample_dict["biosample"].extend(biosample)
+            sra_sample_dict["file_acc"].extend(file_acc)
+    cur.close()
+    return sra_sample_dict
+
+def identify_local_sample():
+    """Parse the local input directory for sample names."""
+    local_sample_dict = {"biosample": [], "file_acc": []}
+    return {"biosample": ["test1"], "file_acc": ["test1"]}
 
 def sql_select(sqlite_db, query, i=0):
     '''Run select query on the sqlite db.'''

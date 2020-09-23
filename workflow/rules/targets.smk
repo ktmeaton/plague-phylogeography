@@ -17,10 +17,10 @@ rule test_sqlite_import_reference:
 # Data Download
 rule test_download_sra:
     input:
-        expand(results_dir + "/download_sra/{biosample}/{sra_acc}_1.fastq.gz",
+        expand(results_dir + "/download_sra/{biosample}/{acc}_1.fastq.gz",
         zip,
         biosample=identify_sra_sample()["biosample"],
-        sra_acc=identify_sra_sample()["sra_acc"])
+        acc=identify_sra_sample()["file_acc"])
 
 rule test_download_fna:
     input:
@@ -36,10 +36,13 @@ rule test_download_ref:
 # Alignment
 rule test_eager_sra:
     input:
-        expand(results_dir + "/eager_sra/damageprofiler/{sra_acc}_rmdup_{biosample}/DamagePlot.pdf",
-        zip,
-        sra_acc=identify_sra_sample()["sra_acc"],
+        expand(results_dir + "/eager_sra/final_bams/{biosample}.bam",
         biosample=identify_sra_sample()["biosample"])
+
+rule test_eager_local:
+    input:
+        expand(results_dir + "/eager_local/final_bams/{biosample}.bam",
+        biosample=identify_local_sample()["biosample"])
 
 rule test_snippy_pairwise_fna:
     input:
