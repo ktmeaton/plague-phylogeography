@@ -54,7 +54,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
-          key: snakemake-workflow-envs-${{ runner.os }}
+          key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/*.yaml') }}
       # Check conda environments
       - name: check cache
         run: |
