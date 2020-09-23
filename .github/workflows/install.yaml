@@ -41,13 +41,19 @@ jobs:
           mamba-version: "*"
           channels: conda-forge
       #------------------------------------------------------------------------#
-      #  Restore (cache) conda environments
+      # Restore (cache) conda environments
       - name: cache default env
         id: cache-default
         uses: actions/cache@v2
         with:
           path: /home/runner/miniconda/envs/default
           key: snakemake-default-${{ runner.os }}-${{ hashFiles('workflow/envs/default.yaml') }}
+      # Restore (cache) workflow environments
+      - name: cache workflow envs
+        uses: actions/cache@v2
+        with:
+          path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
+          key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/*.yaml') }}
       # Check conda environments
       - name: check cache
         run: |
@@ -66,10 +72,19 @@ jobs:
           nextflow pull nf-core/eager -r 7b51863957;
           conda deactivate;
       #------------------------------------------------------------------------#
+      #  Install workflow conda environments
+      - name: test conda install
+        shell: bash -l {0}
+        run:
+          conda activate default;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --conda-create-envs-only;
+          conda deactivate;
+
       #  Test pipeline
       - name: test pipeline
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake help --use-conda --profile profiles/gh-actions --report workflow/report/report.html;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba help ;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --report workflow/report/report.html
           conda deactivate;
