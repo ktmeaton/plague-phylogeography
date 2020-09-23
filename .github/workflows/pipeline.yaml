@@ -60,11 +60,14 @@ jobs:
         run: |
           conda info --envs
       # Create environment (if not cached)
-      - name: create default environment
+      - name: create default environment, pull eager
         if: steps.cache-default.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run:
           mamba env create -f workflow/envs/default.yaml
+          conda activate default
+          nextflow pull nf-core/eager -r 7b51863957
+          conda deactivate
       #------------------------------------------------------------------------#
       # Test Database import rules
       - name: test database import
