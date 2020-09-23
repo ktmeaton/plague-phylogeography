@@ -104,16 +104,10 @@ jobs:
           python-version: '3.7'
       - name: install linters
         run: pip install black flake8 flake8-bugbear
-      # Lint snakemake main
-      - name: lint snakefile
-        run: |
-          black $(find . -name "Snakefile")
-          flake8 $(find . -name "Snakefile")
-      # Lint snakemake modules
-      - name: lint snakefile submodules
-        run: |
-          black $(find . -name "*.smk")
-          flake8 $(find . -name "*.smk")
+      # Lint snakemake files
+      #- name: lint snakefile
+      #  run: |
+      #    snakemake --lint
       - name: lint other python
         run: |
           black $(find . -name "*.py")

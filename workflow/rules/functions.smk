@@ -89,34 +89,3 @@ def parse_eager_tsv(eager_tsv, column):
     '''Extract a column from the eager TSV file, excluding the header.'''
     with open(eager_tsv) as temp_file:
         return [line.strip().split("\t")[column] for line in temp_file][1:]
-
-
-# Custom targets for aggregation rules
-
-# Data Download
-download_sra_output = expand(results_dir + "/download_sra/{biosample}/{sra_acc}_1.fastq.gz",
-                            zip,
-                            biosample=identify_sra_sample()["biosample"],
-                            sra_acc=identify_sra_sample()["sra_acc"])
-
-download_fna_output = expand(results_dir +"/download_assembly/{sample}.fna",
-                                sample=identify_assembly_sample(),
-                                )
-download_ref_output = expand(results_dir +"/download_reference/{sample}.fna",
-                                sample=identify_reference_sample(),
-                                )
-# Alignment
-eager_sra_output1 = expand(results_dir + "/eager_sra/final_bams/{biosample}.bam",
-                            biosample=identify_sra_sample()["biosample"])
-
-eager_sra_output2 = expand(results_dir + "/eager_sra/damageprofiler/{sra_acc}_rmdup_{biosample}/DamagePlot.pdf",
-                            zip,
-                            sra_acc=identify_sra_sample()["sra_acc"],
-                            biosample=identify_sra_sample()["biosample"])
-
-snippy_pairwise_fna_output = expand(results_dir + "/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa",
-                                    sample=identify_assembly_sample())
-
-# Phylogeny
-
-iqtree_output = expand(results_dir + "/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"])

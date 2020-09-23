@@ -9,9 +9,9 @@ rule download_fna:
   """
     message: "Downloading and decompressing fasta file {wildcards.sample}."
     input:
-        results_dir + "/sqlite_import/{download_dir}.txt"
+        '{{results_dir}}/sqlite_import/{download_dir}.txt'
     output:
-        results_dir + "/{download_dir}/{sample}.fna"
+        '{{results_dir}}/{download_dir}/{sample}.fna'
     run:
         for file in input:
             with open(file) as temp_file:
