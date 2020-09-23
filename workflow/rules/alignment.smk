@@ -85,7 +85,8 @@ rule eager:
   shell:
     "echo testing nf-core/eager; "
     "echo {input.fastq}; "
-    "touch {output.final_bam}"
+    "nextflow pull nf-core/eager -r {config[eager_rev]}; "
+    "touch {output.final_bam}; "
     #"mkdir -p {results_dir}/eager_{wildcards.reads_origin}/{wildcards.biosample}; "
     #"head -n 1 {input.eager_tsv} > {results_dir}/eager_{wildcards.reads_origin}/metadata_{wildcards.biosample}.tsv; "
     #"grep -w {wildcards.biosample} {input.eager_tsv} >> {results_dir}/eager_{wildcards.reads_origin}/{wildcards.biosample}/metadata_{wildcards.biosample}.tsv; "
