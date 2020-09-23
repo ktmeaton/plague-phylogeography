@@ -72,17 +72,17 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --use-conda --profile profiles/gh-actions test_sqlite_import_reference test_download_sra test_download_fna test_download_ref;
+          snakemake --use-conda --profile profiles/gh-actions test_download_ref test_download_fna test_download_sra ;
           conda deactivate
       # Test Alignment
-      - name: test download
+      - name: test alignment
         shell: bash -l {0}
         run:
           conda activate default;
           snakemake --use-conda --profile profiles/gh-actions test_sqlite_import_reference test_snippy_pairwise_fna test_eager_sra;
           conda deactivate
       # Test Phylogeny
-      - name: test download
+      - name: test phylogeny
         shell: bash -l {0}
         run:
           conda activate default;
