@@ -12,7 +12,7 @@ rule test_sqlite_import_sra:
 
 rule test_sqlite_import_reference:
     input:
-        results_dir + "/sqlite_import/download_assembly.txt"
+        results_dir + "/sqlite_import/download_reference.txt"
 
 # Data Download
 rule test_download_sra:
@@ -27,6 +27,7 @@ rule test_download_fna:
         expand(results_dir + "/download_assembly/{sample}.fna",
         sample=identify_assembly_sample(),
         )
+
 rule test_download_ref:
     input:
         expand(results_dir + "/download_reference/{sample}.fna",
