@@ -53,7 +53,7 @@ jobs:
       - name: cache workflow envs
         uses: actions/cache@v2
         with:
-          path: /home/runner/work/plague-phylogeography/plague-phylogeography/workflow/envs
+          path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
           key: snakemake-workflow-envs-${{ runner.os }}
       # Check conda environments
       - name: check cache
