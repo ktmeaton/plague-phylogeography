@@ -49,7 +49,7 @@ jobs:
         with:
           path: /home/runner/miniconda/envs/default
           key: snakemake-default-${{ runner.os }}-${{ hashFiles('workflow/envs/default.yaml') }}
-      # Cache workflow environments?
+      # Cache workflow environments
       - name: cache workflow envs
         uses: actions/cache@v2
         with:
