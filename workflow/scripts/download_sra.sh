@@ -28,7 +28,7 @@ fi;
 # Set the cache path
 if [[ -z `grep "/repository/user/main/public/root" $HOME/.ncbi/user-settings.mkfg` ]]; then\
   # Set SRA Cache Path
-  echo '/repository/user/main/public/root = ${CACHE_PATH}"' >> $HOME/.ncbi/user-settings.mkfg
+  echo "/repository/user/main/public/root = "${CACHE_PATH} >> $HOME/.ncbi/user-settings.mkfg
 else
   # Retrieve SRA Cache Path
   CACHE_PATH=`grep "/repository/user/main/public/root" $HOME/.ncbi/user-settings.mkfg | \
