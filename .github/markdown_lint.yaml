@@ -1,5 +1,5 @@
 # Markdown_lint configuration file
-default: true,
+default: true
 line-length: false
 no-trailing-punctuation: false
 no-duplicate-header:
