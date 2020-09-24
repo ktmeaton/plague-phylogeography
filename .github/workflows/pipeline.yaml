@@ -72,48 +72,35 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --use-conda --profile profiles/gh-actions \
-            test_sqlite_import_reference \
-            test_sqlite_import_assembly \
-            test_sqlite_import_sra;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_sqlite_import_reference test_sqlite_import_assembly test_sqlite_import_sra;
           conda deactivate;
       # Test Data Download
       - name: test download
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --use-conda --profile profiles/gh-actions \
-            test_download_ref \
-            test_download_fna \
-            test_download_sra \
-            test_download_gff \
-            test_download_gbff;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_download_ref test_download_fna test_download_sra test_download_gff test_download_gbff;
           conda deactivate
       # Test Alignment
       - name: test alignment
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --use-conda --profile profiles/gh-actions \
-            test_snippy_pairwise_fna \
-            test_eager_sra \
-            test_eager_local;
+          snakemake --use-conda --profile profiles/gh-actions test_snippy_pairwise_fna test_eager_sra test_eager_local;
           conda deactivate
       # Test Phylogeny
       - name: test phylogeny
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --use-conda --profile profiles/gh-actions \
-            test_iqtree;
+          snakemake --use-conda --profile profiles/gh-actions test_iqtree;
           conda deactivate
       # Test Report Generation
       - name: test report
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --report report.html \
-            all;
+          snakemake --report report.html all;
           conda deactivate
       #------------------------------------------------------------------------#
       #  Artifact Upload
