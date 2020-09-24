@@ -9,7 +9,7 @@ rule download_fna:
   """
     message: "Downloading and decompressing fasta file {wildcards.sample}."
     input:
-        results_dir + "/sqlite_import/download_{dir}.txt"
+        results_dir + "/import/download_{dir}.txt"
     output:
         results_dir + "/data_{dir}/{sample}.fna"
     run:
@@ -26,7 +26,7 @@ rule download_gbff:
   """
     message: "Downloading and decompressing genbank file {output.gbff}."
     input:
-        txt = results_dir + "/sqlite_import/download_{dir}.txt"
+        txt = results_dir + "/import/download_{dir}.txt"
     output:
         gbff = results_dir + "/data_{dir}/{sample}.gbff"
     run:
@@ -43,7 +43,7 @@ rule download_gff:
   """
     message: "Downloading and decompressing feature format file {output.gff}."
     input:
-        txt = results_dir + "/sqlite_import/download_{dir}.txt"
+        txt = results_dir + "/import/download_{dir}.txt"
     output:
         gff = results_dir + "/data_{dir}/{sample}.gff"
     run:
@@ -60,7 +60,7 @@ rule download_sra:
   """
   message: "Downloading and dumping fastq files for BioSample {wildcards.biosample}."
   input:
-    eager_tsv = results_dir + "/sqlite_import/eager_sra.tsv"
+    eager_tsv = results_dir + "/import/eager_sra.tsv"
   output:
     fastq = results_dir + "/data_sra/{biosample}/{file_acc}_1.fastq.gz"
   conda:

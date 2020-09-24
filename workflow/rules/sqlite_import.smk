@@ -5,7 +5,7 @@ import sqlite3
 # -----------------------------------------------------------------------------#
 
 # -----------------------------------------------------------------------------#
-rule sqlite_import_reference:
+rule import_reference:
     """
     Import Reference genome url from database.
     """
@@ -14,20 +14,20 @@ rule sqlite_import_reference:
     input:
         db = results_dir + "/sqlite_db/" + config['sqlite_db']
     output:
-        ref_txt = results_dir + "/sqlite_import/download_reference.txt"
+        ref_txt = results_dir + "/import/download_reference.txt"
     run:
         # Write the reference FTP url
         with open(output.ref_txt, "w") as temp_file:
             temp_file.write(identify_reference_ftp() + "\n")
 # -----------------------------------------------------------------------------#
-rule sqlite_import_assembly:
+rule import_assembly:
     """
     Import Assembly genome url from database.
     """
     input:
         db = results_dir + "/sqlite_db/" + config['sqlite_db']
     output:
-        asm_txt = results_dir + "/sqlite_import/download_assembly.txt",
+        asm_txt = results_dir + "/import/download_assembly.txt",
         asm_snippy_dir = results_dir + "/snippy_multi/snippy_pairwise_assembly.txt",
     run:
         # Write the assembly FTP url
@@ -37,10 +37,10 @@ rule sqlite_import_assembly:
         # Write the assembly fna output for snipppy pairwise
         with open(output.asm_snippy_dir, "w") as temp_file:
             for sample in identify_assembly_sample():
-                snippy_dir = os.path.join(results_dir, "snippy_pairwise", sample)
+                snippy_dir = os.path.join(results_dir, "snippy_pairwise_assembly", sample)
                 temp_file.write(snippy_dir + "\n")
 # -----------------------------------------------------------------------------#
-rule sqlite_import_sra:
+rule import_sra:
     """
     Import SRA accessions from database.
     """
@@ -51,7 +51,7 @@ rule sqlite_import_sra:
     input:
         db = results_dir + "/sqlite_db/" + config['sqlite_db'],
     output:
-        eager_tsv = results_dir + "/sqlite_import/eager_sra.tsv".format(results_dir=results_dir),
+        eager_tsv = results_dir + "/import/eager_sra.tsv".format(results_dir=results_dir),
     shell:
         "{scripts_dir}/sqlite_EAGER_tsv.py \
             --database {input.db} \
@@ -59,4 +59,4 @@ rule sqlite_import_sra:
             --organism \"{params.organism}\" \
             --max-datasets {params.max_sra} \
             --output {output.eager_tsv} \
-            --fastq-dir {results_dir}/sra_download/"
+            --fastq-dir {results_dir}/download_sra/"

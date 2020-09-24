@@ -4,17 +4,17 @@ import itertools # Chaining list of lists of file accessions
 #------------------------------------------------------------------------------#
 # Database Import
 #------------------------------------------------------------------------------#
-rule test_sqlite_import_assembly:
+rule test_import_assembly:
     input:
-        results_dir + "/sqlite_import/download_assembly.txt"
+        results_dir + "/import/download_assembly.txt"
 
-rule test_sqlite_import_sra:
+rule test_import_sra:
     input:
-        results_dir + "/sqlite_import/eager_sra.tsv"
+        results_dir + "/import/eager_sra.tsv"
 
-rule test_sqlite_import_reference:
+rule test_import_reference:
     input:
-        results_dir + "/sqlite_import/download_reference.txt"
+        results_dir + "/import/download_reference.txt"
 
 #------------------------------------------------------------------------------#
 # Data Download
@@ -68,11 +68,20 @@ rule test_eager_local:
         expand(results_dir + "/eager_local/{biosample}/final_bams/{biosample}.bam",
         biosample=list(identify_local_sample()))
 
-rule test_snippy_pairwise_fna:
+rule test_snippy_pairwise_assembly:
     input:
-        expand(results_dir + "/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa",
+        expand(results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.aligned.fa",
         sample=identify_assembly_sample())
 
+rule test_snippy_pairwise_bam_local:
+    input:
+        expand(results_dir + "/snippy_pairwise_local/{sample}/{sample}_snippy.aligned.fa",
+        sample=identify_local_sample())
+
+rule test_snippy_pairwise_bam_sra:
+    input:
+        expand(results_dir + "/snippy_pairwise_sra/{sample}/{sample}_snippy.aligned.fa",
+        sample=identify_sra_sample())
 #------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#

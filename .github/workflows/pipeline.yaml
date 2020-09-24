@@ -17,7 +17,7 @@ on:
       - 'workflow/rules/*.smk'
       - 'workflow/envs/*.yaml'
       - 'workflow/scripts/*'
-      - 'results/sqlite_import/*'
+      - 'results/import/*'
   pull_request:
     branches:
       - '*'
@@ -72,7 +72,7 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_sqlite_import_reference test_sqlite_import_assembly test_sqlite_import_sra;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_import_reference test_import_assembly test_import_sra;
           conda deactivate;
       # Test Data Download
       - name: test download
@@ -81,12 +81,19 @@ jobs:
           conda activate default;
           snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_download_ref test_download_fna test_download_sra test_download_gff test_download_gbff;
           conda deactivate
-      # Test Alignment
-      - name: test alignment
+      # Test Alignment Local
+      - name: test alignment local
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --use-conda --profile profiles/gh-actions test_snippy_pairwise_fna test_eager_sra test_eager_local;
+          snakemake --use-conda --profile profiles/gh-actions test_eager_local test_snippy_pairwise_bam_local;
+          conda deactivate
+      # Test Alignment Remote
+      - name: test alignment remote
+        shell: bash -l {0}
+        run:
+          conda activate default;
+          snakemake --use-conda --profile profiles/gh-actions test_eager_sra test_snippy_pairwise_sra test_snippy_pairwise_assembly;
           conda deactivate
       # Test Phylogeny
       - name: test phylogeny

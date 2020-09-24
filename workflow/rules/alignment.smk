@@ -11,14 +11,9 @@ rule snippy_pairwise_assembly:
         asm_fna = results_dir + "/data_assembly/{sample}.fna",
         ref = expand(results_dir + "/data_reference/{reference}.fna", reference=identify_reference_sample()),
     output:
-        snippy_dir = directory(results_dir + "/snippy_pairwise/{sample}/"),
-        snp_txt = results_dir + "/snippy_pairwise/{sample}/{sample}_snippy.txt",
-        snippy_aln = results_dir + "/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa",
-    params:
-        ctg_depth = config["snippy_ctg_depth"],
-        min_frac = config["snippy_min_frac"],
-        base_qual = config["snippy_base_qual"],
-        map_qual = config["snippy_map_qual"],
+        snippy_dir = directory(results_dir + "/snippy_pairwise_assembly/{sample}/"),
+        snp_txt = results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.txt",
+        snippy_aln = results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.aligned.fa",
     threads:
         workflow.cores,
     conda:
@@ -29,10 +24,39 @@ rule snippy_pairwise_assembly:
           --reference {input.ref} \
           --outdir {output.snippy_dir} \
           --ctgs {input.asm_fna} \
-          --mapqual {params.map_qual} \
-          --mincov {params.ctg_depth} \
-          --minfrac {params.min_frac} \
-          --basequal {params.base_qual} \
+          --mapqual {config[snippy_map_qual]} \
+          --mincov {config[snippy_ctg_depth]} \
+          --minfrac {config[snippy_min_frac]} \
+          --basequal {config[snippy_base_qual]} \
+          --force \
+          --cpus {threads} \
+          --report;"
+
+rule snippy_pairwise_bam:
+  """
+  Peform a pairwise alignment of bam files to the reference genome.
+  """
+    input:
+        reads_bam = results_dir + "/eager_{reads_origin}/{sample}/final_bams/{sample}.bam",
+        ref = expand(results_dir + "/data_reference/{reference}.fna", reference=identify_reference_sample()),
+    output:
+        snippy_dir = directory(results_dir + "/snippy_pairwise_{reads_origin}/{sample}/"),
+        snp_txt = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.txt",
+        snippy_aln = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.aligned.fa",
+    threads:
+        workflow.cores,
+    conda:
+        os.path.join(envs_dir,"snippy.yaml")
+    shell:
+        "snippy \
+          --prefix {wildcards.sample}_snippy \
+          --reference {input.ref} \
+          --outdir {output.snippy_dir} \
+          --bam {input.reads_bam} \
+          --mapqual {config[snippy_map_qual]} \
+          --mincov {config[snippy_ctg_depth]} \
+          --minfrac {config[snippy_min_frac]} \
+          --basequal {config[snippy_base_qual]} \
           --force \
           --cpus {threads} \
           --report;"
@@ -43,7 +67,7 @@ rule snippy_multi:
   Peform a multiple alignment from pairwise output.
   """
     input:
-        all_dir = expand(results_dir + "/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa", sample=identify_assembly_sample()),
+        all_dir = expand(results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.aligned.fa", sample=identify_assembly_sample()),
         all_dir_file = results_dir + "/snippy_multi/snippy_pairwise_assembly.txt",
         ref = expand(results_dir + "/data_reference/{reference}.fna", reference=identify_reference_sample()),
     params:
@@ -73,7 +97,7 @@ rule eager:
   """
   message: "Running the nf-core/eager pipeline for {wildcards.reads_origin} Biosample {wildcards.biosample}."
   input:
-    eager_tsv = results_dir + "/sqlite_import/eager_{reads_origin}.tsv",
+    eager_tsv = results_dir + "/import/eager_{reads_origin}.tsv",
     fastq = lambda wildcards: expand(results_dir + "/data_{{reads_origin}}/{{biosample}}/{file_acc}_1.fastq.gz",
             file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()[wildcards.biosample]),
     ref_fna = expand(results_dir + "/data_reference/{biosample}.fna",
