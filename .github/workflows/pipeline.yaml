@@ -17,6 +17,7 @@ on:
       - 'workflow/rules/*.smk'
       - 'workflow/envs/*.yaml'
       - 'workflow/scripts/*'
+      - 'results/sqlite_import/*'
   pull_request:
     branches:
       - '*'
