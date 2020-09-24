@@ -40,8 +40,13 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
 
 
 </style>
-    <style>.source .hll { background-color: #ffffcc }
-.source  { background: #ffffff; }
+    <style>pre { line-height: 125%; margin: 0; }
+td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
+span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
+td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+.source .hll { background-color: #ffffcc }
+.source { background: #ffffff; }
 .source .c { color: #999988; font-style: italic } /* Comment */
 .source .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .source .k { font-weight: bold } /* Keyword */
@@ -330,13 +335,13 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
         border-bottom: 1px solid #007bff;
       }
 
-      table.dataTable tbody > tr.selected,
+      table.dataTable tbody > tr.selected, 
       table.dataTable tbody > tr > .selected {
         background-color: transparent;
       }
 
-      table.dataTable tbody tr.selected a,
-      table.dataTable tbody th.selected a,
+      table.dataTable tbody tr.selected a, 
+      table.dataTable tbody th.selected a, 
       table.dataTable tbody td.selected a {
         color: #007bff;
       }
@@ -380,7 +385,7 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
         max-width: 20vw;
         max-height: 10vh;
       }
-
+	    
       .modal-lg {
     	max-width: 95%;
       }
@@ -392,15 +397,15 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
     <div id="loading-screen">
       <p class="animation">Loading Snakemake Report...</p>
       <p id="jswarning">Please enable Javascript in your browser to see this report.</p>
-      <p id="info">Loading 524 Bytes. For large reports, this can take a while.</p>
+      <p id="info">Loading 0 Bytes. For large reports, this can take a while.</p>
     </div>
 
     <nav class="navbar fixed-top navbar-dark bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="https://snakemake.readthedocs.io">Snakemake Report</a>
       <div class="nav navbar-nav navbar-center" id="brand"></div>
       <ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
-        <li class="text-white">Mon Sep 21 16:08:16 2020 EST</li>
-        <li><a class="text-white" href="https://snakemake.readthedocs.io">Snakemake 5.24.0</a></li>
+        <li class="text-white">Thu Sep 24 10:32:24 2020 EST</li>
+        <li><a class="text-white" href="https://snakemake.readthedocs.io">Snakemake 5.25.0</a></li>
       </ul>
       <!--<input id="searchbar" class="invisible form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
     </nav>
@@ -436,18 +441,6 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
               </span>
             </h5>
             <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link panel-link" data-panel="9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338" href="javascript:void(0)">
-                  <span data-feather="folder"></span>
-                  Alignment
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link panel-link" data-panel="149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83" href="javascript:void(0)">
-                  <span data-feather="folder"></span>
-                  Phylogenetics
-                </a>
-              </li>
             </ul>
           </div>
         </nav>
@@ -469,16 +462,6 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
 
           </div>
 
-          <div class="panel category" id="9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338">
-            <h2>Alignment</h2>
-            <h4>Snippy</h4>
-            <table class="results-table table" data-category="9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338" data-subcategory="9a628194a4f2af9b526d752782dddc8b70312177edab8fee6d458a74d7758d50"></table>
-          </div>
-          <div class="panel category" id="149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83">
-            <h2>Phylogenetics</h2>
-            <h4>IQTREE</h4>
-            <table class="results-table table" data-category="149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83" data-subcategory="f45d217585788bd6882329ae31a29613c91100f69d1bf90718d35736589cd02a"></table>
-          </div>
 
           <div class="panel" id="statistics">
             <h2>Statistics</h2>
@@ -505,7 +488,7 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
               </thead>
               <tbody>
                   <tr>
-                    <td>/mnt/c/Users/Katherine/Projects/plague-phylogeography/config/snakemake.yaml</td>
+                    <td>/home/ktmeaton/Projects/plague-phylogeography/config/snakemake.yaml</td>
                     <td>
                       <a data-toggle="collapse" role="button" href="#configfile-" aria-expanded="false" aria-controls="collapse-env"><span data-feather="plus-circle"></span></a>
                       <div class="collapse" id="configfile-">
@@ -547,7 +530,9 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
 36
 37
 38
-39</pre></div></td><td class="code"><div class="source"><pre><span></span><code><span class="c1"># Snakemake Configuration File</span>
+39
+40
+41</pre></div></td><td class="code"><div class="source"><pre><span></span><code><span class="c1"># Snakemake Configuration File</span>
 
 <span class="c1"># Conda Environments</span>
 <span class="nt">conda_eager_env </span><span class="p">:</span> <span class="s">&quot;nf-core-eager-2.2.0dev&quot;</span>
@@ -555,18 +540,20 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
 <span class="c1"># SQLITE Parameters</span>
 <span class="nt">sqlite_db </span><span class="p">:</span> <span class="s">&quot;yersinia_pestis_db.sqlite&quot;</span>
 <span class="nt">sqlite_select_command_asm </span><span class="p">:</span> <span class="s">&quot;SELECT</span><span class="nv"> </span><span class="s">AssemblyFTPGenbank</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">Master</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">(BioSampleComment</span><span class="nv"> </span><span class="s">LIKE</span><span class="nv"> </span><span class="s">&#39;%KEEP%Assembly%&#39;)&quot;</span>
-<span class="nt">sqlite_select_command_sra </span><span class="p">:</span> <span class="s">&quot;SELECT</span><span class="nv"> </span><span class="s">BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">Master</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">(BioSampleComment</span><span class="nv"> </span><span class="s">LIKE</span><span class="nv"> </span><span class="s">&#39;%KEEP:</span><span class="nv"> </span><span class="s">EAGER</span><span class="nv"> </span><span class="s">Ancient%&#39;)&quot;</span>
+<span class="c1">#sqlite_select_command_sra : &quot;SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE &#39;%KEEP: EAGER Ancient%&#39;)&quot;</span>
 <span class="nt">sqlite_select_command_ref </span><span class="p">:</span> <span class="s">&quot;SELECT</span><span class="nv"> </span><span class="s">AssemblyFTPGenbank</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">Master</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">(BioSampleComment</span><span class="nv"> </span><span class="s">LIKE</span><span class="nv"> </span><span class="s">&#39;%Reference%&#39;)&quot;</span>
 <span class="nt">max_datasets_assembly </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
 <span class="nt">max_datasets_sra </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+
+<span class="c1"># Testing queries</span>
+<span class="nt">sqlite_select_command_sra </span><span class="p">:</span> <span class="s">&quot;SELECT</span><span class="nv"> </span><span class="s">BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">Master</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">(SRARunAccession</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">&#39;SRR1048902&#39;</span><span class="nv"> </span><span class="s">OR</span><span class="nv"> </span><span class="s">SRARunAccession</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">&#39;SRR1048905&#39;)&quot;</span>
 
 <span class="c1">#reference_locus : &quot;AL590842&quot;</span>
 <span class="c1">#reference_locus_start : &quot;0&quot;</span>
 <span class="c1">#reference_locus_end : &quot;4653728&quot;</span>
 
 <span class="c1"># Eager param</span>
-<span class="c1">#eager_tsv : &quot;example/local_data_eager.tsv&quot;</span>
-<span class="c1">#eager_rev : &quot;7b51863957&quot;</span>
+<span class="nt">eager_rev </span><span class="p">:</span> <span class="s">&quot;7b51863957&quot;</span>
 <span class="c1">#eager_clip_readlength : 35</span>
 <span class="c1">#eager_bwaalnn : 0.01</span>
 <span class="c1">#eager_bwaalnl : 16</span>
@@ -619,384 +606,6 @@ table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected{background-
           </div>
         </div>
 
-        <div data-rule="iqtree" class="modal rule-properties" tabindex="-1" role="dialog">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Rule iqtree</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <table class="table w-auto table-sm table-borderless ruletable">
-                  <caption>Rule properties</caption>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Jobs</th><td>1</td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Input files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/snippy_multi/snippy-core.full.aln</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Output files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/iqtree/iqtree.core-filter0.treefile</li>
-                            <li>results/iqtree/iqtree.core-filter0.treefile</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-
-                    <tr>
-                      <th scope="row" colspan=2>Conda software stack</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>iqtree=2.0.3</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Code</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>iqtree             -s <span class="o">{</span>input.snp_aln<span class="o">}</span>             --threads-max <span class="o">{</span>threads<span class="o">}</span>             -nt AUTO             -o <span class="o">{</span>params.outgroup<span class="o">}</span>             -seed <span class="o">{</span>params.seed<span class="o">}</span>             --runs <span class="o">{</span>params.runs<span class="o">}</span>             <span class="o">{</span>params.other<span class="o">}</span>             -pre results/iqtree/iqtree.core-filter<span class="o">{</span>params.missing_data<span class="o">}</span>
-</code></pre></div>
-</td></tr></table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div data-rule="snippy_multi" class="modal rule-properties" tabindex="-1" role="dialog">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Rule snippy_multi</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <table class="table w-auto table-sm table-borderless ruletable">
-                  <caption>Rule properties</caption>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Jobs</th><td>1</td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Input files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/snippy_pairwise/GCA_009669545.1_ASM966954v1_genomic/GCA_009669545.1_ASM966954v1_genomic_snippy.aligned.fa</li>
-                            <li>results/snippy_pairwise/GCA_009669555.1_ASM966955v1_genomic/GCA_009669555.1_ASM966955v1_genomic_snippy.aligned.fa</li>
-                            <li>results/snippy_pairwise/GCA_009669565.1_ASM966956v1_genomic/GCA_009669565.1_ASM966956v1_genomic_snippy.aligned.fa</li>
-                            <li>results/snippy_multi/snippy_pairwise_assembly.txt</li>
-                            <li>results/download_reference/GCA_000009065.1_ASM906v1_genomic.fna</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Output files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/snippy_multi/{prefix}.txt</li>
-                            <li>results/snippy_multi/{prefix}.full.aln</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-
-                    <tr>
-                      <th scope="row" colspan=2>Conda software stack</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>bioconda/label/cf201901::vt=2015.11.10</li>
-                            <li>snippy=4.6.0</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Code</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>snippy-core           --ref <span class="o">{</span>input.ref<span class="o">}</span>           --prefix results/snippy_multi/<span class="o">{</span>wildcards.prefix<span class="o">}</span>           --mask auto           --mask-char <span class="o">{</span>params.mask_char<span class="o">}</span>           <span class="sb">`</span>cat <span class="o">{</span>input.all_dir_file<span class="o">}</span><span class="sb">`</span> <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span>
-</code></pre></div>
-</td></tr></table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div data-rule="snippy_pairwise_assembly" class="modal rule-properties" tabindex="-1" role="dialog">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Rule snippy_pairwise_assembly</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <table class="table w-auto table-sm table-borderless ruletable">
-                  <caption>Rule properties</caption>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Jobs</th><td>3</td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Input files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/download_assembly/{sample}.fna</li>
-                            <li>results/download_reference/GCA_000009065.1_ASM906v1_genomic.fna</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Output files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/snippy_pairwise/{sample}/</li>
-                            <li>results/snippy_pairwise/{sample}/{sample}_snippy.txt</li>
-                            <li>results/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-
-                    <tr>
-                      <th scope="row" colspan=2>Conda software stack</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>bioconda/label/cf201901::vt=2015.11.10</li>
-                            <li>snippy=4.6.0</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Code</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>snippy           --prefix <span class="o">{</span>wildcards.sample<span class="o">}</span>_snippy           --reference <span class="o">{</span>input.ref<span class="o">}</span>           --outdir <span class="o">{</span>output.snippy_dir<span class="o">}</span>           --ctgs <span class="o">{</span>input.asm_fna<span class="o">}</span>           --mapqual <span class="o">{</span>params.map_qual<span class="o">}</span>           --mincov <span class="o">{</span>params.ctg_depth<span class="o">}</span>           --minfrac <span class="o">{</span>params.min_frac<span class="o">}</span>           --basequal <span class="o">{</span>params.base_qual<span class="o">}</span>           --force           --cpus <span class="o">{</span>threads<span class="o">}</span>           --report<span class="p">;</span>
-</code></pre></div>
-</td></tr></table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div data-rule="sqlite_import_assembly" class="modal rule-properties" tabindex="-1" role="dialog">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Rule sqlite_import_assembly</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <table class="table w-auto table-sm table-borderless ruletable">
-                  <caption>Rule properties</caption>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Jobs</th><td>1</td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Input files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/sqlite_db/yersinia_pestis_db.sqlite</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Output files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/sqlite_import/download_assembly.txt</li>
-                            <li>results/snippy_multi/snippy_pairwise_assembly.txt</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-
-
-                    <tr>
-                      <th scope="row" colspan=2>Code</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <pre><code>source</code></pre>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div data-rule="download_fna" class="modal rule-properties" tabindex="-1" role="dialog">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Rule download_fna</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <table class="table w-auto table-sm table-borderless ruletable">
-                  <caption>Rule properties</caption>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Jobs</th><td>4</td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Input files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/sqlite_import/{download_dir}.txt</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Output files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/{download_dir}/{sample}.fna</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-
-
-                    <tr>
-                      <th scope="row" colspan=2>Code</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <pre><code>source</code></pre>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div data-rule="sqlite_import_reference" class="modal rule-properties" tabindex="-1" role="dialog">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Rule sqlite_import_reference</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <table class="table w-auto table-sm table-borderless ruletable">
-                  <caption>Rule properties</caption>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Jobs</th><td>1</td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Input files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/sqlite_db/yersinia_pestis_db.sqlite</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" colspan=2>Output files</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <ul>
-                            <li>results/sqlite_import/download_reference.txt</li>
-                        </ul>
-                      </td>
-                    </tr>
-
-
-
-                    <tr>
-                      <th scope="row" colspan=2>Code</th>
-                    </tr>
-                    <tr>
-                      <td class="rule-property" colspan=2>
-                        <pre><code>source</code></pre>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <!-- Optional JavaScript -->
@@ -1524,51 +1133,11 @@ if (typeof module !== 'undefined') {
 
     <script id="results">
       var results = {
-            "results/snippy_multi/snippy-core.txt": {
-              name: "snippy-core.txt",
-              path: "results/snippy_multi/snippy-core.txt",
-              size: "332 Bytes",
-              caption: "<p>Tab-separated columnar list of alignment/core-size statistics.</p>\n",
-              job_properties: {
-                rule: "snippy_multi",
-                wildcards: "prefix=snippy-core",
-                params: "mask_char=X"
-              },
-              data_uri: function() { return "data:text/plain;charset=utf8;filename=snippy-core.txt;base64,SUQJTEVOR1RICUFMSUdORUQJVU5BTElHTkVECVZBUklBTlQJSEVUCU1BU0tFRAlMT1dDT1YKR0NBXzAwOTY2OTU0NS4xX0FTTTk2Njk1NHYxX2dlbm9taWMJNDgyOTg1NQk0NDQxNjkyCTYzNTY5CTI1MAk1NDQJMjg5ODI4CTM0MjIyCkdDQV8wMDk2Njk1NTUuMV9BU005NjY5NTV2MV9nZW5vbWljCTQ4Mjk4NTUJNDQzMjQ5MQk2NzI2NwkyNDcJNzMxCTI4OTgyOAkzOTUzOApHQ0FfMDA5NjY5NTY1LjFfQVNNOTY2OTU2djFfZ2Vub21pYwk0ODI5ODU1CTQ0MzYxOTcJNjU1NjYJMjUwCTY2MQkyODk4MjgJMzc2MDMKUmVmZXJlbmNlCTQ4Mjk4NTUJNDU0MDAyNwkwCTAJMAkyODk4MjgJMAo="; },
-              thumbnail_uri: function() { return null; }
-            }
-
-        ,
-            "results/iqtree/iqtree.core-filter0.treefile": {
-              name: "iqtree.core-filter0.treefile",
-              path: "results/iqtree/iqtree.core-filter0.treefile",
-              size: "192 Bytes",
-              caption: "<p>Maximum likelihood phylogeny.</p>\n",
-              job_properties: {
-                rule: "iqtree",
-                wildcards: "",
-                params: "outgroup=Reference, seed=53643794, other=--ufboot 1000 --alrt 1000, missing_data=0, runs=1"
-              },
-              data_uri: function() { return "data:text/plain;charset=utf8;filename=iqtree.core-filter0.treefile;base64,KEdDQV8wMDk2Njk1NDUuMV9BU005NjY5NTR2MV9nZW5vbWljOjAuMDAwMDAwMDIwNywoR0NBXzAwOTY2OTU1NS4xX0FTTTk2Njk1NXYxX2dlbm9taWM6MC4wMDAwMDA0NDgyLEdDQV8wMDk2Njk1NjUuMV9BU005NjY5NTZ2MV9nZW5vbWljOjAuMDAwMDAyMjU0OSkwLzM1OjAuMDAwMDAwMDIwNyxSZWZlcmVuY2U6MC4wMDAwNTY2NTYwKTsK"; },
-              thumbnail_uri: function() { return null; }
-            }
-
-
       };
     </script>
 
     <script>
       var categories = {
-        "9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338": {
-          "9a628194a4f2af9b526d752782dddc8b70312177edab8fee6d458a74d7758d50": [
-            "results/snippy_multi/snippy-core.txt"
-          ]
-        },
-        "149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83": {
-          "f45d217585788bd6882329ae31a29613c91100f69d1bf90718d35736589cd02a": [
-            "results/iqtree/iqtree.core-filter0.treefile"
-          ]
-        }
       };
 
       function show_rule_properties(rule) {
@@ -1588,7 +1157,7 @@ if (typeof module !== 'undefined') {
         modal.find(".modal-body img").attr("src", res.thumbnail_uri());
         modal.find(".modal-footer a.btn-download")
           .attr(
-            "href",
+            "href", 
             `javascript:download_result("${res.path}")`
           )
           .attr("download", res.name);
@@ -1599,7 +1168,7 @@ if (typeof module !== 'undefined') {
       function show_category(panel) {
         panel.find(".results-table").each(function() {
           var table = $(this);
-
+          
           // stop if this is already a datatable
           if ($.fn.DataTable.isDataTable(table)) {
             return;
@@ -1692,8 +1261,8 @@ if (typeof module !== 'undefined') {
 
       var rulegraph_spec = {
         "$schema": "https://vega.github.io/schema/vega/v5.json",
-        "width": 503.19,
-        "height": 398.0,
+        "width": 150.547,
+        "height": 38.0,
         "padding": 0,
         "autosize": "none",
 
@@ -1705,11 +1274,11 @@ if (typeof module !== 'undefined') {
         "data": [
           {
             "name": "node-data",
-            "values": [{'rule': 'all', 'fx': 221.19, 'fy': 378.0}, {'rule': 'download_fna', 'fx': 171.19, 'fy': 90.0}, {'rule': 'iqtree', 'fx': 221.19, 'fy': 306.0}, {'rule': 'snippy_multi', 'fx': 221.19, 'fy': 234.0}, {'rule': 'snippy_pairwise_assembly', 'fx': 221.19, 'fy': 162.0}, {'rule': 'sqlite_import_assembly', 'fx': 383.19, 'fy': 18.0}, {'rule': 'sqlite_import_reference', 'fx': 122.19, 'fy': 18.0}]
+            "values": [{'rule': 'help', 'fx': 30.547, 'fy': 18.0}]
           },
           {
             "name": "link-data",
-            "values": [{'target': 1, 'source': 3, 'value': 1}, {'target': 1, 'source': 4, 'value': 1}, {'target': 2, 'source': 0, 'value': 1}, {'target': 3, 'source': 2, 'value': 1}, {'target': 4, 'source': 3, 'value': 1}, {'target': 5, 'source': 3, 'value': 1}, {'target': 5, 'source': 1, 'value': 1}, {'target': 6, 'source': 1, 'value': 1}]
+            "values": []
           }
         ],
 
@@ -1812,12 +1381,12 @@ if (typeof module !== 'undefined') {
       });
 
 
-
+      
 
       var runtimes_spec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
         "description": "Runtimes of jobs.",
-        "data": {"values": [{'rule': 'download_fna', 'runtime': 0.06399965286254883}, {'rule': 'download_fna', 'runtime': 0.06599974632263184}, {'rule': 'download_fna', 'runtime': 0.06599926948547363}, {'rule': 'download_fna', 'runtime': 0.07100105285644531}, {'rule': 'iqtree', 'runtime': 18.453192234039307}, {'rule': 'snippy_multi', 'runtime': 12.59900450706482}, {'rule': 'snippy_pairwise_assembly', 'runtime': 155.9773006439209}, {'rule': 'snippy_pairwise_assembly', 'runtime': 156.48982572555542}, {'rule': 'snippy_pairwise_assembly', 'runtime': 168.21147060394287}, {'rule': 'sqlite_import_assembly', 'runtime': 0.16951847076416016}, {'rule': 'sqlite_import_reference', 'runtime': 0.11452364921569824}]},
+        "data": {"values": []},
         "mark": "point",
         "encoding": {
           "x": {"field": "runtime", "type": "quantitative",
@@ -1834,7 +1403,7 @@ if (typeof module !== 'undefined') {
         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
         "description": "Timeline of jobs.",
         "data": {
-          "values": [{'rule': 'download_fna', 'starttime': '2020-09-21T13:50:24.029697', 'endtime': '2020-09-21T13:50:24.093697'}, {'rule': 'download_fna', 'starttime': '2020-09-21T13:50:27.980221', 'endtime': '2020-09-21T13:50:28.046221'}, {'rule': 'download_fna', 'starttime': '2020-09-21T13:50:24.706697', 'endtime': '2020-09-21T13:50:24.772696'}, {'rule': 'download_fna', 'starttime': '2020-09-21T13:50:25.148696', 'endtime': '2020-09-21T13:50:25.219697'}, {'rule': 'iqtree', 'starttime': '2020-09-21T16:06:14.240749', 'endtime': '2020-09-21T16:06:32.693941'}, {'rule': 'snippy_multi', 'starttime': '2020-09-21T16:06:01.566745', 'endtime': '2020-09-21T16:06:14.165750'}, {'rule': 'snippy_pairwise_assembly', 'starttime': '2020-09-21T14:17:38.956196', 'endtime': '2020-09-21T14:20:14.933496'}, {'rule': 'snippy_pairwise_assembly', 'starttime': '2020-09-21T14:15:02.332365', 'endtime': '2020-09-21T14:17:38.822191'}, {'rule': 'snippy_pairwise_assembly', 'starttime': '2020-09-21T14:20:15.088496', 'endtime': '2020-09-21T14:23:03.299967'}, {'rule': 'sqlite_import_assembly', 'starttime': '2020-09-21T13:50:01.578176', 'endtime': '2020-09-21T13:50:01.747694'}, {'rule': 'sqlite_import_reference', 'starttime': '2020-09-21T13:50:01.517651', 'endtime': '2020-09-21T13:50:01.632175'}]
+          "values": []
         },
         "mark": "point",
         "encoding": {
@@ -1854,7 +1423,7 @@ if (typeof module !== 'undefined') {
 
       $(".vega-actions a").addClass("btn btn-outline-secondary");
       $(".vega-actions").addClass("btn-group");
-
+      
       $("a.panel-link").click(function() {
         $("a.nav-link.active").removeClass("active");
         $(this).addClass("active");

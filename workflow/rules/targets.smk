@@ -43,17 +43,29 @@ rule test_download_ref:
         expand(results_dir + "/data_reference/{biosample}.fna",
         biosample=identify_reference_sample(),
         )
+
+rule test_download_gbff:
+    input:
+        expand(results_dir + "/data_reference/{biosample}.gbff",
+        biosample=identify_reference_sample(),
+        )
+
+rule test_download_gff:
+    input:
+        expand(results_dir + "/data_reference/{biosample}.gff",
+        biosample=identify_reference_sample(),
+        )
 #------------------------------------------------------------------------------#
 # Alignment
 #------------------------------------------------------------------------------#
 rule test_eager_sra:
     input:
-        expand(results_dir + "/eager_sra/final_bams/{biosample}.bam",
+        expand(results_dir + "/eager_sra/{biosample}/final_bams/{biosample}.bam",
         biosample=list(identify_sra_sample()))
 
 rule test_eager_local:
     input:
-        expand(results_dir + "/eager_local/final_bams/{biosample}.bam",
+        expand(results_dir + "/eager_local/{biosample}/final_bams/{biosample}.bam",
         biosample=list(identify_local_sample()))
 
 rule test_snippy_pairwise_fna:

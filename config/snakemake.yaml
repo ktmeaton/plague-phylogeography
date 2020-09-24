@@ -1,7 +1,7 @@
 # Snakemake Configuration File
 
 # Conda Environments
-conda_eager_env : "nf-core-eager-2.2.0dev"
+#conda_eager_env : "nf-core-eager-2.2.0dev"
 
 # SQLITE Parameters
 sqlite_db : "yersinia_pestis_db.sqlite"
@@ -20,9 +20,9 @@ sqlite_select_command_sra : "SELECT BioSampleAccession,SRARunAccession,SRALibrar
 
 # Eager param
 eager_rev : "7b51863957"
-#eager_clip_readlength : 35
-#eager_bwaalnn : 0.01
-#eager_bwaalnl : 16
+eager_clip_readlength : 35
+eager_bwaalnn : 0.01
+eager_bwaalnl : 16
 organism : "Yersinia pestis"
 
 # Snippy Parameters

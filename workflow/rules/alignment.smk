@@ -76,19 +76,35 @@ rule eager:
     eager_tsv = results_dir + "/sqlite_import/eager_{reads_origin}.tsv",
     fastq = lambda wildcards: expand(results_dir + "/data_{{reads_origin}}/{{biosample}}/{file_acc}_1.fastq.gz",
             file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()[wildcards.biosample]),
+    ref_fna = expand(results_dir + "/data_reference/{biosample}.fna",
+              biosample=identify_reference_sample(),
+              )
   output:
-    final_bam = results_dir + "/eager_{reads_origin}/final_bams/{biosample}.bam"
+    final_bam = results_dir + "/eager_{reads_origin}/{biosample}/final_bams/{biosample}.bam"
   threads:
     workflow.cores,
   conda:
     os.path.join(envs_dir,"eager.yaml")
   log:
-    os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.log")
+    html = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.html"),
+    txt = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.log"),
   shell:
-    "echo testing nf-core/eager; "
-    "echo {input.fastq}; "
-    "nextflow run nf-core/eager -r {config[eager_rev]} --help; "
-    "touch {output.final_bam}; "
-    #"mkdir -p {results_dir}/eager_{wildcards.reads_origin}/{wildcards.biosample}; "
-    #"head -n 1 {input.eager_tsv} > {results_dir}/eager_{wildcards.reads_origin}/metadata_{wildcards.biosample}.tsv; "
-    #"grep -w {wildcards.biosample} {input.eager_tsv} >> {results_dir}/eager_{wildcards.reads_origin}/{wildcards.biosample}/metadata_{wildcards.biosample}.tsv; "
+    "{scripts_dir}/eager_setup.sh {results_dir} {wildcards.reads_origin} {wildcards.biosample} {input.eager_tsv}; "
+    "cd {results_dir}/eager_{wildcards.reads_origin}; "
+    "nextflow run nf-core/eager -r {config[eager_rev]} \
+        -with-report {log.html} \
+        --input {wildcards.biosample}/metadata_{wildcards.biosample}.tsv \
+        --outdir {wildcards.biosample} \
+        --fasta {input.ref_fna} \
+        --clip_readlength {config[eager_clip_readlength]} \
+        --preserve5p \
+        --mergedonly \
+        --mapper bwaaln \
+        --bwaalnn {config[eager_bwaalnn]} \
+        --bwaalnl {config[eager_bwaalnl]} \
+        --run_bam_filtering \
+        --bam_mapping_quality_threshold {config[snippy_map_qual]} \
+        --bam_discard_unmapped \
+        --bam_unmapped_type discard \
+        -resume 1>{log.txt}; "
+    "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.biosample}; "
