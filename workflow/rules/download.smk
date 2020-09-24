@@ -3,6 +3,7 @@ include: "functions.smk"
 # -----------------------------------------------------------------------------#
 #                                Data Download                                 #
 # -----------------------------------------------------------------------------#
+
 rule download_fna:
   """
   Download genbank fasta files.
@@ -18,7 +19,7 @@ rule download_fna:
                 file_parse = [line.rstrip() for line in temp_file if wildcards.sample in line]
             if len(file_parse):
                 match = file_parse[0]
-        shell("wget --quiet -O - {match} | gunzip -c > {output}")
+                shell("wget --quiet -O - {match} | gunzip -c > {output}")
 
 rule download_gbff:
   """
@@ -35,7 +36,7 @@ rule download_gbff:
             if len(file_parse):
                 # strip fna.gz, add .gbff
                 match = file_parse[0].rstrip(".fna.gz") + ".gbff.gz"
-        shell("wget --quiet -O - {match} | gunzip -c > {output}")
+                shell("wget --quiet -O - {match} | gunzip -c > {output}")
 
 rule download_gff:
   """
@@ -52,7 +53,7 @@ rule download_gff:
             if len(file_parse):
                 # strip fna.gz, add .gbff
                 match = file_parse[0].rstrip(".fna.gz") + ".gff.gz"
-        shell("wget --quiet -O - {match} | gunzip -c > {output}")
+                shell("wget --quiet -O - {match} | gunzip -c > {output}")
 
 rule download_sra:
   """

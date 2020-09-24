@@ -55,7 +55,7 @@ rule snippy_pairwise_assembly:
         asm_fna = results_dir + "/data_assembly/{sample}.fna",
         ref = expand(results_dir + "/data_reference/{reference}.fna", reference=identify_reference_sample()),
     output:
-        snippy_dir = directory(results_dir + "/snippy_pairwise_assembly/{sample}/"),
+        snippy_dir = directory(results_dir + "/snippy_pairwise_assembly/{sample}"),
         snp_txt = results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.txt",
         snippy_aln = results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.aligned.fa",
     threads:
@@ -77,6 +77,7 @@ rule snippy_pairwise_assembly:
           --force \
           --cpus {threads} \
           --report 2> {log};"
+
 
 rule snippy_pairwise_bam:
   """

@@ -18,8 +18,7 @@ rule import_reference:
     run:
         # Write the reference FTP url
         with open(output.ref_txt, "w") as temp_file:
-            for url in identify_reference_ftp():
-                temp_file.write(url + "\n")
+            temp_file.write(identify_reference_ftp() + "\n")
 # -----------------------------------------------------------------------------#
 rule import_assembly:
     """
