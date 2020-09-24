@@ -1,7 +1,9 @@
 import itertools # Chaining list of lists of file accessions
 # Custom targets for testing
 
+#------------------------------------------------------------------------------#
 # Database Import
+#------------------------------------------------------------------------------#
 rule test_sqlite_import_assembly:
     input:
         results_dir + "/sqlite_import/download_assembly.txt"
@@ -14,7 +16,9 @@ rule test_sqlite_import_reference:
     input:
         results_dir + "/sqlite_import/download_reference.txt"
 
+#------------------------------------------------------------------------------#
 # Data Download
+#------------------------------------------------------------------------------#
 # There has to be a better way than using itertools
 rule test_download_sra:
     input:
@@ -39,7 +43,9 @@ rule test_download_ref:
         expand(results_dir + "/data_reference/{biosample}.fna",
         biosample=identify_reference_sample(),
         )
+#------------------------------------------------------------------------------#
 # Alignment
+#------------------------------------------------------------------------------#
 rule test_eager_sra:
     input:
         expand(results_dir + "/eager_sra/final_bams/{biosample}.bam",
@@ -55,7 +61,9 @@ rule test_snippy_pairwise_fna:
         expand(results_dir + "/snippy_pairwise/{sample}/{sample}_snippy.aligned.fa",
         sample=identify_assembly_sample())
 
+#------------------------------------------------------------------------------#
 # Phylogeny
+#------------------------------------------------------------------------------#
 rule test_iqtree:
     input:
         expand(results_dir + "/iqtree/iqtree.core-filter{missing_data}.treefile",

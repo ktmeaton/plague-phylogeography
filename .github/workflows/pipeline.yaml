@@ -85,7 +85,7 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --use-conda --profile profiles/gh-actions test_sqlite_import_reference test_snippy_pairwise_fna test_eager_sra;
+          snakemake --use-conda --profile profiles/gh-actions test_snippy_pairwise_fna test_eager_sra test_eager_local;
           conda deactivate
       # Test Phylogeny
       - name: test phylogeny
