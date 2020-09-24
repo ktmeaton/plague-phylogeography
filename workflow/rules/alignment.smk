@@ -69,9 +69,9 @@ rule snippy_multi:
 # -----------------------------------------------------------------------------#
 rule eager:
   """
-  Pre-process and map SRA fastq samples to a reference genome with nf-core/eager.
+  Pre-process and map fastq samples to a reference genome with nf-core/eager.
   """
-  message: "Running the nf-core/eager pipeline for Biosample {wildcards.biosample}."
+  message: "Running the nf-core/eager pipeline for {wildcards.reads_origin} Biosample {wildcards.biosample}."
   input:
     eager_tsv = results_dir + "/sqlite_import/eager_{reads_origin}.tsv",
     fastq = lambda wildcards: expand(results_dir + "/data_{{reads_origin}}/{{biosample}}/{file_acc}_1.fastq.gz",

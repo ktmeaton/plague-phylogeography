@@ -63,7 +63,6 @@ cd plague-phylogeography
 conda install -c conda-forge mamba
 mamba env create -f workflow/envs/default.yaml
 conda activate default
-nextflow pull nf-core/eager
 ```
 
 ## Usage
@@ -73,11 +72,8 @@ snakemake \
   --use-conda \
   --conda-frontend mamba \
   --profile profiles/gh-actions \
-  all
-```
-
-```bash
-snakemake --report workflow/report/report.html
+  --report workflow/report/report.html  \
+  help
 ```
 
 ## Contributing

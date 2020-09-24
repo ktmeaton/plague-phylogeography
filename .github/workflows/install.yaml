@@ -74,10 +74,14 @@ jobs:
           conda deactivate;
 
       #  Test pipeline
-      - name: test pipeline
+      - name: test pipeline help and report
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba help ;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --report workflow/report/report.html help; 
+          snakemake \
+            --profile profiles/gh-actions \
+            --use-conda \
+            --conda-frontend mamba \
+            --report workflow/report/report.html  \
+            help;
           conda deactivate;
