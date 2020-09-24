@@ -8,7 +8,7 @@ sqlite_db : "yersinia_pestis_db.sqlite"
 sqlite_select_command_asm : "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')"
 #sqlite_select_command_sra : "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP: EAGER Ancient%')"
 sqlite_select_command_ref : "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%Reference%')"
-max_datasets_assembly : 10
+max_datasets_assembly : 20
 max_datasets_sra : 2
 
 # Testing queries

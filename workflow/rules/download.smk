@@ -4,56 +4,24 @@ include: "functions.smk"
 #                                Data Download                                 #
 # -----------------------------------------------------------------------------#
 
-rule download_fna:
-  """
-  Download genbank fasta files.
-  """
-    message: "Downloading and decompressing fasta file {wildcards.sample}."
+rule download_sample:
+    """
+    Download files from the NCBI ftp server.
+    """
+    message: "Downloading and decompressing {wildcards.dir} file {wildcards.sample}.{wildcards.ext}"
     input:
-        results_dir + "/import/download_{dir}.txt"
+        db = results_dir + "/sqlite_db/" + config['sqlite_db']
     output:
-        results_dir + "/data_{dir}/{sample}.fna"
+        results_dir + "/data_{dir}/{sample}.{ext}"
     run:
-        for file in input:
-            with open(file) as temp_file:
-                file_parse = [line.rstrip() for line in temp_file if wildcards.sample in line]
-            if len(file_parse):
-                match = file_parse[0]
-                shell("wget --quiet -O - {match} | gunzip -c > {output}")
-
-rule download_gbff:
-  """
-  Download genbank annotation files.
-  """
-    message: "Downloading and decompressing genbank file {output.gbff}."
-    input:
-        txt = results_dir + "/import/download_{dir}.txt"
-    output:
-        gbff = results_dir + "/data_{dir}/{sample}.gbff"
-    run:
-        with open(input.txt) as temp_file:
-            file_parse = [line.rstrip() for line in temp_file if wildcards.sample in line]
-            if len(file_parse):
-                # strip fna.gz, add .gbff
-                match = file_parse[0].rstrip(".fna.gz") + ".gbff.gz"
-                shell("wget --quiet -O - {match} | gunzip -c > {output}")
-
-rule download_gff:
-  """
-  Download genbank feature format files.
-  """
-    message: "Downloading and decompressing feature format file {output.gff}."
-    input:
-        txt = results_dir + "/import/download_{dir}.txt"
-    output:
-        gff = results_dir + "/data_{dir}/{sample}.gff"
-    run:
-        with open(input.txt) as temp_file:
-            file_parse = [line.rstrip() for line in temp_file if wildcards.sample in line]
-            if len(file_parse):
-                # strip fna.gz, add .gbff
-                match = file_parse[0].rstrip(".fna.gz") + ".gff.gz"
-                shell("wget --quiet -O - {match} | gunzip -c > {output}")
+        if wildcards.dir == "reference":
+            samples = [identify_reference_ftp()]
+        elif wildcards.dir == "assembly":
+            samples = identify_assembly_ftp()
+        for ftp in samples:
+            if wildcards.sample in ftp:
+                match = ftp.rstrip(".fna.gz") + "." + wildcards.ext + ".gz"
+        shell("wget --quiet -O - {match} | gunzip -c > {output}")
 
 rule download_sra:
   """
