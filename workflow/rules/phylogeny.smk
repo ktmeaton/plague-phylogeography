@@ -36,4 +36,4 @@ rule iqtree:
             -seed {params.seed} \
             --runs {params.runs} \
             {params.other} \
-            -pre {results_dir}/iqtree/iqtree.core-filter{params.missing_data}"
+            -pre {results_dir}/iqtree/iqtree.core-filter{params.missing_data} 1>{log}"

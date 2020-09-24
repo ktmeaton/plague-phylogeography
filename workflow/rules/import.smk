@@ -18,7 +18,8 @@ rule import_reference:
     run:
         # Write the reference FTP url
         with open(output.ref_txt, "w") as temp_file:
-            temp_file.write(identify_reference_ftp() + "\n")
+            for url in identify_reference_ftp():
+                temp_file.write(url + "\n")
 # -----------------------------------------------------------------------------#
 rule import_assembly:
     """
@@ -28,17 +29,11 @@ rule import_assembly:
         db = results_dir + "/sqlite_db/" + config['sqlite_db']
     output:
         asm_txt = results_dir + "/import/download_assembly.txt",
-        asm_snippy_dir = results_dir + "/snippy_multi/snippy_pairwise_assembly.txt",
     run:
         # Write the assembly FTP url
         with open(output.asm_txt, "w") as temp_file:
             for url in identify_assembly_ftp():
                 temp_file.write(url + "\n")
-        # Write the assembly fna output for snipppy pairwise
-        with open(output.asm_snippy_dir, "w") as temp_file:
-            for sample in identify_assembly_sample():
-                snippy_dir = os.path.join(results_dir, "snippy_pairwise_assembly", sample)
-                temp_file.write(snippy_dir + "\n")
 # -----------------------------------------------------------------------------#
 rule import_sra:
     """
@@ -51,7 +46,7 @@ rule import_sra:
     input:
         db = results_dir + "/sqlite_db/" + config['sqlite_db'],
     output:
-        eager_tsv = results_dir + "/import/eager_sra.tsv".format(results_dir=results_dir),
+        eager_tsv = results_dir + "/import/eager_sra.tsv"
     shell:
         "{scripts_dir}/sqlite_EAGER_tsv.py \
             --database {input.db} \
@@ -59,4 +54,4 @@ rule import_sra:
             --organism \"{params.organism}\" \
             --max-datasets {params.max_sra} \
             --output {output.eager_tsv} \
-            --fastq-dir {results_dir}/download_sra/"
+            --fastq-dir {results_dir}/data_sra/"

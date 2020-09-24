@@ -397,14 +397,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <div id="loading-screen">
       <p class="animation">Loading Snakemake Report...</p>
       <p id="jswarning">Please enable Javascript in your browser to see this report.</p>
-      <p id="info">Loading 0 Bytes. For large reports, this can take a while.</p>
+      <p id="info">Loading 524 Bytes. For large reports, this can take a while.</p>
     </div>
 
     <nav class="navbar fixed-top navbar-dark bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="https://snakemake.readthedocs.io">Snakemake Report</a>
       <div class="nav navbar-nav navbar-center" id="brand"></div>
       <ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
-        <li class="text-white">Thu Sep 24 10:32:24 2020 EST</li>
+        <li class="text-white">Thu Sep 24 18:47:05 2020 EST</li>
         <li><a class="text-white" href="https://snakemake.readthedocs.io">Snakemake 5.25.0</a></li>
       </ul>
       <!--<input id="searchbar" class="invisible form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
@@ -441,6 +441,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
               </span>
             </h5>
             <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link panel-link" data-panel="9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338" href="javascript:void(0)">
+                  <span data-feather="folder"></span>
+                  Alignment
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link panel-link" data-panel="149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83" href="javascript:void(0)">
+                  <span data-feather="folder"></span>
+                  Phylogenetics
+                </a>
+              </li>
             </ul>
           </div>
         </nav>
@@ -462,6 +474,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
           </div>
 
+          <div class="panel category" id="9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338">
+            <h2>Alignment</h2>
+            <h4>Snippy</h4>
+            <table class="results-table table" data-category="9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338" data-subcategory="9a628194a4f2af9b526d752782dddc8b70312177edab8fee6d458a74d7758d50"></table>
+          </div>  
+          <div class="panel category" id="149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83">
+            <h2>Phylogenetics</h2>
+            <h4>IQTREE</h4>
+            <table class="results-table table" data-category="149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83" data-subcategory="f45d217585788bd6882329ae31a29613c91100f69d1bf90718d35736589cd02a"></table>
+          </div>  
 
           <div class="panel" id="statistics">
             <h2>Statistics</h2>
@@ -535,7 +557,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 41</pre></div></td><td class="code"><div class="source"><pre><span></span><code><span class="c1"># Snakemake Configuration File</span>
 
 <span class="c1"># Conda Environments</span>
-<span class="nt">conda_eager_env </span><span class="p">:</span> <span class="s">&quot;nf-core-eager-2.2.0dev&quot;</span>
+<span class="c1">#conda_eager_env : &quot;nf-core-eager-2.2.0dev&quot;</span>
 
 <span class="c1"># SQLITE Parameters</span>
 <span class="nt">sqlite_db </span><span class="p">:</span> <span class="s">&quot;yersinia_pestis_db.sqlite&quot;</span>
@@ -554,9 +576,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
 <span class="c1"># Eager param</span>
 <span class="nt">eager_rev </span><span class="p">:</span> <span class="s">&quot;7b51863957&quot;</span>
-<span class="c1">#eager_clip_readlength : 35</span>
-<span class="c1">#eager_bwaalnn : 0.01</span>
-<span class="c1">#eager_bwaalnl : 16</span>
+<span class="nt">eager_clip_readlength </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">35</span>
+<span class="nt">eager_bwaalnn </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.01</span>
+<span class="nt">eager_bwaalnl </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">16</span>
 <span class="nt">organism </span><span class="p">:</span> <span class="s">&quot;Yersinia</span><span class="nv"> </span><span class="s">pestis&quot;</span>
 
 <span class="c1"># Snippy Parameters</span>
@@ -606,6 +628,201 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
           </div>
         </div>
 
+        <div data-rule="iqtree" class="modal rule-properties" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Rule iqtree</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="table w-auto table-sm table-borderless ruletable">
+                  <caption>Rule properties</caption>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Jobs</th><td>1</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" colspan=2>Input files</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <ul>
+                            <li>/home/ktmeaton/Projects/plague-phylogeography/results/snippy_multi/snippy-core.full.aln</li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" colspan=2>Output files</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <ul>
+                            <li>/home/ktmeaton/Projects/plague-phylogeography/results/iqtree/iqtree.core-filter0.treefile</li>
+                            <li>/home/ktmeaton/Projects/plague-phylogeography/results/iqtree/iqtree.core-filter0.treefile</li>
+                        </ul>
+                      </td>
+                    </tr>
+
+
+                    <tr>
+                      <th scope="row" colspan=2>Conda software stack</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <ul>
+                            <li>iqtree=2.0.3</li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" colspan=2>Code</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>iqtree             -s <span class="o">{</span>input.snp_aln<span class="o">}</span>             --threads-max <span class="o">{</span>threads<span class="o">}</span>             -nt AUTO             -o <span class="o">{</span>params.outgroup<span class="o">}</span>             -seed <span class="o">{</span>params.seed<span class="o">}</span>             --runs <span class="o">{</span>params.runs<span class="o">}</span>             <span class="o">{</span>params.other<span class="o">}</span>             -pre <span class="o">{</span>results_dir<span class="o">}</span>/iqtree/iqtree.core-filter<span class="o">{</span>params.missing_data<span class="o">}</span> <span class="m">1</span>&gt;<span class="o">{</span>log<span class="o">}</span>
+</code></pre></div>
+</td></tr></table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-rule="snippy_multi" class="modal rule-properties" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Rule snippy_multi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="table w-auto table-sm table-borderless ruletable">
+                  <caption>Rule properties</caption>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Jobs</th><td>1</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" colspan=2>Input files</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <ul>
+                            <li>/home/ktmeaton/Projects/plague-phylogeography/results/snippy_pairwise_assembly/GCA_009669545.1_ASM966954v1_genomic</li>
+                            <li>/home/ktmeaton/Projects/plague-phylogeography/results/snippy_pairwise_assembly/GCA_009669555.1_ASM966955v1_genomic</li>
+                            <li>/home/ktmeaton/Projects/plague-phylogeography/results/snippy_pairwise_assembly/GCA_009669565.1_ASM966956v1_genomic</li>
+                            <li>/home/ktmeaton/Projects/plague-phylogeography/results/data_reference/GCA_000009065.1_ASM906v1_genomic.fna</li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" colspan=2>Output files</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <ul>
+                            <li>/home/ktmeaton/Projects/plague-phylogeography/results/snippy_multi/{prefix}.txt</li>
+                            <li>/home/ktmeaton/Projects/plague-phylogeography/results/snippy_multi/{prefix}.full.aln</li>
+                        </ul>
+                      </td>
+                    </tr>
+
+
+                    <tr>
+                      <th scope="row" colspan=2>Conda software stack</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <ul>
+                            <li>snippy=4.6.0</li>
+                            <li>vt=0.57721</li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" colspan=2>Code</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>snippy-core           --ref <span class="o">{</span>input.ref_fna<span class="o">}</span>           --prefix <span class="o">{</span>results_dir<span class="o">}</span>/snippy_multi/<span class="o">{</span>wildcards.prefix<span class="o">}</span>           --mask auto           --mask-char <span class="o">{</span>config<span class="o">[</span>snippy_mask_char<span class="o">]}</span>           <span class="o">{</span>input.snippy_asm_dir<span class="o">}</span> <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span>
+</code></pre></div>
+</td></tr></table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-rule="download_fna" class="modal rule-properties" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Rule download_fna</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="table w-auto table-sm table-borderless ruletable">
+                  <caption>Rule properties</caption>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Jobs</th><td>1</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" colspan=2>Input files</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <ul>
+                            <li>/home/ktmeaton/Projects/plague-phylogeography/results/import/download_{dir}.txt</li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" colspan=2>Output files</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <ul>
+                            <li>/home/ktmeaton/Projects/plague-phylogeography/results/data_{dir}/{sample}.fna</li>
+                        </ul>
+                      </td>
+                    </tr>
+
+
+
+                    <tr>
+                      <th scope="row" colspan=2>Code</th>
+                    </tr>
+                    <tr>
+                      <td class="rule-property" colspan=2>
+                        <pre><code>source</code></pre>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Optional JavaScript -->
@@ -1133,11 +1350,51 @@ if (typeof module !== 'undefined') {
 
     <script id="results">
       var results = {
+            "/home/ktmeaton/Projects/plague-phylogeography/results/snippy_multi/snippy-core.txt": {
+              name: "snippy-core.txt",
+              path: "/home/ktmeaton/Projects/plague-phylogeography/results/snippy_multi/snippy-core.txt",
+              size: "332 Bytes",
+              caption: "<p>Tab-separated columnar list of alignment/core-size statistics.</p>\n",
+              job_properties: {
+                rule: "snippy_multi",
+                wildcards: "prefix=snippy-core",
+                params: ""
+              },
+              data_uri: function() { return "data:text/plain;charset=utf8;filename=snippy-core.txt;base64,SUQJTEVOR1RICUFMSUdORUQJVU5BTElHTkVECVZBUklBTlQJSEVUCU1BU0tFRAlMT1dDT1YKR0NBXzAwOTY2OTU0NS4xX0FTTTk2Njk1NHYxX2dlbm9taWMJNDgyOTg1NQk0NDQxNjk1CTYzNTY5CTI1MAk1MjYJMjg5ODI4CTM0MjM3CkdDQV8wMDk2Njk1NTUuMV9BU005NjY5NTV2MV9nZW5vbWljCTQ4Mjk4NTUJNDQzMjQ5MQk2NzI2NwkyNDcJNzMxCTI4OTgyOAkzOTUzOApHQ0FfMDA5NjY5NTY1LjFfQVNNOTY2OTU2djFfZ2Vub21pYwk0ODI5ODU1CTQ0MzYxOTcJNjU1NjYJMjUwCTY2MQkyODk4MjgJMzc2MDMKUmVmZXJlbmNlCTQ4Mjk4NTUJNDU0MDAyNwkwCTAJMAkyODk4MjgJMAo="; },
+              thumbnail_uri: function() { return null; }
+            }
+          
+        ,
+            "/home/ktmeaton/Projects/plague-phylogeography/results/iqtree/iqtree.core-filter0.treefile": {
+              name: "iqtree.core-filter0.treefile",
+              path: "/home/ktmeaton/Projects/plague-phylogeography/results/iqtree/iqtree.core-filter0.treefile",
+              size: "192 Bytes",
+              caption: "<p>Maximum likelihood phylogeny.</p>\n",
+              job_properties: {
+                rule: "iqtree",
+                wildcards: "",
+                params: "outgroup=Reference, seed=47984255, other=--ufboot 1000 --alrt 1000, missing_data=0, runs=1"
+              },
+              data_uri: function() { return "data:text/plain;charset=utf8;filename=iqtree.core-filter0.treefile;base64,KEdDQV8wMDk2Njk1NDUuMV9BU005NjY5NTR2MV9nZW5vbWljOjAuMDAwMDAwMDIwNywoR0NBXzAwOTY2OTU1NS4xX0FTTTk2Njk1NXYxX2dlbm9taWM6MC4wMDAwMDA0NDgyLEdDQV8wMDk2Njk1NjUuMV9BU005NjY5NTZ2MV9nZW5vbWljOjAuMDAwMDAyMjU0OSkwLzMzOjAuMDAwMDAwMDIwNyxSZWZlcmVuY2U6MC4wMDAwNTY2NTYwKTsK"; },
+              thumbnail_uri: function() { return null; }
+            }
+          
+        
       };
     </script>
 
     <script>
       var categories = {
+        "9d597870c4b3f76d88d9f88411effb8f957b507e68be43af0b001e537bee0338": {
+          "9a628194a4f2af9b526d752782dddc8b70312177edab8fee6d458a74d7758d50": [
+            "/home/ktmeaton/Projects/plague-phylogeography/results/snippy_multi/snippy-core.txt"
+          ]
+        },
+        "149d4c36017f19a99c358ba56ec45c8528305e601ef16b470725fc50d51f5b83": {
+          "f45d217585788bd6882329ae31a29613c91100f69d1bf90718d35736589cd02a": [
+            "/home/ktmeaton/Projects/plague-phylogeography/results/iqtree/iqtree.core-filter0.treefile"
+          ]
+        }
       };
 
       function show_rule_properties(rule) {
@@ -1261,8 +1518,8 @@ if (typeof module !== 'undefined') {
 
       var rulegraph_spec = {
         "$schema": "https://vega.github.io/schema/vega/v5.json",
-        "width": 150.547,
-        "height": 38.0,
+        "width": 211.642,
+        "height": 326.0,
         "padding": 0,
         "autosize": "none",
 
@@ -1274,11 +1531,11 @@ if (typeof module !== 'undefined') {
         "data": [
           {
             "name": "node-data",
-            "values": [{'rule': 'help', 'fx': 30.547, 'fy': 18.0}]
+            "values": [{'rule': 'download_fna', 'fx': 91.642, 'fy': 90.0}, {'rule': 'import_reference', 'fx': 91.642, 'fy': 18.0}, {'rule': 'iqtree', 'fx': 91.642, 'fy': 234.0}, {'rule': 'snippy_multi', 'fx': 91.642, 'fy': 162.0}, {'rule': 'test_iqtree', 'fx': 91.642, 'fy': 306.0}]
           },
           {
             "name": "link-data",
-            "values": []
+            "values": [{'target': 0, 'source': 3, 'value': 1}, {'target': 1, 'source': 0, 'value': 1}, {'target': 2, 'source': 4, 'value': 1}, {'target': 3, 'source': 2, 'value': 1}]
           }
         ],
 
@@ -1386,7 +1643,7 @@ if (typeof module !== 'undefined') {
       var runtimes_spec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
         "description": "Runtimes of jobs.",
-        "data": {"values": []},
+        "data": {"values": [{'rule': 'download_fna', 'runtime': 0.04999995231628418}, {'rule': 'iqtree', 'runtime': 0.0}, {'rule': 'snippy_multi', 'runtime': 8.429999828338623}]},
         "mark": "point",
         "encoding": {
           "x": {"field": "runtime", "type": "quantitative",
@@ -1403,7 +1660,7 @@ if (typeof module !== 'undefined') {
         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
         "description": "Timeline of jobs.",
         "data": {
-          "values": []
+          "values": [{'rule': 'download_fna', 'starttime': '2020-09-24T10:53:52.440000', 'endtime': '2020-09-24T10:53:52.490000'}, {'rule': 'iqtree', 'starttime': '2020-09-24T18:45:51.400000', 'endtime': '2020-09-24T18:45:51.400000'}, {'rule': 'snippy_multi', 'starttime': '2020-09-24T18:44:29.430000', 'endtime': '2020-09-24T18:44:37.860000'}]
         },
         "mark": "point",
         "encoding": {

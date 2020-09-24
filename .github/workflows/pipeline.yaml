@@ -93,7 +93,7 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --use-conda --profile profiles/gh-actions test_eager_sra test_snippy_pairwise_sra test_snippy_pairwise_assembly;
+          snakemake --use-conda --profile profiles/gh-actions test_eager_sra test_snippy_pairwise_bam_sra test_snippy_pairwise_assembly;
           conda deactivate
       # Test Phylogeny
       - name: test phylogeny
@@ -107,7 +107,7 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --report report.html all;
+          snakemake --report workflow/report/report.html all;
           conda deactivate
       #------------------------------------------------------------------------#
       #  Artifact Upload

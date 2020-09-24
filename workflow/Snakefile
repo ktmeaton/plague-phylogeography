@@ -35,7 +35,7 @@ rules_dir = os.path.join(project_dir, "workflow", "rules")
 configfile: os.path.join(project_dir, "config", "snakemake.yaml")
 
 # Sub snakefiles
-include: rules_dir + "/sqlite_import.smk"
+include: rules_dir + "/import.smk"
 include: rules_dir + "/download.smk"
 include: rules_dir + "/alignment.smk"
 include: rules_dir + "/phylogeny.smk"

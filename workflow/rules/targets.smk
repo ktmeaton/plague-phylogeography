@@ -82,6 +82,10 @@ rule test_snippy_pairwise_bam_sra:
     input:
         expand(results_dir + "/snippy_pairwise_sra/{sample}/{sample}_snippy.aligned.fa",
         sample=identify_sra_sample())
+
+rule test_snippy_multi:
+    input:
+        results_dir + "/snippy_multi/snippy-core.txt" 
 #------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#
