@@ -66,7 +66,7 @@ rule test_eager_tsv_sra:
 
 rule test_eager_tsv_local:
     input:
-        expand(results_dir + "/eager_sra/{biosample}/metadata_{biosample}.tsv",
+        expand(results_dir + "/eager_local/{biosample}/metadata_{biosample}.tsv",
         biosample=list(identify_local_sample()))
 
 rule test_eager_sra:
