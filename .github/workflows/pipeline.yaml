@@ -87,14 +87,14 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --use-conda --profile profiles/gh-actions test_eager_sra test_snippy_pairwise_bam_sra test_snippy_pairwise_assembly;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_eager_sra test_snippy_pairwise_bam_sra test_snippy_pairwise_assembly;
           conda deactivate
       # Test Phylogeny
       - name: test phylogeny
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --use-conda --profile profiles/gh-actions test_iqtree;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_iqtree;
           conda deactivate
       # Test Report Generation
       - name: test report

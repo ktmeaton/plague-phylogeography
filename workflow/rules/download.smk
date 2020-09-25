@@ -7,6 +7,22 @@ include: "functions.smk"
 # download_assembly is ambiguous for the dir wildcard
 ruleorder: download_sra > download_assembly
 
+rule download_sra:
+  """
+  Download SRA fastq files.
+  """
+  message: "Downloading and dumping fastq files for BioSample {wildcards.biosample}."
+  output:
+    fastq = results_dir + "/data_sra/{biosample}/{file_acc}_1.fastq.gz"
+  conda:
+    os.path.join(envs_dir,"sra.yaml")
+  shell:
+    "{scripts_dir}/download_sra.sh \
+        {project_dir} \
+        {results_dir}/data_sra/ \
+        {wildcards.biosample} \
+        {wildcards.file_acc}"
+
 rule download_assembly:
     """
     Download files from the NCBI ftp server.
@@ -25,19 +41,3 @@ rule download_assembly:
             if wildcards.sample in ftp:
                 match = ftp.rstrip(".fna.gz") + "." + wildcards.ext + ".gz"
         shell("wget --quiet -O - {match} | gunzip -c > {output}")
-
-rule download_sra:
-  """
-  Download SRA fastq files.
-  """
-  message: "Downloading and dumping fastq files for BioSample {wildcards.biosample}."
-  output:
-    fastq = results_dir + "/data_sra/{biosample}/{file_acc}_1.fastq.gz"
-  conda:
-    os.path.join(envs_dir,"sra.yaml")
-  shell:
-    "{scripts_dir}/download_sra.sh \
-        {project_dir} \
-        {results_dir}/data_sra/ \
-        {wildcards.biosample} \
-        {wildcards.file_acc}"
