@@ -79,7 +79,7 @@ rule snippy_pairwise_assembly:
         snp_txt = results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.txt",
         snippy_aln = results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.aligned.fa",
     threads:
-        workflow.cores,
+        (workflow.cores / 2) if (workflow.cores > 1) else workflow.cores
     log:
         os.path.join(logs_dir, "snippy_pairwise_assembly","{sample}.log")
     conda:

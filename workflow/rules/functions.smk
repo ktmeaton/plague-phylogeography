@@ -39,7 +39,10 @@ def identify_assembly_sample():
             if url:
                 asm_name_list.append(url.split("/")[9] + "_genomic")
     # Filter based on max number of assemblies for analysis
-    asm_name_list = asm_name_list[0:config["max_datasets_assembly"]]
+    max_datasets = config["max_datasets_assembly"]
+    if max_datasets >= (len(asm_name_list) - 1):
+        max_datasets = len(asm_name_list) - 1
+    asm_name_list = asm_name_list[0:max_datasets]
     cur.close()
     return asm_name_list
 
@@ -51,7 +54,10 @@ def identify_assembly_ftp():
     # Assembled Genome URLs
     asm_fna_urls = cur.execute(config["sqlite_select_command_asm"]).fetchall()
     asm_ftp_list = []
-    for url_list in asm_fna_urls[0:config["max_datasets_assembly"]]:
+    max_datasets = config["max_datasets_assembly"]
+    if max_datasets >= (len(asm_fna_urls) - 1):
+        max_datasets = len(asm_fna_urls) - 1
+    for url_list in asm_fna_urls[0:max_datasets]:
         for url in url_list[0].split(";"):
             if url:
                 asm_ftp_list.append(url + "/"+ url.split("/")[9] + "_genomic.fna.gz")
@@ -69,7 +75,10 @@ def identify_sra_sample():
     conn = sqlite3.connect(sqlite_db_path)
     cur = conn.cursor()
     sra_fetch = cur.execute(config["sqlite_select_command_sra"]).fetchall()
-    for record in sra_fetch[0:config["max_datasets_sra"]]:
+    max_datasets = config["max_datasets_sra"]
+    if max_datasets >= (len(sra_fetch) - 1):
+        max_datasets = len(sra_fetch) - 1
+    for record in sra_fetch[0:max_datasets]:
         if record:
             file_acc = record[1].split(";")
             # Duplicate the biosample accession to make it equivalent to sra
