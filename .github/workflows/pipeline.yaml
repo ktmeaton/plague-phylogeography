@@ -90,7 +90,7 @@ jobs:
           snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_eager_local test_eager_sra;
           conda deactivate
       # Test Eager
-      - name: test eager local
+      - name: test eager sra
         shell: bash -l {0}
         run:
           conda activate default;
