@@ -73,42 +73,62 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --verbose test_download_ref test_download_fna test_download_sra test_download_gff test_download_gbff;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_download_ref test_download_fna test_download_sra test_download_gff test_download_gbff;
           conda deactivate
       # Test Eager tsv
       - name: test eager tsv
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --verbose test_eager_tsv_local test_eager_tsv_sra;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_eager_tsv_local test_eager_tsv_sra;
           conda deactivate
       # Test Eager
-      - name: test eager
+      - name: test eager local
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --verbose test_eager_local test_eager_sra;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_eager_local test_eager_sra;
+          conda deactivate
+      # Test Eager
+      - name: test eager local
+        shell: bash -l {0}
+        run:
+          conda activate default;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_eager_sra;
           conda deactivate
       # Test snippy pairwise
-      - name: test snippy pairwise
+      - name: test snippy pairwise assembly
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --verbose test_snippy_pairwise_assembly test_snippy_pairwise_bam_sra test_snippy_pairwise_bam_local;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_snippy_pairwise_assembly;
+          conda deactivate
+      - name: test snippy pairwise sra
+        shell: bash -l {0}
+        run:
+          conda activate default;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_snippy_pairwise_bam_sra;
+          conda deactivate
+      # Test snippy pairwise
+      - name: test snippy pairwise local
+        shell: bash -l {0}
+        run:
+          conda activate default;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_snippy_pairwise_bam_local;
           conda deactivate
       # Test snippy multi
       - name: test snippy multi
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --verbose test_snippy_multi;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_snippy_multi;
           conda deactivate
       # Test IQTREE
       - name: test iqtree
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --verbose test_iqtree;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_iqtree;
           conda deactivate
       # Test Report Generation
       - name: test report
