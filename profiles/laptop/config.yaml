@@ -1,0 +1,2 @@
+cores : "4"
+default-resources: "mem_mb=8000"

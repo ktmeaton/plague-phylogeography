@@ -1,2 +1,2 @@
-resources : "mem_mb=640000"
 cores : "20"
+default-resources: "mem_mb=64000"
