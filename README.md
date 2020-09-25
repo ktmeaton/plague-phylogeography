@@ -57,13 +57,6 @@ git clone https://github.com/ktmeaton/plague-phylogeography.git
 cd plague-phylogeography
 ```
 
-Define snakemake cache directory wherever desire
-
-```
-mkdir snakecache
-export SNAKEMAKE_OUTPUT_CACHE=`pwd`/snakecache/
-```
-
 ### Create Conda Environment
 
 ```bash
