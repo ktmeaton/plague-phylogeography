@@ -63,6 +63,8 @@ cd plague-phylogeography
 conda install -c conda-forge mamba
 mamba env create -f workflow/envs/default.yaml
 conda activate default
+conda config --add channels bioconda
+conda config --add channels conda-forge
 ```
 
 ## Usage
