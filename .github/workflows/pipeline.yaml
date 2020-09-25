@@ -75,22 +75,29 @@ jobs:
           conda activate default;
           snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_download_ref test_download_fna test_download_sra test_download_gff test_download_gbff;
           conda deactivate
-      # Test Alignment Local
-      - name: test alignment local
+      # Test Eager
+      - name: test eager
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --use-conda --profile profiles/gh-actions test_eager_local test_snippy_pairwise_bam_local;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_eager_local test_eager_sra;
           conda deactivate
-      # Test Alignment Remote
-      - name: test alignment remote
+      # Test snippy pairwise
+      - name: test snippy pairwise
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_eager_sra test_snippy_pairwise_bam_sra test_snippy_pairwise_assembly;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_snippy_pairwise_assembly test_snippy_pairwise_bam_sra test_snippy_pairwise_bam_local;
           conda deactivate
-      # Test Phylogeny
-      - name: test phylogeny
+      # Test snippy multi
+      - name: test snippy multi
+        shell: bash -l {0}
+        run:
+          conda activate default;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_snippy_multi;
+          conda deactivate
+      # Test IQTREE
+      - name: test iqtree
         shell: bash -l {0}
         run:
           conda activate default;

@@ -9,4 +9,3 @@ dependencies:
   - sqlite=3.31.1
   - snakemake=5.25.0
   - flask=1.1.2
-  - nextflow=20.04.1
