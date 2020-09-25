@@ -58,6 +58,17 @@ rule test_download_gff:
 #------------------------------------------------------------------------------#
 # Alignment
 #------------------------------------------------------------------------------#
+
+rule test_eager_tsv_sra:
+    input:
+        expand(results_dir + "/eager_sra/{biosample}/metadata_{biosample}.tsv",
+        biosample=list(identify_sra_sample()))
+
+rule test_eager_tsv_local:
+    input:
+        expand(results_dir + "/eager_sra/{biosample}/metadata_{biosample}.tsv",
+        biosample=list(identify_local_sample()))
+
 rule test_eager_sra:
     input:
         expand(results_dir + "/eager_sra/{biosample}/final_bams/{biosample}.bam",
@@ -85,7 +96,7 @@ rule test_snippy_pairwise_bam_sra:
 
 rule test_snippy_multi:
     input:
-        results_dir + "/snippy_multi/snippy-core.txt" 
+        results_dir + "/snippy_multi/snippy-core.txt"
 #------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#

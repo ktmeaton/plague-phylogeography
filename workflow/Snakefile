@@ -35,7 +35,6 @@ rules_dir = os.path.join(project_dir, "workflow", "rules")
 configfile: os.path.join(project_dir, "config", "snakemake.yaml")
 
 # Sub snakefiles
-include: rules_dir + "/import.smk"
 include: rules_dir + "/download.smk"
 include: rules_dir + "/alignment.smk"
 include: rules_dir + "/phylogeny.smk"
@@ -55,7 +54,7 @@ rule all:
     The default pipeline target.
     """
     input:
-        results_dir + "/iqtree/iqtree.core-filter" + str(config['snippy_missing_data']) + ".treefile"
+        results_dir + "/iqtree/iqtree.core-filter" + str(config['snippy_missing_data']) + ".treefile",
 
 # -----------------------------------------------------------------------------#
 #                             Help and Usage                                   #

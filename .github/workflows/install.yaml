@@ -49,11 +49,11 @@ jobs:
           path: /home/runner/miniconda/envs/default
           key: snakemake-default-${{ runner.os }}-${{ hashFiles('workflow/envs/default.yaml') }}
       # Restore (cache) workflow environments
-      - name: cache workflow envs
-        uses: actions/cache@v2
-        with:
-          path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
-          key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/*.yaml') }}
+      #- name: cache workflow envs
+      #  uses: actions/cache@v2
+      #  with:
+      #    path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
+      #    key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/*.yaml') }}
       # Check conda environments
       - name: check cache
         run: |
@@ -70,7 +70,7 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --conda-create-envs-only;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --conda-create-envs-only all;
           conda deactivate;
 
       #  Test pipeline

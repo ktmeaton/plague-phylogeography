@@ -4,7 +4,10 @@ include: "functions.smk"
 #                                Data Download                                 #
 # -----------------------------------------------------------------------------#
 
-rule download_sample:
+# download_assembly is ambiguous for the dir wildcard
+ruleorder: download_sra > download_assembly
+
+rule download_assembly:
     """
     Download files from the NCBI ftp server.
     """
@@ -28,8 +31,6 @@ rule download_sra:
   Download SRA fastq files.
   """
   message: "Downloading and dumping fastq files for BioSample {wildcards.biosample}."
-  input:
-    eager_tsv = results_dir + "/import/eager_sra.tsv"
   output:
     fastq = results_dir + "/data_sra/{biosample}/{file_acc}_1.fastq.gz"
   conda:

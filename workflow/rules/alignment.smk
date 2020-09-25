@@ -4,13 +4,29 @@ include: "functions.smk"
 #                               Genome Alignments                              #
 # -----------------------------------------------------------------------------#
 
+#ruleorder: snippy_pairwise_assembly > snippy_pairwise_bam
+
+# -----------------------------------------------------------------------------#
+rule eager_tsv:
+    """
+    Prep the eager tsv file.
+    """
+    input:
+        fastq = lambda wildcards: expand(results_dir + "/data_{{reads_origin}}/{{biosample}}/{file_acc}_1.fastq.gz",
+                file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()[wildcards.biosample]),
+    output:
+        eager_tsv = results_dir + "/eager_{reads_origin}/{biosample}/metadata_{biosample}.tsv",
+    run:
+        shell("python {scripts_dir}/eager_tsv.py --files {input.fastq} --organism \"{config[organism]}\" --tsv {output.eager_tsv}")
+
+# -----------------------------------------------------------------------------#
 rule eager:
   """
   Pre-process and map fastq samples to a reference genome with nf-core/eager.
   """
   message: "Running the nf-core/eager pipeline for {wildcards.reads_origin} Biosample {wildcards.biosample}."
   input:
-    eager_tsv = results_dir + "/import/eager_{reads_origin}.tsv",
+    eager_tsv = results_dir + "/eager_{reads_origin}/{biosample}/metadata_{biosample}.tsv",
     fastq = lambda wildcards: expand(results_dir + "/data_{{reads_origin}}/{{biosample}}/{file_acc}_1.fastq.gz",
             file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()[wildcards.biosample]),
     ref_fna = expand(results_dir + "/data_reference/{biosample}.fna",
@@ -26,7 +42,6 @@ rule eager:
     html = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.html"),
     txt = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.log"),
   shell:
-    "{scripts_dir}/eager_setup.sh {results_dir} {wildcards.reads_origin} {wildcards.biosample} {input.eager_tsv}; "
     "cd {results_dir}/eager_{wildcards.reads_origin}; "
     "nextflow run nf-core/eager -r {config[eager_rev]} \
         -with-report {log.html} \
