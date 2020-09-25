@@ -2,6 +2,7 @@ channels:
   - defaults
   - bioconda
   - conda-forge
+  - anaconda
 dependencies:
   - bioconda::rename=1.601
   - conda-forge::pymdown-extensions=7.1
@@ -43,3 +44,4 @@ dependencies:
   - conda-forge::xopen=0.9.0
   - bioconda::bowtie2=2.4.1
   - nextflow=20.04.1
+  - graphviz=2.40.1
