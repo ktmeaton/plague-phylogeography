@@ -17,7 +17,7 @@ rule eager_tsv:
     output:
         eager_tsv = results_dir + "/eager_{reads_origin}/{biosample}/metadata_{biosample}.tsv",
     wildcard_constraints:
-        reads_origin=(sra|local),
+        reads_origin="(sra|local)",
     run:
         shell("python {scripts_dir}/eager_tsv.py --files {input.fastq} --organism \"{config[organism]}\" --tsv {output.eager_tsv}")
 
@@ -37,7 +37,7 @@ rule eager:
   output:
     final_bam = results_dir + "/eager_{reads_origin}/{biosample}/final_bams/{biosample}.bam"
   wildcard_constraints:
-    reads_origin = (sra|local),
+    reads_origin = "(sra|local)",
   threads:
     workflow.cores,
   conda:
