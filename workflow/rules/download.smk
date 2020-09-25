@@ -1,4 +1,5 @@
 include: "functions.smk"
+import os
 
 # -----------------------------------------------------------------------------#
 #                                Data Download                                 #
@@ -27,11 +28,13 @@ rule download_assembly:
     """
     Download files from the NCBI ftp server.
     """
-    message: "Downloading and decompressing {wildcards.dir} file {wildcards.sample}.{wildcards.ext}"
+    message: "Downloading and decompressing {wildcards.dir} sample {wildcards.sample}.{wildcards.ext}"
     input:
         db = results_dir + "/sqlite_db/" + config['sqlite_db']
     output:
         results_dir + "/data_{dir}/{sample}.{ext}"
+    wildcard_constraints:
+        ext = "(fna|gbff|gff)"
     run:
         if wildcards.dir == "reference":
             samples = [identify_reference_ftp()]
