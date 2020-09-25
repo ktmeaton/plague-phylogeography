@@ -5,7 +5,6 @@ include: "functions.smk"
 # -----------------------------------------------------------------------------#
 
 #ruleorder: snippy_pairwise_assembly > snippy_pairwise_bam
-
 # -----------------------------------------------------------------------------#
 rule eager_tsv:
     """
@@ -62,6 +61,8 @@ rule eager:
         --bam_mapping_quality_threshold {config[snippy_map_qual]} \
         --bam_discard_unmapped \
         --bam_unmapped_type discard \
+        --max_cpus {threads} \
+        --max_memory {resources.mem_mb}.MB \
         -resume; "
     "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.biosample}; "
 
