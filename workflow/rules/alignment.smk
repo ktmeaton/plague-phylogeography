@@ -44,7 +44,7 @@ rule eager:
     os.path.join(envs_dir,"eager.yaml")
   log:
     html = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.html"),
-    txt = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.log"),
+    #txt = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.log"),
   shell:
     "cd {results_dir}/eager_{wildcards.reads_origin}; "
     "nextflow run nf-core/eager -r {config[eager_rev]} \
@@ -62,7 +62,7 @@ rule eager:
         --bam_mapping_quality_threshold {config[snippy_map_qual]} \
         --bam_discard_unmapped \
         --bam_unmapped_type discard \
-        -resume 1>{log.txt}; "
+        -resume; "
     "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.biosample}; "
 
 # -----------------------------------------------------------------------------#
