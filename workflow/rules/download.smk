@@ -34,7 +34,8 @@ rule download_assembly:
     output:
         results_dir + "/data_{dir}/{sample}.{ext}"
     wildcard_constraints:
-        ext = "(fna|gbff|gff)"
+        ext = "(fna|gbff|gff)",
+	    dir = "(reference|assembly)",
     run:
         if wildcards.dir == "reference":
             samples = [identify_reference_ftp()]
