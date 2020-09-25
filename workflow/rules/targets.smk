@@ -2,21 +2,6 @@ import itertools # Chaining list of lists of file accessions
 # Custom targets for testing
 
 #------------------------------------------------------------------------------#
-# Database Import
-#------------------------------------------------------------------------------#
-rule test_import_assembly:
-    input:
-        results_dir + "/import/download_assembly.txt"
-
-rule test_import_sra:
-    input:
-        results_dir + "/import/eager_sra.tsv"
-
-rule test_import_reference:
-    input:
-        results_dir + "/import/download_reference.txt"
-
-#------------------------------------------------------------------------------#
 # Data Download
 #------------------------------------------------------------------------------#
 # There has to be a better way than using itertools
