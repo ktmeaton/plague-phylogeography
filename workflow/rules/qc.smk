@@ -32,4 +32,4 @@ rule multiqc:
         os.path.join(envs_dir,"qc.yaml")
     shell:
         "echo {input}; "
-        "multiqc {input.qualimap_asm_dir}"
+        "multiqc --force {input.qualimap_asm_dir}"

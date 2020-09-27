@@ -105,4 +105,4 @@ rule test_qualimap:
 
 rule test_multiqc:
     input:
-        results_dir + "/multiqc/multiqc.html"
+        results_dir + "/multiqc/multiqc_report.html"
