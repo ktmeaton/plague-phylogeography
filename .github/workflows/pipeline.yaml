@@ -121,7 +121,7 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_snippy_multi;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_snippy_multi test_snippy_multi_filter;
           conda deactivate
       # Test IQTREE
       - name: test iqtree
