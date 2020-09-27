@@ -39,6 +39,7 @@ configfile: os.path.join(project_dir, "config", "snakemake.yaml")
 include: rules_dir + "/download.smk"
 include: rules_dir + "/alignment.smk"
 include: rules_dir + "/phylogeny.smk"
+include: rules_dir + "/qc.smk"
 include: rules_dir + "/functions.smk"
 include: rules_dir + "/targets.smk"
 

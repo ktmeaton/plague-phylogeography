@@ -1,0 +1,9 @@
+channels:
+  - defaults
+  - bioconda
+  - conda-forge
+  - anaconda
+dependencies:
+  - samtools=1.9
+  - qualimap=2.2.2d
+  - multiqc=1.9

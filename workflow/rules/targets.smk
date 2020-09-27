@@ -94,3 +94,15 @@ rule test_iqtree:
     input:
         expand(results_dir + "/iqtree/iqtree.core-filter{missing_data}.treefile",
         missing_data = config["snippy_missing_data"])
+
+#------------------------------------------------------------------------------#
+# QC
+#------------------------------------------------------------------------------#
+rule test_qualimap:
+    input:
+        expand(results_dir + "/qualimap/{sample}/qualimapReport.html",
+        sample=identify_assembly_sample())
+
+rule test_multiqc:
+    input:
+        results_dir + "/multiqc/multiqc.html"
