@@ -9,20 +9,18 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ### High Priority
 
-- Some processes don't use resume if a new outdir is supplied.
+- Add reference and snp density masking
+- Add multiqc for snippy_pairwise (and snpEff?)
 
 ### Medium Priority
 
 - Add exact-repeats and tandem repeats detection
 - Convert local to remote narratives
 - Version control the exhibit_dhsi2020 docs (add tags for install)
-- Tidy docstrings
 
 ### Low Priority
 
-- Rewrite shell scripts in python?
 - Github Actions: Convert local to remote narratives
-- Breakup snippy step in pipeline to snippy - snp stats - snpeff
 
 ## [v0.2.0] - 2020-0922 - Snakemake
 

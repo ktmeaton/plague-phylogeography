@@ -10,6 +10,7 @@ rule iqtree:
     input:
         snp_aln = expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",
                     missing_data = config["snippy_missing_data"]),
+        full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
     output:
         report(expand(results_dir + "/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"]),
                 caption=os.path.join(report_dir,"iqtree.rst"),
@@ -32,5 +33,6 @@ rule iqtree:
             -o {config[iqtree_outgroup]} \
             -seed {params.seed} \
             --runs {config[iqtree_runs]} \
+            -fconst `$(snp-sites -C {input.full_aln})` \
             {config[iqtree_other]} \
             -pre {results_dir}/iqtree/iqtree.core-filter{config[snippy_missing_data]} 1>{log}"
