@@ -2,16 +2,14 @@
 #                         Modules and Packages                                 #
 # -----------------------------------------------------------------------------#
 import argparse  # Command-line argument parsing
-import os # file path searching and creation
+import os  # file path searching and creation
 
-#------------------------------------------------------------------------------#
+# ------------------------------------------------------------------------------#
 # Argument Parsing                                                             #
-#------------------------------------------------------------------------------#
+# ------------------------------------------------------------------------------#
 
 parser = argparse.ArgumentParser(
-    description=(
-        "Create the tsv input file for nf-core/eager."
-    ),
+    description=("Create the tsv input file for the nf-core/eager pipeline."),
     add_help=True,
 )
 
@@ -86,7 +84,7 @@ for file in files_path.split(" "):
     sample_files = os.listdir(sample_dir)
     # Iterate through the single or paired fastq files
     for file in sample_files:
-        library_id=file.split("_")[0]
+        library_id = file.split("_")[0]
         if library_id not in sample_file_dict:
             sample_file_dict[library_id] = []
         file_path = os.path.join(sample_dir, file)
@@ -101,7 +99,7 @@ for library_id in sample_file_dict:
     R2 = "NA"
     # Single end
     if len(sample_file_dict[library_id]) == 1:
-        R1=sample_file_dict[library_id][0]
+        R1 = sample_file_dict[library_id][0]
         seq_type = "SE"
     elif len(sample_file_dict[library_id]) == 2:
         for file_path in sample_file_dict[library_id]:
