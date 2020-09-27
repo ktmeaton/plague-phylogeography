@@ -81,7 +81,12 @@ rule test_snippy_pairwise_bam_sra:
 
 rule test_snippy_multi:
     input:
-        results_dir + "/snippy_multi/snippy-core.txt"
+        results_dir + "/snippy_multi/snippy-core.full.aln"
+
+rule test_snippy_multi_filter:
+    input:
+        expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.fasta",
+        missing_data = config["snippy_missing_data"])
 #------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#

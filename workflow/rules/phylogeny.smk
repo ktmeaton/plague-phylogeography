@@ -8,7 +8,8 @@ rule iqtree:
   Construct a maximum likelihood phylogeny.
   """
     input:
-        snp_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
+        snp_aln = expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",
+                    missing_data = config["snippy_missing_data"]),
     output:
         report(expand(results_dir + "/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"]),
                 caption=os.path.join(report_dir,"iqtree.rst"),
@@ -16,11 +17,7 @@ rule iqtree:
                 subcategory="IQTREE"),
         tree = expand(results_dir + "/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"]),
     params:
-        outgroup = config["iqtree_outgroup"],
         seed = random.randint(0, 99999999),
-        other = config["iqtree_other"],
-        missing_data = config["snippy_missing_data"],
-        runs = config["iqtree_runs"],
     threads:
         workflow.cores,
     conda:
@@ -32,8 +29,8 @@ rule iqtree:
             -s {input.snp_aln} \
             --threads-max {threads} \
             -nt AUTO \
-            -o {params.outgroup} \
+            -o {config[iqtree_outgroup]} \
             -seed {params.seed} \
-            --runs {params.runs} \
-            {params.other} \
-            -pre {results_dir}/iqtree/iqtree.core-filter{params.missing_data} 1>{log}"
+            --runs {config[iqtree_runs]} \
+            {config[iqtree_other]} \
+            -pre {results_dir}/iqtree/iqtree.core-filter{config[snippy_missing_data]} 1>{log}"

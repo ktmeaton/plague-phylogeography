@@ -30,9 +30,10 @@ logs_dir = os.path.join(project_dir, "workflow", "logs")
 report_dir = os.path.join(project_dir, "workflow", "report")
 rules_dir = os.path.join(project_dir, "workflow", "rules")
 
-
 # Include the config file
 configfile: os.path.join(project_dir, "config", "snakemake.yaml")
+
+# Resources
 
 # Sub snakefiles
 include: rules_dir + "/download.smk"
@@ -47,7 +48,6 @@ report: report_dir + "/workflow.rst"
 # -----------------------------------------------------------------------------#
 #                                Main Target                                   #
 # -----------------------------------------------------------------------------#
-
 
 rule all:
     """

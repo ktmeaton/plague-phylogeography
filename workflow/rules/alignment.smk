@@ -143,19 +143,40 @@ rule snippy_multi:
                   biosample=identify_reference_sample(),
                   )
     output:
-        report(results_dir + "/snippy_multi/{prefix}.txt",
+        report(results_dir + "/snippy_multi/snippy-core.txt",
                 caption=os.path.join(report_dir,"snippy_multi.rst"),
                 category="Alignment",
                 subcategory="Snippy"),
-        snp_aln = results_dir + "/snippy_multi/{prefix}.full.aln",
+        snp_aln = results_dir + "/snippy_multi/snippy-core.aln",
+        full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
     log:
-        os.path.join(logs_dir, "snippy_multi","{prefix}.log")
+        os.path.join(logs_dir, "snippy_multi","snippy-core.log")
     conda:
         os.path.join(envs_dir,"snippy.yaml")
     shell:
         "snippy-core \
           --ref {input.ref_fna} \
-          --prefix {results_dir}/snippy_multi/{wildcards.prefix} \
+          --prefix {results_dir}/snippy_multi/snippy-core \
           --mask auto \
           --mask-char {config[snippy_mask_char]} \
           {input.snippy_asm_dir} 2> {log}"
+
+# -----------------------------------------------------------------------------#
+rule snippy_multi_filter:
+    """
+    Filter a multiple alignment for missing data.
+    """
+    input:
+        full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
+    output:
+        filter_snp_aln = expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",
+                            missing_data = config["snippy_missing_data"]),
+    log:
+        expand(logs_dir + "/snippy_multi/snippy-core.filter{missing_data}.log",
+                               missing_data = config["snippy_missing_data"]),
+    params:
+        missing = float(config["snippy_missing_data"] / 100)
+    conda:
+        os.path.join(envs_dir,"biopython.yaml")
+    shell:
+        "python {scripts_dir}/filter_sites.py --fasta {input.full_aln} --missing {params.missing} --output {output.filter_snp_aln} --log {log}"
