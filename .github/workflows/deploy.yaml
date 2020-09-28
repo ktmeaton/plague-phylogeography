@@ -1,0 +1,33 @@
+# Based on the guide from Ruddra
+# https://ruddra.com/posts/hugo-deploy-static-page-using-github-actions/
+
+name: Deploy
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      # Checkout the github repo
+      - name: checkout repo
+        uses: actions/checkout@v2
+      # Install hugo server
+      - name: setup hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "latest"
+          extended: true
+      # Build the website
+      - name: build site
+        # add --minify tag if you  need it
+        # docs: https://gohugo.io/hugo-pipes/minification/
+        run: hugo
+      # Deploy the website to the user webpage
+      - name: deploy site
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          keep_files: true
+          user_name: ktmeaton
+          user_email: ktmeaton@gmail.com
+          publish_branch: gh-pages
