@@ -168,6 +168,7 @@ rule snippy_multi_filter:
     """
     input:
         full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
+        snp_aln = results_dir + "/snippy_multi/snippy-core.aln",
     output:
         filter_snp_aln = expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",
                             missing_data = config["snippy_missing_data"]),
@@ -179,6 +180,6 @@ rule snippy_multi_filter:
     conda:
         os.path.join(envs_dir,"filter.yaml")
     shell:
-        "snp-sites -m -c -b -o {results_dir}/snippy_multi/snippy-core.filter0.fasta {input.full_aln} ;"
         "if [[ {config[snippy_missing_data]} > 0 ]]; then "
-        "python {scripts_dir}/filter_sites.py --fasta {input.full_aln} --missing {params.missing} --output {output.filter_snp_aln} --log {log}; fi"
+        "python {scripts_dir}/filter_sites.py --fasta {input.full_aln} --missing {params.missing} --output {output.filter_snp_aln} --log {log}; "
+        "else cp {input.snp_aln} {output.filter_snp_aln}; fi;"
