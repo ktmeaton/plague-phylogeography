@@ -5,7 +5,7 @@ name: Docs
 on:
   push:
     branches:
-      - '*'
+      - 'master'
     paths:
       - '.github/workflows/docs.yaml'
       - 'docs/*'
