@@ -28,7 +28,7 @@ jobs:
       - name: update site content
         run: |
           mkdir -p build/
-          echo "---\nlayout: home\n---" > index.md
+          (echo "---"; echo "layout: home"; echo "---") > index.md
           cat README.md >> index.md
       #------------------------------------------------------------------------#
       # Commit and push the new README
