@@ -78,6 +78,10 @@ snakemake \
   help
 ```
 
+## Reports
+
+[Snakemake Report](https://raw.githubusercontent.com/ktmeaton/plague-phylogeography/snakemake/workflow/report/report.html)
+
 ## Contributing
 
 Testing with [CodeSpaces](https://ktmeaton-plague-phylogeography-wg4r.github.dev/).
