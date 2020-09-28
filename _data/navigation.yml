@@ -1,0 +1,10 @@
+# main links
+ main:
+   - title: "Home"
+     url: /index.html
+   - title: "Github"
+     url: https://github.com/ktmeaton/plague-phylogeography/
+   - title: "Manuscript"
+     url: https://ktmeaton.github.io/plague-phylogeography-paper/
+   - title: "Report"
+     url: https://raw.githack.com/ktmeaton/plague-phylogeography/snakemake/workflow/report/report.html

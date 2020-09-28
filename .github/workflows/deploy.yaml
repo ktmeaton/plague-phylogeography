@@ -1,0 +1,53 @@
+#------------------------------------------------------------------------------#
+name: Deploy Site
+#------------------------------------------------------------------------------#
+# Workflow conditions
+on:
+  push:
+    branches:
+      - 'gh-pages'
+    paths:
+      - '.github/workflows/deploy.yaml'
+  pull_request:
+    branches:
+      - '*'
+  release:
+    types: [published]
+#------------------------------------------------------------------------------#
+jobs:
+  #----------------------------------------------------------------------------#
+  # Build jekyll site
+  jekyll-build:
+    runs-on: ubuntu-latest
+    steps:
+      #------------------------------------------------------------------------#
+      # Checkout the github repo
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: setup ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6' # Version range or exact version of a Ruby version to use, using semvers version range syntax.
+      #------------------------------------------------------------------------#
+      # Configure bundle and install gemfiles (if no cache hit)
+      - name: install gemfiles
+        shell: bash -l {0}
+        run: |
+          gem install bundler
+          bundle install --deployment
+      #------------------------------------------------------------------------#
+      # Build jekyll site under _site
+      - name: jekyll build
+        shell: bash -l {0}
+        run: |
+          bundle exec jekyll build
+      #------------------------------------------------------------------------#
+      # Publish _site to the gh-pages branch
+      - name: publish site
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./_site/
+          keep_files: false
+          user_name: ktmeaton
+          user_email: ktmeaton@gmail.com

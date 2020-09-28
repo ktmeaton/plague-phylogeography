@@ -1,1 +1,112 @@
-theme: jekyll-theme-cayman
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+#
+# If you need help with YAML syntax, here are some quick references for you:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+# Theme settings
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+
+# Site Settings
+locale                   : "en-US"
+title                    : "plague-phylogeography"
+subtitle                 : Phylogeography of Yersinia pestis.
+name                     : "Katherine Eaton"
+description              : "Description TBD"
+url                      : "https://ktmeaton.github.io/plague-phylogeography/"
+baseurl                  : #"_site"
+repository               : "ktmeaton/plague-phylogeography"
+teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
+# breadcrumbs            : false # true, false (default)
+
+# Author info
+#twitter_username: ktmeaton
+#github_username:  ktmeaton
+
+# Site Author
+author:
+  name             : #"plague-phylogeography"
+  avatar           : #"Bio3.jpg"
+  location         : #"Hamilton, ON"
+  employer         : #"McMaster University"
+  pubmed           : #"https://www.ncbi.nlm.nih.gov/pubmed/?term=Katherine+Eaton"
+  googlescholar    : #"https://scholar.google.ca/citations?user=0Ksx4iwAAAAJ&hl=en"
+  email            : #"ktmeaton@gmail.com"
+  github           : #"ktmeaton/plague-phylogeography"
+  orcid            : #"http://orcid.org/yourorcidurl"
+  twitter          : #"ktmeaton"
+
+plugins:
+  - jekyll-feed
+
+# Reading Files
+include:
+  - .htaccess
+  - _pages
+  - files
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+# Search
+search                   : true
+search_full_content      : true
+search_provider          : # lunr (default), algolia, google
+
+# Defaults
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author_profile: false
+      share: true
+      read_time: true
+      comments: true
+      related: true
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+#exclude:
+#  - _posts
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
