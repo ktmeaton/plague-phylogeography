@@ -30,6 +30,7 @@ rule multiqc:
     input:
         qualimap_asm_dir = expand(results_dir + "/qualimap_assembly/{sample}", sample=identify_assembly_sample()),
         qualimap_local_dir = expand(results_dir + "/qualimap_local/{sample}", sample=identify_local_sample()),
+        qualimap_sra_dir = expand(results_dir + "/qualimap_sra/{sample}", sample=identify_sra_sample()),
     output:
         report(results_dir + "/multiqc/multiqc_report.html",
                 caption=os.path.join(report_dir,"multiqc.rst"),
@@ -41,4 +42,4 @@ rule multiqc:
     log:
         os.path.join(logs_dir, "multiqc/multiqc.log")
     shell:
-        "multiqc --pdf -c {config_dir}/multiqc.yaml --outdir {output.dir} --force {input.qualimap_asm_dir} {input.qualimap_local_dir} 2> {log}"
+        "multiqc -c {config_dir}/multiqc.yaml --outdir {output.dir} --force {input.qualimap_asm_dir} {input.qualimap_local_dir} {input.qualimap_sra_dir} 2> {log}"

@@ -145,9 +145,16 @@ jobs:
           snakemake --report workflow/report/report.html all;
           conda deactivate
       #------------------------------------------------------------------------#
-      #  Artifact Upload
+      #  Artifact Upload Report
       - name: artifact report
         uses: actions/upload-artifact@v2
         with:
           name: report
           path: workflow/report/report.html
+      #  Artifact Upload logs
+      - name: artifact logs
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: logs
+          path: workflow/logs/

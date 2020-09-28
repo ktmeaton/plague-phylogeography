@@ -7,4 +7,3 @@ dependencies:
   - samtools=1.9
   - qualimap=2.2.2d
   - multiqc=1.9
-  - pandoc=2.10.1
