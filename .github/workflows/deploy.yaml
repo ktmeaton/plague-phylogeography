@@ -8,6 +8,7 @@ on:
       - 'gh-pages'
     paths:
       - '.github/workflows/deploy.yaml'
+      - 'index.md'
   pull_request:
     branches:
       - '*'
