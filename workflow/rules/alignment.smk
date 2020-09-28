@@ -43,7 +43,7 @@ rule eager:
     os.path.join(envs_dir,"eager.yaml")
   log:
     html = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.html"),
-    #txt = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.log"),
+    txt = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.log"),
   shell:
     "cd {results_dir}/eager_{wildcards.reads_origin}; "
     "nextflow run nf-core/eager -r {config[eager_rev]} \
@@ -63,7 +63,7 @@ rule eager:
         --bam_unmapped_type discard \
         --max_cpus {threads} \
         --max_memory {resources.mem_mb}.MB \
-        -resume; "
+        -resume 1> {log.txt}; "
     "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.biosample}; "
 
 # -----------------------------------------------------------------------------#
@@ -111,7 +111,7 @@ rule snippy_pairwise_bam:
         snp_txt = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.txt",
         snippy_aln = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.aligned.fa",
     threads:
-        workflow.cores,
+        (workflow.cores / 2) if (workflow.cores > 1) else workflow.cores
     log:
         os.path.join(logs_dir, "snippy_pairwise_{reads_origin}","{sample}.log")
     conda:

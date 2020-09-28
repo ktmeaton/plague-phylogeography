@@ -33,6 +33,6 @@ rule iqtree:
             -o {config[iqtree_outgroup]} \
             -seed {params.seed} \
             --runs {config[iqtree_runs]} \
-            -fconst `$(snp-sites -C {input.full_aln})` \
+            -fconst `snp-sites -C {input.full_aln}` \
             {config[iqtree_other]} \
             -pre {results_dir}/iqtree/iqtree.core-filter{config[snippy_missing_data]} 1>{log}"

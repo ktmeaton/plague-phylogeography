@@ -130,6 +130,13 @@ jobs:
           conda activate default;
           snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_iqtree;
           conda deactivate
+      # Test IQTREE
+      - name: test multiqc
+        shell: bash -l {0}
+        run:
+          conda activate default;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_multiqc;
+          conda deactivate
       # Test Report Generation
       - name: test report
         shell: bash -l {0}

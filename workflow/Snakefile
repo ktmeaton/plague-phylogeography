@@ -29,9 +29,10 @@ envs_dir = os.path.join(project_dir, "workflow", "envs")
 logs_dir = os.path.join(project_dir, "workflow", "logs")
 report_dir = os.path.join(project_dir, "workflow", "report")
 rules_dir = os.path.join(project_dir, "workflow", "rules")
+config_dir = os.path.join(project_dir, "config")
 
 # Include the config file
-configfile: os.path.join(project_dir, "config", "snakemake.yaml")
+configfile: os.path.join(config_dir, "snakemake.yaml")
 
 # Resources
 
@@ -52,9 +53,10 @@ report: report_dir + "/workflow.rst"
 
 rule all:
     """
-    The default pipeline target.
+    The default pipeline targets.
     """
     input:
+        results_dir + "/multiqc/multiqc_report.html",
         results_dir + "/iqtree/iqtree.core-filter" + str(config['snippy_missing_data']) + ".treefile",
 
 # -----------------------------------------------------------------------------#
