@@ -177,6 +177,8 @@ rule snippy_multi_filter:
     params:
         missing = float(config["snippy_missing_data"] / 100)
     conda:
-        os.path.join(envs_dir,"biopython.yaml")
+        os.path.join(envs_dir,"filter.yaml")
     shell:
-        "python {scripts_dir}/filter_sites.py --fasta {input.full_aln} --missing {params.missing} --output {output.filter_snp_aln} --log {log}"
+        "snp-sites -m -c -b -o {results_dir}/snippy_multi/snippy-core.filter0.fasta {input.full_aln} ;"
+        "if [[ {config[snippy_missing_data]} > 0 ]]; then "
+        "python {scripts_dir}/filter_sites.py --fasta {input.full_aln} --missing {params.missing} --output {output.filter_snp_aln} --log {log}; fi"
