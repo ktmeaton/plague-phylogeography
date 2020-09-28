@@ -54,7 +54,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./_site/
+          publish_dir: ./
           keep_files: false
           user_name: ktmeaton
           user_email: ktmeaton@gmail.com
