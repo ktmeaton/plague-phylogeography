@@ -1,7 +1,0 @@
-[submodule "themes/academic"]
-	path = themes/academic
-	url = https://github.com/wowchemy/wowchemy-hugo-modules.git
-[submodule "public"]
-	path = public
-	url = https://github.com/ktmeaton/ktmeaton.github.io.git
-	branch = master
