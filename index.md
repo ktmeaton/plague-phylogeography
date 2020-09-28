@@ -1,7 +1,4 @@
----
-layout: home
----
-
+---\nlayout: home\n---
 # ![ktmeaton/plague-phylogeography](https://raw.githubusercontent.com/ktmeaton/plague-phylogeography/master/docs/images/plague-phylo-logo.png)
 
 **An open-source pipeline to construct a global phylogeny of the plague pathogen *Yersinia pestis*.**
