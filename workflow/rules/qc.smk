@@ -17,7 +17,7 @@ rule qualimap:
     log:
         os.path.join(logs_dir, "qualimap_{reads_origin}/{sample}.log")
     threads:
-        1
+        2 if workflow.cores >= 2 else workflow.cores
     shell:
         "samtools view -b -q {config[snippy_map_qual]} {input.snippy_dir}/{wildcards.sample}_snippy.bam > {output.bamq}; "
         "qualimap bamqc -bam {output.bamq} --skip-duplicated -c -outformat 'HTML' -outdir {output.dir} -nt {threads} 1> {log}; "

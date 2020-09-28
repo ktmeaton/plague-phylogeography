@@ -34,8 +34,6 @@ config_dir = os.path.join(project_dir, "config")
 # Include the config file
 configfile: os.path.join(config_dir, "snakemake.yaml")
 
-# Resources
-
 # Sub snakefiles
 include: rules_dir + "/download.smk"
 include: rules_dir + "/alignment.smk"
@@ -71,7 +69,8 @@ rule help:
     for rule in workflow.rules:
       print("-" * 80)
       print("rule: ", rule.name )
-      print(rule.docstring )
+      if rule.docstring:
+          print(rule.docstring)
       if rule._input:
           print("\tinput:")
           for in_file in rule.input:

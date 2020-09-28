@@ -38,7 +38,7 @@ rule eager:
   wildcard_constraints:
     reads_origin = "(sra|local)",
   threads:
-    workflow.cores,
+    2 if workflow.cores >= 2 else workflow.cores
   conda:
     os.path.join(envs_dir,"eager.yaml")
   log:
@@ -79,7 +79,7 @@ rule snippy_pairwise_assembly:
         snp_txt = results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.txt",
         snippy_aln = results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.aligned.fa",
     threads:
-        (workflow.cores / 2) if (workflow.cores > 1) else workflow.cores
+        2 if workflow.cores >= 2 else workflow.cores
     log:
         os.path.join(logs_dir, "snippy_pairwise_assembly","{sample}.log")
     conda:
@@ -111,7 +111,7 @@ rule snippy_pairwise_bam:
         snp_txt = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.txt",
         snippy_aln = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.aligned.fa",
     threads:
-        (workflow.cores / 2) if (workflow.cores > 1) else workflow.cores
+        2 if workflow.cores >= 2 else workflow.cores
     log:
         os.path.join(logs_dir, "snippy_pairwise_{reads_origin}","{sample}.log")
     conda:
