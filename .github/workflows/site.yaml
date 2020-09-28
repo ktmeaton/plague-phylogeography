@@ -29,7 +29,8 @@ jobs:
       - name: create site dir
         run: |
           mkdir -p build/
-          cp README.md build/index.md
+          echo "---\nlayout: home\n---" > build/index.md
+          cat README.md >> build/index.md
 
       - name: deploy site to gh-pages
         uses: JamesIves/github-pages-deploy-action@3.6.2
