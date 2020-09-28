@@ -1,0 +1,40 @@
+#------------------------------------------------------------------------------#
+name: Site
+#------------------------------------------------------------------------------#
+# Workflow conditions
+on:
+  push:
+    branches:
+      - '*'
+    paths:
+      - '.github/workflows/site.yaml'
+      - 'README.md'
+  pull_request:
+    branches:
+      - '*'
+  release:
+    types: [published]
+#------------------------------------------------------------------------------#
+jobs:
+  #----------------------------------------------------------------------------#
+  # Build and deploy the gh-pages site
+  gh_pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2.3.1 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+
+      - name: create site dir
+        run: |
+          mkdir -p _site/
+          cp README.md _site/index.md
+
+      - name: deploy site to gh-pages
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: _site # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
