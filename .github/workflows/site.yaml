@@ -5,7 +5,7 @@ name: Update Site
 on:
   push:
     branches:
-      - '*'
+      - 'never'
     paths:
       - '.github/workflows/site.yaml'
       - 'README.md'
