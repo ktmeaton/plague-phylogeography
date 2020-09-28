@@ -35,7 +35,7 @@ jobs:
         id: bundle-ruby-gemfiles
         uses: actions/cache@v2
         with:
-          path: demo/vendor/bundle
+          path: vendor/bundle
           key: plague-phylogeography-ruby-gemfiles-${{ runner.os }}-${{ hashFiles('Gemfile.lock') }}
       # Configure bundle and install gemfiles (if no cache hit)
       - name: install gemfiles
