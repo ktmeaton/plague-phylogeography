@@ -29,7 +29,7 @@ jobs:
   # Install dependencies
   pipeline :
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 30
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
