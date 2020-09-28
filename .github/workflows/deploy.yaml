@@ -10,6 +10,10 @@ jobs:
       # Checkout the github repo
       - name: checkout repo
         uses: actions/checkout@v2
+      # Update the Academic theme module
+      - name: Update theme
+        # (Optional)If you have the theme added as submodule, you can pull it and use the most updated version
+        run: git submodule update --init --recursive        
       # Install hugo server
       - name: setup hugo
         uses: peaceiris/actions-hugo@v2
