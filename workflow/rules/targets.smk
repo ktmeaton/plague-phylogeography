@@ -85,7 +85,7 @@ rule test_snippy_multi:
 
 rule test_snippy_multi_filter:
     input:
-        expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.fasta",
+        expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",
         missing_data = config["snippy_missing_data"])
 #------------------------------------------------------------------------------#
 # Phylogeny
