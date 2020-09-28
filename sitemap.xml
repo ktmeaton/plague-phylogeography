@@ -3,10 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://ktmeaton.github.io/plague-phylogeography/</loc>
-  </url>
-  
-  <url>
     <loc>https://ktmeaton.github.io/plague-phylogeography/authors/</loc>
   </url>
   
@@ -16,6 +12,10 @@
   
   <url>
     <loc>https://ktmeaton.github.io/plague-phylogeography/author/nelson-bighetti/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ktmeaton.github.io/plague-phylogeography/</loc>
   </url>
   
   <url>
