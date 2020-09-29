@@ -11,12 +11,55 @@
 [[main]]
   name = "Exhibits"
   url = "#demo"
-  weight = 30
+  weight = 20
+  identifier = "exhibits"
+
+  [[main]]
+    name = "Main"
+    #url = "https://nextstrain.org/"
+    weight = 21
+    parent = "exhibits"
+
+[[main]]
+  name = "DHSI 2020"
+  url = "https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote"
+  weight = 22
+  parent = "exhibits"
+
+  [[main]]
+    name = "SCDS 2020"
+    url = "https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote"
+    weight = 22
+    parent = "exhibits"
 
 [[main]]
   name = "Reports"
+  weight = 30
+  identifier = "reports"
+
+[[main]]
+  name = "Snakemake "
   url = "https://raw.githack.com/ktmeaton/plague-phylogeography/snakemake/workflow/report/report.html"
+  weight = 30
+  parent = "reports"
+
+[[main]]
+  name = "Manuscript"
   weight = 40
+  identifier = "manuscript"
+
+[[main]]
+  name = "Paper"
+  url = "https://ktmeaton.github.io/plague-phylogeography-paper/"
+  weight = 40
+  parent = "manuscript"
+
+[[main]]
+  name = "Code"
+  url = "https://github.com/ktmeaton/plague-phylogeography-paper/"
+  weight = 40
+  parent = "manuscript"
+
 
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
