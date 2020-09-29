@@ -5,12 +5,24 @@
     <link>https://ktmeaton.github.io/plague-phylogeography/</link>
       <atom:link href="https://ktmeaton.github.io/plague-phylogeography/index.xml" rel="self" type="application/rss+xml" />
     <description>plague-phylogeography</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 05 Jun 2020 21:00:00 +0000</lastBuildDate>
     <image>
       <url>https://ktmeaton.github.io/plague-phylogeography/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>plague-phylogeography</title>
       <link>https://ktmeaton.github.io/plague-phylogeography/</link>
     </image>
+    
+    <item>
+      <title>Presenting “The Plague”: Digital Exhibits as Interdisciplinary Method</title>
+      <link>https://ktmeaton.github.io/plague-phylogeography/talk/dhsi2020/</link>
+      <pubDate>Fri, 05 Jun 2020 21:00:00 +0000</pubDate>
+      <guid>https://ktmeaton.github.io/plague-phylogeography/talk/dhsi2020/</guid>
+      <description>&lt;h2 id=&#34;dhsi2020-video-presentation&#34;&gt;DHSI2020 Video Presentation&lt;/h2&gt;
+&lt;a href=&#34;https://www.qries.com/&#34;&gt;
+   &lt;img alt=&#34;Qries&#34; src=&#34;https://raw.githubusercontent.com/ktmeaton/plague-phylogeography/master/docs/images/thumbnail_DHSI2020.png&#34;
+   width=150&#34; height=&#34;70&#34;&gt;
+</description>
+    </item>
     
   </channel>
 </rss>
