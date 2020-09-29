@@ -38,7 +38,7 @@ rule eager:
   wildcard_constraints:
     reads_origin = "(sra|local)",
   threads:
-    2 if workflow.cores >= 2 else workflow.cores
+    workflow.cores
   conda:
     os.path.join(envs_dir,"eager.yaml")
   log:
