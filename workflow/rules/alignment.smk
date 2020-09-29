@@ -137,8 +137,8 @@ rule snippy_multi:
     """
     input:
         snippy_asm_dir = expand(results_dir + "/snippy_pairwise_assembly/{sample}", sample=identify_assembly_sample()),
-        #snippy_sra_dir = expand(results_dir + "/snippy_pairwise_sra/{sample}", sample=identify_sra_sample()),
-        #snippy_local_dir = expand(results_dir + "/snippy_pairwise_local/{sample}", sample=identify_local_sample()),
+        snippy_sra_dir = expand(results_dir + "/snippy_pairwise_sra/{sample}", sample=identify_sra_sample()),
+        snippy_local_dir = expand(results_dir + "/snippy_pairwise_local/{sample}", sample=identify_local_sample()),
         ref_fna = expand(results_dir + "/data_reference/{biosample}.fna",
                   biosample=identify_reference_sample(),
                   ),

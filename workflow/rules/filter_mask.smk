@@ -63,7 +63,7 @@ rule snippy_multi_filter:
         full_aln = expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.aln",
                    locus_name=config["reference_locus_name"]),
     output:
-        filter_aln = expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",
+        filter_snp_aln = expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",
                             missing_data = config["snippy_missing_data"]),
     log:
         expand(logs_dir + "/snippy_multi/snippy-core.filter{missing_data}.log",
@@ -76,5 +76,5 @@ rule snippy_multi_filter:
         "if [[ {config[snippy_missing_data]} > 0 ]]; then "
         "  python {scripts_dir}/filter_sites.py --fasta {input.full_aln} --missing {params.missing} --output {output.filter_snp_aln} --log {log}; "
         "else "
-        "snp-sites -m -c -b -o {output.filter_aln} {input.full_aln}; "
+        "snp-sites -m -c -o {output.filter_snp_aln} {input.full_aln}; "
         "fi; "
