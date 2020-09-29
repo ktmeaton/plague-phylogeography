@@ -83,6 +83,13 @@ rule test_snippy_multi:
     input:
         results_dir + "/snippy_multi/snippy-core.full.aln"
 
+# Filtering
+
+rule test_snippy_multi_extract:
+    input:
+        expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.aln",
+        locus_name=config["reference_locus_name"]),
+
 rule test_snippy_multi_filter:
     input:
         expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",

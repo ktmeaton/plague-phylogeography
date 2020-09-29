@@ -32,7 +32,7 @@ rule download_assembly:
     input:
         db = results_dir + "/sqlite_db/" + config['sqlite_db']
     output:
-        results_dir + "/data_{dir}/{sample}.{ext}"
+        file = results_dir + "/data_{dir}/{sample}.{ext}"
     wildcard_constraints:
         ext = "(fna|gbff|gff)",
 	    dir = "(reference|assembly)",
@@ -44,4 +44,7 @@ rule download_assembly:
         for ftp in samples:
             if wildcards.sample in ftp:
                 match = ftp.rstrip(".fna.gz") + "." + wildcards.ext + ".gz"
-        shell("wget --quiet -O - {match} | gunzip -c > {output}")
+        shell("wget --quiet -O - {match} | gunzip -c > {output.file}; ")
+        # Remove ver number in fasta headers if reference
+        if wildcards.dir == "reference" and (wildcards.ext == "fna" or wildcards.ext == "gff"):
+            shell("python {scripts_dir}/rename_headers.py --file {output.file}; ")

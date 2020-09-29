@@ -73,7 +73,7 @@ rule snippy_pairwise_assembly:
   """
     input:
         asm_fna = results_dir + "/data_assembly/{sample}.fna",
-        ref = expand(results_dir + "/data_reference/{reference}.fna", reference=identify_reference_sample()),
+        ref = expand(results_dir + "/data_reference/{reference}.gbff", reference=identify_reference_sample()),
     output:
         snippy_dir = directory(results_dir + "/snippy_pairwise_assembly/{sample}"),
         snp_txt = results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.txt",
@@ -160,26 +160,3 @@ rule snippy_multi:
           --mask auto \
           --mask-char {config[snippy_mask_char]} \
           {input.snippy_asm_dir} 2> {log}"
-
-# -----------------------------------------------------------------------------#
-rule snippy_multi_filter:
-    """
-    Filter a multiple alignment for missing data.
-    """
-    input:
-        full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
-        snp_aln = results_dir + "/snippy_multi/snippy-core.aln",
-    output:
-        filter_snp_aln = expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",
-                            missing_data = config["snippy_missing_data"]),
-    log:
-        expand(logs_dir + "/snippy_multi/snippy-core.filter{missing_data}.log",
-                               missing_data = config["snippy_missing_data"]),
-    params:
-        missing = float(config["snippy_missing_data"] / 100)
-    conda:
-        os.path.join(envs_dir,"filter.yaml")
-    shell:
-        "if [[ {config[snippy_missing_data]} > 0 ]]; then "
-        "python {scripts_dir}/filter_sites.py --fasta {input.full_aln} --missing {params.missing} --output {output.filter_snp_aln} --log {log}; "
-        "else cp {input.snp_aln} {output.filter_snp_aln}; fi;"
