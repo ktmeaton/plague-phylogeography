@@ -7,3 +7,5 @@ dependencies:
   - python=3.8
   - biopython=1.78
   - snp-sites=2.5.1
+  - mummer=3.23
+  - bedtools=2.29.2

@@ -85,6 +85,16 @@ rule test_snippy_multi:
 
 # Filtering
 
+rule test_detect_repeats:
+    input:
+        expand(results_dir + "/detect_repeats/{biosample}.inexact.repeats.bed",
+        biosample=identify_reference_sample())
+
+rule test_detect_low_complexity:
+    input:
+        expand(results_dir + "/detect_low_complexity/{biosample}.dustmasked.bed",
+        biosample=identify_reference_sample())
+
 rule test_snippy_multi_extract:
     input:
         expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.aln",

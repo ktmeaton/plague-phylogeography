@@ -1,16 +1,38 @@
 import os
 
+rule detect_repeats:
+    """
+    Detect in-exact repeats in reference genome with mummer and convert the identified regions file to bed format.
+    """
+    input:
+        fna = results_dir + "/data_reference/{biosample}.fna",
+    output:
+        inexact = results_dir + "/detect_repeats/{biosample}.inexact.repeats.bed",
+    log:
+        logs_dir + "/detect_repeats/{biosample}.log",
+    conda:
+        os.path.join(envs_dir,"filter.yaml")
+    shell:
+        "{scripts_dir}/detect_repeats.sh \
+          {input.fna} \
+          {results_dir}/detect_repeats \
+          {config[detect_repeats_length]} \
+          {config[detect_repeats_threshold]} 2> {log}; "
+
 rule detect_low_complexity:
     """
     Detect low complexity regions with dustmasker and convert the identified regions file to bed format.
     """
     input:
-        fna = results_dir + "/data_reference/{biosample}.fna"
+        fna = results_dir + "/data_reference/{biosample}.fna",
     output:
-        bed = results_dir + "/data_reference/{biosample}.dustmasked.bed",
+        bed = results_dir + "/detect_low_complexity/{biosample}.dustmasker.bed",
+        intervals = results_dir + "/detect_low_complexity/{biosample}.dustmasker.intervals",
+    conda:
+        os.path.join(envs_dir,"eager.yaml")
     shell:
-    "dustmasker -in {input.fna} -outfmt interval > {wildcards.biosample}.dustmasker.intervals
-  ${params.scriptdir}/intervals2bed.sh ${reference_genome_fna.baseName}.dustmasker.intervals ${reference_genome_fna.baseName}.dustmasker.bed
+        "dustmasker -in {input.fna} -outfmt interval > {output.intervals}; "
+        "{scripts_dir}/intervals2bed.sh {output.intervals} {output.bed}"
 
 # -----------------------------------------------------------------------------#
 rule snippy_multi_extract:
@@ -23,7 +45,7 @@ rule snippy_multi_extract:
         extract_aln = expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.aln",
                       locus_name=config["reference_locus_name"]),
     conda:
-        os.path.join(envs_dir,"snippy.yaml")
+        os.path.join(envs_dir,"filter.yaml")
     shell:
         "{scripts_dir}/extract_locus.sh \
           {input.full_aln} \
