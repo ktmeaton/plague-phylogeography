@@ -92,7 +92,7 @@ rule test_detect_repeats:
 
 rule test_detect_low_complexity:
     input:
-        expand(results_dir + "/detect_low_complexity/{biosample}.dustmasked.bed",
+        expand(results_dir + "/detect_low_complexity/{biosample}.dustmasker.bed",
         biosample=identify_reference_sample())
 
 rule test_snippy_multi_extract:

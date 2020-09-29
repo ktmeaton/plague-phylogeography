@@ -141,7 +141,13 @@ rule snippy_multi:
         #snippy_local_dir = expand(results_dir + "/snippy_pairwise_local/{sample}", sample=identify_local_sample()),
         ref_fna = expand(results_dir + "/data_reference/{biosample}.fna",
                   biosample=identify_reference_sample(),
-                  )
+                  ),
+        inexact = expand(results_dir + "/detect_repeats/{biosample}.inexact.repeats.bed",
+                  biosample=identify_reference_sample(),
+                  ),
+        low_complexity = expand(results_dir + "/detect_low_complexity/{biosample}.dustmasker.bed",
+                  biosample=identify_reference_sample(),
+                  ),
     output:
         report(results_dir + "/snippy_multi/snippy-core.txt",
                 caption=os.path.join(report_dir,"snippy_multi.rst"),
@@ -154,9 +160,13 @@ rule snippy_multi:
     conda:
         os.path.join(envs_dir,"snippy.yaml")
     shell:
+        # Merge masking beds
+        "cat {input.inexact} {input.low_complexity} | \
+          sort -k1,1 -k2,2n | \
+          bedtools merge > {results_dir}/snippy_multi/mask.bed; "
         "snippy-core \
           --ref {input.ref_fna} \
           --prefix {results_dir}/snippy_multi/snippy-core \
-          --mask auto \
+          --mask {results_dir}/snippy_multi/mask.bed \
           --mask-char {config[snippy_mask_char]} \
           {input.snippy_asm_dir} 2> {log}"
