@@ -77,7 +77,9 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
+          python workflow/scripts/slack_log.py --rules test_download_ref,test_download_fna,test_download_sra,test_download_gff,test_download_gbff
           snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --log-handler-script workflow/scripts/slack_log.py test_download_ref test_download_fna test_download_sra test_download_gff test_download_gbff;
+          python workflow/scripts/slack_log.py --complete --rules test_download_ref,test_download_fna,test_download_sra,test_download_gff,test_download_gbff
           conda deactivate
       # Test Eager tsv
       - name: test eager tsv

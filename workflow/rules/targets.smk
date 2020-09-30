@@ -5,6 +5,7 @@ import itertools # Chaining list of lists of file accessions
 # Data Download
 #------------------------------------------------------------------------------#
 # There has to be a better way than using itertools
+
 rule test_download_sra:
     input:
         expand(results_dir + "/data_sra/{biosample}/{file_acc}_1.fastq.gz",
@@ -15,7 +16,6 @@ rule test_download_sra:
             ),
         file_acc=list(itertools.chain.from_iterable(identify_sra_sample().values()))
         )
-
 
 rule test_download_fna:
     input:
