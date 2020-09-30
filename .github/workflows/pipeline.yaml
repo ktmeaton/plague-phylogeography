@@ -80,27 +80,13 @@ jobs:
           python workflow/scripts/slack_log.py --rules test_download_ref,test_download_fna,test_download_sra,test_download_gff,test_download_gbff;
           snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --log-handler-script workflow/scripts/slack_log.py test_download_ref test_download_fna test_download_sra test_download_gff test_download_gbff;
           conda deactivate
-      # Test Eager tsv
-      - name: test eager tsv
-        shell: bash -l {0}
-        run:
-          conda activate default;
-          python workflow/scripts/slack_log.py --rules test_eager_tsv_local,test_eager_tsv_sra;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --log-handler-script workflow/scripts/slack_log.py test_eager_tsv_local test_eager_tsv_sra;
-          conda deactivate
       # Test Eager
-      - name: test eager local
+      - name: test eager
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_eager_local test_eager_sra;
-          conda deactivate
-      # Test Eager
-      - name: test eager sra
-        shell: bash -l {0}
-        run:
-          conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_eager_sra;
+          python workflow/scripts/slack_log.py --rules test_eager_tsv_local,test_eager_tsv_sra,test_eager_local,test_eager_sra;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --log-handler-script workflow/scripts/slack_log.py test_eager_tsv_local test_eager_tsv_sra test_eager_local test_eager_sra;
           conda deactivate
       # Test snippy pairwise
       - name: test snippy pairwise assembly
