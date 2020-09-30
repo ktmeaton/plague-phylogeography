@@ -77,7 +77,8 @@ def identify_sra_sample():
     sra_fetch = cur.execute(config["sqlite_select_command_sra"]).fetchall()
     max_datasets = config["max_datasets_sra"]
     if max_datasets >= (len(sra_fetch) - 1):
-        max_datasets = len(sra_fetch) - 1
+        # This is purposefully different from asm max
+        max_datasets = len(sra_fetch)
     for record in sra_fetch[0:max_datasets]:
         if record:
             file_acc = record[1].split(";")

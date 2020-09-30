@@ -47,7 +47,7 @@ if __name__ != "__main__":
                             "type": "mrkdwn",
                             "text": ":cyclone: Snakemake workflow on *"
                             + node_name
-                            + "* started running the following rules at "
+                            + "* started running the following jobs at "
                             + "*"
                             + current_time
                             + "*.",
@@ -94,7 +94,9 @@ if __name__ != "__main__":
                             "type": "mrkdwn",
                             "text": ":heavy_check_mark: Snakemake workflow on *"
                             + node_name
-                            + "* completed sucessfully at "
+                            + "* completed "
+                            + str(msg["total"])
+                            + " jobs sucessfully at "
                             + "*"
                             + current_time
                             + "*.",
