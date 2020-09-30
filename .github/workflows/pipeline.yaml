@@ -85,7 +85,8 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba test_eager_tsv_local test_eager_tsv_sra;
+          python workflow/scripts/slack_log.py --rules test_eager_tsv_local,test_eager_tsv_sra;
+          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --log-handler-script workflow/scripts/slack_log.py test_eager_tsv_local test_eager_tsv_sra;
           conda deactivate
       # Test Eager
       - name: test eager local
