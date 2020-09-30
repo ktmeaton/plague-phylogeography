@@ -60,7 +60,9 @@ if __name__ == "__main__":
                         "type": "mrkdwn",
                         "text": ":heavy_check_mark: Snakemake workflow on *"
                         + node_name
-                        + "* is starting the following rules:\n"
+                        + "* started the following rules at *"
+                        + current_time
+                        + "*.\n"
                         + "\n".join(["\t\t - " + rule for rule in rules_list]),
                     },
                 },
@@ -77,7 +79,10 @@ if __name__ == "__main__":
                         "type": "mrkdwn",
                         "text": ":heavy_check_mark: Snakemake workflow on *"
                         + node_name
-                        + "* completed the following rules:\n"
+                        + "* completed the following rules at "
+                        + "*"
+                        + current_time
+                        + "*.\n"
                         + "\n".join(["\t\t - " + rule for rule in rules_list]),
                     },
                 },
