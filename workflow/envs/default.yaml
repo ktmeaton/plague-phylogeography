@@ -10,3 +10,5 @@ dependencies:
   - snakemake=5.25.0
   - flask=1.1.2
   - pre-commit=2.6.0
+  - python-dotenv=0.14.0
+  - slackclient=2.9.1

@@ -37,8 +37,6 @@ rule eager:
     final_bam = results_dir + "/eager_{reads_origin}/{biosample}/final_bams/{biosample}.bam"
   wildcard_constraints:
     reads_origin = "(sra|local)",
-  threads:
-    workflow.cores
   conda:
     os.path.join(envs_dir,"eager.yaml")
   log:
@@ -78,8 +76,6 @@ rule snippy_pairwise_assembly:
         snippy_dir = directory(results_dir + "/snippy_pairwise_assembly/{sample}"),
         snp_txt = results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.txt",
         snippy_aln = results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.aligned.fa",
-    threads:
-        2 if workflow.cores >= 2 else workflow.cores
     log:
         os.path.join(logs_dir, "snippy_pairwise_assembly","{sample}.log")
     conda:
@@ -169,4 +165,4 @@ rule snippy_multi:
           --prefix {results_dir}/snippy_multi/snippy-core \
           --mask {results_dir}/snippy_multi/mask.bed \
           --mask-char {config[snippy_mask_char]} \
-          {input.snippy_asm_dir} 2> {log}"
+          {input.snippy_asm_dir} {input.snippy_sra_dir} {input.snippy_local_dir} 2> {log}"
