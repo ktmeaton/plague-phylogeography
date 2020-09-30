@@ -37,7 +37,7 @@ snippy_base_qual : 20
 snippy_map_qual : 30
 snippy_min_frac : 0.9
 snippy_mask_char : "X"
-snippy_missing_data : 50
+snippy_missing_data : 5
 
 # IQTREE
 #iqtree_model = "K3Pu+F+I"
