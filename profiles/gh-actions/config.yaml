@@ -1,3 +1,3 @@
 cores : "2"
 default-resources: [cpus=1, mem_mb=2000, time_min=60]
-resources: [cpus=2, mem_mb=6000]
+resources: [cpus=2, mem_mb=6000, load=100]

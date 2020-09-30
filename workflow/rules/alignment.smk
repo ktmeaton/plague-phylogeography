@@ -37,6 +37,8 @@ rule eager:
     final_bam = results_dir + "/eager_{reads_origin}/{biosample}/final_bams/{biosample}.bam"
   wildcard_constraints:
     reads_origin = "(sra|local)",
+  resources:
+   load=100,
   conda:
     os.path.join(envs_dir,"eager.yaml")
   log:
