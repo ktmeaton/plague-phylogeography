@@ -1,9 +1,10 @@
-# resources
-cores : "4"
-default-resources: [cpus=1, mem_mb=2000, time_min=2]
-resources: [cpus=4, mem_mb=4000, load=100]
-nodes: "1"
-account: "def-briang"
+# Total resources for the entire workflow
+# ex. 4 cpus, 4GB each (total 16GB), on one node
+resources: [cpus=4, mem_mb=16000, load=100, nodes=1]
+# Default resources for a job
+default-resources: [cpus=1, mem_mb=2000, time_min=2, nodes=1, account="def-briang"]
+# Maximum number of jobs to run
+jobs : "10"
 
 # system config
 restart-times: 1
@@ -17,10 +18,11 @@ printshellcmds: False
 shadow-prefix: "/home/keaton/projects/def-briang/keaton/plague-phylogeography"
 
 # Slack integration
-#log-handler-script: "workflow/scripts/slack_log.py"
+log-handler-script: "workflow/scripts/slack_log.py"
 
 # slurm execution
-cpus-per-task: "{resources.cpus}"
-cluster: "sbatch -parsable -t {resources.time_min} -A {account} --cpus-per-task {resources.cpus} --mem-per-cpu={resources.mem_mb} -n {nodes} -o {shadow-prefix}/workflow/logs_slurm/{rule}_{wildcards} -e {shadow-prefix}/workflow/logs_slurm/{rule}_{wildcards}"
+cluster: "sbatch --parsable -t {resources.time_min} -A {resources.account} --cpus-per-task {resources.cpus} --mem-per-cpu={resources.mem_mb} -n {resources.nodes} -o workflow/logs_slurm/{rule}_{wildcards} -e workflow/logs_slurm/{rule}_{wildcards}"
+
+
 
 #cluster-status: "workflow/scripts/slurm_status.py"
