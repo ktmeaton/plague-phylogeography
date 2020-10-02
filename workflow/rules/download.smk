@@ -12,16 +12,16 @@ rule download_sra:
   """
   Download SRA fastq files.
   """
-  message: "Downloading and dumping fastq files for BioSample {wildcards.biosample}."
+  message: "Downloading and dumping fastq files for BioSample {wildcards.sample}."
   output:
-    fastq = results_dir + "/data_sra/{biosample}/{file_acc}_1.fastq.gz"
+    fastq = results_dir + "/data_sra/{sample}/{file_acc}_1.fastq.gz"
   conda:
     os.path.join(envs_dir,"sra.yaml")
   shell:
     "{scripts_dir}/download_sra.sh \
         {project_dir} \
         {results_dir}/data_sra/ \
-        {wildcards.biosample} \
+        {wildcards.sample} \
         {wildcards.file_acc}"
 
 rule download_assembly:

@@ -11,10 +11,10 @@ rule eager_tsv:
     Prep the eager tsv file.
     """
     input:
-        fastq = lambda wildcards: expand(results_dir + "/data_{{reads_origin}}/{{biosample}}/{file_acc}_1.fastq.gz",
-                file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()[wildcards.biosample]),
+        fastq = lambda wildcards: expand(results_dir + "/data_{{reads_origin}}/{{sample}}/{file_acc}_1.fastq.gz",
+                file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()[wildcards.sample]),
     output:
-        eager_tsv = results_dir + "/eager_{reads_origin}/{biosample}/metadata_{biosample}.tsv",
+        eager_tsv = results_dir + "/eager_{reads_origin}/{sample}/metadata_{sample}.tsv",
     wildcard_constraints:
         reads_origin="(sra|local)",
     run:
@@ -25,16 +25,16 @@ rule eager:
   """
   Pre-process and map fastq samples to a reference genome with nf-core/eager.
   """
-  message: "Running the nf-core/eager pipeline for {wildcards.reads_origin} Biosample {wildcards.biosample}."
+  message: "Running the nf-core/eager pipeline for {wildcards.reads_origin} Biosample {wildcards.sample}."
   input:
-    eager_tsv = results_dir + "/eager_{reads_origin}/{biosample}/metadata_{biosample}.tsv",
-    fastq = lambda wildcards: expand(results_dir + "/data_{{reads_origin}}/{{biosample}}/{file_acc}_1.fastq.gz",
-            file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()[wildcards.biosample]),
-    ref_fna = expand(results_dir + "/data_reference/{biosample}.fna",
-              biosample=identify_reference_sample(),
+    eager_tsv = results_dir + "/eager_{reads_origin}/{sample}/metadata_{sample}.tsv",
+    fastq = lambda wildcards: expand(results_dir + "/data_{{reads_origin}}/{{sample}}/{file_acc}_1.fastq.gz",
+            file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()[wildcards.sample]),
+    ref_fna = expand(results_dir + "/data_reference/{sample}.fna",
+              sample=identify_reference_sample(),
               )
   output:
-    final_bam = results_dir + "/eager_{reads_origin}/{biosample}/final_bams/{biosample}.bam"
+    final_bam = results_dir + "/eager_{reads_origin}/{sample}/final_bams/{sample}.bam"
   wildcard_constraints:
     reads_origin = "(sra|local)",
   resources:
@@ -42,14 +42,14 @@ rule eager:
   conda:
     os.path.join(envs_dir,"eager.yaml")
   log:
-    html = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.html"),
-    txt = os.path.join(logs_dir, "eager_{reads_origin}","{biosample}.log"),
+    html = os.path.join(logs_dir, "eager_{reads_origin}","{sample}.html"),
+    txt = os.path.join(logs_dir, "eager_{reads_origin}","{sample}.log"),
   shell:
     "cd {results_dir}/eager_{wildcards.reads_origin}; "
     "nextflow run nf-core/eager -r {config[eager_rev]} \
         -with-report {log.html} \
-        --input {wildcards.biosample}/metadata_{wildcards.biosample}.tsv \
-        --outdir {wildcards.biosample} \
+        --input {wildcards.sample}/metadata_{wildcards.sample}.tsv \
+        --outdir {wildcards.sample} \
         --fasta {input.ref_fna} \
         --clip_readlength {config[eager_clip_readlength]} \
         --preserve5p \
@@ -64,7 +64,7 @@ rule eager:
         --max_cpus {threads} \
         --max_memory {resources.mem_mb}.MB \
         -resume 1> {log.txt}; "
-    "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.biosample}; "
+    "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.sample}; "
 
 # -----------------------------------------------------------------------------#
 rule snippy_pairwise_assembly:
@@ -135,14 +135,14 @@ rule snippy_multi:
         snippy_asm_dir = expand(results_dir + "/snippy_pairwise_assembly/{sample}", sample=identify_assembly_sample()),
         #snippy_sra_dir = expand(results_dir + "/snippy_pairwise_sra/{sample}", sample=identify_sra_sample()),
         #snippy_local_dir = expand(results_dir + "/snippy_pairwise_local/{sample}", sample=identify_local_sample()),
-        ref_fna = expand(results_dir + "/data_reference/{biosample}.fna",
-                  biosample=identify_reference_sample(),
+        ref_fna = expand(results_dir + "/data_reference/{sample}.fna",
+                  sample=identify_reference_sample(),
                   ),
-        inexact = expand(results_dir + "/detect_repeats/{biosample}.inexact.repeats.bed",
-                  biosample=identify_reference_sample(),
+        inexact = expand(results_dir + "/detect_repeats/{sample}.inexact.repeats.bed",
+                  sample=identify_reference_sample(),
                   ),
-        low_complexity = expand(results_dir + "/detect_low_complexity/{biosample}.dustmasker.bed",
-                  biosample=identify_reference_sample(),
+        low_complexity = expand(results_dir + "/detect_low_complexity/{sample}.dustmasker.bed",
+                  sample=identify_reference_sample(),
                   ),
     output:
         report(results_dir + "/snippy_multi/snippy-core.txt",

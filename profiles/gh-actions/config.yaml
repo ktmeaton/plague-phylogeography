@@ -1,15 +1,21 @@
-# resources
-cores : "2"
-default-resources: [cpus=1, mem_mb=2000, time_min=60]
-resources: [cpus=2, mem_mb=6000, load=100]
-
-# system config
+#------------------------------------------------------------------------------#
+# Generic config
+#------------------------------------------------------------------------------#
 restart-times: 1
 latency-wait: 60
 use-conda: True
 conda-frontend: mamba
-rerun-incomplete: True
+rerun-incomplete:  True
 printshellcmds: False
+log-handler-script: "workflow/scripts/slack_log.py"
 
-# Slack integration
-log-handler-script: workflow/scripts/slack_log.py
+#------------------------------------------------------------------------------#
+# System config
+#------------------------------------------------------------------------------#
+# Total resources for the entire workflow
+# ex. 2 cpus, 3GB each (total 6GB), on one node
+resources: [cpus=2, mem_mb=6000, load=100]
+# Default resources for a job
+default-resources: [cpus=1, mem_mb=3000]
+# Maximum number of jobs to run
+jobs : "2"

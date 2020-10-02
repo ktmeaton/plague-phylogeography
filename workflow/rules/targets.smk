@@ -8,9 +8,9 @@ import itertools # Chaining list of lists of file accessions
 
 rule test_download_sra:
     input:
-        expand(results_dir + "/data_sra/{biosample}/{file_acc}_1.fastq.gz",
+        expand(results_dir + "/data_sra/{sample}/{file_acc}_1.fastq.gz",
         zip,
-        biosample=list(itertools.chain.from_iterable(
+        sample=list(itertools.chain.from_iterable(
             [[key] * len(identify_sra_sample()[key]) for key in identify_sra_sample()]
                 )
             ),
@@ -19,26 +19,26 @@ rule test_download_sra:
 
 rule test_download_fna:
     input:
-        expand(results_dir + "/data_assembly/{biosample}.fna",
-        biosample=identify_assembly_sample(),
+        expand(results_dir + "/data_assembly/{sample}.fna",
+        sample=identify_assembly_sample(),
         )
 
 rule test_download_ref:
     input:
-        expand(results_dir + "/data_reference/{biosample}.fna",
-        biosample=identify_reference_sample(),
+        expand(results_dir + "/data_reference/{sample}.fna",
+        sample=identify_reference_sample(),
         )
 
 rule test_download_gbff:
     input:
-        expand(results_dir + "/data_reference/{biosample}.gbff",
-        biosample=identify_reference_sample(),
+        expand(results_dir + "/data_reference/{sample}.gbff",
+        sample=identify_reference_sample(),
         )
 
 rule test_download_gff:
     input:
-        expand(results_dir + "/data_reference/{biosample}.gff",
-        biosample=identify_reference_sample(),
+        expand(results_dir + "/data_reference/{sample}.gff",
+        sample=identify_reference_sample(),
         )
 #------------------------------------------------------------------------------#
 # Alignment
@@ -46,23 +46,23 @@ rule test_download_gff:
 
 rule test_eager_tsv_sra:
     input:
-        expand(results_dir + "/eager_sra/{biosample}/metadata_{biosample}.tsv",
-        biosample=list(identify_sra_sample()))
+        expand(results_dir + "/eager_sra/{sample}/metadata_{sample}.tsv",
+        sample=list(identify_sra_sample()))
 
 rule test_eager_tsv_local:
     input:
-        expand(results_dir + "/eager_local/{biosample}/metadata_{biosample}.tsv",
-        biosample=list(identify_local_sample()))
+        expand(results_dir + "/eager_local/{sample}/metadata_{sample}.tsv",
+        sample=list(identify_local_sample()))
 
 rule test_eager_sra:
     input:
-        expand(results_dir + "/eager_sra/{biosample}/final_bams/{biosample}.bam",
-        biosample=list(identify_sra_sample()))
+        expand(results_dir + "/eager_sra/{sample}/final_bams/{sample}.bam",
+        sample=list(identify_sra_sample()))
 
 rule test_eager_local:
     input:
-        expand(results_dir + "/eager_local/{biosample}/final_bams/{biosample}.bam",
-        biosample=list(identify_local_sample()))
+        expand(results_dir + "/eager_local/{sample}/final_bams/{sample}.bam",
+        sample=list(identify_local_sample()))
 
 rule test_snippy_pairwise_assembly:
     input:
@@ -87,13 +87,13 @@ rule test_snippy_multi:
 
 rule test_detect_repeats:
     input:
-        expand(results_dir + "/detect_repeats/{biosample}.inexact.repeats.bed",
-        biosample=identify_reference_sample())
+        expand(results_dir + "/detect_repeats/{sample}.inexact.repeats.bed",
+        sample=identify_reference_sample())
 
 rule test_detect_low_complexity:
     input:
-        expand(results_dir + "/detect_low_complexity/{biosample}.dustmasker.bed",
-        biosample=identify_reference_sample())
+        expand(results_dir + "/detect_low_complexity/{sample}.dustmasker.bed",
+        sample=identify_reference_sample())
 
 rule test_snippy_multi_extract:
     input:
