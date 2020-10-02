@@ -37,7 +37,7 @@ if __name__ == "__main__":
                     "type": "mrkdwn",
                     "text": ":exclamation: *"
                     + node_name
-                    + "* is testing slack integration at "
+                    + "* tested slack integration at "
                     + "*"
                     + current_time
                     + "*.",
