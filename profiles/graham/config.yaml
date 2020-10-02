@@ -1,22 +1,34 @@
 # resources
 cores : "4"
-default-resources: [cpus=1, mem_mb=2000, time_min=60]
+default-resources: [cpus=1, mem_mb=2000, time_min=2]
 resources: [cpus=4, mem_mb=4000, load=100]
+nodes: "1"
+account: "def-briang"
 
 # system config
 restart-times: 1
 latency-wait: 60
 use-conda: True
 conda-frontend: mamba
-rerun-incomplete: True
+rerun-incomplete:  True
 printshellcmds: False
 
 # system paths
-shadow-prefix: /home/keaton/projects/def-briang/keaton/plague-phylogeography
+shadow-prefix: "/home/keaton/projects/def-briang/keaton/plague-phylogeography"
 
 # Slack integration
-log-handler-script: workflow/scripts/slack_log.py
+#log-handler-script: "workflow/scripts/slack_log.py"
 
 # slurm execution
-cluster: "sbatch -t {resources.time_min} --mem={resources.mem_mb} -c {resources.cpus} -o /home/keaton/projects/def-briang/keaton/plague-phylogeography/workflow/logs_slurm/{rule}_{wildcards} -e /home/keaton/projects/def-briang/keaton/plague-phylogeography/workflow/logs_slurm/{rule}_{wildcards}"
-cluster-status: workflow/scripts/slurm_status.py
+cpus-per-task: "{resources.cpus}"
+cluster: "sbatch \
+  --parsable \
+  -t {resources.time_min} \
+  -A {account} \
+  --cpus-per-task {resources.cpus} \
+  --mem-per-cpu={resources.mem_mb} \
+  -n {nodes} \
+  -o {shadow-prefix}/workflow/logs_slurm/{rule}_{wildcards} \
+  -e {shadow-prefix}/workflow/logs_slurm/{rule}_{wildcards}"
+
+#cluster-status: "workflow/scripts/slurm_status.py"

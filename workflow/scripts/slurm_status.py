@@ -2,7 +2,9 @@
 import subprocess
 import sys
 
-jobid = sys.argv[1]
+args = sys.argv[:]
+jobid_ind = args.index("job") + 1
+jobid = args[jobid_ind]
 
 output = str(subprocess.check_output("sacct -j %s --format State --noheader | head -1 | awk '{print $1}'" % jobid, shell=True).strip())
 
