@@ -2,6 +2,7 @@ results/*
 test/*
 sra/*
 workflow/logs/*
+workflow/logs_slurm/*
 workflow/scripts/*pycache*
 .snakemake/*
 .nextflow*
