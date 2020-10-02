@@ -18,4 +18,4 @@ shadow-prefix: /home/keaton/projects/def-briang/keaton/plague-phylogeography
 log-handler-script: workflow/scripts/slack_log.py
 
 # slurm execution
-cluster: "sbatch -p normal -t {resources.time_min} --mem={resources.mem_mb} -c {resources.cpus} -o /home/keaton/projects/def-briang/keaton/plague-phylogeography/workflow/logs_slurm/{rule}_{wildcards} -e /home/keaton/projects/def-briang/keaton/plague-phylogeography/workflow/logs_slurm/{rule}_{wildcards}"
+cluster: "sbatch -t {resources.time_min} --mem={resources.mem_mb} -c {resources.cpus} -o /home/keaton/projects/def-briang/keaton/plague-phylogeography/workflow/logs_slurm/{rule}_{wildcards} -e /home/keaton/projects/def-briang/keaton/plague-phylogeography/workflow/logs_slurm/{rule}_{wildcards}"
