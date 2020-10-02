@@ -46,7 +46,9 @@ rule eager:
     txt = os.path.join(logs_dir, "eager_{reads_origin}","{sample}.log"),
   shell:
     "cd {results_dir}/eager_{wildcards.reads_origin}; "
-    "nextflow run nf-core/eager -r {config[eager_rev]} \
+    "nextflow -C {config_dir}/eager.config \
+        run nf-core/eager -r {config[eager_rev]} \
+        --igenomes_ignore \
         -with-report {log.html} \
         --input {wildcards.sample}/metadata_{wildcards.sample}.tsv \
         --outdir {wildcards.sample} \
