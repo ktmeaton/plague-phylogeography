@@ -64,7 +64,7 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --conda-create-envs-only all;
+          snakemake --profile profiles/gh-actions --conda-create-envs-only all;
           conda deactivate;
 
       #  Test pipeline
@@ -72,5 +72,5 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake  --profile profiles/gh-actions --use-conda --conda-frontend mamba --report workflow/report/report.html help;
+          snakemake --profile profiles/gh-actions --report workflow/report/report.html help;
           conda deactivate;
