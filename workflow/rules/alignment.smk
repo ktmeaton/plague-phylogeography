@@ -108,8 +108,6 @@ rule snippy_pairwise_bam:
         snippy_dir = directory(results_dir + "/snippy_pairwise_{reads_origin}/{sample}"),
         snp_txt = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.txt",
         snippy_aln = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.aligned.fa",
-    threads:
-        2 if workflow.cores >= 2 else workflow.cores
     log:
         os.path.join(logs_dir, "snippy_pairwise_{reads_origin}","{sample}.log")
     conda:
