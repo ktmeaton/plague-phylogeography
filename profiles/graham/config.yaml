@@ -22,5 +22,5 @@ jobs : "10"
 # Where to put the .snakemake directory
 shadow-prefix: "/home/keaton/projects/def-briang/keaton/plague-phylogeography"
 # slurm execution
-cluster: "sbatch --parsable -t {resources.time_min} -A {resources.account} --cpus-per-task {resources.cpus} --mem-per-cpu={resources.mem_mb} -o workflow/logs_slurm/{rule}_%j.out -e workflow/logs_slurm/{rule}_%j.err --job-name {rule} --export=ALL,NXF_OPTS='-Xms50m -Xmx500m'"
+cluster: "sbatch --parsable -t {resources.time_min} -A {resources.account} --cpus-per-task {resources.cpus} --mem-per-cpu={resources.mem_mb} -o workflow/logs_slurm/{rule}_%j.out -e workflow/logs_slurm/{rule}_%j.err --job-name {rule} --export=ALL,NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m',NXF_OFFLINE='TRUE'"
 cluster-status: "workflow/scripts/slurm_status.py"
