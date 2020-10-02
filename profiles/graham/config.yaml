@@ -21,14 +21,6 @@ shadow-prefix: "/home/keaton/projects/def-briang/keaton/plague-phylogeography"
 
 # slurm execution
 cpus-per-task: "{resources.cpus}"
-cluster: "sbatch \
-  --parsable \
-  -t {resources.time_min} \
-  -A {account} \
-  --cpus-per-task {resources.cpus} \
-  --mem-per-cpu={resources.mem_mb} \
-  -n {nodes} \
-  -o {shadow-prefix}/workflow/logs_slurm/{rule}_{wildcards} \
-  -e {shadow-prefix}/workflow/logs_slurm/{rule}_{wildcards}"
+cluster: "sbatch -parsable -t {resources.time_min} -A {account} --cpus-per-task {resources.cpus} --mem-per-cpu={resources.mem_mb} -n {nodes} -o {shadow-prefix}/workflow/logs_slurm/{rule}_{wildcards} -e {shadow-prefix}/workflow/logs_slurm/{rule}_{wildcards}"
 
 #cluster-status: "workflow/scripts/slurm_status.py"
