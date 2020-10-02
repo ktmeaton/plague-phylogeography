@@ -5,3 +5,4 @@ workflow/logs/*
 .snakemake/*
 .nextflow*
 .nextflow/*
+.env

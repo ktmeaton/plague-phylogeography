@@ -1,8 +1,8 @@
 channels:
-  - defaults
   - bioconda
   - conda-forge
   - anaconda
+  - defaults
 dependencies:
   - bioconda::rename=1.601
   - conda-forge::pymdown-extensions=7.1

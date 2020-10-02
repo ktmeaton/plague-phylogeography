@@ -2,8 +2,8 @@ name: default
 channels:
   - bioconda
   - conda-forge
-  - defaults
   - anaconda
+  - defaults
 dependencies:
   - python=3.8
   - sqlite=3.31.1
