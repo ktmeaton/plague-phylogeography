@@ -89,15 +89,14 @@ Dependencies
 
 
 * `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`_ (\ `v4.8.3 <https://repo.anaconda.com/miniconda/Miniconda3-py37_4.8.3-Linux-x86_64.sh>`_\ )
-* Java Runtime Environment 11 (default-jre, `openjdk <https://github.com/openjdk/jdk>`_\ )
-* `Nextflow <https://www.nextflow.io/>`_ (\ `v20.01.0 <https://github.com/nextflow-io/nextflow/releases/download/v20.01.0/nextflow>`_\ )
+* Linux OS
 
 Clone Repository
 ^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
-   git clone git clone https://github.com/ktmeaton/plague-phylogeography.git
+   git clone https://github.com/ktmeaton/plague-phylogeography.git
    cd plague-phylogeography
 
 Create Conda Environment
@@ -106,7 +105,22 @@ Create Conda Environment
 .. code-block:: bash
 
    conda install -c conda-forge mamba
-   mamba env create -f environment.yaml
+   mamba env create -f workflow/envs/default.yaml
+   conda activate default
+   conda config --add channels bioconda
+   conda config --add channels conda-forge
+
+Usage
+-----
+
+.. code-block:: bash
+
+   snakemake \
+     --use-conda \
+     --conda-frontend mamba \
+     --profile profiles/gh-actions \
+     --report workflow/report/report.html  \
+     help
 
 Contributing
 ------------
@@ -116,5 +130,5 @@ Testing with `CodeSpaces <https://ktmeaton-plague-phylogeography-wg4r.github.dev
 Credits
 -------
 
-Author: `Katherine Eaton <https://github.com/ktmeaton>`_ (ktmeaton@gmail.com)\ :raw-html-m2r:`<br>`
+Author: `Katherine Eaton <https://github.com/ktmeaton>`_\ :raw-html-m2r:`<br>`
 Logo: Emil Karpinski, `Katherine Eaton <https://github.com/ktmeaton>`_  
