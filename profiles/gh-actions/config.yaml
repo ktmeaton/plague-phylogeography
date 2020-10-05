@@ -14,8 +14,8 @@ log-handler-script: "workflow/scripts/slack_log.py"
 #------------------------------------------------------------------------------#
 # Total resources for the entire workflow
 # ex. 2 cpus, 3GB each (total 6GB), on one node
-resources: [cpus=2, mem_mb=6000, load=100]
+resources: [cpus=2, mem_mb=6000]
 # Default resources for a job
-default-resources: [cpus=1, mem_mb=3000]
+default-resources: [cpus=1, mem_mb=3000, time_min=60]
 # Maximum number of jobs to run
 jobs : "2"

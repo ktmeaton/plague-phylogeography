@@ -37,21 +37,19 @@ rule eager:
     final_bam = results_dir + "/eager_{reads_origin}/{sample}/final_bams/{sample}.bam"
   wildcard_constraints:
     reads_origin = "(sra|local)",
-  resources:
-   load=100,
   conda:
     os.path.join(envs_dir,"eager.yaml")
   log:
     html = os.path.join(logs_dir, "eager_{reads_origin}","{sample}.html"),
     txt = os.path.join(logs_dir, "eager_{reads_origin}","{sample}.log"),
   shell:
-    "cd {results_dir}/eager_{wildcards.reads_origin}; "
+    "cd {results_dir}/eager_{wildcards.reads_origin}; cd {wildcards.sample}; "
     "nextflow -C {config_dir}/eager.config \
         run nf-core/eager -r {config[eager_rev]} \
         --igenomes_ignore \
         -with-report {log.html} \
-        --input {wildcards.sample}/metadata_{wildcards.sample}.tsv \
-        --outdir {wildcards.sample} \
+        --input metadata_{wildcards.sample}.tsv \
+        --outdir . \
         --fasta {input.ref_fna} \
         --clip_readlength {config[eager_clip_readlength]} \
         --preserve5p \
@@ -63,8 +61,9 @@ rule eager:
         --bam_mapping_quality_threshold {config[snippy_map_qual]} \
         --bam_discard_unmapped \
         --bam_unmapped_type discard \
-        --max_cpus {threads} \
+        --max_cpus {resources.cpus} \
         --max_memory {resources.mem_mb}.MB \
+        --max_time {resources.time_min}m \
         -resume 1> {log.txt}; "
     "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.sample}; "
 
