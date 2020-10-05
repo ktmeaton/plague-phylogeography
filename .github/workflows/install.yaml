@@ -58,6 +58,10 @@ jobs:
         shell: bash -l {0}
         run:
           mamba env create -f workflow/envs/default.yaml;
+      # Set up .env file with secrets
+      - name: create env file
+        run:
+          echo "export SLACK_TOKEN=${{ secrets.SLACK_GH_ACTIONS }}" > .env
       #------------------------------------------------------------------------#
       #  Install workflow conda environments
       - name: test conda install
