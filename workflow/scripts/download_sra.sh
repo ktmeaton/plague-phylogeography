@@ -53,10 +53,6 @@ fi;
 mkdir -p ${OUTDIR}/
 mkdir -p ${OUTDIR}/${BIOSAMPLE_ACC}
 
-validate='false'
-# Keep trying to download until valid file is acquired
-while [ $validate == 'false' ]
-do
 # Download fastq files from the SRA
 echo "SRA accession ${SRA_ACC} download started for Biosample ${BIOSAMPLE_ACC}."
 fastq-dump \
@@ -67,17 +63,11 @@ fastq-dump \
   # Validate sra file
   #ls -l ${CACHE_PATH}/sra/${SRA_ACC}.sra*
   validate_str=`vdb-validate ${CACHE_PATH}/sra/${SRA_ACC}.sra* 2>&1`
-  #echo ${validate_str}
+  echo ${validate_str}
   if [[ ${validate_str} != *"corrupt"* ]]; then
-    validate='true'
+    echo "SRA accession ${SRA_ACC} download completed for Biosample ${BIOSAMPLE_ACC}."
+    mv ${OUTDIR}/${SRA_ACC}*.fastq.gz ${OUTDIR}/${BIOSAMPLE_ACC};
   else
     echo "Removing ${SRA_ACC} from the SRA cache due to corrupt file."
     rm ${CACHE_PATH}/sra/${SRA_ACC}.sra*
-    echo "Restarting ${SRA_ACC} download."
   fi
-done
-
-echo "SRA accession ${SRA_ACC} download completed for Biosample ${BIOSAMPLE_ACC}."
-
-
-mv ${OUTDIR}/${SRA_ACC}*.fastq.gz ${OUTDIR}/${BIOSAMPLE_ACC};
