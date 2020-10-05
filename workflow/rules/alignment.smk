@@ -17,6 +17,8 @@ rule eager_tsv:
         eager_tsv = results_dir + "/eager_{reads_origin}/{sample}/metadata_{sample}.tsv",
     wildcard_constraints:
         reads_origin="(sra|local)",
+    resources:
+        cpus = 1,
     run:
         shell("python {scripts_dir}/eager_tsv.py --files {input.fastq} --organism \"{config[organism]}\" --tsv {output.eager_tsv}")
 
@@ -156,6 +158,8 @@ rule snippy_multi:
         os.path.join(logs_dir, "snippy_multi","snippy-core.log")
     conda:
         os.path.join(envs_dir,"snippy.yaml")
+    resources:
+        cpus = 1,
     shell:
         # Merge masking beds
         "cat {input.inexact} {input.low_complexity} | \

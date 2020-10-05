@@ -17,12 +17,16 @@ rule download_sra:
     fastq = results_dir + "/data_sra/{sample}/{file_acc}_1.fastq.gz"
   conda:
     os.path.join(envs_dir,"sra.yaml")
+  log:
+    os.path.join(logs_dir, "download_sra","{sample}_{file_acc}.log"),
+  resources:
+    cpus = 1,
   shell:
     "{scripts_dir}/download_sra.sh \
         {project_dir} \
         {results_dir}/data_sra/ \
         {wildcards.sample} \
-        {wildcards.file_acc}"
+        {wildcards.file_acc} 1> {log}"
 
 rule download_assembly:
     """
@@ -36,6 +40,8 @@ rule download_assembly:
     wildcard_constraints:
         ext = "(fna|gbff|gff)",
 	    dir = "(reference|assembly)",
+    resources:
+        cpus = 1,
     run:
         if wildcards.dir == "reference":
             samples = [identify_reference_ftp()]

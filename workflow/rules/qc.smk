@@ -18,7 +18,7 @@ rule qualimap:
         os.path.join(logs_dir, "qualimap_{reads_origin}/{sample}.log")
     shell:
         "samtools view -b -q {config[snippy_map_qual]} {input.snippy_dir}/{wildcards.sample}_snippy.bam > {output.bamq}; "
-        "qualimap bamqc -bam {output.bamq} --skip-duplicated -c -outformat 'HTML' -outdir {output.dir} -nt {threads} 1> {log}; "
+        "qualimap bamqc -bam {output.bamq} --skip-duplicated -c -outformat 'HTML' -outdir {output.dir} -nt {resources.cpus} 1> {log}; "
 
 
 rule multiqc:
@@ -39,5 +39,7 @@ rule multiqc:
         os.path.join(envs_dir,"qc.yaml")
     log:
         os.path.join(logs_dir, "multiqc/multiqc.log")
+    resources:
+        cpus = 1,
     shell:
         "multiqc -c {config_dir}/multiqc.yaml --outdir {output.dir} --force {input.qualimap_asm_dir} {input.qualimap_local_dir} {input.qualimap_sra_dir} 2> {log}"

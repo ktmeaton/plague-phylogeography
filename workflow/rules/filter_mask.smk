@@ -12,6 +12,8 @@ rule detect_repeats:
         logs_dir + "/detect_repeats/{sample}.log",
     conda:
         os.path.join(envs_dir,"filter.yaml")
+    resources:
+        cpus = 1,
     shell:
         "{scripts_dir}/detect_repeats.sh \
           {input.fna} \
@@ -30,6 +32,8 @@ rule detect_low_complexity:
         intervals = results_dir + "/detect_low_complexity/{sample}.dustmasker.intervals",
     conda:
         os.path.join(envs_dir,"eager.yaml")
+    resources:
+        cpus = 1,
     shell:
         "dustmasker -in {input.fna} -outfmt interval > {output.intervals}; "
         "{scripts_dir}/intervals2bed.sh {output.intervals} {output.bed}"
@@ -46,6 +50,8 @@ rule snippy_multi_extract:
                       locus_name=config["reference_locus_name"]),
     conda:
         os.path.join(envs_dir,"filter.yaml")
+    resources:
+        cpus = 1,
     shell:
         "{scripts_dir}/extract_locus.sh \
           {input.full_aln} \
@@ -72,6 +78,8 @@ rule snippy_multi_filter:
         missing = float(config["snippy_missing_data"] / 100)
     conda:
         os.path.join(envs_dir,"filter.yaml")
+    resources:
+        cpus = 1,
     shell:
         "if [[ {config[snippy_missing_data]} > 0 ]]; then "
         "  python {scripts_dir}/filter_sites.py --fasta {input.full_aln} --missing {params.missing} --output {output.filter_snp_aln} --log {log}; "
