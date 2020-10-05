@@ -14,13 +14,13 @@ log-handler-script: "workflow/scripts/slack_log.py"
 #------------------------------------------------------------------------------#
 # Total resources for the entire workflow
 # ex. 4 cpus, 4GB each (total 16GB), on one node
-resources: [cpus=2, mem_mb=8000]
+resources: [cpus=4, mem_mb=8000]
 # Default resources for a job
-default-resources: [cpus=1, mem_mb=2000, time_min=20, account="def-briang"]
+default-resources: [cpus=1, mem_mb=2000, time_min=10, account="def-briang"]
 # Maximum number of jobs to run
 jobs : "10"
 # Where to put the .snakemake directory
-shadow-prefix: "/home/keaton/projects/def-briang/keaton/plague-phylogeography"
+shadow-prefix: "/scratch/keaton/plague-phylogeography"
 # slurm execution
 cluster: "sbatch --parsable -t {resources.time_min} -A {resources.account} --cpus-per-task {resources.cpus} --mem-per-cpu={resources.mem_mb} -o workflow/logs_slurm/{rule}_%j.out -e workflow/logs_slurm/{rule}_%j.err --job-name {rule} --export=ALL,NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m',NXF_OFFLINE='TRUE'"
 cluster-status: "workflow/scripts/slurm_status.py"

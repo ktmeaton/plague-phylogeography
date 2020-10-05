@@ -96,7 +96,7 @@ rule snippy_pairwise_assembly:
           --minfrac {config[snippy_min_frac]} \
           --basequal {config[snippy_base_qual]} \
           --force \
-          --cpus {threads} \
+          --cpus {resources.cpus} \
           --report 2> {log};"
 
 
@@ -126,7 +126,7 @@ rule snippy_pairwise_bam:
           --minfrac {config[snippy_min_frac]} \
           --basequal {config[snippy_base_qual]} \
           --force \
-          --cpus {threads} \
+          --cpus {resources.cpus} \
           --report 2> {log};"
 
 # -----------------------------------------------------------------------------#

@@ -26,7 +26,7 @@ rule iqtree:
     shell:
         "iqtree \
             -s {input.snp_aln} \
-            --threads-max {threads} \
+            --threads-max {resources.cpus} \
             -nt AUTO \
             -o {config[iqtree_outgroup]} \
             -seed {params.seed} \
