@@ -81,7 +81,7 @@ rule merge_snp_density:
     conda:
         os.path.join(envs_dir,"filter.yaml")
     shell:
-        "cat {input.inexact} {input.low_complexity} {input.snp_density} | \
+        "cat {input.asm} {input.sra} {input.local} | \
           sort -k1,1 -k2,2n | \
           bedtools merge > {output.bed}; "
 
