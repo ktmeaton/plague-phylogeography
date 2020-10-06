@@ -104,7 +104,7 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions merge_snp_density
+          snakemake --profile profiles/gh-actions merge_snp_density;
           conda deactivate
       # Test snippy multi
       - name: test snippy multi
