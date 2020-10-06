@@ -57,6 +57,8 @@ rule detect_snp_density:
         os.path.join(envs_dir,"filter.yaml")
     log:
       os.path.join(logs_dir, "detect_snp_density","{reads_origin}","{sample}.log"),
+    resources:
+        cpus = 1,
     shell:
         "{scripts_dir}/detect_snp_density.sh {input.vcf} {output.snpden} {config[snippy_snp_density]} 2> {log}"
 
@@ -80,6 +82,8 @@ rule merge_snp_density:
               density=config["snippy_snp_density"])
     conda:
         os.path.join(envs_dir,"filter.yaml")
+    resources:
+        cpus = 1,
     shell:
         "cat {input.asm} {input.sra} {input.local} | \
           sort -k1,1 -k2,2n | \

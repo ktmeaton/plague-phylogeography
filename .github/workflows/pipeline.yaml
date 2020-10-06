@@ -83,42 +83,49 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --log-handler-script workflow/scripts/slack_log.py test_download_ref test_download_fna test_download_sra test_download_gff test_download_gbff;
+          snakemake --profile profiles/gh-actions test_download_ref test_download_fna test_download_sra test_download_gff test_download_gbff;
           conda deactivate
       # Test Eager
       - name: test eager
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --log-handler-script workflow/scripts/slack_log.py test_eager_tsv_local test_eager_tsv_sra test_eager_local test_eager_sra;
+          snakemake --profile profiles/gh-actions test_eager_tsv_local test_eager_tsv_sra test_eager_local test_eager_sra;
           conda deactivate
       # Test snippy
       - name: test snippy pairwise
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --log-handler-script workflow/scripts/slack_log.py test_snippy_pairwise_assembly test_snippy_pairwise_bam_sra test_snippy_pairwise_bam_local;
+          snakemake --profile profiles/gh-actions test_snippy_pairwise_assembly test_snippy_pairwise_bam_sra test_snippy_pairwise_bam_local;
+          conda deactivate
+      # Test snippy
+      - name: test merge snp density
+        shell: bash -l {0}
+        run:
+          conda activate default;
+          snakemake --profile profiles/gh-actions merge_snp_density
           conda deactivate
       # Test snippy multi
       - name: test snippy multi
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --log-handler-script workflow/scripts/slack_log.py  test_snippy_multi test_snippy_multi_filter;
+          snakemake --profile profiles/gh-actions test_snippy_multi test_snippy_multi_filter;
           conda deactivate
       # Test IQTREE
       - name: test iqtree
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --log-handler-script workflow/scripts/slack_log.py  test_iqtree;
+          snakemake --profile profiles/gh-actions test_iqtree;
           conda deactivate
       # Test IQTREE
       - name: test multiqc
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --use-conda --conda-frontend mamba --log-handler-script workflow/scripts/slack_log.py  test_multiqc;
+          snakemake --profile profiles/gh-actions test_multiqc;
           conda deactivate
       # Test Report Generation
       - name: test report

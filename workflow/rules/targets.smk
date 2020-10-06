@@ -83,7 +83,9 @@ rule test_snippy_multi:
     input:
         results_dir + "/snippy_multi/snippy-core.full.aln"
 
+#------------------------------------------------------------------------------#
 # Filtering
+#------------------------------------------------------------------------------#
 
 rule test_detect_repeats:
     input:
@@ -109,6 +111,8 @@ rule test_snippy_multi_filter:
     input:
         expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",
         missing_data = config["snippy_missing_data"])
+
+# merge_snp_density
 #------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#
