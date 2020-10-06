@@ -1,7 +1,7 @@
 import os
 
 
-ruleorder: detect_snp_density > snippy_pairwise_assembly
+#ruleorder: detect_snp_density > snippy_pairwise_assembly
 
 #------------------------------------------------------------------------------#
 rule detect_repeats:
@@ -9,11 +9,13 @@ rule detect_repeats:
     Detect in-exact repeats in reference genome with mummer and convert the identified regions file to bed format.
     """
     input:
-        fna = results_dir + "/data_reference/{sample}.fna",
+        fna = results_dir + "/data/{reads_origin}/{sample}.fna",
     output:
-        inexact = results_dir + "/detect_repeats/{sample}.inexact.repeats.bed",
+        inexact = results_dir + "/detect_repeats/{reads_origin}/{sample}.inexact.repeats.bed",
+    wildcard_constraints:
+        reads_origin = "(refernce|assembly)",
     log:
-        logs_dir + "/detect_repeats/{sample}.log",
+        logs_dir + "/detect_repeats/{reads_origin}/{sample}.log",
     conda:
         os.path.join(envs_dir,"filter.yaml")
     resources:
@@ -21,7 +23,7 @@ rule detect_repeats:
     shell:
         "{scripts_dir}/detect_repeats.sh \
           {input.fna} \
-          {results_dir}/detect_repeats \
+          {results_dir}/detect_repeats/{wildcards.reads_origin} \
           {config[detect_repeats_length]} \
           {config[detect_repeats_threshold]} 2> {log}; "
 
@@ -31,10 +33,12 @@ rule detect_low_complexity:
     Detect low complexity regions with dustmasker and convert the identified regions file to bed format.
     """
     input:
-        fna = results_dir + "/data_reference/{sample}.fna",
+        fna = results_dir + "/data/{reads_origin}/{sample}.fna",
     output:
-        bed = results_dir + "/detect_low_complexity/{sample}.dustmasker.bed",
-        intervals = results_dir + "/detect_low_complexity/{sample}.dustmasker.intervals",
+        bed = results_dir + "/detect_low_complexity/{reads_origin}/{sample}.dustmasker.bed",
+        intervals = results_dir + "/detect_low_complexity/{reads_origin}/{sample}.dustmasker.intervals",
+    wildcard_constraints:
+        reads_origin = "(refernce|assembly)",
     conda:
         os.path.join(envs_dir,"eager.yaml")
     resources:
@@ -49,10 +53,12 @@ rule detect_snp_density:
     Detect regions of high SNP density.
     """
     input:
-        vcf = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.subs.vcf",
+        vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}_snippy.subs.vcf",
     output:
         snpden = expand(results_dir + "/detect_snp_density/{{reads_origin}}/{{sample}}_snippy.subs.snpden{density}",
                  density=config["snippy_snp_density"])
+    wildcard_constraints:
+        reads_origin = "(assembly|sra|local)",
     conda:
         os.path.join(envs_dir,"filter.yaml")
     log:

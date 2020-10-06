@@ -83,21 +83,21 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions test_download_ref test_download_fna test_download_sra test_download_gff test_download_gbff;
+          snakemake --profile profiles/gh-actions test_download_reference test_download_assembly test_download_sra test_download_gff test_download_gbff;
           conda deactivate
       # Test Eager
       - name: test eager
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions test_eager_tsv_local test_eager_tsv_sra test_eager_local test_eager_sra;
+          snakemake --profile profiles/gh-actions test_eager_local test_eager_sra;
           conda deactivate
       # Test snippy
       - name: test snippy pairwise
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions test_snippy_pairwise_assembly test_snippy_pairwise_bam_sra test_snippy_pairwise_bam_local;
+          snakemake --profile profiles/gh-actions test_snippy_pairwise_assembly test_snippy_pairwise_sra test_snippy_pairwise_local;
           conda deactivate
       # Test snippy
       - name: test merge snp density

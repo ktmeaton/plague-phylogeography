@@ -5,8 +5,8 @@ READS_ORIGIN=$2
 BIOSAMPLE=$3
 
 # Rename deduplication bam for snippy pairwise RG
-SAMPLE_DIR=${RESULTS_DIR}/eager_${READS_ORIGIN}/${BIOSAMPLE}
-FINAL_DIR=${RESULTS_DIR}/eager_${READS_ORIGIN}/${BIOSAMPLE}/final_bams
+SAMPLE_DIR=${RESULTS_DIR}/eager/${READS_ORIGIN}/${BIOSAMPLE}
+FINAL_DIR=${RESULTS_DIR}/eager/${READS_ORIGIN}/${BIOSAMPLE}/final_bams
 mkdir -p ${FINAL_DIR};
 if [[ -d ${SAMPLE_DIR}/merged_bams/ ]]; then
   mergedBam=`ls ${SAMPLE_DIR}/merged_bams/*/*.bam`;

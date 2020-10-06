@@ -52,7 +52,6 @@ report: report_dir + "/workflow.rst"
 
 localrules:
     download_assembly,
-    eager_tsv,
 
 # -----------------------------------------------------------------------------#
 # Main Target                                                                  #

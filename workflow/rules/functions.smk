@@ -93,7 +93,7 @@ def identify_sra_sample():
 def identify_local_sample():
     """Parse the local input directory for sample names."""
     local_sample_dict = {}
-    data_dir = os.path.join(results_dir, "data_local")
+    data_dir = os.path.join(results_dir, "data", "local")
     for dir in os.listdir(data_dir):
         sample_dir = os.path.join(data_dir, dir)
         for file in os.listdir(sample_dir):
