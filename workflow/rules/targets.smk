@@ -94,12 +94,13 @@ rule test_detect_snp_density:
 
 rule test_snippy_multi_extract:
     input:
-        expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.aln",
+        expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.full.aln",
         locus_name=config["reference_locus_name"]),
 
 rule test_snippy_multi_filter:
     input:
-        expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",
+        expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.full.filter{missing_data}.aln",
+        locus_name=config["reference_locus_name"],
         missing_data = config["snippy_missing_data"])
 
 # merge_snp_density
@@ -108,7 +109,8 @@ rule test_snippy_multi_filter:
 #------------------------------------------------------------------------------#
 rule test_iqtree:
     input:
-        expand(results_dir + "/iqtree/iqtree.core-filter{missing_data}.treefile",
+        expand(results_dir + "/iqtree/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+        locus_name=config["reference_locus_name"],
         missing_data = config["snippy_missing_data"])
 
 #------------------------------------------------------------------------------#

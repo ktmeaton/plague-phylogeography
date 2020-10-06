@@ -39,7 +39,7 @@ done
 
 #--------Create new alignment from extracted sequences, rename headers--------#
 extension="${IN_FASTA_FILE##*.}"
-outfile="${IN_FASTA_FILE%%.*}_${LOCUS_NAME}.${extension}"
+outfile="${IN_FASTA_FILE%%.*}_${LOCUS_NAME}.full.${extension}"
 bedtools getfasta -fi $IN_FASTA_FILE -fo $outfile -bed $INDIR/extract_${LOCUS_NAME}.bed
 # Remove the coordinates added to each header name
 sed -i "s/:$LOCUS_START-$LOCUS_END//g" $outfile

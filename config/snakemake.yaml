@@ -37,7 +37,7 @@ snippy_base_qual : 20
 snippy_map_qual : 30
 snippy_min_frac : 0.9
 snippy_mask_char : "X"
-snippy_missing_data : 5
+snippy_missing_data : 0
 snippy_snp_density : 10
 
 # IQTREE

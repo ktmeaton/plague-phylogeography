@@ -103,7 +103,7 @@ rule snippy_multi_extract:
     input:
         full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
     output:
-        extract_aln = expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.aln",
+        extract_aln = expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.full.aln",
                       locus_name=config["reference_locus_name"]),
     conda:
         os.path.join(envs_dir,"filter.yaml")
@@ -123,14 +123,16 @@ rule snippy_multi_filter:
     Filter a multiple alignment for missing data.
     """
     input:
-        full_aln = expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.aln",
+        full_locus_aln = expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.full.aln",
                    locus_name=config["reference_locus_name"]),
     output:
-        filter_snp_aln = expand(results_dir + "/snippy_multi/snippy-core.filter{missing_data}.aln",
-                            missing_data = config["snippy_missing_data"]),
+        filter_snp_aln = expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
+                         missing_data = config["snippy_missing_data"],
+                         locus_name=config["reference_locus_name"]),
     log:
-        expand(logs_dir + "/snippy_multi/snippy-core.filter{missing_data}.log",
-                               missing_data = config["snippy_missing_data"]),
+        expand(logs_dir + "/snippy_multi/snippy-core_{locus_name}.filter{missing_data}.log",
+        locus_name=config["reference_locus_name"],
+        missing_data = config["snippy_missing_data"]),
     params:
         missing = float(config["snippy_missing_data"] / 100)
     conda:
@@ -139,7 +141,8 @@ rule snippy_multi_filter:
         cpus = 1,
     shell:
         "if [[ {config[snippy_missing_data]} > 0 ]]; then "
-        "  python {scripts_dir}/filter_sites.py --fasta {input.full_aln} --missing {params.missing} --output {output.filter_snp_aln} --log {log}; "
+        # Generate an full alignment of the locus, filtering out missing data, retaining invariants
+        "  python {scripts_dir}/filter_sites.py --fasta {input.full_locus_aln} --missing {params.missing} --output {output.filter_snp_aln} --log {log}; "
         "else "
-        "snp-sites -m -c -o {output.filter_snp_aln} {input.full_aln}; "
+        "  snp-sites -m -c -o {output.filter_snp_aln} {input.full_locus_aln}; "
         "fi; "
