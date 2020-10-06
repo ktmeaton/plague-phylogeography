@@ -60,22 +60,23 @@ rule snippy_pairwise:
   Peform a pairwise alignment of assemblies to the reference genome.
   """
     input:
-        data = expand(results_dir + "/{dir}/{{reads_origin}}/{{sample}}.{{ext}}",
-                  dir="data" if "{wildcards.reads_origin}" == "assembly" else "eager"),
-        ref = expand(results_dir + "/data/reference/{reference}.gbff", reference=identify_reference_sample()),
+        data = lambda wildcards: expand(results_dir + "/{dir}/{{reads_origin}}/{{sample}}/{{sample}}.{ext}",
+                                  dir="data" if "assembly" in wildcards.reads_origin else "eager",
+                                  ext="fna" if "assembly" in wildcards.reads_origin else "bam",),
+        ref = expand(results_dir + "/data/reference/{reference}/{reference}.gbff", reference=identify_reference_sample()),
     output:
         snippy_dir = directory(results_dir + "/snippy_pairwise/{reads_origin}/{sample}"),
         snp_txt = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}_snippy.txt",
         snippy_aln = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}_snippy.aligned.fa",
     log:
         os.path.join(logs_dir, "snippy_pairwise", "{reads_origin}", "{sample}.log")
-    wildcard_constraints:
-        reads_origin="(sra|local|assembly)",
-        ext = "(fna|bam)",
+    #wildcard_constraints:
+    #    reads_origin="(sra|local|assembly)",
+    #    ext = "(fna|bam)",
     conda:
         os.path.join(envs_dir,"snippy.yaml")
     shell:
-        "if [[ ${reads_origin} == 'assembly' ]]; then \
+        "if [[ {wildcards.reads_origin} == 'assembly' ]]; then \
             snippy \
               --prefix {wildcards.sample}_snippy \
               --reference {input.ref} \

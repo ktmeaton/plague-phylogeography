@@ -106,6 +106,9 @@ def identify_local_sample():
                 local_sample_dict[biosample].append(file_acc)
     return local_sample_dict
 
+def identify_wildcards(wildcards):
+    print(wildcards)
+
 def sql_select(sqlite_db, query, i=0):
     '''Run select query on the sqlite db.'''
     conn = sqlite3.connect(sqlite_db)
