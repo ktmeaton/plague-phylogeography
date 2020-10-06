@@ -18,7 +18,8 @@ rule iqtree:
                 subcategory="IQTREE"),
         tree = expand(results_dir + "/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"]),
     params:
-        seed = random.randint(0, 99999999),
+        #seed = random.randint(0, 99999999),
+        seed = config["iqtree_seed"]
     conda:
         os.path.join(envs_dir,"iqtree.yaml")
     log:

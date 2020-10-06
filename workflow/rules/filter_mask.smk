@@ -1,5 +1,9 @@
 import os
 
+
+ruleorder: detect_snp_density > snippy_pairwise_assembly
+
+#------------------------------------------------------------------------------#
 rule detect_repeats:
     """
     Detect in-exact repeats in reference genome with mummer and convert the identified regions file to bed format.
@@ -21,6 +25,7 @@ rule detect_repeats:
           {config[detect_repeats_length]} \
           {config[detect_repeats_threshold]} 2> {log}; "
 
+#------------------------------------------------------------------------------#
 rule detect_low_complexity:
     """
     Detect low complexity regions with dustmasker and convert the identified regions file to bed format.
@@ -38,7 +43,49 @@ rule detect_low_complexity:
         "dustmasker -in {input.fna} -outfmt interval > {output.intervals}; "
         "{scripts_dir}/intervals2bed.sh {output.intervals} {output.bed}"
 
-# -----------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
+rule detect_snp_density:
+    """
+    Detect regions of high SNP density.
+    """
+    input:
+        vcf = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.subs.vcf",
+    output:
+        snpden = expand(results_dir + "/detect_snp_density/{{reads_origin}}/{{sample}}_snippy.subs.snpden{density}",
+                 density=config["snippy_snp_density"])
+    conda:
+        os.path.join(envs_dir,"filter.yaml")
+    log:
+      os.path.join(logs_dir, "detect_snp_density","{reads_origin}","{sample}.log"),
+    shell:
+        "{scripts_dir}/detect_snp_density.sh {input.vcf} {output.snpden} {config[snippy_snp_density]} 2> {log}"
+
+#------------------------------------------------------------------------------#
+rule merge_snp_density:
+    """
+    Merge filter bed files.
+    """
+    input:
+        asm = expand(results_dir + "/detect_snp_density/assembly/{sample}_snippy.subs.snpden{density}",
+              sample=identify_assembly_sample(),
+              density=config["snippy_snp_density"]),
+        sra = expand(results_dir + "/detect_snp_density/sra/{sample}_snippy.subs.snpden{density}",
+              sample=identify_sra_sample(),
+              density=config["snippy_snp_density"]),
+        local = expand(results_dir + "/detect_snp_density/local/{sample}_snippy.subs.snpden{density}",
+              sample=identify_local_sample(),
+              density=config["snippy_snp_density"]),
+    output:
+        bed = expand(results_dir + "/detect_snp_density/snpden{density}.bed",
+              density=config["snippy_snp_density"])
+    conda:
+        os.path.join(envs_dir,"filter.yaml")
+    shell:
+        "cat {input.inexact} {input.low_complexity} {input.snp_density} | \
+          sort -k1,1 -k2,2n | \
+          bedtools merge > {output.bed}; "
+
+#------------------------------------------------------------------------------#
 rule snippy_multi_extract:
     """
     Extract a locus (ex. chromosome) from the snippy multi alignment.
@@ -60,7 +107,7 @@ rule snippy_multi_extract:
           {config[reference_locus_end]}"
 
 
-# -----------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
 rule snippy_multi_filter:
     """
     Filter a multiple alignment for missing data.

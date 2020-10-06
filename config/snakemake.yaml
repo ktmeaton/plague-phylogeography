@@ -38,9 +38,11 @@ snippy_map_qual : 30
 snippy_min_frac : 0.9
 snippy_mask_char : "X"
 snippy_missing_data : 5
+snippy_snp_density : 10
 
 # IQTREE
 #iqtree_model = "K3Pu+F+I"
+iqtree_seed : "47321424" # keeping it consistent in a config file allows for checkpointing
 iqtree_outgroup : "Reference"
 #iqtree_outgroup : "GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic"
 iqtree_other : "--ufboot 1000 --alrt 1000"

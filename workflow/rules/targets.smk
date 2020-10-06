@@ -95,6 +95,11 @@ rule test_detect_low_complexity:
         expand(results_dir + "/detect_low_complexity/{sample}.dustmasker.bed",
         sample=identify_reference_sample())
 
+rule test_detect_snp_density:
+    input:
+        expand(results_dir + "/snippy_pairwise_assembly/{sample}/{sample}_snippy.subs.snpden",
+        sample=identify_assembly_sample())
+
 rule test_snippy_multi_extract:
     input:
         expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.aln",

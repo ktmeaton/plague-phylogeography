@@ -9,3 +9,4 @@ dependencies:
   - snp-sites=2.5.1
   - mummer=3.23
   - bedtools=2.29.2
+  - vcftools=0.1.16

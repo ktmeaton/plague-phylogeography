@@ -111,6 +111,7 @@ rule snippy_pairwise_bam:
         snippy_dir = directory(results_dir + "/snippy_pairwise_{reads_origin}/{sample}"),
         snp_txt = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.txt",
         snippy_aln = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.aligned.fa",
+        snp_subs = results_dir + "/snippy_pairwise_{reads_origin}/{sample}/{sample}_snippy.subs.vcf",
     log:
         os.path.join(logs_dir, "snippy_pairwise_{reads_origin}","{sample}.log")
     conda:
@@ -147,6 +148,8 @@ rule snippy_multi:
         low_complexity = expand(results_dir + "/detect_low_complexity/{sample}.dustmasker.bed",
                   sample=identify_reference_sample(),
                   ),
+        snp_density = expand(results_dir + "/detect_snp_density/snpden{density}.bed",
+                      density=config["snippy_snp_density"]),
     output:
         report(results_dir + "/snippy_multi/snippy-core.txt",
                 caption=os.path.join(report_dir,"snippy_multi.rst"),
@@ -162,7 +165,7 @@ rule snippy_multi:
         cpus = 1,
     shell:
         # Merge masking beds
-        "cat {input.inexact} {input.low_complexity} | \
+        "cat {input.inexact} {input.low_complexity} {input.snp_density} | \
           sort -k1,1 -k2,2n | \
           bedtools merge > {results_dir}/snippy_multi/mask.bed; "
         "snippy-core \
