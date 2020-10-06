@@ -50,6 +50,7 @@ rule download_assembly:
         for ftp in samples:
             if wildcards.sample in ftp:
                 match = ftp.rstrip(".fna.gz") + "." + wildcards.ext + ".gz"
+        print(output.file)
         shell("wget --quiet -O - {match} | gunzip -c > {output.file}; ")
         # Remove ver number in fasta headers if reference
         if wildcards.reads_origin == "reference" and (wildcards.ext == "fna" or wildcards.ext == "gff"):

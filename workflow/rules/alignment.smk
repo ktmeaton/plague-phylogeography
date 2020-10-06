@@ -60,19 +60,19 @@ rule snippy_pairwise:
   Peform a pairwise alignment of assemblies to the reference genome.
   """
     input:
-        data = lambda wildcards: expand(results_dir + "/{dir}/{{reads_origin}}/{{sample}}/{{sample}}.{ext}",
+        data = lambda wildcards: expand(results_dir + "/{dir}/{{reads_origin}}/{{sample}}/{filename}",
                                   dir="data" if "assembly" in wildcards.reads_origin else "eager",
-                                  ext="fna" if "assembly" in wildcards.reads_origin else "bam",),
+                                  filename=wildcards.sample + ".fna" if "assembly" in wildcards.reads_origin else "final_bams/" + wildcards.sample + ".bam"),
         ref = expand(results_dir + "/data/reference/{reference}/{reference}.gbff", reference=identify_reference_sample()),
     output:
         snippy_dir = directory(results_dir + "/snippy_pairwise/{reads_origin}/{sample}"),
         snp_txt = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}_snippy.txt",
         snippy_aln = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}_snippy.aligned.fa",
+        snps_vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}_snippy.subs.vcf",
     log:
         os.path.join(logs_dir, "snippy_pairwise", "{reads_origin}", "{sample}.log")
-    #wildcard_constraints:
-    #    reads_origin="(sra|local|assembly)",
-    #    ext = "(fna|bam)",
+    wildcard_constraints:
+        reads_origin="(sra|local|assembly)",
     conda:
         os.path.join(envs_dir,"snippy.yaml")
     shell:
@@ -113,7 +113,7 @@ rule snippy_multi:
         snippy_asm_dir = expand(results_dir + "/snippy_pairwise/assembly/{sample}", sample=identify_assembly_sample()),
         #snippy_sra_dir = expand(results_dir + "/snippy_pairwise_sra/{sample}", sample=identify_sra_sample()),
         #snippy_local_dir = expand(results_dir + "/snippy_pairwise_local/{sample}", sample=identify_local_sample()),
-        ref_fna = expand(results_dir + "/data/reference/{sample}.fna",
+        ref_fna = expand(results_dir + "/data/reference/{sample}/{sample}.fna",
                   sample=identify_reference_sample(),
                   ),
         inexact = expand(results_dir + "/detect_repeats/reference/{sample}.inexact.repeats.bed",

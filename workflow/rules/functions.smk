@@ -100,14 +100,11 @@ def identify_local_sample():
             if "_1.fastq.gz" in file:
                 biosample = dir
                 # strip gz and fastq and prefix
-                file_acc = file.strip("_1.fastq.gz")
+                file_acc = file.replace("_1.fastq.gz","")
                 if biosample not in local_sample_dict:
                     local_sample_dict[biosample] = []
                 local_sample_dict[biosample].append(file_acc)
     return local_sample_dict
-
-def identify_wildcards(wildcards):
-    print(wildcards)
 
 def sql_select(sqlite_db, query, i=0):
     '''Run select query on the sqlite db.'''

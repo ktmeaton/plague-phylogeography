@@ -9,11 +9,11 @@ rule detect_repeats:
     Detect in-exact repeats in reference genome with mummer and convert the identified regions file to bed format.
     """
     input:
-        fna = results_dir + "/data/{reads_origin}/{sample}.fna",
+        fna = results_dir + "/data/{reads_origin}/{sample}/{sample}.fna",
     output:
         inexact = results_dir + "/detect_repeats/{reads_origin}/{sample}.inexact.repeats.bed",
     wildcard_constraints:
-        reads_origin = "(refernce|assembly)",
+        reads_origin = "(reference|assembly)",
     log:
         logs_dir + "/detect_repeats/{reads_origin}/{sample}.log",
     conda:
@@ -33,12 +33,12 @@ rule detect_low_complexity:
     Detect low complexity regions with dustmasker and convert the identified regions file to bed format.
     """
     input:
-        fna = results_dir + "/data/{reads_origin}/{sample}.fna",
+        fna = results_dir + "/data/{reads_origin}/{sample}/{sample}.fna",
     output:
         bed = results_dir + "/detect_low_complexity/{reads_origin}/{sample}.dustmasker.bed",
         intervals = results_dir + "/detect_low_complexity/{reads_origin}/{sample}.dustmasker.intervals",
     wildcard_constraints:
-        reads_origin = "(refernce|assembly)",
+        reads_origin = "(reference|assembly)",
     conda:
         os.path.join(envs_dir,"eager.yaml")
     resources:
