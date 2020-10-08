@@ -99,7 +99,7 @@ rule test_snippy_multi_extract:
 
 rule test_snippy_multi_filter:
     input:
-        expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.full.filter{missing_data}.aln",
+        expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
         locus_name=config["reference_locus_name"],
         missing_data = config["snippy_missing_data"])
 
