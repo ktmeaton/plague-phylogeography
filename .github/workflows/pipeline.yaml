@@ -127,6 +127,13 @@ jobs:
           conda activate default;
           snakemake --profile profiles/gh-actions test_multiqc;
           conda deactivate
+      # Test wrapup with all
+      - name: test all
+        shell: bash -l {0}
+        run:
+          conda activate default;
+          snakemake --profile profiles/gh-actions all;
+          conda deactivate
       # Test Report Generation
       - name: test report
         shell: bash -l {0}
