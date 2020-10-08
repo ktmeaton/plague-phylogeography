@@ -105,6 +105,17 @@ if __name__ != "__main__":
                 ],
             )
 
+        # --------------------------------------------------------------------------#
+        # Report Upload
+        # --------------------------------------------------------------------------#
+        if msg["level"] == "info" and "Report created" in msg["msg"]:
+            report_file = msg["msg"].replace("Report created: ", "").rstrip(".")
+            client.files_upload(
+                channels="snakemake",
+                file=report_file,
+                title="Snakemake report file: " + node_name,
+            )
+
 
 # test_msg = {"level": "progress", "done": 1, "total" : 1, "msg": "Test message."}
 # log_handler(test_msg)

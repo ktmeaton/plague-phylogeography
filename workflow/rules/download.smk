@@ -65,9 +65,9 @@ rule table_assembly:
             sample=identify_assembly_sample() if wildcards.reads_origin == "assembly" else identify_reference_sample()),
     output:
         report(results_dir + "/data/{reads_origin}/table_{reads_origin}_fna.pdf",
-                caption=os.path.join(report_dir,"download","table_a{reads_origin}_fna.rst"),
+                caption=os.path.join(report_dir,"download","table_fna.rst"),
                 category="Download",
-                subcategory="{reads_origin}"),
+                subcategory="Assembly"),
     conda:
         os.path.join(envs_dir,"plot.yaml")
     shell:
@@ -88,9 +88,9 @@ rule table_fastq:
                   )
     output:
         report(results_dir + "/data/{reads_origin}/table_{reads_origin}_fastq-gz.pdf",
-                caption=os.path.join(report_dir,"download","table_{reads_origin}_fastq-gz.rst"),
+                caption=os.path.join(report_dir,"download","table_fastq-gz.rst"),
                 category="Download",
-                subcategory="{reads_origin}"),
+                subcategory="Fastq"),
     conda:
         os.path.join(envs_dir,"plot.yaml")
     shell:
