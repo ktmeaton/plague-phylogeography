@@ -56,17 +56,17 @@ rule test_eager_local:
 
 rule test_snippy_pairwise_assembly:
     input:
-        expand(results_dir + "/snippy_pairwise/assembly/{sample}/{sample}_snippy.aligned.fa",
+        expand(results_dir + "/snippy_pairwise/assembly/{sample}/{sample}.aligned.fa",
         sample=identify_assembly_sample())
 
 rule test_snippy_pairwise_local:
     input:
-        expand(results_dir + "/snippy_pairwise/local/{sample}/{sample}_snippy.aligned.fa",
+        expand(results_dir + "/snippy_pairwise/local/{sample}/{sample}.aligned.fa",
         sample=identify_local_sample())
 
 rule test_snippy_pairwise_sra:
     input:
-        expand(results_dir + "/snippy_pairwise/sra/{sample}/{sample}_snippy.aligned.fa",
+        expand(results_dir + "/snippy_pairwise/sra/{sample}/{sample}.aligned.fa",
         sample=identify_sra_sample())
 
 rule test_snippy_multi:
@@ -89,7 +89,7 @@ rule test_detect_low_complexity:
 
 rule test_detect_snp_density:
     input:
-        expand(results_dir + "/snippy_pairwise/assembly/{sample}/{sample}_snippy.subs.snpden",
+        expand(results_dir + "/snippy_pairwise/assembly/{sample}/{sample}.subs.snpden",
         sample=identify_assembly_sample())
 
 rule test_snippy_multi_extract:
@@ -124,3 +124,23 @@ rule test_qualimap:
 rule test_multiqc:
     input:
         results_dir + "/multiqc/multiqc_report.html"
+
+#------------------------------------------------------------------------------#
+# Plot
+#------------------------------------------------------------------------------#
+
+rule test_table_assembly:
+    input:
+        results_dir + "/data/assembly/table_assembly_fna.pdf",
+
+rule test_table_assembly_reference:
+    input:
+        results_dir + "/data/reference/table_reference_fna.pdf",
+
+rule test_table_fastq_local:
+    input:
+        results_dir + "/data/local/table_local_fastq-gz.pdf",
+
+rule test_table_fastq_sra:
+    input:
+        results_dir + "/data/sra/table_sra_fastq-gz.pdf",

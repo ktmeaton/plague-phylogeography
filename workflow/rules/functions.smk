@@ -96,6 +96,7 @@ def identify_local_sample():
     data_dir = os.path.join(results_dir, "data", "local")
     for dir in os.listdir(data_dir):
         sample_dir = os.path.join(data_dir, dir)
+        if not os.path.isdir(sample_dir): continue
         for file in os.listdir(sample_dir):
             if "_1.fastq.gz" in file:
                 biosample = dir

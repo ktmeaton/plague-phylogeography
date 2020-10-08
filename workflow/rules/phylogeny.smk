@@ -21,7 +21,9 @@ rule iqtree:
             caption=os.path.join(report_dir,"iqtree.rst"),
             category="Phylogenetics",
             subcategory="IQTREE"),
-        tree = expand(results_dir + "/iqtree/iqtree.core-filter{missing_data}.treefile", missing_data = config["snippy_missing_data"]),
+        tree = expand(results_dir + "/iqtree/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+               locus_name=config["reference_locus_name"],
+               missing_data = config["snippy_missing_data"]),
     params:
         #seed = random.randint(0, 99999999),
         seed = config["iqtree_seed"]

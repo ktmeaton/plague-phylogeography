@@ -53,9 +53,9 @@ rule detect_snp_density:
     Detect regions of high SNP density.
     """
     input:
-        vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}_snippy.subs.vcf",
+        vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
     output:
-        snpden = expand(results_dir + "/detect_snp_density/{{reads_origin}}/{{sample}}_snippy.subs.snpden{density}",
+        snpden = expand(results_dir + "/detect_snp_density/{{reads_origin}}/{{sample}}.subs.snpden{density}",
                  density=config["snippy_snp_density"])
     wildcard_constraints:
         reads_origin = "(assembly|sra|local)",
@@ -74,13 +74,13 @@ rule merge_snp_density:
     Merge filter bed files.
     """
     input:
-        asm = expand(results_dir + "/detect_snp_density/assembly/{sample}_snippy.subs.snpden{density}",
+        asm = expand(results_dir + "/detect_snp_density/assembly/{sample}.subs.snpden{density}",
               sample=identify_assembly_sample(),
               density=config["snippy_snp_density"]),
-        sra = expand(results_dir + "/detect_snp_density/sra/{sample}_snippy.subs.snpden{density}",
+        sra = expand(results_dir + "/detect_snp_density/sra/{sample}.subs.snpden{density}",
               sample=identify_sra_sample(),
               density=config["snippy_snp_density"]),
-        local = expand(results_dir + "/detect_snp_density/local/{sample}_snippy.subs.snpden{density}",
+        local = expand(results_dir + "/detect_snp_density/local/{sample}.subs.snpden{density}",
               sample=identify_local_sample(),
               density=config["snippy_snp_density"]),
     output:

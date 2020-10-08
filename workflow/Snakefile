@@ -42,6 +42,7 @@ include: rules_dir + "/qc.smk"
 include: rules_dir + "/filter_mask.smk"
 include: rules_dir + "/functions.smk"
 include: rules_dir + "/targets.smk"
+include: rules_dir + "/test.smk"
 
 # Report file
 report: report_dir + "/workflow.rst"
@@ -62,8 +63,17 @@ rule all:
     The default pipeline targets.
     """
     input:
+        # Multiqc
         results_dir + "/multiqc/multiqc_report.html",
-        results_dir + "/iqtree/iqtree.core-filter" + str(config['snippy_missing_data']) + ".treefile",
+        # IQTREE
+        expand(results_dir + "/iqtree/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+                            locus_name=config["reference_locus_name"],
+                            missing_data=config['snippy_missing_data']),
+        # Tables of downloaded data
+        results_dir + "/data/assembly/table_assembly_fna.pdf",
+        results_dir + "/data/reference/table_reference_fna.pdf",
+        results_dir + "/data/local/table_local_fastq-gz.pdf",
+        results_dir + "/data/sra/table_sra_fastq-gz.pdf",
 
 # -----------------------------------------------------------------------------#
 #                             Help and Usage                                   #

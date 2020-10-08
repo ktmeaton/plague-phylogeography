@@ -1,0 +1,1 @@
+Snippy-core alignment statistics.

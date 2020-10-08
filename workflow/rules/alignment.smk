@@ -65,10 +65,10 @@ rule snippy_pairwise:
                                   filename=wildcards.sample + ".fna" if "assembly" in wildcards.reads_origin else "final_bams/" + wildcards.sample + ".bam"),
         ref = expand(results_dir + "/data/reference/{reference}/{reference}.gbff", reference=identify_reference_sample()),
     output:
-        snippy_dir = directory(results_dir + "/snippy_pairwise/{reads_origin}/{sample}"),
-        snp_txt = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}_snippy.txt",
-        snippy_aln = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}_snippy.aligned.fa",
-        snps_vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}_snippy.subs.vcf",
+        snippy_dir = directory(results_dir + "/snippy_pairwise/{reads_origin}/{sample}/"),
+        snp_txt = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.txt",
+        snippy_aln = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.aligned.fa",
+        snps_vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
     log:
         os.path.join(logs_dir, "snippy_pairwise", "{reads_origin}", "{sample}.log")
     wildcard_constraints:
@@ -78,7 +78,7 @@ rule snippy_pairwise:
     shell:
         "if [[ {wildcards.reads_origin} == 'assembly' ]]; then \
             snippy \
-              --prefix {wildcards.sample}_snippy \
+              --prefix {wildcards.sample} \
               --reference {input.ref} \
               --outdir {output.snippy_dir} \
               --ctgs {input.data} \
@@ -91,7 +91,7 @@ rule snippy_pairwise:
               --report 2> {log}; \
           else \
             snippy \
-              --prefix {wildcards.sample}_snippy \
+              --prefix {wildcards.sample} \
               --reference {input.ref} \
               --outdir {output.snippy_dir} \
               --bam {input.data} \
@@ -110,7 +110,7 @@ rule snippy_multi:
     Peform a multiple alignment from pairwise output (assembly, sra, and local).
     """
     input:
-        snippy_asm_dir = expand(results_dir + "/snippy_pairwise/assembly/{sample}", sample=identify_assembly_sample()),
+        snippy_asm_dir = expand(results_dir + "/snippy_pairwise/assembly/{sample}/", sample=identify_assembly_sample()),
         #snippy_sra_dir = expand(results_dir + "/snippy_pairwise_sra/{sample}", sample=identify_sra_sample()),
         #snippy_local_dir = expand(results_dir + "/snippy_pairwise_local/{sample}", sample=identify_local_sample()),
         ref_fna = expand(results_dir + "/data/reference/{sample}/{sample}.fna",
@@ -128,7 +128,7 @@ rule snippy_multi:
         report(results_dir + "/snippy_multi/snippy-core.txt",
                 caption=os.path.join(report_dir,"snippy_multi.rst"),
                 category="Alignment",
-                subcategory="Snippy"),
+                subcategory="Snippy Multi"),
         snp_aln = results_dir + "/snippy_multi/snippy-core.aln",
         full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
     log:
