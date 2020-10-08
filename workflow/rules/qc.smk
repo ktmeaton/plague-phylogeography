@@ -7,9 +7,9 @@ rule qualimap:
     Run qualimap metrics on the output of snippy pairwise.
     """
     input:
-        snippy_dir = results_dir + "/snippy_pairwise/{reads_origin}/{sample}",
+        snippy_dir = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/",
     output:
-        dir = directory(results_dir + "/qualimap/{reads_origin}/{sample}"),
+        dir = directory(results_dir + "/qualimap/{reads_origin}/{sample}/"),
         bamq = results_dir + "/qualimap/{reads_origin}/{sample}/{sample}.bam",
         html = results_dir + "/qualimap/{reads_origin}/{sample}/qualimapReport.html",
     conda:
@@ -26,9 +26,9 @@ rule multiqc:
     Run multiqc on miscellaneous data files.
     """
     input:
-        qualimap_asm_dir = expand(results_dir + "/qualimap/assembly/{sample}", sample=identify_assembly_sample()),
-        qualimap_local_dir = expand(results_dir + "/qualimap/local/{sample}", sample=identify_local_sample()),
-        qualimap_sra_dir = expand(results_dir + "/qualimap/sra/{sample}", sample=identify_sra_sample()),
+        qualimap_asm_dir = expand(results_dir + "/qualimap/assembly/{sample}/", sample=identify_assembly_sample()),
+        qualimap_local_dir = expand(results_dir + "/qualimap/local/{sample}/", sample=identify_local_sample()),
+        qualimap_sra_dir = expand(results_dir + "/qualimap/sra/{sample}/", sample=identify_sra_sample()),
         snippy_multi_txt = results_dir + "/snippy_multi/snippy-core.txt",
         snippy_asm_dir = expand(results_dir + "/snippy_pairwise/assembly/{sample}/", sample=identify_assembly_sample()),
         snippy_local_dir = expand(results_dir + "/snippy_pairwise/local/{sample}/", sample=identify_local_sample()),
