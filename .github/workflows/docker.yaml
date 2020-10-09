@@ -7,7 +7,8 @@ on:
     branches:
       - 'master'
     paths:
-      - 'workflows/envs/*/Dockerfile'
+      - '.github/workflows/docker.yaml'
+      - 'workflow/envs/*/Dockerfile'
   pull_request:
     branches:
       - '*'
