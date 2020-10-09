@@ -24,7 +24,7 @@ rule eager:
     wildcard_constraints:
         reads_origin = "(sra|local)",
     conda:
-        os.path.join(envs_dir,"eager.yaml")
+        os.path.join(envs_dir,"eager","eager.yaml")
     log:
         html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
         txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
@@ -74,7 +74,7 @@ rule snippy_pairwise:
     wildcard_constraints:
         reads_origin="(sra|local|assembly)",
     conda:
-        os.path.join(envs_dir,"snippy.yaml")
+        os.path.join(envs_dir,"align","align.yaml")
     shell:
         "if [[ {wildcards.reads_origin} == 'assembly' ]]; then \
             snippy \
@@ -134,7 +134,7 @@ rule snippy_multi:
     log:
         os.path.join(logs_dir, "snippy_multi","snippy-core.log")
     conda:
-        os.path.join(envs_dir,"snippy.yaml")
+        os.path.join(envs_dir,"align","align.yaml")
     resources:
         cpus = 1,
     shell:
