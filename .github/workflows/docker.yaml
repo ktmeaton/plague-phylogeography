@@ -18,7 +18,7 @@ on:
 jobs:
 #------------------------------------------------------------------------------#
   push_dockerhub:
-    name: Push a docker image to Docker Hub
+    name: Push to Docker Hub
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'ktmeaton/plague-phylogeography' }}
     env:
@@ -34,11 +34,7 @@ jobs:
         uses: technote-space/get-diff-action@v1
         with:
           PREFIX_FILTER: |
-            config/
-            example/
-            profiles/
-            results/
-            .github/
+            workflow/envs/
           FILES: |
             Dockerfile
             *.yaml
