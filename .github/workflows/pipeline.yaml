@@ -53,6 +53,12 @@ jobs:
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
+      # Install nextflow
+      - name: install nextflow
+        run: |
+          wget https://github.com/nextflow-io/nextflow/releases/download/v20.04.1/nextflow
+          bash nextflow
+          sudo mv nextflow /usr/local/bin/
       #------------------------------------------------------------------------#
       # Setup conda with mamba
       - name: setup conda
