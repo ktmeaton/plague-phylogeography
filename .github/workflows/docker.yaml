@@ -46,4 +46,5 @@ jobs:
       - name: push docker image
       #  if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/plot.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/Dockerfile")
         run:
-          echo "${{ secretes.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secretes.DOCKERHUB_USERNAME }}" --password-stdin
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin;
+          docker push ktmeaton/plague-phylogeography:plot
