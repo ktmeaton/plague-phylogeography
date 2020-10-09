@@ -52,4 +52,4 @@ jobs:
           name: ktmeaton/plague-phylogeography:plot
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          dockerfile: workflow/envs/plot/Dockerfile
+          workdir: workflow/envs/plot/
