@@ -1,7 +1,10 @@
 FROM continuumio/miniconda3
 
+ARG GIT_COMMIT=unspecified
+
 LABEL authors="Katherine Eaton" \
-      description="Docker image containing dependencies for ktmeaton/plague-phylogeography: phylogeny."
+      description="Docker image containing dependencies for ktmeaton/plague-phylogeography: phylogeny." \
+      git_commit=$GIT_COMMIT
 
 COPY phylogeny.yaml .
 RUN conda install -c conda-forge mamba \

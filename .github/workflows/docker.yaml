@@ -8,6 +8,7 @@ on:
       - 'master'
     paths:
       - '.github/workflows/docker.yaml'
+      - 'workflow/envs/*/*.yaml'
       - 'workflow/envs/*/Dockerfile'
   pull_request:
     branches:
@@ -44,7 +45,7 @@ jobs:
         if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/${{ matrix.env_name }}.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/Dockerfile")
         run:
           cd workflow/envs/${{ matrix.env_name }};
-          docker build --no-cache . -t ktmeaton/plague-phylogeography:${{ matrix.env_name }};
+          docker build --build-arg GIT_COMMIT=$(git log -1 --format=%h) --no-cache . -t ktmeaton/plague-phylogeography:${{ matrix.env_name }};
       #------------------------------------------------------------------------#
       # Deploy
       - name: push docker image
