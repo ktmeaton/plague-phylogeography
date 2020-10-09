@@ -29,7 +29,10 @@ jobs:
   # Install dependencies
   pipeline :
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    strategy:
+      matrix:
+        container_mode: ["--use-conda","--use-singularity"]
+    timeout-minutes: 60
     steps:
       #------------------------------------------------------------------------#
       # Timezone setup
@@ -56,13 +59,13 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /home/runner/miniconda/envs/default
-          key: snakemake-default-env-${{ hashFiles('workflow/envs/default.yaml') }}
+          key: snakemake-default-env-${{ hashFiles('workflow/envs/default/default.yaml') }}
       # Cache workflow environments
-      - name: cache workflow envs
-        uses: actions/cache@v2
-        with:
-          path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
-          key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/*.yaml') }}
+      #- name: cache workflow envs
+      #  uses: actions/cache@v2
+      #  with:
+      #    path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
+      #    key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/*/*.yaml') }}
       # Check conda environments
       - name: check cache
         run: |
@@ -72,7 +75,7 @@ jobs:
         if: steps.cache-default.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run:
-          mamba env create -f workflow/envs/default.yaml;
+          mamba env create -f workflow/envs/default/default.yaml;
       # Set up .env file with secrets
       - name: create env file
         run:
@@ -83,63 +86,63 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions test_download_reference test_download_assembly test_download_sra test_download_gff test_download_gbff;
+          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions test_download_reference test_download_assembly test_download_sra test_download_gff test_download_gbff;
           conda deactivate
       # Test Eager
       - name: test eager
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions test_eager_local test_eager_sra;
+          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions test_eager_local test_eager_sra;
           conda deactivate
       # Test snippy
       - name: test snippy pairwise
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions test_snippy_pairwise_assembly test_snippy_pairwise_sra test_snippy_pairwise_local;
+          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions test_snippy_pairwise_assembly test_snippy_pairwise_sra test_snippy_pairwise_local;
           conda deactivate
       # Test snippy
       - name: test merge snp density
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions merge_snp_density;
+          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions merge_snp_density;
           conda deactivate
       # Test snippy multi
       - name: test snippy multi
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions test_snippy_multi test_snippy_multi_filter;
+          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions test_snippy_multi test_snippy_multi_filter;
           conda deactivate
       # Test IQTREE
       - name: test iqtree
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions test_iqtree;
+          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions test_iqtree;
           conda deactivate
       # Test IQTREE
       - name: test multiqc
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions test_multiqc;
+          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions test_multiqc;
           conda deactivate
       # Test wrapup with all
       - name: test all
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions all;
+          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions all;
           conda deactivate
       # Test Report Generation
       - name: test report
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --report workflow/report/report.html all;
+          snakemake ${{ matrix.container_mode }} --report workflow/report/report.html all;
           conda deactivate
       #------------------------------------------------------------------------#
       #  Artifact Upload Report

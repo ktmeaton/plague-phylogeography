@@ -5,7 +5,8 @@ restart-times: 2
 max-jobs-per-second: 1
 latency-wait: 5
 use-singularity: False
-use-conda: True
+#singularity-prefix: /scratch/
+use-conda: False
 conda-frontend: mamba
 rerun-incomplete:  True
 printshellcmds: False

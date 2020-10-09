@@ -18,6 +18,8 @@ rule download_sra:
     fastq = results_dir + "/data/sra/{sample}/{file_acc}_1.fastq.gz"
   conda:
     os.path.join(envs_dir,"sra","sra.yaml")
+  container:
+    "docker://ktmeaton/plague-phylogeography:sra"
   log:
     os.path.join(logs_dir, "download_sra","{sample}", "{file_acc}.log"),
   resources:
@@ -95,5 +97,7 @@ rule table_fastq:
                 subcategory="Fastq"),
     conda:
         os.path.join(envs_dir,"plot","plot.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:plot"
     shell:
         "python workflow/scripts/plot_table.py --indir {results_dir}/data/{wildcards.reads_origin} --outdir {results_dir}/data/{wildcards.reads_origin} --ext fastq.gz; "

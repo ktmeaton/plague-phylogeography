@@ -15,7 +15,7 @@ on:
       - '.github/workflows/install.yaml'
       - 'workflow/Snakefile'
       - 'workflow/rules/*.smk'
-      - 'workflow/envs/default.yaml'
+      - 'workflow/envs/default/default.yaml'
   pull_request:
     branches:
       - '*'
@@ -47,7 +47,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /home/runner/miniconda/envs/default
-          key: snakemake-default-env-${{ hashFiles('workflow/envs/default.yaml') }}
+          key: snakemake-default-env-${{ hashFiles('workflow/envs/default/default.yaml') }}
       # Cache workflow environments
       - name: cache workflow envs
         uses: actions/cache@v2
@@ -63,7 +63,7 @@ jobs:
         if: steps.cache-default.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run:
-          mamba env create -f workflow/envs/default.yaml;
+          mamba env create -f workflow/envs/default/default.yaml;
       # Set up .env file with secrets
       - name: create env file
         run:
@@ -74,7 +74,7 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --conda-create-envs-only all;
+          snakemake --use-conda --profile profiles/gh-actions --conda-create-envs-only all;
           conda deactivate;
 
       #  Test pipeline
@@ -82,5 +82,5 @@ jobs:
         shell: bash -l {0}
         run:
           conda activate default;
-          snakemake --profile profiles/gh-actions --report workflow/report/report.html help;
+          snakemake --use-conda --profile profiles/gh-actions --report workflow/report/report.html help;
           conda deactivate;

@@ -23,7 +23,7 @@ jobs:
     if: ${{ github.repository == 'ktmeaton/plague-phylogeography' }}
     strategy:
       matrix:
-        env_name: ["plot", "sra"]
+        env_name: ["align","eager","phylogeny","plot", "qc", "sra"]
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
