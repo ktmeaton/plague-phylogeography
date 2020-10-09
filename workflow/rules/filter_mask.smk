@@ -136,7 +136,7 @@ rule snippy_multi_filter:
     params:
         missing = float(config["snippy_missing_data"] / 100)
     conda:
-        os.path.join(envs_dir,"qc","filter.yaml")
+        os.path.join(envs_dir,"qc","qc.yaml")
     resources:
         cpus = 1,
     shell:
