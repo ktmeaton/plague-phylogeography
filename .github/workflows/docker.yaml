@@ -41,13 +41,14 @@ jobs:
       #------------------------------------------------------------------------#
       # Plot environment
       - name: build PLOT docker image
-        if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/plot.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/Dockerfile")
+      #  if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/plot.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/Dockerfile")
         run:
           cd workflow/envs/plot;
           docker build --no-cache . -t ktmeaton/plague-phylogeography:plot;
-      #- name: push PLOT to DockerHub
-      #  if: ${{ github.event_name == 'push' }}
-      #  run: |
-      #    echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-      #    docker tag ktmeaton/plague-phylogeography:plot
-      #    docker push ktmeaton/plague-phylogeography:plot
+
+      - name: push PLOT to DockerHub
+      #  if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/plot.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/Dockerfile")
+        run: |
+          echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          docker tag ktmeaton/plague-phylogeography:plot
+          docker push ktmeaton/plague-phylogeography:plot
