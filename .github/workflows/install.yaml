@@ -73,7 +73,7 @@ jobs:
       - name: test conda install
         shell: bash -l {0}
         run:
-          conda activate default;
+          conda activate plague-phylogeography-default;
           snakemake --use-conda --profile profiles/gh-actions --conda-create-envs-only all;
           conda deactivate;
 
@@ -81,6 +81,6 @@ jobs:
       - name: test pipeline help and report
         shell: bash -l {0}
         run:
-          conda activate default;
+          conda activate plague-phylogeography-default;
           snakemake --use-conda --profile profiles/gh-actions --report workflow/report/report.html help;
           conda deactivate;
