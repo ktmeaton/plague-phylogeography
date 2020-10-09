@@ -29,15 +29,22 @@ jobs:
         uses: actions/checkout@v2
       #------------------------------------------------------------------------#
       # Plot Docker Image
-      - name: check for changes - plot
+      - name: check for changes
+        id: git-diff
         uses: technote-space/get-diff-action@v1
         with:
+          PREFIX_FILTER: |
+            config/
+            example/
+            profiles/
+            results/
+            .github/
           FILES: |
-            workflow/envs/plot/Dockerfile
-            workflow/envs/plot/plot.yaml
+            Dockerfile
+            *.yaml
 
       - name: build docker image - plot
-        if: env.GIT_DIFF
+        if: steps.git-diff.outputs.diff
         run:
           cd workflow/envs/plot;
           docker build --no-cache . -t ktmeaton/plague-phylogeography:plot;
