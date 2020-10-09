@@ -21,9 +21,6 @@ jobs:
     name: Push to Docker Hub
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'ktmeaton/plague-phylogeography' }}
-    env:
-      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-      DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASSWORD }}
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
@@ -40,16 +37,13 @@ jobs:
             *.yaml
       #------------------------------------------------------------------------#
       # Plot environment
-      #- name: build docker image
+      - name: build docker image
       #  if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/plot.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/Dockerfile")
-      #  run:
-      #    cd workflow/envs/plot;
-      #    docker build --no-cache . -t ktmeaton/plague-phylogeography:plot;
+        run:
+          cd workflow/envs/plot;
+          docker build --no-cache . -t ktmeaton/plague-phylogeography:plot;
 
-      - name: push to Docker Hub
-        uses: elgohr/Publish-Docker-Github-Action@master
-        with:
-          name: ktmeaton/plague-phylogeography:plot
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          workdir: workflow/envs/plot/
+      - name: push docker image
+      #  if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/plot.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/Dockerfile")
+        run:
+          echo "${{ secretes.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secretes.DOCKERHUB_USERNAME }}" --password-stdin
