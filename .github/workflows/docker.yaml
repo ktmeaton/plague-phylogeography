@@ -16,7 +16,7 @@ on:
     types: [published]
 #------------------------------------------------------------------------------#
 jobs:
-#----------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
   push_dockerhub:
     name: Push a docker image to Docker Hub
     runs-on: ubuntu-latest
@@ -27,21 +27,21 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
-
-      - name: check for changes pt. 1
-        run:
-          export CHANGES=`git diff-tree --no-commit-id --name-only -r 1af4b97de6`;
-          echo $CHANGES;
-
-      - name: check for changes pt. 2
-        run:
-          echo $CHANGES;
+      #------------------------------------------------------------------------#
+      # Plot Docker Image
+      - name: check for changes - plot
+        uses: technote-space/get-diff-action@v1
+        with:
+          FILES: |
+            workflow/envs/plot/Dockerfile
+            workflow/envs/plot/plot.yaml
 
       - name: build docker image - plot
+        if: env.GIT_DIFF
         run:
           cd workflow/envs/plot;
           docker build --no-cache . -t ktmeaton/plague-phylogeography:plot;
-
+      #------------------------------------------------------------------------#
       #- name: push to DockerHub
       #  if: ${{ github.event_name == 'push' }}
       #  run: |
