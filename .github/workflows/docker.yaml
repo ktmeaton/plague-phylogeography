@@ -25,6 +25,8 @@ jobs:
     strategy:
       matrix:
         env_name: ["align","eager","phylogeny","plot", "qc", "sra"]
+      # Don't cancel a matrix job if another job fails
+      fail-fast: false
     steps:
       - name: checkout repo
         uses: actions/checkout@v2

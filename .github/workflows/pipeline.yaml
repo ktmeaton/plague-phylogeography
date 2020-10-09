@@ -38,6 +38,8 @@ jobs:
     strategy:
       matrix:
         container_mode: ["--use-conda","--use-singularity"]
+      # Don't cancel a matrix job if another job fails
+      fail-fast: false
     timeout-minutes: 60
     steps:
       #------------------------------------------------------------------------#
