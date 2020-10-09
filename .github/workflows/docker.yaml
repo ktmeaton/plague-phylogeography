@@ -24,7 +24,7 @@ jobs:
     if: ${{ github.repository == 'ktmeaton/plague-phylogeography' }}
     strategy:
       matrix:
-        env_name: ["align","eager","phylogeny","plot", "qc", "sra"]
+        env_name: ["align", "phylogeny","plot", "qc", "sra"]
       # Don't cancel a matrix job if another job fails
       fail-fast: false
     steps:
