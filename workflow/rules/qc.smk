@@ -14,6 +14,8 @@ rule qualimap:
         html = results_dir + "/qualimap/{reads_origin}/{sample}/qualimapReport.html",
     conda:
         os.path.join(envs_dir,"qc","qc.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:qc"
     log:
         os.path.join(logs_dir, "qualimap", "{reads_origin}", "{sample}.log")
     shell:
@@ -61,6 +63,8 @@ rule multiqc:
         dir = directory(results_dir + "/multiqc/"),
     conda:
         os.path.join(envs_dir,"qc","qc.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:qc"
     log:
         os.path.join(logs_dir, "multiqc/multiqc.log")
     resources:

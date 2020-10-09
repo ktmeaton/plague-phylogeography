@@ -18,6 +18,8 @@ rule detect_repeats:
         logs_dir + "/detect_repeats/{reads_origin}/{sample}.log",
     conda:
         os.path.join(envs_dir,"qc","qc.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:qc"
     resources:
         cpus = 1,
     shell:
@@ -41,6 +43,8 @@ rule detect_low_complexity:
         reads_origin = "(reference|assembly)",
     conda:
         os.path.join(envs_dir,"eager","eager.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:eager"
     resources:
         cpus = 1,
     shell:
@@ -61,6 +65,8 @@ rule detect_snp_density:
         reads_origin = "(assembly|sra|local)",
     conda:
         os.path.join(envs_dir,"qc","qc.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:qc"
     log:
       os.path.join(logs_dir, "detect_snp_density","{reads_origin}","{sample}.log"),
     resources:
@@ -88,6 +94,8 @@ rule merge_snp_density:
               density=config["snippy_snp_density"])
     conda:
         os.path.join(envs_dir,"qc","qc.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:qc"
     resources:
         cpus = 1,
     shell:
@@ -107,6 +115,8 @@ rule snippy_multi_extract:
                       locus_name=config["reference_locus_name"]),
     conda:
         os.path.join(envs_dir,"qc","qc.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:qc"
     resources:
         cpus = 1,
     shell:
@@ -137,6 +147,8 @@ rule snippy_multi_filter:
         missing = float(config["snippy_missing_data"] / 100)
     conda:
         os.path.join(envs_dir,"qc","qc.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:qc"
     resources:
         cpus = 1,
     shell:

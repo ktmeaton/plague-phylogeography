@@ -25,6 +25,8 @@ rule eager:
         reads_origin = "(sra|local)",
     conda:
         os.path.join(envs_dir,"eager","eager.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:eager"
     log:
         html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
         txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
@@ -75,6 +77,8 @@ rule snippy_pairwise:
         reads_origin="(sra|local|assembly)",
     conda:
         os.path.join(envs_dir,"align","align.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:align"
     shell:
         "if [[ {wildcards.reads_origin} == 'assembly' ]]; then \
             snippy \
@@ -135,6 +139,8 @@ rule snippy_multi:
         os.path.join(logs_dir, "snippy_multi","snippy-core.log")
     conda:
         os.path.join(envs_dir,"align","align.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography:align"
     resources:
         cpus = 1,
     shell:
