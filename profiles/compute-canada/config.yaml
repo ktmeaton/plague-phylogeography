@@ -6,7 +6,7 @@ max-jobs-per-second: 1
 latency-wait: 5
 use-singularity: True
 use-conda: False
-singularity-prefix: /scratch/keaton/
+singularity-prefix: /scratch/keaton/singularity/
 conda-frontend: mamba
 rerun-incomplete:  True
 printshellcmds: False
@@ -17,7 +17,7 @@ log-handler-script: "workflow/scripts/slack_log.py"
 #------------------------------------------------------------------------------#
 # Total resources for the entire workflow
 # ex. 4 cpus, 4GB each (total 16GB), on one node
-resources: [cpus=20, mem_mb=40000]
+resources: [cpus=20, mem_mb=40000, load=100]
 # Default resources for a job
 default-resources: [cpus=1, mem_mb=2000, time_min=30, account="def-briang"]
 # Maximum number of jobs to run

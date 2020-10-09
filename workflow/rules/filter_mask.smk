@@ -43,8 +43,6 @@ rule detect_low_complexity:
         reads_origin = "(reference|assembly)",
     conda:
         os.path.join(envs_dir,"eager","eager.yaml")
-    container:
-        "docker://ktmeaton/plague-phylogeography:eager"
     resources:
         cpus = 1,
     shell:

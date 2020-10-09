@@ -23,18 +23,20 @@ rule eager:
         eager_tsv = results_dir + "/eager/{reads_origin}/{sample}/metadata_{sample}.tsv",
     wildcard_constraints:
         reads_origin = "(sra|local)",
+    resources:
+        load=100,
+    params:
+        profile="singularity" if workflow.use_singularity else "standard",
     conda:
         os.path.join(envs_dir,"eager","eager.yaml")
-    container:
-        "docker://ktmeaton/plague-phylogeography:eager"
     log:
         html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
         txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
     shell:
         "python {scripts_dir}/eager_tsv.py --files {input.fastq} --organism \"{config[organism]}\" --tsv {output.eager_tsv}; "
         "cd {results_dir}/eager/{wildcards.reads_origin}/{wildcards.sample}; "
-        "nextflow -C {config_dir}/eager.config \
-            run nf-core/eager -r {config[eager_rev]} \
+        "nextflow run nf-core/eager -r {config[eager_rev]} \
+            -profile {params.profile} \
             --igenomes_ignore \
             -with-report {log.html} \
             --input metadata_{wildcards.sample}.tsv \

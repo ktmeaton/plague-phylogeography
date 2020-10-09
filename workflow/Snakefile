@@ -46,6 +46,13 @@ include: rules_dir + "/targets.smk"
 # Report file
 report: report_dir + "/workflow.rst"
 
+# Singularity Cache dir
+if workflow.singularity_prefix:
+    os.environ["SINGULARITY_CACHEDIR"] =  workflow.singularity_prefix
+    os.environ["NXF_SINGULARITY_CACHEDIR"] =  workflow.singularity_prefix
+else:
+    os.environ["SINGULARITY_CACHEDIR"] = os.path.join(project_dir, ".snakemake", "singularity")
+    os.environ["NXF_SINGULARITY_CACHEDIR"] = os.path.join(project_dir, ".snakemake", "singularity")
 # -----------------------------------------------------------------------------#
 # Local rules                                                                  #
 # -----------------------------------------------------------------------------#

@@ -5,7 +5,7 @@ restart-times: 2
 max-jobs-per-second: 1
 latency-wait: 5
 use-singularity: False
-#singularity-prefix: /scratch/
+singularity-prefix: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/singularity/
 use-conda: False
 conda-frontend: mamba
 rerun-incomplete:  True
@@ -17,7 +17,7 @@ log-handler-script: "workflow/scripts/slack_log.py"
 #------------------------------------------------------------------------------#
 # Total resources for the entire workflow
 # ex. 2 cpus, 3GB each (total 6GB), on one node
-resources: [cpus=2, mem_mb=6000]
+resources: [cpus=2, mem_mb=6000, load=100]
 # Default resources for a job
 default-resources: [cpus=1, mem_mb=3000, time_min=60]
 # Maximum number of jobs to run
