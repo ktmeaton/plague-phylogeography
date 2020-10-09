@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------#
-name: Docs
+name: Docker
 #------------------------------------------------------------------------------#
 # Workflow conditions
 on:
@@ -23,12 +23,28 @@ jobs:
     if: ${{ github.repository == 'ktmeaton/plague-phylogeography' }}
     env:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-      DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
+      DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASSWORD }}
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
+
+      - name: check for changes pt. 1
+        run:
+          export CHANGES=`git diff-tree --no-commit-id --name-only -r 1af4b97de6`;
+          echo $CHANGES;
+
+      - name: check for changes pt. 2
+        run:
+          echo $CHANGES;
 
       - name: build docker image - plot
         run:
           cd workflow/envs/plot;
           docker build --no-cache . -t ktmeaton/plague-phylogeography:plot;
+
+      #- name: push to DockerHub
+      #  if: ${{ github.event_name == 'push' }}
+      #  run: |
+      #    echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+      #    docker tag ktmeaton/plague-phylogeography:plot
+      #    docker push ktmeaton/plague-phylogeography:plot
