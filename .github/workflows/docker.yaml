@@ -35,22 +35,13 @@ jobs:
         with:
           PREFIX_FILTER: |
             workflow/envs/
-            .github/
           FILES: |
             Dockerfile
             *.yaml
-            docker.yaml
-
-      - name: test
-        env:
-            STRATEGY_CONTEXT: ${{ toJson(strategy) }}
-        run: |
-          echo ${{ steps.git-diff.outputs.diff }};
-
       #------------------------------------------------------------------------#
       # Plot environment
       - name: build PLOT docker image
-        if: contains(${{ steps.git-diff.outputs.diff }}, ".github/workflows/docker.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/plot.yaml")
+        if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/plot.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/Dockerfile")
         run:
           cd workflow/envs/plot;
           docker build --no-cache . -t ktmeaton/plague-phylogeography:plot;
