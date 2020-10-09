@@ -28,26 +28,27 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v2
       #------------------------------------------------------------------------#
-      # Plot Docker Image
+      # Check docker and conda changes
       - name: check for changes
         id: git-diff
         uses: technote-space/get-diff-action@v1
         with:
           PREFIX_FILTER: |
             workflow/envs/
+            .github/workflows
           FILES: |
             Dockerfile
             *.yaml
-
-      - name: build docker image - plot
-        if: steps.git-diff.outputs.diff =~ "workflow/envs/plot.yaml"
+      #------------------------------------------------------------------------#
+      # Plot environment
+      - name: build PLOT docker image
+        if: contains( steps.git-diff.outputs.diff, "workflow/envs/plot.yaml" )
         run:
           cd workflow/envs/plot;
           docker build --no-cache . -t ktmeaton/plague-phylogeography:plot;
-      #------------------------------------------------------------------------#
-      #- name: push to DockerHub
-      #  if: ${{ github.event_name == 'push' }}
-      #  run: |
-      #    echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-      #    docker tag ktmeaton/plague-phylogeography:plot
-      #    docker push ktmeaton/plague-phylogeography:plot
+      - name: push PLOT to DockerHub
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          docker tag ktmeaton/plague-phylogeography:plot
+          docker push ktmeaton/plague-phylogeography:plot
