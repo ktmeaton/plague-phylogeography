@@ -1,3 +1,4 @@
+name: plague-phylogeography-align
 channels:
   - bioconda
   - conda-forge

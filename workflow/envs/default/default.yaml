@@ -1,4 +1,4 @@
-name: default
+name: plague-phylogeography-default
 channels:
   - bioconda
   - conda-forge

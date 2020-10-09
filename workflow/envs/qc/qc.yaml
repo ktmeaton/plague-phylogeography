@@ -1,3 +1,4 @@
+name: plague-phylogeography-qc
 channels:
   - bioconda
   - conda-forge
