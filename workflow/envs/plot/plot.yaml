@@ -1,3 +1,4 @@
+name: plague-phylogeography-plot
 channels:
   - bioconda
   - conda-forge

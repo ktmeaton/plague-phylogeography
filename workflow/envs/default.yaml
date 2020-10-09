@@ -12,3 +12,4 @@ dependencies:
   - pre-commit=2.6.0
   - python-dotenv=0.14.0
   - slackclient=2.9.1
+  - singularity=3.6.3

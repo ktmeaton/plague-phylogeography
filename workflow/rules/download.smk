@@ -69,7 +69,7 @@ rule table_assembly:
                 category="Download",
                 subcategory="Assembly"),
     conda:
-        os.path.join(envs_dir,"plot.yaml")
+        os.path.join(envs_dir,"plot","plot.yaml")
     shell:
         "python workflow/scripts/plot_table.py --indir {results_dir}/data/{wildcards.reads_origin} --outdir {results_dir}/data/{wildcards.reads_origin} --ext fna; "
 
@@ -92,6 +92,6 @@ rule table_fastq:
                 category="Download",
                 subcategory="Fastq"),
     conda:
-        os.path.join(envs_dir,"plot.yaml")
+        os.path.join(envs_dir,"plot","plot.yaml")
     shell:
         "python workflow/scripts/plot_table.py --indir {results_dir}/data/{wildcards.reads_origin} --outdir {results_dir}/data/{wildcards.reads_origin} --ext fastq.gz; "
