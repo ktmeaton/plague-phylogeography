@@ -4,7 +4,9 @@
 restart-times: 2
 max-jobs-per-second: 1
 latency-wait: 5
-use-conda: True
+use-singularity: True
+use-conda: False
+singularity-prefix: /scratch/keaton/
 conda-frontend: mamba
 rerun-incomplete:  True
 printshellcmds: False
