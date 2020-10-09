@@ -27,7 +27,6 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
-
       #------------------------------------------------------------------------#
       # Check docker and conda changes
       - name: check for changes
@@ -39,20 +38,17 @@ jobs:
           FILES: |
             Dockerfile
             *.yaml
-
-      - name: test
-        run: |
-          echo ${{ matrix.env_name }}
       #------------------------------------------------------------------------#
-      # Plot environment
+      # Build
       - name: build docker image
         if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/${{ matrix.env_name }}.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/Dockerfile")
         run:
           cd workflow/envs/${{ matrix.env_name }};
           docker build --no-cache . -t ktmeaton/plague-phylogeography:${{ matrix.env_name }};
-
-      #- name: push docker image
-      #  if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/plot.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/Dockerfile")
-      #  run:
-      #    echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin;
-      #    docker push ktmeaton/plague-phylogeography:plot
+      #------------------------------------------------------------------------#
+      # Deploy
+      - name: push docker image
+        if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/${{ matrix.env_name }}.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/Dockerfile")
+        run:
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin;
+          docker push ktmeaton/plague-phylogeography:${{ matrix.env_name }}
