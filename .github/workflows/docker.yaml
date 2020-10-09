@@ -45,11 +45,11 @@ jobs:
           echo ${{ matrix.env_name }}
       #------------------------------------------------------------------------#
       # Plot environment
-      #- name: build docker image
-      #  if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/plot.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/Dockerfile")
-      #  run:
-      #    cd workflow/envs/plot;
-      #    docker build --no-cache . -t ktmeaton/plague-phylogeography:plot;
+      - name: build docker image
+        if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/${{ matrix.env_name }}.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/Dockerfile")
+        run:
+          cd workflow/envs/${{ matrix.env_name }};
+          docker build --no-cache . -t ktmeaton/plague-phylogeography:${{ matrix.env_name }};
 
       #- name: push docker image
       #  if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/plot.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/plot/Dockerfile")
