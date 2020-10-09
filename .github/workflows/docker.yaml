@@ -35,11 +35,15 @@ jobs:
         with:
           PREFIX_FILTER: |
             workflow/envs/
+            .github/
           FILES: |
             Dockerfile
             *.yaml
+            docker.yaml
 
       - name: test
+        env:
+            STRATEGY_CONTEXT: ${{ toJson(strategy) }}
         run: |
           echo ${{ steps.git-diff.outputs.diff }};
 
