@@ -46,14 +46,14 @@ jobs:
         id: cache-default
         uses: actions/cache@v2
         with:
-          path: /home/runner/miniconda/envs/default
+          path: /home/runner/miniconda/envs/plague-phylogeography-default
           key: snakemake-default-env-${{ hashFiles('workflow/envs/default/default.yaml') }}
       # Cache workflow environments
       - name: cache workflow envs
         uses: actions/cache@v2
         with:
           path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
-          key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/*.yaml') }}
+          key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/*/*.yaml') }}
       # Check conda environments
       - name: check cache
         run: |

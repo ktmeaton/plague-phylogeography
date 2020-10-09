@@ -21,9 +21,10 @@ on:
       - '.github/workflows/pipeline.yaml'
       - 'workflow/Snakefile'
       - 'workflow/rules/*.smk'
-      - 'workflow/envs/*.yaml'
+      - 'workflow/envs/*/*.yaml'
+      - 'workflow/envs/*/Dockerfile'
       - 'workflow/scripts/*'
-      - 'results/import/*'
+      - 'results/sqlite_db/*'
   pull_request:
     branches:
       - '*'
@@ -66,7 +67,7 @@ jobs:
         id: cache-default
         uses: actions/cache@v2
         with:
-          path: /home/runner/miniconda/envs/default
+          path: /home/runner/miniconda/envs/plague-phylogeography-default
           key: snakemake-default-env-${{ hashFiles('workflow/envs/default/default.yaml') }}
       # Cache workflow environments
       #- name: cache workflow envs
