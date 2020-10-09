@@ -5,7 +5,7 @@ restart-times: 2
 max-jobs-per-second: 1
 latency-wait: 5
 use-singularity: False
-singularity-prefix: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/singularity/
+#singularity-prefix: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/singularity/
 use-conda: False
 conda-frontend: mamba
 rerun-incomplete:  True
