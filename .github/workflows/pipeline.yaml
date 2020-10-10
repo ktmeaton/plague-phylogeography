@@ -63,12 +63,12 @@ jobs:
           channels: conda-forge
       #------------------------------------------------------------------------#
       #  Restore (cache) conda environments
-      - name: cache default env
-        id: cache-default
+      - name: cache main env
+        id: cache-main
         uses: actions/cache@v2
         with:
           path: /home/runner/miniconda/envs/plague-phylogeography
-          key: snakemake-default-env-${{ hashFiles('workflow/envs/main/main.yaml') }}
+          key: snakemake-main-env-${{ hashFiles('workflow/envs/main/main.yaml') }}
       # Cache workflow environments
       - name: cache workflow envs
         uses: actions/cache@v2
@@ -80,8 +80,8 @@ jobs:
         run: |
           conda info --envs
       # Create environment (if not cached)
-      - name: create default environment
-        if: steps.cache-default.outputs.cache-hit != 'true'
+      - name: create main environment
+        if: steps.cache-main.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run:
           mamba env create -f workflow/envs/main/main.yaml;
