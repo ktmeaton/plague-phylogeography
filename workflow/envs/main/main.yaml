@@ -1,0 +1,42 @@
+name: plague-phylogeography
+channels:
+  - bioconda
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  # Snakemake Execution
+  - anaconda:python=3.7
+  - sqlite=3.31.1
+  - snakemake=5.25.0
+  - flask=1.1.2
+  - python-dotenv=0.14.0
+  - slackclient=2.9.1
+  - singularity=3.6.3
+  #- samtools=1.10
+  # Development
+  - pre-commit=2.6.0
+  # Data Download
+  - bioconda:sra-tools=2.10.3
+  # nf-core/eager
+  - nextflow=20.04.1
+  - graphviz=2.40.1
+  # Alignment
+  - bioconda:snippy=4.6.0
+  - bioconda:vt=0.57721
+  # Phylogeny
+  - iqtree=2.0.3
+  # Plotting
+  - matplotlib=3.3.2
+  - pandas=1.1.2
+  - numpy=1.19.1
+  # Filtering
+  - biopython=1.78
+  - mummer=3.23
+  - bedtools=2.29.2
+  - vcftools=0.1.16
+  # QC
+  - qualimap=2.2.2d
+  - pip=20.2.3
+  - pip:
+     - git+https://github.com/ktmeaton/MultiQC.git@snippy

@@ -53,14 +53,6 @@ jobs:
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
-      # Install nextflow
-      - name: install nextflow
-        run: |
-          wget https://github.com/nextflow-io/nextflow/releases/download/v20.04.1/nextflow
-          bash nextflow
-          chmod +x nextflow
-          sudo mv nextflow /usr/local/bin/
-          nextflow -v
       #------------------------------------------------------------------------#
       # Setup conda with mamba
       - name: setup conda
@@ -75,14 +67,14 @@ jobs:
         id: cache-default
         uses: actions/cache@v2
         with:
-          path: /home/runner/miniconda/envs/plague-phylogeography-default
-          key: snakemake-default-env-${{ hashFiles('workflow/envs/default/default.yaml') }}
+          path: /home/runner/miniconda/envs/plague-phylogeography
+          key: snakemake-default-env-${{ hashFiles('workflow/envs/main/main.yaml') }}
       # Cache workflow environments
-      #- name: cache workflow envs
-      #  uses: actions/cache@v2
-      #  with:
-      #    path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
-      #    key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/*/*.yaml') }}
+      - name: cache workflow envs
+        uses: actions/cache@v2
+        with:
+          path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
+          key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/main/main.yaml') }}
       # Check conda environments
       - name: check cache
         run: |
@@ -92,7 +84,7 @@ jobs:
         if: steps.cache-default.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run:
-          mamba env create -f workflow/envs/default/default.yaml;
+          mamba env create -f workflow/envs/main/main.yaml;
       # Set up .env file with secrets
       - name: create env file
         run:
@@ -102,63 +94,63 @@ jobs:
       - name: test download
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography-default;
+          conda activate plague-phylogeography;
           snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_DOWNLOAD};
           conda deactivate
       # Test Eager
       - name: test eager
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography-default;
+          conda activate plague-phylogeography;
           snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_EAGER};
           conda deactivate
       # Test snippy
       - name: test snippy pairwise
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography-default;
+          conda activate plague-phylogeography;
           snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_SNIPPY};
           conda deactivate
       # Test snippy
       - name: test merge snp density
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography-default;
+          conda activate plague-phylogeography;
           snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions merge_snp_density;
           conda deactivate
       # Test snippy multi
       - name: test snippy multi
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography-default;
+          conda activate plague-phylogeography;
           snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_SNIPPY_MULTI};
           conda deactivate
       # Test IQTREE
       - name: test iqtree
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography-default;
+          conda activate plague-phylogeography;
           snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_PHYLOGENY};
           conda deactivate
       # Test IQTREE
       - name: test multiqc
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography-default;
+          conda activate plague-phylogeography;
           snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_QC};
           conda deactivate
       # Test wrapup with all
       - name: test all
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography-default;
+          conda activate plague-phylogeography;
           snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions all;
           conda deactivate
       # Test Report Generation
       - name: test report
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography-default;
+          conda activate plague-phylogeography;
           snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions --report workflow/report/report.html all;
           conda deactivate
       #------------------------------------------------------------------------#

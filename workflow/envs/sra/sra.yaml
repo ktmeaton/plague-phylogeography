@@ -1,8 +1,0 @@
-name: plague-phylogeography-sra
-channels:
-  - bioconda
-  - conda-forge
-  - anaconda
-  - defaults
-dependencies:
-  - sra-tools=2.10.3

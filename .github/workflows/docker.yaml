@@ -24,7 +24,7 @@ jobs:
     if: ${{ github.repository == 'ktmeaton/plague-phylogeography' }}
     strategy:
       matrix:
-        env_name: ["align", "phylogeny","plot", "qc", "sra"]
+        env_name: ["main"]
       # Don't cancel a matrix job if another job fails
       fail-fast: false
     steps:
@@ -37,21 +37,21 @@ jobs:
         uses: technote-space/get-diff-action@v1
         with:
           PREFIX_FILTER: |
-            workflow/envs/
+            workflow/envs/main/
           FILES: |
             Dockerfile
-            *.yaml
+            main.yaml
       #------------------------------------------------------------------------#
       # Build
       - name: build docker image
-        if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/${{ matrix.env_name }}.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/Dockerfile")
+        if: env.GIT_DIFF
         run:
           cd workflow/envs/${{ matrix.env_name }};
-          docker build --build-arg GIT_COMMIT=$(git log -1 --format=%h) --no-cache . -t ktmeaton/plague-phylogeography:${{ matrix.env_name }};
+          docker build --build-arg GIT_COMMIT=$(git log -1 --format=%h) --no-cache . -t ktmeaton/plague-phylogeography;
       #------------------------------------------------------------------------#
       # Deploy
       - name: push docker image
-        if: contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/${{ matrix.env_name }}.yaml") || contains(${{ steps.git-diff.outputs.diff }}, "workflow/envs/${{ matrix.env_name }}/Dockerfile")
+        if: env.GIT_DIFF
         run:
           echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin;
-          docker push ktmeaton/plague-phylogeography:${{ matrix.env_name }}
+          docker push ktmeaton/plague-phylogeography

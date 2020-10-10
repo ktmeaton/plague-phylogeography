@@ -16,8 +16,10 @@ fi
 for file in `ls ${mergedBam}`;
 do
   outfile=${FINAL_DIR}/${BIOSAMPLE}.bam;
-  # Remove lines with the old read group (when using samtools < 1.10)
-  samtools view -h $file | \
-    grep -v "@RG" | \
-    samtools addreplacerg -r ID:${BIOSAMPLE}  -r SM:${BIOSAMPLE}  -o $outfile -
+  # Remove lines with the old read group (samtools < 1.10)
+  #samtools view -h $file | \
+  #  grep -v "@RG" | \
+  #  samtools addreplacerg -r ID:${BIOSAMPLE}  -r SM:${BIOSAMPLE}  -o $outfile -
+  # Remove lines with old read group (samtools >= 1.10)
+  samtools addreplacerg -r ID:${BIOSAMPLE}  -r SM:${BIOSAMPLE} -o $outfile $file;
 done

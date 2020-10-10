@@ -37,9 +37,7 @@ jobs:
         run: |
           wget https://github.com/nextflow-io/nextflow/releases/download/v20.04.1/nextflow
           bash nextflow
-          chmod +x nextflow
           sudo mv nextflow /usr/local/bin/
-          nextflow -v
       #------------------------------------------------------------------------#
       # Setup conda with mamba
       - name: setup conda
@@ -54,14 +52,14 @@ jobs:
         id: cache-default
         uses: actions/cache@v2
         with:
-          path: /home/runner/miniconda/envs/plague-phylogeography-default
-          key: snakemake-default-env-${{ hashFiles('workflow/envs/default/default.yaml') }}
+          path: /home/runner/miniconda/envs/plague-phylogeography
+          key: snakemake-default-env-${{ hashFiles('workflow/envs/main/main.yaml') }}
       # Cache workflow environments
       - name: cache workflow envs
         uses: actions/cache@v2
         with:
           path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
-          key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/*/*.yaml') }}
+          key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/main/main.yaml') }}
       # Check conda environments
       - name: check cache
         run: |
@@ -71,7 +69,7 @@ jobs:
         if: steps.cache-default.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run:
-          mamba env create -f workflow/envs/default/default.yaml;
+          mamba env create -f workflow/envs/main/main.yaml;
       # Set up .env file with secrets
       - name: create env file
         run:
@@ -81,7 +79,7 @@ jobs:
       - name: test conda install
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography-default;
+          conda activate plague-phylogeography;
           snakemake --use-conda --profile profiles/gh-actions --conda-create-envs-only all;
           conda deactivate;
 
@@ -89,6 +87,6 @@ jobs:
       - name: test pipeline help and report
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography-default;
+          conda activate plague-phylogeography;
           snakemake --use-conda --profile profiles/gh-actions --report workflow/report/report.html help;
           conda deactivate;

@@ -1,9 +1,0 @@
-name: plague-phylogeography-align
-channels:
-  - bioconda
-  - conda-forge
-  - anaconda
-  - defaults
-dependencies:
-  - snippy=4.6.0
-  - vt=0.57721
