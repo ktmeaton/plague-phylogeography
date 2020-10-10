@@ -58,7 +58,9 @@ jobs:
         run: |
           wget https://github.com/nextflow-io/nextflow/releases/download/v20.04.1/nextflow
           bash nextflow
+          chmod +x nextflow
           sudo mv nextflow /usr/local/bin/
+          nextflow -v
       #------------------------------------------------------------------------#
       # Setup conda with mamba
       - name: setup conda
