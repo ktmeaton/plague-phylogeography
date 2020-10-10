@@ -17,9 +17,9 @@ rule download_sra:
   output:
     fastq = results_dir + "/data/sra/{sample}/{file_acc}_1.fastq.gz"
   conda:
-    os.path.join(envs_dir,"sra","sra.yaml")
+    os.path.join(envs_dir,"main","main.yaml")
   container:
-    "docker://ktmeaton/plague-phylogeography:sra"
+    "docker://ktmeaton/plague-phylogeography"
   log:
     os.path.join(logs_dir, "download_sra","{sample}", "{file_acc}.log"),
   resources:
@@ -71,9 +71,9 @@ rule table_assembly:
                 category="Download",
                 subcategory="Assembly"),
     conda:
-        os.path.join(envs_dir,"plot","plot.yaml")
+      os.path.join(envs_dir,"main","main.yaml")
     container:
-        "docker://ktmeaton/plague-phylogeography:plot"
+        "docker://ktmeaton/plague-phylogeography"
     shell:
         "python workflow/scripts/plot_table.py --indir {results_dir}/data/{wildcards.reads_origin} --outdir {results_dir}/data/{wildcards.reads_origin} --ext fna; "
 
@@ -96,8 +96,8 @@ rule table_fastq:
                 category="Download",
                 subcategory="Fastq"),
     conda:
-        os.path.join(envs_dir,"plot","plot.yaml")
+        os.path.join(envs_dir,"main","main.yaml")
     container:
-        "docker://ktmeaton/plague-phylogeography:plot"
+        "docker://ktmeaton/plague-phylogeography"
     shell:
         "python workflow/scripts/plot_table.py --indir {results_dir}/data/{wildcards.reads_origin} --outdir {results_dir}/data/{wildcards.reads_origin} --ext fastq.gz; "

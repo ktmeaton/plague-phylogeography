@@ -28,9 +28,9 @@ rule iqtree:
         #seed = random.randint(0, 99999999),
         seed = config["iqtree_seed"]
     conda:
-        os.path.join(envs_dir,"phylogeny","phylogeny.yaml")
+        os.path.join(envs_dir,"main","main.yaml")
     container:
-        "docker://ktmeaton/plague-phylogeography:phylogeny"
+        "docker://ktmeaton/plague-phylogeography"
     log:
         os.path.join(logs_dir, "iqtree","iqtree.core-filter" + str(config["snippy_missing_data"]) + ".log")
     shell:

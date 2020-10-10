@@ -17,9 +17,9 @@ rule detect_repeats:
     log:
         logs_dir + "/detect_repeats/{reads_origin}/{sample}.log",
     conda:
-        os.path.join(envs_dir,"qc","qc.yaml")
+        os.path.join(envs_dir,"main","main.yaml")
     container:
-        "docker://ktmeaton/plague-phylogeography:qc"
+        "docker://ktmeaton/plague-phylogeography"
     resources:
         cpus = 1,
     shell:
@@ -42,7 +42,9 @@ rule detect_low_complexity:
     wildcard_constraints:
         reads_origin = "(reference|assembly)",
     conda:
-        os.path.join(envs_dir,"eager","eager.yaml")
+        os.path.join(envs_dir,"main","main.yaml")
+    container:
+        "docker://ktmeaton/plague-phylogeography"
     resources:
         cpus = 1,
     shell:
@@ -62,9 +64,9 @@ rule detect_snp_density:
     wildcard_constraints:
         reads_origin = "(assembly|sra|local)",
     conda:
-        os.path.join(envs_dir,"qc","qc.yaml")
+        os.path.join(envs_dir,"main","main.yaml")
     container:
-        "docker://ktmeaton/plague-phylogeography:qc"
+        "docker://ktmeaton/plague-phylogeography"
     log:
       os.path.join(logs_dir, "detect_snp_density","{reads_origin}","{sample}.log"),
     resources:
@@ -91,9 +93,9 @@ rule merge_snp_density:
         bed = expand(results_dir + "/detect_snp_density/snpden{density}.bed",
               density=config["snippy_snp_density"])
     conda:
-        os.path.join(envs_dir,"qc","qc.yaml")
+        os.path.join(envs_dir,"main","main.yaml")
     container:
-        "docker://ktmeaton/plague-phylogeography:qc"
+        "docker://ktmeaton/plague-phylogeography"
     resources:
         cpus = 1,
     shell:
@@ -112,9 +114,9 @@ rule snippy_multi_extract:
         extract_aln = expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.full.aln",
                       locus_name=config["reference_locus_name"]),
     conda:
-        os.path.join(envs_dir,"qc","qc.yaml")
+        os.path.join(envs_dir,"main","main.yaml")
     container:
-        "docker://ktmeaton/plague-phylogeography:qc"
+        "docker://ktmeaton/plague-phylogeography"
     resources:
         cpus = 1,
     shell:
@@ -144,9 +146,9 @@ rule snippy_multi_filter:
     params:
         missing = float(config["snippy_missing_data"] / 100)
     conda:
-        os.path.join(envs_dir,"qc","qc.yaml")
+        os.path.join(envs_dir,"main","main.yaml")
     container:
-        "docker://ktmeaton/plague-phylogeography:qc"
+        "docker://ktmeaton/plague-phylogeography"
     resources:
         cpus = 1,
     shell:

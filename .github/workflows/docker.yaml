@@ -5,16 +5,16 @@ name: Docker
 on:
   push:
     branches:
-      - 'master'
+      - 'disblae'
     paths:
       - '.github/workflows/docker.yaml'
       - 'workflow/envs/*/*.yaml'
       - 'workflow/envs/*/Dockerfile'
-  pull_request:
-    branches:
-      - '*'
-  release:
-    types: [published]
+  #pull_request:
+  #  branches:
+  #    - '*'
+  #release:
+  #  types: [published]
 #------------------------------------------------------------------------------#
 jobs:
 #------------------------------------------------------------------------------#
