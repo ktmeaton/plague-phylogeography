@@ -13,3 +13,4 @@ dependencies:
   - python-dotenv=0.14.0
   - slackclient=2.9.1
   - singularity=3.6.3
+  - samtools=1.9
