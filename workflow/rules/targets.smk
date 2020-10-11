@@ -17,6 +17,8 @@ rule test_container:
         else if [[ {workflow.use_singularity} == 'True' ]]; then \
           echo singularity > {output.txt} ; \
           fi; \
+        else \
+          echo none > {output.txt} ; \
         fi; "
 
 #------------------------------------------------------------------------------#

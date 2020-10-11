@@ -56,13 +56,12 @@ jobs:
         uses: eWaterCycle/setup-singularity@v3
         with:
           singularity-version: 3.6.3
-      #------------------------------------------------------------------------#
       # install pipeline container
       - name: install container
         run: |
           snakemake --profile profiles/gh-actions ${{ matrix.container }} test_container;
       #------------------------------------------------------------------------#
-      # install pipeline container
+      # run help
       - name: run help
         run: |
           snakemake --profile profiles/gh-actions ${{ matrix.container }} help;

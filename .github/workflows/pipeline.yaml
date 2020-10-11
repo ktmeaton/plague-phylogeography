@@ -41,18 +41,20 @@ jobs:
         container_mode: ["--use-conda","--use-singularity --singularity-prefix /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/singularity/"]
       # Don't cancel a matrix job if another job fails
       fail-fast: false
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
-      #------------------------------------------------------------------------#
-      # Timezone setup
-      - name: Setup timezone
-        uses: zcong1993/setup-timezone@master
-        with:
-          timezone: America/New_York
       #------------------------------------------------------------------------#
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
+      # Setup python
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      # Setup snakemake
+      - name: setup snakemake
+        run: pip install snakemake==5.26.0 ftputil==4.0.0
       #------------------------------------------------------------------------#
       # Setup conda with mamba
       - name: setup conda
@@ -61,98 +63,61 @@ jobs:
           auto-update-conda: true
           mamba-version: "*"
           channels: conda-forge
-      #------------------------------------------------------------------------#
-      #  Restore (cache) conda environments
-      - name: cache main env
-        id: cache-main
-        uses: actions/cache@v2
+      # Setup singularity
+      - name: setup singularity
+        uses: eWaterCycle/setup-singularity@v3
         with:
-          path: /home/runner/miniconda/envs/plague-phylogeography
-          key: snakemake-main-env-${{ hashFiles('workflow/envs/main/main.yaml') }}
-      # Cache workflow environments
-      - name: cache workflow envs
-        uses: actions/cache@v2
-        with:
-          path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
-          key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/main/main.yaml') }}
-      # Check conda environments
-      - name: check cache
+          singularity-version: 3.6.3
+      # install pipeline container
+      - name: install container
         run: |
-          conda info --envs
-      # Create environment (if not cached)
-      - name: create main environment
-        if: steps.cache-main.outputs.cache-hit != 'true'
-        shell: bash -l {0}
-        run:
-          mamba env create -f workflow/envs/main/main.yaml;
-      # Set up .env file with secrets
-      - name: create env file
-        run:
-          echo "export SLACK_TOKEN=${{ secrets.SLACK_GH_ACTIONS }}" > .env
+          snakemake --profile profiles/gh-actions ${{ matrix.container }} test_container;
       #------------------------------------------------------------------------#
       # Test Data Download
       - name: test download
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography;
-          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_DOWNLOAD};
-          conda deactivate
+          snakemake --profile profiles/gh-actions ${{ matrix.container }} ${TEST_DOWNLOAD};
       # Test Eager
       - name: test eager
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography;
-          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_EAGER};
-          conda deactivate
+          snakemake --profile profiles/gh-actions ${{ matrix.container }} ${TEST_EAGER};
       # Test snippy
       - name: test snippy pairwise
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography;
-          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_SNIPPY};
-          conda deactivate
+          snakemake --profile profiles/gh-actions ${{ matrix.container }} ${TEST_SNIPPY};
       # Test snippy
       - name: test merge snp density
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography;
-          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions merge_snp_density;
-          conda deactivate
+          snakemake --profile profiles/gh-actions ${{ matrix.container }} merge_snp_density;
       # Test snippy multi
       - name: test snippy multi
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography;
-          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_SNIPPY_MULTI};
-          conda deactivate
+          snakemake --profile profiles/gh-actions ${{ matrix.container }} ${TEST_SNIPPY_MULTI};
       # Test IQTREE
       - name: test iqtree
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography;
-          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_PHYLOGENY};
-          conda deactivate
+          snakemake --profile profiles/gh-actions ${{ matrix.container }} ${TEST_PHYLOGENY};
       # Test IQTREE
       - name: test multiqc
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography;
-          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions ${TEST_QC};
-          conda deactivate
+          snakemake --profile profiles/gh-actions ${{ matrix.container }} ${TEST_QC};
       # Test wrapup with all
       - name: test all
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography;
-          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions all;
-          conda deactivate
+          snakemake --profile profiles/gh-actions ${{ matrix.container }} all;
       # Test Report Generation
       - name: test report
         shell: bash -l {0}
         run:
-          conda activate plague-phylogeography;
-          snakemake ${{ matrix.container_mode }} --profile profiles/gh-actions --report workflow/report/report.html all;
-          conda deactivate
+          snakemake --profile profiles/gh-actions ${{ matrix.container }} --report workflow/report/report.html all;
       #------------------------------------------------------------------------#
       #  Artifact Upload Report
       - name: artifact report
