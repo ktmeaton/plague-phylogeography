@@ -28,6 +28,7 @@ jobs:
   install_conda:
     name: Install with Conda
     runs-on: ubuntu-latest
+    fail-fast: false
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
@@ -49,10 +50,19 @@ jobs:
           auto-update-conda: true
           mamba-version: "*"
           channels: conda-forge
+      #------------------------------------------------------------------------#
+      # install pipeline env
+      - name: create conda environment
+        run: |
+          snakemake --profile profiles/gh-actions --use-conda --conda-create-envs-only all
+      # test pipeline
+      - name: test help
+        run: snakemake --profile profiles/gh-actions help
   #----------------------------------------------------------------------------#
   install_singularity:
     name: Install with Singularity
     runs-on: ubuntu-latest
+    fail-fast: false
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
@@ -73,6 +83,14 @@ jobs:
         with:
           singularity-version: 3.6.3
       #------------------------------------------------------------------------#
+      # install pipeline env
+      - name: create conda environment
+        run: |
+          snakemake --profile profiles/gh-actions --use-singularity help;
+      # test pipeline
+      - name: test help
+        run: snakemake --profile profiles/gh-actions help;
+      #------------------------------------------------------------------------#
       # Cache workflow environments
       #- name: cache workflow envs
       #  uses: actions/cache@v2
@@ -87,19 +105,3 @@ jobs:
       #- name: create env file
       #  run:
       #    echo "export SLACK_TOKEN=${{ secrets.SLACK_GH_ACTIONS }}" > .env
-      #------------------------------------------------------------------------#
-      #  Install workflow conda environments
-      #- name: test conda install
-      #  shell: bash -l {0}
-      #  run:
-      #    conda activate plague-phylogeography;
-      #    snakemake --use-conda --profile profiles/gh-actions --conda-create-envs-only all;
-      #    conda deactivate;
-
-      #  Test pipeline
-      #- name: test pipeline help and report
-      #  shell: bash -l {0}
-      #  run:
-      #    conda activate plague-phylogeography;
-      #    snakemake --use-conda --profile profiles/gh-actions --report workflow/report/report.html help;
-      #    conda deactivate;
