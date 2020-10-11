@@ -1,4 +1,4 @@
-name: plague-phylogeography-test
+name: plague-phylogeography
 channels:
   - bioconda
   - conda-forge
@@ -36,6 +36,7 @@ dependencies:
   #- bedtools=2.29.2
   - vcftools=0.1.16
   # QC
+  - anaconda:gfortran_linux-64
   - qualimap=2.2.2a
   - pip=20.2.3
   - pip:
