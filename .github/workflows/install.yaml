@@ -45,10 +45,10 @@ jobs:
       # Setup snakemake
       - name: setup snakemake
         run: pip install snakemake==5.26.0
-      - name: check container mode
-        run: echo ${{ matrix.container_mode }}
       # Setup conda with mamba
       - name: setup conda
+        exclude:
+          - container_mode: singularity
         uses: goanpeca/setup-miniconda@v1
         with:
           auto-update-conda: true
@@ -56,6 +56,8 @@ jobs:
           channels: conda-forge
       # Setup singularity
       - name: setup singularity
+        exclude:
+          - container_mode: conda
         uses: eWaterCycle/setup-singularity@v3
         with:
           singularity-version: 3.6.3
