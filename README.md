@@ -45,40 +45,47 @@ Katherine Eaton
 
 ## Install
 
-### Dependencies
+### 1. Pipeline
 
-* [Miniconda](https://docs.conda.io/en/latest/miniconda.html) ([v4.8.3](https://repo.anaconda.com/miniconda/Miniconda3-py37_4.8.3-Linux-x86_64.sh))
-* Linux OS
-
-### Clone Repository
+* ktmeaton/plague-phylogeography
 
 ```bash
 git clone https://github.com/ktmeaton/plague-phylogeography.git
 cd plague-phylogeography
 ```
 
-### Create Conda Environment
+### 2. Snakemake
+
+* Snakemake:
 
 ```bash
-conda install -c conda-forge mamba
-mamba env create -f workflow/envs/default.yaml
-conda activate default
+pip install snakemake==5.26.0
+```
+
+### 3a. Conda (Laptop)
+
+* Miniconda3 (py37)
+
+```bash
+wget https://repo.anaconda.com/miniconda/Miniconda3-py37_4.8.3-Linux-x86_64.sh ;
+bash Miniconda3-py37_4.8.3-Linux-x86_64.sh ;
+snakemake --profile profiles/laptop help
+```
+
+### 3b. Singularity (HPC)
+
+* Singularity (ex. conda install)
+
+```bash
+conda install -c conda-forge singularity=3.6.3
+snakemake --profile profiles/compute-canada help
 ```
 
 ## Usage
 
 ```bash
-snakemake \
-  --use-conda \
-  --conda-frontend mamba \
-  --profile profiles/gh-actions \
-  --log_handler_script workflow/scripts/slack_log.py \
-  help
+snakemake --profile profiles/laptop all
 ```
-
-## Contributing
-
-Testing with [CodeSpaces](https://ktmeaton-plague-phylogeography-wg4r.github.dev/).
 
 ## Credits
 
