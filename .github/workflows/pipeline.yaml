@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        container_mode: ["--use-conda","--use-singularity --singularity-prefix /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/singularity/"]
+        container: ["--use-conda","--use-singularity --singularity-prefix /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/singularity/"]
       # Don't cancel a matrix job if another job fails
       fail-fast: false
     timeout-minutes: 120
