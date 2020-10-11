@@ -9,8 +9,8 @@ use-singularity: False
 use-conda: False
 conda-frontend: mamba
 rerun-incomplete:  True
-printshellcmds: False
-log-handler-script: "workflow/scripts/slack_log.py"
+printshellcmds: True
+#log-handler-script: "workflow/scripts/slack_log.py"
 
 #------------------------------------------------------------------------------#
 # System config

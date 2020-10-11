@@ -25,18 +25,14 @@ on:
 #------------------------------------------------------------------------------#
 jobs:
   #----------------------------------------------------------------------------#
-  # Install dependencies
-  install :
+  install_conda:
+    name: Install with Conda
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        container_mode: ["conda", "singularity"]
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
-      #------------------------------------------------------------------------#
       # Setup python
       - name: setup python
         uses: actions/setup-python@v2
@@ -45,19 +41,34 @@ jobs:
       # Setup snakemake
       - name: setup snakemake
         run: pip install snakemake==5.26.0
+      #------------------------------------------------------------------------#
       # Setup conda with mamba
       - name: setup conda
-        exclude:
-          - container_mode: singularity
         uses: goanpeca/setup-miniconda@v1
         with:
           auto-update-conda: true
           mamba-version: "*"
           channels: conda-forge
+  #----------------------------------------------------------------------------#
+  install_singularity:
+    name: Install with Singularity
+    runs-on: ubuntu-latest
+    steps:
+      #------------------------------------------------------------------------#
+      # Checkout Repository
+      - name: checkout repo
+        uses: actions/checkout@v2
+      # Setup python
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      # Setup snakemake
+      - name: setup snakemake
+        run: pip install snakemake==5.26.0
+      #------------------------------------------------------------------------#
       # Setup singularity
       - name: setup singularity
-        exclude:
-          - container_mode: conda
         uses: eWaterCycle/setup-singularity@v3
         with:
           singularity-version: 3.6.3
