@@ -42,7 +42,7 @@ jobs:
           python-version: '3.7'
       # Setup snakemake
       - name: setup snakemake
-        run: pip install snakemake==5.26.0
+        run: pip install snakemake==5.26.0 ftputil==4.0.0
       #------------------------------------------------------------------------#
       # Setup conda with mamba
       - name: setup conda
@@ -77,7 +77,7 @@ jobs:
           python-version: '3.7'
       # Setup snakemake
       - name: setup snakemake
-        run: pip install snakemake==5.26.0
+        run: pip install snakemake==5.26.0 ftputil==4.0.0
       #------------------------------------------------------------------------#
       # Setup singularity
       - name: setup singularity
@@ -86,9 +86,9 @@ jobs:
           singularity-version: 3.6.3
       #------------------------------------------------------------------------#
       # install pipeline env
-      - name: create conda environment
+      - name: pull singularity container
         run: |
-          snakemake --profile profiles/gh-actions --use-singularity help;
+          snakemake --profile profiles/gh-actions --use-singularity --singularity-prefix ${SINGULARITY_PREFIX} help;
       # test pipeline
       - name: test help
         run: snakemake --profile profiles/gh-actions help;
