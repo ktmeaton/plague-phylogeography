@@ -6,11 +6,11 @@ max-jobs-per-second: 1
 latency-wait: 5
 use-singularity: False
 #singularity-prefix: /home/ktmeaton/Projects/plague-phylogeography/.snakemake/singularity/
-use-conda: True
+use-conda: False
 conda-frontend: mamba
 rerun-incomplete:  True
 printshellcmds: False
-log-handler-script: "workflow/scripts/slack_log.py"
+#log-handler-script: "workflow/scripts/slack_log.py"
 
 #------------------------------------------------------------------------------#
 # System config

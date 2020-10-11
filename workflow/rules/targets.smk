@@ -2,6 +2,24 @@ import itertools # Chaining list of lists of file accessions
 # Custom targets for testing
 
 #------------------------------------------------------------------------------#
+# Containers
+#------------------------------------------------------------------------------#
+
+rule test_container:
+    """Test installing the container."""
+    output:
+        txt = "test_container.txt",
+    conda: os.path.join(project_dir, "workflow/envs/main/main.yaml")
+    container: "docker://ktmeaton/plague-phylogeography"
+    shell:
+        "if [[ {workflow.use_conda} == 'True' ]]; then \
+          echo conda > {output.txt} ; \
+        else if [[ {workflow.use_singularity} == 'True' ]]; then \
+          echo singularity > {output.txt} ; \
+          fi; \
+        fi; "
+
+#------------------------------------------------------------------------------#
 # Data Download
 #------------------------------------------------------------------------------#
 # There has to be a better way than using itertools
