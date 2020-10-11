@@ -47,15 +47,16 @@ jobs:
         run: pip install snakemake==5.26.0
       # Setup conda with mamba
       - name: setup conda
-        if: ${{ matrix.container_mode }} == "conda"
+        if: matrix.container_mode == "conda"
         uses: goanpeca/setup-miniconda@v1
         with:
           auto-update-conda: true
           mamba-version: "*"
           channels: conda-forge
       # Setup singularity
-      - uses: eWaterCycle/setup-singularity@v3
-        if: ${{ matrix.container_mode }} == "singularity"
+      - setup singularity
+        uses: eWaterCycle/setup-singularity@v3
+        if: matrix.container_mode == "singularity"
         with:
           singularity-version: 3.6.3
       #------------------------------------------------------------------------#
