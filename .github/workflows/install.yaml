@@ -54,7 +54,7 @@ jobs:
           mamba-version: "*"
           channels: conda-forge
       # Setup singularity
-      - setup singularity
+      - name: setup singularity
         uses: eWaterCycle/setup-singularity@v3
         if: matrix.container_mode == "singularity"
         with:
