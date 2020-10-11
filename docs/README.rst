@@ -103,7 +103,7 @@ Install
 
 .. code-block:: bash
 
-   pip install snakemake==5.26.0
+   pip install snakemake==5.26.0 ftputil==4.0.0
 
 3a. Conda (Laptop)
 ^^^^^^^^^^^^^^^^^^
