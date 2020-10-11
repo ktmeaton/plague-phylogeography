@@ -28,7 +28,8 @@ jobs:
   install_conda:
     name: Install with Conda
     runs-on: ubuntu-latest
-    fail-fast: false
+    strategy:
+      fail-fast: false
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
@@ -62,7 +63,8 @@ jobs:
   install_singularity:
     name: Install with Singularity
     runs-on: ubuntu-latest
-    fail-fast: false
+    strategy:
+      fail-fast: false
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
@@ -90,18 +92,3 @@ jobs:
       # test pipeline
       - name: test help
         run: snakemake --profile profiles/gh-actions help;
-      #------------------------------------------------------------------------#
-      # Cache workflow environments
-      #- name: cache workflow envs
-      #  uses: actions/cache@v2
-      #  with:
-      #    path: /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda
-      #    key: snakemake-workflow-envs-${{ runner.os }}-${{ hashFiles('workflow/envs/main/main.yaml') }}
-      # Check conda environments
-      #- name: check cache
-      #  run: |
-      #    conda info --envs
-      # Set up .env file with secrets
-      #- name: create env file
-      #  run:
-      #    echo "export SLACK_TOKEN=${{ secrets.SLACK_GH_ACTIONS }}" > .env
