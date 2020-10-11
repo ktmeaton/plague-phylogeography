@@ -40,6 +40,7 @@ include: rules_dir + "/alignment.smk"
 include: rules_dir + "/phylogeny.smk"
 include: rules_dir + "/qc.smk"
 include: rules_dir + "/filter_mask.smk"
+include: rules_dir + "/plot.smk"
 include: rules_dir + "/functions.smk"
 include: rules_dir + "/targets.smk"
 
@@ -53,17 +54,22 @@ if workflow.singularity_prefix:
 else:
     os.environ["SINGULARITY_CACHEDIR"] = os.path.join(project_dir, ".snakemake", "singularity")
     os.environ["NXF_SINGULARITY_CACHEDIR"] = os.path.join(project_dir, ".snakemake", "singularity")
+
+# -----------------------------------------------------------------------------#
+# Package Management                                                           #
+# -----------------------------------------------------------------------------#
+conda: os.path.join(project_dir, "workflow/envs/main/main.yaml")
+container: "docker://ktmeaton/plague-phylogeography"
+
 # -----------------------------------------------------------------------------#
 # Local rules                                                                  #
 # -----------------------------------------------------------------------------#
-
 localrules:
     download_assembly,
 
 # -----------------------------------------------------------------------------#
 # Main Target                                                                  #
 # -----------------------------------------------------------------------------#
-
 rule all:
     """
     The default pipeline targets.
