@@ -56,6 +56,12 @@ jobs:
         uses: eWaterCycle/setup-singularity@v3
         with:
           singularity-version: 3.6.3
+      #------------------------------------------------------------------------#
+      - name: cache conda env
+        uses: actions/cache@v2
+        with:
+          path: .snakemake/conda/
+          key: plague-phylogeography-conda-${{ runner.os }}-${{ hashFiles('workflow/envs/main/main.yaml') }}
       # install pipeline container
       - name: install container
         run: |
