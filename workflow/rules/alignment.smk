@@ -26,7 +26,7 @@ rule eager:
     resources:
         load=100,
     params:
-        profile="singularity" if workflow.use_singularity else "conda",
+        profile="singularity" if workflow.use_singularity else ("conda" if workflow.use_conda else "standard"),
     conda:
         os.path.join(envs_dir,"main","main.yaml")
     container:
@@ -35,6 +35,7 @@ rule eager:
         html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
         txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
     shell:
+        "export NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m'; "
         "python {scripts_dir}/eager_tsv.py --files {input.fastq} --organism \"{config[organism]}\" --tsv {output.eager_tsv}; "
         "cd {results_dir}/eager/{wildcards.reads_origin}/{wildcards.sample}; "
         "nextflow \

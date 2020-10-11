@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        container: ["--use-conda", "--use-singularity --singularity-prefix /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/singularity/"]
+        container: ["--use-conda --conda-prefix /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/conda", "--use-singularity --singularity-prefix /home/runner/work/plague-phylogeography/plague-phylogeography/.snakemake/singularity/"]
       fail-fast: false
     steps:
       #------------------------------------------------------------------------#

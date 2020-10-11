@@ -7,6 +7,7 @@ latency-wait: 5
 use-singularity: False
 #singularity-prefix: /home/ktmeaton/Projects/plague-phylogeography/.snakemake/singularity/
 use-conda: False
+#conda-prefix: /home/ktmeaton/Projects/plague-phylogeography/.snakemake/conda/
 conda-frontend: mamba
 rerun-incomplete:  True
 printshellcmds: False

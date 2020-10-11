@@ -15,10 +15,10 @@ rule download_sra:
     fastq = results_dir + "/data/sra/{sample}/{file_acc}_1.fastq.gz"
   log:
     os.path.join(logs_dir, "download_sra","{sample}", "{file_acc}.log"),
-  envmodules:
-    "StdEnv/2020",
-    "gcc/9.3.0",
-    "sra-toolkit/2.10.8",
+  conda:
+    os.path.join(project_dir, "workflow/envs/main/main.yaml")
+  container:
+    "docker://ktmeaton/plague-phylogeography"
   resources:
     cpus = 1,
   shell:
