@@ -14,9 +14,8 @@ rule test_container:
     shell:
         "if [[ {workflow.use_conda} == 'True' ]]; then \
           echo conda > {output.txt} ; \
-        else if [[ {workflow.use_singularity} == 'True' ]]; then \
+        elif [[ {workflow.use_singularity} == 'True' ]]; then \
           echo singularity > {output.txt} ; \
-          fi; \
         else \
           echo none > {output.txt} ; \
         fi; "
