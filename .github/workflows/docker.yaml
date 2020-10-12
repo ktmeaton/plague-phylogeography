@@ -36,14 +36,16 @@ jobs:
             main.yaml
       # build docker image
       - name: docker build
+        id: docker-build
         if: steps.git-diff.outputs.diff
         run: |
           cd workflow/envs/main/;
           docker build --no-cache . -t ktmeaton/plague-phylogeography:latest;
+          echo ::set-output run=true
       #------------------------------------------------------------------------#
       # tag and upload
       - name: docker push (dev)
-        if: steps.git-diff.outputs.diff && ${{ github.event_name == 'push' }}
+        if: steps.docker-build.outputs.run && ${{ github.event_name == 'push' }}
         #if: steps.git-diff.outputs.diff && ${{ github.event_name == 'push' }}
         run: |
           echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin;
