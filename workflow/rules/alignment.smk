@@ -26,11 +26,7 @@ rule eager:
     resources:
         load=100,
     params:
-        profile="singularity" if workflow.use_singularity else ("conda" if workflow.use_conda else "standard"),
-    conda:
-        os.path.join(envs_dir,"main","main.yaml")
-    container:
-        "docker://ktmeaton/plague-phylogeography"
+        profile="singularity" if workflow.use_singularity else "conda",
     log:
         html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
         txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
@@ -83,10 +79,6 @@ rule snippy_pairwise:
         os.path.join(logs_dir, "snippy_pairwise", "{reads_origin}", "{sample}.log")
     wildcard_constraints:
         reads_origin="(sra|local|assembly)",
-    conda:
-        os.path.join(envs_dir,"main","main.yaml")
-    container:
-        "docker://ktmeaton/plague-phylogeography"
     shell:
         "if [[ {wildcards.reads_origin} == 'assembly' ]]; then \
             snippy \
@@ -145,10 +137,6 @@ rule snippy_multi:
         full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
     log:
         os.path.join(logs_dir, "snippy_multi","snippy-core.log")
-    conda:
-        os.path.join(envs_dir,"main","main.yaml")
-    container:
-        "docker://ktmeaton/plague-phylogeography"
     resources:
         cpus = 1,
     shell:

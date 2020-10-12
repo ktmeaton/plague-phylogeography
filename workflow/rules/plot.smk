@@ -13,12 +13,11 @@ rule plot_table_assembly:
                 caption=os.path.join(report_dir,"download","table_fna.rst"),
                 category="Download",
                 subcategory="Assembly"),
-    #conda:
-    #  os.path.join(envs_dir,"main","main.yaml")
-    #container:
-    #    "docker://ktmeaton/plague-phylogeography"
     shell:
-        "python workflow/scripts/plot_table.py --indir {results_dir}/data/{wildcards.reads_origin} --outdir {results_dir}/data/{wildcards.reads_origin} --ext fna; "
+        "python workflow/scripts/plot_table.py \
+          --indir {results_dir}/data/{wildcards.reads_origin} \
+          --outdir {results_dir}/data/{wildcards.reads_origin} \
+          --ext fna; "
 
 rule plot_table_fastq:
     """
@@ -38,9 +37,8 @@ rule plot_table_fastq:
                 caption=os.path.join(report_dir,"download","table_fastq-gz.rst"),
                 category="Download",
                 subcategory="Fastq"),
-    #conda:
-    #    os.path.join(envs_dir,"main","main.yaml")
-    #container:
-    #    "docker://ktmeaton/plague-phylogeography"
     shell:
-        "python workflow/scripts/plot_table.py --indir {results_dir}/data/{wildcards.reads_origin} --outdir {results_dir}/data/{wildcards.reads_origin} --ext fastq.gz; "
+        "python workflow/scripts/plot_table.py \
+          --indir {results_dir}/data/{wildcards.reads_origin} \
+          --outdir {results_dir}/data/{wildcards.reads_origin} \
+          --ext fastq.gz; "

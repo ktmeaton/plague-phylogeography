@@ -12,10 +12,6 @@ rule qualimap:
         dir = directory(results_dir + "/qualimap/{reads_origin}/{sample}/"),
         bamq = results_dir + "/qualimap/{reads_origin}/{sample}/{sample}.bam",
         html = results_dir + "/qualimap/{reads_origin}/{sample}/qualimapReport.html",
-    conda:
-        os.path.join(envs_dir,"main","main.yaml")
-    container:
-        "docker://ktmeaton/plague-phylogeography"
     log:
         os.path.join(logs_dir, "qualimap", "{reads_origin}", "{sample}.log")
     shell:
@@ -61,10 +57,6 @@ rule multiqc:
                 category="Post-Alignment",
                 subcategory="Qualimap"),
         dir = directory(results_dir + "/multiqc/"),
-    conda:
-        os.path.join(envs_dir,"main","main.yaml")
-    container:
-        "docker://ktmeaton/plague-phylogeography"
     log:
         os.path.join(logs_dir, "multiqc/multiqc.log")
     resources:

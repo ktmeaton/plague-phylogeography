@@ -6,6 +6,7 @@ max-jobs-per-second: 1
 latency-wait: 5
 use-singularity: True
 singularity-prefix: /scratch/keaton/singularity/
+singularity-args: "--bind /scratch/keaton --bind /project/def-briang/keaton/ --bind /home/keaton"
 use-conda: False
 #conda-prefix: /scratch/keaton/conda
 conda-frontend: mamba
@@ -26,5 +27,5 @@ jobs : "20"
 # Where to put the .snakemake directory
 shadow-prefix: "/scratch/keaton/plague-phylogeography"
 # slurm execution
-cluster: "sbatch --parsable -t {resources.time_min} -A {resources.account} --cpus-per-task {resources.cpus} --mem-per-cpu={resources.mem_mb} -o workflow/logs_slurm/{rule}_%j.out -e workflow/logs_slurm/{rule}_%j.err --job-name {rule} --export=ALL,NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m',NXF_OFFLINE='TRUE'"
+cluster: "sbatch --parsable -t {resources.time_min} -A {resources.account} --cpus-per-task {resources.cpus} --mem-per-cpu={resources.mem_mb} -o workflow/logs_slurm/{rule}_%j.out -e workflow/logs_slurm/{rule}_%j.err --job-name {rule} --export=ALL,NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m',"
 cluster-status: "workflow/scripts/slurm_status.py"

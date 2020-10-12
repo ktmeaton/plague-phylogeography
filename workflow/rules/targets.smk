@@ -148,18 +148,18 @@ rule test_multiqc:
 # Plot
 #------------------------------------------------------------------------------#
 
-rule test_table_assembly:
+rule test_plot_table_assembly:
     input:
         results_dir + "/data/assembly/table_assembly_fna.pdf",
 
-rule test_table_assembly_reference:
+rule test_plot_table_reference:
     input:
         results_dir + "/data/reference/table_reference_fna.pdf",
 
-rule test_table_fastq_local:
+rule test_plot_table_fastq_local:
     input:
         results_dir + "/data/local/table_local_fastq-gz.pdf",
 
-rule test_table_fastq_sra:
+rule test_plot_table_fastq_sra:
     input:
         results_dir + "/data/sra/table_sra_fastq-gz.pdf",
