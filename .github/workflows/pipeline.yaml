@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------#
-name: Pipeline
+name: Pipeline CI
 #------------------------------------------------------------------------------#
 # Global workflow environment variables
 env:
@@ -36,12 +36,11 @@ on:
 #------------------------------------------------------------------------------#
 jobs:
   #----------------------------------------------------------------------------#
-  # Install dependencies
-  pipeline :
+  # Conda Pipeline
+  pipeline_conda:
+    name: Pipeline with Conda
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        container: ["conda", "singularity"]
       fail-fast: false
     timeout-minutes: 120
     steps:
@@ -69,77 +68,35 @@ jobs:
       - name: create conda env
         run: mamba env create -f workflow/envs/main/main.yaml;
       #------------------------------------------------------------------------#
+      # Test Data Download
+      - name: test download
+        shell: bash -l {0}
+        run: |
+            conda activate plague-phylogeography;
+            snakemake --profile profiles/gh-actions --use-conda --conda-prefix ${CONDA_SNK_PREFIX} ${TEST_DOWNLOAD};
+  #----------------------------------------------------------------------------#
+  pipeline_singularity:
+    name: Pipeline with Singularity
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      #------------------------------------------------------------------------#
+      # Checkout Repository
+      - name: checkout repo
+        uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
       # Setup singularity
       - name: setup singularity
         uses: eWaterCycle/setup-singularity@v3
         with:
           singularity-version: 3.6.3
-      # install pipeline container
-      - name: install container
-        run: singularity pull docker://docker.io/ktmeaton/plague-phylogeography;
       #------------------------------------------------------------------------#
-      # Test Data Download
-      - name: test download
-        shell: bash -l {0}
+      # pull container
+      - name: pull container
+        run: singularity pull docker://docker.io/ktmeaton/plague-phylogeography
+      #------------------------------------------------------------------------#
+      # run help
+      - name: run help
         run: |
-          if [[ "${{ matrix.container }}" == "conda" ]] ; then
-            conda activate plague-phylogeography;
-            snakemake --profile profiles/gh-actions --use-conda --conda-prefix ${CONDA_SNK_PREFIX} ${TEST_DOWNLOAD};
-          else
-            singularity exec plague-phylogeography_latest.sif snakemake  --profile profiles/gh-actions  --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} ${TEST_DOWNLOAD};
-          fi;
-
-      # Test Eager
-      - name: test eager
-        shell: bash -l {0}
-        run:
-          snakemake --profile profiles/gh-actions ${{ matrix.container }} ${TEST_EAGER};
-      # Test snippy
-      - name: test snippy pairwise
-        shell: bash -l {0}
-        run:
-          snakemake --profile profiles/gh-actions ${{ matrix.container }} ${TEST_SNIPPY};
-      # Test snippy
-      - name: test merge snp density
-        shell: bash -l {0}
-        run:
-          snakemake --profile profiles/gh-actions ${{ matrix.container }} merge_snp_density;
-      # Test snippy multi
-      - name: test snippy multi
-        shell: bash -l {0}
-        run:
-          snakemake --profile profiles/gh-actions ${{ matrix.container }} ${TEST_SNIPPY_MULTI};
-      # Test IQTREE
-      - name: test iqtree
-        shell: bash -l {0}
-        run:
-          snakemake --profile profiles/gh-actions ${{ matrix.container }} ${TEST_PHYLOGENY};
-      # Test IQTREE
-      - name: test multiqc
-        shell: bash -l {0}
-        run:
-          snakemake --profile profiles/gh-actions ${{ matrix.container }} ${TEST_QC};
-      # Test wrapup with all
-      - name: test all
-        shell: bash -l {0}
-        run:
-          snakemake --profile profiles/gh-actions ${{ matrix.container }} all;
-      # Test Report Generation
-      - name: test report
-        shell: bash -l {0}
-        run:
-          snakemake --profile profiles/gh-actions ${{ matrix.container }} --report workflow/report/report.html all;
-      #------------------------------------------------------------------------#
-      #  Artifact Upload Report
-      - name: artifact report
-        uses: actions/upload-artifact@v2
-        with:
-          name: report
-          path: workflow/report/report.html
-      #  Artifact Upload logs
-      - name: artifact logs
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: logs
-          path: workflow/logs/
+          singularity exec plague-phylogeography_latest.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions ${TEST_DOWNLOAD};

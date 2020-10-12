@@ -29,6 +29,8 @@ jobs:
   install_conda:
     name: Install with Conda
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
@@ -65,6 +67,8 @@ jobs:
   install_singularity:
     name: Install with Singularity
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
