@@ -4,9 +4,9 @@
 restart-times: 2
 max-jobs-per-second: 1
 latency-wait: 5
-use-singularity: True
-singularity-prefix: /scratch/keaton/singularity/
-singularity-args: "--bind /scratch/keaton --bind /project/def-briang/keaton/ --bind /home/keaton"
+use-singularity: False
+#singularity-prefix: /scratch/keaton/singularity/
+#singularity-args: "--bind /scratch/keaton --bind /project/def-briang/keaton/ --bind /home/keaton"
 use-conda: False
 #conda-prefix: /scratch/keaton/conda
 conda-frontend: mamba

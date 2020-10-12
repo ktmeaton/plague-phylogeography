@@ -59,9 +59,10 @@ jobs:
       #------------------------------------------------------------------------#
       # run help
       - name: run help
+        shell: bash -l {0}
         run: |
           conda activate plague-phylogeography;
-          snakemake --profile profiles/gh-actions ${{ matrix.container }} help;
+          snakemake --profile profiles/gh-actions --use-conda --conda_prefix ${CONDA_PREFIX} help;
   #----------------------------------------------------------------------------#
   install_singularity:
     name: Install with Singularity
@@ -87,4 +88,4 @@ jobs:
       # run help
       - name: run help
         run: |
-          singularity exec plague-phylogeography_latest.sifsnakemake --profile profiles/gh-actions help;
+          singularity exec plague-phylogeography_latest.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_PREFIX} --profile profiles/gh-actions help;
