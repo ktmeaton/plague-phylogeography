@@ -15,8 +15,8 @@ on:
 #------------------------------------------------------------------------------#
 jobs:
   #----------------------------------------------------------------------------#
-  push_docker:
-    name: Push to Docker Hub
+  push_docker_dev:
+    name: Push to Docker Hub (dev)
     runs-on: ubuntu-latest
     steps:
       #------------------------------------------------------------------------#
@@ -36,27 +36,37 @@ jobs:
             main.yaml
       # build docker image
       - name: docker build
-        id: docker-build
         if: steps.git-diff.outputs.diff
         run: |
           cd workflow/envs/main/;
-          docker build --no-cache . -t ktmeaton/plague-phylogeography:latest;
-          echo ::set-output run=true
+          docker build --no-cache . -t ktmeaton/plague-phylogeography:dev;
       #------------------------------------------------------------------------#
       # tag and upload
-      - name: docker push (dev)
-        if: steps.docker-build.outputs.run && ${{ github.event_name == 'push' }}
-        #if: steps.git-diff.outputs.diff && ${{ github.event_name == 'push' }}
+      - name: docker push
+        if: steps.git-diff.outputs.diff
         run: |
           echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin;
-          docker tag ktmeaton/plague-phylogeography:latest ktmeaton/plague-phylogeography:dev;
           docker push ktmeaton/plague-phylogeography:dev;
 
-      - name: docker push (release)
-        if: steps.git-diff.outputs.diff
-        #if: steps.git-diff.outputs.diff && ${{ github.event_name == 'release' }}
+  push_docker_release:
+    name: Push to Docker Hub (release)
+    runs-on: ubuntu-latest
+    steps:
+      #------------------------------------------------------------------------#
+      # Checkout Repository
+      - name: checkout repo
+        if: ${{ github.event_name == 'release' }}
+        uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # build docker image
+      - name: docker build
+        if: ${{ github.event_name == 'release' }}
+        run: |
+          cd workflow/envs/main/;
+          docker build --no-cache . -t ktmeaton/plague-phylogeography:latest:${{ github.event.release.tag_name }};
+      #------------------------------------------------------------------------#
+      - name: docker push
+        if: ${{ github.event_name == 'release' }}
         run: |
           echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin;
-          docker push ktmeaton/plague-phylogeography:latest;
-          docker tag ktmeaton/plague-phylogeography:latest ktmeaton/plague-phylogeography:${{ github.event.release.tag_name }};
-          docker ktmeaton/plague-phylogeography:${{ github.event.release.tag_name }};
+          docker push ktmeaton/plague-phylogeography:${{ github.event.release.tag_name }};
