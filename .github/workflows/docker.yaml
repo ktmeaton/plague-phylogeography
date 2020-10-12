@@ -43,7 +43,7 @@ jobs:
       #------------------------------------------------------------------------#
       # tag and upload
       - name: docker push (dev)
-        if: steps.git-diff.outputs.diff
+        if: steps.git-diff.outputs.diff && ${{ github.event_name == 'push' }}
         #if: steps.git-diff.outputs.diff && ${{ github.event_name == 'push' }}
         run: |
           echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin;
