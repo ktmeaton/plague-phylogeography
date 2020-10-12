@@ -62,7 +62,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate plague-phylogeography;
-          snakemake --profile profiles/gh-actions --use-conda --conda_prefix ${CONDA_PREFIX} help;
+          snakemake --profile profiles/gh-actions --use-conda --conda-prefix ${CONDA_PREFIX} help;
   #----------------------------------------------------------------------------#
   install_singularity:
     name: Install with Singularity

@@ -36,14 +36,11 @@ on:
 #------------------------------------------------------------------------------#
 jobs:
   #----------------------------------------------------------------------------#
-  # Install dependencies
-  pipeline :
+  pipeline_conda:
+    name: Pipeline with Conda
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        container: ["conda", "singularity"]
       fail-fast: false
-    timeout-minutes: 120
     steps:
       #------------------------------------------------------------------------#
       # Checkout Repository
@@ -70,3 +67,10 @@ jobs:
       - name: create conda env
         run: mamba env create -f workflow/envs/main/main.yaml
       #------------------------------------------------------------------------#
+      # run help
+      - name: run help
+        shell: bash -l {0}
+        run: |
+          conda activate plague-phylogeography;
+          snakemake --profile profiles/gh-actions --use-conda --conda-prefix ${CONDA_PREFIX} help;
+  #----------------------------------------------------------------------------#
