@@ -43,14 +43,16 @@ jobs:
       #------------------------------------------------------------------------#
       # tag and upload
       - name: docker push (dev)
-        if: steps.git-diff.outputs.diff && ${{ github.event_name == 'push' }}
+        if: steps.git-diff.outputs.diff
+        #if: steps.git-diff.outputs.diff && ${{ github.event_name == 'push' }}
         run: |
-          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_PASSWORD }}" --password-stdin;
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin;
           docker tag ktmeaton/plague-phylogeography:latest ktmeaton/plague-phylogeography:dev;
           docker push ktmeaton/plague-phylogeography:dev;
 
       - name: docker push (release)
-        if: steps.git-diff.outputs.diff && ${{ github.event_name == 'release' }}
+        if: steps.git-diff.outputs.diff
+        #if: steps.git-diff.outputs.diff && ${{ github.event_name == 'release' }}
         run: |
           echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin;
           docker push ktmeaton/plague-phylogeography:latest;
