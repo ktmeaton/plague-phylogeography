@@ -14,10 +14,14 @@ RUN conda install -c conda-forge mamba \
 
 ENV PATH /opt/conda/envs/plague-phylogeography/bin:$PATH
 
-# Configure sra toolkit
-RUN vdb-config --interactive;
+# Capture conda env details
+RUN conda env export --name plague-phylogeography > plague-phylogeography.yaml
 
-# Download the uuid program
-#RUN apt-get update && apt-get --quiet install --yes uuid-runtime && apt-get clean;
-# Configure the sra toolkit vdb
-#RUN printf '/LIBS/GUID = "%s"\n' `uuidgen` > /root/.ncbi/user-settings.mkfg
+# Configure sra toolkit
+RUN apt-get update \
+    && apt-get --quiet install --yes uuid-runtime \
+    && apt-get clean \
+    && printf '/LIBS/GUID = "%s"\n' `uuidgen` > /root/.ncbi/user-settings.mkfg;
+
+# Configure nf-core/eager
+RUN nextflow run nf-core/eager -r dev -profile test_tsv,conda --fasta 'https://github.com/nf-core/test-datasets/raw/eager/reference/Mammoth/Mammoth_MT_Krause.fasta.gz';
