@@ -1,0 +1,50 @@
+#------------------------------------------------------------------------------#
+name: Docker
+#------------------------------------------------------------------------------#
+# Workflow conditions
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/docker.yaml'
+      - 'workflow/envs/main/main.yaml'
+      - 'workflow/envs/main/Dockerfile'
+  release:
+    types: [published]
+#------------------------------------------------------------------------------#
+jobs:
+  #----------------------------------------------------------------------------#
+  push_docker:
+    name: Push to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      #------------------------------------------------------------------------#
+      # Checkout Repository
+      - name: checkout repo
+        uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      - name: check for changes
+        uses: technote-space/get-diff-action@v1
+        with:
+          FILES: |
+            workflow/envs/main/Dockerfile
+            workflow/envs/main/main.yaml
+      # Checkout Repository
+      - name: docker build
+        if: env.GIT_DIFF
+        run: docker build --no-cache . -t ktmeaton/plague-phylogeography:latest
+
+      - name: docker push (dev)
+        if: env.GIT_DIFF && ${{ github.event_name == 'push' }}
+        run: |
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_PASSWORD }}" --password-stdin
+          docker tag ktmeaton/plague-phylogeography:latest ktmeaton/plague-phylogeography:dev
+          docker push ktmeaton/plague-phylogeography:dev
+      - name: docker push (release)
+        if: env.GIT_DIFF && ${{ github.event_name == 'release' }}
+        run: |
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          docker push ktmeaton/plague-phylogeography:latest
+          docker tag ktmeaton/plague-phylogeography:latest ktmeaton/plague-phylogeography:${{ github.event.release.tag_name }}
+          docker ktmeaton/plague-phylogeography:${{ github.event.release.tag_name }}
