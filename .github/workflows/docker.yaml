@@ -27,10 +27,10 @@ jobs:
       # Check only for changes in conda and dockerfile
       - name: check for changes
         id: git-diff
-        uses: technote-space/get-diff-action@v1
+        uses: technote-space/get-diff-action@v2
         with:
-          PATTERNS: |
-            !.github/workflows/docker.yaml
+          PREFIX_FILTER: |
+            workflow/envs/main/
           FILES: |
             Dockerfile
             main.yaml
