@@ -91,8 +91,8 @@ All install options start by cloning the pipeline repo.
    git clone https://github.com/ktmeaton/plague-phylogeography.git
    cd plague-phylogeography
 
-1. Conda
-^^^^^^^^
+1. Conda (Laptop)
+^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -103,21 +103,33 @@ All install options start by cloning the pipeline repo.
 
 (While mamba is not strictly necessary, it is heavily recommended.)
 
-2. Singularity
-^^^^^^^^^^^^^^
+2. Docker (Laptop)
+------------------
+
+.. code-block:: bash
+
+   docker pull ktmeaton/plague-phylogeography:dev
+   docker run \
+     -v $PWD:/pipeline \
+     -w /pipeline \
+     ktmeaton/plague-phylogeography \
+     snakemake --profile profiles/laptop help
+
+3. Singularity (HPC - Compute Canada)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
    singularity pull docker://docker.io/ktmeaton/plague-phylogeography:dev
-   singularity exec plague_phylogeography_dev.sif snakemake --profile profiles/laptop help
+   singularity exec plague_phylogeography_dev.sif \
+     snakemake --profile profiles/compute-canada help
 
-3. Docker
----------
+If you will be downloading data from the SRA with singularity, the sra toolkit must be configured:
 
 .. code-block:: bash
 
-   docker pull docker://docker.io/ktmeaton/plague-phylogeography:dev
-   docker run ktmeaton/plague-phylogeography snakemake --profile profiles/laptop help
+   mkdir -p ~/.ncbi/
+   printf '/LIBS/GUID = "%s"\n' `uuidgen` > ~/.ncbi/user-settings.mkfg;
 
 Credits
 -------
