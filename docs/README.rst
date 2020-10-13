@@ -84,56 +84,40 @@ Showcase
 Install
 -------
 
-1. Pipeline
-^^^^^^^^^^^
-
-
-* ktmeaton/plague-phylogeography
+All install options start by cloning the pipeline repo.
 
 .. code-block:: bash
 
    git clone https://github.com/ktmeaton/plague-phylogeography.git
    cd plague-phylogeography
 
-2. Snakemake
-^^^^^^^^^^^^
-
-
-* Snakemake:
+1. Conda
+^^^^^^^^
 
 .. code-block:: bash
 
-   pip install snakemake==5.26.0 ftputil==4.0.0
-
-3a. Conda (Laptop)
-^^^^^^^^^^^^^^^^^^
-
-
-* Miniconda3 (py37)
-
-.. code-block:: bash
-
-   wget https://repo.anaconda.com/miniconda/Miniconda3-py37_4.8.3-Linux-x86_64.sh ;
-   bash Miniconda3-py37_4.8.3-Linux-x86_64.sh ;
+   conda install -c conda-forge mamba
+   mamba env create -f workflow/envs/merge/environment.yaml
+   conda activate plague-phylogeography
    snakemake --profile profiles/laptop help
 
-3b. Singularity (HPC)
-^^^^^^^^^^^^^^^^^^^^^
+(While mamba is not strictly necessary, it is heavily recommended.)
 
-
-* Singularity (ex. conda install)
-
-.. code-block:: bash
-
-   conda install -c conda-forge singularity=3.6.3
-   snakemake --profile profiles/compute-canada help
-
-Usage
------
+2. Singularity
+^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
-   snakemake --profile profiles/laptop all
+   singularity pull docker://docker.io/ktmeaton/plague-phylogeography:dev
+   singularity exec plague_phylogeography_dev.sif snakemake --profile profiles/laptop help
+
+3. Docker
+---------
+
+.. code-block:: bash
+
+   docker pull docker://docker.io/ktmeaton/plague-phylogeography:dev
+   docker run ktmeaton/plague-phylogeography snakemake --profile profiles/laptop help
 
 Credits
 -------
