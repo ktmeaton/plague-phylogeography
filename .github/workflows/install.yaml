@@ -50,11 +50,13 @@ jobs:
       #------------------------------------------------------------------------#
       # run help
       - name: run help
-        uses: csexton/debugger-action@master
         shell: bash -l {0}
         run: |
           conda activate plague-phylogeography;
           snakemake --profile profiles/gh-actions --use-conda --conda-prefix ${CONDA_SNK_PREFIX} help;
+      #------------------------------------------------------------------------#
+      - name: setup debug session
+        uses: csexton/debugger-action@master
   #----------------------------------------------------------------------------#
   install_singularity:
     name: Install with Singularity
@@ -79,9 +81,11 @@ jobs:
       #------------------------------------------------------------------------#
       # run help
       - name: run help
-        uses: csexton/debugger-action@master
         run: |
           singularity exec plague-phylogeography_dev.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions help;
+      #------------------------------------------------------------------------#
+      - name: setup debug session
+        uses: csexton/debugger-action@master
       #------------------------------------------------------------------------#
       # run help
       - name: configure sra-toolkit
