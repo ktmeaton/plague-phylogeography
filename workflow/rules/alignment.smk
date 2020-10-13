@@ -25,8 +25,6 @@ rule eager:
         reads_origin = "(sra|local)",
     resources:
         load=100,
-    params:
-        profile="singularity" if workflow.use_singularity else "conda",
     log:
         html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
         txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
@@ -38,7 +36,7 @@ rule eager:
             -c {config_dir}/eager.config \
             run nf-core/eager \
             -r {config[eager_rev]} \
-            -profile {params.profile} \
+            -profile standard \
             --igenomes_ignore \
             -with-report {log.html} \
             --input metadata_{wildcards.sample}.tsv \

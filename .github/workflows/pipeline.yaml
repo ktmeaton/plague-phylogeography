@@ -97,7 +97,7 @@ jobs:
       # test download
       - name: test download
         run: |
-          singularity exec plague-phylogeography_latest.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions ${TEST_DOWNLOAD};
+          singularity exec plague-phylogeography_dev.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions ${TEST_DOWNLOAD};
       # run help
       #- name: test nf-core/eager
       #  run: |
