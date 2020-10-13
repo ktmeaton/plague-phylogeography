@@ -10,11 +10,9 @@ LABEL authors="Katherine Eaton" \
 COPY environment.yaml .
 
 # Configure sra toolkit
-#RUN mkdir -p /root/.ncbi/ \
-#    && apt-get update \
-#    && apt-get --quiet install --yes uuid-runtime \
-#    && apt-get clean \
-#    && printf '/LIBS/GUID = "%s"\n' `uuidgen` > /root/.ncbi/user-settings.mkfg;
+RUN apt-get update \
+    && apt-get --quiet install --yes procps
+    && apt-get clean;
 
 # Create conda environment
 RUN conda install -c conda-forge mamba \
