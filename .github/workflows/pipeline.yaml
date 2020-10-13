@@ -68,6 +68,12 @@ jobs:
         run: |
             conda activate plague-phylogeography;
             snakemake --profile profiles/gh-actions ${TEST_DOWNLOAD};
+      # Test eager
+      - name: test nf-core/eager
+        shell: bash -l {0}
+        run: |
+            conda activate plague-phylogeography;
+            snakemake --profile profiles/gh-actions ${TEST_EAGER};
   #----------------------------------------------------------------------------#
   pipeline_singularity:
     name: Pipeline with Singularity
@@ -104,3 +110,7 @@ jobs:
       - name: test download
         run: |
           singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions ${TEST_DOWNLOAD};
+      # test download
+      - name: test nf-core/eager
+        run: |
+          singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions ${TEST_EAGER};

@@ -13,12 +13,12 @@ SRA_ACC=$4
 #------------------------------------------------------------------------------#
 
 # Change the download sra location and timeout settings
-mkdir -p ~/.ncbi/
+#mkdir -p ~/.ncbi/
 
 # Create SRA config file if it doesn't exist
-if [[ ! -f $HOME/.ncbi/user-settings.mkfg ]]; then
-  touch $HOME/.ncbi/user-settings.mkfg
-fi
+#if [[ ! -f $HOME/.ncbi/user-settings.mkfg ]]; then
+#  touch $HOME/.ncbi/user-settings.mkfg
+#fi
 
 # Set cache enabled if not set
 if [[ -z `grep "/cache-enabled" $HOME/.ncbi/user-settings.mkfg` ]]; then
