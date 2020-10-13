@@ -110,7 +110,27 @@ jobs:
       - name: test download
         run: |
           singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions ${TEST_DOWNLOAD};
-      # test eager
-      #- name: test nf-core/eager
-      #  run: |
-      #    singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions ${TEST_EAGER};
+  #----------------------------------------------------------------------------#
+  pipeline_docker:
+    name: Pipeline with Docker
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      #------------------------------------------------------------------------#
+      - name: setup environment variables
+        run: |
+          echo "DOCKER_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> $GITHUB_ENV
+          echo "DOCKER_PASSWORD=${{ secrets.DOCKERHUB_PASSWORD }}" >> $GITHUB_ENV
+      #------------------------------------------------------------------------#
+      # Checkout Repository
+      - name: checkout repo
+        uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # pull docker image
+      - name: docker pull
+        run: docker pull ktmeaton/plague-phylogeography:dev
+      #------------------------------------------------------------------------#
+      # run help
+      - name: test download
+        run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions ${TEST_DOWNLOAD};
