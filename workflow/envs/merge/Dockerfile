@@ -11,7 +11,7 @@ COPY environment.yaml .
 
 # Configure sra toolkit
 RUN apt-get update \
-    && apt-get --quiet install --yes procps
+    && apt-get --quiet install --yes procps \
     && apt-get clean;
 
 # Create conda environment
