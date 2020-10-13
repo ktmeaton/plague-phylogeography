@@ -74,9 +74,14 @@ jobs:
       #------------------------------------------------------------------------#
       # pull container
       - name: pull container
-        run: singularity pull docker://docker.io/ktmeaton/plague-phylogeography
+        run: singularity pull docker://docker.io/ktmeaton/plague-phylogeography:dev
       #------------------------------------------------------------------------#
       # run help
       - name: run help
         run: |
-          singularity exec plague-phylogeography_latest.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions help;
+          singularity exec plague-phylogeography_dev.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions help;
+      #------------------------------------------------------------------------#
+      # run help
+      - name: configure sra-toolkit
+        run: |
+          singularity exec plague-phylogeography_dev.sif vdb-config --interactive --interactive-mode textual;

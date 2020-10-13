@@ -92,13 +92,9 @@ jobs:
       #------------------------------------------------------------------------#
       # pull container
       - name: pull container
-        run: singularity pull docker://docker.io/ktmeaton/plague-phylogeography
+        run: singularity pull docker://docker.io/ktmeaton/plague-phylogeography:dev
       #------------------------------------------------------------------------#
       # test download
       - name: test download
         run: |
           singularity exec plague-phylogeography_dev.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions ${TEST_DOWNLOAD};
-      # run help
-      #- name: test nf-core/eager
-      #  run: |
-      #    singularity exec plague-phylogeography_latest.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions ${TEST_EAGER};
