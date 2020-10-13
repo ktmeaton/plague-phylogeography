@@ -55,8 +55,8 @@ jobs:
           conda activate plague-phylogeography;
           snakemake --profile profiles/gh-actions --use-conda --conda-prefix ${CONDA_SNK_PREFIX} help;
       #------------------------------------------------------------------------#
-      - name: setup debug session
-        uses: csexton/debugger-action@master
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
   #----------------------------------------------------------------------------#
   install_singularity:
     name: Install with Singularity
@@ -84,8 +84,8 @@ jobs:
         run: |
           singularity exec plague-phylogeography_dev.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions help;
       #------------------------------------------------------------------------#
-      - name: setup debug session
-        uses: csexton/debugger-action@master
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       #------------------------------------------------------------------------#
       # run help
       - name: configure sra-toolkit
