@@ -4,6 +4,7 @@
 restart-times: 2
 max-jobs-per-second: 1
 latency-wait: 5
+keep-going: True
 rerun-incomplete:  True
 printshellcmds: True
 #log-handler-script: "workflow/scripts/slack_log.py"
