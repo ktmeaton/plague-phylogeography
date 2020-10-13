@@ -56,7 +56,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate plague-phylogeography;
-          snakemake --profile profiles/gh-actions --use-conda --conda-prefix ${CONDA_SNK_PREFIX} help;
+          snakemake --profile profiles/gh-actions help;
       #------------------------------------------------------------------------#
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
@@ -82,15 +82,20 @@ jobs:
       - name: pull container
         run: singularity pull docker://docker.io/ktmeaton/plague-phylogeography:dev
       #------------------------------------------------------------------------#
+      # Configure sra-toolkit
+      - name: configure sra-toolkit
+        run: |
+          mkdir -p ~/.ncbi/;
+          printf '/LIBS/GUID = "%s"\n' `uuidgen` > ~/.ncbi/user-settings.mkfg;
       # run help
       - name: run help
         run: |
-          singularity exec plague-phylogeography_dev.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions help;
+          singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions help;
       #------------------------------------------------------------------------#
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
       #------------------------------------------------------------------------#
       # run help
-      - name: configure sra-toolkit
-        run: |
-          singularity exec plague-phylogeography_dev.sif vdb-config --interactive --interactive-mode textual;
+      #- name: configure sra-toolkit
+      #  run: |
+      #    singularity exec plague-phylogeography_dev.sif vdb-config --interactive --interactive-mode textual;
