@@ -24,5 +24,8 @@ RUN conda install -c conda-forge mamba \
 
 ENV PATH /opt/conda/envs/plague-phylogeography/bin:$PATH
 
+# Install nf-core eager pipeline
+RUN nextflow pull nf-core/eager -r dev;
+
 # Capture conda env details
 RUN conda env export --name plague-phylogeography > plague-phylogeography.yaml
