@@ -115,4 +115,4 @@ jobs:
       #------------------------------------------------------------------------#
       # run help
       - name: run help
-        run: docker run ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions help;
+        run: docker run -v $PWD:/data -w /data ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions help;
