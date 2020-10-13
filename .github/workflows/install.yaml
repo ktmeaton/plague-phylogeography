@@ -33,9 +33,6 @@ jobs:
       fail-fast: false
     steps:
       #------------------------------------------------------------------------#
-      - name: setup debug session
-        uses: csexton/debugger-action@master
-      #------------------------------------------------------------------------#
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
@@ -53,6 +50,7 @@ jobs:
       #------------------------------------------------------------------------#
       # run help
       - name: run help
+        uses: csexton/debugger-action@master
         shell: bash -l {0}
         run: |
           conda activate plague-phylogeography;
@@ -64,9 +62,6 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      #------------------------------------------------------------------------#
-      - name: setup debug session
-        uses: csexton/debugger-action@master
       #------------------------------------------------------------------------#
       # Checkout Repository
       - name: checkout repo
@@ -84,6 +79,7 @@ jobs:
       #------------------------------------------------------------------------#
       # run help
       - name: run help
+        uses: csexton/debugger-action@master
         run: |
           singularity exec plague-phylogeography_dev.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions help;
       #------------------------------------------------------------------------#
