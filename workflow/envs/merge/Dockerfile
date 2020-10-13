@@ -9,6 +9,13 @@ LABEL authors="Katherine Eaton" \
 # Add conda environments
 COPY environment.yaml .
 
+# Configure sra toolkit
+RUN mkdir -p /root/.ncbi/ \
+    && apt-get update \
+    && apt-get --quiet install --yes uuid-runtime \
+    && apt-get clean \
+    && printf '/LIBS/GUID = "%s"\n' `uuidgen` > /root/.ncbi/user-settings.mkfg;
+
 # Create conda environment
 RUN conda install -c conda-forge mamba \
     && mamba env create -f environment.yaml \
@@ -19,9 +26,3 @@ ENV PATH /opt/conda/envs/plague-phylogeography/bin:$PATH
 
 # Capture conda env details
 RUN conda env export --name plague-phylogeography > plague-phylogeography.yaml
-
-# Configure sra toolkit
-RUN apt-get update \
-    && apt-get --quiet install --yes uuid-runtime \
-    && apt-get clean \
-    && printf '/LIBS/GUID = "%s"\n' `uuidgen` > /root/.ncbi/user-settings.mkfg;
