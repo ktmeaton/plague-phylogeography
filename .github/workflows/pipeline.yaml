@@ -110,7 +110,7 @@ jobs:
       - name: test download
         run: |
           singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions ${TEST_DOWNLOAD};
-      # test download
-      - name: test nf-core/eager
-        run: |
-          singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions ${TEST_EAGER};
+      # test eager
+      #- name: test nf-core/eager
+      #  run: |
+      #    singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions ${TEST_EAGER};
