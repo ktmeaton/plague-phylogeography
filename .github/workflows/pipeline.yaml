@@ -1,16 +1,6 @@
 #------------------------------------------------------------------------------#
 name: Pipeline CI
 #------------------------------------------------------------------------------#
-# Global workflow environment variables
-env:
-    TEST_DOWNLOAD: "test_download_reference test_download_assembly test_download_sra test_download_gff test_download_gbff"
-    TEST_EAGER: "test_eager_local test_eager_sra"
-    TEST_SNIPPY: "test_snippy_pairwise_assembly test_snippy_pairwise_sra test_snippy_pairwise_local"
-    TEST_SNIPPY_MULTI: "test_snippy_multi test_snippy_multi_filter"
-    TEST_PHYLOGENY: "test_iqtree"
-    TEST_QC: "test_multiqc"
-
-#------------------------------------------------------------------------------#
 # Workflow conditions
 on:
   push:
@@ -38,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-    timeout-minutes: 120
+    timeout-minutes: 60
     steps:
       #------------------------------------------------------------------------#
       # Env setup
@@ -63,23 +53,24 @@ jobs:
         run: mamba env create -f workflow/envs/merge/environment.yaml;
       #------------------------------------------------------------------------#
       # Test Data Download
-      - name: test download
+      - name: run help
         shell: bash -l {0}
         run: |
             conda activate plague-phylogeography;
-            snakemake --profile profiles/gh-actions ${TEST_DOWNLOAD};
-      # Test eager
-      - name: test nf-core/eager
+            snakemake --profile profiles/gh-actions help;
+      # run all
+      - name: run all
         shell: bash -l {0}
         run: |
             conda activate plague-phylogeography;
-            snakemake --profile profiles/gh-actions ${TEST_EAGER};
+            snakemake --profile profiles/gh-actions all;
   #----------------------------------------------------------------------------#
   pipeline_singularity:
     name: Pipeline with Singularity
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+    timeout-minutes: 60
     steps:
       #------------------------------------------------------------------------#
       - name: setup environment variables
@@ -106,16 +97,21 @@ jobs:
         run: |
           mkdir -p ~/.ncbi/;
           printf '/LIBS/GUID = "%s"\n' `uuidgen` > ~/.ncbi/user-settings.mkfg;
-      # test download
-      - name: test download
+      # run help
+      - name: run help
         run: |
-          singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions ${TEST_DOWNLOAD};
+          singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions help;
+      # run all
+      - name: run all
+        run: |
+          singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions all;
   #----------------------------------------------------------------------------#
   pipeline_docker:
     name: Pipeline with Docker
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+    timeout-minutes: 60
     steps:
       #------------------------------------------------------------------------#
       - name: setup environment variables
@@ -132,9 +128,9 @@ jobs:
         run: docker pull ktmeaton/plague-phylogeography:dev
       #------------------------------------------------------------------------#
       # run help
-      - name: test download
-        run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions ${TEST_DOWNLOAD};
-      # Test nf-core/eager
-      - name: test nf-core/eager
+      - name: run help
+        run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions help;
+      # run all
+      - name: run all
         shell: bash -l {0}
-        run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions ${TEST_EAGER};
+        run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions all;
