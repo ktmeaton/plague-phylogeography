@@ -6,6 +6,9 @@ max-jobs-per-second: 1
 latency-wait: 5
 rerun-incomplete:  True
 printshellcmds: False
+use-singularity: True
+singularity-prefix: /scratch/keaton/singularity
+singularity-args: "-B /home -B /project -B /scratch -B /localscratch"
 #log-handler-script: "workflow/scripts/slack_log.py"
 
 #------------------------------------------------------------------------------#
@@ -13,13 +16,13 @@ printshellcmds: False
 #------------------------------------------------------------------------------#
 # Total resources for the entire workflow
 # ex. 4 cpus, 4GB each (total 16GB), on one node
-resources: [cpus=20, mem_mb=40000, load=100]
+resources: [cpus=4, mem_mb=16000, load=100]
 # Default resources for a job
 default-resources: [cpus=1, mem_mb=2000, time_min=30, account="def-briang"]
 # Maximum number of jobs to run
-jobs : "20"
+jobs : "4"
 # Where to put the .snakemake directory
 shadow-prefix: "/scratch/keaton/plague-phylogeography"
 # slurm execution
-cluster: "sbatch --parsable -t {resources.time_min} -A {resources.account} --cpus-per-task {resources.cpus} --mem-per-cpu={resources.mem_mb} -o workflow/logs_slurm/{rule}_%j.out -e workflow/logs_slurm/{rule}_%j.err --job-name {rule} --export=ALL,NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m',"
+cluster: "sbatch --parsable -t {resources.time_min} -A {resources.account} --cpus-per-task {resources.cpus} --mem-per-cpu={resources.mem_mb} -o workflow/logs_slurm/{rule}_%j.out -e workflow/logs_slurm/{rule}_%j.err --job-name {rule}"
 cluster-status: "workflow/scripts/slurm_status.py"

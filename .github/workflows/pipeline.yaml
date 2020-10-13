@@ -134,3 +134,7 @@ jobs:
       # run help
       - name: test download
         run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions ${TEST_DOWNLOAD};
+      # Test nf-core/eager
+      - name: test nf-core/eager
+        shell: bash -l {0}
+        run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions ${TEST_EAGER};
