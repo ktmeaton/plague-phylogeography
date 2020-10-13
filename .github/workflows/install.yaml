@@ -36,14 +36,6 @@ jobs:
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
-      # Setup python
-      - name: setup python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.7'
-      # Setup snakemake
-      - name: setup snakemake
-        run: pip install snakemake==5.26.0 ftputil==4.0.0
       #------------------------------------------------------------------------#
       # Setup conda with mamba
       - name: setup conda
@@ -52,10 +44,9 @@ jobs:
           auto-update-conda: true
           mamba-version: "*"
           channels: conda-forge
-      #------------------------------------------------------------------------#
       # Install conda environment
       - name: create conda env
-        run: mamba env create -f workflow/envs/main/main.yaml
+        run: mamba env create -f workflow/envs/merge/environment.yaml
       #------------------------------------------------------------------------#
       # run help
       - name: run help

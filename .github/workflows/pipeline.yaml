@@ -48,14 +48,6 @@ jobs:
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
-      # Setup python
-      - name: setup python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.7'
-      # Setup snakemake
-      - name: setup snakemake
-        run: pip install snakemake==5.26.0 ftputil==4.0.0
       #------------------------------------------------------------------------#
       # Setup conda with mamba
       - name: setup conda
@@ -66,7 +58,7 @@ jobs:
           channels: conda-forge
       # Install conda environment
       - name: create conda env
-        run: mamba env create -f workflow/envs/main/main.yaml;
+        run: mamba env create -f workflow/envs/merge/environment.yaml;
       #------------------------------------------------------------------------#
       # Test Data Download
       - name: test download
@@ -75,11 +67,11 @@ jobs:
             conda activate plague-phylogeography;
             snakemake --profile profiles/gh-actions --use-conda --conda-prefix ${CONDA_SNK_PREFIX} ${TEST_DOWNLOAD};
       # Test eager
-      - name: test nf-core/eager
-        shell: bash -l {0}
-        run: |
-            conda activate plague-phylogeography;
-            snakemake --profile profiles/gh-actions --use-conda --conda-prefix ${CONDA_SNK_PREFIX} ${TEST_EAGER};
+      #- name: test nf-core/eager
+      #  shell: bash -l {0}
+      #  run: |
+      #      conda activate plague-phylogeography;
+      #      snakemake --profile profiles/gh-actions --use-conda --conda-prefix ${CONDA_SNK_PREFIX} ${TEST_EAGER};
   #----------------------------------------------------------------------------#
   pipeline_singularity:
     name: Pipeline with Singularity
@@ -107,6 +99,6 @@ jobs:
         run: |
           singularity exec plague-phylogeography_latest.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions ${TEST_DOWNLOAD};
       # run help
-      - name: test nf-core/eager
-        run: |
-          singularity exec plague-phylogeography_latest.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions ${TEST_EAGER};
+      #- name: test nf-core/eager
+      #  run: |
+      #    singularity exec plague-phylogeography_latest.sif snakemake --use-singularity --singularity-prefix ${SINGULARITY_SNK_PREFIX} --profile profiles/gh-actions ${TEST_EAGER};
