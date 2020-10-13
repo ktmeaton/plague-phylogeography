@@ -8,8 +8,8 @@ on:
       - master
     paths:
       - '.github/workflows/docker.yaml'
-      - 'workflow/envs/main/main.yaml'
-      - 'workflow/envs/main/Dockerfile'
+      - 'workflow/envs/merge/environment.yaml'
+      - 'workflow/envs/merge/Dockerfile'
   release:
     types: [published]
 #------------------------------------------------------------------------------#
@@ -30,15 +30,15 @@ jobs:
         uses: technote-space/get-diff-action@v2
         with:
           PREFIX_FILTER: |
-            workflow/envs/main/
+            workflow/envs/merge/
           FILES: |
             Dockerfile
-            main.yaml
+            environment.yaml
       # build docker image
       - name: docker build
         if: steps.git-diff.outputs.diff
         run: |
-          cd workflow/envs/main/;
+          cd workflow/envs/merge/;
           docker build --no-cache . -t ktmeaton/plague-phylogeography:dev;
       #------------------------------------------------------------------------#
       # tag and upload
