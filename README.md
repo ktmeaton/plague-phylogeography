@@ -70,7 +70,7 @@ docker pull ktmeaton/plague-phylogeography:dev
 docker run \
   -v $PWD:/pipeline \
   -w /pipeline \
-  ktmeaton/plague-phylogeography \
+  ktmeaton/plague-phylogeography:dev \
   snakemake --profile profiles/laptop help
 ```
 

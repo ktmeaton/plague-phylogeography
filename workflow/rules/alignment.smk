@@ -55,7 +55,7 @@ rule eager:
             --max_cpus {resources.cpus} \
             --max_memory {resources.mem_mb}.MB \
             --max_time {resources.time_min}m \
-            -resume; "
+            -resume 1> {log.txt}; "
         "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.sample}; "
 
 # -----------------------------------------------------------------------------#

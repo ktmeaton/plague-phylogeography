@@ -7,25 +7,15 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
-### High Priority
-
-- Add reference and snp density masking
-- Add multiqc for snippy_pairwise (and snpEff?)
-
 ### Medium Priority
 
-- Add exact-repeats and tandem repeats detection
-- Convert local to remote narratives
 - Version control the exhibit_dhsi2020 docs (add tags for install)
-
-### Low Priority
-
-- Github Actions: Convert local to remote narratives
 
 ## [v0.2.0] - 2020-0922 - Snakemake
 
-- possible change "download" directories to data?
-- git update-index --add --chmod=+x workflow/scripts/*
+- Convert pipeline from Nextflow to Snakemake
+- Containerize with conda, singularity, and docker.
+- Use nf-core/eager dev in preparation for 2.2.0.
 
 ## [v0.1.4] - 2020-0824 - SRA and Local Data
 
