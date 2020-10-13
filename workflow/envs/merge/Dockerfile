@@ -3,22 +3,15 @@ FROM continuumio/miniconda3
 ARG GIT_COMMIT=unspecified
 
 LABEL authors="Katherine Eaton" \
-      description="Docker image containing dependencies for ktmeaton/plague-phylogeography:main." \
+      description="Docker image containing dependencies for ktmeaton/plague-phylogeography:latest." \
       git_commit=$GIT_COMMIT
 
 # Add conda environments
-COPY merge.yaml .
+COPY environment.yaml .
 
-# Install mamba
+# Create conda environment
 RUN conda install -c conda-forge mamba \
-    && conda install -c conda-forge conda-merge;
-
-# Add nf-core/eager environment yaml (with mods)
-RUN conda-merge environment.yml main.yaml
-
-
-RUN conda install -c conda-forge mamba \
-    && mamba env create -f main.yaml \
+    && mamba env create -f environment.yaml \
     && mamba clean -a \
     && echo "source activate plague-phylogeography" > ~/.bashrc;
 
