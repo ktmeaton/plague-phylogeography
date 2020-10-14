@@ -30,7 +30,7 @@ rule eager:
         txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
     shell:
         "export NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m'; "
-        "python {scripts_dir}/eager_tsv.py --files {input.fastq} --organism \"{config[organism]}\" --tsv {output.eager_tsv}; "
+        "python {scripts_dir}/eager_tsv.py --files \"{input.fastq}\" --organism \"{config[organism]}\" --tsv {output.eager_tsv}; "
         "cd {results_dir}/eager/{wildcards.reads_origin}/{wildcards.sample}; "
         "nextflow \
             -c {config_dir}/eager.config \

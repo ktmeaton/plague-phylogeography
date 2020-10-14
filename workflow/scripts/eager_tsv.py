@@ -17,7 +17,7 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument(
     "--files",
-    help="Full path of input fastq files to run with nf-core/eager.",
+    help="Full path of input fastq files to run with nf-core/eager, space-separated.",
     action="store",
     dest="filesPath",
     required=True,
