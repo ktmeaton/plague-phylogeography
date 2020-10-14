@@ -3,6 +3,11 @@ report_comment: >
     analysis pipeline. For information about how to interpret these results, please see the
     <a href="https://plague-phylogeography.readthedocs.io/en/latest/" target="_blank">documentation</a>.
 
+plots_force_interactive: True
+decimalPoint_format: '.'
+# If more samples than this, render as grey box and wait for user selection
+num_datasets_plot_limit: 50
+
 qualimap_config:
     general_stats_coverage:
         - 1
@@ -14,27 +19,25 @@ qualimap_config:
 table_columns_visible:
     QualiMap:
         mean_coverage: True
-        1_x_pc: True
+        1_x_pc: False
         2_x_pc: False
         3_x_pc: True
         4_x_pc: False
-        5_x_pc: True
+        5_x_pc: False
         10_x_pc: True
-        20_x_pc: True
-        percentage_aligned: False
+        20_x_pc: False
+        percentage_aligned:  False
         total_reads: False
         mapped_reads: True
         general_error_rate: True
     snippy:
+        VariantTotal: False
         Percent_Aligned: True
         Percent_Het: True
-        Length: False
-        Aligned: False
-        Unaligned: False
-        Variant: False
-        Het: False
-        Masked: False
-        Lowcov: False
-
-
-decimalPoint_format: '.'
+        LENGTH: False
+        ALIGNED: False
+        UNALIGNED: False
+        VARIANT: False
+        HET: False
+        MASKED: False
+        LOWCOV: False

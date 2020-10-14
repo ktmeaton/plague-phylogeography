@@ -54,7 +54,7 @@ conda: os.path.join(project_dir, "workflow/envs/main/main.yaml")
 container: "docker://ktmeaton/plague-phylogeography"
 
 # -----------------------------------------------------------------------------#
-# Nextflow environment variables                                               #
+# Environment variables                                               #
 # -----------------------------------------------------------------------------#
 # Singularity
 if workflow.singularity_prefix:
@@ -70,6 +70,13 @@ if workflow.conda_prefix:
 else:
     os.environ["CONDA_CACHEDIR"] = os.path.join(project_dir, ".snakemake", "conda")
     os.environ["NXF_CONDA_CACHEDIR"] = os.path.join(project_dir, ".snakemake", "conda")
+# Locale settings for perl
+if "LANGUAGE" not in os.environ:
+    os.environ["LANGUAGE"] = "en_US.UTF-8"
+if "LANG" not in os.environ:
+    os.environ["LANG"] = "en_US.UTF-8"
+if "LC_ALL" not in os.environ:
+    os.environ["LC_ALL"] = "en_US.UTF-8"
 
 # -----------------------------------------------------------------------------#
 # Local rules                                                                  #

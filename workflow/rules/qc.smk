@@ -24,6 +24,7 @@ rule multiqc:
     Run multiqc on miscellaneous data files.
     """
     input:
+        multiqc_config = config_dir + "/multiqc.yaml",
         qualimap_asm_dir = expand(results_dir + "/qualimap/assembly/{sample}/", sample=identify_assembly_sample()),
         qualimap_local_dir = expand(results_dir + "/qualimap/local/{sample}/", sample=identify_local_sample()),
         qualimap_sra_dir = expand(results_dir + "/qualimap/sra/{sample}/", sample=identify_sra_sample()),
@@ -63,7 +64,7 @@ rule multiqc:
         cpus = 1,
     shell:
         "multiqc \
-          -c {config_dir}/multiqc.yaml \
+          -c {input.multiqc_config} \
           --export \
           --outdir {output.dir} \
           --force \
