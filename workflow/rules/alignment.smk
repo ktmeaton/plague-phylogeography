@@ -21,13 +21,14 @@ rule eager:
     output:
         final_bam = results_dir + "/eager/{reads_origin}/{sample}/final_bams/{sample}.bam",
         eager_tsv = results_dir + "/eager/{reads_origin}/{sample}/metadata_{sample}.tsv",
+        qualimap_dir = directory(results_dir + "/eager/{reads_origin}/{sample}/qualimap/{sample}/"),
     wildcard_constraints:
         reads_origin = "(sra|local)",
     resources:
         load=100,
 	time_min=600,
-        cpus=workflow.global_resources["cpus"],
-        mem_mb=workflow.global_resources["mem_mb"],
+        cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
+        mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     log:
         html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
         txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
@@ -79,8 +80,8 @@ rule snippy_pairwise:
     resources:
         load=100,
         time_min=600,
-        cpus=workflow.global_resources["cpus"],
-        mem_mb=workflow.global_resources["mem_mb"],
+	cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
+        mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     log:
         os.path.join(logs_dir, "snippy_pairwise", "{reads_origin}", "{sample}.log")
     wildcard_constraints:

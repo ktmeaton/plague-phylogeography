@@ -30,8 +30,8 @@ rule iqtree:
     resources:
         load=100,
         time_min=600,
-        cpus=workflow.global_resources["cpus"],
-        mem_mb=workflow.global_resources["mem_mb"],
+	cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
+        mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     log:
         os.path.join(logs_dir, "iqtree","iqtree.core-filter" + str(config["snippy_missing_data"]) + ".log")
     shell:
