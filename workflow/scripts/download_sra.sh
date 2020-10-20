@@ -55,19 +55,22 @@ mkdir -p ${OUTDIR}/${BIOSAMPLE_ACC}
 
 # Download fastq files from the SRA
 echo "SRA accession ${SRA_ACC} download started for Biosample ${BIOSAMPLE_ACC}."
-fastq-dump \
-  --outdir ${OUTDIR} \
-  --skip-technical \
-  --gzip \
-  --split-files ${SRA_ACC};
-  # Validate sra file
-  #ls -l ${CACHE_PATH}/sra/${SRA_ACC}.sra*
-  validate_str=`vdb-validate ${CACHE_PATH}/sra/${SRA_ACC}.sra* 2>&1`
-  echo ${validate_str}
-  if [[ ${validate_str} != *"corrupt"* ]]; then
-    echo "SRA accession ${SRA_ACC} download completed for Biosample ${BIOSAMPLE_ACC}."
-    mv ${OUTDIR}/${SRA_ACC}*.fastq.gz ${OUTDIR}/${BIOSAMPLE_ACC};
-  else
-    echo "Removing ${SRA_ACC} from the SRA cache due to corrupt file."
-    rm ${CACHE_PATH}/sra/${SRA_ACC}.sra*
-  fi
+prefetch ${SRA_ACC}
+# Validate sra file
+validate_str=`vdb-validate ${CACHE_PATH}/sra/${SRA_ACC}.sra* 2>&1`
+# Check for validity
+echo ${validate_str}
+# Decide to convert to fastq or delete cache
+if [[ ${validate_str} != *"corrupt"* ]]; then
+ fastq-dump \
+    --outdir ${OUTDIR} \
+    --skip-technical \
+    --gzip \
+    --split-files ${SRA_ACC}; 
+  echo "SRA accession ${SRA_ACC} download completed for Biosample ${BIOSAMPLE_ACC}."
+  mv ${OUTDIR}/${SRA_ACC}*.fastq.gz ${OUTDIR}/${BIOSAMPLE_ACC};
+else
+  echo "Removing ${SRA_ACC} from the SRA cache due to corrupt file."
+  echo "rm -f ${CACHE_PATH}/sra/${SRA_ACC}.sra*"
+  rm -f ${CACHE_PATH}/sra/${SRA_ACC}.sra*
+fi
