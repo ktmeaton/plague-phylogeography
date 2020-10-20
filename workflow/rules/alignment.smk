@@ -25,6 +25,7 @@ rule eager:
         reads_origin = "(sra|local)",
     resources:
         load=100,
+	time_min=600
     log:
         html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
         txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),

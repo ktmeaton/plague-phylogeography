@@ -14,8 +14,8 @@ printshellcmds: True
 #------------------------------------------------------------------------------#
 # Total resources for the entire workflow
 # ex. 2 cpus, 3GB each (total 6GB), on one node
-resources: [cpus=10, mem_mb=30000, load=100]
+resources: [cpus=5, mem_mb=20000, load=100]
 # Default resources for a job
-default-resources: [cpus=1, mem_mb=3000, time_min=60]
+default-resources: [cpus=1, mem_mb=4000, time_min=60]
 # Maximum number of jobs to run
-jobs : "10"
+jobs : "5"
