@@ -21,7 +21,6 @@ rule eager:
     output:
         final_bam = results_dir + "/eager/{reads_origin}/{sample}/final_bams/{sample}.bam",
         eager_tsv = results_dir + "/eager/{reads_origin}/{sample}/metadata_{sample}.tsv",
-        qualimap_dir = directory(results_dir + "/eager/{reads_origin}/{sample}/qualimap/{sample}/"),
     wildcard_constraints:
         reads_origin = "(sra|local)",
     resources:
@@ -54,6 +53,7 @@ rule eager:
             --bwaalnl {config[eager_bwaalnl]} \
 	    --run_bam_filtering \
             --bam_mapping_quality_threshold {config[snippy_map_qual]} \
+            --skip_qualimap \
             --max_cpus {resources.cpus} \
             --max_memory {resources.mem_mb}.MB \
             --max_time {resources.time_min}m \
