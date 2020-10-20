@@ -8,6 +8,7 @@ BIOSAMPLE=$3
 SAMPLE_DIR=${RESULTS_DIR}/eager/${READS_ORIGIN}/${BIOSAMPLE}
 
 # Rename qualimap directory
+rm -rf ${SAMPLE_DIR}/qualimap/$BIOSAMPLE/
 mv ${SAMPLE_DIR}/qualimap/$BIOSAMPLE_*/ ${SAMPLE_DIR}/qualimap/$BIOSAMPLE/ 
 
 # Rename deduplication bam for snippy pairwise RG
