@@ -12,6 +12,11 @@ rule qualimap:
         dir = directory(results_dir + "/qualimap/{reads_origin}/{sample}/"),
         bamq = results_dir + "/qualimap/{reads_origin}/{sample}/{sample}.bam",
         html = results_dir + "/qualimap/{reads_origin}/{sample}/qualimapReport.html",
+    resources:
+        load=100,
+        time_min=600,
+        cpus=workflow.global_resources["cpus"],
+        mem_mb=workflow.global_resources["mem_mb"],
     log:
         os.path.join(logs_dir, "qualimap", "{reads_origin}", "{sample}.log")
     shell:

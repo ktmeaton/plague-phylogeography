@@ -25,7 +25,9 @@ rule eager:
         reads_origin = "(sra|local)",
     resources:
         load=100,
-	time_min=600
+	time_min=600,
+        cpus=workflow.global_resources["cpus"],
+        mem_mb=workflow.global_resources["mem_mb"],
     log:
         html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
         txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
@@ -74,6 +76,11 @@ rule snippy_pairwise:
         snp_txt = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.txt",
         snippy_aln = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.aligned.fa",
         snps_vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
+    resources:
+        load=100,
+        time_min=600,
+        cpus=workflow.global_resources["cpus"],
+        mem_mb=workflow.global_resources["mem_mb"],
     log:
         os.path.join(logs_dir, "snippy_pairwise", "{reads_origin}", "{sample}.log")
     wildcard_constraints:
@@ -136,8 +143,6 @@ rule snippy_multi:
         full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
     log:
         os.path.join(logs_dir, "snippy_multi","snippy-core.log")
-    resources:
-        cpus = 1,
     shell:
         # Merge masking beds
         "cat {input.inexact} {input.low_complexity} {input.snp_density} | \

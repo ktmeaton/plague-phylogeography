@@ -27,13 +27,18 @@ rule iqtree:
     params:
         #seed = random.randint(0, 99999999),
         seed = config["iqtree_seed"]
+    resources:
+        load=100,
+        time_min=600,
+        cpus=workflow.global_resources["cpus"],
+        mem_mb=workflow.global_resources["mem_mb"],
     log:
         os.path.join(logs_dir, "iqtree","iqtree.core-filter" + str(config["snippy_missing_data"]) + ".log")
     shell:
         "iqtree \
             -s {input.snp_aln} \
             --threads-max {resources.cpus} \
-            -nt AUTO \
+            -nt {resources.cpus} \
             -o {config[iqtree_outgroup]} \
             -seed {params.seed} \
             --runs {config[iqtree_runs]} \
