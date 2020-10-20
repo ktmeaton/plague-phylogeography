@@ -52,10 +52,8 @@ rule eager:
             --mapper bwaaln \
             --bwaalnn {config[eager_bwaalnn]} \
             --bwaalnl {config[eager_bwaalnl]} \
-            --run_bam_filtering \
+	    --run_bam_filtering \
             --bam_mapping_quality_threshold {config[snippy_map_qual]} \
-            --bam_discard_unmapped \
-            --bam_unmapped_type discard \
             --max_cpus {resources.cpus} \
             --max_memory {resources.mem_mb}.MB \
             --max_time {resources.time_min}m \
