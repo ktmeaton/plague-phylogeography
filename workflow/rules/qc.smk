@@ -4,7 +4,7 @@
 
 rule qualimap:
     """
-    Run qualimap metrics on the output of snippy pairwise.
+    Run qualimap metrics on the output of snippy pairwise for assembly samples.
     """
     input:
         snippy_dir = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/",
@@ -12,6 +12,13 @@ rule qualimap:
         dir = directory(results_dir + "/qualimap/{reads_origin}/{sample}/"),
         bamq = results_dir + "/qualimap/{reads_origin}/{sample}/{sample}.bam",
         html = results_dir + "/qualimap/{reads_origin}/{sample}/qualimapReport.html",
+    wildcard_constraints:
+        reads_origin="(assembly|sra|local)",
+    resources:
+        load=100,
+        time_min=600,
+	cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
+        mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     log:
         os.path.join(logs_dir, "qualimap", "{reads_origin}", "{sample}.log")
     shell:
@@ -26,7 +33,9 @@ rule multiqc:
     input:
         multiqc_config = config_dir + "/multiqc.yaml",
         qualimap_asm_dir = expand(results_dir + "/qualimap/assembly/{sample}/", sample=identify_assembly_sample()),
+        #qualimap_local_dir = expand(results_dir + "/eager/local/{sample}/qualimap/{sample}/", sample=identify_local_sample()),
         qualimap_local_dir = expand(results_dir + "/qualimap/local/{sample}/", sample=identify_local_sample()),
+        #qualimap_sra_dir = expand(results_dir + "/eager/sra/{sample}/qualimap/{sample}/", sample=identify_sra_sample()),
         qualimap_sra_dir = expand(results_dir + "/qualimap/sra/{sample}/", sample=identify_sra_sample()),
         snippy_multi_txt = results_dir + "/snippy_multi/snippy-core.txt",
         snippy_asm_dir = expand(results_dir + "/snippy_pairwise/assembly/{sample}/", sample=identify_assembly_sample()),

@@ -25,6 +25,9 @@ rule eager:
         reads_origin = "(sra|local)",
     resources:
         load=100,
+	time_min=600,
+        cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
+        mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     log:
         html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
         txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
@@ -48,10 +51,9 @@ rule eager:
             --mapper bwaaln \
             --bwaalnn {config[eager_bwaalnn]} \
             --bwaalnl {config[eager_bwaalnl]} \
-            --run_bam_filtering \
+	    --run_bam_filtering \
             --bam_mapping_quality_threshold {config[snippy_map_qual]} \
-            --bam_discard_unmapped \
-            --bam_unmapped_type discard \
+            --skip_qualimap \
             --max_cpus {resources.cpus} \
             --max_memory {resources.mem_mb}.MB \
             --max_time {resources.time_min}m \
@@ -73,6 +75,11 @@ rule snippy_pairwise:
         snp_txt = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.txt",
         snippy_aln = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.aligned.fa",
         snps_vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
+    resources:
+        load=100,
+        time_min=600,
+	cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
+        mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     log:
         os.path.join(logs_dir, "snippy_pairwise", "{reads_origin}", "{sample}.log")
     wildcard_constraints:
@@ -135,8 +142,6 @@ rule snippy_multi:
         full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
     log:
         os.path.join(logs_dir, "snippy_multi","snippy-core.log")
-    resources:
-        cpus = 1,
     shell:
         # Merge masking beds
         "cat {input.inexact} {input.low_complexity} {input.snp_density} | \

@@ -82,55 +82,59 @@ for file in files_path.split(" "):
     sample_dir = os.path.dirname(file)
     sample_name = os.path.basename(sample_dir)
     sample_files = os.listdir(sample_dir)
+    if sample_name not in sample_file_dict:
+        sample_file_dict[sample_name] = {}
     # Iterate through the single or paired fastq files
-    for file in sample_files:
-        library_id = file.split("_")[0]
-        if library_id not in sample_file_dict:
-            sample_file_dict[library_id] = []
-        file_path = os.path.join(sample_dir, file)
-        sample_file_dict[library_id].append(file_path)
+    for library_file in sample_files:
+        library_id = library_file.split("_")[0]
+        if library_id not in sample_file_dict[sample_name]:
+            sample_file_dict[sample_name][library_id] = []
+        file_path = os.path.join(sample_dir, library_file)
+        if file_path not in sample_file_dict[sample_name][library_id]: 
+            sample_file_dict[sample_name][library_id].append(file_path)
 
 tsv_file.write(EAGER_HEADER + "\n")
 
-for library_id in sample_file_dict:
-    # Reset file specific values
-    seq_type = "NA"
-    R1 = "NA"
-    R2 = "NA"
-    # Single end
-    if len(sample_file_dict[library_id]) == 1:
-        R1 = sample_file_dict[library_id][0]
-        seq_type = "SE"
-    elif len(sample_file_dict[library_id]) == 2:
-        for file_path in sample_file_dict[library_id]:
-            if "_1.fastq.gz" in file_path:
-                R1 = file_path
-            elif "_2.fastq.gz" in file_path:
-                R2 = file_path
-            seq_type = "PE"
-    tsv_file.write(
-        sample_name
-        + "\t"
-        + library_id
-        + "\t"
-        + LANE
-        + "\t"
-        + COLOR_CHEMISTRY
-        + "\t"
-        + seq_type
-        + "\t"
-        + ORGANISM
-        + "\t"
-        + STRANDEDNESS
-        + "\t"
-        + UDG
-        + "\t"
-        + R1
-        + "\t"
-        + R2
-        + "\t"
-        + BAM
-        + "\n"
-    )
+for sample_name in sample_file_dict:
+    for library_id in sample_file_dict[sample_name]:
+        # Reset file specific values
+        seq_type = "NA"
+        R1 = "NA"
+        R2 = "NA"
+        # Single end
+        if len(sample_file_dict[sample_name][library_id]) == 1:
+            R1 = sample_file_dict[sample_name][library_id][0]
+            seq_type = "SE"
+        elif len(sample_file_dict[sample_name][library_id]) == 2:
+            for file_path in sample_file_dict[sample_name][library_id]:
+                if "_1.fastq.gz" in file_path:
+                    R1 = file_path
+                elif "_2.fastq.gz" in file_path:
+                    R2 = file_path
+                seq_type = "PE"
+        tsv_file.write(
+            sample_name
+            + "\t"
+            + library_id
+            + "\t"
+            + LANE
+            + "\t"
+            + COLOR_CHEMISTRY
+            + "\t"
+            + seq_type
+            + "\t"
+            + ORGANISM
+            + "\t"
+            + STRANDEDNESS
+            + "\t"
+            + UDG
+            + "\t"
+            + R1
+            + "\t"
+            + R2
+            + "\t"
+            + BAM
+            + "\n"
+        )
 
 tsv_file.close()
