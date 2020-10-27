@@ -21,14 +21,15 @@ SRA_ACC=$4
 #fi
 
 # Set cache enabled if not set
-if [[ -z `grep "/cache-enabled" $HOME/.ncbi/user-settings.mkfg` ]]; then
-  echo '/cache-enabled = "true"' >> $HOME/.ncbi/user-settings.mkfg
+if [[ -z `grep "cache-enabled" $HOME/.ncbi/user-settings.mkfg` ]]; then
+  vdb-config -s  "cache-enabled=true";
 fi;
 
 # Set the cache path
+
 if [[ -z `grep "/repository/user/main/public/root" $HOME/.ncbi/user-settings.mkfg` ]]; then\
   # Set SRA Cache Path
-  echo "/repository/user/main/public/root = "\"${CACHE_PATH}\" >> $HOME/.ncbi/user-settings.mkfg
+  vdb-config -s "/repository/user/main/public/root=${CACHE_PATH}";
 else
   # Retrieve SRA Cache Path
   CACHE_PATH=`grep "/repository/user/main/public/root" $HOME/.ncbi/user-settings.mkfg | \
@@ -38,12 +39,12 @@ fi;
 
 # Set the timeout
 if [[ -z `grep "/http/timeout/read" $HOME/.ncbi/user-settings.mkfg` ]]; then
-  echo '/http/timeout/read = "10000"' >> $HOME/.ncbi/user-settings.mkfg
+  vdb-config -s  "/http/timeout/read=10000";
 fi;
 
 # Echo for debugging
-#echo "SRA Cache:" ${CACHE_PATH}
-#echo "NCBI settings:" `cat $HOME/.ncbi/user-settings.mkfg`
+echo "SRA Cache:" ${CACHE_PATH}
+echo "NCBI settings:" `cat $HOME/.ncbi/user-settings.mkfg`
 
 #------------------------------------------------------------------------------#
 #                               SRA Download                                   #
@@ -66,7 +67,7 @@ if [[ ${validate_str} != *"corrupt"* ]]; then
     --outdir ${OUTDIR} \
     --skip-technical \
     --gzip \
-    --split-files ${SRA_ACC}; 
+    --split-files ${SRA_ACC};
   echo "SRA accession ${SRA_ACC} download completed for Biosample ${BIOSAMPLE_ACC}."
   mv ${OUTDIR}/${SRA_ACC}*.fastq.gz ${OUTDIR}/${BIOSAMPLE_ACC};
 else
