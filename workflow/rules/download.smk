@@ -10,7 +10,7 @@ rule download_sra:
   """
   Download SRA fastq files.
   """
-  message: "Downloading and dumping fastq files for BioSample {wildcards.sample}."
+  message: "Downloading and dumping {wildcards.file_acc} fastq for BioSample {wildcards.sample}."
   output:
     fastq = results_dir + "/data/sra/{sample}/{file_acc}_1.fastq.gz"
   log:
