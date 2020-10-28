@@ -7,6 +7,8 @@ plots_force_interactive: True
 decimalPoint_format: '.'
 # If more samples than this, render as grey box and wait for user selection
 num_datasets_plot_limit: 50
+# Prevent bee swarm plots
+max_table_rows: 1500
 
 qualimap_config:
     general_stats_coverage:
