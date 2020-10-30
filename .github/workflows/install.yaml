@@ -46,6 +46,11 @@ jobs:
       # Install conda environment
       - name: create conda env
         run: mamba env create -f workflow/envs/merge/environment.yaml
+      # Troubleshoot report command versions
+      - name: test python versions
+        run: |
+          pip freeze | grep ptyprocess
+      #------------------------------------------------------------------------#
       #------------------------------------------------------------------------#
       # run help
       - name: run help
