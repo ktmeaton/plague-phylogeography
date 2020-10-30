@@ -94,6 +94,9 @@ jobs:
         run: |
           mkdir -p ~/.ncbi/;
           printf '/LIBS/GUID = "%s"\n' `uuidgen` > ~/.ncbi/user-settings.mkfg;
+      - name: test python versions
+        run: |
+          pip freeze | grep ptyprocess
       # run help
       - name: run help
         run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions help;
