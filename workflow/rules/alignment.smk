@@ -51,7 +51,7 @@ rule eager:
             --mapper bwaaln \
             --bwaalnn {config[eager_bwaalnn]} \
             --bwaalnl {config[eager_bwaalnl]} \
-	    --run_bam_filtering \
+	        --run_bam_filtering \
             --bam_mapping_quality_threshold {config[snippy_map_qual]} \
             --skip_qualimap \
             --max_cpus {resources.cpus} \
@@ -116,12 +116,11 @@ rule snippy_pairwise:
 # -----------------------------------------------------------------------------#
 rule snippy_multi:
     """
-    Peform a multiple alignment from pairwise output (assembly, sra, and local).
+    Peform a multiple alignment from pairwise output.
     """
     input:
-        snippy_asm_dir = expand(results_dir + "/snippy_pairwise/assembly/{sample}/", sample=identify_assembly_sample()),
-        #snippy_sra_dir = expand(results_dir + "/snippy_pairwise_sra/{sample}", sample=identify_sra_sample()),
-        #snippy_local_dir = expand(results_dir + "/snippy_pairwise_local/{sample}", sample=identify_local_sample()),
+        snippy_pairwise_dir = lambda wildcards: expand(results_dir + "/snippy_pairwise/{{reads_origin}}/{sample}/",
+                              sample=globals()["identify_" + wildcards.reads_origin + "_sample"]()),
         ref_fna = expand(results_dir + "/data/reference/{sample}/{sample}.fna",
                   sample=identify_reference_sample(),
                   ),
@@ -131,25 +130,25 @@ rule snippy_multi:
         low_complexity = expand(results_dir + "/detect_low_complexity/reference/{sample}.dustmasker.bed",
                   sample=identify_reference_sample(),
                   ),
-        snp_density = expand(results_dir + "/detect_snp_density/snpden{density}.bed",
+        snp_density = expand(results_dir + "/detect_snp_density/{{reads_origin}}/snpden{density}.bed",
                       density=config["snippy_snp_density"]),
     output:
-        report(results_dir + "/snippy_multi/snippy-core.txt",
+        report(results_dir + "/snippy_multi/{reads_origin}/snippy-core.txt",
                 caption=os.path.join(report_dir,"snippy_multi.rst"),
                 category="Alignment",
                 subcategory="Snippy Multi"),
-        snp_aln = results_dir + "/snippy_multi/snippy-core.aln",
-        full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
+        snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.aln",
+        full_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
     log:
-        os.path.join(logs_dir, "snippy_multi","snippy-core.log")
+        os.path.join(logs_dir, "snippy_multi","{reads_origin}","snippy-core.log")
     shell:
         # Merge masking beds
         "cat {input.inexact} {input.low_complexity} {input.snp_density} | \
           sort -k1,1 -k2,2n | \
-          bedtools merge > {results_dir}/snippy_multi/mask.bed; "
+          bedtools merge > {results_dir}/snippy_multi/{wildcards.reads_origin}/mask.bed; "
         "snippy-core \
           --ref {input.ref_fna} \
-          --prefix {results_dir}/snippy_multi/snippy-core \
-          --mask {results_dir}/snippy_multi/mask.bed \
+          --prefix {results_dir}/snippy_multi/{wildcards.reads_origin}/snippy-core \
+          --mask {results_dir}/snippy_multi/{wildcards.reads_origin}/mask.bed \
           --mask-char {config[snippy_mask_char]} \
-          {input.snippy_asm_dir} 2> {log}"
+          {input.snippy_pairwise_dir} 2> {log}"

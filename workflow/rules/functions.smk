@@ -22,12 +22,9 @@ def identify_reference_ftp():
     cur.close()
     return ref_url
 
-def identify_samples():
-    """ Return all assembly and SRA sample names."""
-    return identify_assembly_sample() + identify_sra_sample()
-
 def identify_assembly_sample():
     """ Parse the sqlite database to identify the assembly genome names."""
+    asm_sample_dict = {}
     sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
     conn = sqlite3.connect(sqlite_db_path)
     cur = conn.cursor()
@@ -43,11 +40,13 @@ def identify_assembly_sample():
     if max_datasets >= (len(asm_name_list) - 1):
         max_datasets = len(asm_name_list) - 1
     asm_name_list = asm_name_list[0:max_datasets]
+    for name in asm_name_list:
+        asm_sample_dict[name] = name
     cur.close()
-    return asm_name_list
+    return asm_sample_dict
 
 def identify_assembly_ftp():
-    """ Parse the sqlite database to identify the assembly genome FTP url."""
+    """ Parse the sqlite database to identify the assembly genome name."""
     sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
     conn = sqlite3.connect(sqlite_db_path)
     cur = conn.cursor()
@@ -106,6 +105,13 @@ def identify_local_sample():
                     local_sample_dict[biosample] = []
                 local_sample_dict[biosample].append(file_acc)
     return local_sample_dict
+
+def identify_all_sample():
+    """ Return all samples."""
+    all_dict = {"assembly" : identify_assembly_sample(), "sra": identify_sra_sample(), "local" : identify_local_sample()}
+    #return list(identify_assembly_sample()) + list(identify_sra_sample()) + list(identify_local_sample())
+    return all_dict
+
 
 def sql_select(sqlite_db, query, i=0):
     '''Run select query on the sqlite db.'''

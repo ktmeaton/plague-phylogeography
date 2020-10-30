@@ -40,9 +40,8 @@ rule test_download_gff_reference:
         sample=identify_reference_sample(),
         )
 #------------------------------------------------------------------------------#
-# Alignment
+# nf-core/eager
 #------------------------------------------------------------------------------#
-
 rule eager_sra:
     input:
         expand(results_dir + "/eager/sra/{sample}/final_bams/{sample}.bam",
@@ -53,6 +52,9 @@ rule eager_local:
         expand(results_dir + "/eager/local/{sample}/final_bams/{sample}.bam",
         sample=list(identify_local_sample()))
 
+#------------------------------------------------------------------------------#
+# Snippy - Pairwise
+#------------------------------------------------------------------------------#
 rule snippy_pairwise_assembly:
     input:
         expand(results_dir + "/snippy_pairwise/assembly/{sample}/{sample}.aligned.fa",
@@ -68,14 +70,28 @@ rule snippy_pairwise_sra:
         expand(results_dir + "/snippy_pairwise/sra/{sample}/{sample}.aligned.fa",
         sample=identify_sra_sample())
 
-rule snippy_multi_all:
+#------------------------------------------------------------------------------#
+# Snippy Multi
+#------------------------------------------------------------------------------#
+rule snippy_multi_assembly:
     input:
-        results_dir + "/snippy_multi/snippy-core.full.aln"
+        results_dir + "/snippy_multi/assembly/snippy-core.full.aln"
+
+rule snippy_multi_sra:
+    input:
+        results_dir + "/snippy_multi/sra/snippy-core.full.aln"
+
+rule snippy_multi_local:
+    input:
+        results_dir + "/snippy_multi/local/snippy-core.full.aln"
+
+rule snippy_mutli_all:
+    input:
+        results_dir + "/snippy_multi/all/snippy-core.full.aln"
 
 #------------------------------------------------------------------------------#
 # Filtering
 #------------------------------------------------------------------------------#
-
 rule detect_repeats_reference:
     input:
         expand(results_dir + "/detect_repeats/reference/{sample}.inexact.repeats.bed",
@@ -103,15 +119,9 @@ rule snippy_multi_filter_all:
         missing_data = config["snippy_missing_data"])
 
 # merge_snp_density
-#------------------------------------------------------------------------------#
-# Phylogeny
-#------------------------------------------------------------------------------#
-
-# iqtree can be run for testing as
-# rule: iqtree
 
 #------------------------------------------------------------------------------#
-# QC
+# Qualimap
 #------------------------------------------------------------------------------#
 rule qualimap_assembly:
     input:
@@ -128,17 +138,27 @@ rule qualimap_local:
         expand(results_dir + "/qualimap/local/{sample}/qualimapReport.html",
         sample=identify_local_sample())
 
+#------------------------------------------------------------------------------#
+# MultiQC
+#------------------------------------------------------------------------------#
 rule multiqc_assembly:
     input:
-        results_dir + "/multiqc/multiqc_assembly.html",
+        results_dir + "/multiqc/assembly/multiqc_report.html",
 
 rule multiqc_sra:
     input:
-        results_dir + "/multiqc/multiqc_sra.html",
+        results_dir + "/multiqc/sra/multiqc_report.html",
 
 rule multiqc_local:
     input:
-        results_dir + "/multiqc/multiqc_local.html",
+        results_dir + "/multiqc/local/multiqc_report.html",
+
+#------------------------------------------------------------------------------#
+# Phylogeny
+#------------------------------------------------------------------------------#
+
+# iqtree can be run for testing as
+# rule: iqtree
 
 #------------------------------------------------------------------------------#
 # Plot
@@ -159,3 +179,9 @@ rule plot_table_fastq_local:
 rule plot_table_fastq_sra:
     input:
         results_dir + "/data/sra/table_sra_fastq-gz.pdf",
+
+rule collect_qualimap:
+    input:
+        expand(results_dir + "/qualimap/all/{sample}/",
+        sample="test"),
+        #sample=[list(identify_all_sample()[k].keys())[0] for k,v in identify_all_sample()]),

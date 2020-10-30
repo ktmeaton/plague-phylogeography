@@ -16,7 +16,7 @@ from snakemake.remote.FTP import RemoteProvider as FTPRemoteProvider
 FTP = FTPRemoteProvider()
 # Enforce minimum version
 from snakemake.utils import min_version
-min_version("5.25.0")
+min_version("5.26.1")
 
 # -----------------------------------------------------------------------------#
 #                                 Setup                                        #
@@ -84,6 +84,7 @@ if "LC_ALL" not in os.environ:
 localrules:
     download_assembly,
 
+print([list(identify_all_sample()[k].keys()) for k,v in identify_all_sample().items()])
 # -----------------------------------------------------------------------------#
 # Main Target                                                                  #
 # -----------------------------------------------------------------------------#

@@ -68,22 +68,16 @@ rule merge_snp_density:
     Merge filter bed files.
     """
     input:
-        asm = expand(results_dir + "/detect_snp_density/assembly/{sample}.subs.snpden{density}",
-              sample=identify_assembly_sample(),
-              density=config["snippy_snp_density"]),
-        sra = expand(results_dir + "/detect_snp_density/sra/{sample}.subs.snpden{density}",
-              sample=identify_sra_sample(),
-              density=config["snippy_snp_density"]),
-        local = expand(results_dir + "/detect_snp_density/local/{sample}.subs.snpden{density}",
-              sample=identify_local_sample(),
-              density=config["snippy_snp_density"]),
+        snpden = lambda wildcards: expand(results_dir + "/detect_snp_density/{{reads_origin}}/{sample}.subs.snpden{density}",
+                    sample=globals()["identify_" + wildcards.reads_origin + "_sample"](),
+                    density=config["snippy_snp_density"]),
     output:
-        bed = expand(results_dir + "/detect_snp_density/snpden{density}.bed",
+        bed = expand(results_dir + "/detect_snp_density/{{reads_origin}}/snpden{density}.bed",
               density=config["snippy_snp_density"])
     resources:
         cpus = 1,
     shell:
-        "cat {input.asm} {input.sra} {input.local} | \
+        "cat {input.snpden} | \
           sort -k1,1 -k2,2n | \
           bedtools merge > {output.bed}; "
 
