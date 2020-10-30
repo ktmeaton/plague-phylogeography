@@ -65,18 +65,18 @@ jobs:
             conda activate plague-phylogeography;
             snakemake --profile profiles/gh-actions all;
       # run report
-      - name: run report
-        shell: bash -l {0}
-        run: |
-            conda activate plague-phylogeography;
-            snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
+      #- name: run report
+      #  shell: bash -l {0}
+      #  run: |
+      #      conda activate plague-phylogeography;
+      #      snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
       #------------------------------------------------------------------------#
       #  Artifact Upload
-      - name: artifact conda-report
-        uses: actions/upload-artifact@v2
-        with:
-          name: conda-report
-          path: workflow/report/report.html
+      #- name: artifact conda-report
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: conda-report
+      #    path: workflow/report/report.html
   #----------------------------------------------------------------------------#
   pipeline_singularity:
     name: Pipeline with Singularity
@@ -117,16 +117,16 @@ jobs:
       - name: run all
         run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions all;
       # run report
-      - name: run report
-        shell: bash -l {0}
-        run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
+      #- name: run report
+      #  shell: bash -l {0}
+      #  run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
       #------------------------------------------------------------------------#
       #  Artifact Upload
-      - name: artifact singularity-report
-        uses: actions/upload-artifact@v2
-        with:
-          name: singularity-report
-          path: workflow/report/report.html
+      #- name: artifact singularity-report
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: singularity-report
+      #    path: workflow/report/report.html
   #----------------------------------------------------------------------------#
   pipeline_docker:
     name: Pipeline with Docker
@@ -157,13 +157,13 @@ jobs:
         shell: bash -l {0}
         run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions all;
       # run report
-      - name: run report
-        shell: bash -l {0}
-        run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
+      #- name: run report
+      #  shell: bash -l {0}
+      #  run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
       #------------------------------------------------------------------------#
       #  Artifact Upload
-      - name: artifact docker-report
-        uses: actions/upload-artifact@v2
-        with:
-          name: docker-report
-          path: workflow/report/report.html
+      #- name: artifact docker-report
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: docker-report
+      #    path: workflow/report/report.html

@@ -46,11 +46,6 @@ jobs:
       # Install conda environment
       - name: create conda env
         run: mamba env create -f workflow/envs/merge/environment.yaml
-      # Troubleshoot report command versions
-      - name: test python versions
-        run: |
-          pip freeze | grep ptyprocess
-      #------------------------------------------------------------------------#
       #------------------------------------------------------------------------#
       # run help
       - name: run help
@@ -94,9 +89,6 @@ jobs:
         run: |
           mkdir -p ~/.ncbi/;
           printf '/LIBS/GUID = "%s"\n' `uuidgen` > ~/.ncbi/user-settings.mkfg;
-      - name: test python versions
-        run: |
-          pip freeze | grep ptyprocess
       # run help
       - name: run help
         run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions help;
@@ -121,10 +113,6 @@ jobs:
       - name: docker pull
         run: docker pull ktmeaton/plague-phylogeography:dev
       #------------------------------------------------------------------------#
-      # Troubleshoot report command versions
-      - name: test python versions
-        run: |
-          pip freeze | grep ptyprocess
       # run help
       - name: run help
         run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions help;
