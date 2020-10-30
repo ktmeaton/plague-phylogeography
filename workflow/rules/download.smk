@@ -17,6 +17,7 @@ rule download_sra:
     os.path.join(logs_dir, "download_sra","{sample}", "{file_acc}.log"),
   resources:
     cpus = 1,
+    time_min = 360,
   shell:
     "{scripts_dir}/download_sra.sh \
         {project_dir} \
