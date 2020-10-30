@@ -12,7 +12,7 @@ sqlite_select_command_asm : SELECT
                                BioSample
                                LEFT JOIN Assembly
                                  ON AssemblyBioSampleAccession = BioSampleAccession
-                                 WHERE (BioSampleComment LIKE '%KEEP%Assembly%Modern')
+                                 WHERE (BioSampleComment LIKE '%KEEP%Assembly%Modern%')
 #sqlite_select_command_sra : "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP%SRA%Ancient%')"
 #sqlite_select_command_sra : "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')"
 sqlite_select_command_sra : SELECT

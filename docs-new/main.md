@@ -51,3 +51,11 @@ Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleC
 ### Geocoding
 
 TBD
+
+## Genomic Alignment
+
+Edit ```config/snakemake.yaml``` to increase the number of assembly downloads.
+
+```bash
+
+```
