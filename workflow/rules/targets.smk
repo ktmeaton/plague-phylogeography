@@ -128,8 +128,17 @@ rule qualimap_local:
         expand(results_dir + "/qualimap/local/{sample}/qualimapReport.html",
         sample=identify_local_sample())
 
-# multiqc can be run for testing as
-# rule: iqtree
+rule multiqc_assembly:
+    input:
+        results_dir + "/multiqc/multiqc_assembly.html",
+
+rule multiqc_sra:
+    input:
+        results_dir + "/multiqc/multiqc_sra.html",
+
+rule multiqc_local:
+    input:
+        results_dir + "/multiqc/multiqc_local.html",
 
 #------------------------------------------------------------------------------#
 # Plot

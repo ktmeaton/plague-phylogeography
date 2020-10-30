@@ -32,17 +32,15 @@ rule multiqc:
     """
     input:
         multiqc_config = config_dir + "/multiqc.yaml",
-        qualimap_asm_dir = expand(results_dir + "/qualimap/assembly/{sample}/", sample=identify_assembly_sample()),
-        #qualimap_local_dir = expand(results_dir + "/eager/local/{sample}/qualimap/{sample}/", sample=identify_local_sample()),
-        qualimap_local_dir = expand(results_dir + "/qualimap/local/{sample}/", sample=identify_local_sample()),
-        #qualimap_sra_dir = expand(results_dir + "/eager/sra/{sample}/qualimap/{sample}/", sample=identify_sra_sample()),
-        qualimap_sra_dir = expand(results_dir + "/qualimap/sra/{sample}/", sample=identify_sra_sample()),
-        snippy_multi_txt = results_dir + "/snippy_multi/snippy-core.txt",
-        snippy_asm_dir = expand(results_dir + "/snippy_pairwise/assembly/{sample}/", sample=identify_assembly_sample()),
-        snippy_local_dir = expand(results_dir + "/snippy_pairwise/local/{sample}/", sample=identify_local_sample()),
-        snippy_sra_dir = expand(results_dir + "/snippy_pairwise/sra/{sample}/", sample=identify_sra_sample()),
+        qualimap_dir = lambda wildcards: expand(results_dir + "/qualimap/{{reads_origin}}/{sample}/",
+                       sample=file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()),
+        snippy_pairwise_dir = lambda wildcards: expand(results_dir + "/snippy_pairwise/{{reads_origin}}/{sample}/",
+                              sample=file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()),
+        snippy_multi_dir = results_dir + "/snippy_multi/",
+    wildcard_constraints:
+        reads_origin="(assembly|sra|local)",
     output:
-        report(results_dir + "/multiqc/multiqc_report.html",
+        multiqc_report = report(results_dir + "/multiqc/multiqc_{reads_origin}.html",
                 caption=os.path.join(report_dir,"multiqc_report.rst"),
                 category="Quality Control",
                 subcategory="MultiQC"),
@@ -68,7 +66,7 @@ rule multiqc:
                 subcategory="Qualimap"),
         dir = directory(results_dir + "/multiqc/"),
     log:
-        os.path.join(logs_dir, "multiqc/multiqc.log")
+        os.path.join(logs_dir, "multiqc/multiqc_{reads_origin}.log")
     resources:
         cpus = 1,
     shell:
@@ -76,11 +74,8 @@ rule multiqc:
           -c {input.multiqc_config} \
           --export \
           --outdir {output.dir} \
+          --filename {output.multiqc_report} \
           --force \
-          {input.qualimap_asm_dir} \
-          {input.qualimap_local_dir} \
-          {input.qualimap_sra_dir} \
-          {input.snippy_multi_txt} \
-          {input.snippy_asm_dir} \
-          {input.snippy_local_dir} \
-          {input.snippy_sra_dir} 2> {log}"
+          {input.qualimap_dir} \
+          {input.snippy_pairwise_dir} \
+          {input.snippy_multi_dir} 2> {log}"

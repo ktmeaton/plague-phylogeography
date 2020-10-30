@@ -54,8 +54,32 @@ TBD
 
 ## Genomic Alignment
 
-Edit ```config/snakemake.yaml``` to increase the number of assembly downloads.
+
+### Modern Assembly
+
+Construct an alignment of ALL modern *Y. pestis* assemblies. Modify ```config/snakemake.yaml``` to have the following lines:
+
 
 ```bash
-
+max_datasets_assembly : 600
+sqlite_select_command_asm : SELECT
+                               AssemblyFTPGenbank
+                             FROM
+                               BioSample
+                               LEFT JOIN Assembly
+                                 ON AssemblyBioSampleAccession = BioSampleAccession
+                                 WHERE (BioSampleComment LIKE '%Assembly%Modern%')
 ```
+
+Construct the pairwise alignment to the reference genome.
+
+```bash
+snakemake --profile profiles/infoserv snippy_pairwise_assembly
+```
+
+Create a MultiQC report of the genome alignment statistics.
+
+```bash
+snakemake --profile profiles/infoserv multiqc_assembly
+```
+
