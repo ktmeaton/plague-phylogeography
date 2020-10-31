@@ -45,6 +45,10 @@ sqlite_select_command_ref : SELECT
 #max_datasets_assembly : 500
 max_datasets_assembly : 3
 max_datasets_sra : 2
+reads_origin :
+  - "assembly"
+  - "sra"
+  - "local"
 
 # misc filtering
 detect_repeats_threshold : 90

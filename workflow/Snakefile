@@ -84,7 +84,6 @@ if "LC_ALL" not in os.environ:
 localrules:
     download_assembly,
 
-print([list(identify_all_sample()[k].keys()) for k,v in identify_all_sample().items()])
 # -----------------------------------------------------------------------------#
 # Main Target                                                                  #
 # -----------------------------------------------------------------------------#
@@ -143,3 +142,21 @@ rule help:
           print("\t\tconda: ", rule.conda_env)
       if rule._log:
           print("\t\tlog: ", rule._log)
+
+'''
+rule collect:
+    """ Collect files from different reads_origin in a rule."""
+    input: 
+        rule_dir = expand(results_dir + "/{{rule}}/{reads_origin}/{sample}/",
+                   reads_origin = config["reads_origin"]),
+    output:
+        collect_dir = directory(results_dir + "/{rule}/all/"),
+        collect_sample = directory(expand(results_dir + "/{{rule}}/all/{sample}/",
+				          sample=identify_all_sample())
+                                  ),
+    shell:
+        "for dir in {input.rule_dir}; \
+         do \
+	   ln -s $dir/* {output.collect_dir}; \
+         done; "
+'''

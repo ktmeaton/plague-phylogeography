@@ -10,11 +10,11 @@ rule download_sra:
   """
   Download SRA fastq files.
   """
-  message: "Downloading and dumping {wildcards.file_acc} fastq for BioSample {wildcards.sample}."
+  message: "Downloading and dumping {wildcards.sample} fastq for BioSample {wildcards.sample_dir}."
   output:
-    fastq = results_dir + "/data/sra/{sample}/{file_acc}_1.fastq.gz"
+    fastq = results_dir + "/data/sra/{sample_dir}/{sample}_1.fastq.gz"
   log:
-    os.path.join(logs_dir, "download_sra","{sample}", "{file_acc}.log"),
+    os.path.join(logs_dir, "download_sra","{sample_dir}", "{sample}.log"),
   resources:
     cpus = 1,
     time_min = 360,
@@ -30,13 +30,11 @@ rule download_assembly:
     Download files from the NCBI ftp server.
     """
     message: "Downloading and decompressing {wildcards.reads_origin} sample {wildcards.sample}.{wildcards.ext}"
-    input:
-        db = results_dir + "/sqlite_db/" + config['sqlite_db']
     output:
         file = results_dir + "/data/{reads_origin}/{sample}/{sample}.{ext}"
     wildcard_constraints:
         ext = "(fna|gbff|gff)",
-	    reads_origin = "(reference|assembly)",
+	reads_origin = "(reference|assembly)",
     resources:
         cpus = 1,
     run:

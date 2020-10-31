@@ -36,7 +36,7 @@ rule multiqc:
         snippy_pairwise_dir = lambda wildcards: expand(results_dir + "/snippy_pairwise/{{reads_origin}}/{sample}/",
                               sample=globals()["identify_" + wildcards.reads_origin + "_sample"]()),
     wildcard_constraints:
-        reads_origin="(assembly|sra|local)",
+        reads_origin="(assembly|sra|local|all)",
     output:
         report(results_dir + "/multiqc/{reads_origin}/multiqc_report.html",
                 caption=os.path.join(report_dir,"multiqc_report.rst"),
@@ -71,25 +71,3 @@ rule multiqc:
           --force \
           {input.qualimap_dir} \
           {input.snippy_pairwise_dir} 2> {log}"
-
-rule collect:
-    """
-    Collect all input files for a rule via symlinks.
-    """
-    input:
-        origin_dirs = expand(results_dir + "/{{rule}}/{reads_origin}/",
-                          reads_origin=["assembly", "sra", "local"]),
-    output:
-        all_dir = directory(expand(results_dir + "/{{rule}}/all/{sample}/",
-                  sample="test")),
-                  #sample=[values.keys() for key,values in identify_all_sample().items()])),
-    params:
-        reads_origin = ["assembly", "sra", "local"]
-    shell:
-        "echo {input.origin_dirs}; "
-        "echo {output.all_dir}; "
-        #"for origin in {params.reads_origin}; "
-        #"do "
-        #"  echo $origin; "
-        #"  ls {results_dir}/{wildcards.rule}/$origin; "
-        #"done; "

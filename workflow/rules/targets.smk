@@ -7,45 +7,32 @@ import itertools # Chaining list of lists of file accessions
 
 rule download_sra_samples:
     input:
-        expand(results_dir + "/data/sra/{sample}/{file_acc}_1.fastq.gz",
-        zip,
-        sample=list(itertools.chain.from_iterable(
-            [[key] * len(identify_sra_sample()[key]) for key in identify_sra_sample()]
-                )
-            ),
-        file_acc=list(itertools.chain.from_iterable(identify_sra_sample().values()))
-        )
+        [path + "_1.fastq.gz" for path in identify_paths(outdir="data", reads_origin="sra")]
 
 rule download_assembly_samples:
     input:
-        expand(results_dir + "/data/assembly/{sample}/{sample}.fna",
-        sample=identify_assembly_sample(),
-        )
+        [path + ".fna" for path in identify_paths(outdir="data", reads_origin="assembly")]
 
 rule download_assembly_reference:
     input:
-        expand(results_dir + "/data/reference/{sample}/{sample}.fna",
-        sample=identify_reference_sample(),
-        )
+        [path + ".fna" for path in identify_paths(outdir="data", reads_origin="reference")]
 
 rule download_gbff_reference:
     input:
-        expand(results_dir + "/data/reference/{sample}/{sample}.gbff",
-        sample=identify_reference_sample(),
-        )
+        [path + ".gbff" for path in identify_paths(outdir="data", reads_origin="reference")]
 
-rule test_download_gff_reference:
+rule download_gff_reference:
     input:
-        expand(results_dir + "/data/reference/{sample}/{sample}.gff",
-        sample=identify_reference_sample(),
-        )
+        [path + ".gff" for path in identify_paths(outdir="data", reads_origin="reference")]
+   
 #------------------------------------------------------------------------------#
 # nf-core/eager
 #------------------------------------------------------------------------------#
+
+# results/eager/{reads_origin}/{sample}/final_bams/{sample}.bam
 rule eager_sra:
     input:
-        expand(results_dir + "/eager/sra/{sample}/final_bams/{sample}.bam",
-        sample=list(identify_sra_sample()))
+        [os.path.join(os.path.dirname(path),"final_bams",os.path.basename(os.path.dirname(path)) + ".bam") for path in identify_paths(outdir="eager", reads_origin="sra")]
 
 rule eager_local:
     input:
@@ -84,10 +71,6 @@ rule snippy_multi_sra:
 rule snippy_multi_local:
     input:
         results_dir + "/snippy_multi/local/snippy-core.full.aln"
-
-rule snippy_mutli_all:
-    input:
-        results_dir + "/snippy_multi/all/snippy-core.full.aln"
 
 #------------------------------------------------------------------------------#
 # Filtering
@@ -152,6 +135,10 @@ rule multiqc_sra:
 rule multiqc_local:
     input:
         results_dir + "/multiqc/local/multiqc_report.html",
+
+rule multiqc_all:
+    input:
+        results_dir + "/multiqc/all/multiqc_report.html"
 
 #------------------------------------------------------------------------------#
 # Phylogeny

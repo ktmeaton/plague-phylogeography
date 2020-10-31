@@ -1,15 +1,25 @@
 import sqlite3
 import os
+import itertools
+
+rule_dir_map = {
+  "download_sra" : "data",
+  "download_assembly" : "data",
+  "eager" : "eager",
+  "snippy_pairwise" : "snippy_pairwise",
+}
 
 def identify_reference_sample():
     """ Parse the sqlite database to identify the reference genome name."""
+    ref_sample_dict = {}
     sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
     conn = sqlite3.connect(sqlite_db_path)
     cur = conn.cursor()
     ref_url = cur.execute(config["sqlite_select_command_ref"]).fetchone()[0]
     ref_name = ref_url.split("/")[9] + "_genomic"
+    ref_sample_dict[ref_name] = [ref_name]
     cur.close()
-    return ref_name
+    return ref_sample_dict
 
 def identify_reference_ftp():
     """ Parse the sqlite database to identify the reference genome FTP url."""
@@ -41,7 +51,7 @@ def identify_assembly_sample():
         max_datasets = len(asm_name_list) - 1
     asm_name_list = asm_name_list[0:max_datasets]
     for name in asm_name_list:
-        asm_sample_dict[name] = name
+        asm_sample_dict[name] = [name]
     cur.close()
     return asm_sample_dict
 
@@ -111,6 +121,44 @@ def identify_all_sample():
     all_dict = {"assembly" : identify_assembly_sample(), "sra": identify_sra_sample(), "local" : identify_local_sample()}
     #return list(identify_assembly_sample()) + list(identify_sra_sample()) + list(identify_local_sample())
     return all_dict
+
+def identify_paths(outdir=None, reads_origin=None):
+    origin_dir = os.path.join(results_dir, outdir, reads_origin)
+    sample_dict = globals()["identify_" + reads_origin + "_sample"]()
+
+    # the dictionary format will be different if reads_origin is 'all'
+    if reads_origin != "all":
+        sample_dirs = list(itertools.chain.from_iterable(
+                       [[key] * len(sample_dict[key]) for key in sample_dict]
+                       )
+                     )
+        samples = list(itertools.chain.from_iterable(sample_dict.values()))
+        paths = expand(origin_dir + "/{sample_dir}/{sample}",
+                             zip,
+                             sample_dir=sample_dirs,
+                             sample=samples)
+
+    else:
+        paths = []
+        for origin in sample_dict.keys():
+            origin_dir = origin_dir = os.path.join(results_dir, outdir, origin)
+            origin_dict = sample_dict[origin]
+            sample_dirs = list(itertools.chain.from_iterable(
+                               [[key] * len(origin_dict[key]) for key in origin_dict]
+                              )
+                          )
+            
+  	    samples = list(itertools.chain.from_iterable(origin_dict.values()))
+            paths = input_paths + expand(origin_dir + "/{sample_dir}/{sample}",
+                             zip,
+                             sample_dir=sample_dirs,
+                             sample=samples)
+
+    return paths
+    
+
+
+
 
 
 def sql_select(sqlite_db, query, i=0):
