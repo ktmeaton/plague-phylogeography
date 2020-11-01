@@ -56,9 +56,9 @@ TBD
 
 ### Modern Assembly
 
-Construct an alignment of ALL modern *Y. pestis* assemblies. Modify ```config/snakemake.yaml``` to have the following lines:
+Construct alignments of ALL modern *Y. pestis* assemblies. Modify ```config/snakemake.yaml``` to have the following lines:
 
-```bash
+```yaml
 max_datasets_assembly : 600
 sqlite_select_command_asm : SELECT
                                AssemblyFTPGenbank
@@ -69,14 +69,24 @@ sqlite_select_command_asm : SELECT
                                  WHERE (BioSampleComment LIKE '%Assembly%Modern%')
 ```
 
-Construct the pairwise alignment to the reference genome.
-
-```bash
-snakemake --profile profiles/infoserv snippy_pairwise_assembly
-```
-
-Create a MultiQC report of the genome alignment statistics.
+Align to the reference genome and create a final MultiQC report.
 
 ```bash
 snakemake --profile profiles/infoserv multiqc_assembly
+```
+
+### Ancient SRA Fastq
+
+Construct alignments of ALL ancient *Y. pestis* sequences. Modify ```config/snakemake.yaml``` to have the following lines:
+
+```yaml
+max_datasets_sra: 200
+sqlite_select_command_sra : SELECT
+                              BioSampleAccession,
+                              SRARunAccession
+                            FROM
+                              BioSample
+                              LEFT JOIN SRA
+                                ON SRABioSampleAccession = BioSampleAccession
+                                WHERE (BioSampleComment LIKE '%SRA%Ancient%')
 ```
