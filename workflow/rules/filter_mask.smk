@@ -86,7 +86,7 @@ rule snippy_multi_extract:
     Extract a locus (ex. chromosome) from the snippy multi alignment.
     """
     input:
-        full_aln = results_dir + "/snippy_multi/{{reads_origin}}/snippy-core.full.aln",
+        full_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
     output:
         extract_aln = expand(results_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.full.aln",
                       locus_name=config["reference_locus_name"]),

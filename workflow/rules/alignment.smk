@@ -13,11 +13,9 @@ rule eager:
     """
     message: "Running the nf-core/eager pipeline for {wildcards.reads_origin} Biosample {wildcards.sample}."
     input:
-        fastq = lambda wildcards: expand(results_dir + "/data/{{reads_origin}}/{{sample}}/{file_acc}_1.fastq.gz",
-            file_acc=globals()["identify_" + wildcards.reads_origin + "_sample"]()[wildcards.sample]),
-        ref_fna = expand(results_dir + "/data/reference/{sample}/{sample}.fna",
-              sample=identify_reference_sample(),
-              )
+        fastq = lambda wildcards : [path + "_1.fastq.gz"
+                                  for path in identify_paths(outdir="data", reads_origin=wildcards.reads_origin)],
+        ref_fna = [path + ".fna" for path in identify_paths(outdir="data", reads_origin="reference")],
     output:
         final_bam = results_dir + "/eager/{reads_origin}/{sample}/final_bams/{sample}.bam",
         eager_tsv = results_dir + "/eager/{reads_origin}/{sample}/metadata_{sample}.tsv",
@@ -119,7 +117,7 @@ rule snippy_multi:
     Peform a multiple alignment from pairwise output.
     """
     input:
-        snippy_pairwise_dir = lambda wildcards: [os.path.dirname(path) + "/" for path in 
+        snippy_pairwise_dir = lambda wildcards: [os.path.dirname(path) + "/" for path in
                                identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)],
         ref_fna = [path + ".fna" for path in identify_paths(outdir="data", reads_origin="reference")],
         inexact = [os.path.dirname(path) + ".inexact.repeats.bed" for path in identify_paths(outdir="detect_repeats", reads_origin="reference")],

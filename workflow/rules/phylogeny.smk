@@ -15,18 +15,18 @@ rule iqtree:
                     locus_name=config["reference_locus_name"],
                     missing_data = config["snippy_missing_data"]),
     output:
-        report(expand(results_dir + "/iqtree/{{reads_origin}}/iqtree.core-{locus_name}.filter{missing_data}.treefile",
-               locus_name=config["reference_locus_name"],
-               missing_data = config["snippy_missing_data"]),
-            caption=os.path.join(report_dir,"iqtree.rst"),
-            category="Phylogenetics",
-            subcategory="IQTREE"),
-        tree = expand(results_dir + "/iqtree/{{reads_origin}}/iqtree.core-{locus_name}.filter{missing_data}.treefile",
-               locus_name=config["reference_locus_name"],
-               missing_data = config["snippy_missing_data"]),
+        tree = report(expand(results_dir + "/iqtree/{{reads_origin}}/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+                             locus_name=config["reference_locus_name"],
+                             missing_data = config["snippy_missing_data"]),
+                      caption=os.path.join(report_dir,"iqtree.rst"),
+                      category="Phylogenetics",
+                      subcategory="IQTREE"),
     params:
         #seed = random.randint(0, 99999999),
-        seed = config["iqtree_seed"]
+        seed = config["iqtree_seed"],
+        prefix = expand(results_dir + "/iqtree/{{reads_origin}}/iqtree.core-{locus_name}.filter{missing_data}",
+                        locus_name=config["reference_locus_name"],
+                        missing_data = config["snippy_missing_data"]),
     resources:
         load=100,
         time_min=600,
@@ -44,4 +44,4 @@ rule iqtree:
             --runs {config[iqtree_runs]} \
             -fconst `snp-sites -C {input.full_aln}` \
             {config[iqtree_other]} \
-            -pre `basename {output.tree}` 1>{log}"
+            -pre {params.prefix} 1>{log}"

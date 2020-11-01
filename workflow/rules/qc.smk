@@ -31,10 +31,10 @@ rule multiqc:
     """
     input:
         multiqc_config = config_dir + "/multiqc.yaml",
-        qualimap_dir = lambda wildcards: [path "/" 
-                                          for path in identify_paths(outdir="qualimap", reads_origin=wildcards.reads_origin)]
-        snippy_pairwise_dir = lambda wildcards: [path "/"
-                                          for path in identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)]
+        qualimap_dir = lambda wildcards: [os.path.dirname(path) + "/"
+                                          for path in identify_paths(outdir="qualimap", reads_origin=wildcards.reads_origin)],
+        snippy_pairwise_dir = lambda wildcards: [os.path.dirname(path) + "/"
+                                          for path in identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)],
     wildcard_constraints:
         reads_origin="(assembly|sra|local|all)",
     output:
@@ -60,7 +60,7 @@ rule multiqc:
                 subcategory="Qualimap"),
         dir = directory(results_dir + "/multiqc/{reads_origin}/"),
     log:
-        os.path.join(logs_dir, "multiqc/multiqc_{reads_origin}.log")
+        os.path.join(logs_dir, "multiqc/{reads_origin}/multiqc.log")
     resources:
         cpus = 1,
     shell:

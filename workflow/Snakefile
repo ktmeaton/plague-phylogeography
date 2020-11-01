@@ -96,15 +96,11 @@ rule all:
         results_dir + "/multiqc/assembly/multiqc_report.html",
         results_dir + "/multiqc/sra/multiqc_report.html",
         results_dir + "/multiqc/local/multiqc_report.html",
+        results_dir + "/multiqc/all/multiqc_report.html",
         # IQTREE
-        expand(results_dir + "/iqtree/all/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+        expand(results_dir + "/iqtree/assembly/iqtree.core-{locus_name}.filter{missing_data}.treefile",
                             locus_name=config["reference_locus_name"],
                             missing_data=config['snippy_missing_data']),
-        # Tables of downloaded data
-        results_dir + "/data/assembly/table_assembly_fna.pdf",
-        results_dir + "/data/reference/table_reference_fna.pdf",
-        results_dir + "/data/local/table_local_fastq-gz.pdf",
-        results_dir + "/data/sra/table_sra_fastq-gz.pdf",
 
 # -----------------------------------------------------------------------------#
 #                             Help and Usage                                   #
@@ -148,7 +144,7 @@ rule help:
 '''
 rule collect:
     """ Collect files from different reads_origin in a rule."""
-    input: 
+    input:
         rule_dir = expand(results_dir + "/{{rule}}/{reads_origin}/{sample}/",
                    reads_origin = config["reads_origin"]),
     output:

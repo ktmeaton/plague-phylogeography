@@ -1,9 +1,8 @@
-import itertools # Chaining list of lists of file accessions
+#import itertools # Chaining list of lists of file accessions
 
 #------------------------------------------------------------------------------#
 # Data Download
 #------------------------------------------------------------------------------#
-# There has to be a better way than using itertools
 
 rule download_sra_samples:
     input:
@@ -29,12 +28,11 @@ rule download_gff_reference:
 # nf-core/eager
 #------------------------------------------------------------------------------#
 
-# results/eager/{reads_origin}/{sample}/final_bams/{sample}.bam
 rule eager_sra:
     input:
         [os.path.join(os.path.dirname(path),
                       "final_bams",
-                      os.path.basename(os.path.dirname(path)) + ".bam") 
+                      os.path.basename(os.path.dirname(path)) + ".bam")
          for path in identify_paths(outdir="eager", reads_origin="sra")]
 
 rule eager_local:
@@ -64,40 +62,21 @@ rule snippy_pairwise_local:
          for path in identify_paths(outdir="snippy_pairwise", reads_origin="local")]
 
 #------------------------------------------------------------------------------#
-# Snippy Multi
-#------------------------------------------------------------------------------#
-rule snippy_multi_assembly:
-    input:
-        results_dir + "/snippy_multi/assembly/snippy-core.full.aln"
-
-rule snippy_multi_sra:
-    input:
-        results_dir + "/snippy_multi/sra/snippy-core.full.aln"
-
-rule snippy_multi_local:
-    input:
-        results_dir + "/snippy_multi/local/snippy-core.full.aln"
-
-rule snippy_multi_all:
-    input:
-        results_dir + "/snippy_multi/all/snippy-core.full.aln"
-
-#------------------------------------------------------------------------------#
 # Filtering
 #------------------------------------------------------------------------------#
 rule detect_repeats_reference:
     input:
-        [os.path.dirname(path) + ".inexact.repeats.bed" 
+        [os.path.dirname(path) + ".inexact.repeats.bed"
          for path in identify_paths(outdir="detect_repeats", reads_origin="reference")]
 
 rule detect_low_complexity_reference:
     input:
-        [os.path.dirname(path) + ".dustmasker.bed" 
+        [os.path.dirname(path) + ".dustmasker.bed"
          for path in identify_paths(outdir="detect_repeats", reads_origin="reference")]
 # -----------------------------------------------------------------------------#
 rule detect_snp_density_assembly:
     input:
-        [os.path.dirname(path) + ".subs.snpden" + str(config["snippy_snp_density"]) 
+        [os.path.dirname(path) + ".subs.snpden" + str(config["snippy_snp_density"])
          for path in identify_paths(outdir="detect_snp_density", reads_origin="assembly")]
 
 rule detect_snp_density_sra:
@@ -178,11 +157,53 @@ rule multiqc_all:
         results_dir + "/multiqc/all/multiqc_report.html"
 
 #------------------------------------------------------------------------------#
+# Snippy - Multi
+#------------------------------------------------------------------------------#
+
+rule snippy_multi_assembly:
+    input:
+        results_dir + "/snippy_multi/assembly/snippy-core.full.aln"
+
+rule snippy_multi_sra:
+    input:
+        results_dir + "/snippy_multi/sra/snippy-core.full.aln"
+
+rule snippy_multi_local:
+    input:
+        results_dir + "/snippy_multi/local/snippy-core.full.aln"
+
+rule snippy_multi_all:
+    input:
+        results_dir + "/snippy_multi/all/snippy-core.full.aln"
+
+#------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#
 
 # iqtree can be run for testing as
-# rule: iqtree
+rule iqtree_assembly:
+    input:
+        expand(results_dir + "/iqtree/assembly/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+               locus_name=config["reference_locus_name"],
+               missing_data = config["snippy_missing_data"])
+
+rule iqtree_sra:
+    input:
+        expand(results_dir + "/iqtree/sra/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+               locus_name=config["reference_locus_name"],
+               missing_data = config["snippy_missing_data"])
+
+rule iqtree_local:
+    input:
+        expand(results_dir + "/iqtree/local/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+               locus_name=config["reference_locus_name"],
+               missing_data = config["snippy_missing_data"])
+
+rule iqtree_all:
+    input:
+        expand(results_dir + "/iqtree/all/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+               locus_name=config["reference_locus_name"],
+               missing_data = config["snippy_missing_data"])
 
 #------------------------------------------------------------------------------#
 # Plot
@@ -203,9 +224,3 @@ rule plot_table_fastq_local:
 rule plot_table_fastq_sra:
     input:
         results_dir + "/data/sra/table_sra_fastq-gz.pdf",
-
-rule collect_qualimap:
-    input:
-        expand(results_dir + "/qualimap/all/{sample}/",
-        sample="test"),
-        #sample=[list(identify_all_sample()[k].keys())[0] for k,v in identify_all_sample()]),

@@ -54,11 +54,9 @@ TBD
 
 ## Genomic Alignment
 
-
 ### Modern Assembly
 
 Construct an alignment of ALL modern *Y. pestis* assemblies. Modify ```config/snakemake.yaml``` to have the following lines:
-
 
 ```bash
 max_datasets_assembly : 600
@@ -82,4 +80,3 @@ Create a MultiQC report of the genome alignment statistics.
 ```bash
 snakemake --profile profiles/infoserv multiqc_assembly
 ```
-
