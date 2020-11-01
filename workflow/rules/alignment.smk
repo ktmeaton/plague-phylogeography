@@ -119,17 +119,11 @@ rule snippy_multi:
     Peform a multiple alignment from pairwise output.
     """
     input:
-        snippy_pairwise_dir = lambda wildcards: expand(results_dir + "/snippy_pairwise/{{reads_origin}}/{sample}/",
-                              sample=globals()["identify_" + wildcards.reads_origin + "_sample"]()),
-        ref_fna = expand(results_dir + "/data/reference/{sample}/{sample}.fna",
-                  sample=identify_reference_sample(),
-                  ),
-        inexact = expand(results_dir + "/detect_repeats/reference/{sample}.inexact.repeats.bed",
-                  sample=identify_reference_sample(),
-                  ),
-        low_complexity = expand(results_dir + "/detect_low_complexity/reference/{sample}.dustmasker.bed",
-                  sample=identify_reference_sample(),
-                  ),
+        snippy_pairwise_dir = lambda wildcards: [os.path.dirname(path) + "/" for path in 
+                               identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)],
+        ref_fna = [path + ".fna" for path in identify_paths(outdir="data", reads_origin="reference")],
+        inexact = [os.path.dirname(path) + ".inexact.repeats.bed" for path in identify_paths(outdir="detect_repeats", reads_origin="reference")],
+        low_complexity = [os.path.dirname(path) + ".dustmasker.bed" for path in identify_paths(outdir="detect_low_complexity", reads_origin="reference")],
         snp_density = expand(results_dir + "/detect_snp_density/{{reads_origin}}/snpden{density}.bed",
                       density=config["snippy_snp_density"]),
     output:

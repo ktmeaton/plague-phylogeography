@@ -24,7 +24,7 @@ rule download_gbff_reference:
 rule download_gff_reference:
     input:
         [path + ".gff" for path in identify_paths(outdir="data", reads_origin="reference")]
-   
+
 #------------------------------------------------------------------------------#
 # nf-core/eager
 #------------------------------------------------------------------------------#
@@ -32,30 +32,36 @@ rule download_gff_reference:
 # results/eager/{reads_origin}/{sample}/final_bams/{sample}.bam
 rule eager_sra:
     input:
-        [os.path.join(os.path.dirname(path),"final_bams",os.path.basename(os.path.dirname(path)) + ".bam") for path in identify_paths(outdir="eager", reads_origin="sra")]
+        [os.path.join(os.path.dirname(path),
+                      "final_bams",
+                      os.path.basename(os.path.dirname(path)) + ".bam") 
+         for path in identify_paths(outdir="eager", reads_origin="sra")]
 
 rule eager_local:
     input:
-        expand(results_dir + "/eager/local/{sample}/final_bams/{sample}.bam",
-        sample=list(identify_local_sample()))
+        [os.path.join(os.path.dirname(path),
+                      "final_bams",
+                      os.path.basename(os.path.dirname(path)) + ".bam")
+         for path in identify_paths(outdir="eager", reads_origin="local")]
 
 #------------------------------------------------------------------------------#
 # Snippy - Pairwise
 #------------------------------------------------------------------------------#
 rule snippy_pairwise_assembly:
     input:
-        expand(results_dir + "/snippy_pairwise/assembly/{sample}/{sample}.aligned.fa",
-        sample=identify_assembly_sample())
-
-rule snippy_pairwise_local:
-    input:
-        expand(results_dir + "/snippy_pairwise/local/{sample}/{sample}.aligned.fa",
-        sample=identify_local_sample())
+        [path + ".aligned.fa" for path in identify_paths(outdir="snippy_pairwise", reads_origin="assembly")]
 
 rule snippy_pairwise_sra:
     input:
-        expand(results_dir + "/snippy_pairwise/sra/{sample}/{sample}.aligned.fa",
-        sample=identify_sra_sample())
+        [os.path.join(os.path.dirname(path),
+                      os.path.basename(os.path.dirname(path)) + ".aligned.fa")
+         for path in identify_paths(outdir="snippy_pairwise", reads_origin="sra")]
+
+rule snippy_pairwise_local:
+    input:
+        [os.path.join(os.path.dirname(path),
+                      os.path.basename(os.path.dirname(path)) + ".aligned.fa")
+         for path in identify_paths(outdir="snippy_pairwise", reads_origin="local")]
 
 #------------------------------------------------------------------------------#
 # Snippy Multi
@@ -72,24 +78,56 @@ rule snippy_multi_local:
     input:
         results_dir + "/snippy_multi/local/snippy-core.full.aln"
 
+rule snippy_multi_all:
+    input:
+        results_dir + "/snippy_multi/all/snippy-core.full.aln"
+
 #------------------------------------------------------------------------------#
 # Filtering
 #------------------------------------------------------------------------------#
 rule detect_repeats_reference:
     input:
-        expand(results_dir + "/detect_repeats/reference/{sample}.inexact.repeats.bed",
-        sample=identify_reference_sample())
+        [os.path.dirname(path) + ".inexact.repeats.bed" 
+         for path in identify_paths(outdir="detect_repeats", reads_origin="reference")]
 
 rule detect_low_complexity_reference:
     input:
-        expand(results_dir + "/detect_low_complexity/reference/{sample}.dustmasker.bed",
-        sample=identify_reference_sample())
-
+        [os.path.dirname(path) + ".dustmasker.bed" 
+         for path in identify_paths(outdir="detect_repeats", reads_origin="reference")]
+# -----------------------------------------------------------------------------#
 rule detect_snp_density_assembly:
     input:
-        expand(results_dir + "/snippy_pairwise/assembly/{sample}/{sample}.subs.snpden",
-        sample=identify_assembly_sample())
+        [os.path.dirname(path) + ".subs.snpden" + str(config["snippy_snp_density"]) 
+         for path in identify_paths(outdir="detect_snp_density", reads_origin="assembly")]
 
+rule detect_snp_density_sra:
+    input:
+        [os.path.dirname(path) + ".subs.snpden" + str(config["snippy_snp_density"])
+         for path in identify_paths(outdir="detect_snp_density", reads_origin="sra")]
+
+rule detect_snp_density_local:
+    input:
+        [os.path.dirname(path) + ".subs.snpden" + str(config["snippy_snp_density"])
+         for path in identify_paths(outdir="detect_snp_density", reads_origin="local")]
+
+# -----------------------------------------------------------------------------#
+rule merge_snp_density_assembly:
+    input:
+        results_dir + "/detect_snp_density/assembly/snpden" +  str(config["snippy_snp_density"]) + ".bed"
+
+rule merge_snp_density_sra:
+    input:
+        results_dir + "/detect_snp_density/sra/snpden" +  str(config["snippy_snp_density"]) + ".bed"
+
+rule merge_snp_density_local:
+    input:
+        results_dir + "/detect_snp_density/local/snpden" +  str(config["snippy_snp_density"]) + ".bed"
+
+rule merge_snp_density_all:
+    input:
+        results_dir + "/detect_snp_density/all/snpden" +  str(config["snippy_snp_density"]) + ".bed"
+
+# -----------------------------------------------------------------------------#
 rule snippy_multi_extract_all:
     input:
         expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.full.aln",
@@ -101,7 +139,6 @@ rule snippy_multi_filter_all:
         locus_name=config["reference_locus_name"],
         missing_data = config["snippy_missing_data"])
 
-# merge_snp_density
 
 #------------------------------------------------------------------------------#
 # Qualimap

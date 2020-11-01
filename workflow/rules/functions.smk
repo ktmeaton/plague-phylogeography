@@ -118,7 +118,10 @@ def identify_local_sample():
 
 def identify_all_sample():
     """ Return all samples."""
-    all_dict = {"assembly" : identify_assembly_sample(), "sra": identify_sra_sample(), "local" : identify_local_sample()}
+    all_dict = {}
+    for origin in config["reads_origin"]:
+        all_dict[origin] = globals()["identify_" + origin + "_sample"]() 	
+    #all_dict = {"assembly" : identify_assembly_sample(), "sra": identify_sra_sample(), "local" : identify_local_sample()}
     #return list(identify_assembly_sample()) + list(identify_sra_sample()) + list(identify_local_sample())
     return all_dict
 
@@ -149,17 +152,13 @@ def identify_paths(outdir=None, reads_origin=None):
                           )
             
   	    samples = list(itertools.chain.from_iterable(origin_dict.values()))
-            paths = input_paths + expand(origin_dir + "/{sample_dir}/{sample}",
+            paths = paths + expand(origin_dir + "/{sample_dir}/{sample}",
                              zip,
                              sample_dir=sample_dirs,
                              sample=samples)
 
     return paths
     
-
-
-
-
 
 def sql_select(sqlite_db, query, i=0):
     '''Run select query on the sqlite db.'''

@@ -68,9 +68,8 @@ rule merge_snp_density:
     Merge filter bed files.
     """
     input:
-        snpden = lambda wildcards: expand(results_dir + "/detect_snp_density/{{reads_origin}}/{sample}.subs.snpden{density}",
-                    sample=globals()["identify_" + wildcards.reads_origin + "_sample"](),
-                    density=config["snippy_snp_density"]),
+        snpden = lambda wildcards: [os.path.dirname(path) + ".subs.snpden" + str(config["snippy_snp_density"])
+                 for path in identify_paths(outdir="detect_snp_density", reads_origin=wildcards.reads_origin)]
     output:
         bed = expand(results_dir + "/detect_snp_density/{{reads_origin}}/snpden{density}.bed",
               density=config["snippy_snp_density"])
@@ -87,9 +86,9 @@ rule snippy_multi_extract:
     Extract a locus (ex. chromosome) from the snippy multi alignment.
     """
     input:
-        full_aln = results_dir + "/snippy_multi/snippy-core.full.aln",
+        full_aln = results_dir + "/snippy_multi/{{reads_origin}}/snippy-core.full.aln",
     output:
-        extract_aln = expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.full.aln",
+        extract_aln = expand(results_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.full.aln",
                       locus_name=config["reference_locus_name"]),
     resources:
         cpus = 1,
@@ -107,14 +106,14 @@ rule snippy_multi_filter:
     Filter a multiple alignment for missing data.
     """
     input:
-        full_locus_aln = expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.full.aln",
+        full_locus_aln = expand(results_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.full.aln",
                    locus_name=config["reference_locus_name"]),
     output:
-        filter_snp_aln = expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
+        filter_snp_aln = expand(results_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
                          missing_data = config["snippy_missing_data"],
                          locus_name=config["reference_locus_name"]),
     log:
-        expand(logs_dir + "/snippy_multi/snippy-core_{locus_name}.filter{missing_data}.log",
+        expand(logs_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.filter{missing_data}.log",
         locus_name=config["reference_locus_name"],
         missing_data = config["snippy_missing_data"]),
     params:
