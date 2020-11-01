@@ -22,8 +22,8 @@ rule download_sra:
     "{scripts_dir}/download_sra.sh \
         {project_dir} \
         {results_dir}/data/sra/ \
-        {wildcards.sample} \
-        {wildcards.file_acc} 1> {log}"
+        {wildcards.sample_dir} \
+        {wildcards.sample} 1> {log}"
 
 rule download_assembly:
     """
