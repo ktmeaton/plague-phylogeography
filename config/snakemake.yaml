@@ -5,7 +5,6 @@
 
 # SQLITE Parameters
 sqlite_db : "yersinia_pestis_db.sqlite"
-#sqlite_select_command_asm : "SELECT AssemblyFTPGenbank FROM Master WHERE (BioSampleComment LIKE '%KEEP%Assembly%')"
 sqlite_select_command_asm : SELECT
                                AssemblyFTPGenbank
                              FROM
@@ -13,28 +12,22 @@ sqlite_select_command_asm : SELECT
                                LEFT JOIN Assembly
                                  ON AssemblyBioSampleAccession = BioSampleAccession
                                  WHERE (BioSampleComment LIKE '%KEEP%Assembly%Modern%')
-#sqlite_select_command_sra : "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (BioSampleComment LIKE '%KEEP%SRA%Ancient%')"
-#sqlite_select_command_sra : "SELECT BioSampleAccession,SRARunAccession,SRALibraryLayout,SRAFileURL FROM Master WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')"
 sqlite_select_command_sra : SELECT
                                BioSampleAccession,
-                               SRARunAccession,
-                               SRALibraryLayout,
-                               SRAFileURL
+                               SRARunAccession
                              FROM
                                BioSample
                                LEFT JOIN SRA
                                  ON SRABioSampleAccession = BioSampleAccession
                                  WHERE (SRARunAccession = 'SRR1048902' OR SRARunAccession = 'SRR1048905')
 #sqlite_select_command_sra : SELECT
-#                               BioSampleAccession,
-#                               SRARunAccession,
-#                               SRALibraryLayout,
-#                               SRAFileURL
-#                             FROM
-#                               BioSample
-#                               LEFT JOIN SRA
-#                                 ON SRABioSampleAccession = BioSampleAccession
-#                                 WHERE (BioSampleComment LIKE '%KEEP%SRA%Ancient')
+#                              BioSampleAccession,
+#                              SRARunAccession
+#                            FROM
+#                              BioSample
+#                              LEFT JOIN SRA
+#                                ON SRABioSampleAccession = BioSampleAccession
+#                                WHERE (BioSampleComment LIKE '%KEEP%SRA%Ancient%')
 sqlite_select_command_ref : SELECT
                                AssemblyFTPGenbank
                              FROM
@@ -42,7 +35,6 @@ sqlite_select_command_ref : SELECT
                                LEFT JOIN Assembly
                                  ON AssemblyBioSampleAccession = BioSampleAccession
                                  WHERE (BioSampleComment LIKE '%Assembly%Modern%Reference%')
-#max_datasets_assembly : 500
 max_datasets_assembly : 3
 max_datasets_sra : 2
 reads_origin :

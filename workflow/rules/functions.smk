@@ -38,20 +38,17 @@ def identify_assembly_sample():
     sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
     conn = sqlite3.connect(sqlite_db_path)
     cur = conn.cursor()
+    max_datasets = config["max_datasets_assembly"]
+
     # Assembled Genome URLs
     asm_fna_urls = cur.execute(config["sqlite_select_command_asm"]).fetchall()
-    asm_name_list = []
     for url_list in asm_fna_urls:
+        if len(asm_sample_dict) >= max_datasets:
+            break
         for url in url_list[0].split(";"):
             if url:
-                asm_name_list.append(url.split("/")[9] + "_genomic")
-    # Filter based on max number of assemblies for analysis
-    max_datasets = config["max_datasets_assembly"]
-    if max_datasets >= (len(asm_name_list) - 1):
-        max_datasets = len(asm_name_list) - 1
-    asm_name_list = asm_name_list[0:max_datasets]
-    for name in asm_name_list:
-        asm_sample_dict[name] = [name]
+                asm_name = url.split("/")[9] + "_genomic"
+                asm_sample_dict[asm_name] = [asm_name]
     cur.close()
     return asm_sample_dict
 
@@ -85,10 +82,9 @@ def identify_sra_sample():
     cur = conn.cursor()
     sra_fetch = cur.execute(config["sqlite_select_command_sra"]).fetchall()
     max_datasets = config["max_datasets_sra"]
-    if max_datasets >= (len(sra_fetch) - 1):
-        # This is purposefully different from asm max
-        max_datasets = len(sra_fetch)
-    for record in sra_fetch[0:max_datasets]:
+    for record in sra_fetch:
+        if len(sra_sample_dict) >= max_datasets:
+            break
         if record:
             file_acc = record[1].split(";")
             # Duplicate the biosample accession to make it equivalent to sra
@@ -120,7 +116,7 @@ def identify_all_sample():
     """ Return all samples."""
     all_dict = {}
     for origin in config["reads_origin"]:
-        all_dict[origin] = globals()["identify_" + origin + "_sample"]() 	
+        all_dict[origin] = globals()["identify_" + origin + "_sample"]()
     #all_dict = {"assembly" : identify_assembly_sample(), "sra": identify_sra_sample(), "local" : identify_local_sample()}
     #return list(identify_assembly_sample()) + list(identify_sra_sample()) + list(identify_local_sample())
     return all_dict
@@ -150,7 +146,7 @@ def identify_paths(outdir=None, reads_origin=None):
                                [[key] * len(origin_dict[key]) for key in origin_dict]
                               )
                           )
-            
+
   	    samples = list(itertools.chain.from_iterable(origin_dict.values()))
             paths = paths + expand(origin_dir + "/{sample_dir}/{sample}",
                              zip,
@@ -158,7 +154,7 @@ def identify_paths(outdir=None, reads_origin=None):
                              sample=samples)
 
     return paths
-    
+
 
 def sql_select(sqlite_db, query, i=0):
     '''Run select query on the sqlite db.'''
