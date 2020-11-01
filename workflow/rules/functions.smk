@@ -61,10 +61,10 @@ def identify_assembly_ftp():
     asm_fna_urls = cur.execute(config["sqlite_select_command_asm"]).fetchall()
     asm_ftp_list = []
     max_datasets = config["max_datasets_assembly"]
-    if max_datasets >= (len(asm_fna_urls) - 1):
-        max_datasets = len(asm_fna_urls) - 1
-    for url_list in asm_fna_urls[0:max_datasets]:
+    for url_list in asm_fna_urls:
         for url in url_list[0].split(";"):
+            if len(asm_ftp_list) >= max_datasets:
+                break 
             if url:
                 asm_ftp_list.append(url + "/"+ url.split("/")[9] + "_genomic.fna.gz")
     cur.close()
