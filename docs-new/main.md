@@ -54,7 +54,7 @@ TBD
 
 ## Genomic Alignment
 
-### Modern Assembly
+### Modern Assembly (Remote)
 
 Construct alignments of ALL modern *Y. pestis* assemblies. Modify ```config/snakemake.yaml``` to have the following lines:
 
@@ -75,9 +75,19 @@ Align to the reference genome and create a final MultiQC report.
 snakemake --profile profiles/infoserv multiqc_assembly
 ```
 
+### Modern Assembly (Local)
+
+Construct alignments of the Institute Pasteur *Y. pestis* samples.
+
+```bash
+snakemake --profile profiles/infoserve multiqc_local
+```
+
 ### Ancient SRA Fastq
 
-Construct alignments of ALL ancient *Y. pestis* sequences. Modify ```config/snakemake.yaml``` to have the following lines:
+Construct alignments of ancient *Y. pestis* sequences. Some preliminary record filtering has occurred, to remove ultra-large sequencing projects (ex. Bronze Age) with low coverage (below 1X).
+
+ Modify ```config/snakemake.yaml``` to have the following lines:
 
 ```yaml
 max_datasets_sra: 200
@@ -88,5 +98,7 @@ sqlite_select_command_sra : SELECT
                               BioSample
                               LEFT JOIN SRA
                                 ON SRABioSampleAccession = BioSampleAccession
-                                WHERE (BioSampleComment LIKE '%SRA%Ancient%')
+                                WHERE (BioSampleComment LIKE '%KEEP%SRA%Ancient%')
 ```
+
+
