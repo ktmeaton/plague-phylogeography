@@ -100,5 +100,3 @@ sqlite_select_command_sra : SELECT
                                 ON SRABioSampleAccession = BioSampleAccession
                                 WHERE (BioSampleComment LIKE '%KEEP%SRA%Ancient%')
 ```
-
-
