@@ -14,7 +14,8 @@ rule eager:
     message: "Running the nf-core/eager pipeline for {wildcards.reads_origin} Biosample {wildcards.sample}."
     input:
         fastq = lambda wildcards : [path + "_1.fastq.gz"
-                                  for path in identify_paths(outdir="data", reads_origin=wildcards.reads_origin)],
+                                  for path in identify_paths(outdir="data", reads_origin=wildcards.reads_origin)
+                                  if wildcards.sample in path],
         ref_fna = [path + ".fna" for path in identify_paths(outdir="data", reads_origin="reference")],
     output:
         final_bam = results_dir + "/eager/{reads_origin}/{sample}/final_bams/{sample}.bam",
