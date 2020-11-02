@@ -16,6 +16,8 @@ dependencies:
   - samtools=1.10
   # Development
   - pre-commit=2.6.0
+  # Database
+  - ncbimeta=0.7.0
   # Data Download
   - bioconda:sra-tools=2.10.8
   # nf-core/eager
