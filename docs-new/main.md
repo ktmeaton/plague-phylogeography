@@ -152,7 +152,7 @@ do
 
   AdapterRemoval \
   --file1 ${file%%.*}.untrimmed.fastq.gz \
-  --basename ${file%%.*}.adapterremoval.fastq.gz \
+  --basename ${file%%.*} \
   --gzip \
   --threads 10 \
   --trimns \
@@ -168,7 +168,7 @@ do
   --cores 10 \
   -u -7 \
   -o $file \
-  ${file%%.*}.adapterremoval.fastq.gz;
+  ${file%%.*}.truncated.gz;
 
 done
 
