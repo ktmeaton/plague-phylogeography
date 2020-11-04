@@ -69,7 +69,7 @@ sqlite_select_command_asm : SELECT
                                  WHERE (BioSampleComment LIKE '%Assembly%Modern%')
 ```
 
-Align to the reference genome and create a final MultiQC report.
+- [x] Align to the reference genome and create a final MultiQC report.
 
 ```bash
 snakemake --profile profiles/infoserv multiqc_assembly
@@ -79,9 +79,15 @@ snakemake --profile profiles/infoserv multiqc_assembly
 
 Construct alignments of the Institute Pasteur *Y. pestis* samples.
 
+- [ ] Align to the reference genome and create a final MultiQC report.
+
 ```bash
 snakemake --profile profiles/infoserve multiqc_local
 ```
+
+- [x] Identify low coverage samples (<70% at 10X) by marking the BioSampleComment as "REMOVE: Assembly Modern Low Coverage".
+
+- [ ] Create a filtered MultiQC report.
 
 ### Ancient SRA Fastq
 
@@ -100,3 +106,78 @@ sqlite_select_command_sra : SELECT
                                 ON SRABioSampleAccession = BioSampleAccession
                                 WHERE (BioSampleComment LIKE '%KEEP%SRA%Ancient%')
 ```
+
+- [x] Align to the reference genome and create a final MultiQC report.
+
+```bash
+snakemake --profile profiles/infoserv multiqc_sra
+```
+
+- [ ] Identify low coverage samples (<70% at 3X) by marking the BioSampleComment as "REMOVE: SRA Ancient Low Coverage".
+
+#### Manual Modifications
+
+SAMN00715800 (8291)
+
+Split the single end fastq into forward and reverse reads.
+
+```bash
+mv results/data/sra/SAMN00715800/SRR341961_1.fastq.gz results/data/sra/SAMN00715800/SRR341961_untrimmed.fastq.gz
+
+cutadapt \
+  --cores 0 \
+  -u -75 \
+  -o results/data/sra/SAMN00715800/SRR341961_1.fastq.gz \
+  results/data/sra/SAMN00715800/SRR341961_untrimmed.fastq.gz
+
+cutadapt \
+  --cores 0 \
+  -u 75 \
+  -o results/data/sra/SAMN00715800/SRR341961_2.fastq.gz \
+  results/data/sra/SAMN00715800/SRR341961_untrimmed.fastq.gz
+
+rm -f results/data/sra/SAMN00715800/*untrimmed*
+```
+
+SAMEA104233050 (GEN72)
+
+Remove the excess 7 bp library barcodes (GTCAGAA)
+
+
+```bash
+for file in `ls results/data/sra/SAMEA104233050/*.fastq.gz`; 
+do 
+  echo $file;
+  mv $file ${file%%.*}.untrimmed.fastq.gz;
+
+  AdapterRemoval \
+  --file1 ${file%%.*}.untrimmed.fastq.gz \
+  --basename ${file%%.*}.adapterremoval.fastq.gz \
+  --gzip \
+  --threads 10 \
+  --trimns \
+  --trimqualities \
+  --adapter1 AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \
+  --adapter2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA \
+  --minlength 35 \
+  --minquality 20 \
+  --minadapteroverlap 1 \
+  --preserve5p;
+
+  cutadapt \
+  --cores 10 \
+  -u -7 \
+  -o $file \
+  ${file%%.*}.adapterremoval.fastq.gz;
+
+done
+
+rm \
+  results/data/sra/SAMEA104233050/*untrimmed* \
+  results/data/sra/SAMEA104233050/*adapterremoval*
+```
+
+
+
+- [ ] Create a filtered MultiQC report.
+
