@@ -36,7 +36,6 @@ dependencies:
   - biopython=1.76
   - mummer=3.23
   - blast=2.10.1 # dustmasker
-  - cutadapt=2.10
   #- bedtools=2.29.2
   - vcftools=0.1.16
   # QC
