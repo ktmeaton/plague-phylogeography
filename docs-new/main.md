@@ -78,6 +78,13 @@ snakemake --profile profiles/infoserv multiqc_assembly
 ### Modern Assembly (Local)
 
 Construct alignments of the Institute Pasteur *Y. pestis* samples.
+nf-core/eager parameters need to be modified:
+
+```bash
+remove: --mergedonly
+add: --clip_forward_adaptor CTGTCTCTTATACACATCT
+add: --clip_reverse_adaptor CTGTCTCTTATACACATCT
+```
 
 - [ ] Align to the reference genome and create a final MultiQC report.
 
@@ -85,7 +92,7 @@ Construct alignments of the Institute Pasteur *Y. pestis* samples.
 snakemake --profile profiles/infoserve multiqc_local
 ```
 
-- [x] Identify low coverage samples (<70% at 10X) by marking the BioSampleComment as "REMOVE: Assembly Modern Low Coverage".
+- [x] Identify low coverage samples (<70% at 10X) by marking the BioSampleComment as "REMOVE: Assembly Local Low Coverage".
 
 - [ ] Create a filtered MultiQC report.
 
@@ -119,7 +126,8 @@ snakemake --profile profiles/infoserv multiqc_sra
 
 SAMN00715800 (8291)
 
-Split the single end fastq into forward and reverse reads.
+Split the single end fastq into forward and reverse reads. Cutadapt is
+not necessary! Could use AdapterRemoval.
 
 ```bash
 mv results/data/sra/SAMN00715800/SRR341961_1.fastq.gz results/data/sra/SAMN00715800/SRR341961_untrimmed.fastq.gz

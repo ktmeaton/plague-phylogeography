@@ -8,7 +8,7 @@ dependencies:
   # Snakemake Execution
   - python=3.7.3
   - sqlite=3.31.1
-  - snakemake=5.26.1 # Update to 5.27.3 when available on conda
+  - snakemake=5.27.4
   - flask=1.1.2
   - python-dotenv=0.14.0
   - slackclient=2.9.1

@@ -67,7 +67,7 @@ dependencies:
 - samtools=1.10
 - singularity=3.6.3
 - slackclient=2.9.1
-- snakemake=5.26.1 # Update to 5.27.3 when available on conda
+- snakemake=5.27.4
 - sqlite=3.31.1
 - vcftools=0.1.16
 - pip:
