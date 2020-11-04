@@ -4,14 +4,14 @@
 
 1. [Installation](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#installation)
 2. [Metadata](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#database)
-  - [Create Database](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#create-database)
-  - [Curate](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#curate)
-  - [Geocode](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#geocode)
+- [Create Database](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#create-database)
+- [Curate](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#curate)
+- [Geocode](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#geocode)
 3. [Genomic Alignment](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#genomic-alignment)
-  - [Modern Assembly Remote](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#modern-assembly-remote)
-  - [Modern Fastq Local](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#modern-fastq-local)
-  - [Ancient Fastq Remote](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#ancient-fastq-remote)
-  - [Manual Modifications](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#manual-modifications)
+- [Modern Assembly Remote](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#modern-assembly-remote)
+- [Modern Fastq Local](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#modern-fastq-local)
+- [Ancient Fastq Remote](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#ancient-fastq-remote)
+- [Manual Modifications](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#manual-modifications)
 
 ## 1. Installation
 
@@ -165,8 +165,8 @@ SAMEA104233050 (GEN72)
 Remove the excess 7 bp library barcodes (GTCAGAA)
 
 ```bash
-for file in `ls results/data/sra/SAMEA104233050/*.fastq.gz`; 
-do 
+for file in `ls results/data/sra/SAMEA104233050/*.fastq.gz`;
+do
   echo $file;
   mv $file ${file%%.*}.untrimmed.fastq.gz;
 
@@ -198,4 +198,3 @@ rm \
 ```
 
 - [ ] Create a filtered MultiQC report.
-
