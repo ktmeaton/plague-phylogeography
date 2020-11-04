@@ -97,6 +97,7 @@ nf-core/eager parameters need to be modified:
 remove: --mergedonly
 add: --clip_forward_adaptor CTGTCTCTTATACACATCT
 add: --clip_reverse_adaptor CTGTCTCTTATACACATCT
+change: snippy_bam_depth to 10
 ```
 
 - [ ] Align to the reference genome and create a final MultiQC report.
@@ -137,7 +138,7 @@ snakemake --profile profiles/infoserv multiqc_sra
 
 ### Manual Modifications
 
-SAMN00715800 (8291)
+#### SAMN00715800 (8291)
 
 Split the single end fastq into forward and reverse reads. Cutadapt is
 not necessary! Could use AdapterRemoval.
@@ -160,41 +161,26 @@ cutadapt \
 rm -f results/data/sra/SAMN00715800/*untrimmed*
 ```
 
-SAMEA104233050 (GEN72)
+#### SAMEA104233050 (GEN72)
 
-Remove the excess 7 bp library barcodes (GTCAGAA)
+Removie the excess 7 bp library barcodes at the beginning and end.
 
 ```bash
 for file in `ls results/data/sra/SAMEA104233050/*.fastq.gz`;
 do
   echo $file;
-  mv $file ${file%%.*}.untrimmed.fastq.gz;
 
   AdapterRemoval \
-  --file1 ${file%%.*}.untrimmed.fastq.gz \
-  --basename ${file%%.*} \
-  --gzip \
-  --threads 10 \
-  --trimns \
-  --trimqualities \
-  --adapter1 AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \
-  --adapter2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA \
-  --minlength 35 \
-  --minquality 20 \
-  --minadapteroverlap 1 \
-  --preserve5p;
+    --threads 10 \
+    --gzip \
+    --trim5p 7 \
+    --trim3p 7 \
+    --file1 ${file%%.*}.fastq.gz \
+    --basename ${file%%.*};
 
-  cutadapt \
-  --cores 10 \
-  -u -7 \
-  -o $file \
-  ${file%%.*}.truncated.gz;
+  mv {file%%.*}.truncated.gz $file;
 
 done
-
-rm \
-  results/data/sra/SAMEA104233050/*untrimmed* \
-  results/data/sra/SAMEA104233050/*adapterremoval*
 ```
 
 - [ ] Create a filtered MultiQC report.
