@@ -3,15 +3,15 @@
 ## Table of Contents
 
 1. [Installation](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#installation)
-2. [Metadata](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#database)
-- [Create Database](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#create-database)
-- [Curate](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#curate)
-- [Geocode](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#geocode)
-3. [Genomic Alignment](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#genomic-alignment)
-- [Modern Assembly Remote](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#modern-assembly-remote)
-- [Modern Fastq Local](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#modern-fastq-local)
-- [Ancient Fastq Remote](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#ancient-fastq-remote)
-- [Manual Modifications](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#manual-modifications)
+1. [Metadata](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#database)
+   - [Create Database](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#create-database)
+   - [Curate](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#curate)
+   - [Geocode](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#geocode)
+1. [Genomic Alignment](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#genomic-alignment)
+   - [Modern Assembly Remote](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#modern-assembly-remote)
+   - [Modern Fastq Local](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#modern-fastq-local)
+   - [Ancient Fastq Remote](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#ancient-fastq-remote)
+   - [Manual Modifications](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#manual-modifications)
 
 ## 1. Installation
 
@@ -140,23 +140,27 @@ snakemake --profile profiles/infoserv multiqc_sra
 
 #### SAMN00715800 (8291)
 
-Split the single end fastq into forward and reverse reads. Cutadapt is
-not necessary! Could use AdapterRemoval.
+Split the single end fastq into forward and reverse reads.
 
 ```bash
-mv results/data/sra/SAMN00715800/SRR341961_1.fastq.gz results/data/sra/SAMN00715800/SRR341961_untrimmed.fastq.gz
+AdapterRemoval \
+  --threads 10 \
+  --gzip \
+  --trim3p 75 \
+  --file1 results/data/sra/SAMN00715800/SRR341961_1.fastq.gz \
+  --basename results/data/sra/SAMN00715800/SRR341961_1;
 
-cutadapt \
-  --cores 0 \
-  -u -75 \
-  -o results/data/sra/SAMN00715800/SRR341961_1.fastq.gz \
-  results/data/sra/SAMN00715800/SRR341961_untrimmed.fastq.gz
+AdapterRemoval \
+  --threads 10 \
+  --gzip \
+  --trim5p 75 \
+  --file1 results/data/sra/SAMN00715800/SRR341961_1.fastq.gz \
+  --basename results/data/sra/SAMN00715800/SRR341961_2;
 
-cutadapt \
-  --cores 0 \
-  -u 75 \
-  -o results/data/sra/SAMN00715800/SRR341961_2.fastq.gz \
-  results/data/sra/SAMN00715800/SRR341961_untrimmed.fastq.gz
+mv results/data/sra/SAMN00715800/SRR341961_1.truncated.gz results/data/sra/SAMN00715800/SRR341961_1.fastq.gz
+mv results/data/sra/SAMN00715800/SRR341961_2.truncated.gz results/data/sra/SAMN00715800/SRR341961_2.fastq.gz
+
+
 
 rm -f results/data/sra/SAMN00715800/*untrimmed*
 ```
@@ -184,3 +188,11 @@ done
 ```
 
 - [ ] Create a filtered MultiQC report.
+
+### All
+
+Change the sql commands to include the "KEEP" keyword.
+
+```bash
+snakemake --profile profiles/infoserv multiqc_all;
+```
