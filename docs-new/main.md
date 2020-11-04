@@ -1,6 +1,19 @@
 # Main Workflow Documentation
 
-## Installation
+## Table of Contents
+
+1. [Installation](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#installation)
+2. [Metadata](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#database)
+  - [Create Database](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#create-database)
+  - [Curate](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#curate)
+  - [Geocode](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#geocode)
+3. [Genomic Alignment](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#genomic-alignment)
+  - [Modern Assembly Remote](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#modern-assembly-remote)
+  - [Modern Fastq Local](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#modern-fastq-local)
+  - [Ancient Fastq Remote](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#ancient-fastq-remote)
+  - [Manual Modifications](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#manual-modifications)
+
+## 1. Installation
 
 Follow the installation guide at the `Github Repository <https://github.com/ktmeaton/plague-phylogeography#install>`_.
 
@@ -16,9 +29,9 @@ mamba env create -f workflow/envs/merge/environment.yaml
 snakemake --profile profiles/gh-actions help;
 ```
 
-## Database
+## 2. Metadata
 
-### Create
+### Create Database
 
 > Note: This is not in the environment file!
 
@@ -48,13 +61,13 @@ Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleC
 - Annotate with meaningful metadata.
   - Add collection data, geographic location, host.
 
-### Geocoding
+### Geocode
 
 TBD
 
 ## Genomic Alignment
 
-### Modern Assembly (Remote)
+### Modern Assembly Remote
 
 Construct alignments of ALL modern *Y. pestis* assemblies. Modify ```config/snakemake.yaml``` to have the following lines:
 
@@ -75,7 +88,7 @@ sqlite_select_command_asm : SELECT
 snakemake --profile profiles/infoserv multiqc_assembly
 ```
 
-### Modern Assembly (Local)
+### Modern Fastq Local
 
 Construct alignments of the Institute Pasteur *Y. pestis* samples.
 nf-core/eager parameters need to be modified:
@@ -96,7 +109,7 @@ snakemake --profile profiles/infoserve multiqc_local
 
 - [ ] Create a filtered MultiQC report.
 
-### Ancient SRA Fastq
+### Ancient Fastq Remote
 
 Construct alignments of ancient *Y. pestis* sequences. Some preliminary record filtering has occurred, to remove ultra-large sequencing projects (ex. Bronze Age) with low coverage (below 1X).
 
@@ -122,7 +135,7 @@ snakemake --profile profiles/infoserv multiqc_sra
 
 - [ ] Identify low coverage samples (<70% at 3X) by marking the BioSampleComment as "REMOVE: SRA Ancient Low Coverage".
 
-#### Manual Modifications
+### Manual Modifications
 
 SAMN00715800 (8291)
 
@@ -150,7 +163,6 @@ rm -f results/data/sra/SAMN00715800/*untrimmed*
 SAMEA104233050 (GEN72)
 
 Remove the excess 7 bp library barcodes (GTCAGAA)
-
 
 ```bash
 for file in `ls results/data/sra/SAMEA104233050/*.fastq.gz`; 
@@ -184,8 +196,6 @@ rm \
   results/data/sra/SAMEA104233050/*untrimmed* \
   results/data/sra/SAMEA104233050/*adapterremoval*
 ```
-
-
 
 - [ ] Create a filtered MultiQC report.
 
