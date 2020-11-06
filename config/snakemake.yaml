@@ -69,6 +69,12 @@ snippy_missing_data : 0
 snippy_snp_density : 10
 
 # IQTREE
+iqtree_plot_missing_data:
+  - 0
+  - 25
+  - 50
+  - 75
+  - 100
 #iqtree_model = "K3Pu+F+I"
 iqtree_seed : "47321424" # keeping it consistent in a config file allows for checkpointing
 iqtree_outgroup : "Reference"
