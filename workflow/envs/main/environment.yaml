@@ -32,6 +32,9 @@ dependencies:
   - matplotlib=3.3.2
   - pandas=1.0.4
   - numpy=1.19.1
+  - plotly=4.12.0
+  - ipywidgets=7.5.1
+  - nodejs=12.19.0
   # Filtering
   - biopython=1.76
   - mummer=3.23
