@@ -42,6 +42,7 @@ include: rules_dir + "/phylogeny.smk"
 include: rules_dir + "/qc.smk"
 include: rules_dir + "/filter_mask.smk"
 include: rules_dir + "/plot.smk"
+include: rules_dir + "/metadata.smk"
 include: rules_dir + "/functions.smk"
 include: rules_dir + "/targets.smk"
 

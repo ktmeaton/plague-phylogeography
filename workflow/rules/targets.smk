@@ -248,3 +248,23 @@ rule plot_missing_data_all:
     		expand(results_dir + "/iqtree/all/missing_data_{locus_name}.snps.html",
 				  locus_name = config["reference_locus_name"],
 					)
+
+#------------------------------------------------------------------------------#
+# Metadata
+#------------------------------------------------------------------------------#
+
+rule metadata_assembly:
+    input:
+    		results_dir + "/metadata/assembly/metadata.tsv"
+
+rule metadata_sra:
+    input:
+    		results_dir + "/metadata/sra/metadata.tsv"
+
+rule metadata_local:
+    input:
+    		results_dir + "/metadata/local/metadata.tsv"
+
+rule metadata_all:
+    input:
+    		results_dir + "/metadata/all/metadata.tsv"
