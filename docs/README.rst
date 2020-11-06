@@ -112,7 +112,7 @@ All install options start by cloning the pipeline repo.
    docker run \
      -v $PWD:/pipeline \
      -w /pipeline \
-     ktmeaton/plague-phylogeography \
+     ktmeaton/plague-phylogeography:dev \
      snakemake --profile profiles/laptop help
 
 3. Singularity (HPC - Compute Canada)
@@ -135,4 +135,4 @@ Credits
 -------
 
 Author: `Katherine Eaton <https://github.com/ktmeaton>`_\ :raw-html-m2r:`<br>`
-Logo: Emil Karpinski, `Katherine Eaton <https://github.com/ktmeaton>`_
+Logo: Emil Karpinski, `Katherine Eaton <https://github.com/ktmeaton>`_  
