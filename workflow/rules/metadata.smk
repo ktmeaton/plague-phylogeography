@@ -13,7 +13,7 @@ rule metadata:
 				db = os.path.join(results_dir, "sqlite_db", config["sqlite_db"])
 		shell:
 		    """
-		    python {scripts_dir}/metadata_file_strain.py \
+		    python {scripts_dir}/metadata.py \
 				  --db {params.db} \
 					--samples-csv {params.samples} \
 					--output {output.tsv} ;
