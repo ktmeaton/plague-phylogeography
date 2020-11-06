@@ -200,18 +200,41 @@ snakemake --profile profiles/infoserv multiqc_all;
 
 ## Multiple Alignment
 
+### Plot Missing Data Differences
+
+Plot the following values as line graphs:
+
+1. x: missing data percentage (0,1,2,3,4,5)
+1. y: variant positions
+   y: parsimony informative sites
 Create a multiple alignment of the filtered samples:
 
-Fast version (testing):
-
 ```bash
-snakemake --profile profiles/infoserv snippy_multi_all;
+for x in 0 1 2 3 4 5;
+do
+  outfile=/2/scratch/keaton/plague-phylogeography/results/snippy_multi/all/snippy-core_chromosome.snps.filter${x}.aln;
+  echo $outfile;
+  snakemake  --profile profiles/infoserv  $outfile  --config  snippy_missing_data=$x;
+done
+```
+
+Data:
+
+```table
+Number of samples: 547
+missing_data    variant sites    parismony informative sites
+0    0    0
+1    53    26
+2    396    162
+3    1786    716
+4    3653    1479
+5    6166    2460
 ```
 
 Full version:
 
 ```bash
-snakemake --profile profiles/infoserv snippy_multi_all --config snippy_missing_data=1;
+snakemake --profile profiles/infoserv snippy_multi_all --config snippy_missing_data=5;
 ```
 
 ## Phylogeny
