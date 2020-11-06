@@ -116,15 +116,13 @@ rule snippy_multi_filter:
         expand(logs_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.filter{missing_data}.log",
         locus_name=config["reference_locus_name"],
         missing_data = config["snippy_missing_data"]),
-    params:
-        missing = float(config["snippy_missing_data"] / 100)
     resources:
         cpus = 1,
     shell:
         "if [[ {config[snippy_missing_data]} > 0 ]]; then "
         # Generate a snp alignment of the locus, filtering out missing data.
         "  snp-sites -m -o {output.filter_snp_aln}.tmp {input.full_locus_aln}; "
-        "  python {scripts_dir}/filter_sites.py --fasta {output.filter_snp_aln}.tmp --missing {params.missing} --output {output.filter_snp_aln} --log {log}; "
+        "  python {scripts_dir}/filter_sites.py --fasta {output.filter_snp_aln}.tmp --missing {config[snippy_missing_data]} --output {output.filter_snp_aln} --log {log}; "
         "else "
         "  snp-sites -m -c -o {output.filter_snp_aln} {input.full_locus_aln}; "
         "fi; "

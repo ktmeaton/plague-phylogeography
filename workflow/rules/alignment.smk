@@ -130,18 +130,28 @@ rule snippy_multi:
                 caption=os.path.join(report_dir,"snippy_multi.rst"),
                 category="Alignment",
                 subcategory="Snippy Multi"),
-        snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.aln",
+        #snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.aln",
         full_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
     log:
         os.path.join(logs_dir, "snippy_multi","{reads_origin}","snippy-core.log")
     shell:
         # Merge masking beds
-        "cat {input.inexact} {input.low_complexity} {input.snp_density} | \
+        """
+        cat {input.inexact} {input.low_complexity} {input.snp_density} | \
           sort -k1,1 -k2,2n | \
-          bedtools merge > {results_dir}/snippy_multi/{wildcards.reads_origin}/mask.bed; "
-        "snippy-core \
+          bedtools merge > {results_dir}/snippy_multi/{wildcards.reads_origin}/mask.bed;
+        set +e;
+        snippy-core \
           --ref {input.ref_fna} \
           --prefix {results_dir}/snippy_multi/{wildcards.reads_origin}/snippy-core \
           --mask {results_dir}/snippy_multi/{wildcards.reads_origin}/mask.bed \
           --mask-char {config[snippy_mask_char]} \
-          {input.snippy_pairwise_dir} 2> {log}"
+          {input.snippy_pairwise_dir} 2> {log};
+        exitcode=$?;
+        if [ $exitcode -eq 1 ]
+        then
+          exit 1
+        else
+          exit 0
+        fi
+        """

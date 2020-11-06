@@ -34,9 +34,9 @@ parser.add_argument(
 
 parser.add_argument(
     "--missing",
-    help="Proportion of samples that are allowed to be missing data at a site (AGCT).",
+    help="Percentage of samples that are allowed to be missing data at a site (AGCT).",
     action="store",
-    dest="propMissing",
+    dest="percMissing",
     required=True,
 )
 
@@ -68,8 +68,8 @@ parser.add_argument(
 # Retrieve user parameters
 args = vars(parser.parse_args())
 fasta_path = args["fastaPath"]
-prop_missing = float(args["propMissing"])
-prop_data = 1 - float(args["propMissing"])
+prop_missing = float(int(args["percMissing"]) / 100)
+prop_data = 1 - prop_missing
 output_path = args["outputPath"]
 log_path = args["logPath"]
 keep_invariant = args["keepInvariant"]
