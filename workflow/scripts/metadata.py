@@ -53,7 +53,10 @@ with open(output_path, "w") as outfile:
 
 for sample in samples_list:
     # Remove the _genomic suffix from assemblies
-    sample = sample.replace("_genomic", "")
+    assembly = False
+    if "_genomic" in sample:
+        sample = sample.replace("_genomic", "")
+        assembly = True
     query = """
             SELECT
               BioSampleAccession,
@@ -72,6 +75,8 @@ for sample in samples_list:
     strain = "N/A"
     if result:
         strain = result[1]
+    if assembly:
+        sample += "_genomic"
     with open(output_path, "a") as outfile:
         outfile.write(sample + "\t" + strain + "\n")
 
