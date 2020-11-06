@@ -42,3 +42,24 @@ rule plot_table_fastq:
           --indir {results_dir}/data/{wildcards.reads_origin} \
           --outdir {results_dir}/data/{wildcards.reads_origin} \
           --ext fastq.gz; "
+
+rule plot_missing_data:
+  input:
+    tree = expand(results_dir + "/iqtree/{{reads_origin}}/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+               locus_name=config["reference_locus_name"],
+               missing_data = config["snippy_missing_data"]),
+    filter_snp_aln = expand(results_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
+                         missing_data = config["snippy_missing_data"],
+                         locus_name=config["reference_locus_name"]),
+  output:
+    plot = report(expand(results_dir +	"/iqtree/{{reads_origin}}/missing_data.html",
+                    locus_name=config["reference_locus_name"],
+                    missing_data = config["snippy_missing_data"]),
+                  caption=os.path.join(report_dir,"missing_data.rst"),
+									category="Phylogenetics",
+									subcategory="IQTREE",
+						)
+  log:
+    notebook= os.path.join(logs_dir, "notebooks", "{reads_origin}", "processed_plot_missing_data.py.ipynb")
+  notebook:
+	  os.path.join(notebooks_dir, "plot_missing_data.py.ipynb")

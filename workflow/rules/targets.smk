@@ -109,12 +109,12 @@ rule merge_snp_density_all:
 # -----------------------------------------------------------------------------#
 rule snippy_multi_extract_all:
     input:
-        expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.full.aln",
+        expand(results_dir + "/snippy_multi/all/snippy-core_{locus_name}.full.aln",
         locus_name=config["reference_locus_name"]),
 
 rule snippy_multi_filter_all:
     input:
-        expand(results_dir + "/snippy_multi/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
+        expand(results_dir + "/snippy_multi/all/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
         locus_name=config["reference_locus_name"],
         missing_data = config["snippy_missing_data"])
 
@@ -224,3 +224,27 @@ rule plot_table_fastq_local:
 rule plot_table_fastq_sra:
     input:
         results_dir + "/data/sra/table_sra_fastq-gz.pdf",
+
+rule plot_missing_data_assembly:
+    input:
+        expand(results_dir +	"/iqtree/assembly/missing_data.html",
+               locus_name=config["reference_locus_name"],
+               missing_data = config["snippy_missing_data"]),
+
+rule plot_missing_data_sra:
+    input:
+        expand(results_dir +	"/iqtree/sra/missing_data.html",
+               locus_name=config["reference_locus_name"],
+               missing_data = config["snippy_missing_data"]),
+
+rule plot_missing_data_local:
+    input:
+        expand(results_dir +	"/iqtree/local/missing_data.html",
+               locus_name=config["reference_locus_name"],
+               missing_data = config["snippy_missing_data"]),
+
+rule plot_missing_data_all:
+    input:
+        expand(results_dir +	"/iqtree/all/missing_data.html",
+               locus_name=config["reference_locus_name"],
+               missing_data = config["snippy_missing_data"]),
