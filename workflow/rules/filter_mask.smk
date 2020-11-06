@@ -88,8 +88,7 @@ rule snippy_multi_extract:
     input:
         full_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
     output:
-        extract_aln = expand(results_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.full.aln",
-                      locus_name=config["reference_locus_name"]),
+        extract_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
     resources:
         cpus = 1,
     shell:
@@ -106,20 +105,16 @@ rule snippy_multi_filter:
     Filter a multiple alignment for missing data.
     """
     input:
-        full_locus_aln = expand(results_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.full.aln",
-                   locus_name=config["reference_locus_name"]),
+        full_locus_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
     output:
-        filter_snp_aln = expand(results_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
-                         missing_data = config["snippy_missing_data"],
-                         locus_name=config["reference_locus_name"]),
+        filter_snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
     log:
-        expand(logs_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.filter{missing_data}.log",
-        locus_name=config["reference_locus_name"],
-        missing_data = config["snippy_missing_data"]),
+        logs_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log",
     resources:
         cpus = 1,
     shell:
 		    """
+				threshold=`echo "{output.filter_snp_aln}" | cut -d "." -f 3 | sed 's/filter//g'`;
         snp-sites -m -o {output.filter_snp_aln}.tmp {input.full_locus_aln};
-        python {scripts_dir}/filter_sites.py --fasta {output.filter_snp_aln}.tmp --missing {config[snippy_missing_data]} --output {output.filter_snp_aln} --log {log};
+        python {scripts_dir}/filter_sites.py --fasta {output.filter_snp_aln}.tmp --missing ${{threshold}} --output {output.filter_snp_aln} --log {log};
 				"""

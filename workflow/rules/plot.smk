@@ -45,21 +45,19 @@ rule plot_table_fastq:
 
 rule plot_missing_data:
   input:
-    tree = expand(results_dir + "/iqtree/{{reads_origin}}/iqtree.core-{locus_name}.filter{missing_data}.treefile",
-               locus_name=config["reference_locus_name"],
-               missing_data = config["snippy_missing_data"]),
-    filter_snp_aln = expand(results_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
-                         missing_data = config["snippy_missing_data"],
-                         locus_name=config["reference_locus_name"]),
+    tree_log = expand(results_dir +	"/iqtree/{{reads_origin}}/iqtree-core_{{locus_name}}.filter{missing_data}.log",
+		                 missing_data=config["iqtree_plot_missing_data"],
+									),
+    filter_snp_log = expand(logs_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{{locus_name}}.snps.filter{missing_data}.log",
+		                         missing_data=config["iqtree_plot_missing_data"],
+                           ),
   output:
-    plot = report(expand(results_dir +	"/iqtree/{{reads_origin}}/missing_data.html",
-                    locus_name=config["reference_locus_name"],
-                    missing_data = config["snippy_missing_data"]),
+    plot = report(results_dir + "/iqtree/{reads_origin}/missing_data_{locus_name}.snps.html",
                   caption=os.path.join(report_dir,"missing_data.rst"),
 									category="Phylogenetics",
 									subcategory="IQTREE",
 						)
   log:
-    notebook= os.path.join(logs_dir, "notebooks", "{reads_origin}", "processed_plot_missing_data.py.ipynb")
+    notebook= os.path.join(logs_dir, "notebooks", "{reads_origin}",	"processed_{locus_name}_plot_missing_data.py.ipynb")
   notebook:
 	  os.path.join(notebooks_dir, "plot_missing_data.py.ipynb")

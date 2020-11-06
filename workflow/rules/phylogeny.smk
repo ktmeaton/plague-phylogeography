@@ -8,32 +8,24 @@ rule iqtree:
   Construct a maximum likelihood phylogeny.
   """
     input:
-        full_aln = expand(results_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.full.aln",
-                    locus_name=config["reference_locus_name"],
-                    missing_data = config["snippy_missing_data"]),
-        snp_aln = expand(results_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
-                    locus_name=config["reference_locus_name"],
-                    missing_data = config["snippy_missing_data"]),
+        full_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
+        snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
     output:
-        tree = report(expand(results_dir + "/iqtree/{{reads_origin}}/iqtree.core-{locus_name}.filter{missing_data}.treefile",
-                             locus_name=config["reference_locus_name"],
-                             missing_data = config["snippy_missing_data"]),
+        tree = report(results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}.treefile",
                       caption=os.path.join(report_dir,"iqtree.rst"),
                       category="Phylogenetics",
                       subcategory="IQTREE"),
     params:
         #seed = random.randint(0, 99999999),
         seed = config["iqtree_seed"],
-        prefix = expand(results_dir + "/iqtree/{{reads_origin}}/iqtree.core-{locus_name}.filter{missing_data}",
-                        locus_name=config["reference_locus_name"],
-                        missing_data = config["snippy_missing_data"]),
+        prefix = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}",
     resources:
         load=100,
         time_min=600,
 	cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
         mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     log:
-        os.path.join(logs_dir, "iqtree","{reads_origin}","iqtree.core-filter" + str(config["snippy_missing_data"]) + ".log")
+        os.path.join(logs_dir, "iqtree","{reads_origin}","iqtree-core_{locus_name}.filter" + "{missing_data}" + ".log")
     shell:
         "iqtree \
             -s {input.snp_aln} \

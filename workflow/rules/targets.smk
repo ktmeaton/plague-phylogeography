@@ -183,25 +183,25 @@ rule snippy_multi_all:
 # iqtree can be run for testing as
 rule iqtree_assembly:
     input:
-        expand(results_dir + "/iqtree/assembly/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+        expand(results_dir + "/iqtree/assembly/iqtree-core_{locus_name}.filter{missing_data}.treefile",
                locus_name=config["reference_locus_name"],
                missing_data = config["snippy_missing_data"])
 
 rule iqtree_sra:
     input:
-        expand(results_dir + "/iqtree/sra/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+        expand(results_dir + "/iqtree/sra/iqtree-core_{locus_name}.filter{missing_data}.treefile",
                locus_name=config["reference_locus_name"],
                missing_data = config["snippy_missing_data"])
 
 rule iqtree_local:
     input:
-        expand(results_dir + "/iqtree/local/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+        expand(results_dir + "/iqtree/local/iqtree-core_{locus_name}.filter{missing_data}.treefile",
                locus_name=config["reference_locus_name"],
                missing_data = config["snippy_missing_data"])
 
 rule iqtree_all:
     input:
-        expand(results_dir + "/iqtree/all/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+        expand(results_dir + "/iqtree/all/iqtree-core_{locus_name}.filter{missing_data}.treefile",
                locus_name=config["reference_locus_name"],
                missing_data = config["snippy_missing_data"])
 
@@ -227,24 +227,24 @@ rule plot_table_fastq_sra:
 
 rule plot_missing_data_assembly:
     input:
-        expand(results_dir +	"/iqtree/assembly/missing_data.html",
-               locus_name=config["reference_locus_name"],
-               missing_data = config["snippy_missing_data"]),
+    		expand(results_dir + "/iqtree/assembly/missing_data_{locus_name}.snps.html",
+				  locus_name = config["reference_locus_name"],
+					)
 
 rule plot_missing_data_sra:
     input:
-        expand(results_dir +	"/iqtree/sra/missing_data.html",
-               locus_name=config["reference_locus_name"],
-               missing_data = config["snippy_missing_data"]),
+    		expand(results_dir + "/iqtree/sra/missing_data_{locus_name}.snps.html",
+				  locus_name = config["reference_locus_name"],
+					)
 
 rule plot_missing_data_local:
     input:
-        expand(results_dir +	"/iqtree/local/missing_data.html",
-               locus_name=config["reference_locus_name"],
-               missing_data = config["snippy_missing_data"]),
+    		expand(results_dir + "/iqtree/local/missing_data_{locus_name}.snps.html",
+				  locus_name = config["reference_locus_name"],
+					)
 
 rule plot_missing_data_all:
     input:
-        expand(results_dir +	"/iqtree/all/missing_data.html",
-               locus_name=config["reference_locus_name"],
-               missing_data = config["snippy_missing_data"]),
+    		expand(results_dir + "/iqtree/all/missing_data_{locus_name}.snps.html",
+				  locus_name = config["reference_locus_name"],
+					)
