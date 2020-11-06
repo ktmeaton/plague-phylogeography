@@ -100,7 +100,7 @@ rule all:
         results_dir + "/multiqc/local/multiqc_report.html",
         results_dir + "/multiqc/all/multiqc_report.html",
         # IQTREE
-        expand(results_dir + "/iqtree/assembly/iqtree.core-{locus_name}.filter{missing_data}.treefile",
+        expand(results_dir + "/iqtree/assembly/iqtree-core_{locus_name}.filter{missing_data}.treefile",
                 locus_name=config["reference_locus_name"],
                 missing_data=config['snippy_missing_data']
 							),
@@ -108,10 +108,8 @@ rule all:
     		expand(results_dir + "/iqtree/all/missing_data_{locus_name}.snps.html",
 				        locus_name = config["reference_locus_name"],
 					    ),
-
-        results_dir + "/iqtree/assembly/missing_data.html",
-				# Metadata
-				results_dir + "/metadata/all/metadata.tsv",
+        # Metadata
+        results_dir + "/metadata/all/metadata.tsv",
 
 
 # -----------------------------------------------------------------------------#

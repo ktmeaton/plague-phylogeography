@@ -45,7 +45,7 @@ rule plot_table_fastq:
 
 rule plot_missing_data:
   input:
-    tree_log = expand(results_dir +	"/iqtree/{{reads_origin}}/iqtree-core_{{locus_name}}.filter{missing_data}.log",
+    tree_log = expand(logs_dir +	"/iqtree/{{reads_origin}}/iqtree-core_{{locus_name}}.filter{missing_data}.log",
 		                 missing_data=config["iqtree_plot_missing_data"],
 									),
     filter_snp_log = expand(logs_dir + "/snippy_multi/{{reads_origin}}/snippy-core_{{locus_name}}.snps.filter{missing_data}.log",
