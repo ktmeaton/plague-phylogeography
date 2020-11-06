@@ -1,4 +1,5 @@
 # Metadata filtering
+include: "functions.smk"
 
 rule metadata:
     """
@@ -7,9 +8,9 @@ rule metadata:
 		output:
 		    tsv = results_dir + "/metadata/{reads_origin}/metadata.tsv",
 		params:
-		    samples = lambda wildcards: ",".join([
+		    samples = lambda wildcards: ",".join(remove_duplicates([
 				      os.path.basename(os.path.dirname(path)) for path in identify_paths(outdir="metadata", reads_origin=wildcards.reads_origin)
-						]),
+						])),
 				db = os.path.join(results_dir, "sqlite_db", config["sqlite_db"])
 		shell:
 		    """
