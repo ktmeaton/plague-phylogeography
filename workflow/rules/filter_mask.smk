@@ -68,8 +68,8 @@ rule merge_snp_density:
     Merge filter bed files.
     """
     input:
-        snpden = lambda wildcards: [os.path.dirname(path) + ".subs.snpden" + str(config["snippy_snp_density"])
-                 for path in identify_paths(outdir="detect_snp_density", reads_origin=wildcards.reads_origin)]
+        snpden = lambda wildcards: remove_duplicates([os.path.dirname(path) + ".subs.snpden" + str(config["snippy_snp_density"])
+                 for path in identify_paths(outdir="detect_snp_density", reads_origin=wildcards.reads_origin)]),
     output:
         bed = expand(results_dir + "/detect_snp_density/{{reads_origin}}/snpden{density}.bed",
               density=config["snippy_snp_density"])
@@ -122,8 +122,9 @@ rule snippy_multi_filter:
         cpus = 1,
     shell:
         "if [[ {config[snippy_missing_data]} > 0 ]]; then "
-        # Generate an full alignment of the locus, filtering out missing data, retaining invariants
-        "  python {scripts_dir}/filter_sites.py --fasta {input.full_locus_aln} --missing {params.missing} --output {output.filter_snp_aln} --log {log}; "
+        # Generate a snp alignment of the locus, filtering out missing data.
+        "  snp-sites -m -o {output.filter_snp_aln}.tmp {input.full_locus_aln}; "
+        "  python {scripts_dir}/filter_sites.py --fasta {output.filter_snp_aln}.tmp --missing {params.missing} --output {output.filter_snp_aln} --log {log}; "
         "else "
         "  snp-sites -m -c -o {output.filter_snp_aln} {input.full_locus_aln}; "
         "fi; "

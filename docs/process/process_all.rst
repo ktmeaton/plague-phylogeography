@@ -29,24 +29,24 @@ Ncbimeta Db Create
 Run NCBImeta queries to generate db from scratch.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
-ch_ncbimeta_yaml                                   yaml                                               NCBImeta config file.                              
+ch_ncbimeta_yaml                                   yaml                                               NCBImeta config file.
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_ncbimeta_sqlite_update                          sqlite                                             NCBImeta SQLite database for process :ref:`ncbimeta_db_update<Ncbimeta_Db_Update>`
 ch_ncbimeta_yaml_update                            yaml                                               NCBImeta config file for process :ref:`ncbimeta_db_update<Ncbimeta_Db_Update>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-ncbimeta_sqlite_db                                 sqlite                                             NCBImeta SQLite database.                          
-ncbimeta_yaml                                      yaml                                               NCBImeta config file.                              
-\*.log                                             text                                               Text logs of NCBImeta database creation.           
+ncbimeta_sqlite_db                                 sqlite                                             NCBImeta SQLite database.
+ncbimeta_yaml                                      yaml                                               NCBImeta config file.
+\*.log                                             text                                               Text logs of NCBImeta database creation.
 ================================================== ================================================== ==================================================
 
 **shell**::
@@ -63,25 +63,25 @@ Ncbimeta Db Update
 Run NCBImeta queries to update, annotate, and join a previously created database.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_ncbimeta_yaml_update                            yaml                                               NCBImeta config file from process :ref:`ncbimeta_db_create<Ncbimeta_Db_Create>`
 ch_ncbimeta_sqlite_update                          sqlite                                             NCBImeta SQLite database from process :ref:`ncbimeta_db_create<Ncbimeta_Db_Create>`
-ch_ncbimeta_annot                                  tsv                                                NCBImeta annotation file.                          
+ch_ncbimeta_annot                                  tsv                                                NCBImeta annotation file.
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_ncbimeta_sqlite_import                          sqlite                                             NCBImeta SQLite database for process :ref:`sqlite_import<Sqlite_Import>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-ncbimeta_yaml                                      yaml                                               NCBImeta config file.                              
-\*.log                                             text                                               Text logs of NCBImeta database update.             
-\*.txt                                             text                                               Text export of NCBImeta database.                  
+ncbimeta_yaml                                      yaml                                               NCBImeta config file.
+\*.log                                             text                                               Text logs of NCBImeta database update.
+\*.txt                                             text                                               Text export of NCBImeta database.
 ================================================== ================================================== ==================================================
 
 **script**::
@@ -116,23 +116,23 @@ Sqlite Import
 Import assembly FTP url from database, retrieve file names for web get, prepare TSV input of SRA metadata for EAGER pipeline.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_sqlite                                          sqlite                                             NCBImeta SQLite database from process :ref:`ncbimeta_db_update or params.sqlite<Ncbimeta_Db_Update Or Params.Sqlite>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_assembly_download_ftp                           text                                               FTP url for process :ref:`assembly_download<Assembly_Download>`
-ch_sra_tsv_eager                                   tsv                                                TSV metadata input for process :ref:`eager<Eager>` 
+ch_sra_tsv_eager                                   tsv                                                TSV metadata input for process :ref:`eager<Eager>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-file_assembly_download_ftp                         text                                               List of FTP urls for genomic assembly download.    
-eager_tsv                                          tsv                                                TSV metadata input for EAGER pipeline.             
+file_assembly_download_ftp                         text                                               List of FTP urls for genomic assembly download.
+eager_tsv                                          tsv                                                TSV metadata input for EAGER pipeline.
 ================================================== ================================================== ==================================================
 
 **shell**::
@@ -152,7 +152,7 @@ eager_tsv                                          tsv                          
 	fi;
 	done;
 	fi;
-	
+
 	# Extract SRA Metadata for EAGER tsv
 	if [[ "!{params.sqlite_select_command_sra}" != "false"  ]]; then
 	!{params.scriptdir}/sqlite_EAGER_tsv.py \
@@ -176,21 +176,21 @@ Assembly Download
 Download genomic assembly fasta using FTP urls.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
-ch_assembly_fna_gz_local                           fasta.gz                                           The genomic assembly accessed by url via FTP.      
+ch_assembly_fna_gz_local                           fasta.gz                                           The genomic assembly accessed by url via FTP.
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_assembly_fna_snippy_pairwise                    fasta                                              The genomic assembly for process :ref:`snippy_pairwise<Snippy_Pairwise>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-genbank_assembly_fna_suffix                        fasta                                              The locally downloaded genomic assembly.           
+genbank_assembly_fna_suffix                        fasta                                              The locally downloaded genomic assembly.
 ================================================== ================================================== ==================================================
 
 **script**::
@@ -209,17 +209,17 @@ Download sequence data from the SRA database.
 	mkdir -p ~/.ncbi/
 	# Default sra cache path
 	sra_fastq_dump_path=${sra_fastq_dump_path}
-	
+
 	# Create SRA config file if it doesn't exist
 	if [[ ! -f $HOME/.ncbi/user-settings.mkfg ]]; then
 	echo '/repository/user/main/public/root = "\${sra_fastq_dump_path}"' > $HOME/.ncbi/user-settings.mkfg
 	fi
-	
+
 	# Set cache enabled if not set
 	if [[ -z `grep "/cache-enabled" $HOME/.ncbi/user-settings.mkfg` ]]; then
 	echo '/cache-enabled = "true"' >> $HOME/.ncbi/user-settings.mkfg
 	fi;
-	
+
 	# Set the cache path
 	if [[ -z `grep "/repository/user/main/public/root" $HOME/.ncbi/user-settings.mkfg` ]]; then\
 	# Set SRA Cache Path
@@ -230,20 +230,20 @@ Download sequence data from the SRA database.
 	cut -d " " -f 3 | \
 	sed 's/"//g'`
 	fi;
-	
+
 	# Set the timeout
 	if [[ -z `grep "/http/timeout/read" $HOME/.ncbi/user-settings.mkfg` ]]; then
 	echo '/http/timeout/read = "10000"' >> $HOME/.ncbi/user-settings.mkfg
 	fi;
-	
+
 	echo "SRA Cache:" \${sra_fastq_dump_path}
 	echo "NCBI settings:" `cat $HOME/.ncbi/user-settings.mkfg`
-	
+
 	# Create organization directories
 	mkdir -p ${sra_biosample_val}
 	mkdir -p ${sra_biosample_val}/single;
 	mkdir -p ${sra_biosample_val}/paired;
-	
+
 	# Retrieve sra accessions for the biosample
 	accessionCol=2
 	sraAccList=`grep -w ${sra_biosample_val} ${tsv_eager} | cut -f \$accessionCol`;
@@ -270,7 +270,7 @@ Download sequence data from the SRA database.
 	rm \${sra_fastq_dump_path}/sra/\${sraAcc}.sra*
 	fi
 	done
-	
+
 	# If a paired-end or single-end file was downloaded
 	if [ -f ${sra_biosample_val}/\${sraAcc}_1.fastq.gz ] &&
 	[ -f ${sra_biosample_val}/\${sraAcc}_2.fastq.gz ]; then
@@ -286,14 +286,14 @@ Reference Download
 Download the reference genome of interest from the FTP site.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 reference_genome_fna_ftp                           fasta.gz                                           The reference genome fasta accessed by url via FTP.
-reference_genome_gb_ftp                            fasta.gz                                           The reference genome gbff accessed by url via FTP. 
+reference_genome_gb_ftp                            fasta.gz                                           The reference genome gbff accessed by url via FTP.
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_reference_detect_repeats                        fasta                                              The reference genome for process :ref:`detect_repeats<Detect_Repeats>`
 ch_reference_genome_detect_low_complexity          fasta                                              The reference genome for process :ref:`detect_low_complexity<Detect_Low_Complexity>`
@@ -303,10 +303,10 @@ ch_reference_genome_snpeff_build_db                gbff                         
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-reference_genome_fna_local                         fasta                                              The locally downloaded reference fasta.            
-reference_genome_gb_local                          gbff                                               The locally downloaded reference annotations.      
+reference_genome_fna_local                         fasta                                              The locally downloaded reference fasta.
+reference_genome_gb_local                          gbff                                               The locally downloaded reference annotations.
 ================================================== ================================================== ==================================================
 
 **script**::
@@ -328,7 +328,7 @@ reference_genome_gb_local                          gbff                         
 	fnaNameLOCUS=\${fnaName%.*}_${params.reference_locus}.fna
 	samtools faidx ${reference_genome_fna_local.baseName};
 	samtools faidx ${reference_genome_fna_local.baseName} ${params.reference_locus} > \$fnaNameLOCUS
-	
+
 
 Outgroup Download
 -----------------
@@ -352,22 +352,22 @@ Snpeff Build Db
 Build a SnpEff database for the reference genome annotations.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 reference_genome_gb                                gbff                                               The reference genome gbff from process :ref:`reference_download<Reference_Download>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snpeff_config_snippy_pairwise                   text                                               Edited SnpEff configuration file for process :ref:`snippy_pairwise<Snippy_Pairwise>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-snpEff.config                                      text                                               Edited SnpEff configuration file.                  
-snpEffectPredictor.bin                             gzip text                                          SnpEff database.                                   
+snpEff.config                                      text                                               Edited SnpEff configuration file.
+snpEffectPredictor.bin                             gzip text                                          SnpEff database.
 ================================================== ================================================== ==================================================
 
 **script**::
@@ -376,25 +376,25 @@ snpEffectPredictor.bin                             gzip text                    
 	ref=${reference_genome_gb.baseName}
 	snpeffDir=\${CONDA_PREFIX}/share/snpeff*
 	snpeffData=\$snpeffDir/data;
-	
+
 	# Make a SnpEff database dir
 	mkdir -p data/
 	mkdir -p data/\$ref/
-	
+
 	# Move over the reference genbank annotations and rename
 	cp ${reference_genome_gb} data/\$ref/genes.gbk;
-	
+
 	# Copy over snpEff.config
 	cp \$snpeffDir/snpEff.config .
-	
+
 	# Add the new annotation entry to the snpeff config file
 	configLine="${reference_genome_gb.baseName}.genome : ${reference_genome_gb.baseName}"
-	
+
 	# Search for the genome entry in the snpEff config file
 	if [[ -z `grep "\$configLine" snpEff.config` ]]; then
 	echo "\$configLine" >> snpEff.config;
 	fi;
-	
+
 	# Build the snpEff databse
 	snpEff build -dataDir ./data/ -v -genbank ${reference_genome_gb.baseName}
 
@@ -404,21 +404,21 @@ Reference Detect Repeats
 Detect in-exact repeats in reference genome with mummer and convert the identified regions file to bed format.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_reference_genome_detect_repeats                 fasta                                              The reference genome fasta from the process :ref:`reference_download<Reference_Download>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_bed_ref_detect_repeats                          bed                                                A bed file containing regions of in-exact repeats for process :ref:`snippy_merge_mask_bed<Snippy_Merge_Mask_Bed>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-reference_genome_fna.inexact.coords                coords                                             Alignment coordinate file generated by mummer.     
+reference_genome_fna.inexact.coords                coords                                             Alignment coordinate file generated by mummer.
 reference_genome_fna.inexact.repeats               coords                                             Filtered file for sequence similarity and self-alignments
 reference_genome_fna.inexact.repeats.bed           bed                                                Bed file created from filtered coordinates and adjusted for 0-base system.
 ================================================== ================================================== ==================================================
@@ -450,19 +450,19 @@ Reference Detect Low Complexity
 Detect low complexity regions with dustmasker and convert the identified regions file to bed format.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_reference_genome_low_complexity                 fasta                                              The reference genome fasta from the process :ref:`reference_download<Reference_Download>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_bed_ref_low_complex                             bed                                                A bed file containing regions of low-complexity regions for process :ref:`snippy_merge_mask_bed<Snippy_Merge_Mask_Bed>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
 reference_genome_fna.dustmasker.intervals          intervals                                          Interval file containing regions of low-complexity.
 reference_genome_fna.dustmasker.bed                bed                                                Bed file created from intervals and adjusted for 0-base system.
@@ -482,7 +482,7 @@ Eager
 Run the nf-core/eager pipeline on SRA samples.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_reference_genome_eager                          fna                                                The reference genome fasta from process :ref:`reference_genome_download<Reference_Genome_Download>`
 ch_sra_fastq_eager                                 fastq                                              The sra fastq sequences from process :ref:`sra_download<Sra_Download>`
@@ -490,21 +490,21 @@ ch_tsv_eager                                       tsv                          
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_sra_bam_snippy_pairwise                         fastq                                              The deduplicated aligned bam for process :ref:`snippy_pairwise<Snippy_Pairwise>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-damageprofiler/*                                   misc                                               aDNA damage visualization and statistics.          
-deduplication/*                                    misc                                               Deduplicated aligned bam and statistics.           
-pipeline_info/*                                    misc                                               Pipeline information.                              
-preseq/*                                           misc                                               Preseq complexity statistics.                      
+damageprofiler/*                                   misc                                               aDNA damage visualization and statistics.
+deduplication/*                                    misc                                               Deduplicated aligned bam and statistics.
+pipeline_info/*                                    misc                                               Pipeline information.
+preseq/*                                           misc                                               Preseq complexity statistics.
 qualimap/*                                         misc                                               Genome coverage and depth visualization and statistics.
-MultiQC/*                                          misc                                               Multi software visualizations and statistics.      
-SoftwareVersions/*                                 misc                                               Version of all software used in nf-core eager.     
+MultiQC/*                                          misc                                               Multi software visualizations and statistics.
+SoftwareVersions/*                                 misc                                               Version of all software used in nf-core eager.
 ================================================== ================================================== ==================================================
 
 **shell**::
@@ -512,16 +512,16 @@ SoftwareVersions/*                                 misc                         
 	# Create biosample specific tsv input for eager
 	head -n 1 !{eager_tsv} > metadata_!{biosample_val}.tsv
 	grep -w !{biosample_val} !{eager_tsv} >> metadata_!{biosample_val}.tsv
-	
+
 	# The set command is to deal with PS1 errors
 	set +eu
 	# Enable conda activate support in this bash subshell
 	CONDA_BASE=$(conda info --base) ;
 	source ${CONDA_BASE}/etc/profile.d/conda.sh
-	
+
 	# Activate the eager environment
 	conda activate nf-core-eager-2.2.0dev
-	
+
 	# Run the eager command
 	task_mem_reformat=`echo !{task.memory} | sed 's/ /./g'`
 	nextflow -C ~/.nextflow/assets/nf-core/eager/nextflow.config \
@@ -543,11 +543,11 @@ SoftwareVersions/*                                 misc                         
 	--max_memory ${task_mem_reformat} \
 	--max_cpus !{task.cpus} \
 	--max_time !{task.time}
-	
+
 	# Deactivate the eager env
 	conda deactivate
 	set +eu
-	
+
 	# Rename deduplication bam for snippy pairwise RG
 	dir="final_bams"
 	mkdir -p $dir;
@@ -561,7 +561,7 @@ SoftwareVersions/*                                 misc                         
 	outfile=$dir/!{biosample_val}.bam;
 	samtools addreplacerg -r ID:!{biosample_val} -r SM:!{biosample_val} -o $outfile $file
 	done
-	
+
 	# Move pipeline trace and multiqc into named sample folder
 	mkdir -p pipeline_info/!{biosample_val}/
 	mv pipeline_info/*txt pipeline_info/*html pipeline_info/*svg pipeline_info/!{biosample_val}/
@@ -577,7 +577,7 @@ Snippy Pairwise
 Pairwise align contigs to reference genome with snippy.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_assembly_fna_snippy_pairwise                    fasta                                              The genomic assembly from process :ref:`assembly_download<Assembly_Download>`
 ch_reference_gb_snippy_pairwise                    gbff                                               The reference annotations from process :ref:`reference_download<Reference_Download>`
@@ -585,7 +585,7 @@ ch_snpeff_config_snippy_pairwise                   text                         
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_snps_variant_summary                     text                                               Table of summarized SNP counts for process :ref:`variant_summary<Variant_Summary>`
 ch_snippy_subs_vcf_detect_density                  vcf                                                Substitutions for process :ref:`pairwise_detect_snp_high_density<Pairwise_Detect_Snp_High_Density>`
@@ -594,13 +594,13 @@ ch_snippy_csv_snpEff_multiqc                       csv                          
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-assembly_fna_snippy.summary.txt                    text                                               Table of summarized SNP counts.                    
-assembly_fna_snippy.subs.vcf                       vcf                                                Substitutions.                                     
-assembly_fna_snippy.csv                            csv                                                SnpEff annotation and summary report.              
-assembly_fna_snippy.bam                            bam                                                Snippy bam alignment file.                         
-assembly_fna_snippy.*                              misc                                               All default snippy pipeline output.                
+assembly_fna_snippy.summary.txt                    text                                               Table of summarized SNP counts.
+assembly_fna_snippy.subs.vcf                       vcf                                                Substitutions.
+assembly_fna_snippy.csv                            csv                                                SnpEff annotation and summary report.
+assembly_fna_snippy.bam                            bam                                                Snippy bam alignment file.
+assembly_fna_snippy.*                              misc                                               All default snippy pipeline output.
 ================================================== ================================================== ==================================================
 
 **script**::
@@ -630,13 +630,13 @@ assembly_fna_snippy.*                              misc                         
 	--basequal ${params.snippy_base_qual} \
 	--report;
 	fi;
-	
+
 	# Save Output Dir for snippy_multi channel
 	snippyDir=`pwd`"/output${params.snippy_ctg_depth}X/${fna_bam.baseName}/"
-	
+
 	snippy_snps_in=output${params.snippy_ctg_depth}X/${fna_bam.baseName}/${fna_bam.baseName}_snippy.txt
 	snippy_snps_txt=output${params.snippy_ctg_depth}X/${fna_bam.baseName}/${fna_bam.baseName}_snippy.summary.txt
-	
+
 	COMPLEX=`awk 'BEGIN{count=0}{if (\$1 == "Variant-COMPLEX"){count=\$2}}END{print count}' \$snippy_snps_in;`
 	DEL=`awk 'BEGIN{count=0}{if (\$1 == "Variant-DEL"){count=\$2}}END{print count}' \$snippy_snps_in;`
 	INS=`awk 'BEGIN{count=0}{if (\$1 == "Variant-INS"){count=\$2}}END{print count}' \$snippy_snps_in;`
@@ -644,11 +644,11 @@ assembly_fna_snippy.*                              misc                         
 	SNP=`awk 'BEGIN{count=0}{if (\$1 == "Variant-SNP"){count=\$2}}END{print count}' \$snippy_snps_in;`
 	TOTAL=`awk 'BEGIN{count=0}{if (\$1 == "VariantTotal"){count=\$2}}END{print count}' \$snippy_snps_in;`
 	echo -e output${params.snippy_ctg_depth}X/${fna_bam.baseName}"\\t"\$COMPLEX"\\t"\$DEL"\\t"\$INS"\\t"\$MNP"\\t"\$SNP"\\t"\$TOTAL >> \$snippy_snps_txt
-	
+
 	snippy_snps_filt=output${params.snippy_ctg_depth}X/${fna_bam.baseName}/${fna_bam.baseName}_snippy.filt.vcf
 	snippy_snps_csv=output${params.snippy_ctg_depth}X/${fna_bam.baseName}/${fna_bam.baseName}_snippy.csv
 	snippy_snps_rename=output${params.snippy_ctg_depth}X/${fna_bam.baseName}/${fna_bam.baseName}_snippy.rename.csv
-	
+
 	# SnpEff csv Stats
 	mv \$snippy_snps_csv \$snippy_snps_rename
 	snpEff -c ${snpeff_config} \
@@ -664,22 +664,22 @@ Snippy Variant Summary Collect
 Concatenate variant summary tables for all samples.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_snps_variant_summary                     text                                               Table of single-sample summarized SNP counts from process :ref:`snippy_pairwise<Snippy_Pairwise>`
-ch_snippy_variant_summary_multi_collect            text                                               Table of multi-sample summarized SNP counts.       
+ch_snippy_variant_summary_multi_collect            text                                               Table of multi-sample summarized SNP counts.
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_variant_summary_multiqc                  text                                               Table of multi-sample summarized SNP counts for process :ref:`multiqc<Multiqc>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-snippy_variant_summary.txt                         text                                               Table of multi-sample summarized SNP counts.       
+snippy_variant_summary.txt                         text                                               Table of multi-sample summarized SNP counts.
 ================================================== ================================================== ==================================================
 
 
@@ -689,13 +689,13 @@ Snippy Detect Snp High Density
 Detect regions of high SNP density.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_subs_vcf_detect_density                  vcf                                                Substitutions from process :ref:`snippy_pairwise<Snippy_Pairwise>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_subs_bed_merge_density                   bed                                                High-density SNP regions for process :ref:`snippy_merge_snp_high_density<Snippy_Merge_Snp_High_Density>`
 ================================================== ================================================== ==================================================
@@ -711,21 +711,21 @@ Snippy Sort Snp High Density
 Sort and merge regions of high SNP density.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_subs_bed_sort_density                    bed                                                High density SNP regions collected after process :ref:`snippy_detect_snp_high_density<Snippy_Detect_Snp_High_Density>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_subs_bed_density_multi                   bed                                                Sorted and merged high density SNP regions for process :ref:`snippy_multi<Snippy_Multi>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-snippy_variant_density                             bed                                                Sorted and merged high density SNP regions.        
+snippy_variant_density                             bed                                                Sorted and merged high density SNP regions.
 ================================================== ================================================== ==================================================
 
 **script**::
@@ -738,24 +738,24 @@ Snippy Merge Mask Bed
 Combine, merge, and sort all BED file regions for masking the multiple alignment.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_bed_ref_detect_repeats                          bed                                                A bed file containing regions of in-exact repeats from process :ref:`reference_detect_repeats<Reference_Detect_Repeats>`
 ch_bed_ref_low_complex                             bed                                                A bed file containing regions of low-complexity regions from process :ref:`reference_detect_low_complexity<Reference_Detect_Low_Complexity>`
 ch_snippy_subs_bed_density_multi                   bed                                                Sorted and merged high density SNP regions from process :ref:`snippy_sort_snp_high_density<Snippy_Sort_Snp_High_Density>`
-ch_bed_mask_master_merge                           bed                                                Combined BED files of repeats, low-complexity and  
+ch_bed_mask_master_merge                           bed                                                Combined BED files of repeats, low-complexity and
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_bed_mask_snippy_multi                           bed                                                Master masking BED file for process :ref:`snippy_multi<Snippy_Multi>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-master.bed                                         bed                                                Master masking BED file.                           
+master.bed                                         bed                                                Master masking BED file.
 ================================================== ================================================== ==================================================
 
 **script**::
@@ -771,23 +771,23 @@ Snippy Multi
 Perform a multiple genome alignment with snippy-core.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_reference_gb_snippy_multi                       gbff                                               The reference genome from process :ref:`reference_download<Reference_Download>`
 ch_bed_mask_snippy_multi                           bed                                                Master masking BED file from process :ref:`snippy_merge_mask_bed<Snippy_Merge_Mask_Bed>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_core_aln_filter                          fasta                                              Multi fasta of aligned core SNPs for process :ref:`snippy_multi_filter<Snippy_Multi_Filter>`
 ch_snippy_core_full_aln_filter                     fasta                                              Multi fasta of aligned core genome for process :ref:`snippy_multi_filter<Snippy_Multi_Filter>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-\*                                                 misc                                               All default output from snippy-core.               
+\*                                                 misc                                               All default output from snippy-core.
 ================================================== ================================================== ==================================================
 
 **script**::
@@ -797,7 +797,7 @@ Publish:                                           Type                         
 	do
 	echo \$path | sed 's/\\[\\|,\\|\\]//g' ;
 	done | tr '\n' ' ' `;
-	
+
 	# Perform multiple genome alignment (with custom filtering)
 	snippy-core \
 	--ref ${reference_genome_gb} \
@@ -815,23 +815,23 @@ Snippy Multi Filter
 Filter the multiple alignment for X% missing data and split by locus.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_core_full_aln_filter                     fasta                                              Multi fasta of aligned core genome ffrom process :ref:`snippy_multi<Snippy_Multi>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_core_filter_iqtree                       fasta                                              Multi fasta of filtered core genome sites for process :ref:`iqtree<Iqtree>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-snippy_core_full_aln.filter\*.fna                  fasta                                              Multi fasta of filtered loci genome sites.         
-\*.fna                                             fasta                                              All loci extracted fasta files.                    
-\*.bed                                             bed                                                All loci bed coordinate files for extraction.      
+snippy_core_full_aln.filter\*.fna                  fasta                                              Multi fasta of filtered loci genome sites.
+\*.fna                                             fasta                                              All loci extracted fasta files.
+\*.bed                                             bed                                                All loci bed coordinate files for extraction.
 ================================================== ================================================== ==================================================
 
 **script**::
@@ -869,21 +869,21 @@ Iqtree
 Maximum likelihood tree search and model selection, iqtree phylogeny.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_core_filter_iqtree                       fasta                                              Multi fasta of filtered core genome sites from process :ref:`snippy_multi_filter<Snippy_Multi_Filter>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_iqtree_treefile_augur_refine                    newick                                             Newick treefile phylogeny with branch supports for process :ref:`augur_refine<Augur_Refine>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-iqtree.core-filter*_bootstrap.treefile             newick                                             Newick treefile phylogeny with branch supports.    
+iqtree.core-filter*_bootstrap.treefile             newick                                             Newick treefile phylogeny with branch supports.
 !*treefile                                         misc                                               All default output of iqtree other than the treefile.
 ================================================== ================================================== ==================================================
 
@@ -897,14 +897,14 @@ iqtree.core-filter*_bootstrap.treefile             newick                       
 	else
 	OUTGROUP=${params.iqtree_outgroup}
 	fi
-	
+
 	# Setup the model or model testing
 	if [[ ${params.iqtree_model} == "false"  ]]; then
 	MODEL="MFP"
 	else
 	MODEL="${params.iqtree_model}"
 	fi
-	
+
 	# Setup the branch support param
 	if [[ ${params.iqtree_branch_support} == "true"  ]]; then
 	BRANCH_SUPPORT="--ufboot ${params.iqtree_ufboot} --alrt ${params.iqtree_ufboot}";
@@ -913,7 +913,7 @@ iqtree.core-filter*_bootstrap.treefile             newick                       
 	BRANCH_SUPPORT="";
 	SUFFIX="";
 	fi
-	
+
 	# A thorough tree search for model selection can be done with -m MF -mtree
 	iqtree \
 	-s ${snippy_core_filter_aln} \
@@ -940,13 +940,13 @@ Nextstrain Metadata
 	# Enable conda activate support in this bash subshell
 	CONDA_BASE=\$(conda info --base) ;
 	source \$CONDA_BASE/etc/profile.d/conda.sh
-	
+
 	# Activate the nextstrain environment
 	conda activate nextstrain-8.0.0
-	
+
 	# Format metadata
 	${params.scriptdir}/format_metadata_Assembly.sh . ${sqlite} ${params.scriptdir}
-	
+
 	# Geocode
 	divisions="country state"
 	for div in \$divisions;
@@ -958,12 +958,12 @@ Nextstrain Metadata
 	--out-lat-lon nextstrain/lat_longs_\${div}.tsv \
 	--div \${div};
 	done
-	
+
 	cat \
 	nextstrain/lat_longs_country.tsv \
 	nextstrain/lat_longs_state.tsv > nextstrain/lat_longs_all.tsv
-	
-	
+
+
 	# Deactivate the nextstrain environment
 	conda deactivate
 
@@ -977,10 +977,10 @@ Nextstrain Treetime
 	# Enable conda activate support in this bash subshell
 	CONDA_BASE=\$(conda info --base) ;
 	source \$CONDA_BASE/etc/profile.d/conda.sh
-	
+
 	# Activate the nextstrain environment
 	conda activate nextstrain-8.0.0
-	
+
 	mkdir -p nextstrain/treetime_clock/;
 	treetime \
 	--aln ${snippy_filter_aln} \
@@ -998,7 +998,7 @@ Nextstrain Treetime
 	--outdir nextstrain/treetime_clock \
 	--date-column BioSampleCollectionDate \
 	--verbose 6 2>&1 | tee nextstrain/treetime_clock/treetime_clock.log;
-	
+
 	# Deactivate env
 	conda deactivate
 
@@ -1012,14 +1012,14 @@ Nextstrain Mugration
 	# Enable conda activate support in this bash subshell
 	CONDA_BASE=\$(conda info --base) ;
 	source \$CONDA_BASE/etc/profile.d/conda.sh
-	
+
 	# Activate the nextstrain environment
 	conda activate nextstrain-8.0.0
-	
+
 	mkdir -p nextstrain/treetime_mugration_biovar/;
 	mkdir -p nextstrain/treetime_mugration_country/;
 	mkdir -p nextstrain/treetime_mugration_state/;
-	
+
 	treetime mugration \
 	--tree ${timetree} \
 	--attribute BioSampleBiovar \
@@ -1029,7 +1029,7 @@ Nextstrain Mugration
 	--verbose 6 2>&1 | tee nextstrain/treetime_mugration_biovar/treetime_mugration_biovar.log
 	mv nextstrain/treetime_mugration_biovar/annotated_tree.nexus nextstrain/treetime_mugration_biovar/annotated_tree_biovar.nexus;
 	mv nextstrain/treetime_mugration_biovar/confidence.csv nextstrain/treetime_mugration_biovar/confidence_biovar.csv  ;
-	
+
 	treetime mugration \
 	--tree ${timetree} \
 	--attribute country \
@@ -1039,7 +1039,7 @@ Nextstrain Mugration
 	--verbose 6 2>&1 | tee nextstrain/treetime_mugration_country/treetime_mugration_country.log
 	mv nextstrain/treetime_mugration_country/annotated_tree.nexus nextstrain/treetime_mugration_country/annotated_tree_country.nexus;
 	mv nextstrain/treetime_mugration_country/confidence.csv nextstrain/treetime_mugration_country/confidence_country.csv  ;
-	
+
 	treetime mugration \
 	--tree ${timetree} \
 	--attribute state \
@@ -1049,8 +1049,8 @@ Nextstrain Mugration
 	--verbose 6 2>&1 | tee nextstrain/treetime_mugration_state/treetime_mugration_state.log
 	mv nextstrain/treetime_mugration_state/annotated_tree.nexus nextstrain/treetime_mugration_state/annotated_tree_state.nexus;
 	mv nextstrain/treetime_mugration_state/confidence.csv nextstrain/treetime_mugration_state/confidence_state.csv  ;
-	
-	
+
+
 	# Deactivate env
 	conda deactivate
 
@@ -1064,13 +1064,13 @@ Nextstrain Json
 	# Enable conda activate support in this bash subshell
 	CONDA_BASE=\$(conda info --base) ;
 	source \$CONDA_BASE/etc/profile.d/conda.sh
-	
+
 	# Activate the nextstrain environment
 	conda activate nextstrain-8.0.0
-	
+
 	mkdir -p nextstrain/augur/;
 	mkdir -p nextstrain/auspice/;
-	
+
 	augur refine \
 	--alignment ${snippy_filter_aln} \
 	--tree ${divergencetree} \
@@ -1078,16 +1078,16 @@ Nextstrain Json
 	--output-tree nextstrain/augur/augur-refine.nwk \
 	--output-node-data nextstrain/augur/mutation_lengths.json \
 	--keep-root
-	
+
 	sed -i 's/branch_length/mutation_length/g' nextstrain/augur/mutation_lengths.json
-	
+
 	augur ancestral \
 	--tree nextstrain/augur/augur-refine.nwk \
 	--alignment ${snippy_core_vcf}  \
 	--vcf-reference ${ch_locus_fna} \
 	--output-node-data nextstrain/augur/nt_muts.json \
 	--output-vcf nextstrain/augur/augur-ancestral.vcf
-	
+
 	augur translate \
 	--tree nextstrain/augur/augur-refine.nwk \
 	--vcf-reference ${ch_locus_fna} \
@@ -1095,37 +1095,37 @@ Nextstrain Json
 	--genes ${baseDir}/auspice/config/genes.txt \
 	--reference-sequence ${ref_gff} \
 	--output-node-data nextstrain/augur/aa_muts.json
-	
+
 	augur clades \
 	--tree nextstrain/augur/augur-refine.nwk \
 	--mutations nextstrain/augur/nt_muts.json \
 	nextstrain/augur/aa_muts.json \
 	--clades ${baseDir}/auspice/config/clades.csv \
 	--output-node-data nextstrain/augur/clades.json
-	
+
 	${params.scriptdir}/treetime_dates_json.py \
 	--time ${timetree} \
 	--dates ${timetree_dates} \
 	--json nextstrain/augur/branch_lengths.json
-	
+
 	${params.scriptdir}/treetime_mugration_json.py \
 	--tree ${biovar_nexus} \
 	--json nextstrain/augur/traits_biovar.json \
 	--conf ${biovar_conf} \
 	--trait biovar
-	
+
 	${params.scriptdir}/treetime_mugration_json.py \
 	--tree ${country_nexus} \
 	--json nextstrain/augur/traits_country.json \
 	--conf  ${country_conf} \
 	--trait country
-	
+
 	${params.scriptdir}/treetime_mugration_json.py \
 	--tree ${state_nexus} \
 	--json nextstrain/augur/traits_state.json \
 	--conf ${state_conf} \
 	--trait state
-	
+
 	augur export v2 \
 	--tree nextstrain/augur/augur-refine.nwk \
 	--metadata ${geocode_state} \
@@ -1140,8 +1140,8 @@ Nextstrain Json
 	--output nextstrain/auspice/auspice.json \
 	--lat-long ${lat_longs} \
 	--auspice-config ${baseDir}/auspice/config/modernAssembly_auspice_config.json
-	
-	
+
+
 	# Deactivate env
 	conda deactivate
 
@@ -1154,21 +1154,21 @@ Qualimap Snippy Pairwise
 Run QualiMap on the output bam of snippy pairwise.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_bam_pairwise_qualimap                    bam                                                Pairwise alignment file from process :ref:`snippy_pairwise<Snippy_Pairwise>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Output:                                            Type                                               Description                                        
+Output:                                            Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_pairwise_qualimap_multiqc                misc                                               All default qualimap output for process :ref:`multiqc<Multiqc>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-\*                                                 misc                                               All default qualimap output.                       
+\*                                                 misc                                               All default qualimap output.
 ================================================== ================================================== ==================================================
 
 **script**::
@@ -1183,16 +1183,16 @@ Multiqc
 Generate a MultiQC report from pipeline analyses.
 
 ================================================== ================================================== ==================================================
-Input:                                             Type                                               Description                                        
+Input:                                             Type                                               Description
 ================================================== ================================================== ==================================================
 ch_snippy_pairwise_qualimap_multiqc                misc                                               All default qualimap output from process :ref:`qualimap_snippy_pairwise<Qualimap_Snippy_Pairwise>`
 ================================================== ================================================== ==================================================
 
 ================================================== ================================================== ==================================================
-Publish:                                           Type                                               Description                                        
+Publish:                                           Type                                               Description
 ================================================== ================================================== ==================================================
-multiqc_report.html                                html                                               MultiQC report file.                               
-\*_data                                            misc                                               All default MultiQC data files.                    
+multiqc_report.html                                html                                               MultiQC report file.
+\*_data                                            misc                                               All default MultiQC data files.
 ================================================== ================================================== ==================================================
 
 **script**::

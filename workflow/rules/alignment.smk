@@ -118,8 +118,8 @@ rule snippy_multi:
     Peform a multiple alignment from pairwise output.
     """
     input:
-        snippy_pairwise_dir = lambda wildcards: [os.path.dirname(path) + "/" for path in
-                               identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)],
+        snippy_pairwise_dir = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/" for path in
+                               identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)]),
         ref_fna = [path + ".fna" for path in identify_paths(outdir="data", reads_origin="reference")],
         inexact = [os.path.dirname(path) + ".inexact.repeats.bed" for path in identify_paths(outdir="detect_repeats", reads_origin="reference")],
         low_complexity = [os.path.dirname(path) + ".dustmasker.bed" for path in identify_paths(outdir="detect_low_complexity", reads_origin="reference")],

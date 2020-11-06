@@ -90,7 +90,7 @@ for file in files_path.split(" "):
         if library_id not in sample_file_dict[sample_name]:
             sample_file_dict[sample_name][library_id] = []
         file_path = os.path.join(sample_dir, library_file)
-        if file_path not in sample_file_dict[sample_name][library_id]: 
+        if file_path not in sample_file_dict[sample_name][library_id]:
             sample_file_dict[sample_name][library_id].append(file_path)
 
 tsv_file.write(EAGER_HEADER + "\n")

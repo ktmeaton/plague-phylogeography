@@ -64,7 +64,7 @@ def identify_assembly_ftp():
     for url_list in asm_fna_urls:
         for url in url_list[0].split(";"):
             if len(asm_ftp_list) >= max_datasets:
-                break 
+                break
             if url:
                 asm_ftp_list.append(url + "/"+ url.split("/")[9] + "_genomic.fna.gz")
     cur.close()
@@ -169,3 +169,11 @@ def parse_eager_tsv(eager_tsv, column):
     '''Extract a column from the eager TSV file, excluding the header.'''
     with open(eager_tsv) as temp_file:
         return [line.strip().split("\t")[column] for line in temp_file][1:]
+
+def remove_duplicates(dup_list):
+  '''Remove duplicates from a list.'''
+  res_list = []
+  for item in dup_list:
+    if item not in res_list:
+       res_list.append(item)
+  return res_list

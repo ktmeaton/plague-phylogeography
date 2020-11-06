@@ -12,6 +12,7 @@
    - [Modern Fastq Local](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#modern-fastq-local)
    - [Ancient Fastq Remote](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#ancient-fastq-remote)
    - [Manual Modifications](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#manual-modifications)
+1. [Multiple Alignment](https://github.com/ktmeaton/plague-phylogeography/blob/master/docs-new/main.md#multiple-alignment)
 
 ## 1. Installation
 
@@ -189,10 +190,42 @@ done
 
 - [ ] Create a filtered MultiQC report.
 
-### All
+### All Filtered
 
 Change the sql commands to include the "KEEP" keyword.
 
 ```bash
 snakemake --profile profiles/infoserv multiqc_all;
+```
+
+## Multiple Alignment
+
+Create a multiple alignment of the filtered samples:
+
+Fast version (testing):
+
+```bash
+snakemake --profile profiles/infoserv snippy_multi_all;
+```
+
+Full version:
+
+```bash
+snakemake --profile profiles/infoserv snippy_multi_all --config snippy_missing_data=1;
+```
+
+## Phylogeny
+
+### Maximum Likelihood Phylogeny
+
+Fast version (testing):
+
+```bash
+snakemake --profile profiles/infoserv iqtree_all;
+```
+
+Full version:
+
+```bash
+snakemake --profile profiles/infoserv iqtree_all --config iqtree_runs=10;
 ```
