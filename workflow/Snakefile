@@ -105,6 +105,8 @@ rule all:
                             missing_data=config['snippy_missing_data']),
 				# Plot
         results_dir + "/iqtree/assembly/missing_data.html",
+				# Metadata
+				results_dir + "/metadata/all/metadata.tsv",
 
 
 # -----------------------------------------------------------------------------#
