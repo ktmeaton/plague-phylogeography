@@ -107,7 +107,11 @@ rule snippy_multi_filter:
     input:
         full_locus_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
     output:
-        filter_snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
+        filter_snp_aln = report(results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
+				                 caption=os.path.join(report_dir, "snippy_multi_filter.rst"),
+												 category="Alignment",
+												 subcategory="Snippy Multi"),
+
     log:
         logs_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log",
     resources:

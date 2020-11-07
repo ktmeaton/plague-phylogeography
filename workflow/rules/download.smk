@@ -34,18 +34,21 @@ rule download_assembly:
         file = results_dir + "/data/{reads_origin}/{sample}/{sample}.{ext}"
     wildcard_constraints:
         ext = "(fna|gbff|gff)",
-	reads_origin = "(reference|assembly)",
+	      reads_origin = "(reference|assembly)",
+    params:
+		    ftp = lambda wildcards: globals()["identify_" + wildcards.reads_origin + "_ftp"]()
     resources:
         cpus = 1,
-    run:
-        if wildcards.reads_origin == "reference":
-            samples = [identify_reference_ftp()]
-        elif wildcards.reads_origin == "assembly":
-            samples = identify_assembly_ftp()
-        for ftp in samples:
-            if wildcards.sample in ftp:
-                match = ftp.rstrip(".fna.gz") + "." + wildcards.ext + ".gz"
-        shell("wget --quiet -O - {match} | gunzip -c > {output.file}; ")
-        # Remove ver number in fasta headers if reference
-        if wildcards.reads_origin == "reference" and (wildcards.ext == "fna" or wildcards.ext == "gff"):
-            shell("python {scripts_dir}/rename_headers.py --file {output.file}; ")
+		shell:
+        """
+				for url in {params.ftp};
+				do
+				    if [[ $url =~ {wildcards.sample} ]]; then
+						  sample_url=`echo $url | sed "s/fna/{wildcards.ext}/g"`;
+							wget --quiet -O - $sample_url | gunzip -c > {output.file};
+							if [[ {wildcards.reads_origin} == "reference" && ({wildcards.ext} == "fna" || {wildcards.ext} == "gff") ]]; then
+							    python {scripts_dir}/rename_headers.py --file {output.file};
+							fi
+						fi;
+				done
+				"""

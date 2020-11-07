@@ -255,16 +255,16 @@ rule plot_missing_data_all:
 
 rule metadata_assembly:
     input:
-    		results_dir + "/metadata/assembly/metadata.tsv"
+    		results_dir + "/metadata/assembly/metadata.txt"
 
 rule metadata_sra:
     input:
-    		results_dir + "/metadata/sra/metadata.tsv"
+    		results_dir + "/metadata/sra/metadata.txt"
 
 rule metadata_local:
     input:
-    		results_dir + "/metadata/local/metadata.tsv"
+    		results_dir + "/metadata/local/metadata.txt"
 
 rule metadata_all:
     input:
-    		results_dir + "/metadata/all/metadata.tsv"
+    		results_dir + "/metadata/all/metadata.txt"

@@ -109,7 +109,7 @@ rule all:
 				        locus_name = config["reference_locus_name"],
 					    ),
         # Metadata
-        results_dir + "/metadata/all/metadata.tsv",
+        results_dir + "/metadata/all/metadata.txt",
 
 
 # -----------------------------------------------------------------------------#
