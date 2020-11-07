@@ -81,6 +81,12 @@ jobs:
         with:
           name: conda-report
           path: workflow/report/report.html
+      - name: artifact conda-logs
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: conda-logs
+          path: workflow/logs/
   #----------------------------------------------------------------------------#
   pipeline_singularity:
     name: Pipeline with Singularity
@@ -98,6 +104,10 @@ jobs:
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
+      # Clean results
+      - name: clean results
+        run: |
+          rm -rf results/iqtree/ results/metadata results/multiqc;
       #------------------------------------------------------------------------#
       # Setup singularity
       - name: setup singularity
@@ -121,16 +131,22 @@ jobs:
       - name: run all
         run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions all;
       # run report
-      #- name: run report
-      #  shell: bash -l {0}
-      #  run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
+      - name: run report
+        shell: bash -l {0}
+        run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
       #------------------------------------------------------------------------#
       #  Artifact Upload
-      #- name: artifact singularity-report
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: singularity-report
-      #    path: workflow/report/report.html
+      - name: artifact singularity-report
+        uses: actions/upload-artifact@v2
+        with:
+          name: singularity-report
+          path: workflow/report/report.html
+      - name: artifact singularity-logs
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: singularity-logs
+          path: workflow/logs/
   #----------------------------------------------------------------------------#
   pipeline_docker:
     name: Pipeline with Docker
@@ -148,6 +164,10 @@ jobs:
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
+      # Clean results
+      - name: clean results
+        run: |
+          rm -rf results/iqtree/ results/metadata results/multiqc;
       #------------------------------------------------------------------------#
       # pull docker image
       - name: docker pull
@@ -161,13 +181,19 @@ jobs:
         shell: bash -l {0}
         run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions all;
       # run report
-      #- name: run report
-      #  shell: bash -l {0}
-      #  run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
+      - name: run report
+        shell: bash -l {0}
+        run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
       #------------------------------------------------------------------------#
       #  Artifact Upload
-      #- name: artifact docker-report
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: docker-report
-      #    path: workflow/report/report.html
+      - name: artifact docker-report
+        uses: actions/upload-artifact@v2
+        with:
+          name: docker-report
+          path: workflow/report/report.html
+      - name: artifact docker-logs
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: docker-logs
+          path: workflow/logs/
