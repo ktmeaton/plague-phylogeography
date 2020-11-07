@@ -39,7 +39,7 @@
 
 [[main]]
   name = "Snakemake "
-  url = "https://raw.githack.com/ktmeaton/plague-phylogeography/snakemake/workflow/report/report.html"
+  url = "https://raw.githack.com/ktmeaton/plague-phylogeography/master/workflow/report/report.html"
   weight = 30
   parent = "reports"
 
