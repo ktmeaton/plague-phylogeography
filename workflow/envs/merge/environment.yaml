@@ -43,6 +43,7 @@ dependencies:
 - conda-forge::biopython=1.76
 - conda-forge::libiconv=1.15
 - conda-forge::markdown=3.2.2
+- conda-forge::nbconvert=5.6.0
 - conda-forge::openjdk=8.0.144
 - conda-forge::pandas=1.0.4
 - conda-forge::pigz=2.3.4
@@ -59,7 +60,7 @@ dependencies:
 - mummer=3.23
 - nextflow=20.04.1
 - ncbimeta=0.7.0
-- nodejs=12.19.0
+- conda-forge::nodejs=13.13.0
 - numpy=1.19.1
 - pandas=1.0.4
 - pip=20.2.3
