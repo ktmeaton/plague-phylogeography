@@ -81,12 +81,12 @@ jobs:
         with:
           name: conda-report
           path: workflow/report/report.html
-      - name: artifact conda-logs
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: conda-logs
-          path: workflow/logs/
+      # - name: artifact conda-logs
+      #  uses: actions/upload-artifact@v2
+      #  if: always()
+      #  with:
+      #    name: conda-logs
+      #    path: workflow/logs/
   #----------------------------------------------------------------------------#
   pipeline_singularity:
     name: Pipeline with Singularity
@@ -141,12 +141,12 @@ jobs:
         with:
           name: singularity-report
           path: workflow/report/report.html
-      - name: artifact singularity-logs
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: singularity-logs
-          path: workflow/logs/
+      # - name: artifact singularity-logs
+      #  uses: actions/upload-artifact@v2
+      #  if: always()
+      #  with:
+      #    name: singularity-logs
+      #    path: workflow/logs/
   #----------------------------------------------------------------------------#
   pipeline_docker:
     name: Pipeline with Docker
@@ -191,9 +191,9 @@ jobs:
         with:
           name: docker-report
           path: workflow/report/report.html
-      - name: artifact docker-logs
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: docker-logs
-          path: workflow/logs/
+      # - name: artifact docker-logs
+      #  uses: actions/upload-artifact@v2
+      #  if: always()
+      #  with:
+      #    name: docker-logs
+      #    path: workflow/logs/
