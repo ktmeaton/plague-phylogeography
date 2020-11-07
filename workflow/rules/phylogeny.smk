@@ -29,6 +29,7 @@ rule iqtree:
     shell:
         "iqtree \
             -s {input.snp_aln} \
+						{config[iqtree_model]} \
             --threads-max {resources.cpus} \
             -nt {resources.cpus} \
             -o {config[iqtree_outgroup]} \
