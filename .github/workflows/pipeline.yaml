@@ -8,6 +8,7 @@ on:
       - '*'
     paths:
       - '.github/workflows/pipeline.yaml'
+      - 'config/snakemake.yaml'
       - 'workflow/Snakefile'
       - 'workflow/rules/*.smk'
       - 'workflow/envs/*/*.yaml'
