@@ -11,7 +11,7 @@ sqlite_select_command_asm : SELECT
                                BioSample
                                LEFT JOIN Assembly
                                  ON AssemblyBioSampleAccession = BioSampleAccession
-                                 WHERE (BioSampleComment LIKE '%KEEP%Assembly%Modern%')
+                                 WHERE (BioSampleComment LIKE '%KEEP%Assembly%Modern%' AND length(AssemblyFTPGenbank) > 0)
 sqlite_select_command_sra : SELECT
                                BioSampleAccession,
                                SRARunAccession
