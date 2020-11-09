@@ -56,15 +56,6 @@ parser.add_argument(
     required=True,
 )
 
-parser.add_argument(
-    "--keep-invariant",
-    help="Retain invariant positions",
-    action="store_true",
-    dest="keepInvariant",
-    required=False,
-)
-
-
 # Retrieve user parameters
 args = vars(parser.parse_args())
 fasta_path = args["fastaPath"]
@@ -72,7 +63,6 @@ prop_missing = float(int(args["percMissing"]) / 100)
 prop_data = 1 - prop_missing
 output_path = args["outputPath"]
 log_path = args["logPath"]
-keep_invariant = args["keepInvariant"]
 
 # ------------------------------------------------------------------------------#
 # Setup                                                                        #
@@ -85,16 +75,14 @@ num_output_col = 0
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(message)s",
-    handlers=[
-        logging.FileHandler(log_path),
-        # logging.StreamHandler(sys.stdout)
-    ],
+    filename=log_path,
+    filemode="w",
+    # handlers=[
+    #    logging.FileHandler(log_path),
+    #    # logging.StreamHandler(sys.stdout)
+    # ],
 )
 
-if keep_invariant:
-    logging.info("Invariant positions will be included.")
-else:
-    logging.info("Invariant positions will be excluded.")
 # ------------------------------------------------------------------------------#
 # Processing                                                                   #
 # ------------------------------------------------------------------------------#
@@ -114,6 +102,11 @@ logging.info("Reading alignment sample names...")
 alignment_in_samples = [rec.id for rec in alignment_in]
 num_samples = len(alignment_in[:, 1])
 logging.info("Number of samples: " + str(num_samples))
+# Counter to store number of singleton sites
+biallelic_singleton_sites = 0
+multiallelic_singleton_sites = 0
+pseudo_singleton_sites = 0
+parsimony_informative_sites = 0
 
 # Convert the input alignment into a numpy array to operate on columns
 alignment_out_array = np.array([list("") for rec in alignment_in])
@@ -155,28 +148,39 @@ for column in range(0, alignment_in_len):
         increment_ind += 1
     # Check the bases present in the current column/site
     column_seq = Seq(alignment_in[:, column])
-    num_data = (
-        column_seq.lower().count("g")
-        + column_seq.lower().count("t")
-        + column_seq.lower().count("a")
-        + column_seq.lower().count("c")
-    )
+    count_g = column_seq.lower().count("g")
+    count_t = column_seq.lower().count("t")
+    count_a = column_seq.lower().count("a")
+    count_c = column_seq.lower().count("c")
+    count_list = [count_g, count_t, count_a, count_c]
+    # Remove singleton columns sites
+    # Biallelic format [0,0,1,x]
+    if count_list.count(0) == 2 and count_list.count(1) == 1:
+        biallelic_singleton_sites += 1
+        continue
+    # Multi allelic format [0,1,1,x]
+    elif count_list.count(0) == 1 and count_list.count(1) == 2:
+        multiallelic_singleton_sites += 1
+        continue
+    # Pseudo allelic format [0,1,x,x] or [1,1,x,x]
+    elif count_list.count(1) > 0:
+        pseudo_singleton_sites += 1
+        continue
+    else:
+        parsimony_informative_sites += 1
+
+    # Decide if this
+    num_data = count_g + count_t + count_a + count_c
     site_prop = num_data / num_samples
     # Check if the amount of missing data passes user parameter
     if site_prop >= prop_data:
         column_seq_array = np.array([list(char) for char in column_seq])
-        # If we're keeping invariant sites, write regardless
-        if keep_invariant:
+        join_seq = "".join(column_seq_array[:, 0])
+        # Check if site is variable
+        if join_seq.count(join_seq[0]) != len(join_seq):
             alignment_out_array = np.append(
                 alignment_out_array, column_seq_array, axis=1
             )
-        else:
-            join_seq = "".join(column_seq_array[:, 0])
-            # Check if site is variable
-            if join_seq.count(join_seq[0]) != len(join_seq):
-                alignment_out_array = np.append(
-                    alignment_out_array, column_seq_array, axis=1
-                )
 
 logging.info("100% Complete")
 
@@ -191,7 +195,46 @@ logging.info("Writing to the output fasta file: " + str(output_path))
 SeqIO.write(alignment_out_list, output_file, "fasta")
 
 alignment_out_len = len(alignment_out_array[0])
+total_singleton_sites = (
+    biallelic_singleton_sites + multiallelic_singleton_sites + pseudo_singleton_sites
+)
 logging.info("Wrote a multi-fasta alignment of length: " + str(alignment_out_len))
+logging.info(
+    "Parsimony informative sites: "
+    + str(parsimony_informative_sites)
+    + " ("
+    + str(int(parsimony_informative_sites / alignment_in_len * 100))
+    + "%)"
+)
+logging.info(
+    "Biallelic singleton sites: "
+    + str(biallelic_singleton_sites)
+    + " ("
+    + str(int(biallelic_singleton_sites / alignment_in_len * 100))
+    + "%)"
+)
+logging.info(
+    "Multiallelic singleton sites: "
+    + str(multiallelic_singleton_sites)
+    + " ("
+    + str(int(multiallelic_singleton_sites / alignment_in_len * 100))
+    + "%)"
+)
+logging.info(
+    "Pseudo singleton sites: "
+    + str(pseudo_singleton_sites)
+    + " ("
+    + str(int(pseudo_singleton_sites / alignment_in_len * 100))
+    + "%)"
+)
+logging.info(
+    "Total singleton sites: "
+    + str(total_singleton_sites)
+    + " ("
+    + str(int(total_singleton_sites / alignment_in_len * 100))
+    + "%)"
+)
+
 
 # Clean up
 output_file.close()
