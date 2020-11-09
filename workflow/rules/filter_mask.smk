@@ -123,5 +123,10 @@ rule snippy_multi_filter:
 		    """
 				threshold=`echo "{output.filter_snp_aln}" | cut -d "." -f 3 | sed 's/filter//g'`;
         snp-sites -m -o {output.filter_snp_aln}.tmp {input.full_locus_aln};
-        python {scripts_dir}/filter_sites.py --fasta {output.filter_snp_aln}.tmp --missing ${{threshold}} --output {output.filter_snp_aln} --log {log};
+        python {scripts_dir}/filter_sites.py \
+				  --fasta {output.filter_snp_aln}.tmp \
+					--missing ${{threshold}} \
+					{config[snippy_keep_singleton]} \
+					--output {output.filter_snp_aln} \
+					--log {log};
 				"""

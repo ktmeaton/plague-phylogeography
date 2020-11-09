@@ -56,6 +56,14 @@ parser.add_argument(
     required=True,
 )
 
+parser.add_argument(
+    "--keep-singleton",
+    help="Keep singleton sites.",
+    action="store_true",
+    dest="keepSingleton",
+    required=True,
+)
+
 # Retrieve user parameters
 args = vars(parser.parse_args())
 fasta_path = args["fastaPath"]
@@ -63,6 +71,7 @@ prop_missing = float(int(args["percMissing"]) / 100)
 prop_data = 1 - prop_missing
 output_path = args["outputPath"]
 log_path = args["logPath"]
+keep_singleton = args["keepSingleton"]
 
 # ------------------------------------------------------------------------------#
 # Setup                                                                        #
@@ -157,15 +166,18 @@ for column in range(0, alignment_in_len):
     # Biallelic format [0,0,1,x]
     if count_list.count(0) == 2 and count_list.count(1) == 1:
         biallelic_singleton_sites += 1
-        continue
+        if not keep_singleton:
+            continue
     # Multi allelic format [0,1,1,x]
     elif count_list.count(0) == 1 and count_list.count(1) == 2:
         multiallelic_singleton_sites += 1
-        continue
+        if not keep_singleton:
+            continue
     # Pseudo allelic format [0,1,x,x] or [1,1,x,x]
     elif count_list.count(1) > 0:
         pseudo_singleton_sites += 1
-        continue
+        if not keep_singleton:
+            continue
     else:
         parsimony_informative_sites += 1
 
@@ -198,7 +210,6 @@ alignment_out_len = len(alignment_out_array[0])
 total_singleton_sites = (
     biallelic_singleton_sites + multiallelic_singleton_sites + pseudo_singleton_sites
 )
-logging.info("Wrote a multi-fasta alignment of length: " + str(alignment_out_len))
 logging.info(
     "Parsimony informative sites: "
     + str(parsimony_informative_sites)
@@ -234,7 +245,8 @@ logging.info(
     + str(int(total_singleton_sites / alignment_in_len * 100))
     + "%)"
 )
-
+logging.info("Sites passing missing data filter: " + str(alignment_out_len))
+logging.info("Wrote a multi-fasta alignment of length: " + str(alignment_out_len))
 
 # Clean up
 output_file.close()

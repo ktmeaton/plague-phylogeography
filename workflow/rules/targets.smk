@@ -227,25 +227,25 @@ rule plot_table_fastq_sra:
 
 rule plot_missing_data_assembly:
     input:
-    		expand(results_dir + "/iqtree/assembly/missing_data_{locus_name}.snps.html",
+    		expand(results_dir + "/snippy_multi/assembly/missing_data_{locus_name}.snps.html",
 				  locus_name = config["reference_locus_name"],
 					)
 
 rule plot_missing_data_sra:
     input:
-    		expand(results_dir + "/iqtree/sra/missing_data_{locus_name}.snps.html",
+    		expand(results_dir + "/snippy_multi/sra/missing_data_{locus_name}.snps.html",
 				  locus_name = config["reference_locus_name"],
 					)
 
 rule plot_missing_data_local:
     input:
-    		expand(results_dir + "/iqtree/local/missing_data_{locus_name}.snps.html",
+    		expand(results_dir + "/snippy_multi/local/missing_data_{locus_name}.snps.html",
 				  locus_name = config["reference_locus_name"],
 					)
 
 rule plot_missing_data_all:
     input:
-    		expand(results_dir + "/iqtree/all/missing_data_{locus_name}.snps.html",
+    		expand(results_dir + "/snippy_multi/all/missing_data_{locus_name}.snps.html",
 				  locus_name = config["reference_locus_name"],
 					)
 

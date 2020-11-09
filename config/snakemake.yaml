@@ -67,18 +67,21 @@ snippy_min_frac : 0.9
 snippy_mask_char : "X"
 snippy_missing_data : 0
 snippy_snp_density : 10
-
-# IQTREE
-iqtree_plot_missing_data:
+# Make this an empty string if removing singletons
+snippy_keep_singleton : "--keep-singleton"
+snippy_multi_plot_missing_data:
   - 0
   - 25
   - 50
   - 75
   - 100
+
+# IQTREE
 iqtree_model: "-m MFP"
 #iqtree_model : "-m K3Pu+F+I"
 iqtree_seed : "47321424" # keeping it consistent in a config file allows for checkpointing
 iqtree_outgroup : "Reference"
 #iqtree_outgroup : "GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic"
+#iqtree_outgroup : "SAMEA3541826,SAMEA3541827"
 iqtree_other : "--ufboot 1000 --alrt 1000"
 iqtree_runs : 1
