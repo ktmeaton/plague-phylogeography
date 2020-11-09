@@ -61,7 +61,7 @@ parser.add_argument(
     help="Keep singleton sites.",
     action="store_true",
     dest="keepSingleton",
-    required=True,
+    required=False,
 )
 
 # Retrieve user parameters
@@ -116,6 +116,8 @@ biallelic_singleton_sites = 0
 multiallelic_singleton_sites = 0
 pseudo_singleton_sites = 0
 parsimony_informative_sites = 0
+passing_filter_sites = 0
+failing_filter_sites = 0
 
 # Convert the input alignment into a numpy array to operate on columns
 alignment_out_array = np.array([list("") for rec in alignment_in])
@@ -186,6 +188,7 @@ for column in range(0, alignment_in_len):
     site_prop = num_data / num_samples
     # Check if the amount of missing data passes user parameter
     if site_prop >= prop_data:
+        passing_filter_sites += 1
         column_seq_array = np.array([list(char) for char in column_seq])
         join_seq = "".join(column_seq_array[:, 0])
         # Check if site is variable
@@ -193,6 +196,8 @@ for column in range(0, alignment_in_len):
             alignment_out_array = np.append(
                 alignment_out_array, column_seq_array, axis=1
             )
+    else:
+        failing_filter_sites += 1
 
 logging.info("100% Complete")
 
@@ -245,7 +250,8 @@ logging.info(
     + str(int(total_singleton_sites / alignment_in_len * 100))
     + "%)"
 )
-logging.info("Sites passing missing data filter: " + str(alignment_out_len))
+logging.info("Sites passing missing data filter: " + str(passing_filter_sites))
+logging.info("Sites failing missing data filter: " + str(failing_filter_sites))
 logging.info("Wrote a multi-fasta alignment of length: " + str(alignment_out_len))
 
 # Clean up
