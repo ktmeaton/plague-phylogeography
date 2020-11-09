@@ -111,7 +111,10 @@ rule snippy_multi_filter:
 				                 caption=os.path.join(report_dir, "snippy_multi_filter.rst"),
 												 category="Alignment",
 												 subcategory="Snippy Multi"),
-
+        log = report(os.path.join(logs_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log"),
+				             caption=os.path.join(report_dir, "logs.rst"),
+										 category="Logs",
+										 subcategory="Alignment"),
     log:
         logs_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log",
     resources:

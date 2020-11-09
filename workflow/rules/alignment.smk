@@ -24,7 +24,7 @@ rule eager:
         reads_origin = "(sra|local)",
     resources:
         load=100,
-	time_min=600,
+       	time_min=600,
         cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
         mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     log:
@@ -132,6 +132,10 @@ rule snippy_multi:
                 subcategory="Snippy Multi"),
         #snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.aln",
         full_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
+        log = report(os.path.join(logs_dir, "snippy_multi/{reads_origin}/snippy-core.log"),
+				             caption=os.path.join(report_dir, "logs.rst"),
+										 category="Logs",
+										 subcategory="Alignment"),
     log:
         os.path.join(logs_dir, "snippy_multi","{reads_origin}","snippy-core.log")
     shell:
