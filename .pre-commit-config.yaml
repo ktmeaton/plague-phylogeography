@@ -54,4 +54,4 @@ repos:
     hooks:
       - id: rstcheck
         # Exclude auto generated rst files
-        exclude: docs/README.rst
+        exclude: docs-old/README.rst

@@ -135,4 +135,4 @@ Credits
 -------
 
 Author: `Katherine Eaton <https://github.com/ktmeaton>`_\ :raw-html-m2r:`<br>`
-Logo: Emil Karpinski, `Katherine Eaton <https://github.com/ktmeaton>`_  
+Logo: Emil Karpinski, `Katherine Eaton <https://github.com/ktmeaton>`_
