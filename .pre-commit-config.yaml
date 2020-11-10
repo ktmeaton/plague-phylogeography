@@ -35,7 +35,7 @@ repos:
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-added-large-files
-        args: ['--maxkb=20000']
+        args: ['--maxkb=25000']
       - id: mixed-line-ending
         args: [--fix=lf]
       - id: detect-private-key
