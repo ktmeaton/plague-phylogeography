@@ -1,0 +1,36 @@
+2020-11-09 16:25:42,073 Reading the input fasta file: /2/scratch/keaton/plague-phylogeography/results/snippy_multi/all/snippy-core_chromosome.snps.filter7.aln.tmp
+2020-11-09 16:25:42,145 Reading alignment length...
+2020-11-09 16:25:42,147 Alignment length: 12922
+2020-11-09 16:25:42,147 Reading alignment sample names...
+2020-11-09 16:25:42,148 Number of samples: 540
+2020-11-09 16:25:42,149 Analyzing alignment for sites with >=0.9299999999999999 samples with data...
+2020-11-09 16:25:43,855 5% Complete
+2020-11-09 16:25:46,926 10% Complete
+2020-11-09 16:25:51,880 15% Complete
+2020-11-09 16:25:56,023 20% Complete
+2020-11-09 16:26:03,546 25% Complete
+2020-11-09 16:26:12,815 30% Complete
+2020-11-09 16:26:21,081 35% Complete
+2020-11-09 16:26:31,532 40% Complete
+2020-11-09 16:26:42,262 45% Complete
+2020-11-09 16:26:49,830 50% Complete
+2020-11-09 16:27:03,563 55% Complete
+2020-11-09 16:27:20,151 60% Complete
+2020-11-09 16:27:35,667 65% Complete
+2020-11-09 16:27:52,805 70% Complete
+2020-11-09 16:28:15,077 75% Complete
+2020-11-09 16:28:36,152 80% Complete
+2020-11-09 16:28:59,355 85% Complete
+2020-11-09 16:29:29,406 90% Complete
+2020-11-09 16:29:58,535 95% Complete
+2020-11-09 16:30:27,153 100% Complete
+2020-11-09 16:30:27,153 Creating the filtered multiple alignment..
+2020-11-09 16:30:27,769 Writing to the output fasta file: /2/scratch/keaton/plague-phylogeography/results/snippy_multi/all/snippy-core_chromosome.snps.filter7.aln
+2020-11-09 16:30:27,781 Parsimony informative sites: 4832 (37%)
+2020-11-09 16:30:27,781 Biallelic singleton sites: 8020 (62%)
+2020-11-09 16:30:27,782 Multiallelic singleton sites: 41 (0%)
+2020-11-09 16:30:27,782 Pseudo singleton sites: 29 (0%)
+2020-11-09 16:30:27,782 Total singleton sites: 8090 (62%)
+2020-11-09 16:30:27,782 Sites passing missing data filter: 3311
+2020-11-09 16:30:27,782 Sites failing missing data filter: 1521
+2020-11-09 16:30:27,782 Wrote a multi-fasta alignment of length: 3311
