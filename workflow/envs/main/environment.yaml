@@ -28,6 +28,7 @@ dependencies:
   - bioconda:vt=0.57721
   # Phylogeny
   - iqtree=2.0.3
+  - conda-forge::geopy=2.0.0
   # Plotting
   - matplotlib=3.3.2
   - pandas=1.0.4

@@ -64,7 +64,33 @@ Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleC
 
 ### Geocode
 
-TBD
+Geographic location for samples is coded at the level of country and
+province/state in the format "Country:Province". Optional sub-province level
+geocoding can be provided afterwards if desired "Country:Province:Foci".
+
+Place names should be compatible with Nominatim as implemented in GeoPy.
+
+```python
+from geopy.geocoders import Nominatim
+geolocator = Nominatim(user_agent="plague-phylogeography")
+place_name = "Armenia:Shirak Province"
+country_address = place_name.split(":")[0]
+province_address = ":".join(place_name.split(":")[0:2])
+
+# Geocode at country level
+location = geolocator.geocode(country_address, language="en",)
+print(location.address)
+> 'Armenia'
+print(location.latitude, location.longitude)
+> 40.7696272 44.6736646
+
+# Geocode at province level
+location = geolocator.geocode(province_address, language="en",)
+print(location.address)
+> 'Shirak Province, Armenia'
+print(location.latitude, location.longitude)
+> 40.918594 43.8403536
+```
 
 ## Genomic Alignment
 
