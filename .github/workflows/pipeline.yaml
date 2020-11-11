@@ -15,6 +15,7 @@ on:
       - 'workflow/envs/*/Dockerfile'
       - 'workflow/scripts/*'
       - 'results/sqlite_db/*'
+      - 'profiles/gh-actions/config.yaml'
   pull_request:
     branches:
       - '*'

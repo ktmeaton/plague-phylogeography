@@ -12,8 +12,32 @@ from requests.auth import HTTPBasicAuth
 # --------------------------------------------------------------------------#
 load_dotenv()
 
+# --------------------------------------------------------------------------#
+# API URLS
+FLOWDASH_BIO_URL_BASE = "https://flowdash-bio.herokuapp.com"
+FLOWDASH_BIO_URL = (
+    FLOWDASH_BIO_URL_BASE
+    + "/api/workflows"
+    + "?node={}&total_jobs={}&completed_jobs={}&running_jobs={}&failed_jobs={}"
+)
 
-# Static Token
+# For debugging, use ngrok tunnels
+try:
+    result = requests.get("http://localhost:4040/api/tunnels")
+    if result.status_code == 200:
+        data = result.json()
+        public_url = data["tunnels"][0]["public_url"]
+        FLOWDASH_BIO_URL_BASE = public_url
+        FLOWDASH_BIO_URL = (
+            FLOWDASH_BIO_URL_BASE
+            + "/api/workflows"
+            + "?node={}&total_jobs={}&completed_jobs={}&running_jobs={}&failed_jobs={}"
+        )
+except requests.exceptions.ConnectionError:
+    pass
+
+# --------------------------------------------------------------------------#
+# API Tokens
 flowdash_bio_token = os.getenv("FLOWDASH_BIO_TOKEN")
 
 # Dynamic Token
@@ -27,17 +51,13 @@ if not flowdash_bio_token:
         )
         exit(-1)
 
+    token_url = FLOWDASH_BIO_URL_BASE + "/api/tokens"
     response = requests.get(
-        url="https://flowdash-bio-stage.herokuapp.com/api/tokens",
-        auth=HTTPBasicAuth(flowdash_bio_username, flowdash_bio_password),
+        url=token_url, auth=HTTPBasicAuth(flowdash_bio_username, flowdash_bio_password),
     )
 
     flowdash_bio_token = response.json()["token"]
 
-FLOWDASH_BIO_URL = (
-    "https://flowdash-bio-stage.herokuapp.com/api/workflows/attr?"
-    "node={}&total_jobs={}&completed_jobs={}&running_jobs={}&failed_jobs={}"
-)
 flowdash_bio_headers = {"Authorization": "Bearer %s" % flowdash_bio_token}
 
 # Default values
@@ -67,10 +87,54 @@ if __name__ != "__main__":
             api_method = "POST"
 
         # --------------------------------------------------------------------------#
+        # Job Restart
+        # --------------------------------------------------------------------------#
+        if msg["level"] == "info" and "Trying to restart" in msg["msg"]:
+            # search for failed workflows
+            query_url = (
+                FLOWDASH_BIO_URL_BASE
+                + "/api/workflows?node={}&status=Failed".format(data["node"])
+            )
+            result = requests.get(url=query_url, headers=flowdash_bio_headers)
+            workflows = result.json()["workflows"]
+            # Grab latest workflow (-1)
+            workflow_id = list(workflows.keys())[-1]
+            # Substract a "failed_job" if retrying
+            data["failed_jobs"] = workflows[workflow_id]["failed_jobs"] - 1
+            data["total_jobs"] = workflows[workflow_id]["total_jobs"]
+            data["completed_jobs"] = workflows[workflow_id]["completed_jobs"]
+            data["running_jobs"] = workflows[workflow_id]["running_jobs"]
+            api_method = "PUT"
+
+        # --------------------------------------------------------------------------#
         # Error message
         # --------------------------------------------------------------------------#
         if msg["level"] == "error":
-            print(msg)
+            # first search for running workflows
+            query_url = (
+                FLOWDASH_BIO_URL_BASE
+                + "/api/workflows?node={}&status=Running".format(data["node"])
+            )
+            result = requests.get(url=query_url, headers=flowdash_bio_headers)
+            workflows = result.json()["workflows"]
+            try:
+                workflow_id = list(workflows.keys())[-1]
+                data["failed_jobs"] = 1
+            except IndexError:
+                # instead try failed workflows
+                query_url = (
+                    FLOWDASH_BIO_URL_BASE
+                    + "/api/workflows?node={}&status=Failed".format(data["node"])
+                )
+                result = requests.get(url=query_url, headers=flowdash_bio_headers)
+                workflows = result.json()["workflows"]
+                workflow_id = list(workflows.keys())[-1]
+                data["failed_jobs"] = workflows[workflow_id]["failed_jobs"] + 1
+
+            data["total_jobs"] = workflows[workflow_id]["total_jobs"]
+            data["completed_jobs"] = workflows[workflow_id]["completed_jobs"]
+            data["running_jobs"] = workflows[workflow_id]["running_jobs"]
+            api_method = "PUT"
 
         # --------------------------------------------------------------------------#
         # Finished message
@@ -92,8 +156,9 @@ if __name__ != "__main__":
         # Report Upload
         # --------------------------------------------------------------------------#
         elif msg["level"] == "info" and "Report created" in msg["msg"]:
-            report_file = msg["msg"].replace("Report created: ", "").rstrip(".")
-            print(report_file)
+            # report_file = msg["msg"].replace("Report created: ", "").rstrip(".")
+            # print(report_file)
+            pass
 
         query_url = FLOWDASH_BIO_URL.format(
             data["node"],
@@ -105,15 +170,9 @@ if __name__ != "__main__":
         if api_method == "POST":
             # Post to the flowdash-bio API
             result = requests.post(url=query_url, headers=flowdash_bio_headers)
-            print(api_method)
-            print(query_url)
-            print(result)
         elif api_method == "PUT":
             # Post to the flowdash-bio API
             result = requests.put(url=query_url, headers=flowdash_bio_headers)
-            print(api_method)
-            print(query_url)
-            print(result)
 
 
 # test_msg = {"level": "progress", "done": 1, "total" : 1, "msg": "Test message."}
