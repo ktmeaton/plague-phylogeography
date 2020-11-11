@@ -47,7 +47,8 @@ if not flowdash_bio_token:
     if not flowdash_bio_username or not flowdash_bio_password:
         print(
             "Please export one of the following in your .env file: ",
-            "\nFLOWDASH_BIO_TOKEN",
+            "\n1. FLOWDASH_BIO_TOKEN",
+            "\n2. FLOWDASH_BIO_USERNAME and FLOWDASH_BIO_PASSWORD",
         )
         exit(-1)
 
