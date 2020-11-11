@@ -105,7 +105,7 @@ rule all:
                 missing_data=config['snippy_missing_data']
 							),
 				# Plot
-    		expand(results_dir + "/iqtree/assembly/missing_data_{locus_name}.snps.html",
+    		expand(results_dir + "/snippy_multi/assembly/missing_data_{locus_name}.snps.html",
 				        locus_name = config["reference_locus_name"],
 					    ),
         # Metadata
