@@ -108,8 +108,8 @@ jobs:
         run: |
           echo "DOCKER_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> $GITHUB_ENV
           echo "DOCKER_PASSWORD=${{ secrets.DOCKERHUB_PASSWORD }}" >> $GITHUB_ENV
-          echo "FLOWDASH_BIO_USERNAME=${{ secrets.FLOWDASH_BIO_USERNAME }}" >> $GITHUB_ENV
-          echo "FLOWDASH_BIO_PASSWORD=${{ secrets.FLOWDASH_BIO_PASSWORD }}" >> $GITHUB_ENV
+          echo "FLOWDASH_BIO_USERNAME=${{ secrets.FLOWDASH_BIO_USERNAME }}" >> .env
+          echo "FLOWDASH_BIO_PASSWORD=${{ secrets.FLOWDASH_BIO_PASSWORD }}" >> .env
       #------------------------------------------------------------------------#
       # Checkout Repository
       - name: checkout repo
