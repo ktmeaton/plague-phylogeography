@@ -108,8 +108,8 @@ jobs:
         run: |
           echo "DOCKER_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> $GITHUB_ENV
           echo "DOCKER_PASSWORD=${{ secrets.DOCKERHUB_PASSWORD }}" >> $GITHUB_ENV
-          echo "FLOWDASH_BIO_USERNAME=${{ secrets.FLOWDASH_BIO_USERNAME }}" >> .env
-          echo "FLOWDASH_BIO_PASSWORD=${{ secrets.FLOWDASH_BIO_PASSWORD }}" >> .env
+          echo "FLOWDASH_BIO_USERNAME=${{ secrets.FLOWDASH_BIO_USERNAME }}" >> $GITHUB_ENV
+          echo "FLOWDASH_BIO_PASSWORD=${{ secrets.FLOWDASH_BIO_PASSWORD }}" >> $GITHUB_ENV
       #------------------------------------------------------------------------#
       # Checkout Repository
       - name: checkout repo
@@ -121,4 +121,4 @@ jobs:
       #------------------------------------------------------------------------#
       # run help
       - name: run help
-        run: docker run -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions help;
+        run: docker run -e FLOWDASH_BIO_USERNAME=$FLOWDASH_BIO_USERNAME -e FLOWDASH_BIO_PASSWORD=$FLOWDASH_BIO_PASSWORD -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions help;
