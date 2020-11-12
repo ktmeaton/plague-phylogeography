@@ -83,8 +83,9 @@ if "LC_ALL" not in os.environ:
 # -----------------------------------------------------------------------------#
 # Local rules                                                                  #
 # -----------------------------------------------------------------------------#
+# Rule that need internet access will be localrules
 localrules:
-    download_assembly,
+    download_assembly, download_sra
 
 # -----------------------------------------------------------------------------#
 # Main Target                                                                  #
