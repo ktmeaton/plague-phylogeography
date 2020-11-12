@@ -7,10 +7,11 @@ latency-wait: 5
 keep-going: True
 rerun-incomplete:  True
 printshellcmds: False
+log-handler-script: "workflow/scripts/snakemake_flowdash-bio.py"
+
 #use-singularity: True
 #singularity-prefix: /scratch/keaton/singularity
 #singularity-args: "-B /home -B /project -B /scratch -B /localscratch"
-#log-handler-script: "workflow/scripts/slack_log.py"
 
 #------------------------------------------------------------------------------#
 # System config

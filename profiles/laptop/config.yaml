@@ -7,7 +7,7 @@ latency-wait: 5
 keep-going: True
 rerun-incomplete:  True
 printshellcmds: False
-#log-handler-script: "workflow/scripts/slack_log.py"
+log-handler-script: "workflow/scripts/snakemake_flowdash-bio.py"
 
 #------------------------------------------------------------------------------#
 # System config
