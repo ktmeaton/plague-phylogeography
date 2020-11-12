@@ -161,6 +161,26 @@ if __name__ != "__main__":
             # print(report_file)
             pass
 
+        # --------------------------------------------------------------------------#
+        # Dry Run
+        # --------------------------------------------------------------------------#
+        # If marked as a dry run at the end, mark workflow as Completed
+        elif msg["level"] == "info" and "dry-run" in msg["msg"]:
+            print(msg)
+            # search for a running workflow
+            query_url = (
+                FLOWDASH_BIO_URL_BASE
+                + "/api/workflows?node={}&status=Running".format(data["node"])
+            )
+            result = requests.get(url=query_url, headers=flowdash_bio_headers)
+            workflows = result.json()["workflows"]
+            # Grab latest workflow (-1)
+            workflow_id = list(workflows.keys())[-1]
+            data["total_jobs"] = workflows[workflow_id]["total_jobs"]
+            # Mark dry run as completed
+            data["completed_jobs"] = data["total_jobs"]
+            api_method = "PUT"
+
         query_url = FLOWDASH_BIO_URL.format(
             data["node"],
             data["total_jobs"],
