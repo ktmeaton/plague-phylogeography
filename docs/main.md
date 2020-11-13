@@ -62,7 +62,9 @@ Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleC
 - Annotate with meaningful metadata.
   - Add collection data, geographic location, host.
 
-### Geocode
+### Geospatial
+
+#### Geocoding
 
 Geographic location for samples is coded at the level of country and
 province/state in the format "Country:Province". Optional sub-province level
@@ -89,6 +91,12 @@ python workflow/scripts/geocode.py "Armenia:Shirak Province"
 > 40.7696272 44.6736646
 > Shirak Province, Armenia
 > 40.918594 43.8403536
+
+#### Palladio
+
+```bash
+bash workflow/scripts/palladio.sh 2>&1 | tee results/metadata/sra/palladio_ancient.tsv
+```
 
 ## Genomic Alignment
 
