@@ -21,6 +21,7 @@ RUN conda install -c conda-forge mamba \
     && echo "source activate plague-phylogeography" > ~/.bashrc;
 
 ENV PATH /opt/conda/envs/plague-phylogeography/bin:$PATH
+ENV IN_DOCKER_CONTAINER Yes
 
 # Install nf-core eager pipeline
 RUN nextflow pull nf-core/eager -r dev;
