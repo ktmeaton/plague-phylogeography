@@ -61,9 +61,15 @@ if not flowdash_bio_token:
 
 flowdash_bio_headers = {"Authorization": "Bearer %s" % flowdash_bio_token}
 
+node = platform.node()
+
+IN_DOCKER = os.environ.get("IN_DOCKER_CONTAINER", False)
+if IN_DOCKER:
+    node = "docker-" + node
+
 # Default values
 data = {
-    "node": platform.node(),
+    "node": node,
     "total_jobs": 0,
     "completed_jobs": 0,
     "running_jobs": 0,
