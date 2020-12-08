@@ -1,3 +1,7 @@
+# Docker image
+image: ktmeaton:plague-phylogeography
+
+# Workspace startup tasks
 tasks:
   - init: echo "Initializing workspace..."
     command: echo "Workspace initialized."
