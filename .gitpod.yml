@@ -1,5 +1,5 @@
 # Docker image
-image: ktmeaton:plague-phylogeography
+image: ktmeaton/plague-phylogeography:dev
 
 # Workspace startup tasks
 tasks:
