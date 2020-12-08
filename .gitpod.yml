@@ -2,6 +2,12 @@
 image: ktmeaton/plague-phylogeography:dev
 
 # Workspace startup tasks
+# Setup pre-commit for workspace
 tasks:
-  - init: echo "Initializing workspace..."
-    command: echo "Workspace initialized."
+  - init: |
+      echo "Initializing workspace..."
+      && export PIP_USER=false
+      && pre-commit install-hooks
+    command: |
+      conda activate plague-phylogeography
+      && echo "Workspace initialized."
