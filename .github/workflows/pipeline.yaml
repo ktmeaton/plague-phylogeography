@@ -51,7 +51,7 @@ jobs:
       #------------------------------------------------------------------------#
       # Setup conda with mamba
       - name: setup conda
-        uses: goanpeca/setup-miniconda@v1
+        uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
           mamba-version: "*"
