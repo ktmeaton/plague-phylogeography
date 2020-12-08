@@ -1,0 +1,6 @@
+image:
+  file: workflow/envs/merge/Dockerfile
+
+tasks:
+  - init: echo "Initializing workspace..."
+    command: echo "Workspace initialized."
