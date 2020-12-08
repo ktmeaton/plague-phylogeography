@@ -117,7 +117,7 @@ jobs:
       #------------------------------------------------------------------------#
       # Setup singularity
       - name: setup singularity
-        uses: eWaterCycle/setup-singularity@v3
+        uses: eWaterCycle/setup-singularity@v5
         with:
           singularity-version: 3.6.3
       #------------------------------------------------------------------------#
