@@ -6,13 +6,13 @@ image: ktmeaton/plague-phylogeography:dev
 tasks:
   - name: init workspace
     init: |
-      echo Initializing workspace... \
+      echo "Initializing workspace..." \
       && export PIP_USER=false \
       && pre-commit install-hooks \
-      && echo Workspace initialized.
+      && echo -e "\nWorkspace initialized."
 
   - name: main
-    command: echo Main terminal ready.
+    command: echo -e "\nMain terminal ready."
 
   - name: jupyter server
     command: jupyter notebook --NotebookApp.allow_origin=\'$(gp url 8888)\'
@@ -20,4 +20,4 @@ tasks:
 # Ports and opening instructions
 ports:
   - port: 8888
-    onOpen: open-preview
+    onOpen: notify
