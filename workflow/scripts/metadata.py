@@ -86,6 +86,7 @@ output_headers_main = [
     "CountryLon",
     "ProvinceLat",
     "ProvinceLon",
+    "Biovar",
 ]
 
 # Nextstrain LatLon Format (no header)
@@ -190,19 +191,20 @@ for sample in samples_list:
             output_main_vals[6] = geocode_dict[country_name][0]
             output_main_vals[7] = geocode_dict[country_name][1]
 
-            # province processing
-            province_name = split_location[1]
-            output_main_vals[5] = province_name
-            address_name = ":".join(split_location[0:2])
-            # Geocode province
-            if province_name not in geocode_dict:
-                province_geocode = geolocator.geocode(address_name, language="en",)
-                geocode_dict[province_name] = [
-                    province_geocode.latitude,
-                    province_geocode.longitude,
-                ]
-            output_main_vals[8] = geocode_dict[province_name][0]
-            output_main_vals[9] = geocode_dict[province_name][1]
+            # province processing (if exists)
+            if len(split_location) > 1:
+                province_name = split_location[1]
+                output_main_vals[5] = province_name
+                address_name = ":".join(split_location[0:2])
+                # Geocode province
+                if province_name not in geocode_dict:
+                    province_geocode = geolocator.geocode(address_name, language="en",)
+                    geocode_dict[province_name] = [
+                        province_geocode.latitude,
+                        province_geocode.longitude,
+                    ]
+                output_main_vals[8] = geocode_dict[province_name][0]
+                output_main_vals[9] = geocode_dict[province_name][1]
 
         # biovar parsing
         biovar = result[4]
