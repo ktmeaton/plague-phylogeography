@@ -77,4 +77,5 @@ dependencies:
 - vcftools=0.1.16
 - pip:
   - git+https://github.com/ktmeaton/MultiQC.git@snippy
+  - treetime==0.8.0
 name: plague-phylogeography
