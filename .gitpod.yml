@@ -4,10 +4,21 @@ image: ktmeaton/plague-phylogeography:dev
 # Workspace startup tasks
 # Setup pre-commit for workspace
 tasks:
-  - init: |
+  - name: init workspace
+    init: |
       echo "Initializing workspace..."
       && export PIP_USER=false
       && pre-commit install-hooks
+  - name: main
     command: |
       conda activate plague-phylogeography
-      && echo "Workspace initialized."
+      && echo Main terminal ready.
+  - name: jupyter server
+    command: echo Jupter server terminal ready.
+  #  command: |
+  #    jupyter notebook --NotebookApp.allow_origin=\'$(gp url 8888)\'
+
+# Ports and opening instructions
+ports:
+  - port: 8888
+    onOpen: open-preview
