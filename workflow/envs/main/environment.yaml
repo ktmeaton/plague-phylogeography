@@ -49,4 +49,4 @@ dependencies:
   - pip=20.2.3
   - pip:
     - git+https://github.com/ktmeaton/MultiQC.git@snippy
-    - treetime==0.8.0
+    - phylo-treetime==0.8.0
