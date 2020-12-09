@@ -3,6 +3,7 @@ test/*
 sra/*
 workflow/logs/*
 workflow/logs_slurm/*
+workflow/notebooks/.ipynb_checkpoints/
 workflow/scripts/*pycache*
 .snakemake/*
 .nextflow*
