@@ -8,6 +8,7 @@ tasks:
     init: |
       echo "Initializing workspace..." \
       && export PIP_USER=false \
+      && pre-commit install \
       && pre-commit install-hooks \
       && echo -e "\nWorkspace initialized."
 
