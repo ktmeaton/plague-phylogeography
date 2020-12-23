@@ -70,6 +70,7 @@ dependencies:
 - python=3.7.3
 - qualimap=2.2.2d
 - samtools=1.10
+- seaborn=0.11.0
 - singularity=3.6.3
 - slackclient=2.9.1
 - snakemake=5.27.4
