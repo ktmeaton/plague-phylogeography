@@ -41,6 +41,7 @@ dependencies:
 - biopython=1.76
 - blast=2.10.1
 - conda-forge::biopython=1.76
+- conda-forge::cartopy=0.18.0
 - conda-forge::geopy=2.0.0
 - conda-forge::libiconv=1.15
 - conda-forge::markdown=3.2.2
