@@ -74,6 +74,7 @@ geocode_dict = {}  # Name: [lat, lon]
 # 9 . Province Latitude
 # 10. Province Longitude
 # 11. BioSample Biovar
+# 12. BioSample Branch
 
 output_headers_main = [
     "Sample",
@@ -87,6 +88,7 @@ output_headers_main = [
     "ProvinceLat",
     "ProvinceLon",
     "Biovar",
+    "Branch",
 ]
 
 # Nextstrain LatLon Format (no header)
@@ -120,7 +122,8 @@ for sample in samples_list:
               BioSampleStrain,
               BioSampleCollectionDate,
               BioSampleGeographicLocation,
-              BioSampleBiovar
+              BioSampleBiovar,
+	      BioSampleBranch
             FROM
               BioSample
             LEFT Join
@@ -150,6 +153,7 @@ for sample in samples_list:
         "NA",  # Province Latitude [8]
         "NA",  # Province Longitude [9]
         "NA",  # biovar [10]
+	"NA",  # branch [11]
     ]
 
     if result:
