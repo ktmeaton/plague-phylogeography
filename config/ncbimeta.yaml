@@ -82,6 +82,7 @@ TABLE_COLUMNS :
     - BioSampleStrain: Attribute, harmonized_name, strain
     - BioSampleTaxonomyID: Organism, taxonomy_id
     - BioSampleBiovar: Attribute, harmonized_name, biovar
+    - BioSampleBranch: NullValue
     - BioSampleSerovar: Attribute, harmonized_name, serovar
     - BioSampleCollectionDate: Attribute, harmonized_name, collection_date
     - BioSampleGeographicLocation: Attribute, harmonized_name, geo_loc_name
