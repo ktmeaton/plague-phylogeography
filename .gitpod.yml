@@ -13,7 +13,9 @@ tasks:
       && echo -e "\nWorkspace initialized."
 
   - name: main
-    command: echo -e "\nMain terminal ready."
+    command: |
+      export PIP_USER=false; \
+      && echo -e "\nMain terminal ready."
 
   - name: jupyter server
     command: jupyter notebook --NotebookApp.allow_origin=\'$(gp url 8888)\'

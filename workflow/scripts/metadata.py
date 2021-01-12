@@ -123,7 +123,7 @@ for sample in samples_list:
               BioSampleCollectionDate,
               BioSampleGeographicLocation,
               BioSampleBiovar,
-	      BioSampleBranch
+              BioSampleBranch
             FROM
               BioSample
             LEFT Join
@@ -153,7 +153,7 @@ for sample in samples_list:
         "NA",  # Province Latitude [8]
         "NA",  # Province Longitude [9]
         "NA",  # biovar [10]
-	"NA",  # branch [11]
+        "NA",  # branch [11]
     ]
 
     if result:
