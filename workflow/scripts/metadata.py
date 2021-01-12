@@ -88,7 +88,8 @@ output_headers_main = [
     "ProvinceLat",
     "ProvinceLon",
     "Biovar",
-    "Branch",
+    "Branch_Major",
+    "Branch_Minor",
 ]
 
 # Nextstrain LatLon Format (no header)
@@ -123,7 +124,7 @@ for sample in samples_list:
               BioSampleCollectionDate,
               BioSampleGeographicLocation,
               BioSampleBiovar,
-	      BioSampleBranch
+              BioSampleBranch
             FROM
               BioSample
             LEFT Join
@@ -153,7 +154,8 @@ for sample in samples_list:
         "NA",  # Province Latitude [8]
         "NA",  # Province Longitude [9]
         "NA",  # biovar [10]
-	"NA",  # branch [11]
+        "NA",  # branch_major [11]
+        "NA",  # branch_minor [12]
     ]
 
     if result:
@@ -214,6 +216,20 @@ for sample in samples_list:
         biovar = result[4]
         if biovar:
             output_main_vals[10] = biovar
+
+        # branch parsing
+        branch_minor = result[5]
+        if branch_minor:
+            branch_major = branch_minor
+            # while the last char is a number or a lower case, trim it
+            while (
+                branch_major[-1].isnumeric()
+                or branch_major[-1] == branch_major[-1].lower()
+                and ("Pandemic" not in branch_major and "Age" not in branch_major)
+            ):
+                branch_major = branch_major[:-1]
+            output_main_vals[11] = branch_major
+            output_main_vals[12] = branch_minor
 
     # Write data to main output file
     with open(output_path_main, "a") as outfile:

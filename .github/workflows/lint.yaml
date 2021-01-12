@@ -106,7 +106,7 @@ jobs:
         with:
           python-version: '3.7'
       - name: install linters
-        run: pip install black flake8 flake8-bugbear
+        run: pip install black==19.10b0 flake8 flake8-bugbear
       # Lint snakemake files
       #- name: lint snakefile
       #  run: |
