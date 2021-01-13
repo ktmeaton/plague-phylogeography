@@ -90,6 +90,7 @@ output_headers_main = [
     "Biovar",
     "Branch_Major",
     "Branch_Minor",
+    "BioSample",
 ]
 
 # Nextstrain LatLon Format (no header)
@@ -155,7 +156,8 @@ for sample in samples_list:
         "NA",  # Province Longitude [9]
         "NA",  # biovar [10]
         "NA",  # branch_major [11]
-        "NA",  # branch_minor [12]
+        "NA",  # branch_minor [12],
+        "NA",  # biosample [13]
     ]
 
     if result:
@@ -230,6 +232,11 @@ for sample in samples_list:
                 branch_major = branch_major[:-1]
             output_main_vals[11] = branch_major
             output_main_vals[12] = branch_minor
+
+        # biosample parsing
+        biosample = result[0]
+        if biosample:
+            output_main_vals[13] = biosample
 
     # Write data to main output file
     with open(output_path_main, "a") as outfile:

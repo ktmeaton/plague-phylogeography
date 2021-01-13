@@ -67,6 +67,7 @@ dependencies:
 - pandas=1.0.4
 - pip=20.2.3
 - pre-commit=2.6.0
+- pyqt=5.9.2
 - python-dotenv=0.14.0
 - python=3.7.3
 - qualimap=2.2.2d
@@ -80,4 +81,5 @@ dependencies:
 - pip:
   - git+https://github.com/ktmeaton/MultiQC.git@snippy
   - phylo-treetime==0.8.0
+  - ete3==3.1.2
 name: plague-phylogeography
