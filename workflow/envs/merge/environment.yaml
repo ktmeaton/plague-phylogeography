@@ -41,7 +41,6 @@ dependencies:
 - biopython=1.76
 - blast=2.10.1
 - conda-forge::biopython=1.76
-# - conda-forge::cartopy=0.18.0
 - conda-forge::geopy=2.0.0
 - conda-forge::libiconv=1.15
 - conda-forge::markdown=3.2.2
@@ -67,7 +66,6 @@ dependencies:
 - pandas=1.0.4
 - pip=20.2.3
 - pre-commit=2.6.0
-- pyqt=5.9.2
 - python-dotenv=0.14.0
 - python=3.7.3
 - qualimap=2.2.2d
