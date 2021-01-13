@@ -61,7 +61,7 @@ snippy_base_qual : 20
 snippy_map_qual : 30
 snippy_min_frac : 0.9
 snippy_mask_char : "X"
-snippy_missing_data : 0
+snippy_missing_data : 50
 snippy_snp_density : 10
 
 # Make this an empty string if removing singletons
