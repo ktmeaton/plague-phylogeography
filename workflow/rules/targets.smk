@@ -228,12 +228,12 @@ rule plot_table_fastq_sra:
     input:
         results_dir + "/data/sra/table_sra_fastq-gz.pdf",
 
-plot_missing_data_assembly_input = expand(results_dir + "/snippy_multi/assembly/missing_data_{locus_name}.snps.html",
+plot_missing_data_all_input = expand(results_dir + "/snippy_multi/all/missing_data_{locus_name}.snps.html",
 				                          locus_name = config["reference_locus_name"],
 					                     )
-plot_missing_data_sra_input = [ x.replace("all", "sra") for x in plot_missing_data_assembly_input ]
-plot_missing_data_local_input = [ x.replace("all", "local") for x in plot_missing_data_assembly_input ]
-plot_missing_data_assembly_input = [ x.replace("all", "assembly") for x in plot_missing_data_assembly_input ]
+plot_missing_data_sra_input = [ x.replace("all", "sra") for x in plot_missing_data_all_input ]
+plot_missing_data_local_input = [ x.replace("all", "local") for x in plot_missing_data_all_input ]
+plot_missing_data_assembly_input = [ x.replace("all", "assembly") for x in plot_missing_data_all_input ]
 
 rule plot_missing_data_assembly:
     input:
@@ -241,21 +241,16 @@ rule plot_missing_data_assembly:
 
 rule plot_missing_data_sra:
     input:
-    	expand(results_dir + "/snippy_multi/sra/missing_data_{locus_name}.snps.html",
-				locus_name = config["reference_locus_name"],
-				)
+		    plot_missing_data_sra_input
 
 rule plot_missing_data_local:
     input:
-    	expand(results_dir + "/snippy_multi/local/missing_data_{locus_name}.snps.html",
-				locus_name = config["reference_locus_name"],
-				)
+		    plot_missing_data_local_input
 
 rule plot_missing_data_all:
     input:
-    	expand(results_dir + "/snippy_multi/all/missing_data_{locus_name}.snps.html",
-				locus_name = config["reference_locus_name"],
-				)
+		    plot_missing_data_all_input
+
 
 #------------------------------------------------------------------------------#
 # Metadata
