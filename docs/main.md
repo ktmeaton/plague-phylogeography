@@ -25,6 +25,7 @@ cd plague-phylogeography
 
 # Create conda env
 mamba env create -f workflow/envs/merge/environment.yaml
+conda activate plague-phylogeography
 
 # Test install
 snakemake --profile profiles/gh-actions help;
@@ -60,7 +61,7 @@ Curate metadata with a DB Browser (SQLite). Examples of modifying the BioSampleC
   - KEEP: Assembly Modern Morelli 2010
   - KEEP: Assembly Modern Cui 2013
 - Annotate with meaningful metadata.
-  - Add collection data, geographic location, host.
+  - Add collection data, geographic location, host, branch, biovar
 
 ### Geospatial
 
