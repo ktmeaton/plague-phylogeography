@@ -140,21 +140,26 @@ rule qualimap_local:
 #------------------------------------------------------------------------------#
 # MultiQC
 #------------------------------------------------------------------------------#
+multiqc_all_input = results_dir + "/multiqc/all/multiqc_report.html"
+multiqc_assembly_input = multiqc_all_input.replace("all", "assembly")
+multiqc_sra_input = multiqc_all_input.replace("all", "sra")
+multiqc_local_input = multiqc_all_input.replace("all", "local")
+
 rule multiqc_assembly:
     input:
-        results_dir + "/multiqc/assembly/multiqc_report.html",
+        multiqc_assembly_input
 
 rule multiqc_sra:
     input:
-        results_dir + "/multiqc/sra/multiqc_report.html",
+        multiqc_sra_input
 
 rule multiqc_local:
     input:
-        results_dir + "/multiqc/local/multiqc_report.html",
+        multiqc_local_input
 
 rule multiqc_all:
     input:
-        results_dir + "/multiqc/all/multiqc_report.html"
+        multiqc_all_input
 
 #------------------------------------------------------------------------------#
 # Snippy - Multi
@@ -179,31 +184,29 @@ rule snippy_multi_all:
 #------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#
+iqtree_all_input      = expand(results_dir + "/iqtree/all/iqtree-core_{locus_name}.filter{missing_data}.treefile",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+iqtree_local_input    = [ x.replace("all", "local") for x in iqtree_all_input ]
+iqtree_sra_input      = [ x.replace("all", "sra") for x in iqtree_all_input ]
+iqtree_assembly_input = [ x.replace("all", "assembly") for x in iqtree_all_input ]
 
 # iqtree can be run for testing as
 rule iqtree_assembly:
     input:
-        expand(results_dir + "/iqtree/assembly/iqtree-core_{locus_name}.filter{missing_data}.treefile",
-               locus_name=config["reference_locus_name"],
-               missing_data = config["snippy_missing_data"])
+        iqtree_assembly_input
 
 rule iqtree_sra:
     input:
-        expand(results_dir + "/iqtree/sra/iqtree-core_{locus_name}.filter{missing_data}.treefile",
-               locus_name=config["reference_locus_name"],
-               missing_data = config["snippy_missing_data"])
+        iqtree_sra_input
 
 rule iqtree_local:
     input:
-        expand(results_dir + "/iqtree/local/iqtree-core_{locus_name}.filter{missing_data}.treefile",
-               locus_name=config["reference_locus_name"],
-               missing_data = config["snippy_missing_data"])
+        iqtree_local_input
 
 rule iqtree_all:
     input:
-        expand(results_dir + "/iqtree/all/iqtree-core_{locus_name}.filter{missing_data}.treefile",
-               locus_name=config["reference_locus_name"],
-               missing_data = config["snippy_missing_data"])
+        iqtree_all_input
 
 #------------------------------------------------------------------------------#
 # Plot
@@ -225,46 +228,56 @@ rule plot_table_fastq_sra:
     input:
         results_dir + "/data/sra/table_sra_fastq-gz.pdf",
 
+plot_missing_data_assembly_input = expand(results_dir + "/snippy_multi/assembly/missing_data_{locus_name}.snps.html",
+				                          locus_name = config["reference_locus_name"],
+					                     )
+plot_missing_data_sra_input = [ x.replace("all", "sra") for x in plot_missing_data_assembly_input ]
+plot_missing_data_local_input = [ x.replace("all", "local") for x in plot_missing_data_assembly_input ]
+plot_missing_data_assembly_input = [ x.replace("all", "assembly") for x in plot_missing_data_assembly_input ]
+
 rule plot_missing_data_assembly:
     input:
-    		expand(results_dir + "/snippy_multi/assembly/missing_data_{locus_name}.snps.html",
-				  locus_name = config["reference_locus_name"],
-					)
+        plot_missing_data_assembly_input
 
 rule plot_missing_data_sra:
     input:
-    		expand(results_dir + "/snippy_multi/sra/missing_data_{locus_name}.snps.html",
-				  locus_name = config["reference_locus_name"],
-					)
+    	expand(results_dir + "/snippy_multi/sra/missing_data_{locus_name}.snps.html",
+				locus_name = config["reference_locus_name"],
+				)
 
 rule plot_missing_data_local:
     input:
-    		expand(results_dir + "/snippy_multi/local/missing_data_{locus_name}.snps.html",
-				  locus_name = config["reference_locus_name"],
-					)
+    	expand(results_dir + "/snippy_multi/local/missing_data_{locus_name}.snps.html",
+				locus_name = config["reference_locus_name"],
+				)
 
 rule plot_missing_data_all:
     input:
-    		expand(results_dir + "/snippy_multi/all/missing_data_{locus_name}.snps.html",
-				  locus_name = config["reference_locus_name"],
-					)
+    	expand(results_dir + "/snippy_multi/all/missing_data_{locus_name}.snps.html",
+				locus_name = config["reference_locus_name"],
+				)
 
 #------------------------------------------------------------------------------#
 # Metadata
 #------------------------------------------------------------------------------#
+metadata_all_input      = results_dir + "/metadata/all/metadata.txt"
+metadata_local_input    = metadata_all_input.replace("all", "local")
+metadata_sra_input      = metadata_all_input.replace("all", "sra")
+metadata_assembly_input = metadata_all_input.replace("all", "assembly")
+
 
 rule metadata_assembly:
     input:
-    		results_dir + "/metadata/assembly/metadata.txt"
+    		metadata_assembly_input
 
 rule metadata_sra:
     input:
-    		results_dir + "/metadata/sra/metadata.txt"
+    		metadata_sra_input
 
 rule metadata_local:
     input:
-    		results_dir + "/metadata/local/metadata.txt"
+    		metadata_local_input
 
 rule metadata_all:
     input:
-    		results_dir + "/metadata/all/metadata.txt"
+    	    metadata_all_input
