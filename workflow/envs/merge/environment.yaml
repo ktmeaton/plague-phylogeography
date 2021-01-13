@@ -79,5 +79,4 @@ dependencies:
 - pip:
   - git+https://github.com/ktmeaton/MultiQC.git@snippy
   - phylo-treetime==0.8.0
-  - ete3==3.1.2
 name: plague-phylogeography
