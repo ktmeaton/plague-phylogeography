@@ -11,11 +11,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 - Version control the exhibit_dhsi2020 docs (add tags for install)
 
-## [v0.2.0] - 2020-0922 - Snakemake
+## [v0.2.0] - 2021-01-13 - Snakemake
 
 - Convert pipeline from Nextflow to Snakemake
 - Containerize with conda, singularity, and docker.
-- Use nf-core/eager dev in preparation for 2.2.0.
+- Stabilize nf-core/eager to 2.2.1.
+- Jupyter notebooks: parse_tree, branch_support, mugration
 
 ## [v0.1.4] - 2020-0824 - SRA and Local Data
 
