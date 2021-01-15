@@ -104,7 +104,7 @@ rule snippy_pairwise:
               --outdir {output.snippy_dir} \
               --bam {input.data} \
               --mapqual {config[snippy_map_qual]} \
-              --mincov {config[snippy_ctg_depth]} \
+              --mincov {config[snippy_bam_depth]} \
               --minfrac {config[snippy_min_frac]} \
               --basequal {config[snippy_base_qual]} \
               --force \
