@@ -1,0 +1,1 @@
+Snippy multi extract.
