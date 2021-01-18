@@ -89,14 +89,21 @@ rule snippy_multi_extract:
         full_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
     output:
         extract_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
+        extract_constant_sites = report(results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.constant_sites.txt",
+				                 caption=os.path.join(report_dir, "snippy", "snippy_multi_extract.rst"),
+												 category="Alignment",
+												 subcategory="Snippy Multi"),
     resources:
         cpus = 1,
     shell:
-        "{scripts_dir}/extract_locus.sh \
+        """
+        {scripts_dir}/extract_locus.sh \
           {input.full_aln} \
           {config[reference_locus_name]} \
           {config[reference_locus_start]} \
-          {config[reference_locus_end]}"
+          {config[reference_locus_end]};
+        snp-sites -C {output.extract_aln} > {output.extract_constant_sites};
+        """
 
 
 #------------------------------------------------------------------------------#
@@ -115,18 +122,20 @@ rule snippy_multi_filter:
 				             caption=os.path.join(report_dir, "logs.rst"),
 										 category="Logs",
 										 subcategory="Alignment"),
+
     log:
         logs_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log",
+
     resources:
         cpus = 1,
     shell:
-		    """
-				threshold=`echo "{output.filter_snp_aln}" | cut -d "." -f 3 | sed 's/filter//g'`;
+        """
+        threshold=`echo "{output.filter_snp_aln}" | cut -d "." -f 3 | sed 's/filter//g'`;
         snp-sites -m -o {output.filter_snp_aln}.tmp {input.full_locus_aln};
         python {scripts_dir}/filter_sites.py \
-				  --fasta {output.filter_snp_aln}.tmp \
-					--missing ${{threshold}} \
-					{config[snippy_keep_singleton]} \
-					--output {output.filter_snp_aln} \
-					--log {log};
-				"""
+                --fasta {output.filter_snp_aln}.tmp \
+                --missing ${{threshold}} \
+                {config[snippy_keep_singleton]} \
+                --output {output.filter_snp_aln} \
+                --log {log};
+        """
