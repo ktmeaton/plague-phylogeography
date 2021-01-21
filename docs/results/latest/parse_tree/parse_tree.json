@@ -1,0 +1,5230 @@
+{
+  "alignment": "",
+  "generated_by": {
+    "program": "augur",
+    "version": "10.3.0"
+  },
+  "input_tree": "../../docs/results/latest/iqtree/iqtree-core_chromosome.filter5.treefile",
+  "nodes": {
+    "GCA_000006645.1_ASM664v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000007885.1_ASM788v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.6408e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000013825.1_ASM1382v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000022805.1_ASM2280v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000022825.1_ASM2282v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000022845.1_ASM2284v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000168235.2_ASM16823v2_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000169615.1_ASM16961v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000169635.1_ASM16963v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000169655.1_ASM16965v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000169675.1_ASM16967v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000170275.1_ASM17027v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000181455.2_ASM18145v2_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000182485.1_ASM18248v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000182505.1_ASM18250v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000182525.1_ASM18252v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000182545.1_ASM18254v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000182705.1_ASM18270v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000222975.1_ASM22297v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000255735.1_ASM25573v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000255755.1_ASM25575v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000255775.1_ASM25577v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000255795.1_ASM25579v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000255815.1_ASM25581v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000255835.1_ASM25583v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000255855.1_ASM25585v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000255875.1_ASM25587v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000255895.1_ASM25589v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268325.1_ASM26832v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.115e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000268345.1_ASM26834v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.1322e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000268365.1_ASM26836v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268385.1_ASM26838v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268405.1_ASM26840v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268425.1_ASM26842v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268445.1_ASM26844v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.055e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268465.1_ASM26846v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268485.1_ASM26848v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268485.2_ASM26848v2_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268505.1_ASM26850v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.1029e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000268525.1_ASM26852v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268545.1_ASM26854v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.426e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268565.1_ASM26856v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268585.1_ASM26858v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268605.1_ASM26860v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268625.1_ASM26862v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268645.1_ASM26864v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268665.1_ASM26866v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268685.1_ASM26868v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268705.1_ASM26870v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268725.1_ASM26872v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268725.2_ASM26872v2_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268745.1_ASM26874v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268765.1_ASM26876v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 3.476e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268785.1_ASM26878v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268805.1_ASM26880v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268805.2_ASM26880v2_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268825.1_ASM26882v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268845.1_ASM26884v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268865.1_ASM26886v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268865.2_ASM26886v2_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268885.1_ASM26888v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268905.1_ASM26890v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268925.1_ASM26892v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.172e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000268945.1_ASM26894v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000268965.1_ASM26896v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000268985.1_ASM26898v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269005.1_ASM26900v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269025.1_ASM26902v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269045.1_ASM26904v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000269065.1_ASM26906v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269085.1_ASM26908v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 6.39e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000269105.1_ASM26910v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 3.482e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269125.1_ASM26912v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269145.1_ASM26914v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000269165.1_ASM26916v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.172e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000269185.1_ASM26918v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269205.1_ASM26920v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269225.1_ASM26922v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000269245.1_ASM26924v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 6.67e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000269265.1_ASM26926v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269285.1_ASM26928v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000269285.2_ASM26928v2_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000269305.1_ASM26930v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269325.1_ASM26932v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269345.1_ASM26934v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269365.1_ASM26936v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 6.217e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269385.1_ASM26938v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000269405.1_ASM26940v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269425.1_ASM26942v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000269445.1_ASM26944v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269465.1_ASM26946v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.225e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000269485.1_ASM26948v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 6.875e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000275685.1_ASM27568v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000311885.1_ASM31188v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000320425.1_ASM32042v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000320445.1_ASM32044v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000320465.1_ASM32046v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323185.1_ASM32318v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323205.1_ASM32320v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323225.1_ASM32322v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323245.1_ASM32324v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323285.1_ASM32328v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323305.1_ASM32330v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323325.1_ASM32332v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323345.1_ASM32334v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323365.1_ASM32336v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323385.1_ASM32338v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323405.1_ASM32340v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323425.1_ASM32342v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323445.1_ASM32344v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323465.1_ASM32346v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323485.1_ASM32348v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323505.1_ASM32350v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323525.1_ASM32352v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323545.1_ASM32354v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323565.1_ASM32356v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323585.1_ASM32358v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323605.1_ASM32360v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323625.1_ASM32362v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323645.1_ASM32364v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323665.1_ASM32366v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323685.1_ASM32368v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323705.1_ASM32370v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323725.1_ASM32372v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323745.1_ASM32374v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323765.1_ASM32376v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323785.1_ASM32378v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323805.1_ASM32380v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323825.1_ASM32382v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323845.1_ASM32384v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323865.1_ASM32386v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323885.1_ASM32388v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000323905.1_ASM32390v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323925.1_ASM32392v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323945.1_ASM32394v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323965.1_ASM32396v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000323985.1_ASM32398v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324005.1_ASM32400v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324025.1_ASM32402v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324045.1_ASM32404v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324065.1_ASM32406v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324085.1_ASM32408v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324105.1_ASM32410v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324125.1_ASM32412v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324145.1_ASM32414v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324165.1_ASM32416v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324185.1_ASM32418v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324205.1_ASM32420v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324225.1_ASM32422v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324245.1_ASM32424v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.267e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324265.1_ASM32426v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324285.1_ASM32428v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324305.1_ASM32430v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324325.1_ASM32432v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324345.1_ASM32434v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324365.1_ASM32436v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324385.1_ASM32438v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324405.1_ASM32440v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324425.1_ASM32442v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324445.1_ASM32444v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324465.1_ASM32446v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324485.1_ASM32448v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324505.1_ASM32450v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324525.1_ASM32452v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324545.1_ASM32454v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324565.1_ASM32456v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324585.1_ASM32458v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324605.1_ASM32460v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324625.1_ASM32462v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324645.1_ASM32464v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324665.1_ASM32466v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324685.1_ASM32468v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324705.1_ASM32470v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324725.1_ASM32472v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324745.1_ASM32474v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324765.1_ASM32476v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324785.1_ASM32478v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324805.2_EV76-CN_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324825.1_ASM32482v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324845.1_ASM32484v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324865.1_ASM32486v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324885.1_ASM32488v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324905.1_ASM32490v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324925.1_ASM32492v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000324945.1_ASM32494v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324965.1_ASM32496v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000324985.1_ASM32498v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325005.1_ASM32500v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325025.1_ASM32502v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325045.1_ASM32504v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000325065.1_ASM32506v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325085.1_ASM32508v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000325105.1_ASM32510v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325125.1_ASM32512v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000325165.1_ASM32516v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000325185.1_ASM32518v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000325205.1_ASM32520v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325225.1_ASM32522v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.985e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000325245.1_ASM32524v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000325265.1_ASM32526v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325285.1_ASM32528v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000325305.1_ASM32530v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325325.1_ASM32532v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325345.1_ASM32534v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325365.1_ASM32536v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325385.1_ASM32538v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325405.1_ASM32540v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000325425.1_ASM32542v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000325445.1_ASM32544v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000325465.1_ASM32546v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000325485.1_ASM32548v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000382505.1_Yersinia_pestis_G1670E_assembly_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.4064e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000382525.1_Yersinia_pestis_G3768_assembly_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000382545.1_Yersinia_pestis_assembly_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000475095.2_YP009_v2_genomic": {
+      "alrt": "NA",
+      "branch_length": 3.6406e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000475115.2_YP113_v2_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.135e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000475135.2_YPS03_v2_genomic": {
+      "alrt": "NA",
+      "branch_length": 5.1908e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000475155.2_YP24H_v2_genomic": {
+      "alrt": "NA",
+      "branch_length": 6.366e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000590535.1_EV_NIIEG_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.997e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000705315.1_EDB10_058v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000734805.1_ASM73480v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000834235.1_ASM83423v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000834275.1_ASM83427v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000834315.1_ASM83431v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000834335.1_ASM83433v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000834495.1_ASM83449v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000834755.1_ASM83475v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000834775.1_ASM83477v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000834885.1_ASM83488v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000834905.1_ASM83490v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000834925.1_ASM83492v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000834985.1_ASM83498v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000835005.1_ASM83500v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_000950945.1_ASM95094v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 3.0472e-06,
+      "ufboot": "NA"
+    },
+    "GCA_000970105.1_ASM97010v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_000986995.1_YPES001-SEQ-2-ASM-1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001188325.1_YPY_1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001188335.1_DYA_1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001188675.1_ASM118867v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001188695.1_ASM118869v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001188715.1_ASM118871v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001188735.1_ASM118873v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001188755.1_ASM118875v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001188775.1_ASM118877v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001188795.1_ASM118879v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001188815.1_ASM118881v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001188935.1_ASM118893v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001261975.1_YPW_8_IHQD_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001261985.1_YPW_3_IHQD_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001294805.1_ASM129480v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001294815.1_ASM129481v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.4064e-06,
+      "ufboot": "NA"
+    },
+    "GCA_001294825.1_ASM129482v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001294885.1_ASM129488v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001294905.1_ASM129490v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001294915.1_ASM129491v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001294965.1_ASM129496v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001294975.1_ASM129497v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001294985.1_ASM129498v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001295025.1_ASM129502v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001295045.1_ASM129504v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001295055.1_ASM129505v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001295065.1_ASM129506v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001295105.1_ASM129510v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001295115.1_ASM129511v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001295145.1_ASM129514v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001295185.1_ASM129518v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001487065.1_Yersinia_pestis_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.8752e-06,
+      "ufboot": "NA"
+    },
+    "GCA_001509855.1_ASM150985v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001509865.1_ASM150986v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001559935.1_ASM155993v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 6.6479e-06,
+      "ufboot": "NA"
+    },
+    "GCA_001595585.1_ASM159558v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001601285.1_ASM160128v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001601675.1_ASM160167v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.55333e-05,
+      "ufboot": "NA"
+    },
+    "GCA_001601735.1_ASM160173v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.16202e-05,
+      "ufboot": "NA"
+    },
+    "GCA_001613865.1_ASM161386v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.58429e-05,
+      "ufboot": "NA"
+    },
+    "GCA_001613885.1_ASM161388v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.172e-06,
+      "ufboot": "NA"
+    },
+    "GCA_001613895.1_ASM161389v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001617705.1_Yersinia_pestis_C-791_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001617715.1_Yersinia_pestis_M-519_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001617725.1_Yersinia_pestis_M-1484_genomic": {
+      "alrt": "NA",
+      "branch_length": 6.6042e-06,
+      "ufboot": "NA"
+    },
+    "GCA_001617735.1_Yersinia_pestis_M-1763_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001617785.1_Yersinia_pestis_M-549_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001617805.1_Yersinia_pestis_173_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_001617815.1_Yersinia_pestis_M-1453_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001693595.1_ASM169359v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_001972385.1_ASM197238v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.49539e-05,
+      "ufboot": "NA"
+    },
+    "GCA_001972395.1_ASM197239v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.16877e-05,
+      "ufboot": "NA"
+    },
+    "GCA_001972405.1_ASM197240v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.63612e-05,
+      "ufboot": "NA"
+    },
+    "GCA_001972415.1_ASM197241v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.41756e-05,
+      "ufboot": "NA"
+    },
+    "GCA_001972465.1_ASM197246v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 8.0831e-06,
+      "ufboot": "NA"
+    },
+    "GCA_001972475.1_ASM197247v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.01634e-05,
+      "ufboot": "NA"
+    },
+    "GCA_001972505.1_ASM197250v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.0602e-05,
+      "ufboot": "NA"
+    },
+    "GCA_001972515.1_ASM197251v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.5335e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002005285.1_ASM200528v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_002127355.1_ASM212735v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.837e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002127365.1_ASM212736v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 8.9952e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002127375.1_ASM212737v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_002165475.1_ASM216547v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.136e-05,
+      "ufboot": "NA"
+    },
+    "GCA_002173795.1_ASM217379v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.9276e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002173805.1_ASM217380v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.49297e-05,
+      "ufboot": "NA"
+    },
+    "GCA_002173815.1_ASM217381v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.7053e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002188685.1_ASM218868v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.1819e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002188725.1_ASM218872v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.23318e-05,
+      "ufboot": "NA"
+    },
+    "GCA_002188755.1_ASM218875v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.5333e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002188765.1_ASM218876v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.49262e-05,
+      "ufboot": "NA"
+    },
+    "GCA_002188775.1_ASM218877v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 8.1581e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002188815.1_ASM218881v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.8882e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002188835.1_ASM218883v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.13359e-05,
+      "ufboot": "NA"
+    },
+    "GCA_002188845.1_ASM218884v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.58372e-05,
+      "ufboot": "NA"
+    },
+    "GCA_002188855.1_ASM218885v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.18177e-05,
+      "ufboot": "NA"
+    },
+    "GCA_002412225.1_Y.pestis_A-1486_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.4064e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002412235.1_Y.pestis_A-1249_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_002412245.1_Y.pestis_A-1691_genomic": {
+      "alrt": "NA",
+      "branch_length": 3.7767e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002412255.1_Y.pestis_A-1836_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.45602e-05,
+      "ufboot": "NA"
+    },
+    "GCA_002412305.1_Y.pestis_A-1809_genomic": {
+      "alrt": "NA",
+      "branch_length": 8.2154e-06,
+      "ufboot": "NA"
+    },
+    "GCA_002529545.1_ASM252954v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_002981895.1_ASM298189v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_002981915.1_ASM298191v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_002981925.1_ASM298192v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_002981955.1_ASM298195v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_002981995.1_ASM298199v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_002993145.1_ASM299314v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074155.1_ASM307415v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074175.1_ASM307417v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074195.1_ASM307419v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074215.1_ASM307421v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074235.1_ASM307423v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003074255.1_ASM307425v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074275.1_ASM307427v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.3838e-06,
+      "ufboot": "NA"
+    },
+    "GCA_003074295.1_ASM307429v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074315.1_ASM307431v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074335.1_ASM307433v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003074355.1_ASM307435v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074375.1_ASM307437v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003074395.1_ASM307439v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074415.1_ASM307441v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074435.1_ASM307443v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003074535.1_ASM307453v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003074595.1_ASM307459v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003085855.1_ASM308585v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.097e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003085875.1_ASM308587v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003085895.1_ASM308589v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003085915.1_ASM308591v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003085935.1_ASM308593v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003085955.1_ASM308595v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.4064e-06,
+      "ufboot": "NA"
+    },
+    "GCA_003085975.1_ASM308597v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003085995.1_ASM308599v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003086015.1_ASM308601v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003086035.1_ASM308603v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003086055.1_ASM308605v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003086075.1_ASM308607v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.35705e-05,
+      "ufboot": "NA"
+    },
+    "GCA_003086095.1_ASM308609v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003086115.1_ASM308611v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 6.1187e-06,
+      "ufboot": "NA"
+    },
+    "GCA_003086155.1_ASM308615v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003122795.1_Y.pestis_I-2422_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003797205.1_ASM379720v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_003798085.1_ASM379808v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_003798225.1_ASM379822v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_004023585.1_ASM402358v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_004023595.1_ASM402359v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_006376415.1_ASM637641v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_006376435.1_ASM637643v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_006376475.1_ASM637647v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_006376495.1_ASM637649v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 5.477e-07,
+      "ufboot": "NA"
+    },
+    "GCA_006376505.1_ASM637650v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.8752e-06,
+      "ufboot": "NA"
+    },
+    "GCA_006376535.1_ASM637653v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_006376545.1_ASM637654v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.4064e-06,
+      "ufboot": "NA"
+    },
+    "GCA_006376575.1_ASM637657v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_006376585.1_ASM637658v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_006517425.1_ASM651742v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_006546665.1_ASM654666v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_006546725.1_ASM654672v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_006546745.1_ASM654674v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 9.376e-07,
+      "ufboot": "NA"
+    },
+    "GCA_008630375.1_ASM863037v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.602e-06,
+      "ufboot": "NA"
+    },
+    "GCA_008630395.1_ASM863039v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "GCA_008630415.1_ASM863041v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 1.1798e-06,
+      "ufboot": "NA"
+    },
+    "GCA_008630435.1_ASM863043v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_008630455.1_ASM863045v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 6.55e-07,
+      "ufboot": "NA"
+    },
+    "GCA_008630485.1_ASM863048v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 4.688e-07,
+      "ufboot": "NA"
+    },
+    "GCA_008630575.1_ASM863057v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009295945.1_ASM929594v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009295985.1_ASM929598v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009296005.1_ASM929600v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009363195.1_ASM936319v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009667885.1_ASM966788v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009667895.1_ASM966789v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009667925.1_ASM966792v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009667935.1_ASM966793v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009667945.1_ASM966794v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009667985.1_ASM966798v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_009669545.1_ASM966954v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009669555.1_ASM966955v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009669565.1_ASM966956v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009669605.1_ASM966960v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009669625.1_ASM966962v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009669635.1_ASM966963v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_009669665.1_ASM966966v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009669675.1_ASM966967v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009669705.1_ASM966970v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009669715.1_ASM966971v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_009669725.1_ASM966972v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009669765.1_ASM966976v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009669775.1_ASM966977v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009669805.1_ASM966980v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009669825.1_ASM966982v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009669835.1_ASM966983v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009669845.1_ASM966984v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009669875.1_ASM966987v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009669905.1_ASM966990v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009669925.1_ASM966992v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009669935.1_ASM966993v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009669955.1_ASM966995v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009669975.1_ASM966997v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670005.1_ASM967000v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_009670015.1_ASM967001v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670045.1_ASM967004v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670055.1_ASM967005v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670075.1_ASM967007v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670105.1_ASM967010v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670115.1_ASM967011v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670135.1_ASM967013v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670155.1_ASM967015v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670185.1_ASM967018v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670205.1_ASM967020v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670225.1_ASM967022v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670235.1_ASM967023v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_009670245.1_ASM967024v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670285.1_ASM967028v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670305.1_ASM967030v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670325.1_ASM967032v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670345.1_ASM967034v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670355.1_ASM967035v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670385.1_ASM967038v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_009670395.1_ASM967039v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_009670415.1_ASM967041v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_009670445.1_ASM967044v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670465.1_ASM967046v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670475.1_ASM967047v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_009670485.1_ASM967048v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670515.1_ASM967051v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670545.1_ASM967054v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670565.1_ASM967056v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670575.1_ASM967057v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670585.1_ASM967058v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670605.1_ASM967060v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670625.1_ASM967062v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670665.1_ASM967066v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670675.1_ASM967067v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670705.1_ASM967070v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670715.1_ASM967071v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670725.1_ASM967072v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670765.1_ASM967076v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670775.1_ASM967077v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670785.1_ASM967078v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670815.1_ASM967081v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670835.1_ASM967083v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670865.1_ASM967086v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670875.1_ASM967087v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "GCA_009670895.1_ASM967089v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670905.1_ASM967090v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "GCA_009670935.1_ASM967093v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_009670995.1_ASM967099v1_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "GCA_900460465.1_57940_B01_genomic": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "IP283": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "IP542": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "IP543": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "IP557": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "IP562": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "IP579": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "NODE0": {
+      "alrt": 100.0,
+      "branch_length": 0,
+      "ufboot": 100.0
+    },
+    "NODE1": {
+      "alrt": 99.9,
+      "branch_length": 5.2248e-06,
+      "ufboot": 100.0
+    },
+    "NODE10": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 81.0
+    },
+    "NODE100": {
+      "alrt": 82.9,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE1000": {
+      "alrt": 85.4,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE1004": {
+      "alrt": 100.0,
+      "branch_length": 1.83495e-05,
+      "ufboot": 100.0
+    },
+    "NODE1005": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 71.0
+    },
+    "NODE1006": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 20.0
+    },
+    "NODE1007": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 23.0
+    },
+    "NODE1008": {
+      "alrt": 88.5,
+      "branch_length": 4.647e-07,
+      "ufboot": 41.0
+    },
+    "NODE1009": {
+      "alrt": 98.8,
+      "branch_length": 6.33e-08,
+      "ufboot": 87.0
+    },
+    "NODE1010": {
+      "alrt": 82.8,
+      "branch_length": 1.6408e-06,
+      "ufboot": 91.0
+    },
+    "NODE1014": {
+      "alrt": 72.4,
+      "branch_length": 9.376e-07,
+      "ufboot": 69.0
+    },
+    "NODE1017": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 71.0
+    },
+    "NODE1018": {
+      "alrt": 73.6,
+      "branch_length": 2.54e-07,
+      "ufboot": 90.0
+    },
+    "NODE1019": {
+      "alrt": 6.0,
+      "branch_length": 2.1067e-06,
+      "ufboot": 79.0
+    },
+    "NODE1023": {
+      "alrt": 96.4,
+      "branch_length": 1.4064e-06,
+      "ufboot": 93.0
+    },
+    "NODE1029": {
+      "alrt": 100.0,
+      "branch_length": 3.63187e-05,
+      "ufboot": 100.0
+    },
+    "NODE1032": {
+      "alrt": 81.3,
+      "branch_length": 1.37085e-05,
+      "ufboot": 100.0
+    },
+    "NODE1033": {
+      "alrt": 100.0,
+      "branch_length": 1.1145e-06,
+      "ufboot": 100.0
+    },
+    "NODE1034": {
+      "alrt": 100.0,
+      "branch_length": 9.7423e-06,
+      "ufboot": 100.0
+    },
+    "NODE1035": {
+      "alrt": 100.0,
+      "branch_length": 1.23404e-05,
+      "ufboot": 100.0
+    },
+    "NODE1036": {
+      "alrt": "NA",
+      "branch_length": 1.25504e-05,
+      "ufboot": "NA"
+    },
+    "NODE105": {
+      "alrt": 79.1,
+      "branch_length": 2.344e-07,
+      "ufboot": 57.0
+    },
+    "NODE108": {
+      "alrt": 87.2,
+      "branch_length": 2.344e-07,
+      "ufboot": 75.0
+    },
+    "NODE11": {
+      "alrt": 73.0,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE111": {
+      "alrt": 82.4,
+      "branch_length": 2.344e-07,
+      "ufboot": 12.0
+    },
+    "NODE112": {
+      "alrt": 73.3,
+      "branch_length": 2.34e-08,
+      "ufboot": 20.0
+    },
+    "NODE113": {
+      "alrt": 76.3,
+      "branch_length": 3.334e-07,
+      "ufboot": 19.0
+    },
+    "NODE117": {
+      "alrt": 89.8,
+      "branch_length": 4.688e-07,
+      "ufboot": 52.0
+    },
+    "NODE12": {
+      "alrt": 79.0,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE120": {
+      "alrt": 74.8,
+      "branch_length": 2.344e-07,
+      "ufboot": 76.0
+    },
+    "NODE121": {
+      "alrt": 99.1,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE125": {
+      "alrt": 20.9,
+      "branch_length": 4.269e-07,
+      "ufboot": 22.0
+    },
+    "NODE129": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 4.0
+    },
+    "NODE13": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 24.0
+    },
+    "NODE130": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 8.0
+    },
+    "NODE134": {
+      "alrt": 73.9,
+      "branch_length": 3.517e-07,
+      "ufboot": 39.0
+    },
+    "NODE135": {
+      "alrt": 51.7,
+      "branch_length": 5.224e-07,
+      "ufboot": 56.0
+    },
+    "NODE139": {
+      "alrt": 74.9,
+      "branch_length": 5.61e-08,
+      "ufboot": 12.0
+    },
+    "NODE14": {
+      "alrt": 91.4,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE140": {
+      "alrt": 73.6,
+      "branch_length": 2.267e-07,
+      "ufboot": 12.0
+    },
+    "NODE141": {
+      "alrt": 0.0,
+      "branch_length": 6.05e-08,
+      "ufboot": 14.0
+    },
+    "NODE142": {
+      "alrt": 86.7,
+      "branch_length": 4.688e-07,
+      "ufboot": 40.0
+    },
+    "NODE146": {
+      "alrt": 15.1,
+      "branch_length": 2.344e-07,
+      "ufboot": 44.0
+    },
+    "NODE147": {
+      "alrt": 0.0,
+      "branch_length": 4.98e-08,
+      "ufboot": 63.0
+    },
+    "NODE15": {
+      "alrt": 0.0,
+      "branch_length": 4.98e-08,
+      "ufboot": 83.0
+    },
+    "NODE157": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 21.0
+    },
+    "NODE158": {
+      "alrt": 97.9,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE159": {
+      "alrt": 75.8,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE16": {
+      "alrt": 31.2,
+      "branch_length": 4.661e-07,
+      "ufboot": 79.0
+    },
+    "NODE160": {
+      "alrt": 88.8,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE161": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 16.0
+    },
+    "NODE162": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE163": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 12.0
+    },
+    "NODE164": {
+      "alrt": 80.7,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE165": {
+      "alrt": 77.2,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE166": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 47.0
+    },
+    "NODE167": {
+      "alrt": 74.3,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE168": {
+      "alrt": 97.4,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE169": {
+      "alrt": 93.0,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE17": {
+      "alrt": 99.4,
+      "branch_length": 2.5513e-06,
+      "ufboot": 100.0
+    },
+    "NODE170": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 62.0
+    },
+    "NODE175": {
+      "alrt": 98.0,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE179": {
+      "alrt": 90.8,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE18": {
+      "alrt": 99.7,
+      "branch_length": 2.6135e-06,
+      "ufboot": 100.0
+    },
+    "NODE186": {
+      "alrt": 73.2,
+      "branch_length": 2.34e-08,
+      "ufboot": 56.0
+    },
+    "NODE187": {
+      "alrt": 73.2,
+      "branch_length": 2.093e-07,
+      "ufboot": 100.0
+    },
+    "NODE188": {
+      "alrt": 79.2,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE19": {
+      "alrt": 86.0,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE194": {
+      "alrt": 99.3,
+      "branch_length": 1.6408e-06,
+      "ufboot": 100.0
+    },
+    "NODE195": {
+      "alrt": 90.4,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE196": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 7.0
+    },
+    "NODE197": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 9.0
+    },
+    "NODE198": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 66.0
+    },
+    "NODE2": {
+      "alrt": 100.0,
+      "branch_length": 1.82301e-05,
+      "ufboot": 100.0
+    },
+    "NODE20": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 24.0
+    },
+    "NODE203": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 12.0
+    },
+    "NODE207": {
+      "alrt": 97.3,
+      "branch_length": 9.376e-07,
+      "ufboot": 100.0
+    },
+    "NODE208": {
+      "alrt": 100.0,
+      "branch_length": 2.8128e-06,
+      "ufboot": 100.0
+    },
+    "NODE21": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 13.0
+    },
+    "NODE212": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 18.0
+    },
+    "NODE213": {
+      "alrt": 99.8,
+      "branch_length": 1.6408e-06,
+      "ufboot": 100.0
+    },
+    "NODE214": {
+      "alrt": 94.6,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE215": {
+      "alrt": 89.3,
+      "branch_length": 5.12e-07,
+      "ufboot": 100.0
+    },
+    "NODE216": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 91.0
+    },
+    "NODE217": {
+      "alrt": 85.8,
+      "branch_length": 6.409e-07,
+      "ufboot": 100.0
+    },
+    "NODE218": {
+      "alrt": 91.6,
+      "branch_length": 1.2873e-06,
+      "ufboot": 99.0
+    },
+    "NODE22": {
+      "alrt": 89.8,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE225": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 60.0
+    },
+    "NODE229": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 19.0
+    },
+    "NODE23": {
+      "alrt": 74.1,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE230": {
+      "alrt": 100.0,
+      "branch_length": 4.7115e-06,
+      "ufboot": 100.0
+    },
+    "NODE231": {
+      "alrt": 71.3,
+      "branch_length": 2.344e-07,
+      "ufboot": 99.0
+    },
+    "NODE232": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 54.0
+    },
+    "NODE233": {
+      "alrt": 74.9,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE234": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 23.0
+    },
+    "NODE235": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 17.0
+    },
+    "NODE24": {
+      "alrt": 100.0,
+      "branch_length": 5.8865e-06,
+      "ufboot": 100.0
+    },
+    "NODE240": {
+      "alrt": 92.1,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE241": {
+      "alrt": 5.3,
+      "branch_length": 2.344e-07,
+      "ufboot": 60.0
+    },
+    "NODE246": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 40.0
+    },
+    "NODE249": {
+      "alrt": 100.0,
+      "branch_length": 2.8128e-06,
+      "ufboot": 100.0
+    },
+    "NODE25": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 25.0
+    },
+    "NODE253": {
+      "alrt": 98.7,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE254": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 4.0
+    },
+    "NODE255": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 4.0
+    },
+    "NODE256": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 8.0
+    },
+    "NODE257": {
+      "alrt": 79.3,
+      "branch_length": 2.344e-07,
+      "ufboot": 51.0
+    },
+    "NODE26": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE262": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 13.0
+    },
+    "NODE263": {
+      "alrt": 72.2,
+      "branch_length": 2.34e-08,
+      "ufboot": 31.0
+    },
+    "NODE267": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 9.0
+    },
+    "NODE268": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 25.0
+    },
+    "NODE27": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE273": {
+      "alrt": 98.9,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE274": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 22.0
+    },
+    "NODE278": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 21.0
+    },
+    "NODE279": {
+      "alrt": 95.3,
+      "branch_length": 9.376e-07,
+      "ufboot": 100.0
+    },
+    "NODE28": {
+      "alrt": 94.8,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE280": {
+      "alrt": 96.8,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE281": {
+      "alrt": 76.6,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE282": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 24.0
+    },
+    "NODE283": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 31.0
+    },
+    "NODE284": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 24.0
+    },
+    "NODE29": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 13.0
+    },
+    "NODE290": {
+      "alrt": 76.6,
+      "branch_length": 2.344e-07,
+      "ufboot": 90.0
+    },
+    "NODE291": {
+      "alrt": 79.1,
+      "branch_length": 2.344e-07,
+      "ufboot": 98.0
+    },
+    "NODE295": {
+      "alrt": 93.7,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE296": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 38.0
+    },
+    "NODE297": {
+      "alrt": 87.6,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE3": {
+      "alrt": 100.0,
+      "branch_length": 1.0679e-05,
+      "ufboot": 100.0
+    },
+    "NODE30": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 56.0
+    },
+    "NODE302": {
+      "alrt": 83.5,
+      "branch_length": 2.344e-07,
+      "ufboot": 90.0
+    },
+    "NODE306": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 27.0
+    },
+    "NODE307": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 25.0
+    },
+    "NODE31": {
+      "alrt": 75.2,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE311": {
+      "alrt": 100.0,
+      "branch_length": 1.0121e-05,
+      "ufboot": 100.0
+    },
+    "NODE312": {
+      "alrt": 100.0,
+      "branch_length": 1.18775e-05,
+      "ufboot": 100.0
+    },
+    "NODE313": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 39.0
+    },
+    "NODE317": {
+      "alrt": 100.0,
+      "branch_length": 1.34612e-05,
+      "ufboot": 100.0
+    },
+    "NODE318": {
+      "alrt": 96.5,
+      "branch_length": 1.0141e-06,
+      "ufboot": 100.0
+    },
+    "NODE32": {
+      "alrt": 100.0,
+      "branch_length": 2.5516e-06,
+      "ufboot": 100.0
+    },
+    "NODE325": {
+      "alrt": 95.5,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE326": {
+      "alrt": 99.5,
+      "branch_length": 1.9742e-06,
+      "ufboot": 100.0
+    },
+    "NODE327": {
+      "alrt": 99.8,
+      "branch_length": 2.4171e-06,
+      "ufboot": 100.0
+    },
+    "NODE328": {
+      "alrt": 91.5,
+      "branch_length": 7.547e-07,
+      "ufboot": 100.0
+    },
+    "NODE329": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 98.0
+    },
+    "NODE33": {
+      "alrt": 93.7,
+      "branch_length": 1.172e-06,
+      "ufboot": 99.0
+    },
+    "NODE330": {
+      "alrt": 99.3,
+      "branch_length": 1.8081e-06,
+      "ufboot": 100.0
+    },
+    "NODE331": {
+      "alrt": 86.9,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE332": {
+      "alrt": 86.7,
+      "branch_length": 2.85e-07,
+      "ufboot": 100.0
+    },
+    "NODE333": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 14.0
+    },
+    "NODE334": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 12.0
+    },
+    "NODE335": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 14.0
+    },
+    "NODE336": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 34.0
+    },
+    "NODE337": {
+      "alrt": 71.4,
+      "branch_length": 2.344e-07,
+      "ufboot": 42.0
+    },
+    "NODE34": {
+      "alrt": 91.1,
+      "branch_length": 2.099e-07,
+      "ufboot": 5.0
+    },
+    "NODE340": {
+      "alrt": 75.4,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE349": {
+      "alrt": 100.0,
+      "branch_length": 1.20871e-05,
+      "ufboot": 100.0
+    },
+    "NODE35": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 2.0
+    },
+    "NODE350": {
+      "alrt": 75.5,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE351": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 59.0
+    },
+    "NODE352": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 70.0
+    },
+    "NODE353": {
+      "alrt": 99.9,
+      "branch_length": 3.7831e-06,
+      "ufboot": 100.0
+    },
+    "NODE354": {
+      "alrt": 88.6,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE355": {
+      "alrt": 74.2,
+      "branch_length": 2.34e-08,
+      "ufboot": 66.0
+    },
+    "NODE358": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 68.0
+    },
+    "NODE36": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 3.0
+    },
+    "NODE37": {
+      "alrt": 92.7,
+      "branch_length": 2.108e-07,
+      "ufboot": 4.0
+    },
+    "NODE370": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 20.0
+    },
+    "NODE371": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 23.0
+    },
+    "NODE372": {
+      "alrt": 73.8,
+      "branch_length": 2.34e-08,
+      "ufboot": 29.0
+    },
+    "NODE376": {
+      "alrt": 80.2,
+      "branch_length": 2.34e-08,
+      "ufboot": 31.0
+    },
+    "NODE38": {
+      "alrt": 0.0,
+      "branch_length": 4.25e-08,
+      "ufboot": 11.0
+    },
+    "NODE380": {
+      "alrt": 100.0,
+      "branch_length": 5.1815e-06,
+      "ufboot": 100.0
+    },
+    "NODE381": {
+      "alrt": 100.0,
+      "branch_length": 5.1843e-06,
+      "ufboot": 100.0
+    },
+    "NODE382": {
+      "alrt": 96.2,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE383": {
+      "alrt": 91.9,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE384": {
+      "alrt": 100.0,
+      "branch_length": 4.2192e-06,
+      "ufboot": 100.0
+    },
+    "NODE385": {
+      "alrt": 97.2,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE386": {
+      "alrt": 76.5,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE387": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 73.0
+    },
+    "NODE388": {
+      "alrt": 93.5,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE389": {
+      "alrt": 76.0,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE39": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 9.0
+    },
+    "NODE390": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 92.0
+    },
+    "NODE391": {
+      "alrt": 85.4,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE392": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 73.0
+    },
+    "NODE393": {
+      "alrt": 93.5,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE394": {
+      "alrt": 91.3,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE395": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 85.0
+    },
+    "NODE396": {
+      "alrt": 83.3,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE4": {
+      "alrt": 97.9,
+      "branch_length": 2.123e-06,
+      "ufboot": 100.0
+    },
+    "NODE40": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 0.0
+    },
+    "NODE401": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 63.0
+    },
+    "NODE402": {
+      "alrt": 73.9,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE407": {
+      "alrt": 73.7,
+      "branch_length": 2.34e-08,
+      "ufboot": 78.0
+    },
+    "NODE41": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE411": {
+      "alrt": 100.0,
+      "branch_length": 2.1096e-06,
+      "ufboot": 100.0
+    },
+    "NODE415": {
+      "alrt": 95.4,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE416": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 36.0
+    },
+    "NODE417": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 50.0
+    },
+    "NODE418": {
+      "alrt": 98.9,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE42": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 12.0
+    },
+    "NODE425": {
+      "alrt": 99.0,
+      "branch_length": 1.6408e-06,
+      "ufboot": 100.0
+    },
+    "NODE426": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 30.0
+    },
+    "NODE427": {
+      "alrt": 79.9,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE428": {
+      "alrt": 80.4,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE429": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 22.0
+    },
+    "NODE43": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 4.0
+    },
+    "NODE430": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 15.0
+    },
+    "NODE431": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 14.0
+    },
+    "NODE437": {
+      "alrt": 89.5,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE438": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 28.0
+    },
+    "NODE44": {
+      "alrt": 44.3,
+      "branch_length": 2.344e-07,
+      "ufboot": 12.0
+    },
+    "NODE442": {
+      "alrt": 86.9,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE445": {
+      "alrt": 78.5,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE446": {
+      "alrt": 42.6,
+      "branch_length": 7.032e-07,
+      "ufboot": 87.0
+    },
+    "NODE447": {
+      "alrt": 0.0,
+      "branch_length": 5.13e-08,
+      "ufboot": 87.0
+    },
+    "NODE448": {
+      "alrt": 92.1,
+      "branch_length": 8.473e-07,
+      "ufboot": 100.0
+    },
+    "NODE45": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 5.0
+    },
+    "NODE452": {
+      "alrt": 97.4,
+      "branch_length": 1.6475e-06,
+      "ufboot": 100.0
+    },
+    "NODE456": {
+      "alrt": 98.4,
+      "branch_length": 1.6408e-06,
+      "ufboot": 100.0
+    },
+    "NODE457": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 66.0
+    },
+    "NODE458": {
+      "alrt": 92.3,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE459": {
+      "alrt": 86.2,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE46": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE460": {
+      "alrt": 81.3,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE461": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 67.0
+    },
+    "NODE465": {
+      "alrt": 74.3,
+      "branch_length": 2.34e-08,
+      "ufboot": 89.0
+    },
+    "NODE466": {
+      "alrt": 74.3,
+      "branch_length": 2.094e-07,
+      "ufboot": 97.0
+    },
+    "NODE47": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE470": {
+      "alrt": 99.7,
+      "branch_length": 5.5449e-06,
+      "ufboot": 100.0
+    },
+    "NODE471": {
+      "alrt": 100.0,
+      "branch_length": 1.08659e-05,
+      "ufboot": 100.0
+    },
+    "NODE475": {
+      "alrt": 98.7,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE476": {
+      "alrt": 97.7,
+      "branch_length": 9.376e-07,
+      "ufboot": 100.0
+    },
+    "NODE48": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 9.0
+    },
+    "NODE481": {
+      "alrt": 96.5,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE482": {
+      "alrt": 94.3,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE483": {
+      "alrt": 82.5,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE487": {
+      "alrt": 76.0,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE490": {
+      "alrt": 91.2,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE491": {
+      "alrt": 98.9,
+      "branch_length": 1.6408e-06,
+      "ufboot": 100.0
+    },
+    "NODE492": {
+      "alrt": 77.2,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE493": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 91.0
+    },
+    "NODE494": {
+      "alrt": 91.3,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE495": {
+      "alrt": 96.3,
+      "branch_length": 9.376e-07,
+      "ufboot": 100.0
+    },
+    "NODE496": {
+      "alrt": 79.1,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE497": {
+      "alrt": 92.6,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE498": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 39.0
+    },
+    "NODE5": {
+      "alrt": 100.0,
+      "branch_length": 9.6765e-06,
+      "ufboot": 100.0
+    },
+    "NODE503": {
+      "alrt": 80.0,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE507": {
+      "alrt": 99.7,
+      "branch_length": 1.8752e-06,
+      "ufboot": 100.0
+    },
+    "NODE51": {
+      "alrt": 97.9,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE510": {
+      "alrt": 93.0,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE514": {
+      "alrt": 99.7,
+      "branch_length": 2.1096e-06,
+      "ufboot": 100.0
+    },
+    "NODE515": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 54.0
+    },
+    "NODE516": {
+      "alrt": 87.5,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE521": {
+      "alrt": 100.0,
+      "branch_length": 9.443e-06,
+      "ufboot": 100.0
+    },
+    "NODE522": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 66.0
+    },
+    "NODE523": {
+      "alrt": 85.0,
+      "branch_length": 4.688e-07,
+      "ufboot": 84.0
+    },
+    "NODE526": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 75.0
+    },
+    "NODE530": {
+      "alrt": 99.8,
+      "branch_length": 3.2816e-06,
+      "ufboot": 100.0
+    },
+    "NODE531": {
+      "alrt": 98.5,
+      "branch_length": 1.6408e-06,
+      "ufboot": 100.0
+    },
+    "NODE532": {
+      "alrt": 91.8,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE533": {
+      "alrt": 87.7,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE534": {
+      "alrt": 80.7,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE535": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 60.0
+    },
+    "NODE536": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 49.0
+    },
+    "NODE537": {
+      "alrt": 98.6,
+      "branch_length": 1.8752e-06,
+      "ufboot": 100.0
+    },
+    "NODE54": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE541": {
+      "alrt": 74.3,
+      "branch_length": 2.344e-07,
+      "ufboot": 99.0
+    },
+    "NODE542": {
+      "alrt": 100.0,
+      "branch_length": 3.25536e-05,
+      "ufboot": 100.0
+    },
+    "NODE547": {
+      "alrt": 99.5,
+      "branch_length": 1.6408e-06,
+      "ufboot": 100.0
+    },
+    "NODE548": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 31.0
+    },
+    "NODE549": {
+      "alrt": 64.5,
+      "branch_length": 4.98e-08,
+      "ufboot": 68.0
+    },
+    "NODE55": {
+      "alrt": 82.6,
+      "branch_length": 3.619e-07,
+      "ufboot": 99.0
+    },
+    "NODE555": {
+      "alrt": 96.1,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE556": {
+      "alrt": 100.0,
+      "branch_length": 2.5784e-06,
+      "ufboot": 100.0
+    },
+    "NODE559": {
+      "alrt": 98.0,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE562": {
+      "alrt": 98.4,
+      "branch_length": 1.6408e-06,
+      "ufboot": 100.0
+    },
+    "NODE563": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 41.0
+    },
+    "NODE564": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 29.0
+    },
+    "NODE565": {
+      "alrt": 85.9,
+      "branch_length": 4.688e-07,
+      "ufboot": 97.0
+    },
+    "NODE566": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 38.0
+    },
+    "NODE567": {
+      "alrt": 93.5,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE568": {
+      "alrt": 99.8,
+      "branch_length": 3.5395e-06,
+      "ufboot": 100.0
+    },
+    "NODE574": {
+      "alrt": 99.8,
+      "branch_length": 1.8752e-06,
+      "ufboot": 100.0
+    },
+    "NODE575": {
+      "alrt": 87.3,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE580": {
+      "alrt": 98.1,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE583": {
+      "alrt": 75.1,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE584": {
+      "alrt": 99.8,
+      "branch_length": 2.8128e-06,
+      "ufboot": 100.0
+    },
+    "NODE585": {
+      "alrt": 99.3,
+      "branch_length": 2.0831e-06,
+      "ufboot": 100.0
+    },
+    "NODE586": {
+      "alrt": 96.7,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE587": {
+      "alrt": 95.1,
+      "branch_length": 9.695e-07,
+      "ufboot": 100.0
+    },
+    "NODE588": {
+      "alrt": 88.0,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE589": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 36.0
+    },
+    "NODE59": {
+      "alrt": 0.0,
+      "branch_length": 4.81e-08,
+      "ufboot": 10.0
+    },
+    "NODE590": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 24.0
+    },
+    "NODE591": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 12.0
+    },
+    "NODE598": {
+      "alrt": 98.1,
+      "branch_length": 1.6128e-06,
+      "ufboot": 100.0
+    },
+    "NODE6": {
+      "alrt": 98.9,
+      "branch_length": 2.0567e-06,
+      "ufboot": 100.0
+    },
+    "NODE60": {
+      "alrt": 8.2,
+      "branch_length": 2.344e-07,
+      "ufboot": 38.0
+    },
+    "NODE602": {
+      "alrt": 99.5,
+      "branch_length": 2.5784e-06,
+      "ufboot": 100.0
+    },
+    "NODE605": {
+      "alrt": 99.3,
+      "branch_length": 2.1096e-06,
+      "ufboot": 100.0
+    },
+    "NODE606": {
+      "alrt": 100.0,
+      "branch_length": 4.7143e-06,
+      "ufboot": 100.0
+    },
+    "NODE607": {
+      "alrt": 91.6,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE608": {
+      "alrt": 76.4,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE609": {
+      "alrt": 90.9,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE61": {
+      "alrt": 81.7,
+      "branch_length": 3.07e-07,
+      "ufboot": 50.0
+    },
+    "NODE613": {
+      "alrt": 100.0,
+      "branch_length": 2.5784e-06,
+      "ufboot": 100.0
+    },
+    "NODE617": {
+      "alrt": 76.2,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE618": {
+      "alrt": 99.6,
+      "branch_length": 2.5784e-06,
+      "ufboot": 100.0
+    },
+    "NODE619": {
+      "alrt": 78.5,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE624": {
+      "alrt": 100.0,
+      "branch_length": 3.516e-06,
+      "ufboot": 100.0
+    },
+    "NODE625": {
+      "alrt": 91.8,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE626": {
+      "alrt": 76.7,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE629": {
+      "alrt": 87.1,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE632": {
+      "alrt": 75.5,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE633": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 44.0
+    },
+    "NODE634": {
+      "alrt": 97.7,
+      "branch_length": 9.376e-07,
+      "ufboot": 100.0
+    },
+    "NODE639": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 83.0
+    },
+    "NODE640": {
+      "alrt": 100.0,
+      "branch_length": 6.5979e-06,
+      "ufboot": 100.0
+    },
+    "NODE641": {
+      "alrt": 93.1,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE644": {
+      "alrt": 94.8,
+      "branch_length": 9.376e-07,
+      "ufboot": 100.0
+    },
+    "NODE647": {
+      "alrt": 100.0,
+      "branch_length": 3.516e-06,
+      "ufboot": 100.0
+    },
+    "NODE650": {
+      "alrt": 96.3,
+      "branch_length": 1.1967e-06,
+      "ufboot": 100.0
+    },
+    "NODE651": {
+      "alrt": 100.0,
+      "branch_length": 9.9856e-06,
+      "ufboot": 100.0
+    },
+    "NODE652": {
+      "alrt": 0.0,
+      "branch_length": 5.13e-08,
+      "ufboot": 88.0
+    },
+    "NODE653": {
+      "alrt": 79.9,
+      "branch_length": 4.696e-07,
+      "ufboot": 100.0
+    },
+    "NODE654": {
+      "alrt": 85.3,
+      "branch_length": 4.602e-07,
+      "ufboot": 100.0
+    },
+    "NODE655": {
+      "alrt": 76.7,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE656": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 76.0
+    },
+    "NODE657": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 76.0
+    },
+    "NODE662": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 83.0
+    },
+    "NODE663": {
+      "alrt": 100.0,
+      "branch_length": 4.0901e-06,
+      "ufboot": 100.0
+    },
+    "NODE664": {
+      "alrt": 97.7,
+      "branch_length": 1.9014e-06,
+      "ufboot": 100.0
+    },
+    "NODE671": {
+      "alrt": 90.9,
+      "branch_length": 7.032e-07,
+      "ufboot": 99.0
+    },
+    "NODE675": {
+      "alrt": 99.5,
+      "branch_length": 2.6712e-06,
+      "ufboot": 100.0
+    },
+    "NODE676": {
+      "alrt": 100.0,
+      "branch_length": 4.3796e-06,
+      "ufboot": 100.0
+    },
+    "NODE677": {
+      "alrt": 100.0,
+      "branch_length": 3.7504e-06,
+      "ufboot": 100.0
+    },
+    "NODE678": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 79.0
+    },
+    "NODE679": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 66.0
+    },
+    "NODE680": {
+      "alrt": 80.0,
+      "branch_length": 2.344e-07,
+      "ufboot": 83.0
+    },
+    "NODE681": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 19.0
+    },
+    "NODE682": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 23.0
+    },
+    "NODE683": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 16.0
+    },
+    "NODE684": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 21.0
+    },
+    "NODE685": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 10.0
+    },
+    "NODE686": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 23.0
+    },
+    "NODE687": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 51.0
+    },
+    "NODE688": {
+      "alrt": 85.6,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE689": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 21.0
+    },
+    "NODE69": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE690": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 16.0
+    },
+    "NODE691": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE692": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 12.0
+    },
+    "NODE693": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 12.0
+    },
+    "NODE694": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "NODE695": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE696": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE697": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE698": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE699": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE7": {
+      "alrt": 100.0,
+      "branch_length": 5.688e-06,
+      "ufboot": 100.0
+    },
+    "NODE70": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 10.0
+    },
+    "NODE700": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE701": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE702": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE703": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE704": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE705": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE706": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE707": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE708": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE709": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE727": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 12.0
+    },
+    "NODE728": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 12.0
+    },
+    "NODE729": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE730": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE731": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 12.0
+    },
+    "NODE732": {
+      "alrt": 94.4,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE733": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 29.0
+    },
+    "NODE734": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 24.0
+    },
+    "NODE735": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 44.0
+    },
+    "NODE74": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE740": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "NODE741": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE745": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 12.0
+    },
+    "NODE746": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 26.0
+    },
+    "NODE75": {
+      "alrt": 79.0,
+      "branch_length": 2.344e-07,
+      "ufboot": 12.0
+    },
+    "NODE759": {
+      "alrt": 86.5,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE76": {
+      "alrt": 77.5,
+      "branch_length": 2.085e-07,
+      "ufboot": 12.0
+    },
+    "NODE760": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 38.0
+    },
+    "NODE761": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 22.0
+    },
+    "NODE766": {
+      "alrt": 91.6,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE77": {
+      "alrt": 77.6,
+      "branch_length": 2.344e-07,
+      "ufboot": 63.0
+    },
+    "NODE770": {
+      "alrt": 91.2,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE771": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 31.0
+    },
+    "NODE772": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 27.0
+    },
+    "NODE778": {
+      "alrt": 78.7,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE78": {
+      "alrt": 98.4,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE783": {
+      "alrt": 88.5,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE784": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 16.0
+    },
+    "NODE785": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 10.0
+    },
+    "NODE786": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE787": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 19.0
+    },
+    "NODE788": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE789": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE790": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 11.0
+    },
+    "NODE791": {
+      "alrt": 87.4,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE792": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 23.0
+    },
+    "NODE793": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 35.0
+    },
+    "NODE794": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 36.0
+    },
+    "NODE795": {
+      "alrt": 76.5,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE796": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 52.0
+    },
+    "NODE8": {
+      "alrt": 98.4,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE800": {
+      "alrt": 86.3,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE801": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 35.0
+    },
+    "NODE808": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "NODE809": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE810": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE811": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE812": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE813": {
+      "alrt": "NA",
+      "branch_length": 0,
+      "ufboot": "NA"
+    },
+    "NODE82": {
+      "alrt": 100.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 39.0
+    },
+    "NODE828": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 39.0
+    },
+    "NODE829": {
+      "alrt": 75.9,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE835": {
+      "alrt": 100.0,
+      "branch_length": 9.6105e-06,
+      "ufboot": 100.0
+    },
+    "NODE836": {
+      "alrt": 100.0,
+      "branch_length": 4.3199e-06,
+      "ufboot": 100.0
+    },
+    "NODE837": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 23.0
+    },
+    "NODE838": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 15.0
+    },
+    "NODE839": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 19.0
+    },
+    "NODE846": {
+      "alrt": 100.0,
+      "branch_length": 2.50019e-05,
+      "ufboot": 100.0
+    },
+    "NODE847": {
+      "alrt": 96.5,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE848": {
+      "alrt": 96.6,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE849": {
+      "alrt": 98.2,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE85": {
+      "alrt": 96.8,
+      "branch_length": 9.376e-07,
+      "ufboot": 100.0
+    },
+    "NODE850": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 35.0
+    },
+    "NODE851": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 34.0
+    },
+    "NODE857": {
+      "alrt": 91.7,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE860": {
+      "alrt": 99.9,
+      "branch_length": 3.5411e-06,
+      "ufboot": 100.0
+    },
+    "NODE861": {
+      "alrt": 97.2,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE862": {
+      "alrt": 91.8,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE863": {
+      "alrt": 91.2,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE869": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 82.0
+    },
+    "NODE870": {
+      "alrt": 85.1,
+      "branch_length": 3.744e-07,
+      "ufboot": 100.0
+    },
+    "NODE871": {
+      "alrt": 100.0,
+      "branch_length": 1.78561e-05,
+      "ufboot": 100.0
+    },
+    "NODE872": {
+      "alrt": 95.3,
+      "branch_length": 1.489e-06,
+      "ufboot": 100.0
+    },
+    "NODE873": {
+      "alrt": 100.0,
+      "branch_length": 7.0631e-06,
+      "ufboot": 100.0
+    },
+    "NODE874": {
+      "alrt": 99.6,
+      "branch_length": 2.5784e-06,
+      "ufboot": 100.0
+    },
+    "NODE875": {
+      "alrt": 0.0,
+      "branch_length": 4.98e-08,
+      "ufboot": 35.0
+    },
+    "NODE876": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 37.0
+    },
+    "NODE877": {
+      "alrt": 86.9,
+      "branch_length": 5.564e-07,
+      "ufboot": 90.0
+    },
+    "NODE878": {
+      "alrt": 88.1,
+      "branch_length": 1.6408e-06,
+      "ufboot": 99.0
+    },
+    "NODE88": {
+      "alrt": 80.8,
+      "branch_length": 2.344e-07,
+      "ufboot": 28.0
+    },
+    "NODE882": {
+      "alrt": 91.2,
+      "branch_length": 9.085e-07,
+      "ufboot": 54.0
+    },
+    "NODE885": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 25.0
+    },
+    "NODE886": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 14.0
+    },
+    "NODE889": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 19.0
+    },
+    "NODE89": {
+      "alrt": 81.3,
+      "branch_length": 2.344e-07,
+      "ufboot": 62.0
+    },
+    "NODE892": {
+      "alrt": 88.0,
+      "branch_length": 9.376e-07,
+      "ufboot": 66.0
+    },
+    "NODE895": {
+      "alrt": 96.0,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE896": {
+      "alrt": 75.9,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE897": {
+      "alrt": 90.9,
+      "branch_length": 9.02e-07,
+      "ufboot": 100.0
+    },
+    "NODE9": {
+      "alrt": 96.3,
+      "branch_length": 9.376e-07,
+      "ufboot": 100.0
+    },
+    "NODE90": {
+      "alrt": 78.4,
+      "branch_length": 2.344e-07,
+      "ufboot": 40.0
+    },
+    "NODE901": {
+      "alrt": 90.2,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE902": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 93.0
+    },
+    "NODE906": {
+      "alrt": 98.7,
+      "branch_length": 2.4526e-06,
+      "ufboot": 100.0
+    },
+    "NODE907": {
+      "alrt": 100.0,
+      "branch_length": 1.09321e-05,
+      "ufboot": 100.0
+    },
+    "NODE908": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 80.0
+    },
+    "NODE909": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 78.0
+    },
+    "NODE914": {
+      "alrt": 100.0,
+      "branch_length": 1.96881e-05,
+      "ufboot": 100.0
+    },
+    "NODE917": {
+      "alrt": 100.0,
+      "branch_length": 9.0142e-06,
+      "ufboot": 100.0
+    },
+    "NODE918": {
+      "alrt": 92.2,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE919": {
+      "alrt": 99.5,
+      "branch_length": 2.1096e-06,
+      "ufboot": 100.0
+    },
+    "NODE920": {
+      "alrt": 96.4,
+      "branch_length": 9.376e-07,
+      "ufboot": 99.0
+    },
+    "NODE923": {
+      "alrt": 89.8,
+      "branch_length": 4.688e-07,
+      "ufboot": 98.0
+    },
+    "NODE926": {
+      "alrt": 100.0,
+      "branch_length": 3.2816e-06,
+      "ufboot": 100.0
+    },
+    "NODE927": {
+      "alrt": 98.0,
+      "branch_length": 1.4064e-06,
+      "ufboot": 100.0
+    },
+    "NODE931": {
+      "alrt": 100.0,
+      "branch_length": 4.9481e-06,
+      "ufboot": 100.0
+    },
+    "NODE932": {
+      "alrt": 72.7,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE936": {
+      "alrt": 100.0,
+      "branch_length": 1.95838e-05,
+      "ufboot": 100.0
+    },
+    "NODE940": {
+      "alrt": 100.0,
+      "branch_length": 3.64806e-05,
+      "ufboot": 100.0
+    },
+    "NODE941": {
+      "alrt": 100.0,
+      "branch_length": 1.75922e-05,
+      "ufboot": 100.0
+    },
+    "NODE942": {
+      "alrt": 100.0,
+      "branch_length": 8.7531e-06,
+      "ufboot": 100.0
+    },
+    "NODE943": {
+      "alrt": 73.0,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE944": {
+      "alrt": 84.0,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE945": {
+      "alrt": 90.0,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE946": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 55.0
+    },
+    "NODE947": {
+      "alrt": 79.0,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE948": {
+      "alrt": 80.7,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE949": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 30.0
+    },
+    "NODE95": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 9.0
+    },
+    "NODE950": {
+      "alrt": 98.6,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE955": {
+      "alrt": 78.5,
+      "branch_length": 2.344e-07,
+      "ufboot": 100.0
+    },
+    "NODE958": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 61.0
+    },
+    "NODE959": {
+      "alrt": 26.9,
+      "branch_length": 9.376e-07,
+      "ufboot": 62.0
+    },
+    "NODE96": {
+      "alrt": 86.4,
+      "branch_length": 2.344e-07,
+      "ufboot": 14.0
+    },
+    "NODE962": {
+      "alrt": 99.9,
+      "branch_length": 4.2192e-06,
+      "ufboot": 100.0
+    },
+    "NODE965": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 47.0
+    },
+    "NODE968": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 40.0
+    },
+    "NODE969": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 33.0
+    },
+    "NODE97": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 14.0
+    },
+    "NODE975": {
+      "alrt": 100.0,
+      "branch_length": 7.3078e-06,
+      "ufboot": 100.0
+    },
+    "NODE976": {
+      "alrt": 92.1,
+      "branch_length": 7.032e-07,
+      "ufboot": 100.0
+    },
+    "NODE977": {
+      "alrt": 92.5,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE978": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 30.0
+    },
+    "NODE979": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 18.0
+    },
+    "NODE98": {
+      "alrt": 78.4,
+      "branch_length": 2.344e-07,
+      "ufboot": 70.0
+    },
+    "NODE980": {
+      "alrt": 73.3,
+      "branch_length": 2.344e-07,
+      "ufboot": 42.0
+    },
+    "NODE986": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 88.0
+    },
+    "NODE987": {
+      "alrt": 91.7,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE988": {
+      "alrt": 98.6,
+      "branch_length": 1.172e-06,
+      "ufboot": 100.0
+    },
+    "NODE99": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 21.0
+    },
+    "NODE993": {
+      "alrt": 85.2,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE994": {
+      "alrt": 89.5,
+      "branch_length": 4.688e-07,
+      "ufboot": 100.0
+    },
+    "NODE995": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 20.0
+    },
+    "NODE996": {
+      "alrt": 0.0,
+      "branch_length": 2.34e-08,
+      "ufboot": 26.0
+    },
+    "Reference": {
+      "alrt": "NA",
+      "branch_length": 1.8752e-06,
+      "ufboot": "NA"
+    },
+    "SAMEA104233046": {
+      "alrt": "NA",
+      "branch_length": 2.7607e-06,
+      "ufboot": "NA"
+    },
+    "SAMEA104233047": {
+      "alrt": "NA",
+      "branch_length": 4.923e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA104233048": {
+      "alrt": "NA",
+      "branch_length": 7.824e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA104233049": {
+      "alrt": "NA",
+      "branch_length": 1.871e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA104233050": {
+      "alrt": "NA",
+      "branch_length": 1.006e-06,
+      "ufboot": "NA"
+    },
+    "SAMEA104488961": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA1061800": {
+      "alrt": "NA",
+      "branch_length": 9.99e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA3541826": {
+      "alrt": "NA",
+      "branch_length": 3.2202e-06,
+      "ufboot": "NA"
+    },
+    "SAMEA3541827": {
+      "alrt": "NA",
+      "branch_length": 3.8915e-06,
+      "ufboot": "NA"
+    },
+    "SAMEA3713711": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA3713712": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA3713713": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA3713714": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA3713715": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA3937653": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA3937654": {
+      "alrt": "NA",
+      "branch_length": 4.67e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA4354665": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5054089": {
+      "alrt": "NA",
+      "branch_length": 1.6773e-06,
+      "ufboot": "NA"
+    },
+    "SAMEA5054090": {
+      "alrt": "NA",
+      "branch_length": 2.819e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA5054092": {
+      "alrt": "NA",
+      "branch_length": 7.032e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA5054093": {
+      "alrt": "NA",
+      "branch_length": 1.0469e-06,
+      "ufboot": "NA"
+    },
+    "SAMEA5661360": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5661363": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5661364": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5661365": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5661367": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA5661372": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5661375": {
+      "alrt": "NA",
+      "branch_length": 2.052e-06,
+      "ufboot": "NA"
+    },
+    "SAMEA5661384": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5661385": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA5661389": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5661390": {
+      "alrt": "NA",
+      "branch_length": 7.871e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA5818798": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818799": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818800": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818801": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818803": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818805": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818806": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818808": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA5818809": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818811": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818815": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818817": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818818": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818821": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    },
+    "SAMEA5818822": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818825": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818826": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818828": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818829": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMEA5818830": {
+      "alrt": "NA",
+      "branch_length": 2.34e-08,
+      "ufboot": "NA"
+    },
+    "SAMN00715800": {
+      "alrt": "NA",
+      "branch_length": 2.344e-07,
+      "ufboot": "NA"
+    }
+  }
+}
