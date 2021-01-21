@@ -26,8 +26,9 @@ ENV IN_DOCKER_CONTAINER Yes
 # Install nf-core eager pipeline
 RUN nextflow pull nf-core/eager -r dev;
 
-# Install nodejs modules
-RUN npm install --global auspice@2.22.0
+# Install nodejs modules, first must configure user to root
+RUN npm -g config set user root \
+    && npm install --global auspice@2.22.0
 
 # Capture conda env details
 RUN conda env export --name plague-phylogeography > plague-phylogeography.yaml
