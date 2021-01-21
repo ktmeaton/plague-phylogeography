@@ -82,4 +82,5 @@ dependencies:
 - pip:
   - git+https://github.com/ktmeaton/MultiQC.git@snippy
   - phylo-treetime==0.8.0
+  - nextstrain-augur==10.3.0
 name: plague-phylogeography
