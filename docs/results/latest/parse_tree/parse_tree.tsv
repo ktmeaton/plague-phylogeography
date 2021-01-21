@@ -1,4 +1,4 @@
-strain	UFboot	aLRT	Branch_Length	Branch_Support_Color	coord_x	coord_y	Strain	Date	DateBP	Country	Province	CountryLat	CountryLon	ProvinceLat	ProvinceLon	Biovar	Branch_Major	Branch_Minor	BioSample
+Name	UFboot	aLRT	Branch_Length	Branch_Support_Color	coord_x	coord_y	Strain	Date	DateBP	Country	Province	CountryLat	CountryLon	ProvinceLat	ProvinceLon	Biovar	Branch_Major	Branch_Minor	BioSample
 NODE0	100.0	100.0	0.0	red	0	507.02423658585974	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
 NODE1	100.0	99.9	5.2248e-06	red	5.2248e-06	491.0484731717195	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
 NODE2	100.0	100.0	1.82301e-05	red	2.34549e-05	466.59694634343896	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
