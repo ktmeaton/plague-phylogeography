@@ -1,7 +1,7 @@
 # Config
 
 import pandas as pd
-
+import matplotlib.pyplot as plt
 
 # ------------------------------------------------------------------------
 # VARIABLES
@@ -25,16 +25,37 @@ NO_DATA_CHAR = "NA"
 LOW_COL = "black"
 HIGH_COL = "red"
 TERM_COL = "grey"
+THRESH_COL = "blue"
+
+# Continuous data color palette
+CONT_COLOR_PAL = "rainbow"
 
 # Nextstrain / augur / auspice
 JSON_INDENT = 2
 
+# Plotting Graphics
+figsize = (6.4, 4.8)
+figsize_alt = (9.6, 4.8)
+dpi = 400
+
+SM_FONT = 5
+MED_FONT = 8
+LG_FONT = 10
+
+plt.rc("font", size=SM_FONT)  # controls default text sizes
+plt.rc("figure", titlesize=LG_FONT)  # fontsize of the figure title
+# plt.rc('axes', labelsize=MED_FONT)    # fontsize of the x and y labels
+plt.rc("lines", linewidth=0.5)
+
+FMT = "svg"
 
 # ------------------------------------------------------------------------
 # Functions
 # ------------------------------------------------------------------------
 
 # This code is from the biopython Phylo module
+
+
 def get_x_positions(tree):
     """Create a mapping of each clade to its horizontal position.
     Dict of {clade: x-coord}
