@@ -2,6 +2,8 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import colors
+import numpy as np
 
 # ------------------------------------------------------------------------
 # VARIABLES
@@ -20,6 +22,11 @@ BRANCH_LEN_SIG_DIG = 12
 
 # Data parsing
 NO_DATA_CHAR = "NA"
+
+# Mugration Parameterse
+DATES_COL = "Date"
+ATTRIBUTES_LIST = ["Branch_Major", "Branch_Minor", "Country", "Province", "Biovar"]
+MUG_CONF_THRESH = 0.95
 
 # How to color branch supports
 LOW_COL = "black"
@@ -48,6 +55,13 @@ plt.rc("figure", titlesize=LG_FONT)  # fontsize of the figure title
 plt.rc("lines", linewidth=0.5)
 
 FMT = "svg"
+
+# This should be fixed in database
+# REF_NAME = "Reference"
+# REF_DATE = "1992"
+# REF_STRAIN = "CO92"
+# REF_COUNTRY = "United States of America"
+# REF_PROVINCE = "Colarado"
 
 # ------------------------------------------------------------------------
 # Functions
@@ -90,3 +104,76 @@ def get_y_positions(tree):
     if tree.root.clades:
         calc_row(tree.root)
     return heights
+
+
+# My own conversion function
+def convert_timetree_ticks(tree, step):
+    """
+    Return a dict of axis locations and labels for an input timetree tree.
+    """
+    # Step 1: Figure out offset to convert year branch length to calendar date
+    min_date = tree.root.numdate - tree.root.branch_length
+    max_date = np.max([n.numdate for n in tree.get_terminals()])
+    offset = min_date
+    date_range = max_date - min_date
+
+    # Step 2: Relabel xticks and space them differently
+    # Distance between ticks
+    dtick = step
+    # Minimum tick value
+    min_tick = step * (offset // step)
+
+    # Extra tick increment
+    extra = dtick if dtick < date_range else dtick
+    # New tick values
+    tick_vals = np.arange(min_tick, min_tick + date_range + extra, dtick)
+    # New tick locations
+    tick_locs = tick_vals - offset
+    # New tick labels
+    tick_labels = ["%d" % (int(x)) for x in tick_vals]
+    return {"tick_locs": tick_locs, "tick_labels": tick_labels}
+
+
+def color_tree(
+    tree, df, attribute, attribute_confidence, threshold_confidence, color_pal="rainbow"
+):
+    """
+    Color branches of a tree using a data frame and addtribute.
+    Returns a color dictionary and modifies the tree in place.
+    """
+    # Create the custom color map
+    attr_states = list(dict.fromkeys(df[attribute]))
+
+    # Create the custom color map (pyplot)
+    cmap = plt.get_cmap(color_pal, len(attr_states))
+    # Convert the color map to a list of RGB values
+    cmaplist = [cmap(i) for i in range(cmap.N)]
+    # Convert RGB values to hex colors
+    attr_hex = [colors.to_hex(col) for col in cmaplist]
+
+    hex_dict = {}
+
+    # Assign states colors based on tip order (Low Conf first as grey)
+    for state, hex_col in zip(attr_states, attr_hex):
+        hex_dict[state] = hex_col
+
+    # A flag for whether we'll add the low confidence color
+    add_low_conf = False
+
+    # Change colors on tree
+    for c in tree.find_clades():
+        clade_state = df[attribute][c.name]
+        clade_color = hex_dict[clade_state]
+        # OPTIONAL: Color grey if low confidence
+        if df[attribute_confidence][c.name] < threshold_confidence:
+            clade_color = "grey"
+            add_low_conf = True
+
+        # Modify tree
+        c.color = clade_color
+        # Save to dictionary
+
+    if add_low_conf:
+        hex_dict["Low Confidence"] = "grey"
+
+    return hex_dict
