@@ -82,6 +82,13 @@ plt.rc("legend", labelspacing=0.75)
 
 FMT = "svg"
 
+# This should be fixed in database
+# REF_NAME = "Reference"
+# REF_DATE = "1992"
+# REF_STRAIN = "CO92"
+# REF_COUNTRY = "United States of America"
+# REF_PROVINCE = "Colarado"
+
 # ------------------------------------------------------------------------
 # Functions
 # ------------------------------------------------------------------------

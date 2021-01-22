@@ -11,6 +11,7 @@ branch_major	1.ANT	#ff8a48
 branch_major	1.IN	#ff4824
 branch_major	1.ORI	#ff0000
 branch_major	Low Confidence	grey
+<<<<<<< HEAD
 branch_minor	Bronze Age	#8000ff
 branch_minor	0.PE7	#7019ff
 branch_minor	0.PE2	#6032fe
@@ -193,3 +194,5 @@ biovar	Medievalis	#edc76f
 biovar	Second Pandemic	#ff6f39
 biovar	Orientalis	#ff0000
 biovar	Low Confidence	grey
+=======
+>>>>>>> f80727983e047d972529c209ebbd0ee495336644
