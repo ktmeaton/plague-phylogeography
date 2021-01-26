@@ -32,7 +32,7 @@ rules_dir = os.path.join(project_dir, "workflow", "rules")
 config_dir = os.path.join(project_dir, "config")
 notebooks_dir = os.path.join(project_dir, "workflow", "notebooks")
 
-# Include the config file
+# Include the config file (If not specified on command line)
 configfile: os.path.join(config_dir, "snakemake.yaml")
 
 # Sub snakefiles

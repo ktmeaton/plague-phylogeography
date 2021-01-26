@@ -6,7 +6,7 @@ rule metadata:
 		Create a metadata file of filename and strain name.
   	"""
 		output:
-		    txt = report(results_dir + "/metadata/{reads_origin}/metadata.txt",
+		    tsv = report(results_dir + "/metadata/{reads_origin}/metadata.tsv",
                      caption=os.path.join(report_dir,"metadata.rst"),
                      category="Metadata",
                      subcategory="General"),
@@ -20,5 +20,5 @@ rule metadata:
 		    python {scripts_dir}/metadata.py \
 				  --db {params.db} \
 					--samples-csv {params.samples} \
-					--output {output.txt} ;
+					--output {output.tsv} ;
 				"""

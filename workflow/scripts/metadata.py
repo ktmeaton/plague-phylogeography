@@ -74,7 +74,10 @@ geocode_dict = {}  # Name: [lat, lon]
 # 9 . Province Latitude
 # 10. Province Longitude
 # 11. BioSample Biovar
-# 12. BioSample Branch
+# 12. BioSample Branch Major
+# 13. BioSample Branch Minor
+# 14. BioSample Accession
+# 15. BioSampleComment
 
 output_headers_main = [
     "Sample",
@@ -91,6 +94,7 @@ output_headers_main = [
     "Branch_Major",
     "Branch_Minor",
     "BioSample",
+    "BioSampleComment",
 ]
 
 # Nextstrain LatLon Format (no header)
@@ -125,7 +129,8 @@ for sample in samples_list:
               BioSampleCollectionDate,
               BioSampleGeographicLocation,
               BioSampleBiovar,
-              BioSampleBranch
+              BioSampleBranch,
+              BioSampleComment
             FROM
               BioSample
             LEFT Join
@@ -158,9 +163,17 @@ for sample in samples_list:
         "NA",  # branch_major [11]
         "NA",  # branch_minor [12],
         "NA",  # biosample [13]
+        "NA",  # comment [14]
     ]
 
     if result:
+
+        # Biosample parsing
+        biosample = result[0]
+        if biosample:
+            output_main_vals[13] = biosample
+
+        # Strain parsing
         strain = result[1]
         output_main_vals[1] = strain
 
@@ -214,12 +227,12 @@ for sample in samples_list:
                 output_main_vals[8] = geocode_dict[province_name][0]
                 output_main_vals[9] = geocode_dict[province_name][1]
 
-        # biovar parsing
+        # Biovar parsing
         biovar = result[4]
         if biovar:
             output_main_vals[10] = biovar
 
-        # branch parsing
+        # Branch parsing
         branch_minor = result[5]
         if branch_minor:
             branch_major = branch_minor
@@ -233,10 +246,10 @@ for sample in samples_list:
             output_main_vals[11] = branch_major
             output_main_vals[12] = branch_minor
 
-        # biosample parsing
-        biosample = result[0]
-        if biosample:
-            output_main_vals[13] = biosample
+        # Comment parsing
+        comment = result[6]
+        if comment:
+            output_main_vals[14] = comment
 
     # Write data to main output file
     with open(output_path_main, "a") as outfile:

@@ -255,7 +255,7 @@ rule plot_missing_data_all:
 #------------------------------------------------------------------------------#
 # Metadata
 #------------------------------------------------------------------------------#
-metadata_all_input      = results_dir + "/metadata/all/metadata.txt"
+metadata_all_input      = results_dir + "/metadata/all/metadata.tsv"
 metadata_local_input    = metadata_all_input.replace("all", "local")
 metadata_sra_input      = metadata_all_input.replace("all", "sra")
 metadata_assembly_input = metadata_all_input.replace("all", "assembly")
