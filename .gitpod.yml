@@ -6,16 +6,15 @@ image: ktmeaton/plague-phylogeography:dev
 tasks:
   - name: init workspace
     init: |
-      echo "Initializing workspace..." \
-      && export PIP_USER=false \
+      echo "export PIP_USER=false" >> ~/.bashrc \
+      && source ~/.bashrc \
       && pre-commit install \
-      && pre-commit install-hooks \
-      && echo -e "\nWorkspace initialized."
+      && pre-commit install-hooks
 
   - name: main
     command: |
-      export PIP_USER=false; \
-      && echo -e "\nMain terminal ready."
+      echo "export PIP_USER=false" >> ~/.bashrc \
+      && source ~/.bashrc
 
   - name: jupyter server
     command: jupyter notebook --NotebookApp.allow_origin=\'$(gp url 8888)\'
