@@ -14,7 +14,7 @@ tasks:
 
   - name: main
     command: |
-      export PIP_USER=false; \
+      echo "export PIP_USER=false" >> ~/.bashrc \
       && echo -e "\nMain terminal ready."
 
   - name: jupyter server
