@@ -1,5 +1,5 @@
 # User Configuration Variables
-OUTPUT_DIR : output
+OUTPUT_DIR : results/sqlite_db
 EMAIL : myusername@domain.com
 API_KEY :
 FORCE_PAUSE_SECONDS : 1
@@ -16,12 +16,12 @@ TABLES :
 
 # Query Terms to Use
 SEARCH_TERMS :
-  - Assembly : (plague OR pestis OR Yersinia pestis)  AND (1900[Date - Sequences Release]:2019[Date - Sequences Release])
-  - BioProject : (plague OR pestis OR Yersinia pestis) AND (bioproject assembly[Filter] OR bioproject sra[Filter]) AND (1900[Registration Date]:2019[Registration Date])
-  - BioSample: (plague OR pestis OR Yersinia pestis) AND (biosample assembly[Filter] OR biosample sra[Filter]) AND (1900[Publication Date]:2019[Publication Date]) OR ("project_name=Rise of the Bronze Age"[attr]) OR ("Title=DA101"[attr])
-  - SRA : ((plague OR pestis OR Yersinia pestis) AND (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]) AND (1900[Publication Date]:2019[Publication Date])
-  - Nucleotide : (plague OR pestis OR Yersinia pestis) AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter]) AND (1900[Publication Date]:2019[Publication Date])
-  - Pubmed : (Yersinia pestis) AND (pubmed assembly[Filter] OR pubmed sra[Filter]) AND (1900[Date - Create]:2019[Date - Create])
+  - Assembly : (plague OR pestis OR Yersinia pestis)  AND (1900[Date - Sequences Release]:2020[Date - Sequences Release])
+  - BioProject : (plague OR pestis OR Yersinia pestis) AND (bioproject assembly[Filter] OR bioproject sra[Filter]) AND (1900[Registration Date]:2020[Registration Date])
+  - BioSample: (plague OR pestis OR Yersinia pestis) AND (biosample assembly[Filter] OR biosample sra[Filter]) AND (1900[Publication Date]:2020[Publication Date]) OR ("project_name=Rise of the Bronze Age"[attr]) OR ("Title=DA101"[attr])
+  - SRA : ((plague OR pestis OR Yersinia pestis) AND (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]) AND (1900[Publication Date]:2020[Publication Date])
+  - Nucleotide : (plague OR pestis OR Yersinia pestis) AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter]) AND (1900[Publication Date]:2020[Publication Date])
+  - Pubmed : (Yersinia pestis) AND (pubmed assembly[Filter] OR pubmed sra[Filter]) AND (1900[Date - Create]:2020[Date - Create])
 
 # Columns of the database (ie. metadata fields to retrieve)
 TABLE_COLUMNS :
