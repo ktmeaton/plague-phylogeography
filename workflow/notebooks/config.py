@@ -53,6 +53,10 @@ DISC_COLOR_PAL = "tab10"
 DISC_CMAP_N = 10
 DISC_CMAP = plt.get_cmap(DISC_COLOR_PAL, DISC_CMAP_N)
 DISC_CMAPLIST = [DISC_CMAP(i) for i in range(DISC_CMAP.N)]
+# Remove the orange from the cmap
+# del DISC_CMAPLIST[1]
+
+BLIND_CMAPLIST = ["#7b85d4", "#f37738", "#83c995"]
 
 # Nextstrain / augur / auspice
 JSON_INDENT = 2
