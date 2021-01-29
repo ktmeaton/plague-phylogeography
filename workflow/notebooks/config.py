@@ -103,8 +103,11 @@ world_polygons = geopandas.read_file(geopandas.datasets.get_path("naturalearth_l
 region_poly = {
     "Caucasus": {"wsen": [35.0000, 30.0009, 60.0000, 50.0000]},
     # Caucasus" : {"wsen": [40.058841, 40.202162, -75.042164, -74.924594]},
-    "Second Pandemic": {"wsen": [-10, 40, 90, 65]},
+    "First Pandemic": {"wsen": [-10, 35, 90, 65]},
+    "Second Pandemic": {"wsen": [-10, 35, 90, 65]},
     "Asia": {"wsen": [60, 0, 140, 70]},
+    "1.ORI": {"wsen": [-190, -60, 190, 90]},
+    "2.MED": {"wsen": [40, 30, 135, 55]},
 }
 
 df_columns = ["Region", "Lon", "Lat"]

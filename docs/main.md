@@ -290,7 +290,7 @@ snakemake --profile profiles/infoserv iqtree_all --config iqtree_runs=10;
 
 | Step | Script         | Output                          |
 |------|----------------|---------------------------------|
-| 1    | Parse Tree     | Divergence Tree, Dataframe, svg, json |
+| 1    | Parse Tree     | Divergence Tree, Dataframe      |
 | 2    | Branch Support | Dataframe, svg                  |
 | 3    | Mugration      | Dataframe, svg                  |
 | 4    | Timetree       | Time tree, Dataframe, svg       |
