@@ -35,7 +35,7 @@ REF_DATE = 1992.0
 REF_LEN = 4653728
 CONFIDENCE = 0.95
 N_IQD = 3
-TIME_MARGINAL = False
+TIME_MARGINAL = True
 SEQ_MARGINAL = False
 MAX_ITER = 3
 RELAXED_CLOCK = {"slack": 1.0, "coupling": 0}
@@ -66,6 +66,7 @@ JSON_INDENT = 2
 
 # Plotting Graphics
 figsize = (6.4, 4.8)
+figsize_flip = (4.8, 6.4)
 figsize_alt = (9.6, 4.8)
 figsize_mini = (4.8, 2.4)
 figsize_tiny = (2.4, 1.2)
