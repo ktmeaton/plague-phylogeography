@@ -10,3 +10,4 @@ workflow/scripts/*pycache*
 .nextflow/*
 .env
 results/data/local/
+workflow/notebooks/__pycache__/
