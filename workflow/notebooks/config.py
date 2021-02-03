@@ -4,6 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import colors
 import numpy as np
+import geopandas
+import shapely
 
 # ------------------------------------------------------------------------
 # VARIABLES
@@ -33,11 +35,12 @@ REF_DATE = 1992.0
 REF_LEN = 4653728
 CONFIDENCE = 0.95
 N_IQD = 3
-TIME_MARGINAL = False
+TIME_MARGINAL = True
 SEQ_MARGINAL = False
 MAX_ITER = 3
 RELAXED_CLOCK = {"slack": 1.0, "coupling": 0}
 # RELAXED_CLOCK = False
+TC = "skyline"
 
 # How to color branch supports
 LOW_COL = "black"
@@ -53,13 +56,20 @@ DISC_COLOR_PAL = "tab10"
 DISC_CMAP_N = 10
 DISC_CMAP = plt.get_cmap(DISC_COLOR_PAL, DISC_CMAP_N)
 DISC_CMAPLIST = [DISC_CMAP(i) for i in range(DISC_CMAP.N)]
+# Remove the orange from the cmap
+# del DISC_CMAPLIST[1]
+
+BLIND_CMAPLIST = ["#7b85d4", "#f37738", "#83c995"]
 
 # Nextstrain / augur / auspice
 JSON_INDENT = 2
 
 # Plotting Graphics
 figsize = (6.4, 4.8)
+figsize_flip = (4.8, 6.4)
 figsize_alt = (9.6, 4.8)
+figsize_mini = (4.8, 2.4)
+figsize_tiny = (2.4, 1.2)
 dpi = 400
 
 SM_FONT = 5
@@ -82,12 +92,61 @@ plt.rc("legend", labelspacing=0.75)
 
 FMT = "svg"
 
-# This should be fixed in database
-# REF_NAME = "Reference"
-# REF_DATE = "1992"
-# REF_STRAIN = "CO92"
-# REF_COUNTRY = "United States of America"
-# REF_PROVINCE = "Colarado"
+# ------------------------------------------------------------------------
+# Geospatial
+# ------------------------------------------------------------------------
+
+CRS = "epsg:4326"
+WEB_MERCATOR_CRS = "epsg:3857"
+world_polygons = geopandas.read_file(geopandas.datasets.get_path("naturalearth_lowres"))
+
+# Order: bottom-left, bottom-right, top-right, top-left (sw, se, ne, nw)
+region_poly = {
+    "Caucasus": {"wsen": [35.0000, 30.0009, 60.0000, 50.0000]},
+    # Caucasus" : {"wsen": [40.058841, 40.202162, -75.042164, -74.924594]},
+    "First Pandemic": {"wsen": [-10, 35, 90, 65]},
+    "Second Pandemic": {"wsen": [-10, 35, 90, 65]},
+    "Asia": {"wsen": [60, 0, 140, 70]},
+    "1.ORI": {"wsen": [-190, -60, 190, 90]},
+    "2.MED": {"wsen": [40, 30, 135, 55]},
+}
+
+df_columns = ["Region", "Lon", "Lat"]
+region_df = pd.DataFrame(columns=df_columns)
+
+for region in region_poly:
+    wsen = region_poly[region]["wsen"]
+
+    # add to dataframe
+    df = pd.DataFrame(
+        [
+            [region, wsen[0], wsen[1]],
+            [region, wsen[2], wsen[1]],
+            [region, wsen[2], wsen[3]],
+            [region, wsen[0], wsen[3]],
+        ],
+        columns=df_columns,
+    )
+    region_df = region_df.append(df, ignore_index=True)
+
+    # Polygon should be: sw, se, ne, nw
+    region_poly[region]["poly"] = shapely.geometry.Polygon(
+        [
+            (wsen[0], wsen[1]),
+            (wsen[2], wsen[1]),
+            (wsen[2], wsen[3]),
+            (wsen[0], wsen[3]),
+        ]
+    )
+    region_poly[region]["geoseries"] = geopandas.GeoSeries(region_poly[region]["poly"])
+    region_poly[region]["geoseries"].crs = CRS
+    region_poly[region]["xlim"] = (wsen[0], wsen[2])
+    region_poly[region]["ylim"] = (wsen[1], wsen[3])
+
+region_gdf = geopandas.GeoDataFrame(
+    region_df, geometry=geopandas.points_from_xy(region_df.Lon, region_df.Lat)
+)
+region_gdf.set_crs(CRS, inplace=True)
 
 # ------------------------------------------------------------------------
 # Functions

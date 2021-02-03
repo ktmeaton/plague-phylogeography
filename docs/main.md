@@ -310,3 +310,13 @@ Full version:
 ```bash
 snakemake --profile profiles/infoserv iqtree_all --config iqtree_runs=10;
 ```
+
+## Post-Phylogeny
+
+| Step | Script         | Output                          |
+|------|----------------|---------------------------------|
+| 1    | Parse Tree     | Divergence Tree, Dataframe      |
+| 2    | Branch Support | Dataframe, svg                  |
+| 3    | Mugration      | Dataframe, svg                  |
+| 4    | Timetree       | Time tree, Dataframe, svg       |
+| 5    | Geo            | Dataframe, svg                  |
