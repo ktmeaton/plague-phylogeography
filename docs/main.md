@@ -231,6 +231,31 @@ Change the sql commands to include the "KEEP" keyword.
 snakemake --profile profiles/infoserv multiqc_all;
 ```
 
+#### Azov38
+
+Merge: SAMEA7313245, SAMEA7313244, SAMEA7313243
+
+#### Gdansk8
+
+Merge: SAMEA7313249, SAMEA7313248, SAMEA7313247, SAMEA7313246
+Into: SAMEA7313246_49
+
+```bash
+mkdir results/data/sra/SAMEA7313246_49;
+mv results/data/sra/SAMEA731324@(6|7|8|9)*/*.fastq.gz results/data/sra/SAMEA7313246_49
+rm -r results/data/sra/SAMEA731324@(6|7|8|9)/;
+```
+
+#### Rostov2033
+
+Merge: SAMEA7313238, SAMEA7313237, SAMEA7313236
+Into: SAMEA7313236_38
+
+#### Rostov2039
+
+Merge: SAMEA7313242, SAMEA7313241, SAMEA7313240, SAMEA7313239
+Into: SAMEA7313239_42
+
 ## Multiple Alignment
 
 ### Plot Missing Data Differences
