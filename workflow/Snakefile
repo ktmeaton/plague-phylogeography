@@ -101,7 +101,7 @@ rule all:
         # Multiqc
         multiqc_all_input,
         # IQTREE
-        iqtree_all_input,
+        iqtree_scf_all_input,
         # Plot
         plot_missing_data_all_input,
 

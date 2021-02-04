@@ -191,7 +191,6 @@ iqtree_local_input    = [ x.replace("all", "local") for x in iqtree_all_input ]
 iqtree_sra_input      = [ x.replace("all", "sra") for x in iqtree_all_input ]
 iqtree_assembly_input = [ x.replace("all", "assembly") for x in iqtree_all_input ]
 
-# iqtree can be run for testing as
 rule iqtree_assembly:
     input:
         iqtree_assembly_input
@@ -207,6 +206,32 @@ rule iqtree_local:
 rule iqtree_all:
     input:
         iqtree_all_input
+
+ # Site Concordance factor
+ #
+iqtree_scf_all_input      = expand(results_dir + "/iqtree/all/iqtree-core_{locus_name}.filter{missing_data}_post.cf.tree",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+iqtree_scf_local_input    = [ x.replace("all", "local") for x in iqtree_scf_all_input ]
+iqtree_scf_sra_input      = [ x.replace("all", "sra") for x in iqtree_scf_all_input ]
+iqtree_scf_assembly_input = [ x.replace("all", "assembly") for x in iqtree_scf_all_input ]
+
+rule iqtree_scf_assembly:
+    input:
+        iqtree_scf_assembly_input
+
+rule iqtree_scf_sra:
+    input:
+        iqtree_scf_sra_input
+
+rule iqtree_scf_local:
+    input:
+        iqtree_scf_local_input
+
+rule iqtree_scf_all:
+    input:
+        iqtree_scf_all_input
+
 
 #------------------------------------------------------------------------------#
 # Plot
