@@ -78,6 +78,7 @@ geocode_dict = {}  # Name: [lat, lon]
 # 13. BioSample Branch Minor
 # 14. BioSample Accession
 # 15. BioSampleComment
+# 16. BioSample Branch Number
 
 output_headers_main = [
     "Sample",
@@ -95,6 +96,7 @@ output_headers_main = [
     "Branch_Minor",
     "BioSample",
     "BioSampleComment",
+    "Branch_Number",
 ]
 
 # Nextstrain LatLon Format (no header)
@@ -164,6 +166,7 @@ for sample in samples_list:
         "NA",  # branch_minor [12],
         "NA",  # biosample [13]
         "NA",  # comment [14]
+        "NA",  # branch_number [15]
     ]
 
     if result:
@@ -250,6 +253,13 @@ for sample in samples_list:
         comment = result[6]
         if comment:
             output_main_vals[14] = comment
+
+        # branch number parsing
+        branch_number = result[5]
+        if branch_number:
+            # split on the period and take number before
+            branch_number = branch_number.split(".")[0]
+            output_main_vals[15] = branch_number
 
     # Write data to main output file
     with open(output_path_main, "a") as outfile:

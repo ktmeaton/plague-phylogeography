@@ -18,6 +18,7 @@ pd.set_option("display.max_rows", 10, "display.max_columns", None)
 # Branch Support Thresholds (from IQTREE docs)
 ALRT_THRESH = 80
 UFBOOT_THRESH = 95
+SCF_THRESH = 95
 
 # Significant digits for writing newick files
 BRANCH_LEN_SIG_DIG = 12
@@ -27,7 +28,12 @@ NO_DATA_CHAR = "NA"
 
 # Mugration Parameters
 DATE_COL = "Date"
-ATTRIBUTE_LIST = ["Branch_Major", "Branch_Minor", "Country", "Province", "Biovar"]
+# ATTRIBUTE_LIST = ["Branch_Number",
+#                  "Branch_Major",
+#                  "Branch_Minor",
+#                  "Country",
+#                  "Province",]
+ATTRIBUTE_LIST = ["Branch_Number", "Branch_Major"]
 MUG_CONF_THRESH = 0.95
 
 # Clock models
