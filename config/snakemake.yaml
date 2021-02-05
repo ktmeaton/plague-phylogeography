@@ -84,5 +84,5 @@ iqtree_outgroup : "Reference"
 #iqtree_outgroup : "GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic"
 # Outgroup Option #3: Basal ancient clade
 #iqtree_outgroup : "SAMEA3541826,SAMEA3541827"
-iqtree_other : "--ufboot 1000 --alrt 1000"
+iqtree_other : "--ufboot 1000"
 iqtree_runs : 1
