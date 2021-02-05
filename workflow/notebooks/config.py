@@ -6,6 +6,7 @@ from matplotlib import colors
 import numpy as np
 import geopandas
 import shapely
+import datetime
 
 # ------------------------------------------------------------------------
 # VARIABLES
@@ -14,6 +15,9 @@ import shapely
 # Pandas
 # pd.set_option("display.max_rows", None, "display.max_columns", None)
 pd.set_option("display.max_rows", 10, "display.max_columns", None)
+
+# Dates
+CURRENT_YEAR = datetime.datetime.utcnow().year
 
 # Branch Support Thresholds (from IQTREE docs)
 ALRT_THRESH = 80
@@ -28,17 +32,39 @@ NO_DATA_CHAR = "NA"
 
 # Mugration Parameters
 DATE_COL = "Date"
-# ATTRIBUTE_LIST = ["Branch_Number",
-#                  "Branch_Major",
-#                  "Branch_Minor",
-#                  "Country",
-#                  "Province",]
-ATTRIBUTE_LIST = ["Branch_Number", "Branch_Major"]
+ATTRIBUTE_LIST = [
+    "Branch_Number",
+    "Branch_Major",
+    "Branch_Minor",
+    "Country",
+    "Province",
+]
+# ATTRIBUTE_LIST = ["Branch_Number", "Branch_Major"]
 MUG_CONF_THRESH = 0.95
 
-# Clock models
+# Reference Info
+REF_META = {
+    "Date": 1992.0,
+    "DateBP": 0 - (CURRENT_YEAR - 1992.0),
+    "Branch_Number": 1,
+    "Branch_Major": "1.ORI",
+    "Branch_Minor": "1.ORI1",
+    "Country": "United States of America",
+    "Province": "Colorado",
+    "Biovar": "Orientalis",
+    "BioSampleComment": "KEEP: Assembly Modern Reference",
+    "CountryLat": 39.7837304,
+    "CountryLon": -100.4458825,
+    "ProvinceLat": 38.7251776,
+    "ProvinceLon": -105.607716,
+}
 REF_DATE = 1992.0
+REF_STRAIN = "CO92"
+
+
 REF_LEN = 4653728
+
+# Clock models
 CONFIDENCE = 0.95
 N_IQD = 3
 TIME_MARGINAL = True
