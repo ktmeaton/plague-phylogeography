@@ -66,13 +66,17 @@ REF_LEN = 4653728
 
 # Clock models
 CONFIDENCE = 0.95
-N_IQD = 3
 TIME_MARGINAL = True
 SEQ_MARGINAL = False
 MAX_ITER = 3
 RELAXED_CLOCK = {"slack": 1.0, "coupling": 0}
 # RELAXED_CLOCK = False
 TC = "skyline"
+
+# N_IQD Explanation
+# 1_IQD is np.percentile(residuals,75) - np.percentile(residuals,25)
+# 3_IQD is 3 *1_IQD
+N_IQD = 2
 
 # How to color branch supports
 LOW_COL = "black"
@@ -95,6 +99,8 @@ BLIND_CMAPLIST = ["#7b85d4", "#f37738", "#83c995"]
 
 # Nextstrain / augur / auspice
 JSON_INDENT = 2
+AUSPICE_GEO_RES = "Province"
+AUSPICE_PREFIX = "plague-phylogeography_"
 
 # Plotting Graphics
 figsize = (6.4, 4.8)

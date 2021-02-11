@@ -97,24 +97,6 @@
         <confidence type="ufboot">100.0</confidence>
         <confidence type="scf">55.6</confidence>
         <clade>
-          <name>NODE8</name>
-          <branch_length>3.71597E-05</branch_length>
-          <confidence type="ufboot">100.0</confidence>
-          <confidence type="scf">100.0</confidence>
-          <clade>
-            <name>GCA_000323485.1_ASM32348v1_genomic</name>
-            <branch_length>2.346E-07</branch_length>
-            <confidence type="ufboot">NA</confidence>
-            <confidence type="scf">NA</confidence>
-          </clade>
-          <clade>
-            <name>GCA_000323845.1_ASM32384v1_genomic</name>
-            <branch_length>2.35E-08</branch_length>
-            <confidence type="ufboot">NA</confidence>
-            <confidence type="scf">NA</confidence>
-          </clade>
-        </clade>
-        <clade>
           <name>NODE9</name>
           <branch_length>1.86931E-05</branch_length>
           <confidence type="ufboot">100.0</confidence>
@@ -146,12 +128,6 @@
                   <confidence type="ufboot">82.0</confidence>
                   <confidence type="scf">69.0</confidence>
                   <clade>
-                    <name>GCA_001601675.1_ASM160167v1_genomic</name>
-                    <branch_length>1.67662E-05</branch_length>
-                    <confidence type="ufboot">NA</confidence>
-                    <confidence type="scf">NA</confidence>
-                  </clade>
-                  <clade>
                     <name>GCA_002127375.1_ASM212737v1_genomic</name>
                     <branch_length>9.384E-07</branch_length>
                     <confidence type="ufboot">NA</confidence>
@@ -180,6 +156,24 @@
                       <confidence type="ufboot">66.0</confidence>
                       <confidence type="scf">67.2</confidence>
                       <clade>
+                        <name>NODE18</name>
+                        <branch_length>5.183E-07</branch_length>
+                        <confidence type="ufboot">95.0</confidence>
+                        <confidence type="scf">57.8</confidence>
+                        <clade>
+                          <name>NODE19</name>
+                          <branch_length>2.1102E-06</branch_length>
+                          <confidence type="ufboot">77.0</confidence>
+                          <confidence type="scf">44.7</confidence>
+                          <clade>
+                            <name>GCA_001972465.1_ASM197246v1_genomic</name>
+                            <branch_length>8.5679E-06</branch_length>
+                            <confidence type="ufboot">NA</confidence>
+                            <confidence type="scf">NA</confidence>
+                          </clade>
+                        </clade>
+                      </clade>
+                      <clade>
                         <name>NODE17</name>
                         <branch_length>1.4076E-06</branch_length>
                         <confidence type="ufboot">100.0</confidence>
@@ -195,36 +189,6 @@
                           <branch_length>9.7353E-06</branch_length>
                           <confidence type="ufboot">NA</confidence>
                           <confidence type="scf">NA</confidence>
-                        </clade>
-                      </clade>
-                      <clade>
-                        <name>NODE18</name>
-                        <branch_length>5.183E-07</branch_length>
-                        <confidence type="ufboot">95.0</confidence>
-                        <confidence type="scf">57.8</confidence>
-                        <clade>
-                          <name>GCA_001972405.1_ASM197240v1_genomic</name>
-                          <branch_length>1.6357E-05</branch_length>
-                          <confidence type="ufboot">NA</confidence>
-                          <confidence type="scf">NA</confidence>
-                        </clade>
-                        <clade>
-                          <name>NODE19</name>
-                          <branch_length>2.1102E-06</branch_length>
-                          <confidence type="ufboot">77.0</confidence>
-                          <confidence type="scf">44.7</confidence>
-                          <clade>
-                            <name>GCA_001972385.1_ASM197238v1_genomic</name>
-                            <branch_length>1.5192E-05</branch_length>
-                            <confidence type="ufboot">NA</confidence>
-                            <confidence type="scf">NA</confidence>
-                          </clade>
-                          <clade>
-                            <name>GCA_001972465.1_ASM197246v1_genomic</name>
-                            <branch_length>8.5679E-06</branch_length>
-                            <confidence type="ufboot">NA</confidence>
-                            <confidence type="scf">NA</confidence>
-                          </clade>
                         </clade>
                       </clade>
                     </clade>
@@ -334,12 +298,6 @@
                         <branch_length>2.35E-08</branch_length>
                         <confidence type="ufboot">47.0</confidence>
                         <confidence type="scf">0.0</confidence>
-                        <clade>
-                          <name>GCA_001972415.1_ASM197241v1_genomic</name>
-                          <branch_length>1.51449E-05</branch_length>
-                          <confidence type="ufboot">NA</confidence>
-                          <confidence type="scf">NA</confidence>
-                        </clade>
                         <clade>
                           <name>NODE30</name>
                           <branch_length>4.692E-07</branch_length>
@@ -528,6 +486,54 @@
                       <confidence type="ufboot">100.0</confidence>
                       <confidence type="scf">99.8</confidence>
                       <clade>
+                        <name>NODE50</name>
+                        <branch_length>2.35E-08</branch_length>
+                        <confidence type="ufboot">28.0</confidence>
+                        <confidence type="scf">0.0</confidence>
+                        <clade>
+                          <name>GCA_002993145.1_ASM299314v1_genomic</name>
+                          <branch_length>2.35E-08</branch_length>
+                          <confidence type="ufboot">NA</confidence>
+                          <confidence type="scf">NA</confidence>
+                        </clade>
+                        <clade>
+                          <name>NODE51</name>
+                          <branch_length>2.35E-08</branch_length>
+                          <confidence type="ufboot">25.0</confidence>
+                          <confidence type="scf">0.0</confidence>
+                          <clade>
+                            <name>GCA_001188795.1_ASM118879v1_genomic</name>
+                            <branch_length>4.692E-07</branch_length>
+                            <confidence type="ufboot">NA</confidence>
+                            <confidence type="scf">NA</confidence>
+                          </clade>
+                          <clade>
+                            <name>NODE52</name>
+                            <branch_length>4.99E-08</branch_length>
+                            <confidence type="ufboot">44.0</confidence>
+                            <confidence type="scf">30.4</confidence>
+                            <clade>
+                              <name>GCA_001294815.1_ASM129481v1_genomic</name>
+                              <branch_length>2.5542E-06</branch_length>
+                              <confidence type="ufboot">NA</confidence>
+                              <confidence type="scf">NA</confidence>
+                            </clade>
+                            <clade>
+                              <name>NODE53</name>
+                              <branch_length>1.1672E-06</branch_length>
+                              <confidence type="ufboot">89.0</confidence>
+                              <confidence type="scf">55.2</confidence>
+                              <clade>
+                                <name>GCA_000382505.1_Yersinia_pestis_G1670E_assembly_genomic</name>
+                                <branch_length>1.3756E-06</branch_length>
+                                <confidence type="ufboot">NA</confidence>
+                                <confidence type="scf">NA</confidence>
+                              </clade>
+                            </clade>
+                          </clade>
+                        </clade>
+                      </clade>
+                      <clade>
                         <name>NODE45</name>
                         <branch_length>2.346E-07</branch_length>
                         <confidence type="ufboot">100.0</confidence>
@@ -589,72 +595,6 @@
                               <branch_length>2.35E-08</branch_length>
                               <confidence type="ufboot">NA</confidence>
                               <confidence type="scf">NA</confidence>
-                            </clade>
-                          </clade>
-                        </clade>
-                      </clade>
-                      <clade>
-                        <name>NODE50</name>
-                        <branch_length>2.35E-08</branch_length>
-                        <confidence type="ufboot">28.0</confidence>
-                        <confidence type="scf">0.0</confidence>
-                        <clade>
-                          <name>GCA_002993145.1_ASM299314v1_genomic</name>
-                          <branch_length>2.35E-08</branch_length>
-                          <confidence type="ufboot">NA</confidence>
-                          <confidence type="scf">NA</confidence>
-                        </clade>
-                        <clade>
-                          <name>NODE51</name>
-                          <branch_length>2.35E-08</branch_length>
-                          <confidence type="ufboot">25.0</confidence>
-                          <confidence type="scf">0.0</confidence>
-                          <clade>
-                            <name>GCA_001188795.1_ASM118879v1_genomic</name>
-                            <branch_length>4.692E-07</branch_length>
-                            <confidence type="ufboot">NA</confidence>
-                            <confidence type="scf">NA</confidence>
-                          </clade>
-                          <clade>
-                            <name>NODE52</name>
-                            <branch_length>4.99E-08</branch_length>
-                            <confidence type="ufboot">44.0</confidence>
-                            <confidence type="scf">30.4</confidence>
-                            <clade>
-                              <name>GCA_001294815.1_ASM129481v1_genomic</name>
-                              <branch_length>2.5542E-06</branch_length>
-                              <confidence type="ufboot">NA</confidence>
-                              <confidence type="scf">NA</confidence>
-                            </clade>
-                            <clade>
-                              <name>NODE53</name>
-                              <branch_length>1.1672E-06</branch_length>
-                              <confidence type="ufboot">89.0</confidence>
-                              <confidence type="scf">55.2</confidence>
-                              <clade>
-                                <name>GCA_000382505.1_Yersinia_pestis_G1670E_assembly_genomic</name>
-                                <branch_length>1.3756E-06</branch_length>
-                                <confidence type="ufboot">NA</confidence>
-                                <confidence type="scf">NA</confidence>
-                              </clade>
-                              <clade>
-                                <name>NODE54</name>
-                                <branch_length>3.3467E-06</branch_length>
-                                <confidence type="ufboot">100.0</confidence>
-                                <confidence type="scf">100.0</confidence>
-                                <clade>
-                                  <name>GCA_000382545.1_Yersinia_pestis_assembly_genomic</name>
-                                  <branch_length>2.35E-08</branch_length>
-                                  <confidence type="ufboot">NA</confidence>
-                                  <confidence type="scf">NA</confidence>
-                                </clade>
-                                <clade>
-                                  <name>GCA_001188335.1_DYA_1_genomic</name>
-                                  <branch_length>2.35E-08</branch_length>
-                                  <confidence type="ufboot">NA</confidence>
-                                  <confidence type="scf">NA</confidence>
-                                </clade>
-                              </clade>
                             </clade>
                           </clade>
                         </clade>
@@ -3095,6 +3035,30 @@
                                       <confidence type="ufboot">100.0</confidence>
                                       <confidence type="scf">91.5</confidence>
                                       <clade>
+                                        <name>NODE262</name>
+                                        <branch_length>2.346E-07</branch_length>
+                                        <confidence type="ufboot">100.0</confidence>
+                                        <confidence type="scf">98.3</confidence>
+                                        <clade>
+                                          <name>NODE264</name>
+                                          <branch_length>2.346E-07</branch_length>
+                                          <confidence type="ufboot">100.0</confidence>
+                                          <confidence type="scf">99.8</confidence>
+                                          <clade>
+                                            <name>GCA_001601285.1_ASM160128v1_genomic</name>
+                                            <branch_length>2.35E-08</branch_length>
+                                            <confidence type="ufboot">NA</confidence>
+                                            <confidence type="scf">NA</confidence>
+                                          </clade>
+                                          <clade>
+                                            <name>GCA_015336465.1_ASM1533646v1_genomic</name>
+                                            <branch_length>2.35E-08</branch_length>
+                                            <confidence type="ufboot">NA</confidence>
+                                            <confidence type="scf">NA</confidence>
+                                          </clade>
+                                        </clade>
+                                      </clade>
+                                      <clade>
                                         <name>NODE259</name>
                                         <branch_length>2.35E-08</branch_length>
                                         <confidence type="ufboot">27.0</confidence>
@@ -3133,48 +3097,6 @@
                                               <confidence type="ufboot">NA</confidence>
                                               <confidence type="scf">NA</confidence>
                                             </clade>
-                                          </clade>
-                                        </clade>
-                                      </clade>
-                                      <clade>
-                                        <name>NODE262</name>
-                                        <branch_length>2.346E-07</branch_length>
-                                        <confidence type="ufboot">100.0</confidence>
-                                        <confidence type="scf">98.3</confidence>
-                                        <clade>
-                                          <name>NODE263</name>
-                                          <branch_length>3.30663E-05</branch_length>
-                                          <confidence type="ufboot">100.0</confidence>
-                                          <confidence type="scf">100.0</confidence>
-                                          <clade>
-                                            <name>GCA_000834275.1_ASM83427v1_genomic</name>
-                                            <branch_length>4.692E-07</branch_length>
-                                            <confidence type="ufboot">NA</confidence>
-                                            <confidence type="scf">NA</confidence>
-                                          </clade>
-                                          <clade>
-                                            <name>GCA_000834885.1_ASM83488v1_genomic</name>
-                                            <branch_length>4.692E-07</branch_length>
-                                            <confidence type="ufboot">NA</confidence>
-                                            <confidence type="scf">NA</confidence>
-                                          </clade>
-                                        </clade>
-                                        <clade>
-                                          <name>NODE264</name>
-                                          <branch_length>2.346E-07</branch_length>
-                                          <confidence type="ufboot">100.0</confidence>
-                                          <confidence type="scf">99.8</confidence>
-                                          <clade>
-                                            <name>GCA_001601285.1_ASM160128v1_genomic</name>
-                                            <branch_length>2.35E-08</branch_length>
-                                            <confidence type="ufboot">NA</confidence>
-                                            <confidence type="scf">NA</confidence>
-                                          </clade>
-                                          <clade>
-                                            <name>GCA_015336465.1_ASM1533646v1_genomic</name>
-                                            <branch_length>2.35E-08</branch_length>
-                                            <confidence type="ufboot">NA</confidence>
-                                            <confidence type="scf">NA</confidence>
                                           </clade>
                                         </clade>
                                       </clade>
@@ -3712,24 +3634,6 @@
                                           <confidence type="ufboot">NA</confidence>
                                           <confidence type="scf">NA</confidence>
                                         </clade>
-                                        <clade>
-                                          <name>NODE309</name>
-                                          <branch_length>3.82887E-05</branch_length>
-                                          <confidence type="ufboot">100.0</confidence>
-                                          <confidence type="scf">99.3</confidence>
-                                          <clade>
-                                            <name>GCA_008630375.1_ASM863037v1_genomic</name>
-                                            <branch_length>6.802E-07</branch_length>
-                                            <confidence type="ufboot">NA</confidence>
-                                            <confidence type="scf">NA</confidence>
-                                          </clade>
-                                          <clade>
-                                            <name>GCA_008630375.2_ASM863037v2_genomic</name>
-                                            <branch_length>3.8172E-06</branch_length>
-                                            <confidence type="ufboot">NA</confidence>
-                                            <confidence type="scf">NA</confidence>
-                                          </clade>
-                                        </clade>
                                       </clade>
                                     </clade>
                                   </clade>
@@ -4223,24 +4127,6 @@
                                                 <confidence type="ufboot">NA</confidence>
                                                 <confidence type="scf">NA</confidence>
                                               </clade>
-                                              <clade>
-                                                <name>NODE352</name>
-                                                <branch_length>1.0871E-05</branch_length>
-                                                <confidence type="ufboot">100.0</confidence>
-                                                <confidence type="scf">66.9</confidence>
-                                                <clade>
-                                                  <name>GCA_003086075.1_ASM308607v1_genomic</name>
-                                                  <branch_length>1.3682E-05</branch_length>
-                                                  <confidence type="ufboot">NA</confidence>
-                                                  <confidence type="scf">NA</confidence>
-                                                </clade>
-                                                <clade>
-                                                  <name>GCA_003086115.1_ASM308611v1_genomic</name>
-                                                  <branch_length>6.7831E-06</branch_length>
-                                                  <confidence type="ufboot">NA</confidence>
-                                                  <confidence type="scf">NA</confidence>
-                                                </clade>
-                                              </clade>
                                             </clade>
                                             <clade>
                                               <name>NODE353</name>
@@ -4404,6 +4290,114 @@
                                               <confidence type="ufboot">100.0</confidence>
                                               <confidence type="scf">97.1</confidence>
                                               <clade>
+                                                <name>NODE376</name>
+                                                <branch_length>2.346E-07</branch_length>
+                                                <confidence type="ufboot">100.0</confidence>
+                                                <confidence type="scf">94.9</confidence>
+                                                <clade>
+                                                  <name>GCA_006376435.1_ASM637643v1_genomic</name>
+                                                  <branch_length>4.692E-07</branch_length>
+                                                  <confidence type="ufboot">NA</confidence>
+                                                  <confidence type="scf">NA</confidence>
+                                                </clade>
+                                                <clade>
+                                                  <name>NODE377</name>
+                                                  <branch_length>7.038E-07</branch_length>
+                                                  <confidence type="ufboot">99.0</confidence>
+                                                  <confidence type="scf">77.5</confidence>
+                                                  <clade>
+                                                    <name>NODE378</name>
+                                                    <branch_length>2.35E-08</branch_length>
+                                                    <confidence type="ufboot">54.0</confidence>
+                                                    <confidence type="scf">0.22</confidence>
+                                                    <clade>
+                                                      <name>GCA_006376415.1_ASM637641v1_genomic</name>
+                                                      <branch_length>9.384E-07</branch_length>
+                                                      <confidence type="ufboot">NA</confidence>
+                                                      <confidence type="scf">NA</confidence>
+                                                    </clade>
+                                                    <clade>
+                                                      <name>NODE379</name>
+                                                      <branch_length>2.346E-07</branch_length>
+                                                      <confidence type="ufboot">69.0</confidence>
+                                                      <confidence type="scf">48.8</confidence>
+                                                      <clade>
+                                                        <name>GCA_015336085.1_ASM1533608v1_genomic</name>
+                                                        <branch_length>2.35E-08</branch_length>
+                                                        <confidence type="ufboot">NA</confidence>
+                                                        <confidence type="scf">NA</confidence>
+                                                      </clade>
+                                                      <clade>
+                                                        <name>NODE380</name>
+                                                        <branch_length>1.6507E-06</branch_length>
+                                                        <confidence type="ufboot">98.0</confidence>
+                                                        <confidence type="scf">76.8</confidence>
+                                                        <clade>
+                                                          <name>GCA_001559935.1_ASM155993v1_genomic</name>
+                                                          <branch_length>6.6483E-06</branch_length>
+                                                          <confidence type="ufboot">NA</confidence>
+                                                          <confidence type="scf">NA</confidence>
+                                                        </clade>
+                                                      </clade>
+                                                    </clade>
+                                                  </clade>
+                                                  <clade>
+                                                    <name>NODE381</name>
+                                                    <branch_length>4.692E-07</branch_length>
+                                                    <confidence type="ufboot">91.0</confidence>
+                                                    <confidence type="scf">88.8</confidence>
+                                                    <clade>
+                                                      <name>NODE382</name>
+                                                      <branch_length>2.35E-08</branch_length>
+                                                      <confidence type="ufboot">79.0</confidence>
+                                                      <confidence type="scf">0.6</confidence>
+                                                      <clade>
+                                                        <name>GCA_015159615.1_ASM1515961v1_genomic</name>
+                                                        <branch_length>2.35E-08</branch_length>
+                                                        <confidence type="ufboot">NA</confidence>
+                                                        <confidence type="scf">NA</confidence>
+                                                      </clade>
+                                                      <clade>
+                                                        <name>GCA_015337445.1_ASM1533744v1_genomic</name>
+                                                        <branch_length>2.35E-08</branch_length>
+                                                        <confidence type="ufboot">NA</confidence>
+                                                        <confidence type="scf">NA</confidence>
+                                                      </clade>
+                                                    </clade>
+                                                    <clade>
+                                                      <name>NODE383</name>
+                                                      <branch_length>2.346E-07</branch_length>
+                                                      <confidence type="ufboot">100.0</confidence>
+                                                      <confidence type="scf">98.6</confidence>
+                                                      <clade>
+                                                        <name>GCA_006376495.1_ASM637649v1_genomic</name>
+                                                        <branch_length>4.692E-07</branch_length>
+                                                        <confidence type="ufboot">NA</confidence>
+                                                        <confidence type="scf">NA</confidence>
+                                                      </clade>
+                                                      <clade>
+                                                        <name>NODE384</name>
+                                                        <branch_length>4.4833E-06</branch_length>
+                                                        <confidence type="ufboot">100.0</confidence>
+                                                        <confidence type="scf">99.8</confidence>
+                                                        <clade>
+                                                          <name>GCA_006376535.1_ASM637653v1_genomic</name>
+                                                          <branch_length>2.35E-08</branch_length>
+                                                          <confidence type="ufboot">NA</confidence>
+                                                          <confidence type="scf">NA</confidence>
+                                                        </clade>
+                                                        <clade>
+                                                          <name>GCA_006376535.2_ASM637653v2_genomic</name>
+                                                          <branch_length>4.692E-07</branch_length>
+                                                          <confidence type="ufboot">NA</confidence>
+                                                          <confidence type="scf">NA</confidence>
+                                                        </clade>
+                                                      </clade>
+                                                    </clade>
+                                                  </clade>
+                                                </clade>
+                                              </clade>
+                                              <clade>
                                                 <name>NODE367</name>
                                                 <branch_length>2.35E-08</branch_length>
                                                 <confidence type="ufboot">86.0</confidence>
@@ -4511,120 +4505,6 @@
                                                             <confidence type="ufboot">NA</confidence>
                                                             <confidence type="scf">NA</confidence>
                                                           </clade>
-                                                        </clade>
-                                                      </clade>
-                                                    </clade>
-                                                  </clade>
-                                                </clade>
-                                              </clade>
-                                              <clade>
-                                                <name>NODE376</name>
-                                                <branch_length>2.346E-07</branch_length>
-                                                <confidence type="ufboot">100.0</confidence>
-                                                <confidence type="scf">94.9</confidence>
-                                                <clade>
-                                                  <name>GCA_006376435.1_ASM637643v1_genomic</name>
-                                                  <branch_length>4.692E-07</branch_length>
-                                                  <confidence type="ufboot">NA</confidence>
-                                                  <confidence type="scf">NA</confidence>
-                                                </clade>
-                                                <clade>
-                                                  <name>NODE377</name>
-                                                  <branch_length>7.038E-07</branch_length>
-                                                  <confidence type="ufboot">99.0</confidence>
-                                                  <confidence type="scf">77.5</confidence>
-                                                  <clade>
-                                                    <name>NODE378</name>
-                                                    <branch_length>2.35E-08</branch_length>
-                                                    <confidence type="ufboot">54.0</confidence>
-                                                    <confidence type="scf">0.22</confidence>
-                                                    <clade>
-                                                      <name>GCA_006376415.1_ASM637641v1_genomic</name>
-                                                      <branch_length>9.384E-07</branch_length>
-                                                      <confidence type="ufboot">NA</confidence>
-                                                      <confidence type="scf">NA</confidence>
-                                                    </clade>
-                                                    <clade>
-                                                      <name>NODE379</name>
-                                                      <branch_length>2.346E-07</branch_length>
-                                                      <confidence type="ufboot">69.0</confidence>
-                                                      <confidence type="scf">48.8</confidence>
-                                                      <clade>
-                                                        <name>GCA_015336085.1_ASM1533608v1_genomic</name>
-                                                        <branch_length>2.35E-08</branch_length>
-                                                        <confidence type="ufboot">NA</confidence>
-                                                        <confidence type="scf">NA</confidence>
-                                                      </clade>
-                                                      <clade>
-                                                        <name>NODE380</name>
-                                                        <branch_length>1.6507E-06</branch_length>
-                                                        <confidence type="ufboot">98.0</confidence>
-                                                        <confidence type="scf">76.8</confidence>
-                                                        <clade>
-                                                          <name>GCA_001559935.1_ASM155993v1_genomic</name>
-                                                          <branch_length>6.6483E-06</branch_length>
-                                                          <confidence type="ufboot">NA</confidence>
-                                                          <confidence type="scf">NA</confidence>
-                                                        </clade>
-                                                        <clade>
-                                                          <name>GCA_001613865.1_ASM161386v1_genomic</name>
-                                                          <branch_length>2.80245E-05</branch_length>
-                                                          <confidence type="ufboot">NA</confidence>
-                                                          <confidence type="scf">NA</confidence>
-                                                        </clade>
-                                                      </clade>
-                                                    </clade>
-                                                  </clade>
-                                                  <clade>
-                                                    <name>NODE381</name>
-                                                    <branch_length>4.692E-07</branch_length>
-                                                    <confidence type="ufboot">91.0</confidence>
-                                                    <confidence type="scf">88.8</confidence>
-                                                    <clade>
-                                                      <name>NODE382</name>
-                                                      <branch_length>2.35E-08</branch_length>
-                                                      <confidence type="ufboot">79.0</confidence>
-                                                      <confidence type="scf">0.6</confidence>
-                                                      <clade>
-                                                        <name>GCA_015159615.1_ASM1515961v1_genomic</name>
-                                                        <branch_length>2.35E-08</branch_length>
-                                                        <confidence type="ufboot">NA</confidence>
-                                                        <confidence type="scf">NA</confidence>
-                                                      </clade>
-                                                      <clade>
-                                                        <name>GCA_015337445.1_ASM1533744v1_genomic</name>
-                                                        <branch_length>2.35E-08</branch_length>
-                                                        <confidence type="ufboot">NA</confidence>
-                                                        <confidence type="scf">NA</confidence>
-                                                      </clade>
-                                                    </clade>
-                                                    <clade>
-                                                      <name>NODE383</name>
-                                                      <branch_length>2.346E-07</branch_length>
-                                                      <confidence type="ufboot">100.0</confidence>
-                                                      <confidence type="scf">98.6</confidence>
-                                                      <clade>
-                                                        <name>GCA_006376495.1_ASM637649v1_genomic</name>
-                                                        <branch_length>4.692E-07</branch_length>
-                                                        <confidence type="ufboot">NA</confidence>
-                                                        <confidence type="scf">NA</confidence>
-                                                      </clade>
-                                                      <clade>
-                                                        <name>NODE384</name>
-                                                        <branch_length>4.4833E-06</branch_length>
-                                                        <confidence type="ufboot">100.0</confidence>
-                                                        <confidence type="scf">99.8</confidence>
-                                                        <clade>
-                                                          <name>GCA_006376535.1_ASM637653v1_genomic</name>
-                                                          <branch_length>2.35E-08</branch_length>
-                                                          <confidence type="ufboot">NA</confidence>
-                                                          <confidence type="scf">NA</confidence>
-                                                        </clade>
-                                                        <clade>
-                                                          <name>GCA_006376535.2_ASM637653v2_genomic</name>
-                                                          <branch_length>4.692E-07</branch_length>
-                                                          <confidence type="ufboot">NA</confidence>
-                                                          <confidence type="scf">NA</confidence>
                                                         </clade>
                                                       </clade>
                                                     </clade>

@@ -1,3 +1,8 @@
+branch_number	0	#8000ff
+branch_number	3	#00b4ec
+branch_number	4	#80ffb4
+branch_number	2	#ffb462
+branch_number	1	#ff0000
 branch_major	0.PRE	#8000ff
 branch_major	0.PE	#4c4ffc
 branch_major	0.ANT	#1996f3
@@ -10,192 +15,188 @@ branch_major	1.ANT	#ff964f
 branch_major	1.IN	#ff4f28
 branch_major	1.ORI	#ff0000
 branch_minor	0.PRE2	#8000ff
-branch_minor	0.PRE1	#7116ff
-branch_minor	0.PE7	#632cfe
-branch_minor	0.PE2	#5542fd
-branch_minor	0.PE8	#4757fb
-branch_minor	0.PE10	#396cf9
-branch_minor	0.PE4m	#2b7ff6
-branch_minor	0.PE4h	#1c92f3
-branch_minor	0.PE4t	#0ea4f0
-branch_minor	0.PE4a	#00b4ec
-branch_minor	0.PE5	#0ec3e7
-branch_minor	0.ANT1	#1cd1e2
-branch_minor	0.ANT4	#2adddd
-branch_minor	0.ANT2	#39e7d7
-branch_minor	0.ANT5	#47f0d1
-branch_minor	0.ANT3	#55f6ca
-branch_minor	3.ANT1	#63fbc3
-branch_minor	3.ANT2	#71febc
-branch_minor	4.ANT1	#80ffb4
-branch_minor	2.ANT3	#8efeac
-branch_minor	2.ANT2	#9cfba4
-branch_minor	2.ANT1	#aaf69b
-branch_minor	2.MED0	#b8f092
-branch_minor	2.MED3	#c6e789
-branch_minor	2.MED2	#d4dd80
-branch_minor	2.MED1	#e3d176
-branch_minor	1.PRE0	#f1c36c
-branch_minor	1.PRE1	#ffb462
-branch_minor	1.PRE2	#ffa457
-branch_minor	1.PRE3	#ff924d
-branch_minor	1.ANT1	#ff8042
-branch_minor	1.IN1	#ff6c37
-branch_minor	1.IN2	#ff572c
-branch_minor	1.IN3	#ff4221
-branch_minor	1.ORI1	#ff2c16
-branch_minor	1.ORI3	#ff160b
+branch_minor	0.PRE1	#7117ff
+branch_minor	0.PE2	#622efe
+branch_minor	0.PE8	#5444fd
+branch_minor	0.PE10	#455afb
+branch_minor	0.PE4m	#376ff9
+branch_minor	0.PE4h	#2883f6
+branch_minor	0.PE4t	#1a96f3
+branch_minor	0.PE4a	#0ba8ef
+branch_minor	0.PE5	#04b8ea
+branch_minor	0.ANT1	#12c7e6
+branch_minor	0.ANT4	#21d5e1
+branch_minor	0.ANT2	#2fe1db
+branch_minor	0.ANT5	#3eead5
+branch_minor	0.ANT3	#4cf3ce
+branch_minor	3.ANT1	#5bf9c7
+branch_minor	3.ANT2	#6afdc0
+branch_minor	4.ANT1	#78ffb8
+branch_minor	2.ANT3	#87ffb0
+branch_minor	2.ANT2	#95fda8
+branch_minor	2.ANT1	#a4f99f
+branch_minor	2.MED0	#b2f396
+branch_minor	2.MED3	#c1ea8c
+branch_minor	2.MED2	#d0e183
+branch_minor	2.MED1	#ded579
+branch_minor	1.PRE0	#edc76f
+branch_minor	1.PRE1	#fbb864
+branch_minor	1.PRE2	#ffa85a
+branch_minor	1.PRE3	#ff964f
+branch_minor	1.ANT1	#ff8344
+branch_minor	1.IN1	#ff6f39
+branch_minor	1.IN2	#ff5a2e
+branch_minor	1.IN3	#ff4422
+branch_minor	1.ORI1	#ff2e17
+branch_minor	1.ORI3	#ff170b
 branch_minor	1.ORI2	#ff0000
 country	Russia	#8000ff
-country	Lithuania	#7215ff
-country	Estonia	#652afe
-country	Germany	#573ffd
-country	China	#4a53fc
-country	Azerbaijan	#3c66fa
-country	Armenia	#2f79f7
-country	Georgia	#228bf4
-country	Mongolia	#149df1
-country	Tajikistan	#07adee
-country	Kyrgyzstan	#07bcea
-country	England	#14c9e5
-country	Spain	#22d5e0
-country	France	#2fe0db
-country	Nepal	#3cead5
-country	India	#4af1d0
-country	Kazakhstan	#57f7c9
-country	Turkmenistan	#65fcc3
-country	Uzbekistan	#72febc
-country	Iran	#80ffb4
-country	United States of America	#8dfead
-country	Italy	#9afca5
-country	Poland	#a8f79d
-country	Switzerland	#b5f194
-country	Norway	#c3ea8b
-country	The Netherlands	#d0e083
-country	Uganda	#ddd579
-country	Democratic Republic of the Congo	#ebc970
-country	Kenya	#f8bc66
-country	Indonesia	#ffad5d
-country	Madagascar	#ff9d53
-country	Peru	#ff8b49
-country	Canada	#ff793f
-country	Vietnam	#ff6634
-country	Myanmar	#ff532a
-country	Zimbabwe	#ff3f20
-country	Brazil	#ff2a15
-country	Algeria	#ff150b
+country	Lithuania	#7216ff
+country	Estonia	#642bfe
+country	Germany	#5640fd
+country	Azerbaijan	#4855fb
+country	Armenia	#3b69f9
+country	Georgia	#2d7cf7
+country	China	#1f8ff4
+country	Mongolia	#11a0f0
+country	Tajikistan	#03b0ed
+country	Kyrgyzstan	#0abfe8
+country	England	#18cde4
+country	Spain	#26d9df
+country	France	#34e4d9
+country	Nepal	#41edd3
+country	India	#4ff4cd
+country	Kazakhstan	#5df9c6
+country	Turkmenistan	#6bfdbf
+country	Iran	#79ffb8
+country	United States of America	#86ffb0
+country	Italy	#94fda8
+country	Poland	#a2f9a0
+country	Switzerland	#b0f498
+country	Norway	#beed8f
+country	The Netherlands	#cbe486
+country	Uganda	#d9d97c
+country	Democratic Republic of the Congo	#e7cd73
+country	Kenya	#f5bf69
+country	Indonesia	#ffb05f
+country	Madagascar	#ffa055
+country	Peru	#ff8f4b
+country	Canada	#ff7c40
+country	Vietnam	#ff6936
+country	Myanmar	#ff552b
+country	Zimbabwe	#ff4020
+country	Brazil	#ff2b16
+country	Algeria	#ff160b
 country	Bolivia	#ff0000
 province	Krasnoyarsk Krai	#8000ff
 province	Panevezys County	#7b07ff
 province	Pärnu maakond	#760eff
-province	Irkutsk Oblast	#7215ff
-province	Bavaria	#6d1cff
-province	Altai Krai	#6923fe
-province	Qinghai	#642afe
-province	Republic of Dagestan	#6031fe
-province	Goranboy District	#5b38fd
-province	Syunik Province	#573ffd
-province	Shirak Province	#5246fd
-province	Gegharkunik Province	#4e4dfc
-province	Samtskhe-Javakheti	#4954fb
-province	Shahbuz Rayon	#455afb
-province	Samara Oblast	#4061fa
-province	Sečuán	#3c67f9
-province	Inner Mongolia	#376ef9
-province	Bayankhongor	#3374f8
-province	Sughd Province	#2e7af7
-province	Talas Region	#2a81f6
-province	Altai Republic	#2587f5
-province	Govi-Altai	#218df4
-province	Övörkhangai	#1c92f3
-province	Ömnögovi	#1898f2
-province	Omnogovi	#139ef1
-province	Bayan-Ölgii	#0fa3f0
-province	Khovd	#0aa9ef
-province	Xinjiang	#06aeed
-province	Issyk-Kul Region	#01b3ec
-province	East of England	#03b8eb
-province	Valencia Community	#08bde9
-province	Centre-Loire Valley	#0cc2e8
-province	Osh Region	#11c6e6
-province	Naryn Region	#15cae5
-province	Gansu	#1acfe3
-province	Dornogovi	#1ed3e1
-province	Tuva Republic	#23d7e0
-province	Jilin	#27dade
-province	St. Petersberg	#2cdedc
-province	Heilongjiang	#31e1da
-province	Zabaykalsky Krai	#35e5d9
-province	Tibet	#3ae8d7
-province	Gandaki Pradesh	#3eebd5
-province	Maharashtra	#43edd3
-province	Himachal Pradesh	#47f0d1
-province	Kabardino-Balkaria	#4cf2cf
-province	Karachay-Cherkessia	#50f4cd
-province	Ningxia	#55f6ca
-province	Shaanxi	#59f8c8
-province	Hebei	#5ef9c6
+province	Irkutsk Oblast	#7216ff
+province	Bavaria	#6d1dff
+province	Altai Krai	#6924fe
+province	Republic of Dagestan	#642bfe
+province	Goranboy District	#5f32fe
+province	Syunik Province	#5b39fd
+province	Shirak Province	#5640fd
+province	Gegharkunik Province	#5247fc
+province	Samtskhe-Javakheti	#4d4efc
+province	Shahbuz Rayon	#4855fb
+province	Samara Oblast	#445cfb
+province	Qinghai	#3f62fa
+province	Sečuán	#3b69f9
+province	Inner Mongolia	#3670f8
+province	Bayankhongor	#3176f8
+province	Sughd Province	#2d7cf7
+province	Talas Region	#2883f6
+province	Altai Republic	#2489f5
+province	Govi-Altai	#1f8ff4
+province	Övörkhangai	#1a95f3
+province	Ömnögovi	#169bf2
+province	Omnogovi	#11a0f0
+province	Bayan-Ölgii	#0da6ef
+province	Khovd	#08abee
+province	Xinjiang	#03b0ed
+province	Issyk-Kul Region	#01b6eb
+province	East of England	#06bbea
+province	Valencia Community	#0abfe8
+province	Centre-Loire Valley	#0fc4e7
+province	Osh Region	#14c9e5
+province	Naryn Region	#18cde4
+province	Gansu	#1dd1e2
+province	Dornogovi	#21d5e0
+province	Tuva Republic	#26d9df
+province	Jilin	#2adddd
+province	Zabaykalsky Krai	#2fe0db
+province	St. Petersberg	#34e4d9
+province	Tibet	#38e7d7
+province	Gandaki Pradesh	#3dead5
+province	Maharashtra	#41edd3
+province	Himachal Pradesh	#46efd1
+province	Kabardino-Balkaria	#4bf2cf
+province	Karachay-Cherkessia	#4ff4cd
+province	Ningxia	#54f6cb
+province	Shaanxi	#58f8c9
+province	Hebei	#5df9c6
 province	 Dornogovi	#62fbc4
-province	West Kazakhstan Region	#67fcc2
+province	West Kazakhstan Region	#66fcc2
 province	Nagorno-Karabakh Republic	#6bfdbf
-province	Kyzylorda Region	#70febd
-province	Rostov Oblast	#74feba
+province	Kyzylorda Region	#6ffebd
+province	Rostov Oblast	#74febb
 province	Astrakhan Oblast	#79ffb8
 province	Balkan	#7dffb6
 province	Kyzylorda Province	#82ffb3
-province	Shymkent	#86ffb1
-province	Navoiy Region	#8bfeae
-province	Almaty Region	#8ffeab
-province	 West Kazakhstan region	#94fda9
-province	Atyrau Region	#98fca6
-province	Kurdistan	#9dfba3
-province	Fizuli District	#a1f9a1
-province	Baku	#a6f89e
-province	Illinois	#aaf69b
-province	Shamkir District	#aff498
-province	Stavropol Krai	#b3f295
-province	Ingushetia	#b8f092
-province	Mangystau Province	#bced90
-province	Chechnya	#c1eb8d
-province	Aktobe Region	#c5e88a
-province	Atyrau	#cae587
-province	Qazakh District	#cee184
-province	Republic of Kalmykia	#d3de81
-province	Tatarstan	#d8da7d
-province	Lazio	#dcd77a
-province	Baden-Württemberg	#e1d377
-province	Pomeranian Voivodeship	#e5cf74
-province	Brandenburg	#eaca71
-province	Nidwalden	#eec66e
-province	Greater London	#f3c26b
-province	Provence-Alpes-Côte d'Azur	#f7bd67
-province	Catalonia	#fcb864
-province	Occitanie	#ffb361
-province	Oslo	#ffae5d
-province	North Brabant	#ffa95a
-province	Nairobi	#ffa357
-province	Yunnan	#ff9e54
-province	Fujian	#ff9850
-province	Central Java	#ff924d
-province	Province de Fianarantsoa	#ff8d49
-province	Gujarat	#ff8746
-province	Kirov Oblast	#ff8143
-province	Lanzou	#ff7a3f
-province	California	#ff743c
-province	La Libertad	#ff6e38
-province	Tamil Nadu	#ff6735
-province	New Mexico	#ff6131
-province	Arizona	#ff5a2e
-province	Saskatchewan	#ff542a
-province	Colorado	#ff4d27
-province	Texas	#ff4623
-province	Nevada	#ff3f20
-province	Khánh Hoà Province	#ff381c
-province	Lâm Đồng Province	#ff3119
-province	 Ho Chi Minh City	#ff2a15
-province	Guangxi Zhuang	#ff2312
-province	Midlands	#ff1c0e
-province	State of Mato Grosso	#ff150b
+province	Shymkent	#86ffb0
+province	 West Kazakhstan region	#8bfeae
+province	Atyrau Region	#90feab
+province	Shamkir District	#94fda8
+province	Stavropol Krai	#99fca6
+province	Ingushetia	#9dfba3
+province	Kurdistan	#a2f9a0
+province	Fizuli District	#a7f89d
+province	Baku	#abf69b
+province	Illinois	#b0f498
+province	Mangystau Province	#b4f295
+province	Chechnya	#b9ef92
+province	Aktobe Region	#beed8f
+province	Atyrau	#c2ea8c
+province	Qazakh District	#c7e789
+province	Republic of Kalmykia	#cbe486
+province	Tatarstan	#d0e083
+province	Lazio	#d4dd80
+province	Baden-Württemberg	#d9d97c
+province	Vilnius County	#ded579
+province	Pomeranian Voivodeship	#e2d176
+province	Brandenburg	#e7cd73
+province	Nidwalden	#ebc970
+province	Greater London	#f0c46c
+province	Provence-Alpes-Côte d'Azur	#f5bf69
+province	Catalonia	#f9bb66
+province	Occitanie	#feb662
+province	Oslo	#ffb05f
+province	North Brabant	#ffab5c
+province	Nairobi	#ffa658
+province	Yunnan	#ffa055
+province	Fujian	#ff9b52
+province	Central Java	#ff954e
+province	Province de Fianarantsoa	#ff8f4b
+province	Gujarat	#ff8947
+province	Kirov Oblast	#ff8344
+province	Lanzou	#ff7c40
+province	California	#ff763d
+province	La Libertad	#ff7039
+province	Tamil Nadu	#ff6936
+province	New Mexico	#ff6232
+province	Arizona	#ff5c2f
+province	Saskatchewan	#ff552b
+province	Colorado	#ff4e28
+province	Texas	#ff4724
+province	Nevada	#ff4020
+province	Khánh Hoà Province	#ff391d
+province	Lâm Đồng Province	#ff3219
+province	 Ho Chi Minh City	#ff2b16
+province	Guangxi Zhuang	#ff2412
+province	Midlands	#ff1d0e
+province	State of Mato Grosso	#ff160b
 province	MSila	#ff0e07
 province	La Paz	#ff0704
 province	Cajamarca	#ff0000
