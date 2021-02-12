@@ -63,11 +63,18 @@ rule multiqc:
         os.path.join(logs_dir, "multiqc/{reads_origin}/multiqc.log")
     resources:
         cpus = 1,
+    params:
+        # A list of all eager output directories except for assembly samples
+        eager_dir = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/"
+                                          for path in identify_paths(outdir="eager", reads_origin=wildcards.reads_origin) if "assembly" not in path]),
     shell:
-        "multiqc \
+        """
+        multiqc \
           -c {input.multiqc_config} \
           --export \
           --outdir {output.dir} \
           --force \
+          {params.eager_dir} \
           {input.qualimap_dir} \
-          {input.snippy_pairwise_dir} 2> {log}"
+          {input.snippy_pairwise_dir} 2> {log};
+          """

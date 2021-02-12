@@ -20,6 +20,7 @@ rule eager:
     output:
         final_bam = results_dir + "/eager/{reads_origin}/{sample}/final_bams/{sample}.bam",
         eager_tsv = results_dir + "/eager/{reads_origin}/{sample}/metadata_{sample}.tsv",
+        snippy_dir = directory(results_dir + "/eager/{reads_origin}/{sample}/"),
     wildcard_constraints:
         reads_origin = "(sra|local)",
     resources:
@@ -44,9 +45,10 @@ rule eager:
             --input metadata_{wildcards.sample}.tsv \
             --outdir . \
             --fasta {input.ref_fna} \
+            --clip_forward_adaptor {config[eager_forward_adapter]} \
+            --clip_reverse_adaptor {config[eager_reverse_adapter]} \
             --clip_readlength {config[eager_clip_readlength]} \
             --preserve5p \
-            --mergedonly \
             --mapper bwaaln \
             --bwaalnn {config[eager_bwaalnn]} \
             --bwaalnl {config[eager_bwaalnl]} \
@@ -56,6 +58,7 @@ rule eager:
             --max_cpus {resources.cpus} \
             --max_memory {resources.mem_mb}.MB \
             --max_time {resources.time_min}m \
+			{config[eager_other]} \
             -resume 1> {log.txt}; "
         "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.sample}; "
 

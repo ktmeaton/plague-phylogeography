@@ -101,74 +101,46 @@ bash workflow/scripts/palladio.sh 2>&1 | tee results/metadata/sra/palladio_ancie
 
 ## Genomic Alignment
 
-### Modern Assembly Remote
+### Modern Assembly (NCBI)
 
-Construct alignments of ALL modern *Y. pestis* assemblies. Modify ```config/snakemake.yaml``` to have the following lines:
-
-```yaml
-max_datasets_assembly : 600
-sqlite_select_command_asm : SELECT
-                               AssemblyFTPGenbank
-                             FROM
-                               BioSample
-                               LEFT JOIN Assembly
-                                 ON AssemblyBioSampleAccession = BioSampleAccession
-                                 WHERE (BioSampleComment LIKE '%Assembly%Modern%')
-```
-
-- [x] Align to the reference genome and create a final MultiQC report.
+Construct alignments of ALL modern *Y. pestis* assemblies.
 
 ```bash
-snakemake --profile profiles/infoserv multiqc_assembly
+snakemake \
+  --configfile docs/results/latest/config/snakemake.yaml \
+  --profile profiles/infoserv \
+  multiqc_assembly \
 ```
 
-### Modern Fastq Local
+- [ ] Review the MultiQC report.
+
+### Modern Fastq (Local)
 
 Construct alignments of the Institute Pasteur *Y. pestis* samples.
-nf-core/eager parameters need to be modified:
 
 ```bash
-remove: --mergedonly
-add: --clip_forward_adaptor CTGTCTCTTATACACATCT
-add: --clip_reverse_adaptor CTGTCTCTTATACACATCT
-change: snippy_bam_depth to 10
+snakemake \
+  --configfile docs/results/latest/config/snakemake.yaml \
+  --config eager_forward_adapter='CTGTCTCTTATACACATCT' \
+  --config eager_reverse_adapter='CTGTCTCTTATACACATCT' \
+  --config snippy_bam_depth=10 \
+  --config eager_other='' \
+  --profile profiles/infoserv \
+  multiqc_local \
+
 ```
 
-- [ ] Align to the reference genome and create a final MultiQC report.
+- [ ] Review the MultiQC report.
 
-```bash
-snakemake --profile profiles/infoserve multiqc_local
-```
+### Ancient SRA (Remote)
 
-- [x] Identify low coverage samples (<70% at 10X) by marking the BioSampleComment as "REMOVE: Assembly Local Low Coverage".
-
-- [ ] Create a filtered MultiQC report.
-
-### Ancient Fastq Remote
-
-Construct alignments of ancient *Y. pestis* sequences. Some preliminary record filtering has occurred, to remove ultra-large sequencing projects (ex. Bronze Age) with low coverage (below 1X).
-
- Modify ```config/snakemake.yaml``` to have the following lines:
-
-```yaml
-max_datasets_sra: 200
-sqlite_select_command_sra : SELECT
-                              BioSampleAccession,
-                              SRARunAccession
-                            FROM
-                              BioSample
-                              LEFT JOIN SRA
-                                ON SRABioSampleAccession = BioSampleAccession
-                                WHERE (BioSampleComment LIKE '%KEEP%SRA%Ancient%')
-```
-
-- [x] Align to the reference genome and create a final MultiQC report.
+Construct alignments of ancient *Y. pestis* sequences.
 
 ```bash
 snakemake --profile profiles/infoserv multiqc_sra
 ```
 
-- [ ] Identify low coverage samples (<70% at 3X) by marking the BioSampleComment as "REMOVE: SRA Ancient Low Coverage".
+- [ ] Review the MultiQC report.
 
 ### Manual Modifications
 
@@ -177,31 +149,18 @@ snakemake --profile profiles/infoserv multiqc_sra
 Split the single end fastq into forward and reverse reads.
 
 ```bash
-AdapterRemoval \
-  --threads 10 \
-  --gzip \
-  --trim3p 75 \
-  --file1 results/data/sra/SAMN00715800/SRR341961_1.fastq.gz \
-  --basename results/data/sra/SAMN00715800/SRR341961_1;
+AdapterRemoval --threads 10 --gzip --trim3p 75 --file1 results/data/sra/SAMN00715800/SRR341961_1.fastq.gz --basename results/data/sra/SAMN00715800/SRR341961_1;
+AdapterRemoval --threads 10 --gzip --trim5p 75 --file1 results/data/sra/SAMN00715800/SRR341961_1.fastq.gz --basename results/data/sra/SAMN00715800/SRR341961_2;
 
-AdapterRemoval \
-  --threads 10 \
-  --gzip \
-  --trim5p 75 \
-  --file1 results/data/sra/SAMN00715800/SRR341961_1.fastq.gz \
-  --basename results/data/sra/SAMN00715800/SRR341961_2;
-
-mv results/data/sra/SAMN00715800/SRR341961_1.truncated.gz results/data/sra/SAMN00715800/SRR341961_1.fastq.gz
-mv results/data/sra/SAMN00715800/SRR341961_2.truncated.gz results/data/sra/SAMN00715800/SRR341961_2.fastq.gz
-
-
+mv results/data/sra/SAMN00715800/SRR341961_1.truncated.gz results/data/sra/SAMN00715800/SRR341961_1.fastq.gz;
+mv results/data/sra/SAMN00715800/SRR341961_2.truncated.gz results/data/sra/SAMN00715800/SRR341961_2.fastq.gz;
 
 rm -f results/data/sra/SAMN00715800/*untrimmed*
 ```
 
 #### SAMEA104233050 (GEN72)
 
-Removie the excess 7 bp library barcodes at the beginning and end.
+Remove the excess 7 bp library barcodes at the beginning and end.
 
 ```bash
 for file in `ls results/data/sra/SAMEA104233050/*.fastq.gz`;
@@ -219,16 +178,6 @@ do
   mv {file%%.*}.truncated.gz $file;
 
 done
-```
-
-- [ ] Create a filtered MultiQC report.
-
-### All Filtered
-
-Change the sql commands to include the "KEEP" keyword.
-
-```bash
-snakemake --profile profiles/infoserv multiqc_all;
 ```
 
 #### Azov38

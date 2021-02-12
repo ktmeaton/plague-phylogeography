@@ -52,7 +52,11 @@ eager_rev: "2.2.1"
 eager_clip_readlength : 35
 eager_bwaalnn : 0.01
 eager_bwaalnl : 16
+eager_other : '--mergedonly'
 organism : "Yersinia pestis"
+# Adapter Removal Defaults
+eager_forward_adapter : 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCACNNNNNNATCTCGTATGCCGTCTTCTGCTTG'
+eager_reverse_adapter : 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT'
 
 # snippy parameters
 snippy_ctg_depth : 10
