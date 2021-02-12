@@ -92,67 +92,67 @@ jobs:
       #    name: conda-logs
       #    path: workflow/logs/
   #----------------------------------------------------------------------------#
-  pipeline_singularity:
-    name: Pipeline with Singularity
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-    timeout-minutes: 60
-    steps:
-      #------------------------------------------------------------------------#
-      - name: setup environment variables
-        run: |
-          echo "SINGULARITY_DOCKER_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> $GITHUB_ENV
-          echo "SINGULARITY_DOCKER_PASSWORD=${{ secrets.DOCKERHUB_PASSWORD }}" >> $GITHUB_ENV
-          echo "FLOWDASH_BIO_USERNAME=${{ secrets.FLOWDASH_BIO_USERNAME }}" >> $GITHUB_ENV
-          echo "FLOWDASH_BIO_PASSWORD=${{ secrets.FLOWDASH_BIO_PASSWORD }}" >> $GITHUB_ENV
-      #------------------------------------------------------------------------#
-      # Checkout Repository
-      - name: checkout repo
-        uses: actions/checkout@v2
-      # Clean results
-      - name: clean results
-        run: |
-          rm -rf results/iqtree/ results/metadata results/multiqc;
-      #------------------------------------------------------------------------#
-      # Setup singularity
-      - name: setup singularity
-        uses: eWaterCycle/setup-singularity@v5
-        with:
-          singularity-version: 3.6.3
-      #------------------------------------------------------------------------#
-      # pull container
-      - name: pull container
-        run: singularity pull docker://docker.io/ktmeaton/plague-phylogeography:dev
-      #------------------------------------------------------------------------#
-      # Configure sra-toolkit
-      - name: configure sra-toolkit
-        run: |
-          mkdir -p ~/.ncbi/;
-          printf '/LIBS/GUID = "%s"\n' `uuidgen` > ~/.ncbi/user-settings.mkfg;
-      # run help
-      - name: run help
-        run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions help;
-      # run all
-      - name: run all
-        run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions all;
-      # run report
-      - name: run report
-        shell: bash -l {0}
-        run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
-      #------------------------------------------------------------------------#
-      #  Artifact Upload
-      - name: artifact singularity-report
-        uses: actions/upload-artifact@v2
-        with:
-          name: singularity-report
-          path: workflow/report/report.html
-      # - name: artifact singularity-logs
-      #  uses: actions/upload-artifact@v2
-      #  if: always()
-      #  with:
-      #    name: singularity-logs
-      #    path: workflow/logs/
+  # pipeline_singularity:
+  #   name: Pipeline with Singularity
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: false
+  #   timeout-minutes: 60
+  #   steps:
+  #     #------------------------------------------------------------------------#
+  #     - name: setup environment variables
+  #       run: |
+  #         echo "SINGULARITY_DOCKER_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> $GITHUB_ENV
+  #         echo "SINGULARITY_DOCKER_PASSWORD=${{ secrets.DOCKERHUB_PASSWORD }}" >> $GITHUB_ENV
+  #         echo "FLOWDASH_BIO_USERNAME=${{ secrets.FLOWDASH_BIO_USERNAME }}" >> $GITHUB_ENV
+  #         echo "FLOWDASH_BIO_PASSWORD=${{ secrets.FLOWDASH_BIO_PASSWORD }}" >> $GITHUB_ENV
+  #     #------------------------------------------------------------------------#
+  #     # Checkout Repository
+  #     - name: checkout repo
+  #       uses: actions/checkout@v2
+  #     # Clean results
+  #     - name: clean results
+  #       run: |
+  #         rm -rf results/iqtree/ results/metadata results/multiqc;
+  #     #------------------------------------------------------------------------#
+  #     # Setup singularity
+  #     - name: setup singularity
+  #       uses: eWaterCycle/setup-singularity@v5
+  #       with:
+  #         singularity-version: 3.6.3
+  #     #------------------------------------------------------------------------#
+  #     # pull container
+  #     - name: pull container
+  #       run: singularity pull docker://docker.io/ktmeaton/plague-phylogeography:dev
+  #     #------------------------------------------------------------------------#
+  #     # Configure sra-toolkit
+  #     - name: configure sra-toolkit
+  #       run: |
+  #         mkdir -p ~/.ncbi/;
+  #         printf '/LIBS/GUID = "%s"\n' `uuidgen` > ~/.ncbi/user-settings.mkfg;
+  #     # run help
+  #     - name: run help
+  #       run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions help;
+  #     # run all
+  #     - name: run all
+  #       run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions all;
+  #     # run report
+  #     - name: run report
+  #       shell: bash -l {0}
+  #       run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
+  #     #------------------------------------------------------------------------#
+  #     #  Artifact Upload
+  #     - name: artifact singularity-report
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: singularity-report
+  #         path: workflow/report/report.html
+  #     # - name: artifact singularity-logs
+  #     #  uses: actions/upload-artifact@v2
+  #     #  if: always()
+  #     #  with:
+  #     #    name: singularity-logs
+  #     #    path: workflow/logs/
   #----------------------------------------------------------------------------#
   pipeline_docker:
     name: Pipeline with Docker
