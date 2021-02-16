@@ -7,8 +7,11 @@ TAGS=`git tag | tr '\n' ' '`
 HEAD="HEAD"
 SCRIPTS_DIR="workflow/scripts"
 NOTES_DIR="docs/releases"
+# -1 will impose no restrictions on the number of commits
+MAX_COMMITS=-1
 
 NEW_VER=$1
+
 
 #------------------------------
 # Parse Versions
@@ -50,6 +53,6 @@ for ((i=1; i<${num_ver}; i++));
 do
   cur_ver=${arr_ver[$i]}
   echo "Comparing $cur_ver to $prev_ver"
-  ${SCRIPTS_DIR}/notes_release.sh ${cur_ver} ${prev_ver} >> CHANGELOG.md
+  ${SCRIPTS_DIR}/notes_release.sh ${cur_ver} ${prev_ver} $MAX_COMMITS >> CHANGELOG.md
   prev_ver=$cur_ver
 done

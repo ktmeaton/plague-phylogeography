@@ -24,7 +24,7 @@ jobs:
       # Check 2 most recent tags, overwrites
       - name: Tagged Release Notes
         run: |
-          workflow/scripts/notes_commits.sh `git tag | tail -n2 | head -n1` `git tag | tail -n1` > release-notes.md
+          workflow/scripts/notes_release.sh `git tag | tail -n2 | head -n1` `git tag | tail -n1` > release-notes.md
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:

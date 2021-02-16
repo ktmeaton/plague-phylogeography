@@ -3,6 +3,9 @@
 # First ="a58299c51609ad"
 OLD_VER=$1
 NEW_VER=$2
+# if MAX_COMMITS not specified, will use default in notes_commits script
+MAX_COMMITS=$3
+
 BASE="https://github.com/ktmeaton/ActionRPG/commit"
 SCRIPTS_DIR=workflow/scripts
 NOTES_DIR=docs/releases
@@ -44,7 +47,7 @@ patch=${arr_ver[2]}
 if [[ $NEW_VER == "HEAD" ]]; then
   rel="Development"
 else
-  rel="Release $minor.$patch"
+  rel="Release v$major.$minor.$patch"
 fi
 
 # ----------------
@@ -80,5 +83,5 @@ fi
 # Commits Header
 echo "### Commits"
 echo
-${SCRIPTS_DIR}/notes_commits.sh ${OLD_VER} ${NEW_VER}
+${SCRIPTS_DIR}/notes_commits.sh ${OLD_VER} ${NEW_VER} ${MAX_COMMITS}
 echo
