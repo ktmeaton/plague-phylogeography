@@ -114,7 +114,7 @@ jobs:
       - name: lint other python
         run: |
           black $(find . -name "*.py")
-          flake8 $(find . -name "*.py")
+          flake8 --config setup.cfg $(find . -name "*.py")
   #----------------------------------------------------------------------------#
   # RST lint
   rst_lint:
