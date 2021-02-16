@@ -11,6 +11,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 - Version control the exhibit_dhsi2020 docs (add tags for install)
 
+## v0.2.1 - 2021-02-16 - Augur and Auspice
+
+1. Automate augur and auspice JSON creation.
+
 ## [v0.2.0] - 2021-01-13 - Snakemake
 
 - Convert pipeline from Nextflow to Snakemake
