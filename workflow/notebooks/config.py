@@ -356,6 +356,9 @@ def augur_export(
                     and "Entropy" not in attr
                 ):
                     attr = attr.replace("Mugration_", "")
+                    # Check again for a type conversion
+                    if attr in type_convert:
+                        attr_val = type_convert[attr](attr_val)
                     augur_data["nodes"][c.name][attr.lower()] = attr_val
 
                     # Prepare an empty dict for the confidence values
@@ -381,6 +384,11 @@ def augur_export(
                     attr_val = {attr_mug_val: attr_val}
 
                     augur_data["nodes"][c.name][attr_conf.lower()] = attr_val
+
+                # Remove the timetree prefix
+                elif "timetree" in attr and "Confidence" not in attr:
+                    attr = attr.replace("timetree_", "")
+                    augur_data["nodes"][c.name][attr.lower()] = attr_val
 
                 else:
                     # Make attribute name in dict lowercase
@@ -458,14 +466,18 @@ def auspice_export(
 
 """
 # Testing
-tree_path="docs/results/latest/parse_tree/parse_tree.nwk"
-aln_path = "docs/results/latest/snippy_multi/snippy-core_chromosome.snps.filter5.aln"
+tree_path=(
+  "../../../../docs/results/latest/parse_tree/parse_tree.nwk"
+)
+aln_path = (
+  "../../../../docs/results/latest/snippy_multi/snippy-core_chromosome.snps.filter5.aln"
+)
 
 tree_div = Phylo.read(tree_path, "newick")
 tree_div.ladderize(reverse=False)
 tree=tree_div
 
-tree_df_path = "../../../../docs/results/latest/mugration/mugration.tsv"
+tree_df_path = "../../../../docs/results/latest/timetree/timetree.tsv"
 tree_df = pd.read_csv(tree_df_path, sep='\t')
 # Fix the problem with multiple forms of NA in the table
 # Consolidate missing data to the NO_DATA_CHAR
@@ -482,4 +494,6 @@ augur_dict = augur_export(
         "Branch_Number" : (lambda x : str(x))
     },
 )
+
+print(augur_dict["nodes"]["NODE0"])
 """

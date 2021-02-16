@@ -1,3 +1,7 @@
 # Release v0.2.2
 
-1. Begin v0.2.2
+1. Add entropy to augur.
+1. Add mugration models to augur.
+1. Add clock model to augur.
+1. Add clock lengths to augur.
+1. Add date confidence to augur.
