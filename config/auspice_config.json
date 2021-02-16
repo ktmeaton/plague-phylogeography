@@ -39,6 +39,11 @@
       "type": "categorical"
     },
     {
+      "key": "branch_number",
+      "title": "Branch Number",
+      "type": "categorical"
+    },
+    {
       "key": "country",
       "title": "Country",
       "type": "categorical"
