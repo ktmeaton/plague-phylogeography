@@ -6,6 +6,9 @@ on:
   push:
     branches:
       - master
+      - dev
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
     paths:
       - '.github/workflows/docker.yaml'
       - 'workflow/envs/merge/environment.yaml'
@@ -62,7 +65,7 @@ jobs:
       - name: docker build
         if: ${{ github.event_name == 'release' }}
         run: |
-          cd workflow/envs/main/;
+          cd workflow/envs/merge/;
           docker build --no-cache . -t ktmeaton/plague-phylogeography:${{ github.event.release.tag_name }};
       #------------------------------------------------------------------------#
       - name: docker push
