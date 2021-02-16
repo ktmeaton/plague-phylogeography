@@ -9,6 +9,8 @@ import shapely
 import time
 import datetime
 from augur import utils, export_v2
+from Bio import Phylo
+import os
 
 # ------------------------------------------------------------------------
 # VARIABLES
@@ -43,6 +45,7 @@ ATTRIBUTE_LIST = [
 ]
 # ATTRIBUTE_LIST = ["Branch_Number", "Branch_Major"]
 MUG_CONF_THRESH = 0.95
+MUG_TINY = 1e-12
 
 # Reference Info
 REF_META = {
@@ -347,7 +350,11 @@ def augur_export(
                     attr_val = type_convert[attr](attr_val)
 
                 # We need the value assigned to the trait by mugration
-                if "Mugration" in attr and "Confidence" not in attr:
+                if (
+                    "Mugration" in attr
+                    and "Confidence" not in attr
+                    and "Entropy" not in attr
+                ):
                     attr = attr.replace("Mugration_", "")
                     augur_data["nodes"][c.name][attr.lower()] = attr_val
 
@@ -355,9 +362,13 @@ def augur_export(
                     attr_conf = attr + "_Confidence"
                     augur_data["nodes"][c.name][attr_conf.lower()] = {attr_val: "NA"}
 
+                # Get the mugration entropy associated with the trait
+                elif "Mugration" in attr and "Entropy" in attr:
+                    attr = attr.replace("Mugration_", "")
+                    augur_data["nodes"][c.name][attr.lower()] = attr_val
+
                 # Get the mugration confidence associated with the trait
                 elif "Mugration" in attr and "Confidence" in attr:
-                    ...
                     attr = attr.replace("Mugration_", "")
                     attr_assoc = attr.replace("_Confidence", "")
 
@@ -443,3 +454,32 @@ def auspice_export(
     export_v2.set_panels(data_json, config, cmd_line_panels=None)
 
     return data_json
+
+
+"""
+# Testing
+tree_path="docs/results/latest/parse_tree/parse_tree.nwk"
+aln_path = "docs/results/latest/snippy_multi/snippy-core_chromosome.snps.filter5.aln"
+
+tree_div = Phylo.read(tree_path, "newick")
+tree_div.ladderize(reverse=False)
+tree=tree_div
+
+tree_df_path = "../../../../docs/results/latest/mugration/mugration.tsv"
+tree_df = pd.read_csv(tree_df_path, sep='\t')
+# Fix the problem with multiple forms of NA in the table
+# Consolidate missing data to the NO_DATA_CHAR
+tree_df.fillna(NO_DATA_CHAR, inplace=True)
+tree_df.set_index("Name", inplace=True)
+
+augur_dict = augur_export(
+    tree_path=tree_path,
+    aln_path=aln_path,
+    tree=tree_div,
+    tree_df=tree_df,
+    color_keyword_exclude=["color", "coord"],
+    type_convert = {
+        "Branch_Number" : (lambda x : str(x))
+    },
+)
+"""
