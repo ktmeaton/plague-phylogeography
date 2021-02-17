@@ -34,6 +34,9 @@ BRANCH_LEN_SIG_DIG = 12
 # Data parsing
 NO_DATA_CHAR = "NA"
 
+# Treemmer
+TARGET_RTL = 0.95
+
 # Mugration Parameters
 DATE_COL = "Date"
 ATTRIBUTE_LIST = [
