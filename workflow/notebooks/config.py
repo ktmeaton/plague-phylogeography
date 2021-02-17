@@ -82,6 +82,7 @@ TC = "skyline"
 # 1_IQD is np.percentile(residuals,75) - np.percentile(residuals,25)
 # 3_IQD is 3 *1_IQD
 N_IQD = 3
+N_STD = 2
 
 # How to color branch supports
 LOW_COL = "black"

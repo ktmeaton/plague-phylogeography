@@ -5,3 +5,4 @@
 1. Add clock model to augur.
 1. Add clock lengths to augur.
 1. Add date confidence to augur.
+1. Disable skyline until gen parameter resolved.
