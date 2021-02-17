@@ -25,8 +25,8 @@
             <name>NODE3</name>
             <branch_length>1.1231E-06</branch_length>
             <clade>
-              <name>SAMEA6812876</name>
-              <branch_length>1.4076E-06</branch_length>
+              <name>SAMEA6812877</name>
+              <branch_length>1.1965000000000001E-06</branch_length>
             </clade>
             <clade>
               <name>NODE5</name>
@@ -155,8 +155,8 @@
                           </clade>
                         </clade>
                         <clade>
-                          <name>GCA_008630455.1_ASM863045v1_genomic</name>
-                          <branch_length>7.037999999999999E-07</branch_length>
+                          <name>GCA_015338205.1_ASM1533820v1_genomic</name>
+                          <branch_length>4.927E-07</branch_length>
                         </clade>
                       </clade>
                     </clade>
@@ -185,7 +185,7 @@
                       <branch_length>1.51449E-05</branch_length>
                     </clade>
                     <clade>
-                      <name>GCA_003074415.1_ASM307441v1_genomic</name>
+                      <name>GCA_003074395.1_ASM307439v1_genomic</name>
                       <branch_length>4.927E-07</branch_length>
                     </clade>
                   </clade>
@@ -236,75 +236,51 @@
                 </clade>
               </clade>
               <clade>
-                <name>NODE39</name>
-                <branch_length>9.2394E-06</branch_length>
+                <name>NODE41</name>
+                <branch_length>9.708599999999999E-06</branch_length>
                 <clade>
-                  <name>GCA_000834985.1_ASM83498v1_genomic</name>
-                  <branch_length>2.35E-08</branch_length>
+                  <name>GCA_001294915.1_ASM129491v1_genomic</name>
+                  <branch_length>7.05E-08</branch_length>
                 </clade>
                 <clade>
-                  <name>NODE41</name>
+                  <name>NODE44</name>
                   <branch_length>4.692E-07</branch_length>
                   <clade>
-                    <name>NODE42</name>
-                    <branch_length>2.35E-08</branch_length>
+                    <name>NODE45</name>
+                    <branch_length>2.346E-07</branch_length>
                     <clade>
-                      <name>GCA_001295045.1_ASM129504v1_genomic</name>
-                      <branch_length>2.35E-08</branch_length>
+                      <name>GCA_000382525.1_Yersinia_pestis_G3768_assembly_genomic</name>
+                      <branch_length>2.581E-07</branch_length>
                     </clade>
                     <clade>
-                      <name>NODE43</name>
-                      <branch_length>2.35E-08</branch_length>
-                      <clade>
-                        <name>GCA_001294915.1_ASM129491v1_genomic</name>
-                        <branch_length>2.35E-08</branch_length>
-                      </clade>
-                      <clade>
-                        <name>GCA_006376545.1_ASM637654v1_genomic</name>
-                        <branch_length>1.4076E-06</branch_length>
-                      </clade>
+                      <name>GCA_001188695.1_ASM118869v1_genomic</name>
+                      <branch_length>1.4311000000000002E-06</branch_length>
                     </clade>
                   </clade>
                   <clade>
-                    <name>NODE44</name>
-                    <branch_length>4.692E-07</branch_length>
+                    <name>NODE51</name>
+                    <branch_length>4.7E-08</branch_length>
                     <clade>
-                      <name>NODE45</name>
-                      <branch_length>2.346E-07</branch_length>
-                      <clade>
-                        <name>GCA_001188755.1_ASM118875v1_genomic</name>
-                        <branch_length>2.581E-07</branch_length>
-                      </clade>
-                      <clade>
-                        <name>GCA_001188935.1_ASM118893v1_genomic</name>
-                        <branch_length>1.4311000000000002E-06</branch_length>
-                      </clade>
+                      <name>GCA_001188795.1_ASM118879v1_genomic</name>
+                      <branch_length>4.692E-07</branch_length>
                     </clade>
                     <clade>
-                      <name>NODE51</name>
-                      <branch_length>4.7E-08</branch_length>
+                      <name>NODE52</name>
+                      <branch_length>4.99E-08</branch_length>
                       <clade>
-                        <name>GCA_001188795.1_ASM118879v1_genomic</name>
-                        <branch_length>4.692E-07</branch_length>
+                        <name>GCA_001294815.1_ASM129481v1_genomic</name>
+                        <branch_length>2.5542E-06</branch_length>
                       </clade>
                       <clade>
-                        <name>NODE52</name>
-                        <branch_length>4.99E-08</branch_length>
+                        <name>NODE53</name>
+                        <branch_length>1.1672E-06</branch_length>
                         <clade>
-                          <name>GCA_001294815.1_ASM129481v1_genomic</name>
-                          <branch_length>2.5542E-06</branch_length>
+                          <name>GCA_000382505.1_Yersinia_pestis_G1670E_assembly_genomic</name>
+                          <branch_length>1.3756E-06</branch_length>
                         </clade>
                         <clade>
-                          <name>NODE53</name>
-                          <branch_length>1.1672E-06</branch_length>
-                          <clade>
-                            <name>GCA_000382505.1_Yersinia_pestis_G1670E_assembly_genomic</name>
-                            <branch_length>1.3756E-06</branch_length>
-                          </clade>
-                          <clade>
-                            <name>GCA_000382545.1_Yersinia_pestis_assembly_genomic</name>
-                            <branch_length>3.3702E-06</branch_length>
-                          </clade>
+                          <name>GCA_001188335.1_DYA_1_genomic</name>
+                          <branch_length>3.3702E-06</branch_length>
                         </clade>
                       </clade>
                     </clade>
@@ -327,8 +303,8 @@
                 <name>NODE57</name>
                 <branch_length>3.863E-07</branch_length>
                 <clade>
-                  <name>GCA_000323625.1_ASM32362v1_genomic</name>
-                  <branch_length>2.01141E-05</branch_length>
+                  <name>GCA_000320425.1_ASM32042v1_genomic</name>
+                  <branch_length>2.03252E-05</branch_length>
                 </clade>
                 <clade>
                   <name>NODE59</name>
@@ -337,8 +313,8 @@
                     <name>NODE60</name>
                     <branch_length>9.0283E-06</branch_length>
                     <clade>
-                      <name>GCA_000325185.1_ASM32518v1_genomic</name>
-                      <branch_length>5.662E-06</branch_length>
+                      <name>GCA_000324045.1_ASM32404v1_genomic</name>
+                      <branch_length>5.4509E-06</branch_length>
                     </clade>
                     <clade>
                       <name>NODE63</name>
@@ -400,8 +376,8 @@
                       <name>NODE70</name>
                       <branch_length>2.4596E-06</branch_length>
                       <clade>
-                        <name>GCA_002412235.1_Y.pestis_A-1249_genomic</name>
-                        <branch_length>2.04151E-05</branch_length>
+                        <name>GCA_001294885.1_ASM129488v1_genomic</name>
+                        <branch_length>1.9969400000000002E-05</branch_length>
                       </clade>
                       <clade>
                         <name>NODE72</name>
@@ -462,8 +438,8 @@
                           <name>NODE79</name>
                           <branch_length>2.215E-07</branch_length>
                           <clade>
-                            <name>GCA_015336865.1_ASM1533686v1_genomic</name>
-                            <branch_length>4.7E-08</branch_length>
+                            <name>GCA_001294965.1_ASM129496v1_genomic</name>
+                            <branch_length>4.927E-07</branch_length>
                           </clade>
                           <clade>
                             <name>NODE81</name>
@@ -498,7 +474,7 @@
                           <name>NODE84</name>
                           <branch_length>2.35E-08</branch_length>
                           <clade>
-                            <name>GCA_000834925.1_ASM83492v1_genomic</name>
+                            <name>GCA_000182545.1_ASM18254v1_genomic</name>
                             <branch_length>2.8160000000000003E-07</branch_length>
                           </clade>
                           <clade>
@@ -558,23 +534,15 @@
                     <branch_length>2.35E-08</branch_length>
                   </clade>
                   <clade>
-                    <name>NODE95</name>
-                    <branch_length>1.173E-06</branch_length>
+                    <name>NODE97</name>
+                    <branch_length>2.346E-06</branch_length>
                     <clade>
-                      <name>GCA_006517425.1_ASM651742v1_genomic</name>
-                      <branch_length>2.346E-07</branch_length>
+                      <name>GCA_000950945.1_ASM95094v1_genomic</name>
+                      <branch_length>3.3081E-06</branch_length>
                     </clade>
                     <clade>
-                      <name>NODE97</name>
-                      <branch_length>1.173E-06</branch_length>
-                      <clade>
-                        <name>GCA_000950945.1_ASM95094v1_genomic</name>
-                        <branch_length>3.3081E-06</branch_length>
-                      </clade>
-                      <clade>
-                        <name>GCA_002981915.1_ASM298191v1_genomic</name>
-                        <branch_length>2.35E-08</branch_length>
-                      </clade>
+                      <name>GCA_002981915.1_ASM298191v1_genomic</name>
+                      <branch_length>2.35E-08</branch_length>
                     </clade>
                   </clade>
                 </clade>
@@ -582,8 +550,8 @@
                   <name>NODE98</name>
                   <branch_length>1.4076E-06</branch_length>
                   <clade>
-                    <name>GCA_003122795.1_Y.pestis_I-2422_genomic</name>
-                    <branch_length>1.4075999999999999E-06</branch_length>
+                    <name>GCA_006546665.1_ASM654666v1_genomic</name>
+                    <branch_length>1.173E-06</branch_length>
                   </clade>
                   <clade>
                     <name>NODE100</name>
@@ -625,8 +593,24 @@
                       <branch_length>2.35E-08</branch_length>
                     </clade>
                     <clade>
-                      <name>GCA_009667985.1_ASM966798v1_genomic</name>
-                      <branch_length>4.8333999999999985E-06</branch_length>
+                      <name>NODE113</name>
+                      <branch_length>3.7771E-06</branch_length>
+                      <clade>
+                        <name>GCA_009670245.1_ASM967024v1_genomic</name>
+                        <branch_length>2.8160000000000003E-07</branch_length>
+                      </clade>
+                      <clade>
+                        <name>NODE116</name>
+                        <branch_length>2.35E-08</branch_length>
+                        <clade>
+                          <name>GCA_009670665.1_ASM967066v1_genomic</name>
+                          <branch_length>8.918E-07</branch_length>
+                        </clade>
+                        <clade>
+                          <name>GCA_009669605.1_ASM966960v1_genomic</name>
+                          <branch_length>8.683E-07</branch_length>
+                        </clade>
+                      </clade>
                     </clade>
                   </clade>
                 </clade>
@@ -648,23 +632,15 @@
                         <branch_length>4.7E-08</branch_length>
                       </clade>
                       <clade>
-                        <name>NODE196</name>
-                        <branch_length>1.1669E-06</branch_length>
+                        <name>NODE197</name>
+                        <branch_length>1.1904E-06</branch_length>
                         <clade>
-                          <name>NODE197</name>
-                          <branch_length>2.35E-08</branch_length>
-                          <clade>
-                            <name>SAMEA5661385</name>
-                            <branch_length>2.346E-07</branch_length>
-                          </clade>
-                          <clade>
-                            <name>SAMEA5661367</name>
-                            <branch_length>4.277E-06</branch_length>
-                          </clade>
+                          <name>SAMEA5661385</name>
+                          <branch_length>2.346E-07</branch_length>
                         </clade>
                         <clade>
-                          <name>SAMEA4354665</name>
-                          <branch_length>2.581E-07</branch_length>
+                          <name>SAMEA5661367</name>
+                          <branch_length>4.277E-06</branch_length>
                         </clade>
                       </clade>
                     </clade>
@@ -702,8 +678,8 @@
                             <branch_length>2.72266E-05</branch_length>
                           </clade>
                           <clade>
-                            <name>GCA_003074535.1_ASM307453v1_genomic</name>
-                            <branch_length>4.7E-08</branch_length>
+                            <name>GCA_015274715.1_ASM1527471v1_genomic</name>
+                            <branch_length>1.1965000000000001E-06</branch_length>
                           </clade>
                         </clade>
                       </clade>
@@ -735,8 +711,8 @@
                           </clade>
                         </clade>
                         <clade>
-                          <name>GCA_000734805.1_ASM73480v1_genomic</name>
-                          <branch_length>2.581E-07</branch_length>
+                          <name>GCA_000324165.1_ASM32416v1_genomic</name>
+                          <branch_length>4.927E-07</branch_length>
                         </clade>
                       </clade>
                       <clade>
@@ -756,8 +732,8 @@
                                 <branch_length>2.35E-08</branch_length>
                               </clade>
                               <clade>
-                                <name>GCA_000324325.1_ASM32432v1_genomic</name>
-                                <branch_length>2.8151999999999997E-06</branch_length>
+                                <name>GCA_000323765.1_ASM32376v1_genomic</name>
+                                <branch_length>3.0497999999999996E-06</branch_length>
                               </clade>
                             </clade>
                             <clade>
@@ -790,8 +766,8 @@
                                     <branch_length>2.8387E-06</branch_length>
                                   </clade>
                                   <clade>
-                                    <name>GCA_000325245.1_ASM32524v1_genomic</name>
-                                    <branch_length>4.692E-07</branch_length>
+                                    <name>GCA_000325285.1_ASM32528v1_genomic</name>
+                                    <branch_length>9.384E-07</branch_length>
                                   </clade>
                                 </clade>
                               </clade>
@@ -801,7 +777,7 @@
                             <name>NODE232</name>
                             <branch_length>2.8152E-06</branch_length>
                             <clade>
-                              <name>GCA_003074315.1_ASM307431v1_genomic</name>
+                              <name>GCA_009295945.1_ASM929594v1_genomic</name>
                               <branch_length>2.6040999999999998E-06</branch_length>
                             </clade>
                             <clade>
@@ -829,8 +805,8 @@
                                       <branch_length>4.692E-07</branch_length>
                                     </clade>
                                     <clade>
-                                      <name>GCA_015338045.1_ASM1533804v1_genomic</name>
-                                      <branch_length>6.601499999999999E-06</branch_length>
+                                      <name>GCA_015337085.1_ASM1533708v1_genomic</name>
+                                      <branch_length>6.5779999999999995E-06</branch_length>
                                     </clade>
                                   </clade>
                                 </clade>
@@ -842,8 +818,8 @@
                                     <branch_length>2.1114E-06</branch_length>
                                   </clade>
                                   <clade>
-                                    <name>GCA_003085915.1_ASM308591v1_genomic</name>
-                                    <branch_length>5.162E-07</branch_length>
+                                    <name>GCA_015336265.1_ASM1533626v1_genomic</name>
+                                    <branch_length>5.161999999999999E-07</branch_length>
                                   </clade>
                                 </clade>
                               </clade>
@@ -870,7 +846,7 @@
                                     <branch_length>2.6040999999999998E-06</branch_length>
                                   </clade>
                                   <clade>
-                                    <name>GCA_000324585.1_ASM32458v1_genomic</name>
+                                    <name>GCA_000324565.1_ASM32456v1_genomic</name>
                                     <branch_length>1.4311000000000002E-06</branch_length>
                                   </clade>
                                 </clade>
@@ -885,8 +861,8 @@
                                     <name>NODE254</name>
                                     <branch_length>4.692E-07</branch_length>
                                     <clade>
-                                      <name>GCA_000323905.1_ASM32390v1_genomic</name>
-                                      <branch_length>1.9003E-06</branch_length>
+                                      <name>GCA_000323925.1_ASM32392v1_genomic</name>
+                                      <branch_length>1.9238E-06</branch_length>
                                     </clade>
                                     <clade>
                                       <name>NODE258</name>
@@ -915,11 +891,11 @@
                                         <name>NODE262</name>
                                         <branch_length>2.346E-07</branch_length>
                                         <clade>
-                                          <name>GCA_000834275.1_ASM83427v1_genomic</name>
+                                          <name>GCA_000834885.1_ASM83488v1_genomic</name>
                                           <branch_length>3.35355E-05</branch_length>
                                         </clade>
                                         <clade>
-                                          <name>GCA_015336465.1_ASM1533646v1_genomic</name>
+                                          <name>GCA_001601285.1_ASM160128v1_genomic</name>
                                           <branch_length>2.581E-07</branch_length>
                                         </clade>
                                       </clade>
@@ -941,8 +917,8 @@
                                     <name>NODE267</name>
                                     <branch_length>2.35E-08</branch_length>
                                     <clade>
-                                      <name>GCA_000323345.1_ASM32334v1_genomic</name>
-                                      <branch_length>1.4546E-06</branch_length>
+                                      <name>GCA_015158765.1_ASM1515876v1_genomic</name>
+                                      <branch_length>1.4781000000000003E-06</branch_length>
                                     </clade>
                                     <clade>
                                       <name>NODE274</name>
@@ -951,8 +927,8 @@
                                         <name>NODE275</name>
                                         <branch_length>7.038E-07</branch_length>
                                         <clade>
-                                          <name>GCA_000182485.1_ASM18248v1_genomic</name>
-                                          <branch_length>3.5663E-06</branch_length>
+                                          <name>GCA_002005285.1_ASM200528v1_genomic</name>
+                                          <branch_length>4.2466E-06</branch_length>
                                         </clade>
                                         <clade>
                                           <name>NODE277</name>
@@ -968,16 +944,8 @@
                                         </clade>
                                       </clade>
                                       <clade>
-                                        <name>NODE278</name>
-                                        <branch_length>2.35E-08</branch_length>
-                                        <clade>
-                                          <name>GCA_000323305.1_ASM32330v1_genomic</name>
-                                          <branch_length>2.346E-07</branch_length>
-                                        </clade>
-                                        <clade>
-                                          <name>GCA_015158675.1_ASM1515867v1_genomic</name>
-                                          <branch_length>1.9003E-06</branch_length>
-                                        </clade>
+                                        <name>GCA_000323305.1_ASM32330v1_genomic</name>
+                                        <branch_length>2.581E-07</branch_length>
                                       </clade>
                                     </clade>
                                   </clade>
@@ -985,8 +953,8 @@
                                     <name>NODE281</name>
                                     <branch_length>2.35E-08</branch_length>
                                     <clade>
-                                      <name>GCA_015158715.1_ASM1515871v1_genomic</name>
-                                      <branch_length>1.2200000000000002E-06</branch_length>
+                                      <name>GCA_015158815.1_ASM1515881v1_genomic</name>
+                                      <branch_length>1.1965000000000001E-06</branch_length>
                                     </clade>
                                     <clade>
                                       <name>NODE284</name>
@@ -996,8 +964,8 @@
                                         <branch_length>4.927E-07</branch_length>
                                       </clade>
                                       <clade>
-                                        <name>GCA_015159035.1_ASM1515903v1_genomic</name>
-                                        <branch_length>1.4781000000000003E-06</branch_length>
+                                        <name>GCA_015158955.1_ASM1515895v1_genomic</name>
+                                        <branch_length>1.9943000000000005E-06</branch_length>
                                       </clade>
                                     </clade>
                                   </clade>
@@ -1015,15 +983,11 @@
                                   <branch_length>2.6321E-06</branch_length>
                                 </clade>
                                 <clade>
-                                  <name>NODE305</name>
-                                  <branch_length>2.35E-08</branch_length>
+                                  <name>NODE308</name>
+                                  <branch_length>5.308000000000001E-07</branch_length>
                                   <clade>
-                                    <name>GCA_008630435.1_ASM863043v1_genomic</name>
+                                    <name>GCA_006376575.1_ASM637657v1_genomic</name>
                                     <branch_length>2.35E-08</branch_length>
-                                  </clade>
-                                  <clade>
-                                    <name>NODE308</name>
-                                    <branch_length>5.073E-07</branch_length>
                                   </clade>
                                 </clade>
                               </clade>
@@ -1034,8 +998,8 @@
                                   <name>NODE311</name>
                                   <branch_length>7.038E-07</branch_length>
                                   <clade>
-                                    <name>GCA_000324025.1_ASM32402v1_genomic</name>
-                                    <branch_length>2.3695E-06</branch_length>
+                                    <name>GCA_000325105.1_ASM32510v1_genomic</name>
+                                    <branch_length>2.1584E-06</branch_length>
                                   </clade>
                                   <clade>
                                     <name>NODE315</name>
@@ -1048,8 +1012,8 @@
                                       <name>NODE318</name>
                                       <branch_length>2.581E-07</branch_length>
                                       <clade>
-                                        <name>GCA_000325025.1_ASM32502v1_genomic</name>
-                                        <branch_length>1.9003E-06</branch_length>
+                                        <name>GCA_000324605.1_ASM32460v1_genomic</name>
+                                        <branch_length>2.1114E-06</branch_length>
                                       </clade>
                                       <clade>
                                         <name>NODE320</name>
@@ -1059,8 +1023,8 @@
                                           <branch_length>4.692E-07</branch_length>
                                         </clade>
                                         <clade>
-                                          <name>GCA_013392055.1_ASM1339205v1_genomic</name>
-                                          <branch_length>2.1424E-06</branch_length>
+                                          <name>GCA_000325325.1_ASM32532v1_genomic</name>
+                                          <branch_length>1.6892E-06</branch_length>
                                         </clade>
                                       </clade>
                                     </clade>
@@ -1070,8 +1034,8 @@
                                   <name>NODE335</name>
                                   <branch_length>7.038E-07</branch_length>
                                   <clade>
-                                    <name>GCA_000323645.1_ASM32364v1_genomic</name>
-                                    <branch_length>1.8768E-06</branch_length>
+                                    <name>GCA_000169655.1_ASM16965v1_genomic</name>
+                                    <branch_length>1.9003E-06</branch_length>
                                   </clade>
                                   <clade>
                                     <name>NODE340</name>
@@ -1111,8 +1075,8 @@
                                         <name>NODE346</name>
                                         <branch_length>1.6422E-06</branch_length>
                                         <clade>
-                                          <name>GCA_001617735.1_Yersinia_pestis_M-1763_genomic</name>
-                                          <branch_length>1.4311000000000002E-06</branch_length>
+                                          <name>GCA_003074295.1_ASM307429v1_genomic</name>
+                                          <branch_length>2.3695E-06</branch_length>
                                         </clade>
                                         <clade>
                                           <name>NODE350</name>
@@ -1180,8 +1144,8 @@
                                                 <branch_length>1.3593E-06</branch_length>
                                               </clade>
                                               <clade>
-                                                <name>GCA_016102685.1_ASM1610268v1_genomic</name>
-                                                <branch_length>1.1153000000000001E-06</branch_length>
+                                                <name>GCA_016102665.1_ASM1610266v1_genomic</name>
+                                                <branch_length>1.0127E-06</branch_length>
                                               </clade>
                                             </clade>
                                           </clade>
@@ -1189,73 +1153,49 @@
                                             <name>NODE365</name>
                                             <branch_length>2.35E-08</branch_length>
                                             <clade>
-                                              <name>NODE366</name>
-                                              <branch_length>1.6422E-06</branch_length>
+                                              <name>NODE376</name>
+                                              <branch_length>1.8768E-06</branch_length>
                                               <clade>
-                                                <name>NODE376</name>
-                                                <branch_length>2.346E-07</branch_length>
-                                                <clade>
-                                                  <name>GCA_006376435.1_ASM637643v1_genomic</name>
-                                                  <branch_length>4.692E-07</branch_length>
-                                                </clade>
-                                                <clade>
-                                                  <name>NODE377</name>
-                                                  <branch_length>7.038E-07</branch_length>
-                                                  <clade>
-                                                    <name>NODE378</name>
-                                                    <branch_length>2.35E-08</branch_length>
-                                                    <clade>
-                                                      <name>GCA_006376415.1_ASM637641v1_genomic</name>
-                                                      <branch_length>9.384E-07</branch_length>
-                                                    </clade>
-                                                    <clade>
-                                                      <name>NODE380</name>
-                                                      <branch_length>1.8853E-06</branch_length>
-                                                      <clade>
-                                                        <name>GCA_001559935.1_ASM155993v1_genomic</name>
-                                                        <branch_length>6.6483E-06</branch_length>
-                                                      </clade>
-                                                    </clade>
-                                                  </clade>
-                                                  <clade>
-                                                    <name>NODE381</name>
-                                                    <branch_length>4.692E-07</branch_length>
-                                                    <clade>
-                                                      <name>GCA_015159615.1_ASM1515961v1_genomic</name>
-                                                      <branch_length>4.7E-08</branch_length>
-                                                    </clade>
-                                                    <clade>
-                                                      <name>NODE383</name>
-                                                      <branch_length>2.346E-07</branch_length>
-                                                      <clade>
-                                                        <name>GCA_006376495.1_ASM637649v1_genomic</name>
-                                                        <branch_length>4.692E-07</branch_length>
-                                                      </clade>
-                                                      <clade>
-                                                        <name>GCA_006376535.1_ASM637653v1_genomic</name>
-                                                        <branch_length>4.5068E-06</branch_length>
-                                                      </clade>
-                                                    </clade>
-                                                  </clade>
-                                                </clade>
+                                                <name>GCA_006376435.1_ASM637643v1_genomic</name>
+                                                <branch_length>4.692E-07</branch_length>
                                               </clade>
                                               <clade>
-                                                <name>NODE367</name>
-                                                <branch_length>2.35E-08</branch_length>
+                                                <name>NODE377</name>
+                                                <branch_length>7.038E-07</branch_length>
                                                 <clade>
-                                                  <name>IP557</name>
-                                                  <branch_length>7.037999999999999E-07</branch_length>
-                                                </clade>
-                                                <clade>
-                                                  <name>NODE369</name>
-                                                  <branch_length>2.346E-07</branch_length>
+                                                  <name>NODE379</name>
+                                                  <branch_length>2.581E-07</branch_length>
                                                   <clade>
-                                                    <name>GCA_003074335.1_ASM307433v1_genomic</name>
-                                                    <branch_length>1.4311E-06</branch_length>
+                                                    <name>GCA_015336085.1_ASM1533608v1_genomic</name>
+                                                    <branch_length>2.35E-08</branch_length>
                                                   </clade>
                                                   <clade>
-                                                    <name>GCA_000182705.1_ASM18270v1_genomic</name>
-                                                    <branch_length>2.8160000000000003E-07</branch_length>
+                                                    <name>NODE380</name>
+                                                    <branch_length>1.6507E-06</branch_length>
+                                                    <clade>
+                                                      <name>GCA_001559935.1_ASM155993v1_genomic</name>
+                                                      <branch_length>6.6483E-06</branch_length>
+                                                    </clade>
+                                                  </clade>
+                                                </clade>
+                                                <clade>
+                                                  <name>NODE381</name>
+                                                  <branch_length>4.692E-07</branch_length>
+                                                  <clade>
+                                                    <name>GCA_015337445.1_ASM1533744v1_genomic</name>
+                                                    <branch_length>4.7E-08</branch_length>
+                                                  </clade>
+                                                  <clade>
+                                                    <name>NODE383</name>
+                                                    <branch_length>2.346E-07</branch_length>
+                                                    <clade>
+                                                      <name>GCA_006376495.1_ASM637649v1_genomic</name>
+                                                      <branch_length>4.692E-07</branch_length>
+                                                    </clade>
+                                                    <clade>
+                                                      <name>GCA_006376535.2_ASM637653v2_genomic</name>
+                                                      <branch_length>4.9525E-06</branch_length>
+                                                    </clade>
                                                   </clade>
                                                 </clade>
                                               </clade>
@@ -1271,16 +1211,8 @@
                                                   <branch_length>2.35E-08</branch_length>
                                                 </clade>
                                                 <clade>
-                                                  <name>NODE388</name>
-                                                  <branch_length>2.35E-08</branch_length>
-                                                  <clade>
-                                                    <name>GCA_001188815.1_ASM118881v1_genomic</name>
-                                                    <branch_length>2.346E-07</branch_length>
-                                                  </clade>
-                                                  <clade>
-                                                    <name>GCA_001617805.1_Yersinia_pestis_173_genomic</name>
-                                                    <branch_length>1.1965000000000001E-06</branch_length>
-                                                  </clade>
+                                                  <name>GCA_001617805.1_Yersinia_pestis_173_genomic</name>
+                                                  <branch_length>1.2200000000000002E-06</branch_length>
                                                 </clade>
                                               </clade>
                                               <clade>
@@ -1331,48 +1263,72 @@
                                                         <name>NODE396</name>
                                                         <branch_length>2.346E-07</branch_length>
                                                         <clade>
-                                                          <name>GCA_016102585.1_ASM1610258v1_genomic</name>
+                                                          <name>GCA_016102845.1_ASM1610284v1_genomic</name>
                                                           <branch_length>2.581E-07</branch_length>
                                                         </clade>
                                                         <clade>
-                                                          <name>NODE399</name>
-                                                          <branch_length>4.7E-08</branch_length>
+                                                          <name>NODE403</name>
+                                                          <branch_length>7.05E-08</branch_length>
                                                           <clade>
-                                                            <name>GCA_016102765.1_ASM1610276v1_genomic</name>
-                                                            <branch_length>1.4311000000000002E-06</branch_length>
-                                                          </clade>
-                                                          <clade>
-                                                            <name>NODE403</name>
+                                                            <name>NODE404</name>
                                                             <branch_length>2.35E-08</branch_length>
                                                             <clade>
-                                                              <name>NODE404</name>
-                                                              <branch_length>2.35E-08</branch_length>
-                                                              <clade>
-                                                                <name>GCA_001617715.1_Yersinia_pestis_M-519_genomic</name>
-                                                                <branch_length>4.692E-07</branch_length>
-                                                              </clade>
-                                                              <clade>
-                                                                <name>GCA_016102745.1_ASM1610274v1_genomic</name>
-                                                                <branch_length>1.4247999999999999E-06</branch_length>
-                                                              </clade>
+                                                              <name>GCA_001617715.1_Yersinia_pestis_M-519_genomic</name>
+                                                              <branch_length>4.692E-07</branch_length>
                                                             </clade>
                                                             <clade>
-                                                              <name>NODE416</name>
-                                                              <branch_length>2.8160000000000003E-07</branch_length>
+                                                              <name>NODE405</name>
+                                                              <branch_length>6.975E-07</branch_length>
                                                               <clade>
-                                                                <name>GCA_008630395.1_ASM863039v1_genomic</name>
-                                                                <branch_length>4.692E-07</branch_length>
+                                                                <name>GCA_016102875.1_ASM1610287v1_genomic</name>
+                                                                <branch_length>4.7E-08</branch_length>
                                                               </clade>
                                                               <clade>
-                                                                <name>NODE417</name>
-                                                                <branch_length>4.692E-07</branch_length>
+                                                                <name>GCA_003085975.1_ASM308597v1_genomic</name>
+                                                                <branch_length>1.481E-06</branch_length>
+                                                              </clade>
+                                                            </clade>
+                                                          </clade>
+                                                          <clade>
+                                                            <name>NODE412</name>
+                                                            <branch_length>2.35E-08</branch_length>
+                                                            <clade>
+                                                              <name>GCA_015350455.1_ASM1535045v1_genomic</name>
+                                                              <branch_length>2.35E-08</branch_length>
+                                                            </clade>
+                                                            <clade>
+                                                              <name>NODE413</name>
+                                                              <branch_length>2.346E-07</branch_length>
+                                                              <clade>
+                                                                <name>NODE414</name>
+                                                                <branch_length>2.35E-08</branch_length>
                                                                 <clade>
-                                                                  <name>GCA_001617705.1_Yersinia_pestis_C-791_genomic</name>
-                                                                  <branch_length>3.0510000000000005E-07</branch_length>
+                                                                  <name>GCA_001617815.1_Yersinia_pestis_M-1453_genomic</name>
+                                                                  <branch_length>4.692E-07</branch_length>
                                                                 </clade>
                                                                 <clade>
-                                                                  <name>GCA_003086055.1_ASM308605v1_genomic</name>
-                                                                  <branch_length>1.1965E-06</branch_length>
+                                                                  <name>GCA_016102965.1_ASM1610296v1_genomic</name>
+                                                                  <branch_length>1.0318E-06</branch_length>
+                                                                </clade>
+                                                              </clade>
+                                                              <clade>
+                                                                <name>NODE416</name>
+                                                                <branch_length>2.35E-08</branch_length>
+                                                                <clade>
+                                                                  <name>GCA_008630395.1_ASM863039v1_genomic</name>
+                                                                  <branch_length>4.692E-07</branch_length>
+                                                                </clade>
+                                                                <clade>
+                                                                  <name>NODE417</name>
+                                                                  <branch_length>4.692E-07</branch_length>
+                                                                  <clade>
+                                                                    <name>GCA_001613885.1_ASM161388v1_genomic</name>
+                                                                    <branch_length>1.4546E-06</branch_length>
+                                                                  </clade>
+                                                                  <clade>
+                                                                    <name>GCA_001595585.1_ASM159558v1_genomic</name>
+                                                                    <branch_length>9.854E-07</branch_length>
+                                                                  </clade>
                                                                 </clade>
                                                               </clade>
                                                             </clade>
@@ -1404,32 +1360,32 @@
                               <name>NODE428</name>
                               <branch_length>2.346E-07</branch_length>
                               <clade>
-                                <name>NODE429</name>
-                                <branch_length>4.692E-07</branch_length>
+                                <name>NODE430</name>
+                                <branch_length>7.037999999999999E-07</branch_length>
                                 <clade>
-                                  <name>SAMEA7293136</name>
-                                  <branch_length>2.346E-07</branch_length>
+                                  <name>SAMEA5818809</name>
+                                  <branch_length>2.35E-08</branch_length>
                                 </clade>
                                 <clade>
                                   <name>NODE431</name>
-                                  <branch_length>2.213E-06</branch_length>
+                                  <branch_length>1.9784E-06</branch_length>
                                   <clade>
                                     <name>SAMEA5818817</name>
                                     <branch_length>2.35E-08</branch_length>
                                   </clade>
                                   <clade>
-                                    <name>NODE436</name>
-                                    <branch_length>3.2498999999999996E-06</branch_length>
+                                    <name>NODE433</name>
+                                    <branch_length>3.1794E-06</branch_length>
                                     <clade>
-                                      <name>SAMEA7313246_49</name>
-                                      <branch_length>2.581E-07</branch_length>
+                                      <name>SAMEA5818805</name>
+                                      <branch_length>2.35E-08</branch_length>
                                     </clade>
                                     <clade>
                                       <name>NODE438</name>
-                                      <branch_length>2.35E-08</branch_length>
+                                      <branch_length>9.4E-08</branch_length>
                                       <clade>
-                                        <name>SAMEA5818808</name>
-                                        <branch_length>2.0462999999999998E-06</branch_length>
+                                        <name>SAMEA5818803</name>
+                                        <branch_length>2.5389999999999997E-06</branch_length>
                                       </clade>
                                       <clade>
                                         <name>NODE448</name>
@@ -1461,8 +1417,8 @@
                                               </clade>
                                             </clade>
                                             <clade>
-                                              <name>SAMEA3713714</name>
-                                              <branch_length>1.4545999999999998E-06</branch_length>
+                                              <name>SAMEA3713715</name>
+                                              <branch_length>1.173E-06</branch_length>
                                             </clade>
                                           </clade>
                                         </clade>
@@ -1486,15 +1442,15 @@
                                     <branch_length>1.6767E-06</branch_length>
                                   </clade>
                                   <clade>
-                                    <name>NODE466</name>
-                                    <branch_length>5.054000000000001E-07</branch_length>
+                                    <name>NODE465</name>
+                                    <branch_length>4.99E-08</branch_length>
                                     <clade>
-                                      <name>SAMEA5054090</name>
-                                      <branch_length>2.624E-07</branch_length>
+                                      <name>SAMEA3937654</name>
+                                      <branch_length>4.692E-07</branch_length>
                                     </clade>
                                     <clade>
                                       <name>NODE467</name>
-                                      <branch_length>2.5548E-06</branch_length>
+                                      <branch_length>3.0103000000000002E-06</branch_length>
                                       <clade>
                                         <name>NODE468</name>
                                         <branch_length>1.03926E-05</branch_length>
@@ -1503,20 +1459,20 @@
                                           <branch_length>1.21632E-05</branch_length>
                                         </clade>
                                         <clade>
-                                          <name>GCA_000835005.1_ASM83500v1_genomic</name>
-                                          <branch_length>1.39735E-05</branch_length>
+                                          <name>IP542</name>
+                                          <branch_length>1.4777900000000001E-05</branch_length>
                                         </clade>
                                       </clade>
                                       <clade>
-                                        <name>NODE475</name>
-                                        <branch_length>2.6690999999999996E-06</branch_length>
+                                        <name>NODE473</name>
+                                        <branch_length>2.6221E-06</branch_length>
                                         <clade>
-                                          <name>GCA_000325165.1_ASM32516v1_genomic</name>
-                                          <branch_length>4.692E-07</branch_length>
+                                          <name>GCA_000323965.1_ASM32396v1_genomic</name>
+                                          <branch_length>2.35E-08</branch_length>
                                         </clade>
                                         <clade>
                                           <name>NODE476</name>
-                                          <branch_length>4.692E-07</branch_length>
+                                          <branch_length>5.162E-07</branch_length>
                                           <clade>
                                             <name>GCA_000324105.1_ASM32410v1_genomic</name>
                                             <branch_length>2.346E-06</branch_length>
@@ -1528,20 +1484,12 @@
                                               <name>NODE482</name>
                                               <branch_length>4.99E-08</branch_length>
                                               <clade>
-                                                <name>GCA_000323745.1_ASM32374v1_genomic</name>
-                                                <branch_length>7.037999999999999E-07</branch_length>
+                                                <name>GCA_000324285.1_ASM32428v1_genomic</name>
+                                                <branch_length>2.581E-07</branch_length>
                                               </clade>
                                               <clade>
-                                                <name>NODE484</name>
-                                                <branch_length>9.24E-07</branch_length>
-                                                <clade>
-                                                  <name>GCA_015158485.1_ASM1515848v1_genomic</name>
-                                                  <branch_length>2.35E-08</branch_length>
-                                                </clade>
-                                                <clade>
-                                                  <name>GCA_015158615.1_ASM1515861v1_genomic</name>
-                                                  <branch_length>1.6657000000000002E-06</branch_length>
-                                                </clade>
+                                                <name>GCA_000323785.1_ASM32378v1_genomic</name>
+                                                <branch_length>2.1205E-06</branch_length>
                                               </clade>
                                             </clade>
                                             <clade>
@@ -1551,12 +1499,12 @@
                                                 <name>NODE490</name>
                                                 <branch_length>9.384E-07</branch_length>
                                                 <clade>
-                                                  <name>GCA_000323445.1_ASM32344v1_genomic</name>
+                                                  <name>GCA_000323885.1_ASM32388v1_genomic</name>
                                                   <branch_length>1.1965E-06</branch_length>
                                                 </clade>
                                                 <clade>
-                                                  <name>GCA_000324685.1_ASM32468v1_genomic</name>
-                                                  <branch_length>1.4781E-06</branch_length>
+                                                  <name>GCA_000324705.1_ASM32470v1_genomic</name>
+                                                  <branch_length>1.4781000000000003E-06</branch_length>
                                                 </clade>
                                               </clade>
                                               <clade>
@@ -1570,19 +1518,19 @@
                                                   <name>NODE502</name>
                                                   <branch_length>2.346E-07</branch_length>
                                                   <clade>
-                                                    <name>GCA_000324365.1_ASM32436v1_genomic</name>
-                                                    <branch_length>1.9473E-06</branch_length>
+                                                    <name>GCA_000324405.1_ASM32440v1_genomic</name>
+                                                    <branch_length>2.4165E-06</branch_length>
                                                   </clade>
                                                   <clade>
-                                                    <name>NODE513</name>
-                                                    <branch_length>5.9216999999999996E-06</branch_length>
+                                                    <name>NODE512</name>
+                                                    <branch_length>5.8982E-06</branch_length>
                                                     <clade>
-                                                      <name>GCA_000323985.1_ASM32398v1_genomic</name>
-                                                      <branch_length>7.038E-07</branch_length>
+                                                      <name>GCA_000324825.1_ASM32482v1_genomic</name>
+                                                      <branch_length>4.692E-07</branch_length>
                                                     </clade>
                                                     <clade>
                                                       <name>NODE514</name>
-                                                      <branch_length>2.35E-08</branch_length>
+                                                      <branch_length>4.7E-08</branch_length>
                                                       <clade>
                                                         <name>NODE515</name>
                                                         <branch_length>2.35E-08</branch_length>
@@ -1598,7 +1546,7 @@
                                                             <branch_length>2.35E-08</branch_length>
                                                           </clade>
                                                           <clade>
-                                                            <name>GCA_003798085.1_ASM379808v1_genomic</name>
+                                                            <name>GCA_000834905.1_ASM83490v1_genomic</name>
                                                             <branch_length>2.8387E-06</branch_length>
                                                           </clade>
                                                         </clade>
@@ -1610,22 +1558,30 @@
                                                           <name>NODE520</name>
                                                           <branch_length>2.35E-08</branch_length>
                                                           <clade>
-                                                            <name>NODE521</name>
-                                                            <branch_length>1.6422E-06</branch_length>
+                                                            <name>NODE526</name>
+                                                            <branch_length>2.9333999999999997E-06</branch_length>
                                                             <clade>
-                                                              <name>GCA_000168235.2_ASM16823v2_genomic</name>
-                                                              <branch_length>4.7E-08</branch_length>
+                                                              <name>GCA_000324805.2_EV76-CN_genomic</name>
+                                                              <branch_length>4.692E-07</branch_length>
                                                             </clade>
                                                             <clade>
-                                                              <name>NODE528</name>
-                                                              <branch_length>3.2062E-06</branch_length>
+                                                              <name>NODE527</name>
+                                                              <branch_length>6.392E-07</branch_length>
                                                               <clade>
-                                                                <name>GCA_000475095.2_YP009_v2_genomic</name>
-                                                                <branch_length>3.8937E-06</branch_length>
+                                                                <name>GCA_000590535.1_EV_NIIEG_genomic</name>
+                                                                <branch_length>4.999E-07</branch_length>
                                                               </clade>
                                                               <clade>
-                                                                <name>GCA_000475115.2_YP113_v2_genomic</name>
-                                                                <branch_length>1.1318E-06</branch_length>
+                                                                <name>NODE528</name>
+                                                                <branch_length>1.2758E-06</branch_length>
+                                                                <clade>
+                                                                  <name>GCA_000475095.2_YP009_v2_genomic</name>
+                                                                  <branch_length>3.8937E-06</branch_length>
+                                                                </clade>
+                                                                <clade>
+                                                                  <name>GCA_000475115.2_YP113_v2_genomic</name>
+                                                                  <branch_length>1.1318E-06</branch_length>
+                                                                </clade>
                                                               </clade>
                                                             </clade>
                                                           </clade>
@@ -1647,39 +1603,31 @@
                                                                   <branch_length>6.619E-06</branch_length>
                                                                 </clade>
                                                                 <clade>
-                                                                  <name>NODE534</name>
-                                                                  <branch_length>2.35E-08</branch_length>
-                                                                  <clade>
-                                                                    <name>GCA_000268985.1_ASM26898v1_genomic</name>
-                                                                    <branch_length>4.692E-07</branch_length>
-                                                                  </clade>
-                                                                  <clade>
-                                                                    <name>GCA_000269025.1_ASM26902v1_genomic</name>
-                                                                    <branch_length>9.619E-07</branch_length>
-                                                                  </clade>
+                                                                  <name>GCA_000269005.1_ASM26900v1_genomic</name>
+                                                                  <branch_length>2.816E-07</branch_length>
                                                                 </clade>
                                                               </clade>
                                                             </clade>
                                                             <clade>
-                                                              <name>NODE538</name>
-                                                              <branch_length>7.272999999999999E-07</branch_length>
+                                                              <name>NODE539</name>
+                                                              <branch_length>7.507999999999999E-07</branch_length>
                                                               <clade>
-                                                                <name>GCA_001509855.1_ASM150985v1_genomic</name>
+                                                                <name>GCA_000834335.1_ASM83433v1_genomic</name>
                                                                 <branch_length>2.35E-08</branch_length>
                                                               </clade>
                                                               <clade>
                                                                 <name>NODE540</name>
-                                                                <branch_length>4.7E-08</branch_length>
+                                                                <branch_length>2.35E-08</branch_length>
                                                                 <clade>
-                                                                  <name>NODE542</name>
-                                                                  <branch_length>2.333E-07</branch_length>
+                                                                  <name>NODE541</name>
+                                                                  <branch_length>2.35E-08</branch_length>
                                                                   <clade>
-                                                                    <name>GCA_000834775.1_ASM83477v1_genomic</name>
-                                                                    <branch_length>2.35E-08</branch_length>
+                                                                    <name>GCA_000705315.1_EDB10_058v1_genomic</name>
+                                                                    <branch_length>2.346E-07</branch_length>
                                                                   </clade>
                                                                   <clade>
                                                                     <name>NODE543</name>
-                                                                    <branch_length>2.346E-07</branch_length>
+                                                                    <branch_length>4.4440000000000004E-07</branch_length>
                                                                     <clade>
                                                                       <name>GCA_001693595.1_ASM169359v1_genomic</name>
                                                                       <branch_length>2.346E-07</branch_length>
@@ -1701,12 +1649,12 @@
                                                                     <name>NODE548</name>
                                                                     <branch_length>4.692E-07</branch_length>
                                                                     <clade>
-                                                                      <name>GCA_000255815.1_ASM25581v1_genomic</name>
-                                                                      <branch_length>1.1965000000000001E-06</branch_length>
+                                                                      <name>GCA_000255835.1_ASM25583v1_genomic</name>
+                                                                      <branch_length>1.4076E-06</branch_length>
                                                                     </clade>
                                                                     <clade>
-                                                                      <name>GCA_000834495.1_ASM83449v1_genomic</name>
-                                                                      <branch_length>1.1965000000000001E-06</branch_length>
+                                                                      <name>GCA_000255875.1_ASM25587v1_genomic</name>
+                                                                      <branch_length>1.9238E-06</branch_length>
                                                                     </clade>
                                                                   </clade>
                                                                 </clade>
@@ -1721,24 +1669,40 @@
                                                             <name>NODE554</name>
                                                             <branch_length>3.0498E-06</branch_length>
                                                             <clade>
-                                                              <name>GCA_013421465.1_ASM1342146v1_genomic</name>
-                                                              <branch_length>7.037999999999999E-07</branch_length>
+                                                              <name>GCA_013421535.1_ASM1342153v1_genomic</name>
+                                                              <branch_length>5.397E-07</branch_length>
                                                             </clade>
                                                             <clade>
-                                                              <name>GCA_000325405.1_ASM32540v1_genomic</name>
-                                                              <branch_length>2.1348999999999997E-06</branch_length>
+                                                              <name>NODE559</name>
+                                                              <branch_length>1.6422E-06</branch_length>
+                                                              <clade>
+                                                                <name>GCA_000834235.1_ASM83423v1_genomic</name>
+                                                                <branch_length>4.7E-08</branch_length>
+                                                              </clade>
+                                                              <clade>
+                                                                <name>NODE561</name>
+                                                                <branch_length>2.346E-07</branch_length>
+                                                                <clade>
+                                                                  <name>GCA_000325425.1_ASM32542v1_genomic</name>
+                                                                  <branch_length>1.173E-06</branch_length>
+                                                                </clade>
+                                                                <clade>
+                                                                  <name>GCA_000324425.1_ASM32442v1_genomic</name>
+                                                                  <branch_length>2.8160000000000003E-07</branch_length>
+                                                                </clade>
+                                                              </clade>
                                                             </clade>
                                                           </clade>
                                                           <clade>
-                                                            <name>NODE568</name>
-                                                            <branch_length>4.692E-07</branch_length>
+                                                            <name>NODE569</name>
+                                                            <branch_length>4.927E-07</branch_length>
                                                             <clade>
-                                                              <name>GCA_000986995.1_YPES001-SEQ-2-ASM-1_genomic</name>
+                                                              <name>GCA_000182525.1_ASM18252v1_genomic</name>
                                                               <branch_length>2.35E-08</branch_length>
                                                             </clade>
                                                             <clade>
                                                               <name>NODE570</name>
-                                                              <branch_length>4.7E-08</branch_length>
+                                                              <branch_length>2.35E-08</branch_length>
                                                               <clade>
                                                                 <name>GCA_001487065.1_Yersinia_pestis_genomic</name>
                                                                 <branch_length>1.8768E-06</branch_length>
@@ -1799,8 +1763,8 @@
                                                                           </clade>
                                                                         </clade>
                                                                         <clade>
-                                                                          <name>GCA_000268365.1_ASM26836v1_genomic</name>
-                                                                          <branch_length>7.273E-07</branch_length>
+                                                                          <name>GCA_000268565.1_ASM26856v1_genomic</name>
+                                                                          <branch_length>5.162E-07</branch_length>
                                                                         </clade>
                                                                       </clade>
                                                                       <clade>
@@ -1813,20 +1777,36 @@
                                                                             <name>NODE583</name>
                                                                             <branch_length>2.35E-08</branch_length>
                                                                             <clade>
-                                                                              <name>GCA_000268405.1_ASM26840v1_genomic</name>
+                                                                              <name>GCA_000268445.1_ASM26844v1_genomic</name>
                                                                               <branch_length>7.037999999999999E-07</branch_length>
                                                                             </clade>
                                                                             <clade>
-                                                                              <name>GCA_000268825.1_ASM26882v1_genomic</name>
-                                                                              <branch_length>7.317999999999999E-07</branch_length>
+                                                                              <name>NODE585</name>
+                                                                              <branch_length>5.62E-08</branch_length>
+                                                                              <clade>
+                                                                                <name>GCA_000268385.1_ASM26838v1_genomic</name>
+                                                                                <branch_length>1.645E-06</branch_length>
+                                                                              </clade>
+                                                                              <clade>
+                                                                                <name>GCA_000268625.1_ASM26862v1_genomic</name>
+                                                                                <branch_length>4.41E-07</branch_length>
+                                                                              </clade>
                                                                             </clade>
                                                                           </clade>
                                                                           <clade>
                                                                             <name>NODE589</name>
                                                                             <branch_length>2.346E-07</branch_length>
                                                                             <clade>
-                                                                              <name>GCA_000269445.1_ASM26944v1_genomic</name>
-                                                                              <branch_length>1.1965E-06</branch_length>
+                                                                              <name>NODE590</name>
+                                                                              <branch_length>2.35E-08</branch_length>
+                                                                              <clade>
+                                                                                <name>GCA_000269065.1_ASM26906v1_genomic</name>
+                                                                                <branch_length>9.384E-07</branch_length>
+                                                                              </clade>
+                                                                              <clade>
+                                                                                <name>GCA_000268905.1_ASM26890v1_genomic</name>
+                                                                                <branch_length>1.173E-06</branch_length>
+                                                                              </clade>
                                                                             </clade>
                                                                             <clade>
                                                                               <name>NODE593</name>
@@ -1851,40 +1831,32 @@
                                                                           </clade>
                                                                         </clade>
                                                                         <clade>
-                                                                          <name>NODE597</name>
-                                                                          <branch_length>2.304E-07</branch_length>
+                                                                          <name>NODE599</name>
+                                                                          <branch_length>2.539E-07</branch_length>
                                                                           <clade>
-                                                                            <name>GCA_000268685.1_ASM26868v1_genomic</name>
-                                                                            <branch_length>7.305999999999999E-07</branch_length>
+                                                                            <name>GCA_000311885.1_ASM31188v1_genomic</name>
+                                                                            <branch_length>2.35E-08</branch_length>
                                                                           </clade>
                                                                           <clade>
                                                                             <name>NODE600</name>
-                                                                            <branch_length>4.7E-08</branch_length>
+                                                                            <branch_length>2.35E-08</branch_length>
                                                                             <clade>
-                                                                              <name>NODE601</name>
-                                                                              <branch_length>2.35E-08</branch_length>
-                                                                              <clade>
-                                                                                <name>GCA_000268485.1_ASM26848v1_genomic</name>
-                                                                                <branch_length>2.35E-08</branch_length>
-                                                                              </clade>
-                                                                              <clade>
-                                                                                <name>GCA_000269205.1_ASM26920v1_genomic</name>
-                                                                                <branch_length>1.4075999999999999E-06</branch_length>
-                                                                              </clade>
+                                                                              <name>GCA_000269205.1_ASM26920v1_genomic</name>
+                                                                              <branch_length>1.4311000000000002E-06</branch_length>
                                                                             </clade>
                                                                             <clade>
                                                                               <name>NODE605</name>
                                                                               <branch_length>2.35E-08</branch_length>
                                                                               <clade>
-                                                                                <name>NODE607</name>
-                                                                                <branch_length>4.7E-08</branch_length>
+                                                                                <name>NODE606</name>
+                                                                                <branch_length>2.35E-08</branch_length>
                                                                                 <clade>
-                                                                                  <name>GCA_000269385.1_ASM26938v1_genomic</name>
+                                                                                  <name>GCA_000268485.2_ASM26848v2_genomic</name>
                                                                                   <branch_length>2.35E-08</branch_length>
                                                                                 </clade>
                                                                                 <clade>
                                                                                   <name>NODE608</name>
-                                                                                  <branch_length>2.099E-07</branch_length>
+                                                                                  <branch_length>2.3339999999999999E-07</branch_length>
                                                                                   <clade>
                                                                                     <name>GCA_000269045.1_ASM26904v1_genomic</name>
                                                                                     <branch_length>2.35E-08</branch_length>
@@ -1913,8 +1885,16 @@
                                                                                       <branch_length>1.1782E-06</branch_length>
                                                                                     </clade>
                                                                                     <clade>
-                                                                                      <name>GCA_000269405.1_ASM26940v1_genomic</name>
-                                                                                      <branch_length>7.772E-07</branch_length>
+                                                                                      <name>NODE613</name>
+                                                                                      <branch_length>4.99E-08</branch_length>
+                                                                                      <clade>
+                                                                                        <name>GCA_000269405.1_ASM26940v1_genomic</name>
+                                                                                        <branch_length>7.273E-07</branch_length>
+                                                                                      </clade>
+                                                                                      <clade>
+                                                                                        <name>GCA_000268965.1_ASM26896v1_genomic</name>
+                                                                                        <branch_length>7.305E-07</branch_length>
+                                                                                      </clade>
                                                                                     </clade>
                                                                                   </clade>
                                                                                 </clade>
@@ -1922,15 +1902,15 @@
                                                                                   <name>NODE619</name>
                                                                                   <branch_length>2.35E-08</branch_length>
                                                                                   <clade>
-                                                                                    <name>NODE623</name>
-                                                                                    <branch_length>7.759E-07</branch_length>
+                                                                                    <name>NODE620</name>
+                                                                                    <branch_length>4.692E-07</branch_length>
                                                                                     <clade>
-                                                                                      <name>GCA_000269485.1_ASM26948v1_genomic</name>
-                                                                                      <branch_length>4.239E-07</branch_length>
+                                                                                      <name>GCA_000268765.1_ASM26876v1_genomic</name>
+                                                                                      <branch_length>4.692E-07</branch_length>
                                                                                     </clade>
                                                                                     <clade>
                                                                                       <name>NODE624</name>
-                                                                                      <branch_length>4.149E-07</branch_length>
+                                                                                      <branch_length>7.216E-07</branch_length>
                                                                                       <clade>
                                                                                         <name>GCA_000268645.1_ASM26864v1_genomic</name>
                                                                                         <branch_length>4.028E-07</branch_length>
