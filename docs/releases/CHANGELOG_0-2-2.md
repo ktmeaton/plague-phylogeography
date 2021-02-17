@@ -4,7 +4,7 @@
 
 ### Pull Requests
 
-* [```PR 2```](https://github.com/ktmeaton/plague-phylogeography/pull/2) v0.2.2
+* [```pull/2```](https://github.com/ktmeaton/plague-phylogeography/pull/2) v0.2.2
 
 ### Notes
 
@@ -17,6 +17,12 @@
 
 ### Commits
 
+* [```ff71d89```](https://github.com/ktmeaton/plague-phylogeography/commit/ff71d89) checkpoint before clock modelling in BEAST
+* [```1471e40```](https://github.com/ktmeaton/plague-phylogeography/commit/1471e40) plot tree comparison
+* [```ebeca5e```](https://github.com/ktmeaton/plague-phylogeography/commit/ebeca5e) confirm pruning consistency between tree, dataframe, and alignment.
+* [```ae68969```](https://github.com/ktmeaton/plague-phylogeography/commit/ae68969) prune tree, dataframe, and alignment with treemmer
+* [```667c2f3```](https://github.com/ktmeaton/plague-phylogeography/commit/667c2f3) scatterplot of taxa vs rtl for treemmer
+* [```b66ac4b```](https://github.com/ktmeaton/plague-phylogeography/commit/b66ac4b) disable skyline until gen parameter resolved
 * [```ae63bb4```](https://github.com/ktmeaton/plague-phylogeography/commit/ae63bb4) add clock lengths and model to augur
 * [```85c1712```](https://github.com/ktmeaton/plague-phylogeography/commit/85c1712) add mugration models to augur json
 * [```d5821fc```](https://github.com/ktmeaton/plague-phylogeography/commit/d5821fc) add branch major to auspice config
