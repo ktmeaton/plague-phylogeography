@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Treemmer_v0.3
 
 # Copyright 2019 Fabrizio Menardo

@@ -1,174 +1,174 @@
 
-6.54	-TreeTime._set_branch_length_mode: maximum branch length is 3.716e-05,
+5.11	-TreeTime._set_branch_length_mode: maximum branch length is 3.716e-05,
     	 using branch length mode joint
 
-6.54	-TreeAnc.optimize_tree: sequences...
+5.11	-TreeAnc.optimize_tree: sequences...
 
-6.54	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+5.11	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
 
-6.54	WARNING: Previous versions of TreeTime (<0.7.0) RECONSTRUCTED sequences of
+5.11	WARNING: Previous versions of TreeTime (<0.7.0) RECONSTRUCTED sequences of
     	tips at positions with AMBIGUOUS bases. This resulted in unexpected
     	behavior is some cases and is no longer done by default. If you want to
     	replace those ambiguous sites with their most likely state, rerun with
     	`reconstruct_tip_states=True` or `--reconstruct-tip-states`.
-6.54	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
-6.54	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
-12.66	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+5.11	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+5.11	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+10.88	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
      	   likelihood sequences...
-12.91	---TreeAnc._ml_anc_joint: ...done
-12.93	--TreeAnc.infer_gtr: counting mutations...
-14.53	---TreeAnc.infer_gtr: counting mutations...done
+11.09	---TreeAnc._ml_anc_joint: ...done
+11.10	--TreeAnc.infer_gtr: counting mutations...
+12.49	---TreeAnc.infer_gtr: counting mutations...done
 
-14.53	-GTR: with alphabet: ['A', 'C', 'G', 'T', '-']
-14.53	--GTR: ambiguous character: N
-14.53	---GTR: init with dummy values!
+12.49	-GTR: with alphabet: ['A', 'C', 'G', 'T', '-']
+12.49	--GTR: ambiguous character: N
+12.49	---GTR: init with dummy values!
 
-14.53	-GTR: model inference
-14.53	---GTR inference iteration 0 change: 0.447213595499958
-14.53	---GTR inference iteration 1 change: 0.2417647365143318
-14.53	---GTR inference iteration 2 change: 0.0007800149839042479
-14.53	---GTR inference iteration 3 change: 6.374148089767242e-05
-14.53	---GTR inference iteration 4 change: 7.153405244601736e-05
-14.53	---GTR inference iteration 5 change: 3.054919302593857e-05
-14.53	--The model allows for gaps which are estimated to occur at a low fraction
+12.49	-GTR: model inference
+12.49	---GTR inference iteration 0 change: 0.447213595499958
+12.49	---GTR inference iteration 1 change: 0.2417647365143318
+12.50	---GTR inference iteration 2 change: 0.0007800149839042479
+12.50	---GTR inference iteration 3 change: 6.374148089767242e-05
+12.50	---GTR inference iteration 4 change: 7.153405244601736e-05
+12.50	---GTR inference iteration 5 change: 3.054919302593857e-05
+12.50	--The model allows for gaps which are estimated to occur at a low fraction
      	  of 6.123e-04 this can potentially result in artificats. gap fraction
      	  will be set to 0.0100
-14.53	--TreeAnc.infer_gtr: setting overall rate to 1.0...
-14.54	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
-14.54	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
-23.52	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+12.50	--TreeAnc.infer_gtr: setting overall rate to 1.0...
+12.50	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+12.50	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+17.84	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
      	   likelihood sequences...
-23.81	---TreeAnc._ml_anc_joint: ...done
+18.09	---TreeAnc._ml_anc_joint: ...done
 
-23.83	-TreeAnc.optimize_branch_length: running branch length optimization using
+18.10	-TreeAnc.optimize_branch_length: running branch length optimization using
      	 jointML ancestral sequences
 
-31.69	-TreeAnc.prune_short_branches: pruning short branches (max prob at
+23.44	-TreeAnc.prune_short_branches: pruning short branches (max prob at
      	 zero)...
 
-32.97	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
-32.97	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
-32.97	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
-39.01	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+23.81	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+23.81	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+23.81	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+28.36	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
      	   likelihood sequences...
-39.16	---TreeAnc._ml_anc_joint: ...done
-39.17	--TreeAnc.optimize_tree: Iteration 1. #Nuc changed since prev
+28.49	---TreeAnc._ml_anc_joint: ...done
+28.50	--TreeAnc.optimize_tree: Iteration 1. #Nuc changed since prev
      	  reconstructions: 139
 
-39.17	-TreeAnc.optimize_branch_length: running branch length optimization using
+28.50	-TreeAnc.optimize_branch_length: running branch length optimization using
      	 jointML ancestral sequences
-45.13	--TreeAnc.optimize_tree: Unconstrained sequence LH:-6607581.176202
-45.78	--ClockTree.date2dist: Setting new molecular clock. rate=8.764e-09,
+33.27	--TreeAnc.optimize_tree: Unconstrained sequence LH:-6607581.176202
+33.66	--ClockTree.date2dist: Setting new molecular clock. rate=8.764e-09,
      	  R^2=0.2682
 
-45.99	-TreeAnc.optimize_tree: sequences...
+33.80	-TreeAnc.optimize_tree: sequences...
 
-45.99	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
-45.99	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
-45.99	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
-52.58	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+33.80	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+33.80	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+33.80	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+38.87	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
      	   likelihood sequences...
-52.71	---TreeAnc._ml_anc_joint: ...done
+39.00	---TreeAnc._ml_anc_joint: ...done
 
-52.72	-TreeAnc.optimize_branch_length: running branch length optimization using
+39.01	-TreeAnc.optimize_branch_length: running branch length optimization using
      	 jointML ancestral sequences
 
-58.54	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
-58.54	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
-58.54	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
-65.52	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+44.00	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+44.00	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+44.00	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+48.71	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
      	   likelihood sequences...
-65.67	---TreeAnc._ml_anc_joint: ...done
-65.68	--TreeAnc.optimize_tree: Iteration 1. #Nuc changed since prev
+48.84	---TreeAnc._ml_anc_joint: ...done
+48.85	--TreeAnc.optimize_tree: Iteration 1. #Nuc changed since prev
      	  reconstructions: 6
 
-65.68	-TreeAnc.optimize_branch_length: running branch length optimization using
+48.85	-TreeAnc.optimize_branch_length: running branch length optimization using
      	 jointML ancestral sequences
-70.95	--TreeAnc.optimize_tree: Unconstrained sequence LH:-6607522.247063
+53.36	--TreeAnc.optimize_tree: Unconstrained sequence LH:-6607522.247063
 
-70.95	###TreeTime.run: INITIAL ROUND
+53.36	###TreeTime.run: INITIAL ROUND
 
-70.95	-ClockTree: Maximum likelihood tree optimization with temporal constraints
-70.95	--ClockTree.init_date_constraints...
-70.95	---ClockTree.init_date_constraints: Initializing branch length
+53.36	-ClockTree: Maximum likelihood tree optimization with temporal constraints
+53.36	--ClockTree.init_date_constraints...
+53.36	---ClockTree.init_date_constraints: Initializing branch length
      	   interpolation objects...
-97.14	--ClockTree.date2dist: Setting new molecular clock. rate=8.726e-09,
+76.48	--ClockTree.date2dist: Setting new molecular clock. rate=8.726e-09,
      	  R^2=0.2666
-97.18	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
-145.58	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+76.53	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+119.90	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
 
-145.85	###TreeTime.run: ITERATION 1 out of 3 iterations
+120.12	###TreeTime.run: ITERATION 1 out of 3 iterations
 relaxed_clock {'slack': 5.0, 'coupling': 0}
-145.85	--TreeTime.relaxed_clock: slack=5.000000, coupling=0.000000
+120.12	--TreeTime.relaxed_clock: slack=5.000000, coupling=0.000000
 
-145.88	-ClockTree: Maximum likelihood tree optimization with temporal
+120.16	-ClockTree: Maximum likelihood tree optimization with temporal
       	 constraints
-145.88	--ClockTree.init_date_constraints...
-145.88	---ClockTree.init_date_constraints: Initializing branch length
+120.16	--ClockTree.init_date_constraints...
+120.16	---ClockTree.init_date_constraints: Initializing branch length
       	   interpolation objects...
-174.66	--ClockTree.date2dist: Setting new molecular clock. rate=8.726e-09,
+143.41	--ClockTree.date2dist: Setting new molecular clock. rate=8.726e-09,
       	  R^2=0.2666
-174.73	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
-232.47	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+143.45	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+185.39	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
 
-232.64	-TreeAnc.infer_ancestral_sequences with method: ml, joint
-232.64	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
-232.64	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
-238.13	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+185.55	-TreeAnc.infer_ancestral_sequences with method: ml, joint
+185.55	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+185.55	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+190.16	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
       	   likelihood sequences...
-238.29	---TreeAnc._ml_anc_joint: ...done
+190.29	---TreeAnc._ml_anc_joint: ...done
 
-238.30	###TreeTime.run: ITERATION 2 out of 3 iterations
+190.30	###TreeTime.run: ITERATION 2 out of 3 iterations
 relaxed_clock {'slack': 5.0, 'coupling': 0}
-238.30	--TreeTime.relaxed_clock: slack=5.000000, coupling=0.000000
+190.30	--TreeTime.relaxed_clock: slack=5.000000, coupling=0.000000
 
-238.34	-ClockTree: Maximum likelihood tree optimization with temporal
+190.33	-ClockTree: Maximum likelihood tree optimization with temporal
       	 constraints
-238.34	--ClockTree.init_date_constraints...
-238.34	---ClockTree.init_date_constraints: Initializing branch length
+190.33	--ClockTree.init_date_constraints...
+190.33	---ClockTree.init_date_constraints: Initializing branch length
       	   interpolation objects...
-269.09	--ClockTree.date2dist: Setting new molecular clock. rate=8.726e-09,
+215.09	--ClockTree.date2dist: Setting new molecular clock. rate=8.726e-09,
       	  R^2=0.2666
-269.13	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
-317.18	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+215.13	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+258.85	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
 
-317.35	-TreeAnc.infer_ancestral_sequences with method: ml, joint
-317.35	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
-317.35	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
-322.35	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+259.02	-TreeAnc.infer_ancestral_sequences with method: ml, joint
+259.02	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+259.02	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+263.71	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
       	   likelihood sequences...
-322.49	---TreeAnc._ml_anc_joint: ...done
+263.83	---TreeAnc._ml_anc_joint: ...done
 
-322.50	###TreeTime.run: ITERATION 3 out of 3 iterations
+263.84	###TreeTime.run: ITERATION 3 out of 3 iterations
 relaxed_clock {'slack': 5.0, 'coupling': 0}
-322.50	--TreeTime.relaxed_clock: slack=5.000000, coupling=0.000000
+263.84	--TreeTime.relaxed_clock: slack=5.000000, coupling=0.000000
 
-322.54	-ClockTree: Maximum likelihood tree optimization with temporal
+263.88	-ClockTree: Maximum likelihood tree optimization with temporal
       	 constraints
-322.54	--ClockTree.init_date_constraints...
-322.54	---ClockTree.init_date_constraints: Initializing branch length
+263.88	--ClockTree.init_date_constraints...
+263.88	---ClockTree.init_date_constraints: Initializing branch length
       	   interpolation objects...
-349.03	--ClockTree.date2dist: Setting new molecular clock. rate=8.726e-09,
+288.80	--ClockTree.date2dist: Setting new molecular clock. rate=8.726e-09,
       	  R^2=0.2666
-349.08	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
-396.21	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+288.85	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+335.93	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
 
-396.47	-TreeAnc.infer_ancestral_sequences with method: ml, joint
-396.47	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
-396.47	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
-401.46	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+336.17	-TreeAnc.infer_ancestral_sequences with method: ml, joint
+336.17	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+336.17	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+341.50	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
       	   likelihood sequences...
-401.60	---TreeAnc._ml_anc_joint: ...done
+341.65	---TreeAnc._ml_anc_joint: ...done
 
-401.61	###TreeTime.run: FINAL ROUND - confidence estimation via marginal
+341.66	###TreeTime.run: FINAL ROUND - confidence estimation via marginal
       	reconstruction
 
-401.61	-ClockTree: Maximum likelihood tree optimization with temporal
+341.66	-ClockTree: Maximum likelihood tree optimization with temporal
       	 constraints
-401.61	--ClockTree.init_date_constraints...
-401.61	---ClockTree.init_date_constraints: Initializing branch length
+341.66	--ClockTree.init_date_constraints...
+341.66	---ClockTree.init_date_constraints: Initializing branch length
       	   interpolation objects...
-428.19	--ClockTree.date2dist: Setting new molecular clock. rate=8.726e-09,
+367.31	--ClockTree.date2dist: Setting new molecular clock. rate=8.726e-09,
       	  R^2=0.2666
-428.23	--ClockTree - Marginal reconstruction:  Propagating leaves -> root...
-519.16	--ClockTree - Marginal reconstruction:  Propagating root -> leaves...
+367.35	--ClockTree - Marginal reconstruction:  Propagating leaves -> root...
+447.66	--ClockTree - Marginal reconstruction:  Propagating root -> leaves...

@@ -79,7 +79,8 @@ SEQ_MARGINAL = False
 MAX_ITER = 3
 RELAXED_CLOCK = {"slack": 1.0, "coupling": 0}
 # RELAXED_CLOCK = False
-TC = "skyline"
+# TC = "skyline"
+TC = None
 
 # N_IQD Explanation
 # 1_IQD is np.percentile(residuals,75) - np.percentile(residuals,25)
@@ -466,6 +467,26 @@ def auspice_export(
     export_v2.set_panels(data_json, config, cmd_line_panels=None)
 
     return data_json
+
+
+def branch_length_to_years_marginal(timetree):
+    """
+    Convert a timetree's branch lengths to the marginal date estimation
+    """
+    for c in timetree.tree.find_clades(order="preorder"):
+        if c.up is None:
+            continue
+        if hasattr(c, "marginal_inverse_cdf"):
+            # Find the marginal date
+            c_marginal_date = timetree.date2dist.to_numdate(c.marginal_pos_LH.peak_pos)
+            up_marginal_date = timetree.date2dist.to_numdate(
+                c.up.marginal_pos_LH.peak_pos
+            )
+
+            # Reassign
+            c.numdate = c_marginal_date
+            c.up.numdate = up_marginal_date
+            c.branch_length = c.numdate - c.up.numdate
 
 
 """
