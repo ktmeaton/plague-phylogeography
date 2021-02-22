@@ -5,7 +5,8 @@ name: Pipeline CI
 on:
   push:
     branches:
-      - '*'
+      - master
+      - dev
     paths:
       - '.github/workflows/pipeline.yaml'
       - 'config/snakemake.yaml'
