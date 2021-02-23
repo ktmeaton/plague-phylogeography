@@ -264,147 +264,151 @@
           ],
           [
             "Lithuania",
-            "#7216ff"
+            "#7215ff"
           ],
           [
             "Estonia",
-            "#642bfe"
+            "#652afe"
           ],
           [
             "Germany",
-            "#5640fd"
+            "#573ffd"
           ],
           [
             "China",
-            "#4855fb"
+            "#4a53fc"
           ],
           [
             "Azerbaijan",
-            "#3b69f9"
+            "#3c66fa"
           ],
           [
             "Armenia",
-            "#2d7cf7"
+            "#2f79f7"
           ],
           [
             "Georgia",
-            "#1f8ff4"
+            "#228bf4"
           ],
           [
             "Mongolia",
-            "#11a0f0"
+            "#149df1"
           ],
           [
             "Tajikistan",
-            "#03b0ed"
+            "#07adee"
           ],
           [
             "Kyrgyzstan",
-            "#0abfe8"
+            "#07bcea"
           ],
           [
             "England",
-            "#18cde4"
+            "#14c9e5"
           ],
           [
             "Spain",
-            "#26d9df"
+            "#22d5e0"
           ],
           [
             "France",
-            "#34e4d9"
+            "#2fe0db"
           ],
           [
             "Nepal",
-            "#41edd3"
+            "#3cead5"
           ],
           [
             "India",
-            "#4ff4cd"
+            "#4af1d0"
           ],
           [
             "Kazakhstan",
-            "#5df9c6"
+            "#57f7c9"
           ],
           [
             "Turkmenistan",
-            "#6bfdbf"
+            "#65fcc3"
+          ],
+          [
+            "Uzbekistan",
+            "#72febc"
           ],
           [
             "Iran",
-            "#79ffb8"
+            "#80ffb4"
           ],
           [
             "United States of America",
-            "#86ffb0"
+            "#8dfead"
           ],
           [
             "Italy",
-            "#94fda8"
+            "#9afca5"
           ],
           [
             "Poland",
-            "#a2f9a0"
+            "#a8f79d"
           ],
           [
             "Switzerland",
-            "#b0f498"
+            "#b5f194"
           ],
           [
             "Norway",
-            "#beed8f"
+            "#c3ea8b"
           ],
           [
             "The Netherlands",
-            "#cbe486"
+            "#d0e083"
           ],
           [
             "Uganda",
-            "#d9d97c"
+            "#ddd579"
           ],
           [
             "Democratic Republic of the Congo",
-            "#e7cd73"
+            "#ebc970"
           ],
           [
             "Kenya",
-            "#f5bf69"
+            "#f8bc66"
           ],
           [
             "Indonesia",
-            "#ffb05f"
+            "#ffad5d"
           ],
           [
             "Madagascar",
-            "#ffa055"
+            "#ff9d53"
           ],
           [
             "Peru",
-            "#ff8f4b"
+            "#ff8b49"
           ],
           [
             "Canada",
-            "#ff7c40"
+            "#ff793f"
           ],
           [
             "Vietnam",
-            "#ff6936"
+            "#ff6634"
           ],
           [
             "Myanmar",
-            "#ff552b"
+            "#ff532a"
           ],
           [
             "Zimbabwe",
-            "#ff4020"
+            "#ff3f20"
           ],
           [
             "Brazil",
-            "#ff2b16"
+            "#ff2a15"
           ],
           [
             "Algeria",
-            "#ff160b"
+            "#ff150b"
           ],
           [
             "Bolivia",
@@ -432,7 +436,7 @@
           ],
           [
             "P\u00e4rnu maakond",
-            "#760eff"
+            "#770eff"
           ],
           [
             "Irkutsk Oblast",
@@ -440,7 +444,7 @@
           ],
           [
             "Bavaria",
-            "#6d1cff"
+            "#6e1cff"
           ],
           [
             "Altai Krai",
@@ -448,7 +452,7 @@
           ],
           [
             "Qinghai",
-            "#642afe"
+            "#652afe"
           ],
           [
             "Republic of Dagestan",
@@ -456,7 +460,7 @@
           ],
           [
             "Goranboy District",
-            "#5b38fd"
+            "#5c38fd"
           ],
           [
             "Syunik Province",
@@ -464,379 +468,383 @@
           ],
           [
             "Shirak Province",
-            "#5246fd"
+            "#5345fd"
           ],
           [
             "Gegharkunik Province",
-            "#4e4dfc"
+            "#4e4cfc"
           ],
           [
             "Samtskhe-Javakheti",
-            "#4954fb"
+            "#4a53fc"
           ],
           [
             "Shahbuz Rayon",
-            "#455afb"
+            "#4559fb"
           ],
           [
             "Samara Oblast",
-            "#4061fa"
+            "#4160fa"
           ],
           [
             "Se\u010du\u00e1n",
-            "#3c67f9"
+            "#3c66fa"
           ],
           [
             "Inner Mongolia",
-            "#376ef9"
+            "#386df9"
           ],
           [
             "Bayankhongor",
-            "#3374f8"
+            "#3373f8"
           ],
           [
             "Sughd Province",
-            "#2e7af7"
+            "#2f79f7"
           ],
           [
             "Talas Region",
-            "#2a81f6"
+            "#2b7ff6"
           ],
           [
             "Altai Republic",
-            "#2587f5"
+            "#2686f5"
           ],
           [
             "Govi-Altai",
-            "#218df4"
+            "#228bf4"
           ],
           [
             "\u00d6v\u00f6rkhangai",
-            "#1c92f3"
+            "#1d91f3"
           ],
           [
             "\u00d6mn\u00f6govi",
-            "#1898f2"
+            "#1997f2"
           ],
           [
             "Omnogovi",
-            "#139ef1"
+            "#149df1"
           ],
           [
             "Bayan-\u00d6lgii",
-            "#0fa3f0"
+            "#10a2f0"
           ],
           [
             "Khovd",
-            "#0aa9ef"
+            "#0ba7ef"
           ],
           [
             "Xinjiang",
-            "#06aeed"
+            "#07adee"
           ],
           [
             "Issyk-Kul Region",
-            "#01b3ec"
+            "#02b2ec"
           ],
           [
             "East of England",
-            "#03b8eb"
+            "#02b7eb"
           ],
           [
             "Valencia Community",
-            "#08bde9"
+            "#07bcea"
           ],
           [
             "Centre-Loire Valley",
-            "#0cc2e8"
+            "#0bc0e8"
           ],
           [
             "Osh Region",
-            "#11c6e6"
+            "#10c5e7"
           ],
           [
             "Naryn Region",
-            "#15cae5"
+            "#14c9e5"
           ],
           [
             "Gansu",
-            "#1acfe3"
+            "#19cde4"
           ],
           [
             "Dornogovi",
-            "#1ed3e1"
+            "#1dd2e2"
           ],
           [
             "Tuva Republic",
-            "#23d7e0"
+            "#22d5e0"
           ],
           [
             "Jilin",
-            "#27dade"
+            "#26d9df"
           ],
           [
             "St. Petersberg",
-            "#2cdedc"
+            "#2adddd"
           ],
           [
             "Heilongjiang",
-            "#31e1da"
+            "#2fe0db"
           ],
           [
             "Zabaykalsky Krai",
-            "#35e5d9"
+            "#33e4d9"
           ],
           [
             "Tibet",
-            "#3ae8d7"
+            "#38e7d7"
           ],
           [
             "Gandaki Pradesh",
-            "#3eebd5"
+            "#3cead5"
           ],
           [
             "Maharashtra",
-            "#43edd3"
+            "#41ecd4"
           ],
           [
             "Himachal Pradesh",
-            "#47f0d1"
+            "#45efd2"
           ],
           [
             "Kabardino-Balkaria",
-            "#4cf2cf"
+            "#4af1d0"
           ],
           [
             "Karachay-Cherkessia",
-            "#50f4cd"
+            "#4ef3cd"
           ],
           [
             "Ningxia",
-            "#55f6ca"
+            "#53f5cb"
           ],
           [
             "Shaanxi",
-            "#59f8c8"
+            "#57f7c9"
           ],
           [
             "Hebei",
-            "#5ef9c6"
+            "#5cf9c7"
           ],
           [
             " Dornogovi",
-            "#62fbc4"
+            "#60fac5"
           ],
           [
             "West Kazakhstan Region",
-            "#67fcc2"
+            "#65fcc3"
           ],
           [
             "Nagorno-Karabakh Republic",
-            "#6bfdbf"
+            "#69fdc0"
           ],
           [
             "Kyzylorda Region",
-            "#70febd"
+            "#6efdbe"
           ],
           [
             "Rostov Oblast",
-            "#74feba"
+            "#72febc"
           ],
           [
             "Astrakhan Oblast",
-            "#79ffb8"
+            "#77ffb9"
           ],
           [
             "Balkan",
-            "#7dffb6"
+            "#7bffb7"
           ],
           [
             "Kyzylorda Province",
-            "#82ffb3"
+            "#80ffb4"
           ],
           [
             "Shymkent",
-            "#86ffb1"
+            "#84ffb2"
+          ],
+          [
+            "Navoiy Region",
+            "#88ffaf"
           ],
           [
             "Almaty Region",
-            "#8bfeae"
+            "#8dfead"
           ],
           [
             " West Kazakhstan region",
-            "#8ffeab"
+            "#91fdaa"
           ],
           [
             "Atyrau Region",
-            "#94fda9"
-          ],
-          [
-            "Shamkir District",
-            "#98fca6"
-          ],
-          [
-            "Stavropol Krai",
-            "#9dfba3"
-          ],
-          [
-            "Ingushetia",
-            "#a1f9a1"
+            "#96fda7"
           ],
           [
             "Kurdistan",
-            "#a6f89e"
+            "#9afca5"
           ],
           [
             "Fizuli District",
-            "#aaf69b"
+            "#9ffaa2"
           ],
           [
             "Baku",
-            "#aff498"
+            "#a3f99f"
           ],
           [
             "Illinois",
-            "#b3f295"
+            "#a8f79d"
+          ],
+          [
+            "Shamkir District",
+            "#acf59a"
+          ],
+          [
+            "Stavropol Krai",
+            "#b1f397"
+          ],
+          [
+            "Ingushetia",
+            "#b5f194"
           ],
           [
             "Mangystau Province",
-            "#b8f092"
+            "#baef91"
           ],
           [
             "Chechnya",
-            "#bced90"
+            "#beec8e"
           ],
           [
             "Aktobe Region",
-            "#c1eb8d"
+            "#c3ea8b"
           ],
           [
             "Atyrau",
-            "#c5e88a"
+            "#c7e789"
           ],
           [
             "Qazakh District",
-            "#cae587"
+            "#cce486"
           ],
           [
             "Republic of Kalmykia",
-            "#cee184"
+            "#d0e083"
           ],
           [
             "Tatarstan",
-            "#d3de81"
+            "#d4dd80"
           ],
           [
             "Lazio",
-            "#d8da7d"
+            "#d9d97c"
           ],
           [
             "Baden-W\u00fcrttemberg",
-            "#dcd77a"
+            "#ddd579"
           ],
           [
             "Vilnius County",
-            "#e1d377"
+            "#e2d276"
           ],
           [
             "Pomeranian Voivodeship",
-            "#e5cf74"
+            "#e6cd73"
           ],
           [
             "Brandenburg",
-            "#eaca71"
+            "#ebc970"
           ],
           [
             "Nidwalden",
-            "#eec66e"
+            "#efc56d"
           ],
           [
             "Greater London",
-            "#f3c26b"
+            "#f4c06a"
           ],
           [
             "Provence-Alpes-C\u00f4te d'Azur",
-            "#f7bd67"
+            "#f8bc66"
           ],
           [
             "Catalonia",
-            "#fcb864"
+            "#fdb763"
           ],
           [
             "Occitanie",
-            "#ffb361"
+            "#ffb260"
           ],
           [
             "Oslo",
-            "#ffae5d"
+            "#ffad5d"
           ],
           [
             "North Brabant",
-            "#ffa95a"
+            "#ffa759"
           ],
           [
             "Nairobi",
-            "#ffa357"
+            "#ffa256"
           ],
           [
             "Yunnan",
-            "#ff9e54"
+            "#ff9d53"
           ],
           [
             "Fujian",
-            "#ff9850"
+            "#ff974f"
           ],
           [
             "Central Java",
-            "#ff924d"
+            "#ff914c"
           ],
           [
             "Province de Fianarantsoa",
-            "#ff8d49"
+            "#ff8b49"
           ],
           [
             "Gujarat",
-            "#ff8746"
+            "#ff8645"
           ],
           [
             "Kirov Oblast",
-            "#ff8143"
+            "#ff8042"
           ],
           [
             "Lanzou",
-            "#ff7a3f"
+            "#ff793f"
           ],
           [
             "California",
-            "#ff743c"
+            "#ff733b"
           ],
           [
             "La Libertad",
-            "#ff6e38"
+            "#ff6d38"
           ],
           [
             "Tamil Nadu",
-            "#ff6735"
+            "#ff6634"
           ],
           [
             "New Mexico",
-            "#ff6131"
+            "#ff6031"
           ],
           [
             "Arizona",
-            "#ff5a2e"
+            "#ff592d"
           ],
           [
             "Saskatchewan",
-            "#ff542a"
+            "#ff532a"
           ],
           [
             "Colorado",
-            "#ff4d27"
+            "#ff4c27"
           ],
           [
             "Texas",
-            "#ff4623"
+            "#ff4523"
           ],
           [
             "Nevada",
@@ -891,525 +899,6 @@
         "key": "ufboot",
         "title": "Ultrafast Bootstrap",
         "type": "continuous"
-      },
-      {
-        "key": "province",
-        "scale": [
-          [
-            "Krasnoyarsk Krai",
-            "#8000ff"
-          ],
-          [
-            "Panevezys County",
-            "#7b07ff"
-          ],
-          [
-            "P\u00e4rnu maakond",
-            "#760eff"
-          ],
-          [
-            "Irkutsk Oblast",
-            "#7215ff"
-          ],
-          [
-            "Bavaria",
-            "#6d1cff"
-          ],
-          [
-            "Altai Krai",
-            "#6923fe"
-          ],
-          [
-            "Qinghai",
-            "#642afe"
-          ],
-          [
-            "Republic of Dagestan",
-            "#6031fe"
-          ],
-          [
-            "Goranboy District",
-            "#5b38fd"
-          ],
-          [
-            "Syunik Province",
-            "#573ffd"
-          ],
-          [
-            "Shirak Province",
-            "#5246fd"
-          ],
-          [
-            "Gegharkunik Province",
-            "#4e4dfc"
-          ],
-          [
-            "Samtskhe-Javakheti",
-            "#4954fb"
-          ],
-          [
-            "Shahbuz Rayon",
-            "#455afb"
-          ],
-          [
-            "Samara Oblast",
-            "#4061fa"
-          ],
-          [
-            "Se\u010du\u00e1n",
-            "#3c67f9"
-          ],
-          [
-            "Inner Mongolia",
-            "#376ef9"
-          ],
-          [
-            "Bayankhongor",
-            "#3374f8"
-          ],
-          [
-            "Sughd Province",
-            "#2e7af7"
-          ],
-          [
-            "Talas Region",
-            "#2a81f6"
-          ],
-          [
-            "Altai Republic",
-            "#2587f5"
-          ],
-          [
-            "Govi-Altai",
-            "#218df4"
-          ],
-          [
-            "\u00d6v\u00f6rkhangai",
-            "#1c92f3"
-          ],
-          [
-            "\u00d6mn\u00f6govi",
-            "#1898f2"
-          ],
-          [
-            "Omnogovi",
-            "#139ef1"
-          ],
-          [
-            "Bayan-\u00d6lgii",
-            "#0fa3f0"
-          ],
-          [
-            "Khovd",
-            "#0aa9ef"
-          ],
-          [
-            "Xinjiang",
-            "#06aeed"
-          ],
-          [
-            "Issyk-Kul Region",
-            "#01b3ec"
-          ],
-          [
-            "East of England",
-            "#03b8eb"
-          ],
-          [
-            "Valencia Community",
-            "#08bde9"
-          ],
-          [
-            "Centre-Loire Valley",
-            "#0cc2e8"
-          ],
-          [
-            "Osh Region",
-            "#11c6e6"
-          ],
-          [
-            "Naryn Region",
-            "#15cae5"
-          ],
-          [
-            "Gansu",
-            "#1acfe3"
-          ],
-          [
-            "Dornogovi",
-            "#1ed3e1"
-          ],
-          [
-            "Tuva Republic",
-            "#23d7e0"
-          ],
-          [
-            "Jilin",
-            "#27dade"
-          ],
-          [
-            "St. Petersberg",
-            "#2cdedc"
-          ],
-          [
-            "Heilongjiang",
-            "#31e1da"
-          ],
-          [
-            "Zabaykalsky Krai",
-            "#35e5d9"
-          ],
-          [
-            "Tibet",
-            "#3ae8d7"
-          ],
-          [
-            "Gandaki Pradesh",
-            "#3eebd5"
-          ],
-          [
-            "Maharashtra",
-            "#43edd3"
-          ],
-          [
-            "Himachal Pradesh",
-            "#47f0d1"
-          ],
-          [
-            "Kabardino-Balkaria",
-            "#4cf2cf"
-          ],
-          [
-            "Karachay-Cherkessia",
-            "#50f4cd"
-          ],
-          [
-            "Ningxia",
-            "#55f6ca"
-          ],
-          [
-            "Shaanxi",
-            "#59f8c8"
-          ],
-          [
-            "Hebei",
-            "#5ef9c6"
-          ],
-          [
-            " Dornogovi",
-            "#62fbc4"
-          ],
-          [
-            "West Kazakhstan Region",
-            "#67fcc2"
-          ],
-          [
-            "Nagorno-Karabakh Republic",
-            "#6bfdbf"
-          ],
-          [
-            "Kyzylorda Region",
-            "#70febd"
-          ],
-          [
-            "Rostov Oblast",
-            "#74feba"
-          ],
-          [
-            "Astrakhan Oblast",
-            "#79ffb8"
-          ],
-          [
-            "Balkan",
-            "#7dffb6"
-          ],
-          [
-            "Kyzylorda Province",
-            "#82ffb3"
-          ],
-          [
-            "Shymkent",
-            "#86ffb1"
-          ],
-          [
-            "Almaty Region",
-            "#8bfeae"
-          ],
-          [
-            " West Kazakhstan region",
-            "#8ffeab"
-          ],
-          [
-            "Atyrau Region",
-            "#94fda9"
-          ],
-          [
-            "Shamkir District",
-            "#98fca6"
-          ],
-          [
-            "Stavropol Krai",
-            "#9dfba3"
-          ],
-          [
-            "Ingushetia",
-            "#a1f9a1"
-          ],
-          [
-            "Kurdistan",
-            "#a6f89e"
-          ],
-          [
-            "Fizuli District",
-            "#aaf69b"
-          ],
-          [
-            "Baku",
-            "#aff498"
-          ],
-          [
-            "Illinois",
-            "#b3f295"
-          ],
-          [
-            "Mangystau Province",
-            "#b8f092"
-          ],
-          [
-            "Chechnya",
-            "#bced90"
-          ],
-          [
-            "Aktobe Region",
-            "#c1eb8d"
-          ],
-          [
-            "Atyrau",
-            "#c5e88a"
-          ],
-          [
-            "Qazakh District",
-            "#cae587"
-          ],
-          [
-            "Republic of Kalmykia",
-            "#cee184"
-          ],
-          [
-            "Tatarstan",
-            "#d3de81"
-          ],
-          [
-            "Lazio",
-            "#d8da7d"
-          ],
-          [
-            "Baden-W\u00fcrttemberg",
-            "#dcd77a"
-          ],
-          [
-            "Vilnius County",
-            "#e1d377"
-          ],
-          [
-            "Pomeranian Voivodeship",
-            "#e5cf74"
-          ],
-          [
-            "Brandenburg",
-            "#eaca71"
-          ],
-          [
-            "Nidwalden",
-            "#eec66e"
-          ],
-          [
-            "Greater London",
-            "#f3c26b"
-          ],
-          [
-            "Provence-Alpes-C\u00f4te d'Azur",
-            "#f7bd67"
-          ],
-          [
-            "Catalonia",
-            "#fcb864"
-          ],
-          [
-            "Occitanie",
-            "#ffb361"
-          ],
-          [
-            "Oslo",
-            "#ffae5d"
-          ],
-          [
-            "North Brabant",
-            "#ffa95a"
-          ],
-          [
-            "Nairobi",
-            "#ffa357"
-          ],
-          [
-            "Yunnan",
-            "#ff9e54"
-          ],
-          [
-            "Fujian",
-            "#ff9850"
-          ],
-          [
-            "Central Java",
-            "#ff924d"
-          ],
-          [
-            "Province de Fianarantsoa",
-            "#ff8d49"
-          ],
-          [
-            "Gujarat",
-            "#ff8746"
-          ],
-          [
-            "Kirov Oblast",
-            "#ff8143"
-          ],
-          [
-            "Lanzou",
-            "#ff7a3f"
-          ],
-          [
-            "California",
-            "#ff743c"
-          ],
-          [
-            "La Libertad",
-            "#ff6e38"
-          ],
-          [
-            "Tamil Nadu",
-            "#ff6735"
-          ],
-          [
-            "New Mexico",
-            "#ff6131"
-          ],
-          [
-            "Arizona",
-            "#ff5a2e"
-          ],
-          [
-            "Saskatchewan",
-            "#ff542a"
-          ],
-          [
-            "Colorado",
-            "#ff4d27"
-          ],
-          [
-            "Texas",
-            "#ff4623"
-          ],
-          [
-            "Nevada",
-            "#ff3f20"
-          ],
-          [
-            "Kh\u00e1nh Ho\u00e0 Province",
-            "#ff381c"
-          ],
-          [
-            "L\u00e2m \u0110\u1ed3ng Province",
-            "#ff3119"
-          ],
-          [
-            " Ho Chi Minh City",
-            "#ff2a15"
-          ],
-          [
-            "Guangxi Zhuang",
-            "#ff2312"
-          ],
-          [
-            "Midlands",
-            "#ff1c0e"
-          ],
-          [
-            "State of Mato Grosso",
-            "#ff150b"
-          ],
-          [
-            "MSila",
-            "#ff0e07"
-          ],
-          [
-            "La Paz",
-            "#ff0704"
-          ],
-          [
-            "Cajamarca",
-            "#ff0000"
-          ]
-        ],
-        "title": "Province",
-        "type": "categorical"
-      },
-      {
-        "key": "datebp",
-        "title": "Collection Date (BP)",
-        "type": "continuous"
-      },
-      {
-        "key": "branch_major",
-        "scale": [
-          [
-            "0.PRE",
-            "#8000ff"
-          ],
-          [
-            "0.PE",
-            "#4c4ffc"
-          ],
-          [
-            "0.ANT",
-            "#1996f3"
-          ],
-          [
-            "3.ANT",
-            "#1acee3"
-          ],
-          [
-            "4.ANT",
-            "#4df3ce"
-          ],
-          [
-            "2.ANT",
-            "#80ffb4"
-          ],
-          [
-            "2.MED",
-            "#b3f396"
-          ],
-          [
-            "1.PRE",
-            "#e6ce74"
-          ],
-          [
-            "1.ANT",
-            "#ff964f"
-          ],
-          [
-            "1.IN",
-            "#ff4f28"
-          ],
-          [
-            "1.ORI",
-            "#ff0000"
-          ]
-        ],
-        "title": "Branch Major",
-        "type": "categorical"
       },
       {
         "key": "branch_minor",
@@ -1567,14 +1056,233 @@
         "type": "categorical"
       },
       {
+        "key": "datebp",
+        "title": "Collection Date (BP)",
+        "type": "continuous"
+      },
+      {
         "key": "strain",
         "title": "Strain",
         "type": "categorical"
       },
       {
-        "key": "ufboot",
-        "title": "Ultrafast Bootstrap",
-        "type": "continuous"
+        "key": "biovar",
+        "title": "Biovar",
+        "type": "categorical"
+      },
+      {
+        "key": "country",
+        "scale": [
+          [
+            "Russia",
+            "#8000ff"
+          ],
+          [
+            "Lithuania",
+            "#7215ff"
+          ],
+          [
+            "Estonia",
+            "#652afe"
+          ],
+          [
+            "Germany",
+            "#573ffd"
+          ],
+          [
+            "China",
+            "#4a53fc"
+          ],
+          [
+            "Azerbaijan",
+            "#3c66fa"
+          ],
+          [
+            "Armenia",
+            "#2f79f7"
+          ],
+          [
+            "Georgia",
+            "#228bf4"
+          ],
+          [
+            "Mongolia",
+            "#149df1"
+          ],
+          [
+            "Tajikistan",
+            "#07adee"
+          ],
+          [
+            "Kyrgyzstan",
+            "#07bcea"
+          ],
+          [
+            "England",
+            "#14c9e5"
+          ],
+          [
+            "Spain",
+            "#22d5e0"
+          ],
+          [
+            "France",
+            "#2fe0db"
+          ],
+          [
+            "Nepal",
+            "#3cead5"
+          ],
+          [
+            "India",
+            "#4af1d0"
+          ],
+          [
+            "Kazakhstan",
+            "#57f7c9"
+          ],
+          [
+            "Turkmenistan",
+            "#65fcc3"
+          ],
+          [
+            "Uzbekistan",
+            "#72febc"
+          ],
+          [
+            "Iran",
+            "#80ffb4"
+          ],
+          [
+            "United States of America",
+            "#8dfead"
+          ],
+          [
+            "Italy",
+            "#9afca5"
+          ],
+          [
+            "Poland",
+            "#a8f79d"
+          ],
+          [
+            "Switzerland",
+            "#b5f194"
+          ],
+          [
+            "Norway",
+            "#c3ea8b"
+          ],
+          [
+            "The Netherlands",
+            "#d0e083"
+          ],
+          [
+            "Uganda",
+            "#ddd579"
+          ],
+          [
+            "Democratic Republic of the Congo",
+            "#ebc970"
+          ],
+          [
+            "Kenya",
+            "#f8bc66"
+          ],
+          [
+            "Indonesia",
+            "#ffad5d"
+          ],
+          [
+            "Madagascar",
+            "#ff9d53"
+          ],
+          [
+            "Peru",
+            "#ff8b49"
+          ],
+          [
+            "Canada",
+            "#ff793f"
+          ],
+          [
+            "Vietnam",
+            "#ff6634"
+          ],
+          [
+            "Myanmar",
+            "#ff532a"
+          ],
+          [
+            "Zimbabwe",
+            "#ff3f20"
+          ],
+          [
+            "Brazil",
+            "#ff2a15"
+          ],
+          [
+            "Algeria",
+            "#ff150b"
+          ],
+          [
+            "Bolivia",
+            "#ff0000"
+          ]
+        ],
+        "title": "Country",
+        "type": "categorical"
+      },
+      {
+        "key": "branch_major",
+        "scale": [
+          [
+            "0.PRE",
+            "#8000ff"
+          ],
+          [
+            "0.PE",
+            "#4c4ffc"
+          ],
+          [
+            "0.ANT",
+            "#1996f3"
+          ],
+          [
+            "3.ANT",
+            "#1acee3"
+          ],
+          [
+            "4.ANT",
+            "#4df3ce"
+          ],
+          [
+            "2.ANT",
+            "#80ffb4"
+          ],
+          [
+            "2.MED",
+            "#b3f396"
+          ],
+          [
+            "1.PRE",
+            "#e6ce74"
+          ],
+          [
+            "1.ANT",
+            "#ff964f"
+          ],
+          [
+            "1.IN",
+            "#ff4f28"
+          ],
+          [
+            "1.ORI",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Major",
+        "type": "categorical"
       },
       {
         "key": "branch_number",
@@ -1604,162 +1312,475 @@
         "type": "categorical"
       },
       {
-        "key": "country",
+        "key": "province",
         "scale": [
           [
-            "Russia",
+            "Krasnoyarsk Krai",
             "#8000ff"
           ],
           [
-            "Lithuania",
-            "#7216ff"
+            "Panevezys County",
+            "#7b07ff"
           ],
           [
-            "Estonia",
-            "#642bfe"
+            "P\u00e4rnu maakond",
+            "#770eff"
           ],
           [
-            "Germany",
-            "#5640fd"
+            "Irkutsk Oblast",
+            "#7215ff"
           ],
           [
-            "China",
-            "#4855fb"
+            "Bavaria",
+            "#6e1cff"
           ],
           [
-            "Azerbaijan",
-            "#3b69f9"
+            "Altai Krai",
+            "#6923fe"
           ],
           [
-            "Armenia",
-            "#2d7cf7"
+            "Qinghai",
+            "#652afe"
           ],
           [
-            "Georgia",
-            "#1f8ff4"
+            "Republic of Dagestan",
+            "#6031fe"
           ],
           [
-            "Mongolia",
-            "#11a0f0"
+            "Goranboy District",
+            "#5c38fd"
           ],
           [
-            "Tajikistan",
-            "#03b0ed"
+            "Syunik Province",
+            "#573ffd"
           ],
           [
-            "Kyrgyzstan",
-            "#0abfe8"
+            "Shirak Province",
+            "#5345fd"
           ],
           [
-            "England",
-            "#18cde4"
+            "Gegharkunik Province",
+            "#4e4cfc"
           ],
           [
-            "Spain",
+            "Samtskhe-Javakheti",
+            "#4a53fc"
+          ],
+          [
+            "Shahbuz Rayon",
+            "#4559fb"
+          ],
+          [
+            "Samara Oblast",
+            "#4160fa"
+          ],
+          [
+            "Se\u010du\u00e1n",
+            "#3c66fa"
+          ],
+          [
+            "Inner Mongolia",
+            "#386df9"
+          ],
+          [
+            "Bayankhongor",
+            "#3373f8"
+          ],
+          [
+            "Sughd Province",
+            "#2f79f7"
+          ],
+          [
+            "Talas Region",
+            "#2b7ff6"
+          ],
+          [
+            "Altai Republic",
+            "#2686f5"
+          ],
+          [
+            "Govi-Altai",
+            "#228bf4"
+          ],
+          [
+            "\u00d6v\u00f6rkhangai",
+            "#1d91f3"
+          ],
+          [
+            "\u00d6mn\u00f6govi",
+            "#1997f2"
+          ],
+          [
+            "Omnogovi",
+            "#149df1"
+          ],
+          [
+            "Bayan-\u00d6lgii",
+            "#10a2f0"
+          ],
+          [
+            "Khovd",
+            "#0ba7ef"
+          ],
+          [
+            "Xinjiang",
+            "#07adee"
+          ],
+          [
+            "Issyk-Kul Region",
+            "#02b2ec"
+          ],
+          [
+            "East of England",
+            "#02b7eb"
+          ],
+          [
+            "Valencia Community",
+            "#07bcea"
+          ],
+          [
+            "Centre-Loire Valley",
+            "#0bc0e8"
+          ],
+          [
+            "Osh Region",
+            "#10c5e7"
+          ],
+          [
+            "Naryn Region",
+            "#14c9e5"
+          ],
+          [
+            "Gansu",
+            "#19cde4"
+          ],
+          [
+            "Dornogovi",
+            "#1dd2e2"
+          ],
+          [
+            "Tuva Republic",
+            "#22d5e0"
+          ],
+          [
+            "Jilin",
             "#26d9df"
           ],
           [
-            "France",
-            "#34e4d9"
+            "St. Petersberg",
+            "#2adddd"
           ],
           [
-            "Nepal",
-            "#41edd3"
+            "Heilongjiang",
+            "#2fe0db"
           ],
           [
-            "India",
-            "#4ff4cd"
+            "Zabaykalsky Krai",
+            "#33e4d9"
           ],
           [
-            "Kazakhstan",
-            "#5df9c6"
+            "Tibet",
+            "#38e7d7"
           ],
           [
-            "Turkmenistan",
-            "#6bfdbf"
+            "Gandaki Pradesh",
+            "#3cead5"
           ],
           [
-            "Iran",
-            "#79ffb8"
+            "Maharashtra",
+            "#41ecd4"
           ],
           [
-            "United States of America",
-            "#86ffb0"
+            "Himachal Pradesh",
+            "#45efd2"
           ],
           [
-            "Italy",
-            "#94fda8"
+            "Kabardino-Balkaria",
+            "#4af1d0"
           ],
           [
-            "Poland",
-            "#a2f9a0"
+            "Karachay-Cherkessia",
+            "#4ef3cd"
           ],
           [
-            "Switzerland",
-            "#b0f498"
+            "Ningxia",
+            "#53f5cb"
           ],
           [
-            "Norway",
-            "#beed8f"
+            "Shaanxi",
+            "#57f7c9"
           ],
           [
-            "The Netherlands",
-            "#cbe486"
+            "Hebei",
+            "#5cf9c7"
           ],
           [
-            "Uganda",
+            " Dornogovi",
+            "#60fac5"
+          ],
+          [
+            "West Kazakhstan Region",
+            "#65fcc3"
+          ],
+          [
+            "Nagorno-Karabakh Republic",
+            "#69fdc0"
+          ],
+          [
+            "Kyzylorda Region",
+            "#6efdbe"
+          ],
+          [
+            "Rostov Oblast",
+            "#72febc"
+          ],
+          [
+            "Astrakhan Oblast",
+            "#77ffb9"
+          ],
+          [
+            "Balkan",
+            "#7bffb7"
+          ],
+          [
+            "Kyzylorda Province",
+            "#80ffb4"
+          ],
+          [
+            "Shymkent",
+            "#84ffb2"
+          ],
+          [
+            "Navoiy Region",
+            "#88ffaf"
+          ],
+          [
+            "Almaty Region",
+            "#8dfead"
+          ],
+          [
+            " West Kazakhstan region",
+            "#91fdaa"
+          ],
+          [
+            "Atyrau Region",
+            "#96fda7"
+          ],
+          [
+            "Kurdistan",
+            "#9afca5"
+          ],
+          [
+            "Fizuli District",
+            "#9ffaa2"
+          ],
+          [
+            "Baku",
+            "#a3f99f"
+          ],
+          [
+            "Illinois",
+            "#a8f79d"
+          ],
+          [
+            "Shamkir District",
+            "#acf59a"
+          ],
+          [
+            "Stavropol Krai",
+            "#b1f397"
+          ],
+          [
+            "Ingushetia",
+            "#b5f194"
+          ],
+          [
+            "Mangystau Province",
+            "#baef91"
+          ],
+          [
+            "Chechnya",
+            "#beec8e"
+          ],
+          [
+            "Aktobe Region",
+            "#c3ea8b"
+          ],
+          [
+            "Atyrau",
+            "#c7e789"
+          ],
+          [
+            "Qazakh District",
+            "#cce486"
+          ],
+          [
+            "Republic of Kalmykia",
+            "#d0e083"
+          ],
+          [
+            "Tatarstan",
+            "#d4dd80"
+          ],
+          [
+            "Lazio",
             "#d9d97c"
           ],
           [
-            "Democratic Republic of the Congo",
-            "#e7cd73"
+            "Baden-W\u00fcrttemberg",
+            "#ddd579"
           ],
           [
-            "Kenya",
-            "#f5bf69"
+            "Vilnius County",
+            "#e2d276"
           ],
           [
-            "Indonesia",
-            "#ffb05f"
+            "Pomeranian Voivodeship",
+            "#e6cd73"
           ],
           [
-            "Madagascar",
-            "#ffa055"
+            "Brandenburg",
+            "#ebc970"
           ],
           [
-            "Peru",
-            "#ff8f4b"
+            "Nidwalden",
+            "#efc56d"
           ],
           [
-            "Canada",
-            "#ff7c40"
+            "Greater London",
+            "#f4c06a"
           ],
           [
-            "Vietnam",
-            "#ff6936"
+            "Provence-Alpes-C\u00f4te d'Azur",
+            "#f8bc66"
           ],
           [
-            "Myanmar",
-            "#ff552b"
+            "Catalonia",
+            "#fdb763"
           ],
           [
-            "Zimbabwe",
-            "#ff4020"
+            "Occitanie",
+            "#ffb260"
           ],
           [
-            "Brazil",
-            "#ff2b16"
+            "Oslo",
+            "#ffad5d"
           ],
           [
-            "Algeria",
-            "#ff160b"
+            "North Brabant",
+            "#ffa759"
           ],
           [
-            "Bolivia",
+            "Nairobi",
+            "#ffa256"
+          ],
+          [
+            "Yunnan",
+            "#ff9d53"
+          ],
+          [
+            "Fujian",
+            "#ff974f"
+          ],
+          [
+            "Central Java",
+            "#ff914c"
+          ],
+          [
+            "Province de Fianarantsoa",
+            "#ff8b49"
+          ],
+          [
+            "Gujarat",
+            "#ff8645"
+          ],
+          [
+            "Kirov Oblast",
+            "#ff8042"
+          ],
+          [
+            "Lanzou",
+            "#ff793f"
+          ],
+          [
+            "California",
+            "#ff733b"
+          ],
+          [
+            "La Libertad",
+            "#ff6d38"
+          ],
+          [
+            "Tamil Nadu",
+            "#ff6634"
+          ],
+          [
+            "New Mexico",
+            "#ff6031"
+          ],
+          [
+            "Arizona",
+            "#ff592d"
+          ],
+          [
+            "Saskatchewan",
+            "#ff532a"
+          ],
+          [
+            "Colorado",
+            "#ff4c27"
+          ],
+          [
+            "Texas",
+            "#ff4523"
+          ],
+          [
+            "Nevada",
+            "#ff3f20"
+          ],
+          [
+            "Kh\u00e1nh Ho\u00e0 Province",
+            "#ff381c"
+          ],
+          [
+            "L\u00e2m \u0110\u1ed3ng Province",
+            "#ff3119"
+          ],
+          [
+            " Ho Chi Minh City",
+            "#ff2a15"
+          ],
+          [
+            "Guangxi Zhuang",
+            "#ff2312"
+          ],
+          [
+            "Midlands",
+            "#ff1c0e"
+          ],
+          [
+            "State of Mato Grosso",
+            "#ff150b"
+          ],
+          [
+            "MSila",
+            "#ff0e07"
+          ],
+          [
+            "La Paz",
+            "#ff0704"
+          ],
+          [
+            "Cajamarca",
             "#ff0000"
           ]
         ],
-        "title": "Country",
+        "title": "Province",
+        "type": "categorical"
+      },
+      {
+        "key": "biosamplecomment",
+        "title": "Data Comment",
         "type": "categorical"
       },
       {
@@ -1768,19 +1789,14 @@
         "type": "continuous"
       },
       {
-        "key": "biovar",
-        "title": "Biovar",
-        "type": "categorical"
-      },
-      {
         "key": "biosample",
         "title": "Data Accession",
         "type": "categorical"
       },
       {
-        "key": "biosamplecomment",
-        "title": "Data Comment",
-        "type": "categorical"
+        "key": "ufboot",
+        "title": "Ultrafast Bootstrap",
+        "type": "continuous"
       }
     ],
     "display_defaults": {
@@ -1943,6 +1959,10 @@
           "United States of America": {
             "latitude": 39.7837304,
             "longitude": -100.4458825
+          },
+          "Uzbekistan": {
+            "latitude": 41.32373,
+            "longitude": 63.9528098
           },
           "Vietnam": {
             "latitude": 13.2904027,
@@ -2224,6 +2244,10 @@
           "Naryn Region": {
             "latitude": 41.3564711,
             "longitude": 75.45197267868438
+          },
+          "Navoiy Region": {
+            "latitude": 42.0,
+            "longitude": 64.0
           },
           "Nevada": {
             "latitude": 39.515882500000004,
@@ -17964,6 +17988,95 @@
                                                                                 "value": "C-284"
                                                                               }
                                                                             }
+                                                                          },
+                                                                          {
+                                                                            "branch_attrs": {},
+                                                                            "children": [
+                                                                              {
+                                                                                "branch_attrs": {},
+                                                                                "name": "GCA_008630375.1_ASM863037v1_genomic",
+                                                                                "node_attrs": {
+                                                                                  "biosample": {
+                                                                                    "value": "SAMN12714485"
+                                                                                  },
+                                                                                  "biosamplecomment": {
+                                                                                    "value": "KEEP: Assembly Modern"
+                                                                                  },
+                                                                                  "biovar": {
+                                                                                    "value": "Medievalis"
+                                                                                  },
+                                                                                  "branch_major": {
+                                                                                    "value": "2.MED"
+                                                                                  },
+                                                                                  "branch_minor": {
+                                                                                    "value": "2.MED0"
+                                                                                  },
+                                                                                  "branch_number": {
+                                                                                    "value": "2"
+                                                                                  },
+                                                                                  "country": {
+                                                                                    "value": "Russia"
+                                                                                  },
+                                                                                  "datebp": {
+                                                                                    "value": "-39"
+                                                                                  },
+                                                                                  "div": 0.0001161579,
+                                                                                  "province": {
+                                                                                    "value": "Karachay-Cherkessia"
+                                                                                  },
+                                                                                  "strain": {
+                                                                                    "value": "C-506"
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              {
+                                                                                "branch_attrs": {},
+                                                                                "name": "GCA_008630375.2_ASM863037v2_genomic",
+                                                                                "node_attrs": {
+                                                                                  "biosample": {
+                                                                                    "value": "SAMN12714485"
+                                                                                  },
+                                                                                  "biosamplecomment": {
+                                                                                    "value": "KEEP: Assembly Modern"
+                                                                                  },
+                                                                                  "biovar": {
+                                                                                    "value": "Medievalis"
+                                                                                  },
+                                                                                  "branch_major": {
+                                                                                    "value": "2.MED"
+                                                                                  },
+                                                                                  "branch_minor": {
+                                                                                    "value": "2.MED0"
+                                                                                  },
+                                                                                  "branch_number": {
+                                                                                    "value": "2"
+                                                                                  },
+                                                                                  "country": {
+                                                                                    "value": "Russia"
+                                                                                  },
+                                                                                  "datebp": {
+                                                                                    "value": "-39"
+                                                                                  },
+                                                                                  "div": 0.0001192949,
+                                                                                  "province": {
+                                                                                    "value": "Karachay-Cherkessia"
+                                                                                  },
+                                                                                  "strain": {
+                                                                                    "value": "C-506"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            ],
+                                                                            "name": "NODE309",
+                                                                            "node_attrs": {
+                                                                              "div": 0.0001154777,
+                                                                              "scf": {
+                                                                                "value": 99.3
+                                                                              },
+                                                                              "ufboot": {
+                                                                                "value": 100.0
+                                                                              }
+                                                                            }
                                                                           }
                                                                         ],
                                                                         "name": "NODE308",
@@ -20020,6 +20133,43 @@
                                                                                         "children": [
                                                                                           {
                                                                                             "branch_attrs": {},
+                                                                                            "name": "GCA_003086075.1_ASM308607v1_genomic",
+                                                                                            "node_attrs": {
+                                                                                              "biosample": {
+                                                                                                "value": "SAMN05017610"
+                                                                                              },
+                                                                                              "biosamplecomment": {
+                                                                                                "value": "KEEP: Assembly Modern Kutyrev 2018 Keller 2019"
+                                                                                              },
+                                                                                              "biovar": {
+                                                                                                "value": "Medievalis"
+                                                                                              },
+                                                                                              "branch_major": {
+                                                                                                "value": "2.MED"
+                                                                                              },
+                                                                                              "branch_minor": {
+                                                                                                "value": "2.MED1"
+                                                                                              },
+                                                                                              "branch_number": {
+                                                                                                "value": "2"
+                                                                                              },
+                                                                                              "country": {
+                                                                                                "value": "Uzbekistan"
+                                                                                              },
+                                                                                              "datebp": {
+                                                                                                "value": "-38"
+                                                                                              },
+                                                                                              "div": 0.00010540929999999996,
+                                                                                              "province": {
+                                                                                                "value": "Navoiy Region"
+                                                                                              },
+                                                                                              "strain": {
+                                                                                                "value": "A-1825"
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          {
+                                                                                            "branch_attrs": {},
                                                                                             "name": "GCA_003086115.1_ASM308611v1_genomic",
                                                                                             "node_attrs": {
                                                                                               "biosample": {
@@ -20763,468 +20913,6 @@
                                                                                         "children": [
                                                                                           {
                                                                                             "branch_attrs": {},
-                                                                                            "name": "GCA_006376435.1_ASM637643v1_genomic",
-                                                                                            "node_attrs": {
-                                                                                              "biosample": {
-                                                                                                "value": "SAMN12011893"
-                                                                                              },
-                                                                                              "biosamplecomment": {
-                                                                                                "value": "KEEP: Assembly Modern"
-                                                                                              },
-                                                                                              "biovar": {
-                                                                                                "value": "Medievalis"
-                                                                                              },
-                                                                                              "branch_major": {
-                                                                                                "value": "2.MED"
-                                                                                              },
-                                                                                              "branch_minor": {
-                                                                                                "value": "2.MED1"
-                                                                                              },
-                                                                                              "branch_number": {
-                                                                                                "value": "2"
-                                                                                              },
-                                                                                              "country": {
-                                                                                                "value": "Azerbaijan"
-                                                                                              },
-                                                                                              "datebp": {
-                                                                                                "value": "-62"
-                                                                                              },
-                                                                                              "div": 7.700409999999996e-05,
-                                                                                              "province": {
-                                                                                                "value": "Shamkir District"
-                                                                                              },
-                                                                                              "strain": {
-                                                                                                "value": "C-62"
-                                                                                              }
-                                                                                            }
-                                                                                          },
-                                                                                          {
-                                                                                            "branch_attrs": {},
-                                                                                            "children": [
-                                                                                              {
-                                                                                                "branch_attrs": {},
-                                                                                                "children": [
-                                                                                                  {
-                                                                                                    "branch_attrs": {},
-                                                                                                    "name": "GCA_006376415.1_ASM637641v1_genomic",
-                                                                                                    "node_attrs": {
-                                                                                                      "biosample": {
-                                                                                                        "value": "SAMN12011892"
-                                                                                                      },
-                                                                                                      "biosamplecomment": {
-                                                                                                        "value": "KEEP: Assembly Modern"
-                                                                                                      },
-                                                                                                      "biovar": {
-                                                                                                        "value": "Medievalis"
-                                                                                                      },
-                                                                                                      "branch_major": {
-                                                                                                        "value": "2.MED"
-                                                                                                      },
-                                                                                                      "branch_minor": {
-                                                                                                        "value": "2.MED1"
-                                                                                                      },
-                                                                                                      "branch_number": {
-                                                                                                        "value": "2"
-                                                                                                      },
-                                                                                                      "country": {
-                                                                                                        "value": "Russia"
-                                                                                                      },
-                                                                                                      "datebp": {
-                                                                                                        "value": "-71"
-                                                                                                      },
-                                                                                                      "div": 7.820059999999996e-05,
-                                                                                                      "province": {
-                                                                                                        "value": "Stavropol Krai"
-                                                                                                      },
-                                                                                                      "strain": {
-                                                                                                        "value": "C-11"
-                                                                                                      }
-                                                                                                    }
-                                                                                                  },
-                                                                                                  {
-                                                                                                    "branch_attrs": {},
-                                                                                                    "children": [
-                                                                                                      {
-                                                                                                        "branch_attrs": {},
-                                                                                                        "name": "GCA_015336085.1_ASM1533608v1_genomic",
-                                                                                                        "node_attrs": {
-                                                                                                          "biosample": {
-                                                                                                            "value": "SAMN16619712"
-                                                                                                          },
-                                                                                                          "biosamplecomment": {
-                                                                                                            "value": "KEEP: Assembly Modern No Province"
-                                                                                                          },
-                                                                                                          "biovar": {
-                                                                                                            "value": "Medievalis"
-                                                                                                          },
-                                                                                                          "branch_major": {
-                                                                                                            "value": "2.MED"
-                                                                                                          },
-                                                                                                          "branch_minor": {
-                                                                                                            "value": "2.MED1"
-                                                                                                          },
-                                                                                                          "branch_number": {
-                                                                                                            "value": "2"
-                                                                                                          },
-                                                                                                          "country": {
-                                                                                                            "value": "Russia"
-                                                                                                          },
-                                                                                                          "datebp": {
-                                                                                                            "value": "-20"
-                                                                                                          },
-                                                                                                          "div": 7.752029999999997e-05,
-                                                                                                          "strain": {
-                                                                                                            "value": "C-781"
-                                                                                                          }
-                                                                                                        }
-                                                                                                      },
-                                                                                                      {
-                                                                                                        "branch_attrs": {},
-                                                                                                        "children": [
-                                                                                                          {
-                                                                                                            "branch_attrs": {},
-                                                                                                            "name": "GCA_001559935.1_ASM155993v1_genomic",
-                                                                                                            "node_attrs": {
-                                                                                                              "biosample": {
-                                                                                                                "value": "SAMN04331740"
-                                                                                                              },
-                                                                                                              "biosamplecomment": {
-                                                                                                                "value": "KEEP: Assembly Modern Kutyrev 2018 Keller 2019"
-                                                                                                              },
-                                                                                                              "biovar": {
-                                                                                                                "value": "Medievalis"
-                                                                                                              },
-                                                                                                              "branch_major": {
-                                                                                                                "value": "2.MED"
-                                                                                                              },
-                                                                                                              "branch_minor": {
-                                                                                                                "value": "2.MED1"
-                                                                                                              },
-                                                                                                              "branch_number": {
-                                                                                                                "value": "2"
-                                                                                                              },
-                                                                                                              "country": {
-                                                                                                                "value": "Russia"
-                                                                                                              },
-                                                                                                              "datebp": {
-                                                                                                                "value": "-32"
-                                                                                                              },
-                                                                                                              "div": 8.579579999999996e-05,
-                                                                                                              "province": {
-                                                                                                                "value": "Kabardino-Balkaria"
-                                                                                                              },
-                                                                                                              "strain": {
-                                                                                                                "value": "KM918"
-                                                                                                              }
-                                                                                                            }
-                                                                                                          }
-                                                                                                        ],
-                                                                                                        "name": "NODE380",
-                                                                                                        "node_attrs": {
-                                                                                                          "div": 7.914749999999996e-05,
-                                                                                                          "scf": {
-                                                                                                            "value": 76.8
-                                                                                                          },
-                                                                                                          "ufboot": {
-                                                                                                            "value": 98.0
-                                                                                                          }
-                                                                                                        }
-                                                                                                      }
-                                                                                                    ],
-                                                                                                    "name": "NODE379",
-                                                                                                    "node_attrs": {
-                                                                                                      "div": 7.749679999999997e-05,
-                                                                                                      "scf": {
-                                                                                                        "value": 48.8
-                                                                                                      },
-                                                                                                      "ufboot": {
-                                                                                                        "value": 69.0
-                                                                                                      }
-                                                                                                    }
-                                                                                                  }
-                                                                                                ],
-                                                                                                "name": "NODE378",
-                                                                                                "node_attrs": {
-                                                                                                  "div": 7.726219999999997e-05,
-                                                                                                  "scf": {
-                                                                                                    "value": 0.22
-                                                                                                  },
-                                                                                                  "ufboot": {
-                                                                                                    "value": 54.0
-                                                                                                  }
-                                                                                                }
-                                                                                              },
-                                                                                              {
-                                                                                                "branch_attrs": {},
-                                                                                                "children": [
-                                                                                                  {
-                                                                                                    "branch_attrs": {},
-                                                                                                    "children": [
-                                                                                                      {
-                                                                                                        "branch_attrs": {},
-                                                                                                        "name": "GCA_015159615.1_ASM1515961v1_genomic",
-                                                                                                        "node_attrs": {
-                                                                                                          "biosample": {
-                                                                                                            "value": "SAMN16431992"
-                                                                                                          },
-                                                                                                          "biosamplecomment": {
-                                                                                                            "value": "KEEP: Assembly Modern"
-                                                                                                          },
-                                                                                                          "biovar": {
-                                                                                                            "value": "Medievalis"
-                                                                                                          },
-                                                                                                          "branch_major": {
-                                                                                                            "value": "2.MED"
-                                                                                                          },
-                                                                                                          "branch_minor": {
-                                                                                                            "value": "2.MED1"
-                                                                                                          },
-                                                                                                          "branch_number": {
-                                                                                                            "value": "2"
-                                                                                                          },
-                                                                                                          "country": {
-                                                                                                            "value": "Russia"
-                                                                                                          },
-                                                                                                          "datebp": {
-                                                                                                            "value": "-51"
-                                                                                                          },
-                                                                                                          "div": 7.775489999999997e-05,
-                                                                                                          "province": {
-                                                                                                            "value": "Ingushetia"
-                                                                                                          },
-                                                                                                          "strain": {
-                                                                                                            "value": "14D"
-                                                                                                          }
-                                                                                                        }
-                                                                                                      },
-                                                                                                      {
-                                                                                                        "branch_attrs": {},
-                                                                                                        "name": "GCA_015337445.1_ASM1533744v1_genomic",
-                                                                                                        "node_attrs": {
-                                                                                                          "biosample": {
-                                                                                                            "value": "SAMN16619715"
-                                                                                                          },
-                                                                                                          "biosamplecomment": {
-                                                                                                            "value": "KEEP: Assembly Modern No Province"
-                                                                                                          },
-                                                                                                          "biovar": {
-                                                                                                            "value": "Medievalis"
-                                                                                                          },
-                                                                                                          "branch_major": {
-                                                                                                            "value": "2.MED"
-                                                                                                          },
-                                                                                                          "branch_minor": {
-                                                                                                            "value": "2.MED1"
-                                                                                                          },
-                                                                                                          "branch_number": {
-                                                                                                            "value": "2"
-                                                                                                          },
-                                                                                                          "country": {
-                                                                                                            "value": "Russia"
-                                                                                                          },
-                                                                                                          "datebp": {
-                                                                                                            "value": "-49"
-                                                                                                          },
-                                                                                                          "div": 7.775489999999997e-05,
-                                                                                                          "strain": {
-                                                                                                            "value": "KM 567"
-                                                                                                          }
-                                                                                                        }
-                                                                                                      }
-                                                                                                    ],
-                                                                                                    "name": "NODE382",
-                                                                                                    "node_attrs": {
-                                                                                                      "div": 7.773139999999997e-05,
-                                                                                                      "scf": {
-                                                                                                        "value": 0.6
-                                                                                                      },
-                                                                                                      "ufboot": {
-                                                                                                        "value": 79.0
-                                                                                                      }
-                                                                                                    }
-                                                                                                  },
-                                                                                                  {
-                                                                                                    "branch_attrs": {},
-                                                                                                    "children": [
-                                                                                                      {
-                                                                                                        "branch_attrs": {},
-                                                                                                        "name": "GCA_006376495.1_ASM637649v1_genomic",
-                                                                                                        "node_attrs": {
-                                                                                                          "biosample": {
-                                                                                                            "value": "SAMN12011930"
-                                                                                                          },
-                                                                                                          "biosamplecomment": {
-                                                                                                            "value": "KEEP: Assembly Modern"
-                                                                                                          },
-                                                                                                          "biovar": {
-                                                                                                            "value": "Medievalis"
-                                                                                                          },
-                                                                                                          "branch_major": {
-                                                                                                            "value": "2.MED"
-                                                                                                          },
-                                                                                                          "branch_minor": {
-                                                                                                            "value": "2.MED1"
-                                                                                                          },
-                                                                                                          "branch_number": {
-                                                                                                            "value": "2"
-                                                                                                          },
-                                                                                                          "country": {
-                                                                                                            "value": "Azerbaijan"
-                                                                                                          },
-                                                                                                          "datebp": {
-                                                                                                            "value": "-53"
-                                                                                                          },
-                                                                                                          "div": 7.841169999999996e-05,
-                                                                                                          "province": {
-                                                                                                            "value": "Goranboy District"
-                                                                                                          },
-                                                                                                          "strain": {
-                                                                                                            "value": "C-231"
-                                                                                                          }
-                                                                                                        }
-                                                                                                      },
-                                                                                                      {
-                                                                                                        "branch_attrs": {},
-                                                                                                        "children": [
-                                                                                                          {
-                                                                                                            "branch_attrs": {},
-                                                                                                            "name": "GCA_006376535.1_ASM637653v1_genomic",
-                                                                                                            "node_attrs": {
-                                                                                                              "biosample": {
-                                                                                                                "value": "SAMN12012131"
-                                                                                                              },
-                                                                                                              "biosamplecomment": {
-                                                                                                                "value": "KEEP: Assembly Modern"
-                                                                                                              },
-                                                                                                              "biovar": {
-                                                                                                                "value": "Medievalis"
-                                                                                                              },
-                                                                                                              "branch_major": {
-                                                                                                                "value": "2.MED"
-                                                                                                              },
-                                                                                                              "branch_minor": {
-                                                                                                                "value": "2.MED1"
-                                                                                                              },
-                                                                                                              "branch_number": {
-                                                                                                                "value": "2"
-                                                                                                              },
-                                                                                                              "country": {
-                                                                                                                "value": "Russia"
-                                                                                                              },
-                                                                                                              "datebp": {
-                                                                                                                "value": "-51"
-                                                                                                              },
-                                                                                                              "div": 8.244929999999996e-05,
-                                                                                                              "province": {
-                                                                                                                "value": "Ingushetia"
-                                                                                                              },
-                                                                                                              "strain": {
-                                                                                                                "value": "C-281"
-                                                                                                              }
-                                                                                                            }
-                                                                                                          },
-                                                                                                          {
-                                                                                                            "branch_attrs": {},
-                                                                                                            "name": "GCA_006376535.2_ASM637653v2_genomic",
-                                                                                                            "node_attrs": {
-                                                                                                              "biosample": {
-                                                                                                                "value": "SAMN12012131"
-                                                                                                              },
-                                                                                                              "biosamplecomment": {
-                                                                                                                "value": "KEEP: Assembly Modern"
-                                                                                                              },
-                                                                                                              "biovar": {
-                                                                                                                "value": "Medievalis"
-                                                                                                              },
-                                                                                                              "branch_major": {
-                                                                                                                "value": "2.MED"
-                                                                                                              },
-                                                                                                              "branch_minor": {
-                                                                                                                "value": "2.MED1"
-                                                                                                              },
-                                                                                                              "branch_number": {
-                                                                                                                "value": "2"
-                                                                                                              },
-                                                                                                              "country": {
-                                                                                                                "value": "Russia"
-                                                                                                              },
-                                                                                                              "datebp": {
-                                                                                                                "value": "-51"
-                                                                                                              },
-                                                                                                              "div": 8.289499999999996e-05,
-                                                                                                              "province": {
-                                                                                                                "value": "Ingushetia"
-                                                                                                              },
-                                                                                                              "strain": {
-                                                                                                                "value": "C-281"
-                                                                                                              }
-                                                                                                            }
-                                                                                                          }
-                                                                                                        ],
-                                                                                                        "name": "NODE384",
-                                                                                                        "node_attrs": {
-                                                                                                          "div": 8.242579999999996e-05,
-                                                                                                          "scf": {
-                                                                                                            "value": 99.8
-                                                                                                          },
-                                                                                                          "ufboot": {
-                                                                                                            "value": 100.0
-                                                                                                          }
-                                                                                                        }
-                                                                                                      }
-                                                                                                    ],
-                                                                                                    "name": "NODE383",
-                                                                                                    "node_attrs": {
-                                                                                                      "div": 7.794249999999996e-05,
-                                                                                                      "scf": {
-                                                                                                        "value": 98.6
-                                                                                                      },
-                                                                                                      "ufboot": {
-                                                                                                        "value": 100.0
-                                                                                                      }
-                                                                                                    }
-                                                                                                  }
-                                                                                                ],
-                                                                                                "name": "NODE381",
-                                                                                                "node_attrs": {
-                                                                                                  "div": 7.770789999999996e-05,
-                                                                                                  "scf": {
-                                                                                                    "value": 88.8
-                                                                                                  },
-                                                                                                  "ufboot": {
-                                                                                                    "value": 91.0
-                                                                                                  }
-                                                                                                }
-                                                                                              }
-                                                                                            ],
-                                                                                            "name": "NODE377",
-                                                                                            "node_attrs": {
-                                                                                              "div": 7.723869999999996e-05,
-                                                                                              "scf": {
-                                                                                                "value": 77.5
-                                                                                              },
-                                                                                              "ufboot": {
-                                                                                                "value": 99.0
-                                                                                              }
-                                                                                            }
-                                                                                          }
-                                                                                        ],
-                                                                                        "name": "NODE376",
-                                                                                        "node_attrs": {
-                                                                                          "div": 7.653489999999996e-05,
-                                                                                          "scf": {
-                                                                                            "value": 94.9
-                                                                                          },
-                                                                                          "ufboot": {
-                                                                                            "value": 100.0
-                                                                                          }
-                                                                                        }
-                                                                                      },
-                                                                                      {
-                                                                                        "branch_attrs": {},
-                                                                                        "children": [
-                                                                                          {
-                                                                                            "branch_attrs": {},
                                                                                             "children": [
                                                                                               {
                                                                                                 "branch_attrs": {},
@@ -21722,6 +21410,505 @@
                                                                                           },
                                                                                           "ufboot": {
                                                                                             "value": 86.0
+                                                                                          }
+                                                                                        }
+                                                                                      },
+                                                                                      {
+                                                                                        "branch_attrs": {},
+                                                                                        "children": [
+                                                                                          {
+                                                                                            "branch_attrs": {},
+                                                                                            "name": "GCA_006376435.1_ASM637643v1_genomic",
+                                                                                            "node_attrs": {
+                                                                                              "biosample": {
+                                                                                                "value": "SAMN12011893"
+                                                                                              },
+                                                                                              "biosamplecomment": {
+                                                                                                "value": "KEEP: Assembly Modern"
+                                                                                              },
+                                                                                              "biovar": {
+                                                                                                "value": "Medievalis"
+                                                                                              },
+                                                                                              "branch_major": {
+                                                                                                "value": "2.MED"
+                                                                                              },
+                                                                                              "branch_minor": {
+                                                                                                "value": "2.MED1"
+                                                                                              },
+                                                                                              "branch_number": {
+                                                                                                "value": "2"
+                                                                                              },
+                                                                                              "country": {
+                                                                                                "value": "Azerbaijan"
+                                                                                              },
+                                                                                              "datebp": {
+                                                                                                "value": "-62"
+                                                                                              },
+                                                                                              "div": 7.700409999999996e-05,
+                                                                                              "province": {
+                                                                                                "value": "Shamkir District"
+                                                                                              },
+                                                                                              "strain": {
+                                                                                                "value": "C-62"
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          {
+                                                                                            "branch_attrs": {},
+                                                                                            "children": [
+                                                                                              {
+                                                                                                "branch_attrs": {},
+                                                                                                "children": [
+                                                                                                  {
+                                                                                                    "branch_attrs": {},
+                                                                                                    "name": "GCA_006376415.1_ASM637641v1_genomic",
+                                                                                                    "node_attrs": {
+                                                                                                      "biosample": {
+                                                                                                        "value": "SAMN12011892"
+                                                                                                      },
+                                                                                                      "biosamplecomment": {
+                                                                                                        "value": "KEEP: Assembly Modern"
+                                                                                                      },
+                                                                                                      "biovar": {
+                                                                                                        "value": "Medievalis"
+                                                                                                      },
+                                                                                                      "branch_major": {
+                                                                                                        "value": "2.MED"
+                                                                                                      },
+                                                                                                      "branch_minor": {
+                                                                                                        "value": "2.MED1"
+                                                                                                      },
+                                                                                                      "branch_number": {
+                                                                                                        "value": "2"
+                                                                                                      },
+                                                                                                      "country": {
+                                                                                                        "value": "Russia"
+                                                                                                      },
+                                                                                                      "datebp": {
+                                                                                                        "value": "-71"
+                                                                                                      },
+                                                                                                      "div": 7.820059999999996e-05,
+                                                                                                      "province": {
+                                                                                                        "value": "Stavropol Krai"
+                                                                                                      },
+                                                                                                      "strain": {
+                                                                                                        "value": "C-11"
+                                                                                                      }
+                                                                                                    }
+                                                                                                  },
+                                                                                                  {
+                                                                                                    "branch_attrs": {},
+                                                                                                    "children": [
+                                                                                                      {
+                                                                                                        "branch_attrs": {},
+                                                                                                        "name": "GCA_015336085.1_ASM1533608v1_genomic",
+                                                                                                        "node_attrs": {
+                                                                                                          "biosample": {
+                                                                                                            "value": "SAMN16619712"
+                                                                                                          },
+                                                                                                          "biosamplecomment": {
+                                                                                                            "value": "KEEP: Assembly Modern No Province"
+                                                                                                          },
+                                                                                                          "biovar": {
+                                                                                                            "value": "Medievalis"
+                                                                                                          },
+                                                                                                          "branch_major": {
+                                                                                                            "value": "2.MED"
+                                                                                                          },
+                                                                                                          "branch_minor": {
+                                                                                                            "value": "2.MED1"
+                                                                                                          },
+                                                                                                          "branch_number": {
+                                                                                                            "value": "2"
+                                                                                                          },
+                                                                                                          "country": {
+                                                                                                            "value": "Russia"
+                                                                                                          },
+                                                                                                          "datebp": {
+                                                                                                            "value": "-20"
+                                                                                                          },
+                                                                                                          "div": 7.752029999999997e-05,
+                                                                                                          "strain": {
+                                                                                                            "value": "C-781"
+                                                                                                          }
+                                                                                                        }
+                                                                                                      },
+                                                                                                      {
+                                                                                                        "branch_attrs": {},
+                                                                                                        "children": [
+                                                                                                          {
+                                                                                                            "branch_attrs": {},
+                                                                                                            "name": "GCA_001559935.1_ASM155993v1_genomic",
+                                                                                                            "node_attrs": {
+                                                                                                              "biosample": {
+                                                                                                                "value": "SAMN04331740"
+                                                                                                              },
+                                                                                                              "biosamplecomment": {
+                                                                                                                "value": "KEEP: Assembly Modern Kutyrev 2018 Keller 2019"
+                                                                                                              },
+                                                                                                              "biovar": {
+                                                                                                                "value": "Medievalis"
+                                                                                                              },
+                                                                                                              "branch_major": {
+                                                                                                                "value": "2.MED"
+                                                                                                              },
+                                                                                                              "branch_minor": {
+                                                                                                                "value": "2.MED1"
+                                                                                                              },
+                                                                                                              "branch_number": {
+                                                                                                                "value": "2"
+                                                                                                              },
+                                                                                                              "country": {
+                                                                                                                "value": "Russia"
+                                                                                                              },
+                                                                                                              "datebp": {
+                                                                                                                "value": "-32"
+                                                                                                              },
+                                                                                                              "div": 8.579579999999996e-05,
+                                                                                                              "province": {
+                                                                                                                "value": "Kabardino-Balkaria"
+                                                                                                              },
+                                                                                                              "strain": {
+                                                                                                                "value": "KM918"
+                                                                                                              }
+                                                                                                            }
+                                                                                                          },
+                                                                                                          {
+                                                                                                            "branch_attrs": {},
+                                                                                                            "name": "GCA_001613865.1_ASM161386v1_genomic",
+                                                                                                            "node_attrs": {
+                                                                                                              "biosample": {
+                                                                                                                "value": "SAMN04364301"
+                                                                                                              },
+                                                                                                              "biosamplecomment": {
+                                                                                                                "value": "KEEP: Assembly Modern Kutyrev 2018 Keller 2019"
+                                                                                                              },
+                                                                                                              "biovar": {
+                                                                                                                "value": "Medievalis"
+                                                                                                              },
+                                                                                                              "branch_major": {
+                                                                                                                "value": "2.MED"
+                                                                                                              },
+                                                                                                              "branch_minor": {
+                                                                                                                "value": "2.MED1"
+                                                                                                              },
+                                                                                                              "branch_number": {
+                                                                                                                "value": "2"
+                                                                                                              },
+                                                                                                              "country": {
+                                                                                                                "value": "Russia"
+                                                                                                              },
+                                                                                                              "datebp": {
+                                                                                                                "value": "-50"
+                                                                                                              },
+                                                                                                              "div": 0.00010717199999999996,
+                                                                                                              "province": {
+                                                                                                                "value": "Ingushetia"
+                                                                                                              },
+                                                                                                              "strain": {
+                                                                                                                "value": "1116-D"
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        ],
+                                                                                                        "name": "NODE380",
+                                                                                                        "node_attrs": {
+                                                                                                          "div": 7.914749999999996e-05,
+                                                                                                          "scf": {
+                                                                                                            "value": 76.8
+                                                                                                          },
+                                                                                                          "ufboot": {
+                                                                                                            "value": 98.0
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    ],
+                                                                                                    "name": "NODE379",
+                                                                                                    "node_attrs": {
+                                                                                                      "div": 7.749679999999997e-05,
+                                                                                                      "scf": {
+                                                                                                        "value": 48.8
+                                                                                                      },
+                                                                                                      "ufboot": {
+                                                                                                        "value": 69.0
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                ],
+                                                                                                "name": "NODE378",
+                                                                                                "node_attrs": {
+                                                                                                  "div": 7.726219999999997e-05,
+                                                                                                  "scf": {
+                                                                                                    "value": 0.22
+                                                                                                  },
+                                                                                                  "ufboot": {
+                                                                                                    "value": 54.0
+                                                                                                  }
+                                                                                                }
+                                                                                              },
+                                                                                              {
+                                                                                                "branch_attrs": {},
+                                                                                                "children": [
+                                                                                                  {
+                                                                                                    "branch_attrs": {},
+                                                                                                    "children": [
+                                                                                                      {
+                                                                                                        "branch_attrs": {},
+                                                                                                        "name": "GCA_015159615.1_ASM1515961v1_genomic",
+                                                                                                        "node_attrs": {
+                                                                                                          "biosample": {
+                                                                                                            "value": "SAMN16431992"
+                                                                                                          },
+                                                                                                          "biosamplecomment": {
+                                                                                                            "value": "KEEP: Assembly Modern"
+                                                                                                          },
+                                                                                                          "biovar": {
+                                                                                                            "value": "Medievalis"
+                                                                                                          },
+                                                                                                          "branch_major": {
+                                                                                                            "value": "2.MED"
+                                                                                                          },
+                                                                                                          "branch_minor": {
+                                                                                                            "value": "2.MED1"
+                                                                                                          },
+                                                                                                          "branch_number": {
+                                                                                                            "value": "2"
+                                                                                                          },
+                                                                                                          "country": {
+                                                                                                            "value": "Russia"
+                                                                                                          },
+                                                                                                          "datebp": {
+                                                                                                            "value": "-51"
+                                                                                                          },
+                                                                                                          "div": 7.775489999999997e-05,
+                                                                                                          "province": {
+                                                                                                            "value": "Ingushetia"
+                                                                                                          },
+                                                                                                          "strain": {
+                                                                                                            "value": "14D"
+                                                                                                          }
+                                                                                                        }
+                                                                                                      },
+                                                                                                      {
+                                                                                                        "branch_attrs": {},
+                                                                                                        "name": "GCA_015337445.1_ASM1533744v1_genomic",
+                                                                                                        "node_attrs": {
+                                                                                                          "biosample": {
+                                                                                                            "value": "SAMN16619715"
+                                                                                                          },
+                                                                                                          "biosamplecomment": {
+                                                                                                            "value": "KEEP: Assembly Modern No Province"
+                                                                                                          },
+                                                                                                          "biovar": {
+                                                                                                            "value": "Medievalis"
+                                                                                                          },
+                                                                                                          "branch_major": {
+                                                                                                            "value": "2.MED"
+                                                                                                          },
+                                                                                                          "branch_minor": {
+                                                                                                            "value": "2.MED1"
+                                                                                                          },
+                                                                                                          "branch_number": {
+                                                                                                            "value": "2"
+                                                                                                          },
+                                                                                                          "country": {
+                                                                                                            "value": "Russia"
+                                                                                                          },
+                                                                                                          "datebp": {
+                                                                                                            "value": "-49"
+                                                                                                          },
+                                                                                                          "div": 7.775489999999997e-05,
+                                                                                                          "strain": {
+                                                                                                            "value": "KM 567"
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    ],
+                                                                                                    "name": "NODE382",
+                                                                                                    "node_attrs": {
+                                                                                                      "div": 7.773139999999997e-05,
+                                                                                                      "scf": {
+                                                                                                        "value": 0.6
+                                                                                                      },
+                                                                                                      "ufboot": {
+                                                                                                        "value": 79.0
+                                                                                                      }
+                                                                                                    }
+                                                                                                  },
+                                                                                                  {
+                                                                                                    "branch_attrs": {},
+                                                                                                    "children": [
+                                                                                                      {
+                                                                                                        "branch_attrs": {},
+                                                                                                        "name": "GCA_006376495.1_ASM637649v1_genomic",
+                                                                                                        "node_attrs": {
+                                                                                                          "biosample": {
+                                                                                                            "value": "SAMN12011930"
+                                                                                                          },
+                                                                                                          "biosamplecomment": {
+                                                                                                            "value": "KEEP: Assembly Modern"
+                                                                                                          },
+                                                                                                          "biovar": {
+                                                                                                            "value": "Medievalis"
+                                                                                                          },
+                                                                                                          "branch_major": {
+                                                                                                            "value": "2.MED"
+                                                                                                          },
+                                                                                                          "branch_minor": {
+                                                                                                            "value": "2.MED1"
+                                                                                                          },
+                                                                                                          "branch_number": {
+                                                                                                            "value": "2"
+                                                                                                          },
+                                                                                                          "country": {
+                                                                                                            "value": "Azerbaijan"
+                                                                                                          },
+                                                                                                          "datebp": {
+                                                                                                            "value": "-53"
+                                                                                                          },
+                                                                                                          "div": 7.841169999999996e-05,
+                                                                                                          "province": {
+                                                                                                            "value": "Goranboy District"
+                                                                                                          },
+                                                                                                          "strain": {
+                                                                                                            "value": "C-231"
+                                                                                                          }
+                                                                                                        }
+                                                                                                      },
+                                                                                                      {
+                                                                                                        "branch_attrs": {},
+                                                                                                        "children": [
+                                                                                                          {
+                                                                                                            "branch_attrs": {},
+                                                                                                            "name": "GCA_006376535.1_ASM637653v1_genomic",
+                                                                                                            "node_attrs": {
+                                                                                                              "biosample": {
+                                                                                                                "value": "SAMN12012131"
+                                                                                                              },
+                                                                                                              "biosamplecomment": {
+                                                                                                                "value": "KEEP: Assembly Modern"
+                                                                                                              },
+                                                                                                              "biovar": {
+                                                                                                                "value": "Medievalis"
+                                                                                                              },
+                                                                                                              "branch_major": {
+                                                                                                                "value": "2.MED"
+                                                                                                              },
+                                                                                                              "branch_minor": {
+                                                                                                                "value": "2.MED1"
+                                                                                                              },
+                                                                                                              "branch_number": {
+                                                                                                                "value": "2"
+                                                                                                              },
+                                                                                                              "country": {
+                                                                                                                "value": "Russia"
+                                                                                                              },
+                                                                                                              "datebp": {
+                                                                                                                "value": "-51"
+                                                                                                              },
+                                                                                                              "div": 8.244929999999996e-05,
+                                                                                                              "province": {
+                                                                                                                "value": "Ingushetia"
+                                                                                                              },
+                                                                                                              "strain": {
+                                                                                                                "value": "C-281"
+                                                                                                              }
+                                                                                                            }
+                                                                                                          },
+                                                                                                          {
+                                                                                                            "branch_attrs": {},
+                                                                                                            "name": "GCA_006376535.2_ASM637653v2_genomic",
+                                                                                                            "node_attrs": {
+                                                                                                              "biosample": {
+                                                                                                                "value": "SAMN12012131"
+                                                                                                              },
+                                                                                                              "biosamplecomment": {
+                                                                                                                "value": "KEEP: Assembly Modern"
+                                                                                                              },
+                                                                                                              "biovar": {
+                                                                                                                "value": "Medievalis"
+                                                                                                              },
+                                                                                                              "branch_major": {
+                                                                                                                "value": "2.MED"
+                                                                                                              },
+                                                                                                              "branch_minor": {
+                                                                                                                "value": "2.MED1"
+                                                                                                              },
+                                                                                                              "branch_number": {
+                                                                                                                "value": "2"
+                                                                                                              },
+                                                                                                              "country": {
+                                                                                                                "value": "Russia"
+                                                                                                              },
+                                                                                                              "datebp": {
+                                                                                                                "value": "-51"
+                                                                                                              },
+                                                                                                              "div": 8.289499999999996e-05,
+                                                                                                              "province": {
+                                                                                                                "value": "Ingushetia"
+                                                                                                              },
+                                                                                                              "strain": {
+                                                                                                                "value": "C-281"
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        ],
+                                                                                                        "name": "NODE384",
+                                                                                                        "node_attrs": {
+                                                                                                          "div": 8.242579999999996e-05,
+                                                                                                          "scf": {
+                                                                                                            "value": 99.8
+                                                                                                          },
+                                                                                                          "ufboot": {
+                                                                                                            "value": 100.0
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    ],
+                                                                                                    "name": "NODE383",
+                                                                                                    "node_attrs": {
+                                                                                                      "div": 7.794249999999996e-05,
+                                                                                                      "scf": {
+                                                                                                        "value": 98.6
+                                                                                                      },
+                                                                                                      "ufboot": {
+                                                                                                        "value": 100.0
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                ],
+                                                                                                "name": "NODE381",
+                                                                                                "node_attrs": {
+                                                                                                  "div": 7.770789999999996e-05,
+                                                                                                  "scf": {
+                                                                                                    "value": 88.8
+                                                                                                  },
+                                                                                                  "ufboot": {
+                                                                                                    "value": 91.0
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            ],
+                                                                                            "name": "NODE377",
+                                                                                            "node_attrs": {
+                                                                                              "div": 7.723869999999996e-05,
+                                                                                              "scf": {
+                                                                                                "value": 77.5
+                                                                                              },
+                                                                                              "ufboot": {
+                                                                                                "value": 99.0
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        ],
+                                                                                        "name": "NODE376",
+                                                                                        "node_attrs": {
+                                                                                          "div": 7.653489999999996e-05,
+                                                                                          "scf": {
+                                                                                            "value": 94.9
+                                                                                          },
+                                                                                          "ufboot": {
+                                                                                            "value": 100.0
                                                                                           }
                                                                                         }
                                                                                       }
