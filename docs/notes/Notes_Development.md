@@ -1,4 +1,4 @@
-# Release v0.2.2
+# Development
 
 1. Add entropy to augur.
 1. Add mugration models to augur.
@@ -11,3 +11,9 @@
 1. Confirm pruning consistency between tree, dataframe, and alignment (n=247).
 1. Plot tree comparison.
 1. Checkpoint before clock modelling in BEAST.
+
+## TO DO
+
+1. Think about snippy_dir in rule ```eager```...
+1. Use pickle to save objects of Jupyter notebooks?
+1. Timetree alters the topology, perhaps run that first?
