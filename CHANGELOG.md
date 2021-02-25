@@ -1,10 +1,17 @@
-# Changelog
+# CHANGELOG
 
 ## Development
 
-### Pull Requests
+### Notes
 
-* [```pull/2```](https://github.com/ktmeaton/plague-phylogeography/pull/2) v0.2.2
+1. Experiment with relaxed clock parameters.
+1. Experiment with marginal likelihood parameters.
+1. Experiment with the coalescent parameters.
+1. Think about snippy_dir in rule ```eager```...
+
+### Commits
+
+## v0.2.2
 
 ### Notes
 
@@ -13,15 +20,40 @@
 1. Add clock model to augur.
 1. Add clock lengths to augur.
 1. Add date confidence to augur.
-1. Disable skyline until gen parameter resolved.
-1. Scatterplot of taxa vs rtl for treemmer
+1. Scatterplot of taxa vs rtl for treemmer.
 1. Prune tree, dataframe, and alignment with treemmer.
 1. Confirm pruning consistency between tree, dataframe, and alignment (n=247).
 1. Plot tree comparison.
 1. Checkpoint before clock modelling in BEAST.
+1. Use pickle to save objects of Jupyter notebooks.
+1. New jupyter notebooks for post-phylo.
+1. Put jupyter notebook output into results.
+1. Think about snippy_dir in rule ```eager```...
+
+### Pull Requests
+
+* [```pull/2```](https://github.com/ktmeaton/plague-phylogeography/pull/2) v0.2.2
 
 ### Commits
 
+* [```be38c62```](https://github.com/ktmeaton/plague-phylogeography/commit/be38c62) use release workflow from autologs
+* [```e5022e1```](https://github.com/ktmeaton/plague-phylogeography/commit/e5022e1) start testing marginal parameters
+* [```c416a43```](https://github.com/ktmeaton/plague-phylogeography/commit/c416a43) rename dev notes to v0.2.2
+* [```bf00b71```](https://github.com/ktmeaton/plague-phylogeography/commit/bf00b71) rerun clock model with good joint param
+* [```6c1d044```](https://github.com/ktmeaton/plague-phylogeography/commit/6c1d044) rerun clock model with terrible param
+* [```8cdab57```](https://github.com/ktmeaton/plague-phylogeography/commit/8cdab57) put jupyter notebook output into results
+* [```e5a74e2```](https://github.com/ktmeaton/plague-phylogeography/commit/e5a74e2) remove old docs parse_tree folder
+* [```1ca7bee```](https://github.com/ktmeaton/plague-phylogeography/commit/1ca7bee) reorder jupyter notebooks
+* [```0b2c710```](https://github.com/ktmeaton/plague-phylogeography/commit/0b2c710) checkpoint before notebook overhaul
+* [```541b953```](https://github.com/ktmeaton/plague-phylogeography/commit/541b953) write tree and df objects with dill for parse_tree
+* [```6a6ccdd```](https://github.com/ktmeaton/plague-phylogeography/commit/6a6ccdd) add dill to environment
+* [```77e2b72```](https://github.com/ktmeaton/plague-phylogeography/commit/77e2b72) add autologs as submodule
+* [```0365b53```](https://github.com/ktmeaton/plague-phylogeography/commit/0365b53) add last timetree model updates
+* [```d211d7f```](https://github.com/ktmeaton/plague-phylogeography/commit/d211d7f) Merge branch 'dev' of https://github.com/ktmeaton/plague-phylogeography into dev
+* [```ff365f7```](https://github.com/ktmeaton/plague-phylogeography/commit/ff365f7) Merge branch 'master' into dev
+* [```ea998f2```](https://github.com/ktmeaton/plague-phylogeography/commit/ea998f2) Merge branch 'master' of https://github.com/ktmeaton/plague-phylogeography
+* [```51a4e94```](https://github.com/ktmeaton/plague-phylogeography/commit/51a4e94) checkpoint before using marginal years function
+* [```40b291a```](https://github.com/ktmeaton/plague-phylogeography/commit/40b291a) update docs for v0.2.2
 * [```ff71d89```](https://github.com/ktmeaton/plague-phylogeography/commit/ff71d89) checkpoint before clock modelling in BEAST
 * [```1471e40```](https://github.com/ktmeaton/plague-phylogeography/commit/1471e40) plot tree comparison
 * [```ebeca5e```](https://github.com/ktmeaton/plague-phylogeography/commit/ebeca5e) confirm pruning consistency between tree, dataframe, and alignment.
@@ -32,8 +64,9 @@
 * [```85c1712```](https://github.com/ktmeaton/plague-phylogeography/commit/85c1712) add mugration models to augur json
 * [```d5821fc```](https://github.com/ktmeaton/plague-phylogeography/commit/d5821fc) add branch major to auspice config
 * [```504b9cc```](https://github.com/ktmeaton/plague-phylogeography/commit/504b9cc) Begin v0.2.2
+* [```f9b8294```](https://github.com/ktmeaton/plague-phylogeography/commit/f9b8294) add local multiqc to docs
 
-## Release v0.2.1
+## v0.2.1
 
 ### Notes
 
@@ -65,7 +98,11 @@
 * [```ceffb5f```](https://github.com/ktmeaton/plague-phylogeography/commit/ceffb5f) split timetree into model and plot
 * [```e56adb7```](https://github.com/ktmeaton/plague-phylogeography/commit/e56adb7) split timetree into model and plot
 
-## Release v0.2.0
+## v0.2.0
+
+### Pull Requests
+
+* [```pull/1```](https://github.com/ktmeaton/plague-phylogeography/pull/1) Fully automate dev setup with Gitpod
 
 ### Commits
 
@@ -762,7 +799,7 @@
 * [```6d0168e```](https://github.com/ktmeaton/plague-phylogeography/commit/6d0168e) create rules for local reads and eager
 * [```eae2213```](https://github.com/ktmeaton/plague-phylogeography/commit/eae2213) first changes with snakemake
 
-## Release v0.1.4
+## v0.1.4
 
 ### Commits
 
@@ -1336,7 +1373,7 @@
 * [```63e2fc1```](https://github.com/ktmeaton/plague-phylogeography/commit/63e2fc1) lint README
 * [```f69ac02```](https://github.com/ktmeaton/plague-phylogeography/commit/f69ac02) lint README
 
-## Release v0.1.3
+## v0.1.3
 
 ### Commits
 
@@ -1429,7 +1466,7 @@
 * [```87d0855```](https://github.com/ktmeaton/plague-phylogeography/commit/87d0855) remove outdated annotation
 * [```60fd6dc```](https://github.com/ktmeaton/plague-phylogeography/commit/60fd6dc) remove outdated annotation
 
-## Release v0.1.2
+## v0.1.2
 
 ### Commits
 
@@ -1616,7 +1653,7 @@
 * [```f9bb407```](https://github.com/ktmeaton/plague-phylogeography/commit/f9bb407) before remote switch
 * [```9158897```](https://github.com/ktmeaton/plague-phylogeography/commit/9158897) add table of contents
 
-## Release v0.1.1
+## v0.1.1
 
 ### Commits
 
@@ -1751,7 +1788,7 @@
 * [```8771033```](https://github.com/ktmeaton/plague-phylogeography/commit/8771033) remove modeltest-ng use modelfinder instead
 * [```e9d7d8d```](https://github.com/ktmeaton/plague-phylogeography/commit/e9d7d8d) fix compare repo and commits
 
-## Release v0.1.0
+## v0.1.0
 
 ### Commits
 
