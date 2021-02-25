@@ -13,3 +13,5 @@ results/data/local/
 workflow/notebooks/__pycache__/
 results/data/local/testlocal1/
 results/data/local/testlocal2/
+docs/results/latest/test/
+*.obj

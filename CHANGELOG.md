@@ -2,6 +2,39 @@
 
 ## Development
 
+### Pull Requests
+
+* [```pull/2```](https://github.com/ktmeaton/plague-phylogeography/pull/2) v0.2.2
+
+### Notes
+
+1. Add entropy to augur.
+1. Add mugration models to augur.
+1. Add clock model to augur.
+1. Add clock lengths to augur.
+1. Add date confidence to augur.
+1. Disable skyline until gen parameter resolved.
+1. Scatterplot of taxa vs rtl for treemmer
+1. Prune tree, dataframe, and alignment with treemmer.
+1. Confirm pruning consistency between tree, dataframe, and alignment (n=247).
+1. Plot tree comparison.
+1. Checkpoint before clock modelling in BEAST.
+
+### Commits
+
+* [```ff71d89```](https://github.com/ktmeaton/plague-phylogeography/commit/ff71d89) checkpoint before clock modelling in BEAST
+* [```1471e40```](https://github.com/ktmeaton/plague-phylogeography/commit/1471e40) plot tree comparison
+* [```ebeca5e```](https://github.com/ktmeaton/plague-phylogeography/commit/ebeca5e) confirm pruning consistency between tree, dataframe, and alignment.
+* [```ae68969```](https://github.com/ktmeaton/plague-phylogeography/commit/ae68969) prune tree, dataframe, and alignment with treemmer
+* [```667c2f3```](https://github.com/ktmeaton/plague-phylogeography/commit/667c2f3) scatterplot of taxa vs rtl for treemmer
+* [```b66ac4b```](https://github.com/ktmeaton/plague-phylogeography/commit/b66ac4b) disable skyline until gen parameter resolved
+* [```ae63bb4```](https://github.com/ktmeaton/plague-phylogeography/commit/ae63bb4) add clock lengths and model to augur
+* [```85c1712```](https://github.com/ktmeaton/plague-phylogeography/commit/85c1712) add mugration models to augur json
+* [```d5821fc```](https://github.com/ktmeaton/plague-phylogeography/commit/d5821fc) add branch major to auspice config
+* [```504b9cc```](https://github.com/ktmeaton/plague-phylogeography/commit/504b9cc) Begin v0.2.2
+
+## Release v0.2.1
+
 ### Notes
 
 1. Automate commit history.
@@ -10,6 +43,8 @@
 
 ### Commits
 
+* [```f30964b```](https://github.com/ktmeaton/plague-phylogeography/commit/f30964b) disable singularity from install testing
+* [```4aa4cdc```](https://github.com/ktmeaton/plague-phylogeography/commit/4aa4cdc) release log has truncated commits and changelog has full
 * [```d039c74```](https://github.com/ktmeaton/plague-phylogeography/commit/d039c74) automatically create changelog
 * [```36b672f```](https://github.com/ktmeaton/plague-phylogeography/commit/36b672f) don't run full CI on ver tags
 * [```6d72628```](https://github.com/ktmeaton/plague-phylogeography/commit/6d72628) refine CI workflows to pushes on master or dev

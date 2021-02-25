@@ -9,6 +9,8 @@ import shapely
 import time
 import datetime
 from augur import utils, export_v2
+from Bio import Phylo
+import os
 
 # ------------------------------------------------------------------------
 # VARIABLES
@@ -32,6 +34,9 @@ BRANCH_LEN_SIG_DIG = 12
 # Data parsing
 NO_DATA_CHAR = "NA"
 
+# Treemmer
+TARGET_RTL = 0.95
+
 # Mugration Parameters
 DATE_COL = "Date"
 ATTRIBUTE_LIST = [
@@ -43,6 +48,7 @@ ATTRIBUTE_LIST = [
 ]
 # ATTRIBUTE_LIST = ["Branch_Number", "Branch_Major"]
 MUG_CONF_THRESH = 0.95
+MUG_TINY = 1e-12
 
 # Reference Info
 REF_META = {
@@ -73,12 +79,14 @@ SEQ_MARGINAL = False
 MAX_ITER = 3
 RELAXED_CLOCK = {"slack": 1.0, "coupling": 0}
 # RELAXED_CLOCK = False
-TC = "skyline"
+# TC = "skyline"
+TC = None
 
 # N_IQD Explanation
 # 1_IQD is np.percentile(residuals,75) - np.percentile(residuals,25)
 # 3_IQD is 3 *1_IQD
 N_IQD = 3
+N_STD = 2
 
 # How to color branch supports
 LOW_COL = "black"
@@ -347,17 +355,28 @@ def augur_export(
                     attr_val = type_convert[attr](attr_val)
 
                 # We need the value assigned to the trait by mugration
-                if "Mugration" in attr and "Confidence" not in attr:
+                if (
+                    "Mugration" in attr
+                    and "Confidence" not in attr
+                    and "Entropy" not in attr
+                ):
                     attr = attr.replace("Mugration_", "")
+                    # Check again for a type conversion
+                    if attr in type_convert:
+                        attr_val = type_convert[attr](attr_val)
                     augur_data["nodes"][c.name][attr.lower()] = attr_val
 
                     # Prepare an empty dict for the confidence values
                     attr_conf = attr + "_Confidence"
                     augur_data["nodes"][c.name][attr_conf.lower()] = {attr_val: "NA"}
 
+                # Get the mugration entropy associated with the trait
+                elif "Mugration" in attr and "Entropy" in attr:
+                    attr = attr.replace("Mugration_", "")
+                    augur_data["nodes"][c.name][attr.lower()] = attr_val
+
                 # Get the mugration confidence associated with the trait
                 elif "Mugration" in attr and "Confidence" in attr:
-                    ...
                     attr = attr.replace("Mugration_", "")
                     attr_assoc = attr.replace("_Confidence", "")
 
@@ -370,6 +389,11 @@ def augur_export(
                     attr_val = {attr_mug_val: attr_val}
 
                     augur_data["nodes"][c.name][attr_conf.lower()] = attr_val
+
+                # Remove the timetree prefix
+                elif "timetree" in attr and "Confidence" not in attr:
+                    attr = attr.replace("timetree_", "")
+                    augur_data["nodes"][c.name][attr.lower()] = attr_val
 
                 else:
                     # Make attribute name in dict lowercase
@@ -443,3 +467,58 @@ def auspice_export(
     export_v2.set_panels(data_json, config, cmd_line_panels=None)
 
     return data_json
+
+
+def branch_length_to_years_marginal(timetree):
+    """
+    Convert a timetree's branch lengths to the marginal date estimation
+    """
+    for c in timetree.tree.find_clades(order="preorder"):
+        if c.up is None:
+            continue
+        if hasattr(c, "marginal_inverse_cdf"):
+            # Find the marginal date
+            c_marginal_date = timetree.date2dist.to_numdate(c.marginal_pos_LH.peak_pos)
+            up_marginal_date = timetree.date2dist.to_numdate(
+                c.up.marginal_pos_LH.peak_pos
+            )
+
+            # Reassign
+            c.numdate = c_marginal_date
+            c.up.numdate = up_marginal_date
+            c.branch_length = c.numdate - c.up.numdate
+
+
+"""
+# Testing
+tree_path=(
+  "../../../../docs/results/latest/parse_tree/parse_tree.nwk"
+)
+aln_path = (
+  "../../../../docs/results/latest/snippy_multi/snippy-core_chromosome.snps.filter5.aln"
+)
+
+tree_div = Phylo.read(tree_path, "newick")
+tree_div.ladderize(reverse=False)
+tree=tree_div
+
+tree_df_path = "../../../../docs/results/latest/timetree/timetree.tsv"
+tree_df = pd.read_csv(tree_df_path, sep='\t')
+# Fix the problem with multiple forms of NA in the table
+# Consolidate missing data to the NO_DATA_CHAR
+tree_df.fillna(NO_DATA_CHAR, inplace=True)
+tree_df.set_index("Name", inplace=True)
+
+augur_dict = augur_export(
+    tree_path=tree_path,
+    aln_path=aln_path,
+    tree=tree_div,
+    tree_df=tree_df,
+    color_keyword_exclude=["color", "coord"],
+    type_convert = {
+        "Branch_Number" : (lambda x : str(x))
+    },
+)
+
+print(augur_dict["nodes"]["NODE0"])
+"""

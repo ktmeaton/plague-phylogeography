@@ -39,24 +39,14 @@
       "type": "categorical"
     },
     {
-      "key": "country",
-      "title": "Country",
+      "key": "branch_number",
+      "title": "Branch Number",
       "type": "categorical"
     },
     {
-      "key": "countrylon",
-      "title": "Country Lon",
-      "type": "continuous"
-    },
-    {
-      "key": "countrylat",
-      "title": "Country Lat",
-      "type": "continuous"
-    },
-    {
-      "key": "date",
-      "title": "Collection Date",
-      "type": "continuous"
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
     },
     {
       "key": "datebp",
@@ -64,43 +54,23 @@
       "type": "continuous"
     },
     {
-      "key": "mugration_biovar",
-      "title": "Biovar (Estimate)",
-      "type": "categorical"
-    },
-    {
-      "key": "mugration_branch_major",
-      "title": "Branch Major (Estimate)",
-      "type": "categorical"
-    },
-    {
-      "key": "mugration_branch_minor",
-      "title": "Branch Minor (Estimate)",
-      "type": "categorical"
-    },
-    {
-      "key": "mugration_country",
-      "title": "Country (Estimate)",
-      "type": "categorical"
-    },
-    {
-      "key": "mugration_province",
-      "title": "Province (Estimate)",
-      "type": "categorical"
-    },
-    {
       "key": "province",
       "title": "Province",
       "type": "categorical"
     },
     {
-      "key": "provincelon",
-      "title": "Province Lon",
+      "key": "rate",
+      "title": "Substitution Rate",
       "type": "continuous"
     },
     {
-      "key": "provincelat",
-      "title": "Province Lat",
+      "key": "rate_fold_change",
+      "title": "Substitution Rate Fold Change",
+      "type": "continuous"
+    },
+    {
+      "key": "raw_date",
+      "title": "Collection Date",
       "type": "continuous"
     },
     {
