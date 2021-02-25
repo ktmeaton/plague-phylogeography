@@ -1,4 +1,4 @@
-# Development
+# Release v0.2.2
 
 1. Add entropy to augur.
 1. Add mugration models to augur.
