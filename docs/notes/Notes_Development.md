@@ -18,7 +18,8 @@
     - 2_clock_model
     - 3_mugration_model
 
+1. Put jupyter notebook output into results.
+
 ## TO DO
 
 1. Think about snippy_dir in rule ```eager```...
-1. Timetree alters the topology, perhaps run that first?
