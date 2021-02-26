@@ -392,8 +392,11 @@ def augur_export(
                     augur_data["nodes"][c.name][attr_conf.lower()] = attr_val
 
                 # Remove the timetree prefix
-                elif "timetree" in attr and "Confidence" not in attr:
+                elif "timetree" in attr:
                     attr = attr.replace("timetree_", "")
+                    # Catch other list types (like timetree_num_date_bar)
+                    if "confidence" not in attr and type(attr_val) == list:
+                        attr_val = ":".join([str(x) for x in attr_val])
                     augur_data["nodes"][c.name][attr.lower()] = attr_val
 
                 else:
