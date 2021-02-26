@@ -47,7 +47,7 @@ DATE_COL = "Date"
 #    "Country",
 #    "Province",
 # ]
-ATTRIBUTE_LIST = ["Branch_Number"]
+ATTRIBUTE_LIST = ["Country"]
 MUG_CONF_THRESH = 0.95
 MUG_TINY = 1e-12
 
