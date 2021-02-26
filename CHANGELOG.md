@@ -4,6 +4,26 @@
 
 ### Commits
 
+## v0.2.4
+
+### Notes
+
+1. Update coord_x and coord_y in clock_model.
+1. Save timetrees and divtrees for all relevant methods.
+1. Mugration working for all attributes individually.
+1. Changed mugration to work with timetree object input.
+1. Start version tagging auspice visualizations.
+
+### Commits
+
+* [```46d3d1f```](https://github.com/ktmeaton/plague-phylogeography/commit/46d3d1f) fixed mugration by making sure to copy tree div
+* [```e886d00```](https://github.com/ktmeaton/plague-phylogeography/commit/e886d00) working mugration for Country
+* [```1cdf425```](https://github.com/ktmeaton/plague-phylogeography/commit/1cdf425) working mugration for Branch_Number
+* [```7ea625a```](https://github.com/ktmeaton/plague-phylogeography/commit/7ea625a) save timetrees and divtrees for all relevant methods
+* [```0723ae4```](https://github.com/ktmeaton/plague-phylogeography/commit/0723ae4) update coord_x and coord_y in clock_model
+* [```3d7890e```](https://github.com/ktmeaton/plague-phylogeography/commit/3d7890e) prepare notes for development post-v0.2.3
+* [```4dee9cd```](https://github.com/ktmeaton/plague-phylogeography/commit/4dee9cd) update CHANGELOG for v0.2.3
+
 ## v0.2.3
 
 ### Notes
