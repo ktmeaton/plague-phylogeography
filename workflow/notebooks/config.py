@@ -355,6 +355,10 @@ def augur_export(
                 if attr in type_convert:
                     attr_val = type_convert[attr](attr_val)
 
+                # Convert boolean variables to str
+                if type(attr_val) == np.bool_:
+                    attr_val = str(attr_val)
+
                 # We need the value assigned to the trait by mugration
                 if (
                     "Mugration" in attr
