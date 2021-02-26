@@ -1,4 +1,3 @@
-results/*
 test/*
 sra/*
 workflow/logs/*
@@ -15,3 +14,14 @@ results/data/local/testlocal1/
 results/data/local/testlocal2/
 docs/results/latest/test/
 *.obj
+*.bak
+
+# Results - Snakemake
+results/data/*
+results/detect*
+results/eager/*
+results/iqtree/*
+results/snippy_multi/*
+results/snippy_pairwise/*
+results/qualimap/*
+results/metadata/*

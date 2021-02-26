@@ -11,6 +11,7 @@ import datetime
 from augur import utils, export_v2
 from Bio import Phylo
 import os
+import ast  # Evaluate string literals
 
 # ------------------------------------------------------------------------
 # VARIABLES
@@ -391,8 +392,11 @@ def augur_export(
                     augur_data["nodes"][c.name][attr_conf.lower()] = attr_val
 
                 # Remove the timetree prefix
-                elif "timetree" in attr and "Confidence" not in attr:
+                elif "timetree" in attr:
                     attr = attr.replace("timetree_", "")
+                    # Catch other list types (like timetree_num_date_bar)
+                    if "confidence" not in attr and type(attr_val) == list:
+                        attr_val = ":".join([str(x) for x in attr_val])
                     augur_data["nodes"][c.name][attr.lower()] = attr_val
 
                 else:
@@ -425,6 +429,9 @@ def auspice_export(
         node_data_names,
         metadata_names,
     ) = export_v2.parse_node_data_and_metadata(tree, augur_json_paths, None)
+
+    print(type(node_attrs))
+    # print(data_json["tree"] = convert_tree_to_json_structure(T.root, node_attrs)
 
     # Validate and load config file (could put this in try except)
     export_v2.validate_auspice_config_v2(auspice_config_path)
@@ -489,25 +496,64 @@ def branch_length_to_years_marginal(timetree):
             c.branch_length = c.numdate - c.up.numdate
 
 
+def metadata_to_comment(tree, tree_df):
+    """
+    Add metadata from a dataframe as comments in a phylogeny (modifies tree in place).
+    """
+    for c in tree.find_clades():
+        c.comment = ""
+        for col in tree_df.columns:
+            col_val = tree_df[col][c.name]
+
+            # Test for list
+            if type(col_val) == list:
+                col_val = "{" + "{},{}".format(col_val[0], col_val[1]) + "}"
+
+            elif type(col_val) == str:
+
+                # Test for not ascii
+                if not col_val.isascii():
+                    col_val = col_val.encode("unicode_escape")
+
+                # Test for list as string
+                elif "[" in col_val and "]" in col_val:
+                    col_val = col_val.replace("[", "").replace("]", "")
+
+                    if ":" in col_val:
+                        col_val = col_val.split(":")
+                    elif "," in col_val:
+                        col_val = col_val.split(",")
+
+                    # Convert to a dictionary for figree bars
+                    col_val = "{" + "{},{}".format(col_val[0], col_val[1]) + "}"
+
+            # Add comment
+            if not hasattr(c, "comment") or not c.comment:
+                c.comment = "&{}={}".format(col, col_val)
+            else:
+                c.comment += ",{}={}".format(col, col_val)
+
+
 """
 # Testing
 tree_path=(
-  "../../../../docs/results/latest/parse_tree/parse_tree.nwk"
+  "../../results/clock_model/clock_model.nwk"
 )
 aln_path = (
-  "../../../../docs/results/latest/snippy_multi/snippy-core_chromosome.snps.filter5.aln"
+  "../../docs/results/latest/snippy_multi/snippy-core_chromosome.snps.filter5.aln"
 )
 
 tree_div = Phylo.read(tree_path, "newick")
 tree_div.ladderize(reverse=False)
 tree=tree_div
 
-tree_df_path = "../../../../docs/results/latest/timetree/timetree.tsv"
+tree_df_path = "../../results/clock_model/clock_model.tsv"
 tree_df = pd.read_csv(tree_df_path, sep='\t')
 # Fix the problem with multiple forms of NA in the table
 # Consolidate missing data to the NO_DATA_CHAR
 tree_df.fillna(NO_DATA_CHAR, inplace=True)
 tree_df.set_index("Name", inplace=True)
+
 
 augur_dict = augur_export(
     tree_path=tree_path,
@@ -519,6 +565,11 @@ augur_dict = augur_export(
         "Branch_Number" : (lambda x : str(x))
     },
 )
+# print(augur_dict["nodes"]["NODE0"])
 
-print(augur_dict["nodes"]["NODE0"])
+
+metadata_to_comment(tree, tree_df)
+Phylo.write(tree, "test.nexus",
+            'nexus',
+            format_branch_length='%1.{}f'.format(BRANCH_LEN_SIG_DIG))
 """

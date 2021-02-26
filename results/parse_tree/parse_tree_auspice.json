@@ -901,6 +901,169 @@
         "type": "continuous"
       },
       {
+        "key": "country",
+        "scale": [
+          [
+            "Russia",
+            "#8000ff"
+          ],
+          [
+            "Lithuania",
+            "#7215ff"
+          ],
+          [
+            "Estonia",
+            "#652afe"
+          ],
+          [
+            "Germany",
+            "#573ffd"
+          ],
+          [
+            "China",
+            "#4a53fc"
+          ],
+          [
+            "Azerbaijan",
+            "#3c66fa"
+          ],
+          [
+            "Armenia",
+            "#2f79f7"
+          ],
+          [
+            "Georgia",
+            "#228bf4"
+          ],
+          [
+            "Mongolia",
+            "#149df1"
+          ],
+          [
+            "Tajikistan",
+            "#07adee"
+          ],
+          [
+            "Kyrgyzstan",
+            "#07bcea"
+          ],
+          [
+            "England",
+            "#14c9e5"
+          ],
+          [
+            "Spain",
+            "#22d5e0"
+          ],
+          [
+            "France",
+            "#2fe0db"
+          ],
+          [
+            "Nepal",
+            "#3cead5"
+          ],
+          [
+            "India",
+            "#4af1d0"
+          ],
+          [
+            "Kazakhstan",
+            "#57f7c9"
+          ],
+          [
+            "Turkmenistan",
+            "#65fcc3"
+          ],
+          [
+            "Uzbekistan",
+            "#72febc"
+          ],
+          [
+            "Iran",
+            "#80ffb4"
+          ],
+          [
+            "United States of America",
+            "#8dfead"
+          ],
+          [
+            "Italy",
+            "#9afca5"
+          ],
+          [
+            "Poland",
+            "#a8f79d"
+          ],
+          [
+            "Switzerland",
+            "#b5f194"
+          ],
+          [
+            "Norway",
+            "#c3ea8b"
+          ],
+          [
+            "The Netherlands",
+            "#d0e083"
+          ],
+          [
+            "Uganda",
+            "#ddd579"
+          ],
+          [
+            "Democratic Republic of the Congo",
+            "#ebc970"
+          ],
+          [
+            "Kenya",
+            "#f8bc66"
+          ],
+          [
+            "Indonesia",
+            "#ffad5d"
+          ],
+          [
+            "Madagascar",
+            "#ff9d53"
+          ],
+          [
+            "Peru",
+            "#ff8b49"
+          ],
+          [
+            "Canada",
+            "#ff793f"
+          ],
+          [
+            "Vietnam",
+            "#ff6634"
+          ],
+          [
+            "Myanmar",
+            "#ff532a"
+          ],
+          [
+            "Zimbabwe",
+            "#ff3f20"
+          ],
+          [
+            "Brazil",
+            "#ff2a15"
+          ],
+          [
+            "Algeria",
+            "#ff150b"
+          ],
+          [
+            "Bolivia",
+            "#ff0000"
+          ]
+        ],
+        "title": "Country",
+        "type": "categorical"
+      },
+      {
         "key": "province",
         "scale": [
           [
@@ -1368,179 +1531,6 @@
         "type": "categorical"
       },
       {
-        "key": "ufboot",
-        "title": "Ultrafast Bootstrap",
-        "type": "continuous"
-      },
-      {
-        "key": "strain",
-        "title": "Strain",
-        "type": "categorical"
-      },
-      {
-        "key": "country",
-        "scale": [
-          [
-            "Russia",
-            "#8000ff"
-          ],
-          [
-            "Lithuania",
-            "#7215ff"
-          ],
-          [
-            "Estonia",
-            "#652afe"
-          ],
-          [
-            "Germany",
-            "#573ffd"
-          ],
-          [
-            "China",
-            "#4a53fc"
-          ],
-          [
-            "Azerbaijan",
-            "#3c66fa"
-          ],
-          [
-            "Armenia",
-            "#2f79f7"
-          ],
-          [
-            "Georgia",
-            "#228bf4"
-          ],
-          [
-            "Mongolia",
-            "#149df1"
-          ],
-          [
-            "Tajikistan",
-            "#07adee"
-          ],
-          [
-            "Kyrgyzstan",
-            "#07bcea"
-          ],
-          [
-            "England",
-            "#14c9e5"
-          ],
-          [
-            "Spain",
-            "#22d5e0"
-          ],
-          [
-            "France",
-            "#2fe0db"
-          ],
-          [
-            "Nepal",
-            "#3cead5"
-          ],
-          [
-            "India",
-            "#4af1d0"
-          ],
-          [
-            "Kazakhstan",
-            "#57f7c9"
-          ],
-          [
-            "Turkmenistan",
-            "#65fcc3"
-          ],
-          [
-            "Uzbekistan",
-            "#72febc"
-          ],
-          [
-            "Iran",
-            "#80ffb4"
-          ],
-          [
-            "United States of America",
-            "#8dfead"
-          ],
-          [
-            "Italy",
-            "#9afca5"
-          ],
-          [
-            "Poland",
-            "#a8f79d"
-          ],
-          [
-            "Switzerland",
-            "#b5f194"
-          ],
-          [
-            "Norway",
-            "#c3ea8b"
-          ],
-          [
-            "The Netherlands",
-            "#d0e083"
-          ],
-          [
-            "Uganda",
-            "#ddd579"
-          ],
-          [
-            "Democratic Republic of the Congo",
-            "#ebc970"
-          ],
-          [
-            "Kenya",
-            "#f8bc66"
-          ],
-          [
-            "Indonesia",
-            "#ffad5d"
-          ],
-          [
-            "Madagascar",
-            "#ff9d53"
-          ],
-          [
-            "Peru",
-            "#ff8b49"
-          ],
-          [
-            "Canada",
-            "#ff793f"
-          ],
-          [
-            "Vietnam",
-            "#ff6634"
-          ],
-          [
-            "Myanmar",
-            "#ff532a"
-          ],
-          [
-            "Zimbabwe",
-            "#ff3f20"
-          ],
-          [
-            "Brazil",
-            "#ff2a15"
-          ],
-          [
-            "Algeria",
-            "#ff150b"
-          ],
-          [
-            "Bolivia",
-            "#ff0000"
-          ]
-        ],
-        "title": "Country",
-        "type": "categorical"
-      },
-      {
         "key": "datebp",
         "title": "Collection Date (BP)",
         "type": "continuous"
@@ -1551,9 +1541,9 @@
         "type": "continuous"
       },
       {
-        "key": "biovar",
-        "title": "Biovar",
-        "type": "categorical"
+        "key": "ufboot",
+        "title": "Ultrafast Bootstrap",
+        "type": "continuous"
       },
       {
         "key": "biosample",
@@ -1561,59 +1551,35 @@
         "type": "categorical"
       },
       {
-        "key": "branch_major",
+        "key": "branch_number",
         "scale": [
           [
-            "0.PRE",
+            "0",
             "#8000ff"
           ],
           [
-            "0.PE",
-            "#4c4ffc"
+            "3",
+            "#00b4ec"
           ],
           [
-            "0.ANT",
-            "#1996f3"
-          ],
-          [
-            "3.ANT",
-            "#1acee3"
-          ],
-          [
-            "4.ANT",
-            "#4df3ce"
-          ],
-          [
-            "2.ANT",
+            "4",
             "#80ffb4"
           ],
           [
-            "2.MED",
-            "#b3f396"
+            "2",
+            "#ffb462"
           ],
           [
-            "1.PRE",
-            "#e6ce74"
-          ],
-          [
-            "1.ANT",
-            "#ff964f"
-          ],
-          [
-            "1.IN",
-            "#ff4f28"
-          ],
-          [
-            "1.ORI",
+            "1",
             "#ff0000"
           ]
         ],
-        "title": "Branch Major",
+        "title": "Branch Number",
         "type": "categorical"
       },
       {
-        "key": "biosamplecomment",
-        "title": "Data Comment",
+        "key": "strain",
+        "title": "Strain",
         "type": "categorical"
       },
       {
@@ -1772,30 +1738,64 @@
         "type": "categorical"
       },
       {
-        "key": "branch_number",
+        "key": "biosamplecomment",
+        "title": "Data Comment",
+        "type": "categorical"
+      },
+      {
+        "key": "biovar",
+        "title": "Biovar",
+        "type": "categorical"
+      },
+      {
+        "key": "branch_major",
         "scale": [
           [
-            "0",
+            "0.PRE",
             "#8000ff"
           ],
           [
-            "3",
-            "#00b4ec"
+            "0.PE",
+            "#4c4ffc"
           ],
           [
-            "4",
+            "0.ANT",
+            "#1996f3"
+          ],
+          [
+            "3.ANT",
+            "#1acee3"
+          ],
+          [
+            "4.ANT",
+            "#4df3ce"
+          ],
+          [
+            "2.ANT",
             "#80ffb4"
           ],
           [
-            "2",
-            "#ffb462"
+            "2.MED",
+            "#b3f396"
           ],
           [
-            "1",
+            "1.PRE",
+            "#e6ce74"
+          ],
+          [
+            "1.ANT",
+            "#ff964f"
+          ],
+          [
+            "1.IN",
+            "#ff4f28"
+          ],
+          [
+            "1.ORI",
             "#ff0000"
           ]
         ],
-        "title": "Branch Number",
+        "title": "Branch Major",
         "type": "categorical"
       }
     ],
@@ -2788,7 +2788,10 @@
                         ],
                         "name": "NODE6",
                         "node_attrs": {
-                          "div": 5.16537e-05
+                          "div": 5.16537e-05,
+                          "ufboot": {
+                            "value": 80.5
+                          }
                         }
                       }
                     ],
@@ -8858,31 +8861,46 @@
                                                                                     ],
                                                                                     "name": "NODE129",
                                                                                     "node_attrs": {
-                                                                                      "div": 5.781099999999998e-05
+                                                                                      "div": 5.781099999999998e-05,
+                                                                                      "ufboot": {
+                                                                                        "value": 0.0
+                                                                                      }
                                                                                     }
                                                                                   }
                                                                                 ],
                                                                                 "name": "NODE128",
                                                                                 "node_attrs": {
-                                                                                  "div": 5.781099999999998e-05
+                                                                                  "div": 5.781099999999998e-05,
+                                                                                  "ufboot": {
+                                                                                    "value": 0.0
+                                                                                  }
                                                                                 }
                                                                               }
                                                                             ],
                                                                             "name": "NODE127",
                                                                             "node_attrs": {
-                                                                              "div": 5.781099999999998e-05
+                                                                              "div": 5.781099999999998e-05,
+                                                                              "ufboot": {
+                                                                                "value": 0.0
+                                                                              }
                                                                             }
                                                                           }
                                                                         ],
                                                                         "name": "NODE126",
                                                                         "node_attrs": {
-                                                                          "div": 5.781099999999998e-05
+                                                                          "div": 5.781099999999998e-05,
+                                                                          "ufboot": {
+                                                                            "value": 0.0
+                                                                          }
                                                                         }
                                                                       }
                                                                     ],
                                                                     "name": "NODE125",
                                                                     "node_attrs": {
-                                                                      "div": 5.781099999999998e-05
+                                                                      "div": 5.781099999999998e-05,
+                                                                      "ufboot": {
+                                                                        "value": 0.0
+                                                                      }
                                                                     }
                                                                   },
                                                                   {
@@ -10941,49 +10959,73 @@
                                                                                                                         ],
                                                                                                                         "name": "NODE171",
                                                                                                                         "node_attrs": {
-                                                                                                                          "div": 5.8163099999999965e-05
+                                                                                                                          "div": 5.8163099999999965e-05,
+                                                                                                                          "ufboot": {
+                                                                                                                            "value": 0.0
+                                                                                                                          }
                                                                                                                         }
                                                                                                                       }
                                                                                                                     ],
                                                                                                                     "name": "NODE170",
                                                                                                                     "node_attrs": {
-                                                                                                                      "div": 5.8163099999999965e-05
+                                                                                                                      "div": 5.8163099999999965e-05,
+                                                                                                                      "ufboot": {
+                                                                                                                        "value": 0.0
+                                                                                                                      }
                                                                                                                     }
                                                                                                                   }
                                                                                                                 ],
                                                                                                                 "name": "NODE169",
                                                                                                                 "node_attrs": {
-                                                                                                                  "div": 5.8163099999999965e-05
+                                                                                                                  "div": 5.8163099999999965e-05,
+                                                                                                                  "ufboot": {
+                                                                                                                    "value": 0.0
+                                                                                                                  }
                                                                                                                 }
                                                                                                               }
                                                                                                             ],
                                                                                                             "name": "NODE168",
                                                                                                             "node_attrs": {
-                                                                                                              "div": 5.8163099999999965e-05
+                                                                                                              "div": 5.8163099999999965e-05,
+                                                                                                              "ufboot": {
+                                                                                                                "value": 0.0
+                                                                                                              }
                                                                                                             }
                                                                                                           }
                                                                                                         ],
                                                                                                         "name": "NODE167",
                                                                                                         "node_attrs": {
-                                                                                                          "div": 5.8163099999999965e-05
+                                                                                                          "div": 5.8163099999999965e-05,
+                                                                                                          "ufboot": {
+                                                                                                            "value": 0.0
+                                                                                                          }
                                                                                                         }
                                                                                                       }
                                                                                                     ],
                                                                                                     "name": "NODE166",
                                                                                                     "node_attrs": {
-                                                                                                      "div": 5.8163099999999965e-05
+                                                                                                      "div": 5.8163099999999965e-05,
+                                                                                                      "ufboot": {
+                                                                                                        "value": 0.0
+                                                                                                      }
                                                                                                     }
                                                                                                   }
                                                                                                 ],
                                                                                                 "name": "NODE165",
                                                                                                 "node_attrs": {
-                                                                                                  "div": 5.8163099999999965e-05
+                                                                                                  "div": 5.8163099999999965e-05,
+                                                                                                  "ufboot": {
+                                                                                                    "value": 0.0
+                                                                                                  }
                                                                                                 }
                                                                                               }
                                                                                             ],
                                                                                             "name": "NODE164",
                                                                                             "node_attrs": {
-                                                                                              "div": 5.8163099999999965e-05
+                                                                                              "div": 5.8163099999999965e-05,
+                                                                                              "ufboot": {
+                                                                                                "value": 0.0
+                                                                                              }
                                                                                             }
                                                                                           }
                                                                                         ],
@@ -11333,31 +11375,46 @@
                                                                                                                 ],
                                                                                                                 "name": "NODE179",
                                                                                                                 "node_attrs": {
-                                                                                                                  "div": 5.818659999999996e-05
+                                                                                                                  "div": 5.818659999999996e-05,
+                                                                                                                  "ufboot": {
+                                                                                                                    "value": 0.0
+                                                                                                                  }
                                                                                                                 }
                                                                                                               }
                                                                                                             ],
                                                                                                             "name": "NODE178",
                                                                                                             "node_attrs": {
-                                                                                                              "div": 5.818659999999996e-05
+                                                                                                              "div": 5.818659999999996e-05,
+                                                                                                              "ufboot": {
+                                                                                                                "value": 0.0
+                                                                                                              }
                                                                                                             }
                                                                                                           }
                                                                                                         ],
                                                                                                         "name": "NODE177",
                                                                                                         "node_attrs": {
-                                                                                                          "div": 5.818659999999996e-05
+                                                                                                          "div": 5.818659999999996e-05,
+                                                                                                          "ufboot": {
+                                                                                                            "value": 0.0
+                                                                                                          }
                                                                                                         }
                                                                                                       }
                                                                                                     ],
                                                                                                     "name": "NODE176",
                                                                                                     "node_attrs": {
-                                                                                                      "div": 5.818659999999996e-05
+                                                                                                      "div": 5.818659999999996e-05,
+                                                                                                      "ufboot": {
+                                                                                                        "value": 0.0
+                                                                                                      }
                                                                                                     }
                                                                                                   }
                                                                                                 ],
                                                                                                 "name": "NODE175",
                                                                                                 "node_attrs": {
-                                                                                                  "div": 5.818659999999996e-05
+                                                                                                  "div": 5.818659999999996e-05,
+                                                                                                  "ufboot": {
+                                                                                                    "value": 0.1
+                                                                                                  }
                                                                                                 }
                                                                                               },
                                                                                               {
@@ -11643,7 +11700,10 @@
                                                                                                                         ],
                                                                                                                         "name": "NODE186",
                                                                                                                         "node_attrs": {
-                                                                                                                          "div": 5.877329999999995e-05
+                                                                                                                          "div": 5.877329999999995e-05,
+                                                                                                                          "ufboot": {
+                                                                                                                            "value": 0.0
+                                                                                                                          }
                                                                                                                         }
                                                                                                                       },
                                                                                                                       {
@@ -16073,7 +16133,10 @@
                                                                                 ],
                                                                                 "name": "NODE272",
                                                                                 "node_attrs": {
-                                                                                  "div": 6.86031e-05
+                                                                                  "div": 6.86031e-05,
+                                                                                  "ufboot": {
+                                                                                    "value": 0.0
+                                                                                  }
                                                                                 }
                                                                               },
                                                                               {
@@ -17213,37 +17276,55 @@
                                                                                                         ],
                                                                                                         "name": "NODE294",
                                                                                                         "node_attrs": {
-                                                                                                          "div": 6.90723e-05
+                                                                                                          "div": 6.90723e-05,
+                                                                                                          "ufboot": {
+                                                                                                            "value": 0.0
+                                                                                                          }
                                                                                                         }
                                                                                                       }
                                                                                                     ],
                                                                                                     "name": "NODE293",
                                                                                                     "node_attrs": {
-                                                                                                      "div": 6.90723e-05
+                                                                                                      "div": 6.90723e-05,
+                                                                                                      "ufboot": {
+                                                                                                        "value": 0.0
+                                                                                                      }
                                                                                                     }
                                                                                                   }
                                                                                                 ],
                                                                                                 "name": "NODE292",
                                                                                                 "node_attrs": {
-                                                                                                  "div": 6.90723e-05
+                                                                                                  "div": 6.90723e-05,
+                                                                                                  "ufboot": {
+                                                                                                    "value": 0.0
+                                                                                                  }
                                                                                                 }
                                                                                               }
                                                                                             ],
                                                                                             "name": "NODE291",
                                                                                             "node_attrs": {
-                                                                                              "div": 6.90723e-05
+                                                                                              "div": 6.90723e-05,
+                                                                                              "ufboot": {
+                                                                                                "value": 0.0
+                                                                                              }
                                                                                             }
                                                                                           }
                                                                                         ],
                                                                                         "name": "NODE290",
                                                                                         "node_attrs": {
-                                                                                          "div": 6.90723e-05
+                                                                                          "div": 6.90723e-05,
+                                                                                          "ufboot": {
+                                                                                            "value": 0.0
+                                                                                          }
                                                                                         }
                                                                                       }
                                                                                     ],
                                                                                     "name": "NODE289",
                                                                                     "node_attrs": {
-                                                                                      "div": 6.90723e-05
+                                                                                      "div": 6.90723e-05,
+                                                                                      "ufboot": {
+                                                                                        "value": 0.0
+                                                                                      }
                                                                                     }
                                                                                   },
                                                                                   {
@@ -19028,19 +19109,28 @@
                                                                                                             ],
                                                                                                             "name": "NODE330",
                                                                                                             "node_attrs": {
-                                                                                                              "div": 7.349259999999997e-05
+                                                                                                              "div": 7.349259999999997e-05,
+                                                                                                              "ufboot": {
+                                                                                                                "value": 0.0
+                                                                                                              }
                                                                                                             }
                                                                                                           }
                                                                                                         ],
                                                                                                         "name": "NODE329",
                                                                                                         "node_attrs": {
-                                                                                                          "div": 7.349259999999997e-05
+                                                                                                          "div": 7.349259999999997e-05,
+                                                                                                          "ufboot": {
+                                                                                                            "value": 0.0
+                                                                                                          }
                                                                                                         }
                                                                                                       }
                                                                                                     ],
                                                                                                     "name": "NODE328",
                                                                                                     "node_attrs": {
-                                                                                                      "div": 7.349259999999997e-05
+                                                                                                      "div": 7.349259999999997e-05,
+                                                                                                      "ufboot": {
+                                                                                                        "value": 0.4
+                                                                                                      }
                                                                                                     }
                                                                                                   },
                                                                                                   {
@@ -19255,7 +19345,10 @@
                                                                                                             ],
                                                                                                             "name": "NODE334",
                                                                                                             "node_attrs": {
-                                                                                                              "div": 7.353959999999998e-05
+                                                                                                              "div": 7.353959999999998e-05,
+                                                                                                              "ufboot": {
+                                                                                                                "value": 0.0
+                                                                                                              }
                                                                                                             }
                                                                                                           }
                                                                                                         ],
@@ -35004,7 +35097,10 @@
     ],
     "name": "NODE0",
     "node_attrs": {
-      "div": 0
+      "div": 0,
+      "ufboot": {
+        "value": 100.0
+      }
     }
   },
   "version": "v2"
