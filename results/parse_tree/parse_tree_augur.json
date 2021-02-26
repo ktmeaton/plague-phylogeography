@@ -4,7 +4,7 @@
     "program": "augur",
     "version": "10.3.0"
   },
-  "input_tree": "../../docs/results/latest/iqtree/iqtree-core_chromosome.filter5_post.cf.tree",
+  "input_tree": "../../results/parse_tree/parse_tree.nwk",
   "nodes": {
     "GCA_000006645.1_ASM664v1_genomic": {
       "biosample": "SAMN02604093",
@@ -9172,7 +9172,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 100.0
     },
     "NODE1": {
       "biosample": "NA",
@@ -9652,7 +9652,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE126": {
       "biosample": "NA",
@@ -9668,7 +9668,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE127": {
       "biosample": "NA",
@@ -9684,7 +9684,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE128": {
       "biosample": "NA",
@@ -9700,7 +9700,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE129": {
       "biosample": "NA",
@@ -9716,7 +9716,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE13": {
       "biosample": "NA",
@@ -10340,7 +10340,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE165": {
       "biosample": "NA",
@@ -10356,7 +10356,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE166": {
       "biosample": "NA",
@@ -10372,7 +10372,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE167": {
       "biosample": "NA",
@@ -10388,7 +10388,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE168": {
       "biosample": "NA",
@@ -10404,7 +10404,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE169": {
       "biosample": "NA",
@@ -10420,7 +10420,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE17": {
       "biosample": "NA",
@@ -10452,7 +10452,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE171": {
       "biosample": "NA",
@@ -10468,7 +10468,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE172": {
       "biosample": "NA",
@@ -10532,7 +10532,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.1
     },
     "NODE176": {
       "biosample": "NA",
@@ -10548,7 +10548,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE177": {
       "biosample": "NA",
@@ -10564,7 +10564,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE178": {
       "biosample": "NA",
@@ -10580,7 +10580,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE179": {
       "biosample": "NA",
@@ -10596,7 +10596,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE18": {
       "biosample": "NA",
@@ -10724,7 +10724,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE187": {
       "biosample": "NA",
@@ -12260,7 +12260,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE273": {
       "biosample": "NA",
@@ -12548,7 +12548,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE29": {
       "biosample": "NA",
@@ -12580,7 +12580,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE291": {
       "biosample": "NA",
@@ -12596,7 +12596,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE292": {
       "biosample": "NA",
@@ -12612,7 +12612,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE293": {
       "biosample": "NA",
@@ -12628,7 +12628,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE294": {
       "biosample": "NA",
@@ -12644,7 +12644,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE295": {
       "biosample": "NA",
@@ -13252,7 +13252,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.4
     },
     "NODE329": {
       "biosample": "NA",
@@ -13268,7 +13268,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE33": {
       "biosample": "NA",
@@ -13300,7 +13300,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE331": {
       "biosample": "NA",
@@ -13364,7 +13364,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 0.0
     },
     "NODE335": {
       "biosample": "NA",
@@ -18068,7 +18068,7 @@
       "province": "NA",
       "scf": "NA",
       "strain": "NA",
-      "ufboot": "NA"
+      "ufboot": 80.5
     },
     "NODE60": {
       "biosample": "NA",

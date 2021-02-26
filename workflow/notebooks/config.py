@@ -426,6 +426,9 @@ def auspice_export(
         metadata_names,
     ) = export_v2.parse_node_data_and_metadata(tree, augur_json_paths, None)
 
+    print(type(node_attrs))
+    # print(data_json["tree"] = convert_tree_to_json_structure(T.root, node_attrs)
+
     # Validate and load config file (could put this in try except)
     export_v2.validate_auspice_config_v2(auspice_config_path)
     print("Validation success.")
@@ -492,17 +495,17 @@ def branch_length_to_years_marginal(timetree):
 """
 # Testing
 tree_path=(
-  "../../../../docs/results/latest/parse_tree/parse_tree.nwk"
+  "../../results/parse_tree/parse_tree.nwk"
 )
 aln_path = (
-  "../../../../docs/results/latest/snippy_multi/snippy-core_chromosome.snps.filter5.aln"
+  "../../docs/results/latest/snippy_multi/snippy-core_chromosome.snps.filter5.aln"
 )
 
 tree_div = Phylo.read(tree_path, "newick")
 tree_div.ladderize(reverse=False)
 tree=tree_div
 
-tree_df_path = "../../../../docs/results/latest/timetree/timetree.tsv"
+tree_df_path = "../../results/parse_tree/parse_tree.tsv"
 tree_df = pd.read_csv(tree_df_path, sep='\t')
 # Fix the problem with multiple forms of NA in the table
 # Consolidate missing data to the NO_DATA_CHAR
@@ -519,6 +522,6 @@ augur_dict = augur_export(
         "Branch_Number" : (lambda x : str(x))
     },
 )
-
-print(augur_dict["nodes"]["NODE0"])
 """
+
+# print(augur_dict["nodes"]["NODE0"])

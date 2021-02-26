@@ -3,8 +3,7 @@
     <clade>
       <name>NODE0</name>
       <branch_length>0.0</branch_length>
-      <confidence type="unknown">100.0</confidence>
-      <confidence type="ufboot">NA</confidence>
+      <confidence type="ufboot">100.0</confidence>
       <confidence type="scf">NA</confidence>
       <clade>
         <name>SAMEA3541827</name>
@@ -71,8 +70,7 @@
               <clade>
                 <name>NODE6</name>
                 <branch_length>1.27143E-05</branch_length>
-                <confidence type="unknown">80.5</confidence>
-                <confidence type="ufboot">NA</confidence>
+                <confidence type="ufboot">80.5</confidence>
                 <confidence type="scf">NA</confidence>
                 <clade>
                   <name>SAMEA104233048</name>
@@ -1477,8 +1475,7 @@
                                     <clade>
                                       <name>NODE125</name>
                                       <branch_length>2.35E-08</branch_length>
-                                      <confidence type="unknown">0.0</confidence>
-                                      <confidence type="ufboot">NA</confidence>
+                                      <confidence type="ufboot">0.0</confidence>
                                       <confidence type="scf">NA</confidence>
                                       <clade>
                                         <name>GCA_009670015.1_ASM967001v1_genomic</name>
@@ -1489,8 +1486,7 @@
                                       <clade>
                                         <name>NODE126</name>
                                         <branch_length>0.0</branch_length>
-                                        <confidence type="unknown">0.0</confidence>
-                                        <confidence type="ufboot">NA</confidence>
+                                        <confidence type="ufboot">0.0</confidence>
                                         <confidence type="scf">NA</confidence>
                                         <clade>
                                           <name>GCA_009670895.1_ASM967089v1_genomic</name>
@@ -1501,8 +1497,7 @@
                                         <clade>
                                           <name>NODE127</name>
                                           <branch_length>0.0</branch_length>
-                                          <confidence type="unknown">0.0</confidence>
-                                          <confidence type="ufboot">NA</confidence>
+                                          <confidence type="ufboot">0.0</confidence>
                                           <confidence type="scf">NA</confidence>
                                           <clade>
                                             <name>GCA_009670905.1_ASM967090v1_genomic</name>
@@ -1513,8 +1508,7 @@
                                           <clade>
                                             <name>NODE128</name>
                                             <branch_length>0.0</branch_length>
-                                            <confidence type="unknown">0.0</confidence>
-                                            <confidence type="ufboot">NA</confidence>
+                                            <confidence type="ufboot">0.0</confidence>
                                             <confidence type="scf">NA</confidence>
                                             <clade>
                                               <name>GCA_009670515.1_ASM967051v1_genomic</name>
@@ -1525,8 +1519,7 @@
                                             <clade>
                                               <name>NODE129</name>
                                               <branch_length>0.0</branch_length>
-                                              <confidence type="unknown">0.0</confidence>
-                                              <confidence type="ufboot">NA</confidence>
+                                              <confidence type="ufboot">0.0</confidence>
                                               <confidence type="scf">NA</confidence>
                                               <clade>
                                                 <name>GCA_009669775.1_ASM966977v1_genomic</name>
@@ -1950,8 +1943,7 @@
                                                 <clade>
                                                   <name>NODE164</name>
                                                   <branch_length>2.35E-08</branch_length>
-                                                  <confidence type="unknown">0.0</confidence>
-                                                  <confidence type="ufboot">NA</confidence>
+                                                  <confidence type="ufboot">0.0</confidence>
                                                   <confidence type="scf">NA</confidence>
                                                   <clade>
                                                     <name>GCA_009670345.1_ASM967034v1_genomic</name>
@@ -1962,8 +1954,7 @@
                                                   <clade>
                                                     <name>NODE165</name>
                                                     <branch_length>0.0</branch_length>
-                                                    <confidence type="unknown">0.0</confidence>
-                                                    <confidence type="ufboot">NA</confidence>
+                                                    <confidence type="ufboot">0.0</confidence>
                                                     <confidence type="scf">NA</confidence>
                                                     <clade>
                                                       <name>GCA_009669835.1_ASM966983v1_genomic</name>
@@ -1974,8 +1965,7 @@
                                                     <clade>
                                                       <name>NODE166</name>
                                                       <branch_length>0.0</branch_length>
-                                                      <confidence type="unknown">0.0</confidence>
-                                                      <confidence type="ufboot">NA</confidence>
+                                                      <confidence type="ufboot">0.0</confidence>
                                                       <confidence type="scf">NA</confidence>
                                                       <clade>
                                                         <name>GCA_009670205.1_ASM967020v1_genomic</name>
@@ -1986,8 +1976,7 @@
                                                       <clade>
                                                         <name>NODE167</name>
                                                         <branch_length>0.0</branch_length>
-                                                        <confidence type="unknown">0.0</confidence>
-                                                        <confidence type="ufboot">NA</confidence>
+                                                        <confidence type="ufboot">0.0</confidence>
                                                         <confidence type="scf">NA</confidence>
                                                         <clade>
                                                           <name>GCA_009670585.1_ASM967058v1_genomic</name>
@@ -1998,8 +1987,7 @@
                                                         <clade>
                                                           <name>NODE168</name>
                                                           <branch_length>0.0</branch_length>
-                                                          <confidence type="unknown">0.0</confidence>
-                                                          <confidence type="ufboot">NA</confidence>
+                                                          <confidence type="ufboot">0.0</confidence>
                                                           <confidence type="scf">NA</confidence>
                                                           <clade>
                                                             <name>GCA_009670105.1_ASM967010v1_genomic</name>
@@ -2010,8 +1998,7 @@
                                                           <clade>
                                                             <name>NODE169</name>
                                                             <branch_length>0.0</branch_length>
-                                                            <confidence type="unknown">0.0</confidence>
-                                                            <confidence type="ufboot">NA</confidence>
+                                                            <confidence type="ufboot">0.0</confidence>
                                                             <confidence type="scf">NA</confidence>
                                                             <clade>
                                                               <name>GCA_009669845.1_ASM966984v1_genomic</name>
@@ -2022,8 +2009,7 @@
                                                             <clade>
                                                               <name>NODE170</name>
                                                               <branch_length>0.0</branch_length>
-                                                              <confidence type="unknown">0.0</confidence>
-                                                              <confidence type="ufboot">NA</confidence>
+                                                              <confidence type="ufboot">0.0</confidence>
                                                               <confidence type="scf">NA</confidence>
                                                               <clade>
                                                                 <name>GCA_009669905.1_ASM966990v1_genomic</name>
@@ -2034,8 +2020,7 @@
                                                               <clade>
                                                                 <name>NODE171</name>
                                                                 <branch_length>0.0</branch_length>
-                                                                <confidence type="unknown">0.0</confidence>
-                                                                <confidence type="ufboot">NA</confidence>
+                                                                <confidence type="ufboot">0.0</confidence>
                                                                 <confidence type="scf">NA</confidence>
                                                                 <clade>
                                                                   <name>GCA_009667945.1_ASM966794v1_genomic</name>
@@ -2089,8 +2074,7 @@
                                                   <clade>
                                                     <name>NODE175</name>
                                                     <branch_length>2.35E-08</branch_length>
-                                                    <confidence type="unknown">0.1</confidence>
-                                                    <confidence type="ufboot">NA</confidence>
+                                                    <confidence type="ufboot">0.1</confidence>
                                                     <confidence type="scf">NA</confidence>
                                                     <clade>
                                                       <name>GCA_009670545.1_ASM967054v1_genomic</name>
@@ -2101,8 +2085,7 @@
                                                     <clade>
                                                       <name>NODE176</name>
                                                       <branch_length>0.0</branch_length>
-                                                      <confidence type="unknown">0.0</confidence>
-                                                      <confidence type="ufboot">NA</confidence>
+                                                      <confidence type="ufboot">0.0</confidence>
                                                       <confidence type="scf">NA</confidence>
                                                       <clade>
                                                         <name>GCA_009669875.1_ASM966987v1_genomic</name>
@@ -2113,8 +2096,7 @@
                                                       <clade>
                                                         <name>NODE177</name>
                                                         <branch_length>0.0</branch_length>
-                                                        <confidence type="unknown">0.0</confidence>
-                                                        <confidence type="ufboot">NA</confidence>
+                                                        <confidence type="ufboot">0.0</confidence>
                                                         <confidence type="scf">NA</confidence>
                                                         <clade>
                                                           <name>GCA_009669925.1_ASM966992v1_genomic</name>
@@ -2125,8 +2107,7 @@
                                                         <clade>
                                                           <name>NODE178</name>
                                                           <branch_length>0.0</branch_length>
-                                                          <confidence type="unknown">0.0</confidence>
-                                                          <confidence type="ufboot">NA</confidence>
+                                                          <confidence type="ufboot">0.0</confidence>
                                                           <confidence type="scf">NA</confidence>
                                                           <clade>
                                                             <name>GCA_009670835.1_ASM967083v1_genomic</name>
@@ -2137,8 +2118,7 @@
                                                           <clade>
                                                             <name>NODE179</name>
                                                             <branch_length>0.0</branch_length>
-                                                            <confidence type="unknown">0.0</confidence>
-                                                            <confidence type="ufboot">NA</confidence>
+                                                            <confidence type="ufboot">0.0</confidence>
                                                             <confidence type="scf">NA</confidence>
                                                             <clade>
                                                               <name>GCA_009669545.1_ASM966954v1_genomic</name>
@@ -2220,8 +2200,7 @@
                                                               <clade>
                                                                 <name>NODE186</name>
                                                                 <branch_length>2.35E-08</branch_length>
-                                                                <confidence type="unknown">0.0</confidence>
-                                                                <confidence type="ufboot">NA</confidence>
+                                                                <confidence type="ufboot">0.0</confidence>
                                                                 <confidence type="scf">NA</confidence>
                                                                 <clade>
                                                                   <name>GCA_009670225.1_ASM967022v1_genomic</name>
@@ -3245,8 +3224,7 @@
                                           <clade>
                                             <name>NODE272</name>
                                             <branch_length>2.35E-08</branch_length>
-                                            <confidence type="unknown">0.0</confidence>
-                                            <confidence type="ufboot">NA</confidence>
+                                            <confidence type="ufboot">0.0</confidence>
                                             <confidence type="scf">NA</confidence>
                                             <clade>
                                               <name>GCA_015158765.1_ASM1515876v1_genomic</name>
@@ -3461,8 +3439,7 @@
                                             <clade>
                                               <name>NODE289</name>
                                               <branch_length>2.35E-08</branch_length>
-                                              <confidence type="unknown">0.0</confidence>
-                                              <confidence type="ufboot">NA</confidence>
+                                              <confidence type="ufboot">0.0</confidence>
                                               <confidence type="scf">NA</confidence>
                                               <clade>
                                                 <name>GCA_015158875.1_ASM1515887v1_genomic</name>
@@ -3473,8 +3450,7 @@
                                               <clade>
                                                 <name>NODE290</name>
                                                 <branch_length>0.0</branch_length>
-                                                <confidence type="unknown">0.0</confidence>
-                                                <confidence type="ufboot">NA</confidence>
+                                                <confidence type="ufboot">0.0</confidence>
                                                 <confidence type="scf">NA</confidence>
                                                 <clade>
                                                   <name>GCA_015190655.1_ASM1519065v1_genomic</name>
@@ -3485,8 +3461,7 @@
                                                 <clade>
                                                   <name>NODE291</name>
                                                   <branch_length>0.0</branch_length>
-                                                  <confidence type="unknown">0.0</confidence>
-                                                  <confidence type="ufboot">NA</confidence>
+                                                  <confidence type="ufboot">0.0</confidence>
                                                   <confidence type="scf">NA</confidence>
                                                   <clade>
                                                     <name>GCA_015158945.1_ASM1515894v1_genomic</name>
@@ -3497,8 +3472,7 @@
                                                   <clade>
                                                     <name>NODE292</name>
                                                     <branch_length>0.0</branch_length>
-                                                    <confidence type="unknown">0.0</confidence>
-                                                    <confidence type="ufboot">NA</confidence>
+                                                    <confidence type="ufboot">0.0</confidence>
                                                     <confidence type="scf">NA</confidence>
                                                     <clade>
                                                       <name>GCA_015159035.1_ASM1515903v1_genomic</name>
@@ -3509,8 +3483,7 @@
                                                     <clade>
                                                       <name>NODE293</name>
                                                       <branch_length>0.0</branch_length>
-                                                      <confidence type="unknown">0.0</confidence>
-                                                      <confidence type="ufboot">NA</confidence>
+                                                      <confidence type="ufboot">0.0</confidence>
                                                       <confidence type="scf">NA</confidence>
                                                       <clade>
                                                         <name>GCA_015159085.1_ASM1515908v1_genomic</name>
@@ -3521,8 +3494,7 @@
                                                       <clade>
                                                         <name>NODE294</name>
                                                         <branch_length>0.0</branch_length>
-                                                        <confidence type="unknown">0.0</confidence>
-                                                        <confidence type="ufboot">NA</confidence>
+                                                        <confidence type="ufboot">0.0</confidence>
                                                         <confidence type="scf">NA</confidence>
                                                         <clade>
                                                           <name>GCA_015158755.1_ASM1515875v1_genomic</name>
@@ -3931,8 +3903,7 @@
                                                     <clade>
                                                       <name>NODE328</name>
                                                       <branch_length>2.35E-08</branch_length>
-                                                      <confidence type="unknown">0.4</confidence>
-                                                      <confidence type="ufboot">NA</confidence>
+                                                      <confidence type="ufboot">0.4</confidence>
                                                       <confidence type="scf">NA</confidence>
                                                       <clade>
                                                         <name>GCA_014734395.1_ASM1473439v1_genomic</name>
@@ -3943,8 +3914,7 @@
                                                       <clade>
                                                         <name>NODE329</name>
                                                         <branch_length>0.0</branch_length>
-                                                        <confidence type="unknown">0.0</confidence>
-                                                        <confidence type="ufboot">NA</confidence>
+                                                        <confidence type="ufboot">0.0</confidence>
                                                         <confidence type="scf">NA</confidence>
                                                         <clade>
                                                           <name>GCA_014734355.1_ASM1473435v1_genomic</name>
@@ -3955,8 +3925,7 @@
                                                         <clade>
                                                           <name>NODE330</name>
                                                           <branch_length>0.0</branch_length>
-                                                          <confidence type="unknown">0.0</confidence>
-                                                          <confidence type="ufboot">NA</confidence>
+                                                          <confidence type="ufboot">0.0</confidence>
                                                           <confidence type="scf">NA</confidence>
                                                           <clade>
                                                             <name>GCA_013392055.1_ASM1339205v1_genomic</name>
@@ -4010,8 +3979,7 @@
                                                         <clade>
                                                           <name>NODE334</name>
                                                           <branch_length>2.35E-08</branch_length>
-                                                          <confidence type="unknown">0.0</confidence>
-                                                          <confidence type="ufboot">NA</confidence>
+                                                          <confidence type="ufboot">0.0</confidence>
                                                           <confidence type="scf">NA</confidence>
                                                           <clade>
                                                             <name>GCA_013392045.1_ASM1339204v1_genomic</name>
