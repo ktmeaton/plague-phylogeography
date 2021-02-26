@@ -1,4 +1,4 @@
-# Development
+# v0.2.3
 
 1. Experiment with relaxed clock parameters.
     - slack: 0.1 # Better
