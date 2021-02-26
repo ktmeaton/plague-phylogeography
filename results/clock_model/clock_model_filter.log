@@ -1,0 +1,76 @@
+
+0.00	-TreeAnc: set-up
+
+1.33	-SequenceData: loaded alignment.
+1.33	--SequenceData.aln: specified sequence length doesn't match alignment
+    	  length. Treating difference as constant sites.
+
+1.33	-SeqData: making compressed alignment...
+
+4.19	-SequenceData: constructed compressed alignment...
+4.51	--ClockTree: Setting precision to level 2
+
+4.60	-ClockTree._assign_dates: assigned date contraints to 634 out of 634 tips.
+
+4.61	TreeTime.reroot: with method or node: NODE0
+4.93	--ClockTree.date2dist: Setting new molecular clock. rate=9.508e-09,
+    	  R^2=0.2300
+4.93	--TreeTime.reroot: Tree was re-rooted to node NODE0
+5.49	--ClockTree.date2dist: Setting new molecular clock. rate=9.508e-09,
+    	  R^2=0.2300
+5.51	---TreeTime.ClockFilter: marking GCA_008630375.1_ASM863037v1_genomic as
+    	   outlier, residual 3.979261 interquartile distances
+5.51	---TreeTime.ClockFilter: marking GCA_008630375.2_ASM863037v2_genomic as
+    	   outlier, residual 4.261789 interquartile distances
+5.51	---TreeTime.ClockFilter: marking GCA_003086075.1_ASM308607v1_genomic as
+    	   outlier, residual 3.010350 interquartile distances
+5.51	---TreeTime.ClockFilter: marking GCA_001613865.1_ASM161386v1_genomic as
+    	   outlier, residual 3.179381 interquartile distances
+
+5.74	TreeTime.reroot: with method or node: NODE0
+6.06	--ClockTree.date2dist: Setting new molecular clock. rate=9.416e-09,
+    	  R^2=0.2483
+6.06	--TreeTime.reroot: Tree was re-rooted to node NODE0
+6.61	--ClockTree.date2dist: Setting new molecular clock. rate=9.416e-09,
+    	  R^2=0.2483
+Clock Model:  {'clock_rate': 9.416066712137288e-09, 'intercept': 5.304755152697907e-05, 'chisq': 2.582616029485927e-08, 'r_val': 0.49828866115420706, 'cov': None, 'sigma': 0, 'valid_confidence': False}
+Collapsed node NODE309 in the tree.
+Collapsed node GCA_008630375.1_ASM863037v1_genomic in the tree.
+Collapsed node GCA_008630375.2_ASM863037v2_genomic in the tree.
+Collapsed node GCA_003086075.1_ASM308607v1_genomic in the tree.
+Collapsed node GCA_001613865.1_ASM161386v1_genomic in the tree.
+Dropped NODE309 from the dataframe.
+Dropped GCA_008630375.1_ASM863037v1_genomic from the dataframe.
+Dropped GCA_008630375.2_ASM863037v2_genomic from the dataframe.
+Dropped GCA_003086075.1_ASM308607v1_genomic from the dataframe.
+Dropped GCA_001613865.1_ASM161386v1_genomic from the dataframe.
+
+0.00	-TreeAnc: set-up
+
+1.24	-SequenceData: loaded alignment.
+1.24	--SequenceData.aln: specified sequence length doesn't match alignment
+    	  length. Treating difference as constant sites.
+
+1.24	-SeqData: making compressed alignment...
+
+4.03	-SequenceData: constructed compressed alignment...
+4.10	---**WARNING: Number of tips in tree differs from number of sequences in
+    	   alignment!**
+4.30	--ClockTree: Setting precision to level 2
+
+4.38	-ClockTree._assign_dates: assigned date contraints to 630 out of 630 tips.
+
+4.39	TreeTime.reroot: with method or node: NODE0
+4.72	--ClockTree.date2dist: Setting new molecular clock. rate=9.416e-09,
+    	  R^2=0.2483
+4.72	--TreeTime.reroot: Tree was re-rooted to node NODE0
+5.25	--ClockTree.date2dist: Setting new molecular clock. rate=9.416e-09,
+    	  R^2=0.2483
+
+5.48	TreeTime.reroot: with method or node: NODE0
+5.81	--ClockTree.date2dist: Setting new molecular clock. rate=9.416e-09,
+    	  R^2=0.2483
+5.81	--TreeTime.reroot: Tree was re-rooted to node NODE0
+6.44	--ClockTree.date2dist: Setting new molecular clock. rate=9.416e-09,
+    	  R^2=0.2483
+Clock Model:  {'clock_rate': 9.416066712137288e-09, 'intercept': 5.304755152697907e-05, 'chisq': 2.582616029485927e-08, 'r_val': 0.49828866115420706, 'cov': None, 'sigma': 0, 'valid_confidence': False}
