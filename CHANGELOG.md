@@ -2,14 +2,34 @@
 
 ## Development
 
+### Commits
+
+## v0.2.3
+
 ### Notes
 
 1. Experiment with relaxed clock parameters.
 1. Experiment with marginal likelihood parameters.
 1. Experiment with the coalescent parameters.
+1. Catch bad lower confidence bounds.
 1. Think about snippy_dir in rule ```eager```...
 
+### Pull Requests
+
+* [```pull/3```](https://github.com/ktmeaton/plague-phylogeography/pull/3) v0.2.3
+
 ### Commits
+
+* [```51adae7```](https://github.com/ktmeaton/plague-phylogeography/commit/51adae7) update notes for v0.2.3
+* [```fc418ff```](https://github.com/ktmeaton/plague-phylogeography/commit/fc418ff) Merge pull request #3 from ktmeaton/dev
+* [```0f8f57d```](https://github.com/ktmeaton/plague-phylogeography/commit/0f8f57d) excellent timetree marginal parameters
+* [```181f944```](https://github.com/ktmeaton/plague-phylogeography/commit/181f944) add comments to nexus for clock_model
+* [```18a7b0e```](https://github.com/ktmeaton/plague-phylogeography/commit/18a7b0e) checkpoint with working but unstable marginal estimate
+* [```ab3f911```](https://github.com/ktmeaton/plague-phylogeography/commit/ab3f911) add comments to nexus for parse_tree
+* [```c33bd64```](https://github.com/ktmeaton/plague-phylogeography/commit/c33bd64) slack:0.1, blm: joint, tc:def, time_marginal:def
+* [```b34519f```](https://github.com/ktmeaton/plague-phylogeography/commit/b34519f) slack:0.5, blm: joint, tc:def, time_marginal:def
+* [```4158f9a```](https://github.com/ktmeaton/plague-phylogeography/commit/4158f9a) first pass at timetree marginal parameters
+* [```1bd0899```](https://github.com/ktmeaton/plague-phylogeography/commit/1bd0899) Merge pull request #2 from ktmeaton/dev
 
 ## v0.2.2
 
