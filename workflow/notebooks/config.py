@@ -40,14 +40,14 @@ TARGET_RTL = 0.95
 
 # Mugration Parameters
 DATE_COL = "Date"
-ATTRIBUTE_LIST = [
-    "Branch_Number",
-    "Branch_Major",
-    "Branch_Minor",
-    "Country",
-    "Province",
-]
-# ATTRIBUTE_LIST = ["Branch_Number", "Branch_Major"]
+# ATTRIBUTE_LIST = [
+#    "Branch_Number",
+#    "Branch_Major",
+#    "Branch_Minor",
+#    "Country",
+#    "Province",
+# ]
+ATTRIBUTE_LIST = ["Branch_Number"]
 MUG_CONF_THRESH = 0.95
 MUG_TINY = 1e-12
 

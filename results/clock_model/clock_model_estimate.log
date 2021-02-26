@@ -1,0 +1,1470 @@
+0.00	-TreeAnc: set-up
+
+1.26	-SequenceData: loaded alignment.
+1.26	--SequenceData.aln: specified sequence length doesn't match alignment
+    	  length. Treating difference as constant sites.
+
+1.26	-SeqData: making compressed alignment...
+
+4.13	-SequenceData: constructed compressed alignment...
+4.45	--ClockTree: Setting precision to level 2
+
+4.53	-ClockTree._assign_dates: assigned date contraints to 634 out of 634 tips.
+
+4.53	-TreeAnc.optimize_tree: sequences...
+
+4.53	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+
+4.53	WARNING: Previous versions of TreeTime (<0.7.0) RECONSTRUCTED sequences of
+    	tips at positions with AMBIGUOUS bases. This resulted in unexpected
+    	behavior is some cases and is no longer done by default. If you want to
+    	replace those ambiguous sites with their most likely state, rerun with
+    	`reconstruct_tip_states=True` or `--reconstruct-tip-states`.
+4.53	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+4.53	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+11.16	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+     	   likelihood sequences...
+11.51	---TreeAnc._ml_anc_joint: ...done
+11.53	--TreeAnc.infer_gtr: counting mutations...
+13.33	---TreeAnc.infer_gtr: counting mutations...done
+
+13.33	-GTR: with alphabet: ['A', 'C', 'G', 'T', '-']
+13.33	--GTR: ambiguous character: N
+13.33	---GTR: init with dummy values!
+
+13.33	-GTR: model inference
+13.33	---GTR inference iteration 0 change: 0.447213595499958
+13.33	---GTR inference iteration 1 change: 0.24175280278292105
+13.34	---GTR inference iteration 2 change: 0.0007839017374166428
+13.34	---GTR inference iteration 3 change: 6.834508789710687e-05
+13.34	---GTR inference iteration 4 change: 6.796008609491633e-05
+13.34	---GTR inference iteration 5 change: 3.0509235883037924e-05
+13.34	--The model allows for gaps which are estimated to occur at a low fraction
+     	  of 6.088e-04 this can potentially result in artificats. gap fraction
+     	  will be set to 0.0100
+13.34	--TreeAnc.infer_gtr: setting overall rate to 1.0...
+13.34	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+13.34	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+20.03	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+     	   likelihood sequences...
+20.30	---TreeAnc._ml_anc_joint: ...done
+
+20.31	-TreeAnc.optimize_branch_length: running branch length optimization using
+     	 jointML ancestral sequences
+
+25.57	-TreeAnc.prune_short_branches: pruning short branches (max prob at
+     	 zero)...
+
+26.00	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+26.00	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+26.00	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+31.61	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+     	   likelihood sequences...
+31.76	---TreeAnc._ml_anc_joint: ...done
+31.78	--TreeAnc.optimize_tree: Iteration 1. #Nuc changed since prev
+     	  reconstructions: 209
+
+31.78	-TreeAnc.optimize_branch_length: running branch length optimization using
+     	 jointML ancestral sequences
+36.45	--TreeAnc.optimize_tree: Unconstrained sequence LH:-6614132.770795
+
+36.46	TreeTime.reroot: with method or node: NODE0
+36.86	--ClockTree.date2dist: Setting new molecular clock. rate=8.712e-09,
+     	  R^2=0.2417
+36.86	--TreeTime.reroot: Tree was re-rooted to node NODE0
+37.52	--ClockTree.date2dist: Setting new molecular clock. rate=8.019e-09,
+     	  R^2=0.2417
+37.53	---TreeTime.ClockFilter: marking GCA_001601675.1_ASM160167v1_genomic as
+     	   outlier, residual 3.478334 interquartile distances
+37.53	---TreeTime.ClockFilter: marking GCA_001972395.1_ASM197239v1_genomic as
+     	   outlier, residual 3.180372 interquartile distances
+37.53	---TreeTime.ClockFilter: marking GCA_002165475.1_ASM216547v1_genomic as
+     	   outlier, residual 3.202541 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_001972405.1_ASM197240v1_genomic as
+     	   outlier, residual 3.434558 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_001972385.1_ASM197238v1_genomic as
+     	   outlier, residual 3.526677 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_001972415.1_ASM197241v1_genomic as
+     	   outlier, residual 4.024991 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_001294815.1_ASM129481v1_genomic as
+     	   outlier, residual 3.010709 interquartile distances
+37.54	---TreeTime.ClockFilter: marking
+     	   GCA_000382505.1_Yersinia_pestis_G1670E_assembly_genomic as outlier,
+     	   residual 3.017110 interquartile distances
+37.54	---TreeTime.ClockFilter: marking
+     	   GCA_000382545.1_Yersinia_pestis_assembly_genomic as outlier, residual
+     	   3.191292 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_001188335.1_DYA_1_genomic as outlier,
+     	   residual 3.191292 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_000834275.1_ASM83427v1_genomic as
+     	   outlier, residual 4.189141 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_000834885.1_ASM83488v1_genomic as
+     	   outlier, residual 4.133927 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_008630375.1_ASM863037v1_genomic as
+     	   outlier, residual 5.371958 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_008630375.2_ASM863037v2_genomic as
+     	   outlier, residual 5.655145 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_003086075.1_ASM308607v1_genomic as
+     	   outlier, residual 4.497690 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_003086115.1_ASM308611v1_genomic as
+     	   outlier, residual 3.640811 interquartile distances
+37.54	---TreeTime.ClockFilter: marking GCA_001613865.1_ASM161386v1_genomic as
+     	   outlier, residual 4.556167 interquartile distances
+
+37.69	TreeTime.reroot: with method or node: NODE0
+38.15	--ClockTree.date2dist: Setting new molecular clock. rate=7.963e-09,
+     	  R^2=0.2881
+38.15	--TreeTime.reroot: Tree was re-rooted to node NODE0
+38.70	--ClockTree.date2dist: Setting new molecular clock. rate=7.963e-09,
+     	  R^2=0.2881
+
+38.70	-TreeAnc.optimize_tree: sequences...
+
+38.70	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+38.70	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+38.70	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+43.84	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+     	   likelihood sequences...
+43.94	---TreeAnc._ml_anc_joint: ...done
+
+43.95	-TreeAnc.optimize_branch_length: running branch length optimization using
+     	 jointML ancestral sequences
+
+48.41	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+48.41	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+48.41	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+53.70	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+     	   likelihood sequences...
+53.85	---TreeAnc._ml_anc_joint: ...done
+53.86	--TreeAnc.optimize_tree: Iteration 1. #Nuc changed since prev
+     	  reconstructions: 5
+
+53.86	-TreeAnc.optimize_branch_length: running branch length optimization using
+     	 jointML ancestral sequences
+58.39	--TreeAnc.optimize_tree: Unconstrained sequence LH:-6614072.089524
+
+58.39	###TreeTime.run: INITIAL ROUND
+
+58.39	-ClockTree: Maximum likelihood tree optimization with temporal constraints
+58.39	--ClockTree.init_date_constraints...
+58.39	---ClockTree.init_date_constraints: Initializing branch length
+     	   interpolation objects...
+83.46	--ClockTree.date2dist: Setting new molecular clock. rate=7.993e-09,
+     	  R^2=0.2916
+83.47	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.47	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.47	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.47	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.47	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.47	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.47	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.47	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.47	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.47	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.49	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.49	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.50	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.50	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.50	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.50	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.50	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+     	    excluding it from the optimization process. Date constraint will be
+     	    ignored!
+83.53	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+129.68	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.92	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.92	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+129.92	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+
+129.94	TreeTime.reroot: with method or node: NODE0
+130.32	--ClockTree.date2dist: Setting new molecular clock. rate=9.278e-09,
+      	  R^2=0.2916
+130.32	--TreeTime.reroot: Tree was re-rooted to node NODE0
+130.83	--ClockTree.date2dist: Setting new molecular clock. rate=9.278e-09,
+      	  R^2=0.2916
+
+130.83	###TreeTime.run: rerunning timetree after rerooting
+
+130.83	-ClockTree: Maximum likelihood tree optimization with temporal
+      	 constraints
+130.83	--ClockTree.init_date_constraints...
+
+130.83	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+130.83	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+130.83	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+135.89	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+      	   likelihood sequences...
+136.00	---TreeAnc._ml_anc_joint: ...done
+136.01	---ClockTree.init_date_constraints: Initializing branch length
+      	   interpolation objects...
+164.14	--ClockTree.date2dist: Setting new molecular clock. rate=9.278e-09,
+      	  R^2=0.2916
+164.14	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.14	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.14	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.14	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.17	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.17	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.17	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.17	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.17	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.17	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.18	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+164.20	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+212.64	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+212.83	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.83	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.83	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.83	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.83	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.83	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.83	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.83	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.84	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.84	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.84	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.84	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.85	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.85	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.85	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.85	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.85	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.85	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+212.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+
+212.88	###TreeTime.run: ITERATION 1 out of 3 iterations
+
+212.88	-TreeTime.run: adding coalescent prior with Tc=const
+223.02	--optimized Tc to 0.000106
+relaxed_clock {'slack': 0.1, 'coupling': 0}
+223.85	--TreeTime.relaxed_clock: slack=0.100000, coupling=0.000000
+
+223.89	-TreeTime.resolve_polytomies: resolving multiple mergers...
+223.93	---TreeTime._poly.merge_nodes: creating new node as child of NODE35
+223.93	---TreeTime._poly.merge_nodes: Delta-LH = 0.19
+223.96	---TreeTime._poly.merge_nodes: creating new node as child of NODE35
+223.96	---TreeTime._poly.merge_nodes: Delta-LH = 0.185
+223.99	---TreeTime._poly.merge_nodes: creating new node as child of NODE41
+223.99	---TreeTime._poly.merge_nodes: Delta-LH = 0.286
+224.05	---TreeTime._poly.merge_nodes: creating new node as child of NODE107
+224.05	---TreeTime._poly.merge_nodes: Delta-LH = 0.135
+224.09	---TreeTime._poly.merge_nodes: creating new node as child of NODE107
+224.09	---TreeTime._poly.merge_nodes: Delta-LH = 0.192
+224.11	---TreeTime._poly.merge_nodes: creating new node as child of NODE107
+224.11	---TreeTime._poly.merge_nodes: Delta-LH = 0.161
+224.28	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+224.28	---TreeTime._poly.merge_nodes: Delta-LH = 0.029
+224.33	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+224.33	---TreeTime._poly.merge_nodes: Delta-LH = 0.002
+224.39	---TreeTime._poly.merge_nodes: creating new node as child of NODE139
+224.39	---TreeTime._poly.merge_nodes: Delta-LH = 0.004
+224.42	---TreeTime._poly.merge_nodes: creating new node as child of NODE139
+224.42	---TreeTime._poly.merge_nodes: Delta-LH = 0.133
+224.45	---TreeTime._poly.merge_nodes: creating new node as child of NODE139
+224.45	---TreeTime._poly.merge_nodes: Delta-LH = 0.091
+224.93	---TreeTime._poly.merge_nodes: creating new node as child of NODE216
+224.93	---TreeTime._poly.merge_nodes: Delta-LH = 0.171
+224.96	---TreeTime._poly.merge_nodes: creating new node as child of NODE238
+224.97	---TreeTime._poly.merge_nodes: Delta-LH = 0.032
+225.02	---TreeTime._poly.merge_nodes: creating new node as child of NODE241
+225.02	---TreeTime._poly.merge_nodes: Delta-LH = 0.061
+225.05	---TreeTime._poly.merge_nodes: creating new node as child of NODE241
+225.05	---TreeTime._poly.merge_nodes: Delta-LH = 0.047
+225.08	---TreeTime._poly.merge_nodes: creating new node as child of NODE241
+225.08	---TreeTime._poly.merge_nodes: Delta-LH = 0.041
+225.11	---TreeTime._poly.merge_nodes: creating new node as child of NODE241
+225.11	---TreeTime._poly.merge_nodes: Delta-LH = 0.031
+225.15	---TreeTime._poly.merge_nodes: creating new node as child of NODE255
+225.15	---TreeTime._poly.merge_nodes: Delta-LH = 0.431
+225.27	---TreeTime._poly.merge_nodes: creating new node as child of NODE304
+225.27	---TreeTime._poly.merge_nodes: Delta-LH = 0.379
+225.30	---TreeTime._poly.merge_nodes: creating new node as child of NODE304
+225.30	---TreeTime._poly.merge_nodes: Delta-LH = 0.699
+225.44	---TreeTime._poly.merge_nodes: creating new node as child of NODE372
+225.44	---TreeTime._poly.merge_nodes: Delta-LH = 0.002
+225.47	---TreeTime._poly.merge_nodes: creating new node as child of NODE372
+225.47	---TreeTime._poly.merge_nodes: Delta-LH = 0.0
+225.51	---TreeTime._poly.merge_nodes: creating new node as child of NODE372
+225.51	---TreeTime._poly.merge_nodes: Delta-LH = 0.0
+225.57	---TreeTime._poly.merge_nodes: creating new node as child of NODE396
+225.57	---TreeTime._poly.merge_nodes: Delta-LH = 0.38
+225.60	---TreeTime._poly.merge_nodes: creating new node as child of NODE396
+225.60	---TreeTime._poly.merge_nodes: Delta-LH = 0.464
+225.64	---TreeTime._poly.merge_nodes: creating new node as child of NODE396
+225.64	---TreeTime._poly.merge_nodes: Delta-LH = 0.212
+225.67	---TreeTime._poly.merge_nodes: creating new node as child of NODE396
+225.67	---TreeTime._poly.merge_nodes: Delta-LH = 0.096
+225.71	---TreeTime._poly.merge_nodes: creating new node as child of NODE422
+225.71	---TreeTime._poly.merge_nodes: Delta-LH = 0.027
+225.75	---TreeTime._poly.merge_nodes: creating new node as child of NODE433
+225.75	---TreeTime._poly.merge_nodes: Delta-LH = 0.001
+225.78	---TreeTime._poly.merge_nodes: creating new node as child of NODE469
+225.78	---TreeTime._poly.merge_nodes: Delta-LH = 0.081
+225.84	---TreeTime._poly.merge_nodes: creating new node as child of NODE497
+225.84	---TreeTime._poly.merge_nodes: Delta-LH = 0.197
+225.87	---TreeTime._poly.merge_nodes: creating new node as child of NODE497
+225.87	---TreeTime._poly.merge_nodes: Delta-LH = 0.106
+225.94	---TreeTime._poly.merge_nodes: creating new node as child of NODE503
+225.94	---TreeTime._poly.merge_nodes: Delta-LH = 0.174
+225.98	---TreeTime._poly.merge_nodes: creating new node as child of NODE503
+225.98	---TreeTime._poly.merge_nodes: Delta-LH = 0.252
+226.01	---TreeTime._poly.merge_nodes: creating new node as child of NODE503
+226.01	---TreeTime._poly.merge_nodes: Delta-LH = 0.156
+226.04	---TreeTime._poly.merge_nodes: creating new node as child of NODE503
+226.05	---TreeTime._poly.merge_nodes: Delta-LH = 0.101
+226.07	---TreeTime._poly.merge_nodes: creating new node as child of NODE503
+226.07	---TreeTime._poly.merge_nodes: Delta-LH = 0.073
+226.10	---TreeTime._poly.merge_nodes: creating new node as child of NODE521
+226.10	---TreeTime._poly.merge_nodes: Delta-LH = 0.026
+226.13	---TreeTime._poly.merge_nodes: creating new node as child of NODE524
+226.13	---TreeTime._poly.merge_nodes: Delta-LH = 0.088
+226.16	---TreeTime._poly.merge_nodes: creating new node as child of NODE555
+226.16	---TreeTime._poly.merge_nodes: Delta-LH = 0.125
+226.22	---TreeTime._poly.merge_nodes: creating new node as child of NODE531
+226.22	---TreeTime._poly.merge_nodes: Delta-LH = 0.04
+226.25	---TreeTime._poly.merge_nodes: creating new node as child of NODE531
+226.25	---TreeTime._poly.merge_nodes: Delta-LH = 0.211
+226.28	---TreeTime._poly.merge_nodes: creating new node as child of NODE531
+226.28	---TreeTime._poly.merge_nodes: Delta-LH = 0.126
+226.31	---TreeTime._poly.merge_nodes: creating new node as child of NODE531
+226.31	---TreeTime._poly.merge_nodes: Delta-LH = 0.076
+226.35	---TreeTime._poly.merge_nodes: creating new node as child of NODE537
+226.35	---TreeTime._poly.merge_nodes: Delta-LH = 0.215
+226.39	---TreeTime._poly.merge_nodes: creating new node as child of NODE537
+226.39	---TreeTime._poly.merge_nodes: Delta-LH = 0.251
+226.42	---TreeTime._poly.merge_nodes: creating new node as child of NODE537
+226.42	---TreeTime._poly.merge_nodes: Delta-LH = 0.063
+226.49	---TreeTime.resolve_polytomies: introduces 47 new nodes
+
+226.62	-TreeAnc.optimize_tree: sequences...
+
+226.62	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+226.62	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+226.62	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+232.00	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+      	   likelihood sequences...
+232.12	---TreeAnc._ml_anc_joint: ...done
+
+232.13	-TreeAnc.optimize_branch_length: running branch length optimization using
+      	 jointML ancestral sequences
+236.81	--TreeAnc.optimize_tree: Unconstrained sequence LH:-6608080.161851
+
+236.81	-ClockTree: Maximum likelihood tree optimization with temporal
+      	 constraints
+236.81	--ClockTree.init_date_constraints...
+236.81	---ClockTree.init_date_constraints: Initializing branch length
+      	   interpolation objects...
+264.25	--ClockTree.date2dist: Setting new molecular clock. rate=9.373e-09,
+      	  R^2=0.3015
+264.25	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.25	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.25	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.25	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.25	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.25	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.26	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.26	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.26	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.26	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.28	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.28	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.28	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.28	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.28	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.28	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.29	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+264.32	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+342.41	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+342.88	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.88	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.88	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.88	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.88	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.88	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.91	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+342.92	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+
+342.94	-TreeAnc.infer_ancestral_sequences with method: ml, joint
+342.94	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+342.94	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+348.18	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+      	   likelihood sequences...
+348.34	---TreeAnc._ml_anc_joint: ...done
+
+348.66	###TreeTime.run: ITERATION 2 out of 3 iterations
+
+348.66	-TreeTime.run: adding coalescent prior with Tc=const
+358.25	--optimized Tc to 0.000082
+relaxed_clock {'slack': 0.1, 'coupling': 0}
+359.12	--TreeTime.relaxed_clock: slack=0.100000, coupling=0.000000
+
+359.16	-TreeTime.resolve_polytomies: resolving multiple mergers...
+359.27	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+359.27	---TreeTime._poly.merge_nodes: Delta-LH = 0.239
+359.33	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+359.33	---TreeTime._poly.merge_nodes: Delta-LH = 0.156
+359.38	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+359.38	---TreeTime._poly.merge_nodes: Delta-LH = 0.001
+359.42	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+359.42	---TreeTime._poly.merge_nodes: Delta-LH = 0.041
+359.45	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+359.45	---TreeTime._poly.merge_nodes: Delta-LH = 0.009
+359.49	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+359.49	---TreeTime._poly.merge_nodes: Delta-LH = 0.006
+359.52	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+359.52	---TreeTime._poly.merge_nodes: Delta-LH = 0.003
+359.56	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+359.56	---TreeTime._poly.merge_nodes: Delta-LH = 0.002
+359.59	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+359.59	---TreeTime._poly.merge_nodes: Delta-LH = 0.001
+359.65	---TreeTime._poly.merge_nodes: creating new node as child of NODE147
+359.65	---TreeTime._poly.merge_nodes: Delta-LH = 0.174
+359.68	---TreeTime._poly.merge_nodes: creating new node as child of NODE147
+359.68	---TreeTime._poly.merge_nodes: Delta-LH = 0.151
+360.21	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.21	---TreeTime._poly.merge_nodes: Delta-LH = 0.379
+360.27	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.27	---TreeTime._poly.merge_nodes: Delta-LH = 0.304
+360.34	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.34	---TreeTime._poly.merge_nodes: Delta-LH = 0.299
+360.40	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.40	---TreeTime._poly.merge_nodes: Delta-LH = 0.246
+360.49	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.49	---TreeTime._poly.merge_nodes: Delta-LH = 0.197
+360.54	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.54	---TreeTime._poly.merge_nodes: Delta-LH = 0.272
+360.62	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.62	---TreeTime._poly.merge_nodes: Delta-LH = 0.175
+360.67	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.67	---TreeTime._poly.merge_nodes: Delta-LH = 0.161
+360.74	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.74	---TreeTime._poly.merge_nodes: Delta-LH = 0.133
+360.80	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.80	---TreeTime._poly.merge_nodes: Delta-LH = 0.109
+360.86	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.86	---TreeTime._poly.merge_nodes: Delta-LH = 0.1
+360.92	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.92	---TreeTime._poly.merge_nodes: Delta-LH = 0.091
+360.98	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+360.98	---TreeTime._poly.merge_nodes: Delta-LH = 0.086
+361.03	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+361.03	---TreeTime._poly.merge_nodes: Delta-LH = 0.069
+361.08	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+361.08	---TreeTime._poly.merge_nodes: Delta-LH = 0.065
+361.13	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+361.13	---TreeTime._poly.merge_nodes: Delta-LH = 0.053
+361.18	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+361.18	---TreeTime._poly.merge_nodes: Delta-LH = 0.051
+361.22	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+361.22	---TreeTime._poly.merge_nodes: Delta-LH = 0.056
+361.26	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+361.26	---TreeTime._poly.merge_nodes: Delta-LH = 0.045
+361.30	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+361.30	---TreeTime._poly.merge_nodes: Delta-LH = 0.042
+361.33	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+361.33	---TreeTime._poly.merge_nodes: Delta-LH = 0.052
+361.37	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+361.37	---TreeTime._poly.merge_nodes: Delta-LH = 0.013
+361.40	---TreeTime._poly.merge_nodes: creating new node as child of NODE155
+361.40	---TreeTime._poly.merge_nodes: Delta-LH = 0.008
+361.58	---TreeTime._poly.merge_nodes: creating new node as child of NODE298
+361.58	---TreeTime._poly.merge_nodes: Delta-LH = 0.109
+361.70	---TreeTime._poly.merge_nodes: creating new node as child of NODE386
+361.70	---TreeTime._poly.merge_nodes: Delta-LH = 0.069
+361.73	---TreeTime._poly.merge_nodes: creating new node as child of NODE419
+361.73	---TreeTime._poly.merge_nodes: Delta-LH = 0.105
+361.77	---TreeTime._poly.merge_nodes: creating new node as child of NODE477
+361.77	---TreeTime._poly.merge_nodes: Delta-LH = 0.205
+361.80	---TreeTime._poly.merge_nodes: creating new node as child of NODE477
+361.80	---TreeTime._poly.merge_nodes: Delta-LH = 0.106
+361.85	---TreeTime.resolve_polytomies: introduces 39 new nodes
+
+362.00	-TreeAnc.optimize_tree: sequences...
+
+362.00	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+362.00	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+362.00	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+367.83	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+      	   likelihood sequences...
+367.99	---TreeAnc._ml_anc_joint: ...done
+
+368.00	-TreeAnc.optimize_branch_length: running branch length optimization using
+      	 jointML ancestral sequences
+372.91	--TreeAnc.optimize_tree: Unconstrained sequence LH:-6608074.746851
+
+372.91	-ClockTree: Maximum likelihood tree optimization with temporal
+      	 constraints
+372.91	--ClockTree.init_date_constraints...
+372.91	---ClockTree.init_date_constraints: Initializing branch length
+      	   interpolation objects...
+401.87	--ClockTree.date2dist: Setting new molecular clock. rate=9.411e-09,
+      	  R^2=0.3119
+401.88	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.88	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.88	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.88	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.88	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.88	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.88	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.88	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.88	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.89	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.90	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.90	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.90	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.91	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.91	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.91	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+401.91	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+402.02	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+483.36	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.90	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.90	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.90	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.90	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.90	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+483.90	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+
+483.92	-TreeAnc.infer_ancestral_sequences with method: ml, joint
+483.92	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+483.92	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+490.39	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+      	   likelihood sequences...
+490.67	---TreeAnc._ml_anc_joint: ...done
+
+491.09	###TreeTime.run: ITERATION 3 out of 3 iterations
+
+491.09	-TreeTime.run: adding coalescent prior with Tc=skyline
+491.55	--Coalescent:optimize_skyline:... current LH: 8536.906988
+625.43	--Coalescent:optimize_skyline:...done. new LH: 9515.652659
+625.43	--optimized a skyline
+relaxed_clock {'slack': 0.1, 'coupling': 0}
+626.35	--TreeTime.relaxed_clock: slack=0.100000, coupling=0.000000
+
+626.39	-TreeTime.resolve_polytomies: resolving multiple mergers...
+626.45	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+626.45	---TreeTime._poly.merge_nodes: Delta-LH = 0.139
+626.48	---TreeTime._poly.merge_nodes: creating new node as child of NODE117
+626.48	---TreeTime._poly.merge_nodes: Delta-LH = 0.058
+626.52	---TreeTime._poly.merge_nodes: creating new node as child of NODE131
+626.52	---TreeTime._poly.merge_nodes: Delta-LH = 0.08
+626.54	---TreeTime._poly.merge_nodes: creating new node as child of NODE131
+626.54	---TreeTime._poly.merge_nodes: Delta-LH = 0.061
+626.59	---TreeTime._poly.merge_nodes: creating new node as child of NODE137
+626.59	---TreeTime._poly.merge_nodes: Delta-LH = 0.013
+626.62	---TreeTime._poly.merge_nodes: creating new node as child of NODE150
+626.62	---TreeTime._poly.merge_nodes: Delta-LH = 0.213
+626.69	---TreeTime._poly.merge_nodes: creating new node as child of NODE184
+626.69	---TreeTime._poly.merge_nodes: Delta-LH = 0.136
+626.73	---TreeTime._poly.merge_nodes: creating new node as child of NODE184
+626.73	---TreeTime._poly.merge_nodes: Delta-LH = 0.155
+626.76	---TreeTime._poly.merge_nodes: creating new node as child of NODE184
+626.77	---TreeTime._poly.merge_nodes: Delta-LH = 0.136
+626.80	---TreeTime._poly.merge_nodes: creating new node as child of NODE184
+626.80	---TreeTime._poly.merge_nodes: Delta-LH = 0.142
+626.83	---TreeTime._poly.merge_nodes: creating new node as child of NODE184
+626.83	---TreeTime._poly.merge_nodes: Delta-LH = 0.054
+626.95	---TreeTime._poly.merge_nodes: creating new node as child of NODE300
+626.95	---TreeTime._poly.merge_nodes: Delta-LH = 0.021
+626.97	---TreeTime._poly.merge_nodes: creating new node as child of NODE300
+626.97	---TreeTime._poly.merge_nodes: Delta-LH = 0.046
+627.12	---TreeTime._poly.merge_nodes: creating new node as child of NODE381
+627.12	---TreeTime._poly.merge_nodes: Delta-LH = 0.071
+627.19	---TreeTime._poly.merge_nodes: creating new node as child of NODE565
+627.19	---TreeTime._poly.merge_nodes: Delta-LH = 0.142
+627.22	---TreeTime._poly.merge_nodes: creating new node as child of NODE568
+627.22	---TreeTime._poly.merge_nodes: Delta-LH = 0.158
+627.26	---TreeTime._poly.merge_nodes: creating new node as child of NODE597
+627.26	---TreeTime._poly.merge_nodes: Delta-LH = 0.011
+627.29	---TreeTime._poly.merge_nodes: creating new node as child of NODE597
+627.29	---TreeTime._poly.merge_nodes: Delta-LH = 0.751
+627.32	---TreeTime._poly.merge_nodes: creating new node as child of NODE597
+627.32	---TreeTime._poly.merge_nodes: Delta-LH = 0.358
+627.33	---TreeTime.resolve_polytomies: introduces 19 new nodes
+
+627.48	-TreeAnc.optimize_tree: sequences...
+
+627.48	-TreeAnc.infer_ancestral_sequences with method: probabilistic, joint
+627.48	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+627.48	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+632.67	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+      	   likelihood sequences...
+632.82	---TreeAnc._ml_anc_joint: ...done
+
+632.83	-TreeAnc.optimize_branch_length: running branch length optimization using
+      	 jointML ancestral sequences
+637.44	--TreeAnc.optimize_tree: Unconstrained sequence LH:-6609759.143215
+
+637.44	-ClockTree: Maximum likelihood tree optimization with temporal
+      	 constraints
+637.44	--ClockTree.init_date_constraints...
+637.44	---ClockTree.init_date_constraints: Initializing branch length
+      	   interpolation objects...
+665.64	--ClockTree.date2dist: Setting new molecular clock. rate=9.252e-09,
+      	  R^2=0.2985
+665.65	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.65	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.65	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.65	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.65	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.65	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.65	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.65	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.65	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.65	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.67	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.67	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.67	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.67	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.68	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.68	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.68	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+665.70	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+750.09	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+750.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.70	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.70	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.70	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.70	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+750.73	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+
+750.75	-TreeAnc.infer_ancestral_sequences with method: ml, joint
+750.75	--TreeAnc._ml_anc_joint: type of reconstruction: Joint
+750.75	---TreeAnc._ml_anc_joint: Walking up the tree, computing likelihoods...
+756.22	---TreeAnc._ml_anc_joint: Walking down the tree, computing maximum
+      	   likelihood sequences...
+756.41	---TreeAnc._ml_anc_joint: ...done
+
+756.87	-###ClockTree.calc_rate_susceptibility: run with upper bound of rate
+      	 estimate
+
+756.87	-ClockTree: Maximum likelihood tree optimization with temporal
+      	 constraints
+756.87	--ClockTree.init_date_constraints...
+756.87	---ClockTree.init_date_constraints: Initializing branch length
+      	   interpolation objects...
+787.03	--ClockTree.date2dist: Setting new molecular clock. rate=9.247e-09,
+      	  R^2=0.2985
+787.03	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.03	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.03	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.03	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.03	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.03	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.04	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.04	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.04	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.04	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.06	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.06	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.06	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.06	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.06	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.07	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.07	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+787.09	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+870.59	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+871.16	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.16	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.16	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.16	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.16	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.16	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.16	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.16	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.16	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.16	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.16	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.18	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.18	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.18	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.18	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.19	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.19	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.19	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.19	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.19	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.19	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+871.21	--###ClockTree.calc_rate_susceptibility: rate: 0.000000,
+      	  LH:-480006493773.318176
+
+871.22	-###ClockTree.calc_rate_susceptibility: run with lower bound of rate
+      	 estimate
+
+871.22	-ClockTree: Maximum likelihood tree optimization with temporal
+      	 constraints
+871.22	--ClockTree.init_date_constraints...
+871.22	---ClockTree.init_date_constraints: Initializing branch length
+      	   interpolation objects...
+898.84	--ClockTree.date2dist: Setting new molecular clock. rate=9.209e-09,
+      	  R^2=0.2985
+898.84	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.84	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.84	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.84	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.84	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.84	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.85	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.85	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.85	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.85	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.87	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.87	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.87	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.87	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.87	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.87	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.88	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+      	    excluding it from the optimization process. Date constraint will be
+      	    ignored!
+898.90	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+985.09	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+985.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.69	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.71	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.71	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.71	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.71	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.71	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.71	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.72	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+      	    optimized later than present day
+985.74	--###ClockTree.calc_rate_susceptibility: rate: 0.000000,
+      	  LH:-450006493871.276672
+
+985.75	-###ClockTree.calc_rate_susceptibility: run with central rate estimate
+
+985.75	-ClockTree: Maximum likelihood tree optimization with temporal
+      	 constraints
+985.75	--ClockTree.init_date_constraints...
+985.75	---ClockTree.init_date_constraints: Initializing branch length
+      	   interpolation objects...
+1014.14	--ClockTree.date2dist: Setting new molecular clock. rate=9.272e-09,
+       	  R^2=0.2985
+1014.14	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.14	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.14	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.15	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.17	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.17	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.18	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.18	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.18	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.18	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.18	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1014.21	--ClockTree - Joint reconstruction:  Propagating leaves -> root...
+1097.30	--ClockTree - Joint reconstruction:  Propagating root -> leaves...
+1097.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.86	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.87	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.88	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.88	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.88	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.89	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.90	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1097.91	--###ClockTree.calc_rate_susceptibility: rate: 0.000000,
+       	  LH:-460006493812.223145
+
+1097.92	###TreeTime.run: FINAL ROUND - confidence estimation via marginal
+       	reconstruction
+
+1097.92	-ClockTree: Maximum likelihood tree optimization with temporal
+       	 constraints
+1097.92	--ClockTree.init_date_constraints...
+1097.92	---ClockTree.init_date_constraints: Initializing branch length
+       	   interpolation objects...
+1125.42	--ClockTree.date2dist: Setting new molecular clock. rate=9.264e-09,
+       	  R^2=0.2985
+1125.42	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.42	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.42	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.42	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.43	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.43	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.43	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.43	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.43	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.43	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.45	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.45	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.45	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.45	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.46	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.46	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.46	----ClockTree.init_date_constraints -- WARNING: Branch is marked as bad,
+       	    excluding it from the optimization process. Date constraint will be
+       	    ignored!
+1125.49	--ClockTree - Marginal reconstruction:  Propagating leaves -> root...
+1258.88	--ClockTree - Marginal reconstruction:  Propagating root -> leaves...
+1519.60	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.60	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.60	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.60	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.60	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.60	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.60	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.60	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.60	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.60	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.60	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.62	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.62	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.62	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.62	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.62	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.62	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.63	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.63	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.63	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+1519.63	----ClockTree.convert_dates -- WARNING: node which is marked as "BAD"
+       	    optimized later than present day
+
+1519.65	TreeTime: the following tips have been marked as outliers. Their date
+       	constraints were not used. Please remove them from the tree. Their dates
+       	have been reset:
+
+1519.65	GCA_001601675.1_ASM160167v1_genomic, input date: 1999.0, apparent date:
+       	2886.69
+
+1519.65	GCA_001972405.1_ASM197240v1_genomic, input date: 1995.0, apparent date:
+       	2690.75
+
+1519.65	GCA_001972385.1_ASM197238v1_genomic, input date: 1988.0, apparent date:
+       	2747.66
+
+1519.65	GCA_001972395.1_ASM197239v1_genomic, input date: 1984.0, apparent date:
+       	2983.26
+
+1519.66	GCA_002165475.1_ASM216547v1_genomic, input date: 2010.0, apparent date:
+       	3011.95
+
+1519.66	GCA_001972415.1_ASM197241v1_genomic, input date: 1969.0, apparent date:
+       	3223.43
+
+1519.66	GCA_001294815.1_ASM129481v1_genomic, input date: 1983.0, apparent date:
+       	2079.08
+
+1519.66	GCA_000382505.1_Yersinia_pestis_G1670E_assembly_genomic, input date:
+       	[1950.0, 2000.0], apparent date: 2445.09
+
+1519.66	GCA_000382545.1_Yersinia_pestis_assembly_genomic, input date: [1950.0,
+       	2000.0], apparent date: 2585.39
+
+1519.66	GCA_001188335.1_DYA_1_genomic, input date: [1950.0, 2000.0], apparent
+       	date: 2585.39
+
+1519.66	GCA_000834275.1_ASM83427v1_genomic, input date: 1940.0, apparent date:
+       	4475.48
+
+1519.66	GCA_000834885.1_ASM83488v1_genomic, input date: 2008.0, apparent date:
+       	4475.48
+
+1519.66	GCA_008630375.1_ASM863037v1_genomic, input date: 1982.0, apparent date:
+       	5620.46
+
+1519.66	GCA_008630375.2_ASM863037v2_genomic, input date: 1982.0, apparent date:
+       	5922.35
+
+1519.66	GCA_003086075.1_ASM308607v1_genomic, input date: 1983.0, apparent date:
+       	4005.44
+
+1519.66	GCA_003086115.1_ASM308611v1_genomic, input date: 1988.0, apparent date:
+       	3003.17
+
+1519.66	GCA_001613865.1_ASM161386v1_genomic, input date: 1971.0, apparent date:
+       	3786.60
