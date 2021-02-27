@@ -24,6 +24,10 @@ rule download_gff_reference:
     input:
         [path + ".gff" for path in identify_paths(outdir="data", reads_origin="reference")]
 
+rule locus_bed_reference:
+    input:
+        [path + ".bed" for path in identify_paths(outdir="data", reads_origin="reference")]
+
 #------------------------------------------------------------------------------#
 # nf-core/eager
 #------------------------------------------------------------------------------#

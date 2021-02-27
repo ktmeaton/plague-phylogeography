@@ -121,16 +121,14 @@ rule locus_coverage:
     input:
         snippy_pairwise_dir = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/" for path in
                                identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)]),
-        ref_gbff = [path + ".gbff" for path in identify_paths(outdir="data", reads_origin="reference")],
+        ref_bed = [path + ".bed" for path in identify_paths(outdir="data", reads_origin="reference")],
     output:
         locus_cov = results_dir + "/locus_coverage/{reads_origin}/locus_coverage.txt",
-        ref_bed = results_dir + "/locus_coverage/{reads_origin}/" + list(identify_reference_sample())[0] + ".bed"
     shell:
         """
         {scripts_dir}/locus_coverage.sh \
-            {input.ref_gbff} \
-            "{input.snippy_pairwise_dir}" \
-            {output.ref_bed} > {output.locus_cov};
+            {input.ref_bed} \
+            "{input.snippy_pairwise_dir}" > {output.locus_cov};
         """
 # -----------------------------------------------------------------------------#
 rule snippy_multi:

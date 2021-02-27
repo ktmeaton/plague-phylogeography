@@ -41,7 +41,7 @@ rule download_assembly:
         cpus = 1,
 		shell:
         """
-				for url in {params.ftp};
+        for url in {params.ftp};
 				do
 				    if [[ $url =~ {wildcards.sample} ]]; then
 						  sample_url=`echo $url | sed "s/fna/{wildcards.ext}/g"`;
@@ -52,3 +52,16 @@ rule download_assembly:
 						fi;
 				done
 				"""
+
+rule locus_bed:
+  """
+  Create a bed file of loci.
+  """
+  input:
+    gbff = results_dir + "/data/{reads_origin}/{sample}/{sample}.gbff"
+  output:
+    bed = results_dir + "/data/{reads_origin}/{sample}/{sample}.bed"
+  shell:
+    """
+    {scripts_dir}/locus_bed.sh {input.gbff} {output.bed}
+    """
