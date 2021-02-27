@@ -20,7 +20,6 @@ rule eager:
     output:
         final_bam = results_dir + "/eager/{reads_origin}/{sample}/final_bams/{sample}.bam",
         eager_tsv = results_dir + "/eager/{reads_origin}/{sample}/metadata_{sample}.tsv",
-        snippy_dir = directory(results_dir + "/eager/{reads_origin}/{sample}/"),
     wildcard_constraints:
         reads_origin = "(sra|local)",
     resources:
