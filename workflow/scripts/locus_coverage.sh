@@ -22,10 +22,7 @@ for dir in $DIRS;
 do
     bam=`ls $dir/*.bam`;
     sample=`basename $bam | sed 's/\.bam//g'`;
-    #cov=`samtools view -b -q 30 $bam | bedtools coverage -a ${REF_BED} -b stdin | cut -f 8 | tr '\n' '\t'`;
     cov=`samtools view -b -q 30 $bam | bedtools coverage -a ${REF_BED} -b stdin | cut -f 8 | tr '\n' '\t'`;
     dep=`samtools view -b -q 30 $bam | bedtools coverage -a ${REF_BED} -b stdin -mean | cut -f 5 | tr '\n' '\t'`;
-    #echo -e "$sample\t$cov";
     echo -e "$sample\t${cov}\t${dep}";
-    exit
 done
