@@ -9,8 +9,11 @@
 1. Hard code target genes into ref locus bed
 1. Move ref locus bed to reference
 1. Create gene by gene coverage.
+1. Analyze both coverage and depth of loci.
+1. Compare gene to plasmid coverage (pla, pPCP1)
 
 ## TO-DO
 
 1. Add locus coverage output to report
 1. Check if multiqc still runs without eager output dir...
+1. Add latvia samples to database!
