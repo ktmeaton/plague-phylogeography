@@ -21,3 +21,4 @@
 1. Add latvia samples to database!
 1. Maybe write a function to condense exporting.
 1. Start working on geo notebook. Add cartopy.
+1. Fix root node timetree_coord_y

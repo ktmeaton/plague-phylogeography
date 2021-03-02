@@ -1,0 +1,39 @@
+{
+  "alignment": "../../docs/results/latest/snippy_multi/snippy-core_chromosome.snps.filter5.aln",
+  "generated_by": {
+    "program": "augur",
+    "version": "10.3.0"
+  },
+  "input_tree": "../../results/geo/geo_divtree.nwk",
+  "nodes": {
+    "GCA_000006645.1_ASM664v1_genomic": {
+      "biosample": "SAMN02604093",
+      "biosamplecomment": "KEEP: Assembly Modern Morelli 2010 Cui 2013 Keller 2019",
+      "biovar": "Medievalis",
+      "branch_length": 2.35e-08,
+      "branch_major": "2.MED",
+      "branch_major_confidence": {
+        "2.MED": 0.9999999999999999
+      },
+      "branch_major_entropy": -9.99866855976916e-13,
+      "branch_minor": "2.MED1",
+      "branch_minor_confidence": {
+        "2.MED1": 0.9999999999999999
+      },
+      "branch_minor_entropy": -9.99866855976916e-13,
+      "branch_number": "2",
+      "branch_number_confidence": {
+        "2": 0.9999999999999999
+      },
+      "branch_number_entropy": -9.99866855976916e-13,
+      "chrom_cov": 0.9547389000000001,
+      "chrom_dep": 18.878587699999997,
+      "clock_length": -0.00010794993295348831,
+      "country": "Iran",
+      "country_confidence": {
+        "Iran": 1.0
+      },
+      "country_entropy": -1.000088900581841e-12,
+      "date": "1968",
+      "datebp": "-53",
+      "geometry":
