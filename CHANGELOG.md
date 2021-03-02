@@ -4,6 +4,51 @@
 
 ### Commits
 
+## v0.2.5
+
+### Notes
+
+1. Separate mugration notebook into model and plot.
+1. Add a heatmap test, output to misc.
+1. Create a new rule to generate locus coverage.
+1. Remove output directory of eager rule.
+1. Make a list of target genes
+1. Hard code target genes into ref locus bed
+1. Move ref locus bed to reference
+1. Create gene by gene coverage.
+1. Analyze both coverage and depth of loci.
+1. Compare gene to plasmid coverage (pla, pPCP1)
+1. Apply a coverage filter for pPCP1 plasmid.
+1. Add locus coverage info to nexus tree.
+1. Created spreadmaps for branch major.
+
+### Commits
+
+* [```3b34108```](https://github.com/ktmeaton/plague-phylogeography/commit/3b34108) add spreadmaps for branch major
+* [```abb53af```](https://github.com/ktmeaton/plague-phylogeography/commit/abb53af) geo spreadmap for branch major
+* [```858b1f9```](https://github.com/ktmeaton/plague-phylogeography/commit/858b1f9) first geo attempt spreadmap for branch number
+* [```5e1ba24```](https://github.com/ktmeaton/plague-phylogeography/commit/5e1ba24) update markdownlint workflow
+* [```3f397c8```](https://github.com/ktmeaton/plague-phylogeography/commit/3f397c8) add cartopy to env
+* [```9c86378```](https://github.com/ktmeaton/plague-phylogeography/commit/9c86378) apply a coverage filter for pPCP1
+* [```8ad86bb```](https://github.com/ktmeaton/plague-phylogeography/commit/8ad86bb) add gene to plasmid depth comparison
+* [```01ecfc0```](https://github.com/ktmeaton/plague-phylogeography/commit/01ecfc0) update locus coverage with depth
+* [```c8bbf55```](https://github.com/ktmeaton/plague-phylogeography/commit/c8bbf55) remove premature exit in locus coverage script
+* [```818d701```](https://github.com/ktmeaton/plague-phylogeography/commit/818d701) run cov and depth on locus coverage
+* [```6868691```](https://github.com/ktmeaton/plague-phylogeography/commit/6868691) make locus coverage it's own notebook
+* [```050dbb4```](https://github.com/ktmeaton/plague-phylogeography/commit/050dbb4) locus coverage including pla
+* [```1bc297b```](https://github.com/ktmeaton/plague-phylogeography/commit/1bc297b) add execute permissions to locus bed
+* [```9efb53a```](https://github.com/ktmeaton/plague-phylogeography/commit/9efb53a) separate rules locus_bed and locus_coverage
+* [```dd3c506```](https://github.com/ktmeaton/plague-phylogeography/commit/dd3c506) Merge branch 'dev' of https://github.com/ktmeaton/plague-phylogeography into dev
+* [```df071bf```](https://github.com/ktmeaton/plague-phylogeography/commit/df071bf) add custom genes to locus coverage
+* [```c3b28e6```](https://github.com/ktmeaton/plague-phylogeography/commit/c3b28e6) Merge branch 'dev' of https://github.com/ktmeaton/plague-phylogeography into dev
+* [```75fbf80```](https://github.com/ktmeaton/plague-phylogeography/commit/75fbf80) add locus coverage results
+* [```cd56bf5```](https://github.com/ktmeaton/plague-phylogeography/commit/cd56bf5) remove output dir from eager rule
+* [```9fc675c```](https://github.com/ktmeaton/plague-phylogeography/commit/9fc675c) add execute permissions to locus_coverage
+* [```d9b0491```](https://github.com/ktmeaton/plague-phylogeography/commit/d9b0491) add rule locus_coverage
+* [```f50c03a```](https://github.com/ktmeaton/plague-phylogeography/commit/f50c03a) separate mugration into model and plot notebooks
+* [```af59396```](https://github.com/ktmeaton/plague-phylogeography/commit/af59396) add report figures and nexus
+* [```9dc027b```](https://github.com/ktmeaton/plague-phylogeography/commit/9dc027b) update badges in README
+
 ## v0.2.4
 
 ### Notes
@@ -16,6 +61,7 @@
 
 ### Commits
 
+* [```58dd2e1```](https://github.com/ktmeaton/plague-phylogeography/commit/58dd2e1) update notes, changelog, and auspice json for v0.2.4
 * [```46d3d1f```](https://github.com/ktmeaton/plague-phylogeography/commit/46d3d1f) fixed mugration by making sure to copy tree div
 * [```e886d00```](https://github.com/ktmeaton/plague-phylogeography/commit/e886d00) working mugration for Country
 * [```1cdf425```](https://github.com/ktmeaton/plague-phylogeography/commit/1cdf425) working mugration for Branch_Number
