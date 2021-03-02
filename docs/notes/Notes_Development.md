@@ -13,12 +13,11 @@
 1. Compare gene to plasmid coverage (pla, pPCP1)
 1. Apply a coverage filter for pPCP1 plasmid.
 1. Add locus coverage info to nexus tree.
+1. Created spreadmaps for branch major.
 
 ## TO-DO
 
-1. Add locus coverage output to report
+1. Add locus coverage output to report.
 1. Check if multiqc still runs without eager output dir...
 1. Add latvia samples to database!
 1. Maybe write a function to condense exporting.
-1. Start working on geo notebook. Add cartopy.
-1. Fix root node timetree_coord_y
