@@ -48,7 +48,7 @@ repos:
     hooks:
       - id: markdownlint
         args: [--config=.github/markdown_lint.yaml]
-        exclude: narratives/.*.md
+        exclude: narratives/.*.md CHANGELOG.md
 
   # Rst Lint
   - repo: https://github.com/myint/rstcheck

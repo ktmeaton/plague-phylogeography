@@ -69,6 +69,7 @@ jobs:
           markdownlint \
             -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml \
             -i 'narratives/*.md' \
+            -i CHANGELOG.md \
             $(find ${GITHUB_WORKSPACE} -name "*.md")
   #----------------------------------------------------------------------------#
   # YAML template from nf-core eager to trial
