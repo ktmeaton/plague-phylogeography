@@ -30,5 +30,5 @@ results/snippy_multi/*/*.aln*
 results/snippy_multi/*/*ref.fa
 
 # Plotting
-results/qualimap/*/*/*.bam
+results/qualimap/*
 results/multiqc/*/multiqc_data/*
