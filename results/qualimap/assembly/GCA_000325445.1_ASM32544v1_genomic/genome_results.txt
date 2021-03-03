@@ -1,0 +1,128 @@
+BamQC report
+-----------------------------------
+
+>>>>>>> Input
+
+     bam file = /home/keaton/Projects/plague-phylogeography/results/qualimap/assembly/GCA_000325445.1_ASM32544v1_genomic/GCA_000325445.1_ASM32544v1_genomic.bam
+     outfile = /home/keaton/Projects/plague-phylogeography/results/qualimap/assembly/GCA_000325445.1_ASM32544v1_genomic//genome_results.txt
+
+
+>>>>>>> Reference
+
+     number of bases = 4,829,855 bp
+     number of contigs = 4
+
+
+>>>>>>> Globals
+
+     number of windows = 403
+
+     number of reads = 320,553
+     number of mapped reads = 320,553 (100%)
+     number of secondary alignments = 14
+
+     number of mapped bases = 80,131,427 bp
+     number of sequenced bases = 80,127,572 bp
+     number of aligned bases = 0 bp
+     number of duplicated reads (estimated) = 11,393
+     duplication rate = 3.68%
+
+
+>>>>>>> Insert size
+
+     mean insert size = 0
+     std insert size = 0
+     median insert size = 0
+
+
+>>>>>>> Mapping quality
+
+     mean mapping quality = 59.5218
+
+
+>>>>>>> ACTG content
+
+     number of A's = 20,700,651 bp (25.83%)
+     number of C's = 19,362,445 bp (24.16%)
+     number of T's = 20,700,945 bp (25.83%)
+     number of G's = 19,363,531 bp (24.17%)
+     number of N's = 0 bp (0%)
+
+     GC percentage = 48.33%
+
+
+>>>>>>> Mismatches and indels
+
+    general error rate = 0.0001
+    number of mismatches = 5,333
+    number of insertions = 406
+    mapped reads with insertion percentage = 0.13%
+    number of deletions = 401
+    mapped reads with deletion percentage = 0.13%
+    homopolymer indels = 50.93%
+
+
+>>>>>>> Coverage
+
+     mean coverageData = 16.5909X
+     std coverageData = 6.9897X
+
+     There is a 88.27% of reference with a coverageData >= 1X
+     There is a 88.26% of reference with a coverageData >= 2X
+     There is a 87.47% of reference with a coverageData >= 3X
+     There is a 87.05% of reference with a coverageData >= 4X
+     There is a 86.22% of reference with a coverageData >= 5X
+     There is a 85.56% of reference with a coverageData >= 6X
+     There is a 84.84% of reference with a coverageData >= 7X
+     There is a 84.3% of reference with a coverageData >= 8X
+     There is a 83.65% of reference with a coverageData >= 9X
+     There is a 83.13% of reference with a coverageData >= 10X
+     There is a 82.45% of reference with a coverageData >= 11X
+     There is a 81.94% of reference with a coverageData >= 12X
+     There is a 81.31% of reference with a coverageData >= 13X
+     There is a 80.8% of reference with a coverageData >= 14X
+     There is a 80.21% of reference with a coverageData >= 15X
+     There is a 79.72% of reference with a coverageData >= 16X
+     There is a 79.13% of reference with a coverageData >= 17X
+     There is a 78.64% of reference with a coverageData >= 18X
+     There is a 78.06% of reference with a coverageData >= 19X
+     There is a 77.54% of reference with a coverageData >= 20X
+     There is a 0.46% of reference with a coverageData >= 21X
+     There is a 0% of reference with a coverageData >= 22X
+     There is a 0% of reference with a coverageData >= 23X
+     There is a 0% of reference with a coverageData >= 24X
+     There is a 0% of reference with a coverageData >= 25X
+     There is a 0% of reference with a coverageData >= 26X
+     There is a 0% of reference with a coverageData >= 27X
+     There is a 0% of reference with a coverageData >= 28X
+     There is a 0% of reference with a coverageData >= 29X
+     There is a 0% of reference with a coverageData >= 30X
+     There is a 0% of reference with a coverageData >= 31X
+     There is a 0% of reference with a coverageData >= 32X
+     There is a 0% of reference with a coverageData >= 33X
+     There is a 0% of reference with a coverageData >= 34X
+     There is a 0% of reference with a coverageData >= 35X
+     There is a 0% of reference with a coverageData >= 36X
+     There is a 0% of reference with a coverageData >= 37X
+     There is a 0% of reference with a coverageData >= 38X
+     There is a 0% of reference with a coverageData >= 39X
+     There is a 0% of reference with a coverageData >= 40X
+     There is a 0% of reference with a coverageData >= 41X
+     There is a 0% of reference with a coverageData >= 42X
+     There is a 0% of reference with a coverageData >= 43X
+     There is a 0% of reference with a coverageData >= 44X
+     There is a 0% of reference with a coverageData >= 45X
+     There is a 0% of reference with a coverageData >= 46X
+     There is a 0% of reference with a coverageData >= 47X
+     There is a 0% of reference with a coverageData >= 48X
+     There is a 0% of reference with a coverageData >= 49X
+     There is a 0% of reference with a coverageData >= 50X
+     There is a 0% of reference with a coverageData >= 51X
+
+
+>>>>>>> Coverage per contig
+
+	AL590842	4653728	77452987	16.643213140088978	6.949989973005041
+	AL117189	70305	962202	13.686110518455301	8.374959193639251
+	AL117211	96210	1576772	16.388857707099053	7.151491577219817
+	AL109969	9612	139466	14.50957136912193	8.37924188742957

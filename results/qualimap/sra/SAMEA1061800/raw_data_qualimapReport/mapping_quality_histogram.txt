@@ -1,0 +1,2 @@
+#Mapping quality	mapping quality
+37.0	4578063.0
