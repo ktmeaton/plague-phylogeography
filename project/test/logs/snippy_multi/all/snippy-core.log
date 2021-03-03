@@ -1,0 +1,38 @@
+This is snippy-core 4.6.0
+Obtained from http://github.com/tseemann/snippy
+Enabling bundled tools for linux
+Found any2fasta - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/any2fasta
+Found samtools - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/samtools
+Found minimap2 - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/minimap2
+Found bedtools - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/bedtools
+Found snp-sites - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/snp-sites
+Saving reference FASTA: /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/snippy-core.ref.fa
+This is any2fasta 0.4.2
+Opening '/mnt/c/Users/ktmea/Projects/plague-phylogeography/results/data/reference/GCA_000009065.1_ASM906v1_genomic/GCA_000009065.1_ASM906v1_genomic.fna'
+Detected FASTA format
+Read 60379 lines from '/mnt/c/Users/ktmea/Projects/plague-phylogeography/results/data/reference/GCA_000009065.1_ASM906v1_genomic/GCA_000009065.1_ASM906v1_genomic.fna'
+Wrote 4 sequences from FASTA file.
+Processed 1 files.
+Done.
+Loaded 4 sequences totalling 4829855 bp.
+Loading mask bed file: /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/mask.bed
+Will mask 2565 regions totalling 381167 bp ~ 7.89%
+0	GCA_009909635.1_ASM990963v1_genomic	snp=234	del=797	ins=803	het=1008	unaligned=396043
+1	GCA_009669545.1_ASM966954v1_genomic	snp=273	del=666	ins=784	het=755	unaligned=254393
+2	GCA_009669555.1_ASM966955v1_genomic	snp=262	del=620	ins=636	het=866	unaligned=265633
+3	SAMN02442721	snp=11	del=0	ins=0	het=22	unaligned=4812885
+4	SAMN02442718	snp=17	del=0	ins=0	het=54	unaligned=4782919
+5	testlocal1	snp=17	del=0	ins=0	het=54	unaligned=4782919
+6	testlocal2	snp=11	del=0	ins=0	het=22	unaligned=4812885
+Opening: /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/snippy-core.tab
+Opening: /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/snippy-core.vcf
+Processing contig: AL590842
+Processing contig: AL117189
+Processing contig: AL117211
+Processing contig: AL109969
+Masking alignment at 2565 regions
+Generating /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/snippy-core.full.aln
+Creating TSV file: /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/snippy-core.txt
+Running: snp-sites -c -o /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/snippy-core.aln /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/snippy-core.full.aln
+The Snippy manual is at http://github.com/tseemann/snippy/blob/master/README.md
+Done.

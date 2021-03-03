@@ -16,23 +16,34 @@ docs/results/latest/test/
 *.obj
 *.bak
 
-# Snakemake Large Files
+# Shared Files/Database
 results/data/*
+results/detect_low_complexity/*
+results/detect_repeats/*
+results/detect_snp_density/*
 results/eager/*
+results/iqtree/*
+results/locus_coverage/*
+results/logs/*
+results/metadata/*
+results/multiqc/*
+results/report/*
+results/snippy_multi/*
 results/snippy_pairwise/*
+results/qualimap/*
 
-# Phylogeny
-results/iqtree/*/*ckp.gz
-results/iqtree/*/*uniqueseq*
-results/iqtree/*/*filter50*
+# Project
+project/*/iqtree/*/*ckp.gz
+project/*/iqtree/*/*uniqueseq*
+project/*/iqtree/*/*filter50*
 
 # Snippy Multi Alignments
-results/snippy_multi/*/*.aln*
-results/snippy_multi/*/*ref.fa
+project/*/snippy_multi/*/*.aln*
+project/*/snippy_multi/*/*ref.fa
 
 # Plotting
-results/qualimap/*
-results/multiqc/*/multiqc_data/*
+project/*/qualimap/*
+project/*/multiqc/*/multiqc_data/*
 
-# Project specific
-project/*
+# Projects to Ignore
+project/main/*

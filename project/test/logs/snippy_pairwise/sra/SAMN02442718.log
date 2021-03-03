@@ -1,0 +1,136 @@
+[15:20:41] This is snippy 4.6.0
+[15:20:41] Written by Torsten Seemann
+[15:20:41] Obtained from https://github.com/tseemann/snippy
+[15:20:41] Detected operating system: linux
+[15:20:41] Enabling bundled linux tools.
+[15:20:41] Found bwa - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/bwa
+[15:20:41] Found bcftools - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/bcftools
+[15:20:41] Found samtools - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/samtools
+[15:20:41] Found java - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/java
+[15:20:41] Found snpEff - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/snpEff
+[15:20:41] Found samclip - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/samclip
+[15:20:41] Found seqtk - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/seqtk
+[15:20:41] Found parallel - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/parallel
+[15:20:41] Found freebayes - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/freebayes
+[15:20:41] Found freebayes-parallel - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/freebayes-parallel
+[15:20:41] Found fasta_generate_regions.py - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/fasta_generate_regions.py
+[15:20:41] Found vcfstreamsort - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/vcfstreamsort
+[15:20:41] Found vcfuniq - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/vcfuniq
+[15:20:41] Found vcffirstheader - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/vcffirstheader
+[15:20:41] Found gzip - /usr/bin/gzip
+[15:20:41] Found vt - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/vt
+[15:20:41] Found snippy-vcf_to_tab - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/snippy-vcf_to_tab
+[15:20:41] Found snippy-vcf_report - /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/snippy-vcf_report
+[15:20:41] Checking version: samtools --version is >= 1.7 - ok, have 1.10
+[15:20:41] Checking version: bcftools --version is >= 1.7 - ok, have 1.10
+[15:20:41] Checking version: freebayes --version is >= 1.1 - ok, have 1.3.2
+[15:20:41] Checking version: snpEff -version is >= 4.3 - ok, have 5.0
+[15:20:41] Checking version: bwa is >= 0.7.12 - ok, have 0.7.17
+[15:20:41] Using reference: /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/data/reference/GCA_000009065.1_ASM906v1_genomic/GCA_000009065.1_ASM906v1_genomic.gbff
+[15:20:42] Treating reference as 'genbank' format.
+[15:20:42] Will use 2 CPU cores.
+[15:20:42] Using BAM file '/mnt/c/Users/ktmea/Projects/plague-phylogeography/results/eager/sra/SAMN02442718/final_bams/SAMN02442718.bam' instead of aligning reads.
+[15:20:42] Used --force, will overwrite existing /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718
+[15:20:42] Changing working directory: /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718
+[15:20:42] Creating reference folder: reference
+[15:20:42] Extracting FASTA and GFF from reference.
+[15:20:51] Wrote 4 sequences to ref.fa
+[15:20:51] Wrote 4916 features to ref.gff
+[15:20:51] Creating reference/snpeff.config
+[15:20:51] Freebayes will process 3 chunks of 1636846 bp, 2 chunks at a time.
+[15:20:51] Using BAM RG (Read Group) ID: SAMN02442718
+[15:20:51] Running: samtools faidx reference/ref.fa 2>> SAMN02442718.log
+[15:20:51] Running: mkdir -p reference/genomes && cp -f reference/ref.fa reference/genomes/ref.fa 2>> SAMN02442718.log
+[15:20:51] Running: ln -sf reference/ref.fa . 2>> SAMN02442718.log
+[15:20:51] Running: ln -sf reference/ref.fa.fai . 2>> SAMN02442718.log
+[15:20:51] Running: mkdir -p reference/ref && gzip -c reference/ref.gff > reference/ref/genes.gff.gz 2>> SAMN02442718.log
+[15:20:51] Running: snpEff build -c reference/snpeff.config -dataDir . -gff3 ref 2>> SAMN02442718.log
+[15:20:58] Running: samtools view -h -O SAM \/mnt\/c\/Users\/ktmea\/Projects\/plague\-phylogeography\/results\/eager\/sra\/SAMN02442718\/final_bams\/SAMN02442718\.bam | samclip --max 10 --ref reference/ref.fa.fai | samtools sort -n -l 0 -T /tmp --threads 0 -m 8000M | samtools fixmate -m --threads 0 - - | samtools sort -l 0 -T /tmp --threads 0 -m 8000M | samtools markdup -T /tmp --threads 0 -r -s - - > SAMN02442718.bam 2>> SAMN02442718.log
+[samclip] samclip 0.4.0 by Torsten Seemann (@torstenseemann)
+[samclip] Loading: reference/ref.fa.fai
+[samclip] Found 4 sequences in reference/ref.fa.fai
+[samclip] Total SAM records 1053, removed 0, allowed 0, passed 1053
+[samclip] Header contained 14 lines
+[samclip] Done.
+[15:20:58] Running: samtools index SAMN02442718.bam 2>> SAMN02442718.log
+[15:20:58] Running: fasta_generate_regions.py reference/ref.fa.fai 1636846 > reference/ref.txt 2>> SAMN02442718.log
+[15:20:59] Running: freebayes-parallel reference/ref.txt 2 -p 2 -P 0 -C 2 -F 0.05 --min-coverage 3 --min-repeat-entropy 1.0 -q 20 -m 30 --strict-vcf   -f reference/ref.fa SAMN02442718.bam > SAMN02442718.raw.vcf 2>> SAMN02442718.log
+[15:21:00] Running: bcftools view --include 'FMT/GT="1/1" && QUAL>=100 && FMT/DP>=3 && (FMT/AO)/(FMT/DP)>=0.9' SAMN02442718.raw.vcf  | vt normalize -r reference/ref.fa - | bcftools annotate --remove '^INFO/TYPE,^INFO/DP,^INFO/RO,^INFO/AO,^INFO/AB,^FORMAT/GT,^FORMAT/DP,^FORMAT/RO,^FORMAT/AO,^FORMAT/QR,^FORMAT/QA,^FORMAT/GL' > SAMN02442718.filt.vcf 2>> SAMN02442718.log
+normalize v0.5
+
+options:     input VCF file                                  -
+         [o] output VCF file                                 -
+         [w] sorting window size                             10000
+         [m] no fail on masked reference inconsistency       false
+         [n] no fail on reference inconsistency              false
+         [q] quiet                                           false
+         [d] debug                                           false
+         [r] reference FASTA file                            reference/ref.fa
+
+
+stats: biallelic
+          no. left trimmed                      : 0
+          no. right trimmed                     : 0
+          no. left and right trimmed            : 0
+          no. right trimmed and left aligned    : 0
+          no. left aligned                      : 0
+
+       total no. biallelic normalized           : 0
+
+       multiallelic
+          no. left trimmed                      : 0
+          no. right trimmed                     : 0
+          no. left and right trimmed            : 0
+          no. right trimmed and left aligned    : 0
+          no. left aligned                      : 0
+
+       total no. multiallelic normalized        : 0
+
+       total no. variants normalized            : 0
+       total no. variants observed              : 15
+       total no. reference observed             : 0
+
+Time elapsed: 0.01s
+
+[15:21:00] Running: snpEff ann -noLog -noStats -no-downstream -no-upstream -no-utr -c reference/snpeff.config -dataDir . ref SAMN02442718.filt.vcf > SAMN02442718.vcf 2>> SAMN02442718.log
+[15:21:03] Running: /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/snippy-vcf_to_tab --gff reference/ref.gff --ref reference/ref.fa --vcf SAMN02442718.vcf > SAMN02442718.tab 2>> SAMN02442718.log
+[15:21:08] Running: /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/snippy-vcf_extract_subs SAMN02442718.filt.vcf > SAMN02442718.subs.vcf 2>> SAMN02442718.log
+[15:21:09] Running: bcftools convert -Oz -o SAMN02442718.vcf.gz SAMN02442718.vcf 2>> SAMN02442718.log
+[15:21:09] Running: bcftools index -f SAMN02442718.vcf.gz 2>> SAMN02442718.log
+[15:21:09] Running: bcftools consensus --sample SAMN02442718 -f reference/ref.fa -o SAMN02442718.consensus.fa SAMN02442718.vcf.gz 2>> SAMN02442718.log
+[15:21:11] Running: bcftools convert -Oz -o SAMN02442718.subs.vcf.gz SAMN02442718.subs.vcf 2>> SAMN02442718.log
+[15:21:11] Running: bcftools index -f SAMN02442718.subs.vcf.gz 2>> SAMN02442718.log
+[15:21:11] Running: bcftools consensus --sample SAMN02442718 -f reference/ref.fa -o SAMN02442718.consensus.subs.fa SAMN02442718.subs.vcf.gz 2>> SAMN02442718.log
+[15:21:13] Running: rm -f SAMN02442718.subs.vcf.gz SAMN02442718.subs.vcf.gz.csi SAMN02442718.subs.vcf.gz.tbi 2>> SAMN02442718.log
+[15:21:13] Running: samtools view -h -q 30 SAMN02442718.bam | samtools sort -l 0 -T /tmp --threads 0 -m 8000M > /tmp/snippy.27233.Q30.bam 2>> SAMN02442718.log
+[15:21:13] Running: samtools index /tmp/snippy.27233.Q30.bam 2>> SAMN02442718.log
+[15:21:13] Running: /home/ktmeaton/miniconda3/envs/plague-phylogeography/bin/snippy-vcf_report --cpus 2 --bam /tmp/snippy.27233.Q30.bam --ref reference/ref.fa --vcf SAMN02442718.vcf > SAMN02442718.report.txt 2>> SAMN02442718.log
+[15:21:15] Running: rm -f /tmp/snippy.27233.Q30.bam /tmp/snippy.27233.Q30.bam.bai 2>> SAMN02442718.log
+[15:21:16] Generating reference aligned/masked FASTA relative to reference: SAMN02442718.aligned.fa
+[15:21:23] Marked 54 heterozygous sites with 'n'
+[15:21:23] Creating extra output files: BED GFF CSV TXT HTML
+[15:21:23] Identified 15 variants.
+[15:21:23] Result folder: /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718
+[15:21:23] Result files:
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.aligned.fa
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.bam
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.bam.bai
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.bed
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.consensus.fa
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.consensus.subs.fa
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.csv
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.filt.vcf
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.gff
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.html
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.log
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.raw.vcf
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.report.txt
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.subs.vcf
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.tab
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.txt
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.vcf
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.vcf.gz
+[15:21:23] * /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718/SAMN02442718.vcf.gz.csi
+[15:21:23] Walltime used: 42 seconds
+[15:21:23] May the SNPs be with you.
+[15:21:23] Done.

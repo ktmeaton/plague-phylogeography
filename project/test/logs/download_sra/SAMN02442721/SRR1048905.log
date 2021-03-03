@@ -1,0 +1,9 @@
+SRA Cache: /mnt/c/Users/ktmea/Projects/plague-phylogeography
+NCBI settings: ## auto-generated configuration file - DO NOT EDIT ## /LIBS/GUID = "6ba56793-9c6a-463a-9250-6aeab3bc5963" /cache-enabled = "true" /config/default = "false" /http/timeout/read = "10000" /repository/user/ad/public/apps/file/volumes/flatAd = "." /repository/user/ad/public/apps/refseq/volumes/refseqAd = "." /repository/user/ad/public/apps/sra/volumes/sraAd = "." /repository/user/ad/public/apps/sraPileup/volumes/ad = "." /repository/user/ad/public/apps/sraRealign/volumes/ad = "." /repository/user/ad/public/root = "." /repository/user/default-path = "/home/ktmeaton/ncbi" /repository/user/main/public/root = "/mnt/c/Users/ktmea/Projects/plague-phylogeography"
+SRA accession SRR1048905 download started for Biosample SAMN02442721.
+
+2021-03-03T20:06:01 prefetch.2.10.8: 1) 'SRR1048905' is found locally
+2021-03-03T20:06:01 vdb-validate.2.10.8 info: Table 'SRR1048905.sra' metadata: md5 ok 2021-03-03T20:06:01 vdb-validate.2.10.8 info: Column 'ALTREAD': checksums ok 2021-03-03T20:06:02 vdb-validate.2.10.8 info: Column 'QUALITY': checksums ok 2021-03-03T20:06:03 vdb-validate.2.10.8 info: Column 'READ': checksums ok 2021-03-03T20:06:03 vdb-validate.2.10.8 info: Column 'X': checksums ok 2021-03-03T20:06:03 vdb-validate.2.10.8 info: Column 'Y': checksums ok 2021-03-03T20:06:03 vdb-validate.2.10.8 info: Table 'SRR1048905.sra' is consistent
+Read 298178 spots for SRR1048905
+Written 298178 spots for SRR1048905
+SRA accession SRR1048905 download completed for Biosample SAMN02442721.

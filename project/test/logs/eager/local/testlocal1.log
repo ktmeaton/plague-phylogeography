@@ -1,0 +1,1918 @@
+N E X T F L O W  ~  version 20.04.1
+Launching `nf-core/eager` [confident_hypatia] - revision: 7971d89e54 [2.2.1]
+WARN: It appears you have never run this project before -- Option `-resume` is ignored
+
+----------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/eager v2.2.1
+----------------------------------------------------
+Pipeline Name     : nf-core/eager
+Pipeline Version  : 2.2.1
+Pipeline Release  : 2.2.1
+Run Name          : confident_hypatia
+Input             : metadata_testlocal1.tsv
+Convert input BAM?: No
+Fasta Ref         : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/data/reference/GCA_000009065.1_ASM906v1_genomic/GCA_000009065.1_ASM906v1_genomic.fna
+BAM Index Type    : CSI
+Skipping FASTQC?  : No
+Skipping AdapterRemoval?: No
+Skip Read Merging : discard
+Skip Adapter Trimming: No
+Running BAM filtering: Yes
+Run Fastq Host Removal: No
+Skipping Preseq?  : No
+Skipping Deduplication?: No
+Skipping DamageProfiler?: No
+Skipping Qualimap?: Yes
+Run BAM Trimming? : No
+Run PMDtools?     : No
+Run Genotyping?   : No
+Run MultiVCFAnalyzer: No
+Run VCF2Genome    : No
+Run SexDetErrMine : No
+Run Nuclear Contamination Estimation: No
+Run Bedtools Coverage: No
+Run Metagenomic Binning: No
+Max Resources     : 6000.MB memory, 2 cpus, 600m time per job
+Output Dir        : .
+Working Dir       : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/eager/local/testlocal1/work
+Container Engine  : null
+Current Home      : /home/ktmeaton
+Current User      : ktmeaton
+Script Dir        : /home/ktmeaton/.nextflow/assets/nf-core/eager
+Config Profile    : standard
+User              : ktmeaton
+----------------------------------------------------
+[-        ] process > makeBWAIndex   -
+[-        ] process > makeFastaIndex -
+
+[-        ] process > makeBWAIndex    -
+[-        ] process > makeFastaIndex  -
+[-        ] process > makeSeqDict     [  0%] 0 of 1
+[-        ] process > convertBam      -
+[-        ] process > indexinputbam   -
+[-        ] process > fastqc          -
+[-        ] process > fastp           -
+[-        ] process > adapter_removal -
+
+executor >  local (1)
+[-        ] process > makeBWAIndex                                       [  0%] 0 of 1
+[-        ] process > makeFastaIndex                                     [  0%] 0 of 1
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna) [  0%] 0 of 1
+[-        ] process > convertBam                                         -
+[-        ] process > indexinputbam                                      -
+[-        ] process > fastqc                                             [  0%] 0 of 1
+[-        ] process > fastp                                              -
+[-        ] process > adapter_removal                                    [  0%] 0 of 1
+[-        ] process > lanemerge                                          -
+[-        ] process > lanemerge_hostremoval_fastq                        -
+[-        ] process > fastqc_after_clipping                              -
+[-        ] process > bwa                                                -
+[-        ] process > bwamem                                             -
+[-        ] process > circulargenerator                                  -
+[-        ] process > circularmapper                                     -
+
+executor >  local (1)
+[-        ] process > makeBWAIndex                                       [  0%] 0 of 1
+[-        ] process > makeFastaIndex                                     [  0%] 0 of 1
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna) [  0%] 0 of 1
+[-        ] process > convertBam                                         -
+[-        ] process > indexinputbam                                      -
+[-        ] process > fastqc                                             [  0%] 0 of 1
+[-        ] process > fastp                                              -
+[-        ] process > adapter_removal                                    [  0%] 0 of 1
+[-        ] process > lanemerge                                          -
+[-        ] process > lanemerge_hostremoval_fastq                        -
+[-        ] process > fastqc_after_clipping                              -
+[-        ] process > bwa                                                -
+[-        ] process > bwamem                                             -
+[-        ] process > circulargenerator                                  -
+[-        ] process > circularmapper                                     -
+[-        ] process > bowtie2                                            -
+[-        ] process > hostremoval_input_fastq                            -
+[-        ] process > seqtype_merge                                      -
+[-        ] process > samtools_flagstat                                  -
+[-        ] process > samtools_filter                                    -
+[-        ] process > samtools_flagstat_after_filter                     -
+[-        ] process > endorSpy                                           -
+[-        ] process > dedup                                              -
+[-        ] process > markduplicates                                     -
+
+executor >  local (1)
+[-        ] process > makeBWAIndex                                       [  0%] 0 of 1
+[-        ] process > makeFastaIndex                                     [  0%] 0 of 1
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna) [  0%] 0 of 1
+[-        ] process > convertBam                                         -
+[-        ] process > indexinputbam                                      -
+[-        ] process > fastqc                                             [  0%] 0 of 1
+[-        ] process > fastp                                              -
+[-        ] process > adapter_removal                                    [  0%] 0 of 1
+[-        ] process > lanemerge                                          -
+[-        ] process > lanemerge_hostremoval_fastq                        -
+[-        ] process > fastqc_after_clipping                              -
+[-        ] process > bwa                                                -
+[-        ] process > bwamem                                             -
+[-        ] process > circulargenerator                                  -
+[-        ] process > circularmapper                                     -
+[-        ] process > bowtie2                                            -
+[-        ] process > hostremoval_input_fastq                            -
+[-        ] process > seqtype_merge                                      -
+[-        ] process > samtools_flagstat                                  -
+[-        ] process > samtools_filter                                    -
+[-        ] process > samtools_flagstat_after_filter                     -
+[-        ] process > endorSpy                                           -
+[-        ] process > dedup                                              -
+[-        ] process > markduplicates                                     -
+[-        ] process > library_merge                                      -
+[-        ] process > preseq                                             -
+[-        ] process > bedtools                                           -
+[-        ] process > damageprofiler                                     -
+[-        ] process > pmdtools                                           -
+[-        ] process > bam_trim                                           -
+[-        ] process > additional_library_merge                           -
+[-        ] process > qualimap                                           -
+[-        ] process > genotyping_ug                                      -
+
+executor >  local (1)
+[-        ] process > makeBWAIndex                                       [  0%] 0 of 1
+[-        ] process > makeFastaIndex                                     [  0%] 0 of 1
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna) [  0%] 0 of 1
+[-        ] process > convertBam                                         -
+[-        ] process > indexinputbam                                      -
+[-        ] process > fastqc                                             [  0%] 0 of 1
+[-        ] process > fastp                                              -
+[-        ] process > adapter_removal                                    [  0%] 0 of 1
+[-        ] process > lanemerge                                          -
+[-        ] process > lanemerge_hostremoval_fastq                        -
+[-        ] process > fastqc_after_clipping                              -
+[-        ] process > bwa                                                -
+[-        ] process > bwamem                                             -
+[-        ] process > circulargenerator                                  -
+[-        ] process > circularmapper                                     -
+[-        ] process > bowtie2                                            -
+[-        ] process > hostremoval_input_fastq                            -
+[-        ] process > seqtype_merge                                      -
+[-        ] process > samtools_flagstat                                  -
+[-        ] process > samtools_filter                                    -
+[-        ] process > samtools_flagstat_after_filter                     -
+[-        ] process > endorSpy                                           -
+[-        ] process > dedup                                              -
+[-        ] process > markduplicates                                     -
+[-        ] process > library_merge                                      -
+[-        ] process > preseq                                             -
+[-        ] process > bedtools                                           -
+[-        ] process > damageprofiler                                     -
+[-        ] process > pmdtools                                           -
+[-        ] process > bam_trim                                           -
+[-        ] process > additional_library_merge                           -
+[-        ] process > qualimap                                           -
+[-        ] process > genotyping_ug                                      -
+[-        ] process > genotyping_hc                                      -
+[-        ] process > genotyping_freebayes                               -
+[-        ] process > genotyping_pileupcaller                            -
+[-        ] process > eigenstrat_snp_coverage                            -
+[-        ] process > genotyping_angsd                                   -
+[-        ] process > vcf2genome                                         -
+[-        ] process > multivcfanalyzer                                   -
+[-        ] process > mtnucratio                                         -
+[-        ] process > sex_deterrmine                                     -
+[-        ] process > nuclear_contamination                              -
+[-        ] process > print_nuclear_contamination                        -
+[-        ] process > malt                                               -
+
+executor >  local (1)
+[-        ] process > makeBWAIndex                                       [  0%] 0 of 1
+[-        ] process > makeFastaIndex                                     [  0%] 0 of 1
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna) [  0%] 0 of 1
+[-        ] process > convertBam                                         -
+[-        ] process > indexinputbam                                      -
+[-        ] process > fastqc                                             [  0%] 0 of 1
+[-        ] process > fastp                                              -
+[-        ] process > adapter_removal                                    [  0%] 0 of 1
+[-        ] process > lanemerge                                          -
+[-        ] process > lanemerge_hostremoval_fastq                        -
+[-        ] process > fastqc_after_clipping                              -
+[-        ] process > bwa                                                -
+[-        ] process > bwamem                                             -
+[-        ] process > circulargenerator                                  -
+[-        ] process > circularmapper                                     -
+[-        ] process > bowtie2                                            -
+[-        ] process > hostremoval_input_fastq                            -
+[-        ] process > seqtype_merge                                      -
+[-        ] process > samtools_flagstat                                  -
+[-        ] process > samtools_filter                                    -
+[-        ] process > samtools_flagstat_after_filter                     -
+[-        ] process > endorSpy                                           -
+[-        ] process > dedup                                              -
+[-        ] process > markduplicates                                     -
+[-        ] process > library_merge                                      -
+[-        ] process > preseq                                             -
+[-        ] process > bedtools                                           -
+[-        ] process > damageprofiler                                     -
+[-        ] process > pmdtools                                           -
+[-        ] process > bam_trim                                           -
+[-        ] process > additional_library_merge                           -
+[-        ] process > qualimap                                           -
+[-        ] process > genotyping_ug                                      -
+[-        ] process > genotyping_hc                                      -
+[-        ] process > genotyping_freebayes                               -
+[-        ] process > genotyping_pileupcaller                            -
+[-        ] process > eigenstrat_snp_coverage                            -
+[-        ] process > genotyping_angsd                                   -
+[-        ] process > vcf2genome                                         -
+[-        ] process > multivcfanalyzer                                   -
+[-        ] process > mtnucratio                                         -
+[-        ] process > sex_deterrmine                                     -
+[-        ] process > nuclear_contamination                              -
+[-        ] process > print_nuclear_contamination                        -
+[-        ] process > malt                                               -
+[-        ] process > maltextract                                        -
+[-        ] process > kraken                                             -
+[-        ] process > kraken_parse                                       -
+[-        ] process > kraken_merge                                       -
+[-        ] process > output_documentation                               [  0%] 0 of 1
+[-        ] process > get_software_versions                              [  0%] 0 of 1
+
+executor >  local (1)
+[-        ] process > makeBWAIndex                                       [  0%] 0 of 1
+[-        ] process > makeFastaIndex                                     [  0%] 0 of 1
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna) [  0%] 0 of 1
+[-        ] process > convertBam                                         -
+[-        ] process > indexinputbam                                      -
+[-        ] process > fastqc                                             [  0%] 0 of 1
+[-        ] process > fastp                                              -
+[-        ] process > adapter_removal                                    [  0%] 0 of 1
+[-        ] process > lanemerge                                          -
+[-        ] process > lanemerge_hostremoval_fastq                        -
+[-        ] process > fastqc_after_clipping                              -
+[-        ] process > bwa                                                -
+[-        ] process > bwamem                                             -
+[-        ] process > circulargenerator                                  -
+[-        ] process > circularmapper                                     -
+[-        ] process > bowtie2                                            -
+[-        ] process > hostremoval_input_fastq                            -
+[-        ] process > seqtype_merge                                      -
+[-        ] process > samtools_flagstat                                  -
+[-        ] process > samtools_filter                                    -
+[-        ] process > samtools_flagstat_after_filter                     -
+[-        ] process > endorSpy                                           -
+[-        ] process > dedup                                              -
+[-        ] process > markduplicates                                     -
+[-        ] process > library_merge                                      -
+[-        ] process > preseq                                             -
+[-        ] process > bedtools                                           -
+[-        ] process > damageprofiler                                     -
+[-        ] process > pmdtools                                           -
+[-        ] process > bam_trim                                           -
+[-        ] process > additional_library_merge                           -
+[-        ] process > qualimap                                           -
+[-        ] process > genotyping_ug                                      -
+[-        ] process > genotyping_hc                                      -
+[-        ] process > genotyping_freebayes                               -
+[-        ] process > genotyping_pileupcaller                            -
+[-        ] process > eigenstrat_snp_coverage                            -
+[-        ] process > genotyping_angsd                                   -
+[-        ] process > vcf2genome                                         -
+[-        ] process > multivcfanalyzer                                   -
+[-        ] process > mtnucratio                                         -
+[-        ] process > sex_deterrmine                                     -
+[-        ] process > nuclear_contamination                              -
+[-        ] process > print_nuclear_contamination                        -
+[-        ] process > malt                                               -
+[-        ] process > maltextract                                        -
+[-        ] process > kraken                                             -
+[-        ] process > kraken_parse                                       -
+[-        ] process > kraken_merge                                       -
+[-        ] process > output_documentation                               [  0%] 0 of 1
+[-        ] process > get_software_versions                              [  0%] 0 of 1
+[-        ] process > multiqc                                            -
+
+executor >  local (2)
+[-        ] process > makeBWAIndex                                          [  0%] 0 of 1
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [  0%] 0 of 1
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[-        ] process > fastqc                                                [  0%] 0 of 1
+[-        ] process > fastp                                                 -
+[-        ] process > adapter_removal                                       [  0%] 0 of 1
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[-        ] process > fastqc_after_clipping                                 -
+[-        ] process > bwa                                                   -
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[-        ] process > output_documentation                                  [  0%] 0 of 1
+[-        ] process > get_software_versions                                 [  0%] 0 of 1
+[-        ] process > multiqc                                               -
+
+executor >  local (2)
+[-        ] process > makeBWAIndex                                          [  0%] 0 of 1
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [  0%] 0 of 1
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[-        ] process > fastqc                                                [  0%] 0 of 1
+[-        ] process > fastp                                                 -
+[-        ] process > adapter_removal                                       [  0%] 0 of 1
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[-        ] process > fastqc_after_clipping                                 -
+[-        ] process > bwa                                                   -
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[-        ] process > output_documentation                                  [  0%] 0 of 1
+[-        ] process > get_software_versions                                 [  0%] 0 of 1
+[-        ] process > multiqc                                               -
+
+executor >  local (3)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [  0%] 0 of 1
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[-        ] process > fastqc                                                [  0%] 0 of 1
+[-        ] process > fastp                                                 -
+[-        ] process > adapter_removal                                       [  0%] 0 of 1
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[-        ] process > fastqc_after_clipping                                 -
+[-        ] process > bwa                                                   -
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[-        ] process > output_documentation                                  [  0%] 0 of 1
+[-        ] process > get_software_versions                                 [  0%] 0 of 1
+[-        ] process > multiqc                                               -
+
+executor >  local (4)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [  0%] 0 of 1
+[-        ] process > fastp                                                 -
+[-        ] process > adapter_removal                                       [  0%] 0 of 1
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[-        ] process > fastqc_after_clipping                                 -
+[-        ] process > bwa                                                   -
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[-        ] process > output_documentation                                  [  0%] 0 of 1
+[-        ] process > get_software_versions                                 [  0%] 0 of 1
+[-        ] process > multiqc                                               -
+
+executor >  local (5)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [  0%] 0 of 1
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[-        ] process > fastqc_after_clipping                                 -
+[-        ] process > bwa                                                   -
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[-        ] process > output_documentation                                  [  0%] 0 of 1
+[-        ] process > get_software_versions                                 [  0%] 0 of 1
+[-        ] process > multiqc                                               -
+
+executor >  local (6)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [  0%] 0 of 1
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[-        ] process > fastqc_after_clipping                                 -
+[-        ] process > bwa                                                   -
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [  0%] 0 of 1
+[-        ] process > get_software_versions                                 [  0%] 0 of 1
+[-        ] process > multiqc                                               -
+
+executor >  local (6)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[-        ] process > fastqc_after_clipping                                 [  0%] 0 of 1
+[-        ] process > bwa                                                   [  0%] 0 of 1
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [  0%] 0 of 1
+[-        ] process > get_software_versions                                 [  0%] 0 of 1
+[-        ] process > multiqc                                               -
+
+executor >  local (7)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[-        ] process > fastqc_after_clipping                                 [  0%] 0 of 1
+[-        ] process > bwa                                                   [  0%] 0 of 1
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [  0%] 0 of 1
+[-        ] process > multiqc                                               -
+
+executor >  local (7)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[-        ] process > fastqc_after_clipping                                 [  0%] 0 of 1
+[-        ] process > bwa                                                   [  0%] 0 of 1
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [  0%] 0 of 1
+[-        ] process > multiqc                                               -
+
+executor >  local (8)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [  0%] 0 of 1
+[-        ] process > bwa                                                   [  0%] 0 of 1
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (8)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [  0%] 0 of 1
+[-        ] process > bwa                                                   [  0%] 0 of 1
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (9)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [  0%] 0 of 1
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (9)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[-        ] process > samtools_flagstat                                     -
+[-        ] process > samtools_filter                                       -
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (10)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [  0%] 0 of 1
+[-        ] process > samtools_filter                                       [  0%] 0 of 1
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (11)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [  0%] 0 of 1
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (11)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [  0%] 0 of 1
+[-        ] process > samtools_flagstat_after_filter                        -
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (11)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[-        ] process > samtools_flagstat_after_filter                        [  0%] 0 of 1
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        -
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                -
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (12)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [  0%] 0 of 1
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[-        ] process > markduplicates                                        [  0%] 0 of 1
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                [  0%] 0 of 1
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (13)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[-        ] process > endorSpy                                              -
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [  0%] 0 of 1
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                [  0%] 0 of 1
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (13)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[-        ] process > endorSpy                                              [  0%] 0 of 1
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [  0%] 0 of 1
+[-        ] process > library_merge                                         -
+[-        ] process > preseq                                                [  0%] 0 of 1
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (14)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[-        ] process > endorSpy                                              [  0%] 0 of 1
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [  0%] 0 of 1 ✔
+[-        ] process > library_merge                                         -
+[9d/a2464a] process > preseq (testlocal1)                                   [  0%] 0 of 1
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        -
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (14)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[-        ] process > endorSpy                                              [  0%] 0 of 1
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > library_merge                                         -
+[9d/a2464a] process > preseq (testlocal1)                                   [  0%] 0 of 1
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        [  0%] 0 of 1
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (15)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[0d/0eb24c] process > endorSpy (testlocal1)                                 [  0%] 0 of 1
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > library_merge                                         -
+[9d/a2464a] process > preseq (testlocal1)                                   [100%] 1 of 1 ✔
+[-        ] process > bedtools                                              -
+[-        ] process > damageprofiler                                        [  0%] 0 of 1
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (16)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[0d/0eb24c] process > endorSpy (testlocal1)                                 [100%] 1 of 1 ✔
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > library_merge                                         -
+[9d/a2464a] process > preseq (testlocal1)                                   [100%] 1 of 1 ✔
+[-        ] process > bedtools                                              -
+[ed/15b976] process > damageprofiler (testlocal1)                           [  0%] 0 of 1
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (16)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[0d/0eb24c] process > endorSpy (testlocal1)                                 [100%] 1 of 1 ✔
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > library_merge                                         -
+[9d/a2464a] process > preseq (testlocal1)                                   [100%] 1 of 1 ✔
+[-        ] process > bedtools                                              -
+[ed/15b976] process > damageprofiler (testlocal1)                           [  0%] 0 of 1 ✔
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (16)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[0d/0eb24c] process > endorSpy (testlocal1)                                 [100%] 1 of 1 ✔
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > library_merge                                         -
+[9d/a2464a] process > preseq (testlocal1)                                   [100%] 1 of 1 ✔
+[-        ] process > bedtools                                              -
+[ed/15b976] process > damageprofiler (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[-        ] process > multiqc                                               -
+
+executor >  local (17)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[0d/0eb24c] process > endorSpy (testlocal1)                                 [100%] 1 of 1 ✔
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > library_merge                                         -
+[9d/a2464a] process > preseq (testlocal1)                                   [100%] 1 of 1 ✔
+[-        ] process > bedtools                                              -
+[ed/15b976] process > damageprofiler (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[30/66c610] process > multiqc (1)                                           [  0%] 0 of 1
+
+executor >  local (17)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[0d/0eb24c] process > endorSpy (testlocal1)                                 [100%] 1 of 1 ✔
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > library_merge                                         -
+[9d/a2464a] process > preseq (testlocal1)                                   [100%] 1 of 1 ✔
+[-        ] process > bedtools                                              -
+[ed/15b976] process > damageprofiler (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[30/66c610] process > multiqc (1)                                           [100%] 1 of 1 ✔
+
+executor >  local (17)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[0d/0eb24c] process > endorSpy (testlocal1)                                 [100%] 1 of 1 ✔
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > library_merge                                         -
+[9d/a2464a] process > preseq (testlocal1)                                   [100%] 1 of 1 ✔
+[-        ] process > bedtools                                              -
+[ed/15b976] process > damageprofiler (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[30/66c610] process > multiqc (1)                                           [100%] 1 of 1 ✔
+-[nf-core/eager] Pipeline completed successfully-
+
+executor >  local (17)
+[8f/6f4abc] process > makeBWAIndex (GCA_000009065.1_ASM906v1_genomic.fna)   [100%] 1 of 1 ✔
+[92/84b9fb] process > makeFastaIndex (GCA_000009065.1_ASM906v1_genomic.fna) [100%] 1 of 1 ✔
+[81/63782d] process > makeSeqDict (GCA_000009065.1_ASM906v1_genomic.fna)    [100%] 1 of 1 ✔
+[-        ] process > convertBam                                            -
+[-        ] process > indexinputbam                                         -
+[5b/13c0bb] process > fastqc (testlocal1_L1)                                [100%] 1 of 1 ✔
+[-        ] process > fastp                                                 -
+[d0/fdc5c5] process > adapter_removal (testlocal1_L1)                       [100%] 1 of 1 ✔
+[-        ] process > lanemerge                                             -
+[-        ] process > lanemerge_hostremoval_fastq                           -
+[b8/843453] process > fastqc_after_clipping (testlocal1_L1)                 [100%] 1 of 1 ✔
+[96/40b9f3] process > bwa (testlocal1)                                      [100%] 1 of 1 ✔
+[-        ] process > bwamem                                                -
+[-        ] process > circulargenerator                                     -
+[-        ] process > circularmapper                                        -
+[-        ] process > bowtie2                                               -
+[-        ] process > hostremoval_input_fastq                               -
+[-        ] process > seqtype_merge                                         -
+[d7/e56892] process > samtools_flagstat (testlocal1)                        [100%] 1 of 1 ✔
+[fa/a20933] process > samtools_filter (testlocal1)                          [100%] 1 of 1 ✔
+[62/8eef0e] process > samtools_flagstat_after_filter (testlocal1)           [100%] 1 of 1 ✔
+[0d/0eb24c] process > endorSpy (testlocal1)                                 [100%] 1 of 1 ✔
+[-        ] process > dedup                                                 -
+[4a/7bbc7e] process > markduplicates (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > library_merge                                         -
+[9d/a2464a] process > preseq (testlocal1)                                   [100%] 1 of 1 ✔
+[-        ] process > bedtools                                              -
+[ed/15b976] process > damageprofiler (testlocal1)                           [100%] 1 of 1 ✔
+[-        ] process > pmdtools                                              -
+[-        ] process > bam_trim                                              -
+[-        ] process > additional_library_merge                              -
+[-        ] process > qualimap                                              -
+[-        ] process > genotyping_ug                                         -
+[-        ] process > genotyping_hc                                         -
+[-        ] process > genotyping_freebayes                                  -
+[-        ] process > genotyping_pileupcaller                               -
+[-        ] process > eigenstrat_snp_coverage                               -
+[-        ] process > genotyping_angsd                                      -
+[-        ] process > vcf2genome                                            -
+[-        ] process > multivcfanalyzer                                      -
+[-        ] process > mtnucratio                                            -
+[-        ] process > sex_deterrmine                                        -
+[-        ] process > nuclear_contamination                                 -
+[-        ] process > print_nuclear_contamination                           -
+[-        ] process > malt                                                  -
+[-        ] process > maltextract                                           -
+[-        ] process > kraken                                                -
+[-        ] process > kraken_parse                                          -
+[-        ] process > kraken_merge                                          -
+[8b/48dd7b] process > output_documentation                                  [100%] 1 of 1 ✔
+[93/8d020a] process > get_software_versions                                 [100%] 1 of 1 ✔
+[30/66c610] process > multiqc (1)                                           [100%] 1 of 1 ✔
+-[nf-core/eager] Pipeline completed successfully-
+Completed at: 03-Mar-2021 15:08:56
+Duration    : 2m 30s
+CPU hours   : 0.1
+Succeeded   : 17

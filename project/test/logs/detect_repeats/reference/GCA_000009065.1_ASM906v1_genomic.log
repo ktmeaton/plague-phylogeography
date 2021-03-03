@@ -1,0 +1,15 @@
+1: PREPARING DATA
+2,3: RUNNING mummer AND CREATING CLUSTERS
+# reading input file "/mnt/c/Users/ktmea/Projects/plague-phylogeography/results/detect_repeats/reference/GCA_000009065.1_ASM906v1_genomic.inexact.ntref" of length 4829859
+# construct suffix tree for sequence of length 4829859
+# (maximum reference length is 2305843009213693948)
+# (maximum query length is 18446744073709551615)
+# process 48298 characters per dot
+#....................................................................................................
+# CONSTRUCTIONTIME /home/ktmeaton/miniconda3/envs/plague-phylogeography/opt/mummer-3.23/mummer /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/detect_repeats/reference/GCA_000009065.1_ASM906v1_genomic.inexact.ntref 2.12
+# reading input file "/mnt/c/Users/ktmea/Projects/plague-phylogeography/results/data/reference/GCA_000009065.1_ASM906v1_genomic/GCA_000009065.1_ASM906v1_genomic.fna" of length 4829858
+# matching query-file "/mnt/c/Users/ktmea/Projects/plague-phylogeography/results/data/reference/GCA_000009065.1_ASM906v1_genomic/GCA_000009065.1_ASM906v1_genomic.fna"
+# against subject-file "/mnt/c/Users/ktmea/Projects/plague-phylogeography/results/detect_repeats/reference/GCA_000009065.1_ASM906v1_genomic.inexact.ntref"
+# COMPLETETIME /home/ktmeaton/miniconda3/envs/plague-phylogeography/opt/mummer-3.23/mummer /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/detect_repeats/reference/GCA_000009065.1_ASM906v1_genomic.inexact.ntref 6.82
+# SPACE /home/ktmeaton/miniconda3/envs/plague-phylogeography/opt/mummer-3.23/mummer /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/detect_repeats/reference/GCA_000009065.1_ASM906v1_genomic.inexact.ntref 9.35
+4: FINISHING DATA

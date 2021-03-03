@@ -1,0 +1,207 @@
+IQ-TREE multicore version 2.0.3 for Linux 64-bit built Dec 20 2020
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,
+Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    DESKTOP-36M8DA7 (SSE4.2, 12 GB RAM)
+Command: iqtree -s /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/snippy-core_chromosome.snps.filter50.aln -m MFP --threads-max 2 -nt 2 -o Reference -seed 47321424 --runs 1 -fconst 1126995,1014272,1025301,1123878 --ufboot 1000 -pre /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50
+Seed:    47321424 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Wed Mar  3 15:51:49 2021
+Kernel:  SSE2 - 2 threads (4 CPU cores detected)
+
+Reading alignment file /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/snippy-core_chromosome.snps.filter50.aln ... Fasta format detected
+Alignment most likely contains DNA/RNA sequences
+Alignment has 8 sequences with 345 columns, 50 distinct patterns
+140 parsimony-informative, 205 singleton sites, 0 constant sites
+                                     Gap/Ambiguity  Composition  p-value
+   1  GCA_009669545.1_ASM966954v1_genomic    0.00%    passed      5.54%
+   2  GCA_009669555.1_ASM966955v1_genomic    0.00%    passed      7.25%
+   3  GCA_009909635.1_ASM990963v1_genomic    0.00%    failed      0.06%
+   4  Reference                              0.00%    passed      6.02%
+   5  SAMN02442718                          94.49%    passed     31.37%
+   6  SAMN02442721                          96.52%    passed     19.59%
+   7  testlocal1                            94.49%    passed     31.37%
+   8  testlocal2                            96.52%    passed     19.59%
+WARNING: 4 sequences contain more than 50% gaps/ambiguity
+****  TOTAL                                 47.75%  1 sequences failed composition chi2 test (p-value<5%; df=3)
+INFO: 4290446 const sites added into alignment
+NOTE: minimal branch length is reduced to 0.000000023306 for long alignment
+NOTE: testlocal1 is identical to SAMN02442718 but kept for subsequent analysis
+NOTE: testlocal2 is identical to SAMN02442721 but kept for subsequent analysis
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.007 seconds
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -5947405.800
+2. Current log-likelihood: -5947399.873
+3. Current log-likelihood: -5947396.269
+Optimal log-likelihood: -5947395.610
+Rate parameters:  A-C: 0.72421  A-G: 1.82136  A-T: 0.18671  C-G: 0.25871  C-T: 1.89284  G-T: 1.00000
+Base frequencies:  A: 0.263  C: 0.236  G: 0.239  T: 0.262
+Proportion of invariable sites: 0.500
+Gamma shape alpha: 998.492
+Parameters optimization took 3 rounds (0.009 sec)
+Time for fast ML tree search: 0.025 seconds
+
+NOTE: ModelFinder requires 0 MB RAM!
+ModelFinder will test up to 286 DNA models (sample size: 4290791) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  1  GTR+F         5947395.509  21  11894833.018 11894833.018 11895111.730
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  2  GTR+F+I       5947395.470  22  11894834.941 11894834.941 11895126.924
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  3  GTR+F+G4      5947395.470  22  11894834.941 11894834.941 11895126.924
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  4  GTR+F+I+G4    5947395.475  23  11894836.950 11894836.950 11895142.206
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  5  GTR+F+R2      5947395.472  23  11894836.944 11894836.944 11895142.200
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  6  GTR+F+R3      5947395.473  25  11894840.946 11894840.946 11895172.745
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 14  SYM           5952632.596  18  11905301.193 11905301.193 11905540.088
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 27  TVM+F         5947395.517  20  11894831.034 11894831.035 11895096.474
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 40  TVMe          5952632.343  17  11905298.686 11905298.686 11905524.310
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 53  TIM3+F        5947416.638  19  11894871.276 11894871.276 11895123.444
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 66  TIM3e         5952653.693  16  11905339.386 11905339.386 11905551.738
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 79  TIM2+F        5947415.830  19  11894869.661 11894869.661 11895121.828
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 92  TIM2e         5952652.783  16  11905337.566 11905337.566 11905549.918
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+105  TIM+F         5947395.686  19  11894829.372 11894829.373 11895081.540
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+118  TIMe          5952632.699  16  11905297.397 11905297.397 11905509.749
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+131  TPM3u+F       5947416.553  18  11894869.106 11894869.106 11895108.002
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+144  TPM3+F        5947416.553  18  11894869.106 11894869.106 11895108.002
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+157  TPM2u+F       5947415.643  18  11894867.286 11894867.286 11895106.182
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+170  TPM2+F        5947415.643  18  11894867.286 11894867.286 11895106.182
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+183  K3Pu+F        5947395.681  18  11894827.361 11894827.362 11895066.257
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+196  K3P           5952632.669  15  11905295.339 11905295.339 11905494.419
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+209  TN+F          5947416.504  18  11894869.009 11894869.009 11895107.905
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+222  TNe           5952653.378  15  11905336.755 11905336.755 11905535.835
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+235  HKY+F         5947416.543  17  11894867.086 11894867.086 11895092.710
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+248  K2P           5952653.404  14  11905334.808 11905334.808 11905520.615
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+261  F81+F         5947492.426  16  11895016.852 11895016.852 11895229.203
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+274  JC            5952729.016  13  11905484.033 11905484.033 11905656.569
+Akaike Information Criterion:           K3Pu+F
+Corrected Akaike Information Criterion: K3Pu+F
+Bayesian Information Criterion:         K3Pu+F
+Best-fit model: K3Pu+F chosen according to BIC
+
+All model information printed to /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50.model.gz
+CPU time for ModelFinder: 3.040 seconds (0h:0m:3s)
+Wall-clock time for ModelFinder: 3.132 seconds (0h:0m:3s)
+Generating 1000 samples for ultrafast bootstrap (seed: 47321424)...
+
+NOTE: 0 MB RAM (0 GB) is required!
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -5947395.681
+Optimal log-likelihood: -5947395.643
+Rate parameters:  A-C: 1.00000  A-G: 2.30127  A-T: 0.25194  C-G: 0.25194  C-T: 2.30127  G-T: 1.00000
+Base frequencies:  A: 0.263  C: 0.236  G: 0.239  T: 0.262
+Parameters optimization took 1 rounds (0.002 sec)
+Computing ML distances based on estimated model parameters... 0.002 sec
+Computing BIONJ tree...
+0.021 seconds
+Log-likelihood of BIONJ tree: -5947698.179
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.047 second
+Computing log-likelihood of 64 initial trees ... 0.017 seconds
+Current best score: -5947395.643
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -5947395.634
+UPDATE BEST LOG-LIKELIHOOD: -5947395.634
+UPDATE BEST LOG-LIKELIHOOD: -5947395.634
+Iteration 10 / LogL: -5947397.808 / Time: 0h:0m:0s
+Iteration 20 / LogL: -5947395.636 / Time: 0h:0m:0s
+Finish initializing candidate tree set (2)
+Current best tree score: -5947395.634 / CPU time: 0.165
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+UPDATE BEST LOG-LIKELIHOOD: -5947395.634
+Iteration 30 / LogL: -5947395.645 / Time: 0h:0m:0s (0h:0m:0s left)
+UPDATE BEST LOG-LIKELIHOOD: -5947395.634
+Iteration 40 / LogL: -5947395.636 / Time: 0h:0m:0s (0h:0m:0s left)
+UPDATE BEST LOG-LIKELIHOOD: -5947395.634
+UPDATE BEST LOG-LIKELIHOOD: -5947395.633
+UPDATE BEST LOG-LIKELIHOOD: -5947395.633
+Iteration 50 / LogL: -5947395.633 / Time: 0h:0m:0s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -5947431.320
+UPDATE BEST LOG-LIKELIHOOD: -5947395.633
+Iteration 60 / LogL: -5947395.634 / Time: 0h:0m:0s (0h:0m:0s left)
+Iteration 70 / LogL: -5947395.635 / Time: 0h:0m:0s (0h:0m:0s left)
+Iteration 80 / LogL: -5947395.633 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 90 / LogL: -5947395.636 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 100 / LogL: -5947395.633 / Time: 0h:0m:1s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -5947431.320
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.998
+TREE SEARCH COMPLETED AFTER 102 ITERATIONS / Time: 0h:0m:1s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -5947395.633
+2. Current log-likelihood: -5947395.607
+3. Current log-likelihood: -5947395.596
+Optimal log-likelihood: -5947395.589
+Rate parameters:  A-C: 1.00000  A-G: 2.34459  A-T: 0.25174  C-G: 0.25174  C-T: 2.34459  G-T: 1.00000
+Base frequencies:  A: 0.263  C: 0.236  G: 0.239  T: 0.262
+Parameters optimization took 3 rounds (0.005 sec)
+BEST SCORE FOUND : -5947395.589
+Creating bootstrap support values...
+Split supports printed to NEXUS file /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50.splits.nex
+Total tree length: 0.000
+
+Total number of iterations: 102
+CPU time used for tree search: 1.550 sec (0h:0m:1s)
+Wall-clock time used for tree search: 1.226 sec (0h:0m:1s)
+Total CPU time used: 1.619 sec (0h:0m:1s)
+Total wall-clock time used: 1.373 sec (0h:0m:1s)
+
+Computing bootstrap consensus tree...
+Reading input file /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50.splits.nex...
+8 taxa and 26 splits.
+Consensus tree written to /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50.contree
+Reading input trees file /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50.contree
+Log-likelihood of consensus tree: -5947396.151
+
+Analysis results written to:
+  IQ-TREE report:                /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50.iqtree
+  Maximum-likelihood tree:       /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50.treefile
+  Likelihood distances:          /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50.splits.nex
+  Consensus tree:                /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50.contree
+  Screen log file:               /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/iqtree/all/iqtree-core_chromosome.filter50.log
+
+Date and Time: Wed Mar  3 15:51:57 2021

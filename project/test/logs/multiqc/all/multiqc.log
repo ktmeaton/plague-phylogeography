@@ -1,0 +1,66 @@
+[INFO   ]         multiqc : This is MultiQC v1.10.dev0
+[INFO   ]         multiqc : Template    : default
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/eager/sra/SAMN02442721
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/eager/sra/SAMN02442718
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/eager/local/testlocal1
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/eager/local/testlocal2
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/qualimap/assembly/GCA_009909635.1_ASM990963v1_genomic
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/qualimap/assembly/GCA_009669545.1_ASM966954v1_genomic
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/qualimap/assembly/GCA_009669555.1_ASM966955v1_genomic
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/qualimap/sra/SAMN02442721
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/qualimap/sra/SAMN02442718
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/qualimap/local/testlocal1
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/qualimap/local/testlocal2
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/assembly/GCA_009909635.1_ASM990963v1_genomic
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/assembly/GCA_009669545.1_ASM966954v1_genomic
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/assembly/GCA_009669555.1_ASM966955v1_genomic
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442721
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/sra/SAMN02442718
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/local/testlocal1
+[INFO   ]         multiqc : Searching   : /mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_pairwise/local/testlocal2
+[ERROR  ]  custom_content : Uncaught exception raised for file 'workflow_summary_mqc.yaml'
+[ERROR  ]  custom_content : 'str' object has no attribute 'items'
+Traceback (most recent call last):
+  File "/home/ktmeaton/miniconda3/envs/plague-phylogeography/lib/python3.7/site-packages/multiqc/modules/custom_content/custom_content.py", line 106, in custom_module_classes
+    parsed_data['data'] = { bm.clean_s_name(k, f['root']): v for k,v in parsed_data.get('data', {}).items() }
+AttributeError: 'str' object has no attribute 'items'
+[ERROR  ]  custom_content : Uncaught exception raised for file 'workflow_summary_mqc.yaml'
+[ERROR  ]  custom_content : 'str' object has no attribute 'items'
+Traceback (most recent call last):
+  File "/home/ktmeaton/miniconda3/envs/plague-phylogeography/lib/python3.7/site-packages/multiqc/modules/custom_content/custom_content.py", line 106, in custom_module_classes
+    parsed_data['data'] = { bm.clean_s_name(k, f['root']): v for k,v in parsed_data.get('data', {}).items() }
+AttributeError: 'str' object has no attribute 'items'
+[ERROR  ]  custom_content : Uncaught exception raised for file 'workflow_summary_mqc.yaml'
+[ERROR  ]  custom_content : 'str' object has no attribute 'items'
+Traceback (most recent call last):
+  File "/home/ktmeaton/miniconda3/envs/plague-phylogeography/lib/python3.7/site-packages/multiqc/modules/custom_content/custom_content.py", line 106, in custom_module_classes
+    parsed_data['data'] = { bm.clean_s_name(k, f['root']): v for k,v in parsed_data.get('data', {}).items() }
+AttributeError: 'str' object has no attribute 'items'
+[ERROR  ]  custom_content : Uncaught exception raised for file 'workflow_summary_mqc.yaml'
+[ERROR  ]  custom_content : 'str' object has no attribute 'items'
+Traceback (most recent call last):
+  File "/home/ktmeaton/miniconda3/envs/plague-phylogeography/lib/python3.7/site-packages/multiqc/modules/custom_content/custom_content.py", line 106, in custom_module_classes
+    parsed_data['data'] = { bm.clean_s_name(k, f['root']): v for k,v in parsed_data.get('data', {}).items() }
+AttributeError: 'str' object has no attribute 'items'
+[INFO   ]  custom_content : endorSpy: Found 4 General Statistics columns
+[INFO   ]        qualimap : Found 7 BamQC reports
+[INFO   ]          preseq : Found 4 reports
+/home/ktmeaton/miniconda3/envs/plague-phylogeography/lib/python3.7/site-packages/multiqc/plots/bargraph.py:451: UserWarning: FixedFormatter should only be used together with FixedLocator
+  axes.set_xticklabels(['{:.0f}%'.format(x) for x in vals])
+[INFO   ]          picard : Found 4 MarkDuplicates reports
+[INFO   ]        samtools : Found 8 flagstat reports
+[INFO   ]          snippy : Found 7 file(s) for snippy/snippy.
+/home/ktmeaton/miniconda3/envs/plague-phylogeography/lib/python3.7/site-packages/multiqc/plots/bargraph.py:451: UserWarning: FixedFormatter should only be used together with FixedLocator
+  axes.set_xticklabels(['{:.0f}%'.format(x) for x in vals])
+[INFO   ]  adapterRemoval : Found 4 reports
+/home/ktmeaton/miniconda3/envs/plague-phylogeography/lib/python3.7/site-packages/multiqc/plots/bargraph.py:451: UserWarning: FixedFormatter should only be used together with FixedLocator
+  axes.set_xticklabels(['{:.0f}%'.format(x) for x in vals])
+[INFO   ]          fastqc : Found 8 reports
+/home/ktmeaton/miniconda3/envs/plague-phylogeography/lib/python3.7/site-packages/multiqc/plots/bargraph.py:451: UserWarning: FixedFormatter should only be used together with FixedLocator
+  axes.set_xticklabels(['{:.0f}%'.format(x) for x in vals])
+[INFO   ]         multiqc : Compressing plot data
+[WARNING]         multiqc : Deleting    : results/multiqc/all/multiqc_plots   (-f was specified)
+[INFO   ]         multiqc : Report      : results/multiqc/all/multiqc_report.html
+[INFO   ]         multiqc : Data        : results/multiqc/all/multiqc_data
+[INFO   ]         multiqc : Plots       : results/multiqc/all/multiqc_plots
+[INFO   ]         multiqc : MultiQC complete
