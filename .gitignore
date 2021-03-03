@@ -16,12 +16,19 @@ docs/results/latest/test/
 *.obj
 *.bak
 
-# Results - Snakemake
+# Snakemake Large Files
 results/data/*
-results/detect*
 results/eager/*
-results/iqtree/*
-results/snippy_multi/*
 results/snippy_pairwise/*
-results/qualimap/*
-results/metadata/*
+
+# Phylogeny
+results/iqtree/*/*ckp.gz
+results/iqtree/*/*uniqueseq*
+
+# Snippy Multi Alignments
+results/snippy_multi/*/*.aln*
+results/snippy_multi/*/*ref.fa
+
+# Plotting
+results/qualimap/*/*/*.bam
+results/multiqc/*/multiqc_data/*
