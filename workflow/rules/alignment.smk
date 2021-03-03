@@ -147,7 +147,7 @@ rule snippy_multi:
         results_dir + "/snippy_multi/{reads_origin}/snippy-core.txt",
         #snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.aln",
         full_aln            = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
-        log                 = logs_dir, "snippy_multi/{reads_origin}/snippy-core.log")
+        log                 = logs_dir    + "/snippy_multi/{reads_origin}/snippy-core.log",
     log:
         os.path.join(logs_dir, "snippy_multi","{reads_origin}","snippy-core.log")
     shell:

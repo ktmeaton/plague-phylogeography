@@ -265,7 +265,7 @@ parse_tree_all_input      = expand(results_dir + "/parse_tree/all/{locus_name}_f
                                missing_data = config["snippy_missing_data"])
 parse_tree_local_input    = [ x.replace("all", "local") for x in parse_tree_all_input ]
 parse_tree_sra_input      = [ x.replace("all", "sra") for x in parse_tree_all_input ]
-parse_tree_assembly_input = [ x.replace("all", "assembly") for x in parse_tree_scf_all_input ]
+parse_tree_assembly_input = [ x.replace("all", "assembly") for x in parse_tree_all_input ]
 
 
 #------------------------------------------------------------------------------#
