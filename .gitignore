@@ -24,6 +24,7 @@ results/snippy_pairwise/*
 # Phylogeny
 results/iqtree/*/*ckp.gz
 results/iqtree/*/*uniqueseq*
+results/iqtree/*/*filter50*
 
 # Snippy Multi Alignments
 results/snippy_multi/*/*.aln*

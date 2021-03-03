@@ -7,7 +7,11 @@
     - iqtree
     - multiqc
 1. Decided not to upload qualimap, too many small files!
-1. Add parse_tree notebook to snakemake pipeline!
+1. Move log directory to within results.
+1. Add parse_tree notebook to snakemake pipeline.
+1. Add clock_model notebook to snakemake pipeline.
+1. Rename 'clock_model' output directory to 'clock'
+1. Remove xml tree output.
 
 ## TO-DO
 
@@ -16,5 +20,3 @@
 1. Check if multiqc still runs without eager output dir...
 1. Maybe write a function to condense exporting.
 1. Now that results are uploaded, shrink report file?
-1. Move log directory to within results.
-1. Rename 'clock_model' output directory to 'clock'

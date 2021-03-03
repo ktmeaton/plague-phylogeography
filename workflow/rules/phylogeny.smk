@@ -98,10 +98,27 @@ rule parse_tree:
     Parse IQTREE trees and rename internal nodes.
     """
     input:
-        tree     = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post.cf.tree"
+        tree     = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post.cf.tree",
+        tsv    = results_dir + "/metadata/{reads_origin}/metadata.tsv",
     output:
-        tsv      = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.tsv"
+        tsv      = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.tsv",
+        tree     = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.nwk",
     log:
         notebook = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree_processed.py.ipynb",
     notebook:
         os.path.join(notebooks_dir, "parse_tree.py.ipynb")
+
+rule clock_model:
+    """
+    Estimate a clock model from the parsed IQTREE phylogeny.
+    """
+    input:
+        tree     = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.nwk",
+        tsv      = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.tsv",
+    output:
+        tree     = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model.nwk",
+        tsv      = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model.tsv",
+    log:
+        notebook = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_processed.py.ipynb",
+    notebook:
+        os.path.join(notebooks_dir, "clock_model.py.ipynb")
