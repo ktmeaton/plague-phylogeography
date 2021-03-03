@@ -92,3 +92,16 @@ rule iqtree_scf:
             --threads-max {resources.cpus} \
             -nt {resources.cpus};
         """
+
+rule parse_tree:
+    """
+    Parse IQTREE trees and rename internal nodes.
+    """
+    input:
+        tree     = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post.cf.tree"
+    output:
+        tsv      = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.tsv"
+    log:
+        notebook = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree_processed.py.ipynb",
+    notebook:
+        os.path.join(notebooks_dir, "parse_tree.py.ipynb")

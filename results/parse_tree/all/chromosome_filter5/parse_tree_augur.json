@@ -1,10 +1,10 @@
 {
-  "alignment": "../../docs/results/latest/snippy_multi/snippy-core_chromosome.snps.filter5.aln",
+  "alignment": "/mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/snippy-core_chromosome.snps.filter5.aln",
   "generated_by": {
     "program": "augur",
     "version": "10.3.0"
   },
-  "input_tree": "../../results/parse_tree/parse_tree.nwk",
+  "input_tree": "/mnt/c/Users/ktmea/Projects/plague-phylogeography/results/parse_tree/all/chromosome_filter5/parse_tree.nwk",
   "nodes": {
     "GCA_000006645.1_ASM664v1_genomic": {
       "biosample": "SAMN02604093",

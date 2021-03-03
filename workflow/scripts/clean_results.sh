@@ -3,7 +3,16 @@
 RESULTS_DIR=$1
 CONFIRM=$2
 
-KEEP_DIR=(data sqlite_db);
+KEEP_DIR=(
+	data
+	sqlite_db
+	parse_tree
+	clock
+	clock_model
+	mugration
+	locus_coverage
+	geo
+	);
 
 if [[ ! $RESULTS_DIR ]];
 then
@@ -26,8 +35,9 @@ do
 	done;
 
 	# Check if this directory should be kept
-	if [[ $keep == "false" ]];
+	if [[ $keep == "false" && $CONFIRM ]];
 	then
-		echo $dirname
+		echo -e "\tDeleting: $dirname";
+		echo -e "\t          rm -rf $dirname"
 	fi
 done;

@@ -23,14 +23,15 @@ min_version("5.26.1")
 # -----------------------------------------------------------------------------#
 
 project_dir = os.path.dirname(workflow.basedir)
-results_dir = os.path.join(project_dir, "results")
 scripts_dir = os.path.join(project_dir, "workflow", "scripts")
 envs_dir = os.path.join(project_dir, "workflow", "envs")
-logs_dir = os.path.join(project_dir, "workflow", "logs")
+results_dir = os.path.join(project_dir, "results")
+notebooks_dir = os.path.join(project_dir, "workflow", "notebooks")
 report_dir = os.path.join(project_dir, "workflow", "report")
 rules_dir = os.path.join(project_dir, "workflow", "rules")
+logs_dir = os.path.join(project_dir, "results", "logs")
 config_dir = os.path.join(project_dir, "config")
-notebooks_dir = os.path.join(project_dir, "workflow", "notebooks")
+
 
 # Include the config file (If not specified on command line)
 configfile: os.path.join(config_dir, "snakemake.yaml")

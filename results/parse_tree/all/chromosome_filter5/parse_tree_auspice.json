@@ -901,6 +901,249 @@
         "type": "continuous"
       },
       {
+        "key": "scf",
+        "title": "sCF",
+        "type": "continuous"
+      },
+      {
+        "key": "branch_number",
+        "scale": [
+          [
+            "0",
+            "#8000ff"
+          ],
+          [
+            "3",
+            "#00b4ec"
+          ],
+          [
+            "4",
+            "#80ffb4"
+          ],
+          [
+            "2",
+            "#ffb462"
+          ],
+          [
+            "1",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Number",
+        "type": "categorical"
+      },
+      {
+        "key": "branch_minor",
+        "scale": [
+          [
+            "0.PRE2",
+            "#8000ff"
+          ],
+          [
+            "0.PRE1",
+            "#7116ff"
+          ],
+          [
+            "0.PE7",
+            "#632cfe"
+          ],
+          [
+            "0.PE2",
+            "#5542fd"
+          ],
+          [
+            "0.PE8",
+            "#4757fb"
+          ],
+          [
+            "0.PE10",
+            "#396cf9"
+          ],
+          [
+            "0.PE4m",
+            "#2b7ff6"
+          ],
+          [
+            "0.PE4h",
+            "#1c92f3"
+          ],
+          [
+            "0.PE4t",
+            "#0ea4f0"
+          ],
+          [
+            "0.PE4a",
+            "#00b4ec"
+          ],
+          [
+            "0.PE5",
+            "#0ec3e7"
+          ],
+          [
+            "0.ANT1",
+            "#1cd1e2"
+          ],
+          [
+            "0.ANT4",
+            "#2adddd"
+          ],
+          [
+            "0.ANT2",
+            "#39e7d7"
+          ],
+          [
+            "0.ANT5",
+            "#47f0d1"
+          ],
+          [
+            "0.ANT3",
+            "#55f6ca"
+          ],
+          [
+            "3.ANT1",
+            "#63fbc3"
+          ],
+          [
+            "3.ANT2",
+            "#71febc"
+          ],
+          [
+            "4.ANT1",
+            "#80ffb4"
+          ],
+          [
+            "2.ANT3",
+            "#8efeac"
+          ],
+          [
+            "2.ANT2",
+            "#9cfba4"
+          ],
+          [
+            "2.ANT1",
+            "#aaf69b"
+          ],
+          [
+            "2.MED0",
+            "#b8f092"
+          ],
+          [
+            "2.MED3",
+            "#c6e789"
+          ],
+          [
+            "2.MED2",
+            "#d4dd80"
+          ],
+          [
+            "2.MED1",
+            "#e3d176"
+          ],
+          [
+            "1.PRE0",
+            "#f1c36c"
+          ],
+          [
+            "1.PRE1",
+            "#ffb462"
+          ],
+          [
+            "1.PRE2",
+            "#ffa457"
+          ],
+          [
+            "1.PRE3",
+            "#ff924d"
+          ],
+          [
+            "1.ANT1",
+            "#ff8042"
+          ],
+          [
+            "1.IN1",
+            "#ff6c37"
+          ],
+          [
+            "1.IN2",
+            "#ff572c"
+          ],
+          [
+            "1.IN3",
+            "#ff4221"
+          ],
+          [
+            "1.ORI1",
+            "#ff2c16"
+          ],
+          [
+            "1.ORI3",
+            "#ff160b"
+          ],
+          [
+            "1.ORI2",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Minor",
+        "type": "categorical"
+      },
+      {
+        "key": "branch_major",
+        "scale": [
+          [
+            "0.PRE",
+            "#8000ff"
+          ],
+          [
+            "0.PE",
+            "#4c4ffc"
+          ],
+          [
+            "0.ANT",
+            "#1996f3"
+          ],
+          [
+            "3.ANT",
+            "#1acee3"
+          ],
+          [
+            "4.ANT",
+            "#4df3ce"
+          ],
+          [
+            "2.ANT",
+            "#80ffb4"
+          ],
+          [
+            "2.MED",
+            "#b3f396"
+          ],
+          [
+            "1.PRE",
+            "#e6ce74"
+          ],
+          [
+            "1.ANT",
+            "#ff964f"
+          ],
+          [
+            "1.IN",
+            "#ff4f28"
+          ],
+          [
+            "1.ORI",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Major",
+        "type": "categorical"
+      },
+      {
+        "key": "biosamplecomment",
+        "title": "Data Comment",
+        "type": "categorical"
+      },
+      {
         "key": "country",
         "scale": [
           [
@@ -1062,6 +1305,21 @@
         ],
         "title": "Country",
         "type": "categorical"
+      },
+      {
+        "key": "biovar",
+        "title": "Biovar",
+        "type": "categorical"
+      },
+      {
+        "key": "datebp",
+        "title": "Collection Date (BP)",
+        "type": "continuous"
+      },
+      {
+        "key": "ufboot",
+        "title": "Ultrafast Bootstrap",
+        "type": "continuous"
       },
       {
         "key": "province",
@@ -1531,271 +1789,13 @@
         "type": "categorical"
       },
       {
-        "key": "datebp",
-        "title": "Collection Date (BP)",
-        "type": "continuous"
-      },
-      {
-        "key": "scf",
-        "title": "sCF",
-        "type": "continuous"
-      },
-      {
-        "key": "ufboot",
-        "title": "Ultrafast Bootstrap",
-        "type": "continuous"
-      },
-      {
-        "key": "biosample",
-        "title": "Data Accession",
-        "type": "categorical"
-      },
-      {
-        "key": "branch_number",
-        "scale": [
-          [
-            "0",
-            "#8000ff"
-          ],
-          [
-            "3",
-            "#00b4ec"
-          ],
-          [
-            "4",
-            "#80ffb4"
-          ],
-          [
-            "2",
-            "#ffb462"
-          ],
-          [
-            "1",
-            "#ff0000"
-          ]
-        ],
-        "title": "Branch Number",
-        "type": "categorical"
-      },
-      {
         "key": "strain",
         "title": "Strain",
         "type": "categorical"
       },
       {
-        "key": "branch_minor",
-        "scale": [
-          [
-            "0.PRE2",
-            "#8000ff"
-          ],
-          [
-            "0.PRE1",
-            "#7116ff"
-          ],
-          [
-            "0.PE7",
-            "#632cfe"
-          ],
-          [
-            "0.PE2",
-            "#5542fd"
-          ],
-          [
-            "0.PE8",
-            "#4757fb"
-          ],
-          [
-            "0.PE10",
-            "#396cf9"
-          ],
-          [
-            "0.PE4m",
-            "#2b7ff6"
-          ],
-          [
-            "0.PE4h",
-            "#1c92f3"
-          ],
-          [
-            "0.PE4t",
-            "#0ea4f0"
-          ],
-          [
-            "0.PE4a",
-            "#00b4ec"
-          ],
-          [
-            "0.PE5",
-            "#0ec3e7"
-          ],
-          [
-            "0.ANT1",
-            "#1cd1e2"
-          ],
-          [
-            "0.ANT4",
-            "#2adddd"
-          ],
-          [
-            "0.ANT2",
-            "#39e7d7"
-          ],
-          [
-            "0.ANT5",
-            "#47f0d1"
-          ],
-          [
-            "0.ANT3",
-            "#55f6ca"
-          ],
-          [
-            "3.ANT1",
-            "#63fbc3"
-          ],
-          [
-            "3.ANT2",
-            "#71febc"
-          ],
-          [
-            "4.ANT1",
-            "#80ffb4"
-          ],
-          [
-            "2.ANT3",
-            "#8efeac"
-          ],
-          [
-            "2.ANT2",
-            "#9cfba4"
-          ],
-          [
-            "2.ANT1",
-            "#aaf69b"
-          ],
-          [
-            "2.MED0",
-            "#b8f092"
-          ],
-          [
-            "2.MED3",
-            "#c6e789"
-          ],
-          [
-            "2.MED2",
-            "#d4dd80"
-          ],
-          [
-            "2.MED1",
-            "#e3d176"
-          ],
-          [
-            "1.PRE0",
-            "#f1c36c"
-          ],
-          [
-            "1.PRE1",
-            "#ffb462"
-          ],
-          [
-            "1.PRE2",
-            "#ffa457"
-          ],
-          [
-            "1.PRE3",
-            "#ff924d"
-          ],
-          [
-            "1.ANT1",
-            "#ff8042"
-          ],
-          [
-            "1.IN1",
-            "#ff6c37"
-          ],
-          [
-            "1.IN2",
-            "#ff572c"
-          ],
-          [
-            "1.IN3",
-            "#ff4221"
-          ],
-          [
-            "1.ORI1",
-            "#ff2c16"
-          ],
-          [
-            "1.ORI3",
-            "#ff160b"
-          ],
-          [
-            "1.ORI2",
-            "#ff0000"
-          ]
-        ],
-        "title": "Branch Minor",
-        "type": "categorical"
-      },
-      {
-        "key": "biosamplecomment",
-        "title": "Data Comment",
-        "type": "categorical"
-      },
-      {
-        "key": "biovar",
-        "title": "Biovar",
-        "type": "categorical"
-      },
-      {
-        "key": "branch_major",
-        "scale": [
-          [
-            "0.PRE",
-            "#8000ff"
-          ],
-          [
-            "0.PE",
-            "#4c4ffc"
-          ],
-          [
-            "0.ANT",
-            "#1996f3"
-          ],
-          [
-            "3.ANT",
-            "#1acee3"
-          ],
-          [
-            "4.ANT",
-            "#4df3ce"
-          ],
-          [
-            "2.ANT",
-            "#80ffb4"
-          ],
-          [
-            "2.MED",
-            "#b3f396"
-          ],
-          [
-            "1.PRE",
-            "#e6ce74"
-          ],
-          [
-            "1.ANT",
-            "#ff964f"
-          ],
-          [
-            "1.IN",
-            "#ff4f28"
-          ],
-          [
-            "1.ORI",
-            "#ff0000"
-          ]
-        ],
-        "title": "Branch Major",
+        "key": "biosample",
+        "title": "Data Accession",
         "type": "categorical"
       }
     ],
@@ -2454,7 +2454,7 @@
       "map"
     ],
     "title": "Plague Phylogeography",
-    "updated": "2021-02-25"
+    "updated": "2021-03-03"
   },
   "tree": {
     "branch_attrs": {},
