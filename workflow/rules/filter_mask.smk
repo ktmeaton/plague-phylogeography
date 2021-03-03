@@ -86,15 +86,12 @@ rule snippy_multi_extract:
     Extract a locus (ex. chromosome) from the snippy multi alignment.
     """
     input:
-        full_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
+        full_aln               = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
     output:
-        extract_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
-        extract_constant_sites = report(results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.constant_sites.txt",
-				                 caption=os.path.join(report_dir, "snippy", "snippy_multi_extract.rst"),
-												 category="Alignment",
-												 subcategory="Snippy Multi"),
+        extract_aln            = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
+        extract_constant_sites = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.constant_sites.txt",
     resources:
-        cpus = 1,
+        cpus                   = 1,
     shell:
         """
         {scripts_dir}/extract_locus.sh \
@@ -114,15 +111,8 @@ rule snippy_multi_filter:
     input:
         full_locus_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
     output:
-        filter_snp_aln = report(results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
-				                 caption=os.path.join(report_dir, "snippy_multi_filter.rst"),
-												 category="Alignment",
-												 subcategory="Snippy Multi"),
-        log = report(os.path.join(logs_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log"),
-				             caption=os.path.join(report_dir, "logs.rst"),
-										 category="Logs",
-										 subcategory="Alignment"),
-
+        filter_snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
+        log            = logs_dir    + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log",
     log:
         logs_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log",
 

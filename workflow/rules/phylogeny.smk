@@ -11,27 +11,18 @@ rule iqtree:
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.constant_sites.txt",
         snp_aln        = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
     output:
-        tree      = report(results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}.treefile",
-                      caption=os.path.join(report_dir,"phylogeny","iqtree.rst"),
-                      category="Phylogenetics",
-                      subcategory="IQTREE"),
-        iqtree    = report(results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}.iqtree",
-                      caption=os.path.join(report_dir,"phylogeny","iqtree.rst"),
-                      category="Logs",
-                      subcategory="Phylogeny"),
-        log       = report(os.path.join(logs_dir,"iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}.log"),
-                      caption=os.path.join(report_dir, "logs.rst"),
-                      category="Logs",
-                      subcategory="Phylogeny"),
+        tree           = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}.treefile",
+        iqtree         = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}.iqtree",
+        log            = logs_dir    + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}.log",
     params:
         #seed = random.randint(0, 99999999),
-        seed = config["iqtree_seed"],
-        prefix = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}",
+        seed           = config["iqtree_seed"],
+        prefix         = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}",
     resources:
-        load=100,
-        time_min=600,
-      	cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
-        mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
+        load           = 100,
+        time_min       = 600,
+      	cpus           = workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
+        mem_mb         = workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     log:
         os.path.join(logs_dir, "iqtree","{reads_origin}","iqtree-core_{locus_name}.filter" + "{missing_data}" + ".log")
     shell:
@@ -54,30 +45,21 @@ rule iqtree_scf:
     Estimate site concordance factors.
     """
     input:
-        tree      = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}.treefile",
-        snp_aln   = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
+        tree           = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}.treefile",
+        snp_aln        = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.constant_sites.txt",
     output:
-        cf_branch = report(results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post.cf.branch",
-                      caption=os.path.join(report_dir,"phylogeny","cf.rst"),
-                      category="Phylogenetics",
-                      subcategory="IQTREE"),
-        cf_stat   = report(results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post.cf.stat",
-                      caption=os.path.join(report_dir,"phylogeny","cf.rst"),
-                      category="Phylogenetics",
-                      subcategory="IQTREE"),
-        cf_tree   = report(results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post.cf.tree",
-                      caption=os.path.join(report_dir,"phylogeny","cf.rst"),
-                      category="Phylogenetics",
-                      subcategory="IQTREE"),
+        cf_branch      = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post.cf.branch",
+        cf_stat        = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post.cf.stat",
+        cf_tree        = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post.cf.tree",
     params:
-        seed = config["iqtree_seed"],
-        prefix = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post",
+        seed           = config["iqtree_seed"],
+        prefix         = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post",
     resources:
-        load=100,
-        time_min=600,
-      	cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
-        mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
+        load           = 100,
+        time_min       = 600,
+      	cpus           = workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
+        mem_mb         = workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     log:
         os.path.join(logs_dir, "iqtree","{reads_origin}","iqtree-core_{locus_name}.filter" + "{missing_data}_post.cf" + ".log")
     shell:
@@ -99,7 +81,7 @@ rule parse_tree:
     """
     input:
         tree     = results_dir + "/iqtree/{reads_origin}/iqtree-core_{locus_name}.filter{missing_data}_post.cf.tree",
-        tsv    = results_dir + "/metadata/{reads_origin}/metadata.tsv",
+        tsv      = results_dir + "/metadata/{reads_origin}/metadata.tsv",
     output:
         tsv      = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.tsv",
         tree     = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.nwk",

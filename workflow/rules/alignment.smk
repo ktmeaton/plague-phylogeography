@@ -137,23 +137,17 @@ rule snippy_multi:
     """
     input:
         snippy_pairwise_dir = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/" for path in
-                               identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)]),
-        ref_fna = [path + ".fna" for path in identify_paths(outdir="data", reads_origin="reference")],
-        inexact = [os.path.dirname(path) + ".inexact.repeats.bed" for path in identify_paths(outdir="detect_repeats", reads_origin="reference")],
-        low_complexity = [os.path.dirname(path) + ".dustmasker.bed" for path in identify_paths(outdir="detect_low_complexity", reads_origin="reference")],
-        snp_density = expand(results_dir + "/detect_snp_density/{{reads_origin}}/snpden{density}.bed",
-                      density=config["snippy_snp_density"]),
+                                identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)]),
+        ref_fna             = [path + ".fna" for path in identify_paths(outdir="data", reads_origin="reference")],
+        inexact             = [os.path.dirname(path) + ".inexact.repeats.bed" for path in identify_paths(outdir="detect_repeats", reads_origin="reference")],
+        low_complexity      = [os.path.dirname(path) + ".dustmasker.bed" for path in identify_paths(outdir="detect_low_complexity", reads_origin="reference")],
+        snp_density         = expand(results_dir + "/detect_snp_density/{{reads_origin}}/snpden{density}.bed",
+                                density=config["snippy_snp_density"]),
     output:
-        report(results_dir + "/snippy_multi/{reads_origin}/snippy-core.txt",
-                caption=os.path.join(report_dir,"snippy_multi.rst"),
-                category="Alignment",
-                subcategory="Snippy Multi"),
+        results_dir + "/snippy_multi/{reads_origin}/snippy-core.txt",
         #snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.aln",
-        full_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
-        log = report(os.path.join(logs_dir, "snippy_multi/{reads_origin}/snippy-core.log"),
-				             caption=os.path.join(report_dir, "logs.rst"),
-										 category="Logs",
-										 subcategory="Alignment"),
+        full_aln            = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
+        log                 = logs_dir, "snippy_multi/{reads_origin}/snippy-core.log")
     log:
         os.path.join(logs_dir, "snippy_multi","{reads_origin}","snippy-core.log")
     shell:
