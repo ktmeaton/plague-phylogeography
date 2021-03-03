@@ -33,3 +33,6 @@ results/snippy_multi/*/*ref.fa
 # Plotting
 results/qualimap/*
 results/multiqc/*/multiqc_data/*
+
+# Project specific
+project/*
