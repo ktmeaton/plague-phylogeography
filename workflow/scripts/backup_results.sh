@@ -43,5 +43,10 @@ do
 		echo -e "\tMoving: ${RESULTS_DIR}/$dirname";
 		echo -e "\t         mv ${RESULTS_DIR}/$dirname to ${BACKUP_DIR}/$dirname";
 		mv ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname
+	elif [[ $keep == "true" && $MODE == "list" ]];
+	then
+		echo -e "\tMoving/Copying: ${RESULTS_DIR}/$dirname";
+		echo -e "\t         mv/cp ${RESULTS_DIR}/$dirname to ${BACKUP_DIR}/$dirname";
 	fi
+
 done;
