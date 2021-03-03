@@ -24,6 +24,10 @@ rule download_gff_reference:
     input:
         [path + ".gff" for path in identify_paths(outdir="data", reads_origin="reference")]
 
+rule locus_bed_reference:
+    input:
+        [path + ".bed" for path in identify_paths(outdir="data", reads_origin="reference")]
+
 #------------------------------------------------------------------------------#
 # nf-core/eager
 #------------------------------------------------------------------------------#
@@ -61,6 +65,30 @@ rule snippy_pairwise_local:
                       os.path.basename(os.path.dirname(path)) + ".aligned.fa")
          for path in identify_paths(outdir="snippy_pairwise", reads_origin="local")]
 
+#------------------------------------------------------------------------------#
+# Locus Coverage
+#------------------------------------------------------------------------------#
+
+locus_coverage_all_input      = results_dir + "/locus_coverage/all/locus_coverage.txt"
+locus_coverage_local_input    = locus_coverage_all_input.replace("all", "local")
+locus_coverage_assembly_input = locus_coverage_all_input.replace("all", "assembly")
+locus_coverage_sra_input      = locus_coverage_all_input.replace("all", "sra")
+
+rule locus_coverage_all:
+    input:
+        locus_coverage_all_input
+
+rule locus_coverage_assembly:
+    input:
+        locus_coverage_assembly_input
+
+rule locus_coverage_sra:
+    input:
+        locus_coverage_sra_input,
+
+rule locus_coverage_local:
+    input:
+        locus_coverage_local_input
 #------------------------------------------------------------------------------#
 # Filtering
 #------------------------------------------------------------------------------#

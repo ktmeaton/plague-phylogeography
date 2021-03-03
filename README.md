@@ -3,9 +3,10 @@
 **An open-source pipeline to construct a global phylogeny of the plague pathogen *Yersinia pestis*.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ktmeaton/plague-phylogeography/blob/master/LICENSE)
-[![Nextflow](https://img.shields.io/badge/nextflow-%E2%89%A520.01.0-blue.svg)](https://www.nextflow.io/)
 [![Build Status](https://github.com/ktmeaton/plague-phylogeography/workflows/Install/badge.svg?branch=master)](https://github.com/ktmeaton/NCBImeta/actions?query=workflow%3ABuilding+branch%3Amaster)
+[![Pipeline CI](https://github.com/ktmeaton/plague-phylogeography/actions/workflows/pipeline.yaml/badge.svg)](https://github.com/ktmeaton/plague-phylogeography/actions/workflows/pipeline.yaml)
 [![GitHub issues](https://img.shields.io/github/issues/ktmeaton/plague-phylogeography.svg)](https://github.com/ktmeaton/plague-phylogeography/issues)
+[![Docker Image](https://img.shields.io/docker/image-size/ktmeaton/plague-phylogeography/v0.2.3?label=Docker%20Image&style=plastic)](https://hub.docker.com/r/ktmeaton/plague-phylogeography)
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ktmeaton/plague-phylogeography)
 
 ## Pipeline Overview

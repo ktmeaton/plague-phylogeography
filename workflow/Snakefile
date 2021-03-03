@@ -104,6 +104,8 @@ rule all:
         iqtree_scf_all_input,
         # Plot
         plot_missing_data_all_input,
+        # Stats
+        locus_coverage_all_input,
 
 # -----------------------------------------------------------------------------#
 #                             Help and Usage                                   #
