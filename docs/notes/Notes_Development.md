@@ -12,6 +12,7 @@
 1. Add clock_model notebook to snakemake pipeline.
 1. Rename 'clock_model' output directory to 'clock'
 1. Remove xml tree output.
+1. Create scripts to clean and backup results.
 
 ## TO-DO
 

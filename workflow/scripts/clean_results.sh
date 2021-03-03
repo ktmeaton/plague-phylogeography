@@ -33,6 +33,6 @@ do
 	then
 		echo -e "\tDeleting: $dirname";
 		echo -e "\t          rm -rf $dirname"
-		#rm -rf $dirname;
+		rm -rf $dirname;
 	fi
 done;

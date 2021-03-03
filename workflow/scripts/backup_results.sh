@@ -2,7 +2,7 @@
 
 RESULTS_DIR=$1
 BACKUP_DIR=$2
-CONFIRM=$3
+MODE=$3
 
 EXCLUDE_DIR=(
 	data
@@ -33,10 +33,15 @@ do
 	  fi;
 	done;
 	# Check if this directory should be kept
-	if [[ $keep == "true" && $CONFIRM ]];
+	if [[ $keep == "true" && $MODE == "cp" ]];
 	then
-		echo -e "\tBacking up: ${RESULTS_DIR}/$dirname";
-		echo -e "\t            cp -r ${RESULTS_DIR}/$dirname to ${BACKUP_DIR}/$dirname";
+		echo -e "\tCopying: ${RESULTS_DIR}/$dirname";
+		echo -e "\t         cp -r ${RESULTS_DIR}/$dirname to ${BACKUP_DIR}/$dirname";
 		cp -r ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname
+	elif [[ $keep == "true" && $MODE == "mv" ]];
+	then
+		echo -e "\tMoving: ${RESULTS_DIR}/$dirname";
+		echo -e "\t         mv ${RESULTS_DIR}/$dirname to ${BACKUP_DIR}/$dirname";
+		mv ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname
 	fi
 done;
