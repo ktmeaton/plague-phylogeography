@@ -116,7 +116,7 @@ rule clock_model:
         tree     = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.nwk",
         tsv      = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.tsv",
     output:
-        tree     = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model.nwk",
+        tree     = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_timetree.nwk",
         tsv      = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model.tsv",
     log:
         notebook = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_processed.py.ipynb",

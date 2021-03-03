@@ -6,12 +6,6 @@ CONFIRM=$2
 KEEP_DIR=(
 	data
 	sqlite_db
-	parse_tree
-	clock
-	clock_model
-	mugration
-	locus_coverage
-	geo
 	);
 
 if [[ ! $RESULTS_DIR ]];
@@ -39,5 +33,6 @@ do
 	then
 		echo -e "\tDeleting: $dirname";
 		echo -e "\t          rm -rf $dirname"
+		#rm -rf $dirname;
 	fi
 done;
