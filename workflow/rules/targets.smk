@@ -265,22 +265,6 @@ rule iqtree_scf_all:
 # Plot
 #------------------------------------------------------------------------------#
 
-rule plot_table_assembly_samples:
-    input:
-        results_dir + "/data/assembly/table_assembly_fna.pdf",
-
-rule plot_table_assembly_reference:
-    input:
-        results_dir + "/data/reference/table_reference_fna.pdf",
-
-rule plot_table_fastq_local:
-    input:
-        results_dir + "/data/local/table_local_fastq-gz.pdf",
-
-rule plot_table_fastq_sra:
-    input:
-        results_dir + "/data/sra/table_sra_fastq-gz.pdf",
-
 plot_missing_data_all_input = expand(results_dir + "/snippy_multi/all/missing_data_{locus_name}.snps.html",
 				                          locus_name = config["reference_locus_name"],
 					                     )
