@@ -43,7 +43,8 @@ dependencies:
   - descartes=1.1.0
   - contextily=1.0.1
   - dill=0.3.3
-  - cartopy
+  - cartopy=0.18.0
+  - augur=10.3.0
   # Filtering
   - biopython=1.76
   - mummer=3.23

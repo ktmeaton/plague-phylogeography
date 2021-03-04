@@ -5,6 +5,7 @@ channels:
 - defaults
 dependencies:
 - anaconda:gfortran_linux-64
+- augur=10.3.0
 - bioconda::adapterremoval=2.3.1
 - bioconda::adapterremovalfixprefix=0.0.5
 - bioconda::angsd=0.933
@@ -40,7 +41,7 @@ dependencies:
 - bioconda:vt=0.57721
 - biopython=1.76
 - blast=2.10.1
-- cartopy
+- cartopy=0.18.0
 - conda-forge::biopython=1.76
 - conda-forge::geopy=2.0.0
 - conda-forge::libiconv=1.15
