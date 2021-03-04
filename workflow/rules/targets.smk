@@ -329,6 +329,50 @@ rule clock_plot_all:
         clock_plot_all_input
 
 #------------------------------------------------------------------------------#
+
+mugration_model_all_input      = expand(results_dir + "/mugration/all/{locus_name}_filter{missing_data}/mugration_model.tsv",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+mugration_model_local_input    = [ x.replace("all", "local") for x in mugration_model_all_input ]
+mugration_model_sra_input      = [ x.replace("all", "sra") for x in mugration_model_all_input ]
+mugration_model_assembly_input = [ x.replace("all", "assembly") for x in mugration_model_all_input ]
+
+rule mugration_model_assembly:
+    input:
+        mugration_model_assembly_input
+rule mugration_model_sra:
+    input:
+        mugration_model_sra_input
+rule mugration_model_local:
+    input:
+        mugration_model_local_input
+rule mugration_model_all:
+    input:
+        mugration_model_all_input
+
+#------------------------------------------------------------------------------#
+
+mugration_plot_all_input      = expand(results_dir + "/mugration/all/{locus_name}_filter{missing_data}/mugration_plot_timetree-branch-major.svg",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+mugration_plot_local_input    = [ x.replace("all", "local") for x in mugration_plot_all_input ]
+mugration_plot_sra_input      = [ x.replace("all", "sra") for x in mugration_plot_all_input ]
+mugration_plot_assembly_input = [ x.replace("all", "assembly") for x in mugration_plot_all_input ]
+
+rule mugration_plot_assembly:
+    input:
+        mugration_plot_assembly_input
+rule mugration_plot_sra:
+    input:
+        mugration_plot_sra_input
+rule mugration_plot_local:
+    input:
+        mugration_plot_local_input
+rule mugration_plot_all:
+    input:
+        mugration_plot_all_input
+
+#------------------------------------------------------------------------------#
 # Plot
 #------------------------------------------------------------------------------#
 

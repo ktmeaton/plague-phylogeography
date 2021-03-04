@@ -100,6 +100,11 @@ rule clock_model:
     output:
         tree     = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_timetree.nwk",
         tsv      = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model.tsv",
+        skyline  = report(results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_skyline.svg",
+                          caption=os.path.join(report_dir, "clock", "skyline.rst"),
+						  category="Clock",
+						  subcategory="Skyline",
+                         ),
     log:
         notebook = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_processed.py.ipynb",
     notebook:
@@ -132,3 +137,36 @@ rule clock_plot:
         notebook = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_plot_processed.py.ipynb",
     notebook:
         os.path.join(notebooks_dir, "clock_plot.py.ipynb")
+
+rule mugration_model:
+    """
+    Estimate mugration models for discrete traits.
+    """
+    input:
+        tree     = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_timetree.nwk",
+        tsv      = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model.tsv",
+    output:
+        tree     = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_model_timetree.nwk",
+        tsv      = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_model.tsv",
+    log:
+        notebook = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_model_processed.py.ipynb",
+    notebook:
+        os.path.join(notebooks_dir, "mugration_model.py.ipynb")
+
+rule mugration_plot:
+    """
+    Plot the mugration results for the discrete traits.
+    """
+    input:
+        tree     = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_model_timetree.nwk",
+        tsv      = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_model.tsv",
+    output:
+        timetree = report(results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_plot_timetree-branch-major.svg",
+                          caption=os.path.join(report_dir, "mugration", "timetree-branch-major.rst"),
+						  category="Mugration",
+						  subcategory="Branch Major",
+                         ),
+    log:
+        notebook = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_plot_processed.py.ipynb",
+    notebook:
+        os.path.join(notebooks_dir, "mugration_plot.py.ipynb")

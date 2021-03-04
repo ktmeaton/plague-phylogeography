@@ -106,6 +106,8 @@ rule all:
         iqtree_scf_all_input,
         # Post-Phylo
         clock_plot_all_input,
+        mugration_plot_all_input,
+        # geo_plot_all_input...
         # Plot
         plot_missing_data_all_input,
         # Stats

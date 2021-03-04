@@ -12,10 +12,11 @@
 1. Remove xml tree output from notebooks.
 1. Create scripts to clean and backup results.
 1. Remove plot_table rules and script.
-1. Remove almost all attached files from report.
+1. Only include visual files into the report.
 1. Put config files inside the associated project directory.
 1. Update function ```identify_local_sample``` to use database.
 
 ## TO-DO
 
 1. Maybe write a function to condense notebook import/exporting.
+1. Rethink the use of large dill objects that can't be version controlled...

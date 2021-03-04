@@ -262,7 +262,7 @@ def convert_timetree_ticks(tree, step):
     # New tick values
     tick_vals = np.arange(min_tick, min_tick + date_range + extra, dtick)
     # New tick locations
-    tick_locs = tick_vals - offset
+    tick_locs = list(tick_vals - offset)
     # New tick labels
     tick_labels = ["%d" % (int(x)) for x in tick_vals]
     return {"tick_locs": tick_locs, "tick_labels": tick_labels}

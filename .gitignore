@@ -33,6 +33,7 @@ results/snippy_pairwise/*
 results/qualimap/*
 results/parse_tree/*
 results/clock/*
+results/mugration/*
 
 # Project
 project/*/iqtree/*/*ckp.gz
