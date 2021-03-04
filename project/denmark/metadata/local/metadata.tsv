@@ -1,0 +1,16 @@
+Sample	Strain	Date	DateBP	Country	Province	CountryLat	CountryLon	ProvinceLat	ProvinceLon	Biovar	Branch_Major	Branch_Minor	BioSample	BioSampleComment	Branch_Number
+D25	A21x23	[1100:1555]	[-921:-466]	Denmark	Region of Southern Denmark	55.670249	10.3333283	55.3784583	9.13192766793894	Second Pandemic	1.PRE	1.PRE1	D25	KEEP: Local Ancient Denmark	1
+D51	GrGC15	[1100:1600]	[-921:-421]	Denmark	Central Denmark Region	55.670249	10.3333283	56.23564835	9.234602771636588	Second Pandemic	1.PRE	1.PRE1	D51	KEEP: Local Ancient Denmark	1
+D62	G25A	[1200:1560 ]	[-821:-461]	Denmark	Region of Southern Denmark	55.670249	10.3333283	55.3784583	9.13192766793894	Second Pandemic	1.PRE	1.PRE1	D62	KEEP: Local Ancient Denmark	1
+D71	G16	[1200:1560 ]	[-821:-461]	Denmark	Region of Southern Denmark	55.670249	10.3333283	55.3784583	9.13192766793894	Second Pandemic	1.PRE	1.PRE1	D71	KEEP: Local Ancient Denmark	1
+D72	G207	[1200:1560 ]	[-821:-461]	Denmark	Region of Southern Denmark	55.670249	10.3333283	55.3784583	9.13192766793894	Second Pandemic	1.PRE	1.PRE1	D72	KEEP: Local Ancient Denmark	1
+D75	G861x1035	[1200:1560 ]	[-821:-461]	Denmark	Region of Southern Denmark	55.670249	10.3333283	55.3784583	9.13192766793894	Second Pandemic	1.PRE	1.PRE1	D75	KEEP: Local Ancient Denmark	1
+P187	A146x3011	[1150:1574]	[-871:-447]	Denmark	Central Denmark Region	55.670249	10.3333283	56.23564835	9.234602771636588	Second Pandemic	1.PRE	1.PRE1	P187	KEEP: Local Ancient Denmark	1
+P212	G371	[1150:1350]	[-871:-671]	Denmark	Central Denmark Region	55.670249	10.3333283	56.23564835	9.234602771636588	Second Pandemic	1.PRE	1.PRE1	P212	KEEP: Local Ancient Denmark	1
+P246	X1265	[1200:1560]	[-821:-461]	Denmark	Region of Southern Denmark	55.670249	10.3333283	55.3784583	9.13192766793894	Second Pandemic	1.PRE	1.PRE1	P246	KEEP: Local Ancient Denmark	1
+P384	A1155x1155	[1100:1500 ]	[-921:-521]	Denmark	Central Denmark Region	55.670249	10.3333283	56.23564835	9.234602771636588	Second Pandemic	1.PRE	1.PRE1	P384	KEEP: Local Ancient Denmark	1
+P387	A1480x1480	[1100:1500 ]	[-921:-521]	Denmark	Central Denmark Region	55.670249	10.3333283	56.23564835	9.234602771636588	Second Pandemic	1.PRE	1.PRE1	P387	KEEP: Local Ancient Denmark	1
+R21	GrID319	[1100:1600]	[-921:-421]	Denmark	Central Denmark Region	55.670249	10.3333283	56.23564835	9.234602771636588	Second Pandemic	1.PRE	1.PRE1	R21	KEEP: Local Ancient Denmark	1
+R36	G25Bx98	[1200:1560 ]	[-821:-461]	Denmark	Region of Southern Denmark	55.670249	10.3333283	55.3784583	9.13192766793894	Second Pandemic	1.PRE	1.PRE1	R36	KEEP: Local Ancient Denmark	1
+R44	G70x212	[1200:1560 ]	[-821:-461]	Denmark	Region of Southern Denmark	55.670249	10.3333283	55.3784583	9.13192766793894	Second Pandemic	1.PRE	1.PRE1	R44	KEEP: Local Ancient Denmark	1
+D24	A19x21	[1100:1555]	[-921:-466]	Denmark	Region of Southern Denmark	55.670249	10.3333283	55.3784583	9.13192766793894	Second Pandemic	1.PRE	1.PRE1	D24	KEEP: Local Ancient Denmark	1
