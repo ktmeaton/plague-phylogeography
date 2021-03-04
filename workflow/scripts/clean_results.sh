@@ -1,11 +1,14 @@
 #!/bin/bash
 
 RESULTS_DIR=$1
-CONFIRM=$2
+MODE=$2
 
 KEEP_DIR=(
 	data
 	sqlite_db
+	eager
+	snippy_pairwise
+	qualimap
 	);
 
 if [[ ! $RESULTS_DIR ]];
@@ -25,14 +28,16 @@ do
 		if [[ $dirname == $target ]];
 		then
 			keep="true";
-	  fi;
+	    fi;
 	done;
-
-	# Check if this directory should be kept
-	if [[ $keep == "false" && $CONFIRM ]];
+	if [[ $keep == "false" && $MODE == "list" ]];
 	then
-		echo -e "\tDeleting: $dirname";
-		echo -e "\t          rm -rf $dirname"
-		rm -rf $dirname;
-	fi
+			echo -e "\tRemoving: ${RESULTS_DIR}/$dirname";
+			echo -e "\t         rm -rf ${RESULTS_DIR}/$dirname";
+	elif [[ $keep == "false" && $MODE == "rm" ]];
+	then
+			echo -e "\tRemoving: ${RESULTS_DIR}/$dirname";
+			echo -e "\t         rm -rf ${RESULTS_DIR}/$dirname";
+			rm -rf ${RESULTS_DIR}/$dirname
+	fi;
 done;

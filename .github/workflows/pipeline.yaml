@@ -46,10 +46,6 @@ jobs:
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
-      # Clean results
-      - name: clean results
-        run: |
-          rm -rf results/iqtree/ results/metadata results/multiqc;
       #------------------------------------------------------------------------#
       # Setup conda with mamba
       - name: setup conda
@@ -62,11 +58,6 @@ jobs:
       - name: create conda env
         run: mamba env create -f workflow/envs/merge/environment.yaml;
       #------------------------------------------------------------------------#
-      # Clean Old Results
-      - name: clean results
-        shell: bash -l {0}
-        run: workflow/scripts/clean_results.sh results yes
-
       # Test Data Download
       - name: run help
         shell: bash -l {0}
@@ -117,19 +108,11 @@ jobs:
       # Checkout Repository
       - name: checkout repo
         uses: actions/checkout@v2
-      # Clean results
-      - name: clean results
-        run: |
-          rm -rf results/iqtree/ results/metadata results/multiqc;
       #------------------------------------------------------------------------#
       # pull docker image
       - name: docker pull
         run: docker pull ktmeaton/plague-phylogeography:dev
       #------------------------------------------------------------------------#
-      # Clean Old Results
-      - name: clean results
-        shell: bash -l {0}
-        run: workflow/scripts/clean_results.sh results yes
       # run help
       - name: run help
         run: docker run -v $PWD:/pipeline -e FLOWDASH_BIO_USERNAME=$FLOWDASH_BIO_USERNAME -e FLOWDASH_BIO_PASSWORD=$FLOWDASH_BIO_PASSWORD -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions help;

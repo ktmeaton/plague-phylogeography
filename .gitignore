@@ -47,4 +47,3 @@ project/*/multiqc/*/multiqc_data/*
 
 # Projects to Ignore
 project/test/data/
-project/main/*
