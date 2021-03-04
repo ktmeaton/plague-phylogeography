@@ -306,7 +306,27 @@ rule clock_model_all:
     input:
         clock_model_all_input
 
+#------------------------------------------------------------------------------#
 
+clock_plot_all_input      = expand(results_dir + "/clock/all/{locus_name}_filter{missing_data}/clock_plot_timetree.svg",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+clock_plot_local_input    = [ x.replace("all", "local") for x in clock_plot_all_input ]
+clock_plot_sra_input      = [ x.replace("all", "sra") for x in clock_plot_all_input ]
+clock_plot_assembly_input = [ x.replace("all", "assembly") for x in clock_plot_all_input ]
+
+rule clock_plot_assembly:
+    input:
+        clock_plot_assembly_input
+rule clock_plot_sra:
+    input:
+        clock_plot_sra_input
+rule clock_plot_local:
+    input:
+        clock_plot_local_input
+rule clock_plot_all:
+    input:
+        clock_plot_all_input
 
 #------------------------------------------------------------------------------#
 # Plot

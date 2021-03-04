@@ -104,3 +104,31 @@ rule clock_model:
         notebook = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_processed.py.ipynb",
     notebook:
         os.path.join(notebooks_dir, "clock_model.py.ipynb")
+
+rule clock_plot:
+    """
+    Plot the clock results from the estimated clock model.
+    """
+    input:
+        tree     = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_timetree.nwk",
+        tsv      = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model.tsv",
+    output:
+        timetree = report(results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_plot_timetree.svg",
+                          caption=os.path.join(report_dir, "clock", "timetree.rst"),
+						  category="Clock",
+						  subcategory="Time Tree",
+                         ),
+        rtt      = report(results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_plot_rtt.svg",
+                          caption=os.path.join(report_dir, "clock", "rtt.rst"),
+						  category="Clock",
+						  subcategory="RTT",
+                         ),
+        rate     = report(results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_plot_rate-variation.svg",
+                          caption=os.path.join(report_dir, "clock", "rate.rst"),
+						  category="Clock",
+						  subcategory="Rate",
+                         ),
+    log:
+        notebook = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_plot_processed.py.ipynb",
+    notebook:
+        os.path.join(notebooks_dir, "clock_plot.py.ipynb")

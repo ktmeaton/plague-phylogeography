@@ -1,0 +1,15 @@
+branch_number	2	#8000ff
+branch_number	1	#80ffb4
+branch_number	0	#ff0000
+branch_major	2.MED	#8000ff
+branch_major	1.ORI	#80ffb4
+branch_major	0.ANT	#ff0000
+branch_minor	2.MED1	#8000ff
+branch_minor	1.ORI1	#80ffb4
+branch_minor	0.ANT1	#ff0000
+country	Russia	#8000ff
+country	United States of America	#80ffb4
+country	China	#ff0000
+province	Rostov Oblast	#8000ff
+province	Colorado	#80ffb4
+province	Xinjiang	#ff0000

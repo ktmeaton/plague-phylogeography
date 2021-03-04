@@ -1,0 +1,586 @@
+{
+  "meta": {
+    "build_url": "https://github.com/ktmeaton/plague-phylogeography",
+    "colorings": [
+      {
+        "key": "scf",
+        "title": "sCF",
+        "type": "continuous"
+      },
+      {
+        "key": "biosample",
+        "title": "Data Accession",
+        "type": "categorical"
+      },
+      {
+        "key": "biosamplecomment",
+        "title": "Data Comment",
+        "type": "categorical"
+      },
+      {
+        "key": "biovar",
+        "title": "Biovar",
+        "type": "categorical"
+      },
+      {
+        "key": "branch_major",
+        "scale": [
+          [
+            "2.MED",
+            "#8000ff"
+          ],
+          [
+            "1.ORI",
+            "#80ffb4"
+          ],
+          [
+            "0.ANT",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Major",
+        "type": "categorical"
+      },
+      {
+        "key": "branch_minor",
+        "scale": [
+          [
+            "2.MED1",
+            "#8000ff"
+          ],
+          [
+            "1.ORI1",
+            "#80ffb4"
+          ],
+          [
+            "0.ANT1",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Minor",
+        "type": "categorical"
+      },
+      {
+        "key": "branch_number",
+        "scale": [
+          [
+            "2",
+            "#8000ff"
+          ],
+          [
+            "1",
+            "#80ffb4"
+          ],
+          [
+            "0",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Number",
+        "type": "categorical"
+      },
+      {
+        "key": "country",
+        "scale": [
+          [
+            "Russia",
+            "#8000ff"
+          ],
+          [
+            "United States of America",
+            "#80ffb4"
+          ],
+          [
+            "China",
+            "#ff0000"
+          ]
+        ],
+        "title": "Country",
+        "type": "categorical"
+      },
+      {
+        "key": "datebp",
+        "title": "Collection Date (BP)",
+        "type": "continuous"
+      },
+      {
+        "key": "province",
+        "scale": [
+          [
+            "Rostov Oblast",
+            "#8000ff"
+          ],
+          [
+            "Colorado",
+            "#80ffb4"
+          ],
+          [
+            "Xinjiang",
+            "#ff0000"
+          ]
+        ],
+        "title": "Province",
+        "type": "categorical"
+      },
+      {
+        "key": "strain",
+        "title": "Strain",
+        "type": "categorical"
+      },
+      {
+        "key": "ufboot",
+        "title": "Ultrafast Bootstrap",
+        "type": "continuous"
+      },
+      {
+        "key": "biosample",
+        "title": "Data Accession",
+        "type": "categorical"
+      },
+      {
+        "key": "ufboot",
+        "title": "Ultrafast Bootstrap",
+        "type": "continuous"
+      },
+      {
+        "key": "branch_number",
+        "scale": [
+          [
+            "2",
+            "#8000ff"
+          ],
+          [
+            "1",
+            "#80ffb4"
+          ],
+          [
+            "0",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Number",
+        "type": "categorical"
+      },
+      {
+        "key": "biovar",
+        "title": "Biovar",
+        "type": "categorical"
+      },
+      {
+        "key": "branch_major",
+        "scale": [
+          [
+            "2.MED",
+            "#8000ff"
+          ],
+          [
+            "1.ORI",
+            "#80ffb4"
+          ],
+          [
+            "0.ANT",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Major",
+        "type": "categorical"
+      },
+      {
+        "key": "biosamplecomment",
+        "title": "Data Comment",
+        "type": "categorical"
+      },
+      {
+        "key": "datebp",
+        "title": "Collection Date (BP)",
+        "type": "continuous"
+      },
+      {
+        "key": "province",
+        "scale": [
+          [
+            "Rostov Oblast",
+            "#8000ff"
+          ],
+          [
+            "Colorado",
+            "#80ffb4"
+          ],
+          [
+            "Xinjiang",
+            "#ff0000"
+          ]
+        ],
+        "title": "Province",
+        "type": "categorical"
+      },
+      {
+        "key": "scf",
+        "title": "sCF",
+        "type": "continuous"
+      },
+      {
+        "key": "country",
+        "scale": [
+          [
+            "Russia",
+            "#8000ff"
+          ],
+          [
+            "United States of America",
+            "#80ffb4"
+          ],
+          [
+            "China",
+            "#ff0000"
+          ]
+        ],
+        "title": "Country",
+        "type": "categorical"
+      },
+      {
+        "key": "strain",
+        "title": "Strain",
+        "type": "categorical"
+      },
+      {
+        "key": "branch_minor",
+        "scale": [
+          [
+            "2.MED1",
+            "#8000ff"
+          ],
+          [
+            "1.ORI1",
+            "#80ffb4"
+          ],
+          [
+            "0.ANT1",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Minor",
+        "type": "categorical"
+      }
+    ],
+    "display_defaults": {
+      "branch_label": "none",
+      "color_by": "branch_major",
+      "distance_measure": "div",
+      "geo_resolution": "province",
+      "map_triplicate": true
+    },
+    "filters": [
+      "country",
+      "province",
+      "biovar",
+      "branch_major",
+      "branch_minor"
+    ],
+    "geo_resolutions": [
+      {
+        "demes": {
+          "China": {
+            "latitude": 35.000074,
+            "longitude": 104.999927
+          },
+          "Russia": {
+            "latitude": 64.6863136,
+            "longitude": 97.7453061
+          },
+          "United States of America": {
+            "latitude": 39.7837304,
+            "longitude": -100.4458825
+          }
+        },
+        "key": "country"
+      },
+      {
+        "demes": {
+          "Colorado": {
+            "latitude": 38.7251776,
+            "longitude": -105.607716
+          },
+          "Rostov Oblast": {
+            "latitude": 47.6222451,
+            "longitude": 40.7957942
+          },
+          "Xinjiang": {
+            "latitude": 42.4804953,
+            "longitude": 85.4633464
+          }
+        },
+        "key": "province"
+      }
+    ],
+    "maintainers": [
+      {
+        "name": "name"
+      },
+      {
+        "name": "url"
+      }
+    ],
+    "panels": [
+      "tree",
+      "map"
+    ],
+    "title": "Plague Phylogeography",
+    "updated": "2021-03-04"
+  },
+  "tree": {
+    "branch_attrs": {},
+    "children": [
+      {
+        "branch_attrs": {},
+        "name": "GCA_009909635.1_ASM990963v1_genomic",
+        "node_attrs": {
+          "biosample": {
+            "value": "SAMN13632815"
+          },
+          "biosamplecomment": {
+            "value": "KEEP: Assembly Modern"
+          },
+          "biovar": {
+            "value": "Medievalis"
+          },
+          "branch_major": {
+            "value": "2.MED"
+          },
+          "branch_minor": {
+            "value": "2.MED1"
+          },
+          "branch_number": {
+            "value": "2"
+          },
+          "country": {
+            "value": "Russia"
+          },
+          "datebp": {
+            "value": "-98"
+          },
+          "div": 2.44708e-05,
+          "province": {
+            "value": "Rostov Oblast"
+          },
+          "strain": {
+            "value": "9_10"
+          }
+        }
+      },
+      {
+        "branch_attrs": {},
+        "name": "Reference",
+        "node_attrs": {
+          "biosamplecomment": {
+            "value": "KEEP: Assembly Modern Reference"
+          },
+          "biovar": {
+            "value": "Orientalis"
+          },
+          "branch_major": {
+            "value": "1.ORI"
+          },
+          "branch_minor": {
+            "value": "1.ORI1"
+          },
+          "branch_number": {
+            "value": "1"
+          },
+          "country": {
+            "value": "United States of America"
+          },
+          "datebp": {
+            "value": -29.0
+          },
+          "div": 2.3073e-05,
+          "province": {
+            "value": "Colorado"
+          }
+        }
+      },
+      {
+        "branch_attrs": {},
+        "children": [
+          {
+            "branch_attrs": {},
+            "children": [
+              {
+                "branch_attrs": {},
+                "name": "GCA_009669545.1_ASM966954v1_genomic",
+                "node_attrs": {
+                  "biosample": {
+                    "value": "SAMN07722925"
+                  },
+                  "biosamplecomment": {
+                    "value": "KEEP: Assembly Modern"
+                  },
+                  "biovar": {
+                    "value": "Antiqua"
+                  },
+                  "branch_major": {
+                    "value": "0.ANT"
+                  },
+                  "branch_minor": {
+                    "value": "0.ANT1"
+                  },
+                  "branch_number": {
+                    "value": "0"
+                  },
+                  "country": {
+                    "value": "China"
+                  },
+                  "datebp": {
+                    "value": "-15"
+                  },
+                  "div": 2.72917e-05,
+                  "province": {
+                    "value": "Xinjiang"
+                  },
+                  "strain": {
+                    "value": "42126"
+                  }
+                }
+              },
+              {
+                "branch_attrs": {},
+                "name": "GCA_009669555.1_ASM966955v1_genomic",
+                "node_attrs": {
+                  "biosample": {
+                    "value": "SAMN07722924"
+                  },
+                  "biosamplecomment": {
+                    "value": "KEEP: Assembly Modern"
+                  },
+                  "biovar": {
+                    "value": "Antiqua"
+                  },
+                  "branch_major": {
+                    "value": "0.ANT"
+                  },
+                  "branch_minor": {
+                    "value": "0.ANT1"
+                  },
+                  "branch_number": {
+                    "value": "0"
+                  },
+                  "country": {
+                    "value": "China"
+                  },
+                  "datebp": {
+                    "value": "-16"
+                  },
+                  "div": 2.75015e-05,
+                  "province": {
+                    "value": "Xinjiang"
+                  },
+                  "strain": {
+                    "value": "42123"
+                  }
+                }
+              }
+            ],
+            "name": "NODE2",
+            "node_attrs": {
+              "div": 2.72684e-05,
+              "scf": {
+                "value": 0.0
+              },
+              "ufboot": {
+                "value": 57.0
+              }
+            }
+          },
+          {
+            "branch_attrs": {},
+            "children": [
+              {
+                "branch_attrs": {},
+                "children": [
+                  {
+                    "branch_attrs": {},
+                    "name": "SAMN02442718",
+                    "node_attrs": {
+                      "div": 3.18884e-05
+                    }
+                  },
+                  {
+                    "branch_attrs": {},
+                    "name": "testlocal1",
+                    "node_attrs": {
+                      "div": 3.18884e-05
+                    }
+                  }
+                ],
+                "name": "NODE4",
+                "node_attrs": {
+                  "div": 3.18651e-05,
+                  "scf": {
+                    "value": 100.0
+                  },
+                  "ufboot": {
+                    "value": 81.0
+                  }
+                }
+              },
+              {
+                "branch_attrs": {},
+                "children": [
+                  {
+                    "branch_attrs": {},
+                    "name": "SAMN02442721",
+                    "node_attrs": {
+                      "div": 3.20808e-05
+                    }
+                  },
+                  {
+                    "branch_attrs": {},
+                    "name": "testlocal2",
+                    "node_attrs": {
+                      "div": 3.20808e-05
+                    }
+                  }
+                ],
+                "name": "NODE5",
+                "node_attrs": {
+                  "div": 3.20575e-05,
+                  "scf": {
+                    "value": 100.0
+                  },
+                  "ufboot": {
+                    "value": 94.0
+                  }
+                }
+              }
+            ],
+            "name": "NODE3",
+            "node_attrs": {
+              "div": 3.13523e-05,
+              "scf": {
+                "value": 100.0
+              },
+              "ufboot": {
+                "value": 99.0
+              }
+            }
+          }
+        ],
+        "name": "NODE1",
+        "node_attrs": {
+          "div": 2.72121e-05,
+          "scf": {
+            "value": 0.0
+          },
+          "ufboot": {
+            "value": 91.0
+          }
+        }
+      }
+    ],
+    "name": "NODE0",
+    "node_attrs": {
+      "div": 0
+    }
+  },
+  "version": "v2"
+}
