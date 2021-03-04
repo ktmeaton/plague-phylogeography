@@ -85,6 +85,8 @@ rule parse_tree:
     output:
         tsv      = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.tsv",
         tree     = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree.nwk",
+    resources:
+        load     = 100,
     log:
         notebook = results_dir + "/parse_tree/{reads_origin}/{locus_name}_filter{missing_data}/parse_tree_processed.py.ipynb",
     notebook:
@@ -105,6 +107,8 @@ rule clock_model:
 						  category="Clock",
 						  subcategory="Skyline",
                          ),
+    resources:
+        load     = 100,
     log:
         notebook = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_processed.py.ipynb",
     notebook:
@@ -133,6 +137,8 @@ rule clock_plot:
 						  category="Clock",
 						  subcategory="Rate",
                          ),
+    resources:
+        load     = 100,
     log:
         notebook = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_plot_processed.py.ipynb",
     notebook:
@@ -148,6 +154,8 @@ rule mugration_model:
     output:
         tree     = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_model_timetree.nwk",
         tsv      = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_model.tsv",
+    resources:
+        load     = 100,
     log:
         notebook = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_model_processed.py.ipynb",
     notebook:
@@ -166,6 +174,8 @@ rule mugration_plot:
 						  category="Mugration",
 						  subcategory="Branch Major",
                          ),
+    resources:
+        load     = 100,
     log:
         notebook = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_plot_processed.py.ipynb",
     notebook:
@@ -185,8 +195,10 @@ rule geo:
                            caption=os.path.join(report_dir, "geo", "spreadmap.rst"),
                            category="Geo",
                            subcategory="Spreadmap",
-                          )
+                          ),
+                              resources:
+        load      = 100,
     log:
-        notebook = results_dir + "/geo/{reads_origin}/{locus_name}_filter{missing_data}/geo_processed.py.ipynb",
+        notebook  = results_dir + "/geo/{reads_origin}/{locus_name}_filter{missing_data}/geo_processed.py.ipynb",
     notebook:
         os.path.join(notebooks_dir, "geo.py.ipynb")
