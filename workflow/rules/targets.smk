@@ -373,6 +373,28 @@ rule mugration_plot_all:
         mugration_plot_all_input
 
 #------------------------------------------------------------------------------#
+
+geo_all_input      = expand(results_dir + "/geo/all/{locus_name}_filter{missing_data}/geo.tsv",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+geo_local_input    = [ x.replace("all", "local") for x in geo_all_input ]
+geo_sra_input      = [ x.replace("all", "sra") for x in geo_all_input ]
+geo_assembly_input = [ x.replace("all", "assembly") for x in geo_all_input ]
+
+rule geo_assembly:
+    input:
+        geo_assembly_input
+rule geo_sra:
+    input:
+        geo_sra_input
+rule geo_local:
+    input:
+        geo_local_input
+rule geo_all:
+    input:
+        geo_all_input
+
+#------------------------------------------------------------------------------#
 # Plot
 #------------------------------------------------------------------------------#
 
@@ -398,7 +420,6 @@ rule plot_missing_data_local:
 rule plot_missing_data_all:
     input:
 		    plot_missing_data_all_input
-
 
 #------------------------------------------------------------------------------#
 # Metadata

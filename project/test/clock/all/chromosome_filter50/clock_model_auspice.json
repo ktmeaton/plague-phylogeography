@@ -69,7 +69,7 @@
         "key": "branch_number",
         "scale": [
           [
-            "2",
+            "2.0",
             "#8000ff"
           ],
           [
@@ -77,7 +77,7 @@
             "#80ffb4"
           ],
           [
-            "0",
+            "0.0",
             "#ff0000"
           ]
         ],
@@ -158,53 +158,9 @@
         "type": "categorical"
       },
       {
-        "key": "num_date_bar",
-        "title": "num_date_bar",
+        "key": "biosample",
+        "title": "Data Accession",
         "type": "categorical"
-      },
-      {
-        "key": "branch_number",
-        "scale": [
-          [
-            "2",
-            "#8000ff"
-          ],
-          [
-            "1",
-            "#80ffb4"
-          ],
-          [
-            "0",
-            "#ff0000"
-          ]
-        ],
-        "title": "Branch Number",
-        "type": "categorical"
-      },
-      {
-        "key": "rate",
-        "title": "Substitution Rate",
-        "type": "continuous"
-      },
-      {
-        "key": "scf",
-        "title": "sCF",
-        "type": "continuous"
-      },
-      {
-        "key": "datebp",
-        "title": "Collection Date (BP)",
-        "type": "continuous"
-      },
-      {
-        "key": "strain",
-        "title": "Strain",
-        "type": "categorical"
-      },
-      {
-        "key": "rate_fold_change",
-        "title": "Substitution Rate Fold Change",
-        "type": "continuous"
       },
       {
         "key": "branch_minor",
@@ -226,9 +182,14 @@
         "type": "categorical"
       },
       {
-        "key": "biosamplecomment",
-        "title": "Data Comment",
-        "type": "categorical"
+        "key": "rate",
+        "title": "Substitution Rate",
+        "type": "continuous"
+      },
+      {
+        "key": "datebp",
+        "title": "Collection Date (BP)",
+        "type": "continuous"
       },
       {
         "key": "branch_major",
@@ -250,8 +211,66 @@
         "type": "categorical"
       },
       {
-        "key": "biosample",
-        "title": "Data Accession",
+        "key": "province",
+        "scale": [
+          [
+            "Rostov Oblast",
+            "#8000ff"
+          ],
+          [
+            "Colorado",
+            "#80ffb4"
+          ],
+          [
+            "Xinjiang",
+            "#ff0000"
+          ]
+        ],
+        "title": "Province",
+        "type": "categorical"
+      },
+      {
+        "key": "num_date_bar",
+        "title": "num_date_bar",
+        "type": "categorical"
+      },
+      {
+        "key": "biosamplecomment",
+        "title": "Data Comment",
+        "type": "categorical"
+      },
+      {
+        "key": "scf",
+        "title": "sCF",
+        "type": "continuous"
+      },
+      {
+        "key": "strain",
+        "title": "Strain",
+        "type": "categorical"
+      },
+      {
+        "key": "rate_fold_change",
+        "title": "Substitution Rate Fold Change",
+        "type": "continuous"
+      },
+      {
+        "key": "branch_number",
+        "scale": [
+          [
+            "2.0",
+            "#8000ff"
+          ],
+          [
+            "1",
+            "#80ffb4"
+          ],
+          [
+            "0.0",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Number",
         "type": "categorical"
       },
       {
@@ -271,25 +290,6 @@
           ]
         ],
         "title": "Country",
-        "type": "categorical"
-      },
-      {
-        "key": "province",
-        "scale": [
-          [
-            "Rostov Oblast",
-            "#8000ff"
-          ],
-          [
-            "Colorado",
-            "#80ffb4"
-          ],
-          [
-            "Xinjiang",
-            "#ff0000"
-          ]
-        ],
-        "title": "Province",
         "type": "categorical"
       },
       {
@@ -386,13 +386,13 @@
             "value": "2.MED1"
           },
           "branch_number": {
-            "value": "2"
+            "value": "2.0"
           },
           "country": {
             "value": "Russia"
           },
           "datebp": {
-            "value": "-98"
+            "value": -98.0
           },
           "div": 2.256714284811092e-05,
           "num_date": {
@@ -495,13 +495,13 @@
                 "value": "0.ANT1"
               },
               "branch_number": {
-                "value": "0"
+                "value": "0.0"
               },
               "country": {
                 "value": "China"
               },
               "datebp": {
-                "value": "-15"
+                "value": -15.0
               },
               "div": 2.5145372400850223e-05,
               "num_date": {
@@ -551,13 +551,13 @@
                 "value": "0.ANT1"
               },
               "branch_number": {
-                "value": "0"
+                "value": "0.0"
               },
               "country": {
                 "value": "China"
               },
               "datebp": {
-                "value": "-16"
+                "value": -16.0
               },
               "div": 2.5360262314845522e-05,
               "num_date": {

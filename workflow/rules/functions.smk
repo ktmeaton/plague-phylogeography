@@ -186,3 +186,6 @@ def remove_duplicates(dup_list):
     if item not in res_list:
        res_list.append(item)
   return res_list
+
+def identify_output_spreadmap(keywords):
+    print(keywords)

@@ -1,0 +1,424 @@
+{
+  "alignment": "/mnt/c/Users/ktmea/Projects/plague-phylogeography/results/snippy_multi/all/snippy-core_chromosome.snps.filter50.aln",
+  "generated_by": {
+    "program": "augur",
+    "version": "10.3.0"
+  },
+  "input_tree": "/mnt/c/Users/ktmea/Projects/plague-phylogeography/results/mugration/all/chromosome_filter50/mugration_model_divtree.nwk",
+  "models": {
+    "Branch_Major": {
+      "alphabet": [
+        "0.ANT",
+        "1.ORI",
+        "2.MED",
+        "NA"
+      ],
+      "equilibrium_probabilities": [
+        [
+          0.0,
+          1.4347421783950207,
+          1.417029964418617
+        ],
+        [
+          1.4347421783950207,
+          0.0,
+          1.6773151945947233
+        ],
+        [
+          1.417029964418617,
+          1.6773151945947233,
+          0.0
+        ]
+      ],
+      "rate": 355.75231574830934
+    },
+    "Branch_Minor": {
+      "alphabet": [
+        "0.ANT1",
+        "1.ORI1",
+        "2.MED1",
+        "NA"
+      ],
+      "equilibrium_probabilities": [
+        [
+          0.0,
+          1.4347421783950207,
+          1.417029964418617
+        ],
+        [
+          1.4347421783950207,
+          0.0,
+          1.6773151945947233
+        ],
+        [
+          1.417029964418617,
+          1.6773151945947233,
+          0.0
+        ]
+      ],
+      "rate": 355.75231574830934
+    },
+    "Branch_Number": {
+      "alphabet": [
+        "0",
+        "1",
+        "2",
+        "NA"
+      ],
+      "equilibrium_probabilities": [
+        [
+          0.0,
+          1.4347421783950207,
+          1.417029964418617
+        ],
+        [
+          1.4347421783950207,
+          0.0,
+          1.6773151945947233
+        ],
+        [
+          1.417029964418617,
+          1.6773151945947233,
+          0.0
+        ]
+      ],
+      "rate": 355.75231574830934
+    },
+    "Country": {
+      "alphabet": [
+        "China",
+        "Russia",
+        "United States of America",
+        "NA"
+      ],
+      "equilibrium_probabilities": [
+        [
+          0.0,
+          1.4347421783950212,
+          1.417029964418618
+        ],
+        [
+          1.4347421783950212,
+          0.0,
+          1.6773151945947236
+        ],
+        [
+          1.417029964418618,
+          1.6773151945947236,
+          0.0
+        ]
+      ],
+      "rate": 355.7523157483092
+    },
+    "Province": {
+      "alphabet": [
+        "Colorado",
+        "Rostov Oblast",
+        "Xinjiang",
+        "NA"
+      ],
+      "equilibrium_probabilities": [
+        [
+          0.0,
+          1.6773151945947287,
+          1.4170299644186155
+        ],
+        [
+          1.6773151945947287,
+          0.0,
+          1.4347421783950163
+        ],
+        [
+          1.4170299644186155,
+          1.4347421783950163,
+          0.0
+        ]
+      ],
+      "rate": 355.75231574831395
+    }
+  },
+  "nodes": {
+    "GCA_009669545.1_ASM966954v1_genomic": {
+      "biosample": "SAMN07722925",
+      "biosamplecomment": "KEEP: Assembly Modern",
+      "biovar": "Antiqua",
+      "branch_length": 2.33e-08,
+      "branch_major": "0.ANT",
+      "branch_major_confidence": {
+        "0.ANT": 0.9999999999999999
+      },
+      "branch_major_entropy": -9.99866855976916e-13,
+      "branch_minor": "0.ANT1",
+      "branch_minor_confidence": {
+        "0.ANT1": 0.9999999999999999
+      },
+      "branch_minor_entropy": -9.99866855976916e-13,
+      "branch_number": "0",
+      "branch_number_confidence": {
+        "0": 0.9999999999999999
+      },
+      "branch_number_entropy": -9.99866855976916e-13,
+      "clock_length": 2.67676063370277,
+      "country": "China",
+      "country_confidence": {
+        "China": 1.0
+      },
+      "country_entropy": -1.000088900581841e-12,
+      "date": 2006.0,
+      "datebp": -15.0,
+      "mutation_length": 2.828252052232392e-18,
+      "num_date": 2008.355573507479,
+      "num_date_bar": "15.0:15.0",
+      "num_date_confidence": [
+        2006.0,
+        2006.0
+      ],
+      "province": "Xinjiang",
+      "province_confidence": {
+        "Xinjiang": 1.0
+      },
+      "province_entropy": -1.000088900581841e-12,
+      "rate": 5.812589039970189e-09,
+      "rate_fold_change": 0.29928774621077364,
+      "raw_date": "2008-05-10",
+      "scf": "NA",
+      "strain": "42126",
+      "ufboot": "NA"
+    },
+    "GCA_009669555.1_ASM966955v1_genomic": {
+      "biosample": "SAMN07722924",
+      "biosamplecomment": "KEEP: Assembly Modern",
+      "biovar": "Antiqua",
+      "branch_length": 2.331e-07,
+      "branch_major": "0.ANT",
+      "branch_major_confidence": {
+        "0.ANT": 0.9999999999999999
+      },
+      "branch_major_entropy": -9.99866855976916e-13,
+      "branch_minor": "0.ANT1",
+      "branch_minor_confidence": {
+        "0.ANT1": 0.9999999999999999
+      },
+      "branch_minor_entropy": -9.99866855976916e-13,
+      "branch_number": "0",
+      "branch_number_confidence": {
+        "0": 0.9999999999999999
+      },
+      "branch_number_entropy": -9.99866855976916e-13,
+      "clock_length": 1.8320264269723339,
+      "country": "China",
+      "country_confidence": {
+        "China": 1.0
+      },
+      "country_entropy": -1.000088900581841e-12,
+      "date": 2005.0,
+      "datebp": -16.0,
+      "mutation_length": 2.1488991399812898e-07,
+      "num_date": 2007.5108393007486,
+      "num_date_bar": "16.0:16.0",
+      "num_date_confidence": [
+        2005.0,
+        2005.0
+      ],
+      "province": "Xinjiang",
+      "province_confidence": {
+        "Xinjiang": 1.0
+      },
+      "province_entropy": -1.000088900581841e-12,
+      "rate": 3.2475607788459e-08,
+      "rate_fold_change": 1.6721552814067155,
+      "raw_date": "2007-07-06",
+      "scf": "NA",
+      "strain": "42123",
+      "ufboot": "NA"
+    },
+    "GCA_009909635.1_ASM990963v1_genomic": {
+      "biosample": "SAMN13632815",
+      "biosamplecomment": "KEEP: Assembly Modern",
+      "biovar": "Medievalis",
+      "branch_length": 2.44708e-05,
+      "branch_major": "2.MED",
+      "branch_major_confidence": {
+        "2.MED": 1.0
+      },
+      "branch_major_entropy": -1.000088900581841e-12,
+      "branch_minor": "2.MED1",
+      "branch_minor_confidence": {
+        "2.MED1": 1.0
+      },
+      "branch_minor_entropy": -1.000088900581841e-12,
+      "branch_number": "2",
+      "branch_number_confidence": {
+        "2": 1.0
+      },
+      "branch_number_entropy": -1.000088900581841e-12,
+      "clock_length": 1082.5017108696125,
+      "country": "Russia",
+      "country_confidence": {
+        "Russia": 1.0
+      },
+      "country_entropy": -1.000088900581841e-12,
+      "date": 1923.0,
+      "datebp": -98.0,
+      "mutation_length": 2.256714284811092e-05,
+      "num_date": 1938.2426343488473,
+      "num_date_bar": "98.0:98.0",
+      "num_date_confidence": [
+        1923.0,
+        1923.0
+      ],
+      "province": "Rostov Oblast",
+      "province_confidence": {
+        "Rostov Oblast": 1.0
+      },
+      "province_entropy": -1.000088900581841e-12,
+      "rate": 2.0522084055625673e-08,
+      "rate_fold_change": 1.056673410475233,
+      "raw_date": "1938-03-30",
+      "scf": "NA",
+      "strain": "9_10",
+      "ufboot": "NA"
+    },
+    "NODE0": {
+      "biosample": "NA",
+      "biosamplecomment": "NA",
+      "biovar": "NA",
+      "branch_length": 0.0,
+      "branch_major": "1.ORI",
+      "branch_major_confidence": {
+        "1.ORI": 0.37940443433527377
+      },
+      "branch_major_entropy": 1.0885629792884624,
+      "branch_minor": "1.ORI1",
+      "branch_minor_confidence": {
+        "1.ORI1": 0.37940443433527377
+      },
+      "branch_minor_entropy": 1.0885629792884624,
+      "branch_number": "1",
+      "branch_number_confidence": {
+        "1": 0.37940443433527377
+      },
+      "branch_number_entropy": 1.0885629792884624,
+      "clock_length": 0.1,
+      "country": "Russia",
+      "country_confidence": {
+        "Russia": 0.3794044343352737
+      },
+      "country_entropy": 1.0885629792884626,
+      "date": "NA",
+      "datebp": "NA",
+      "mutation_length": 2.148814885614286e-07,
+      "num_date": 855.7409234792349,
+      "num_date_bar": "1165.2590765207651:1165.2590765207651",
+      "num_date_confidence": [
+        855.7409234792349,
+        855.7409234792349
+      ],
+      "province": "Rostov Oblast",
+      "province_confidence": {
+        "Rostov Oblast": 0.3794044343352744
+      },
+      "province_entropy": 1.0885629792884624,
+      "rate": 1.942140670161841e-08,
+      "rate_fold_change": 1.0,
+      "raw_date": "0855-09-28",
+      "scf": "NA",
+      "strain": "NA",
+      "ufboot": "NA"
+    },
+    "NODE1": {
+      "biosample": "NA",
+      "biosamplecomment": "NA",
+      "biovar": "NA",
+      "branch_length": 2.72121e-05,
+      "branch_major": "0.ANT",
+      "branch_major_confidence": {
+        "0.ANT": 0.8759585139904648
+      },
+      "branch_major_entropy": 0.4603848796400016,
+      "branch_minor": "0.ANT1",
+      "branch_minor_confidence": {
+        "0.ANT1": 0.8759585139904648
+      },
+      "branch_minor_entropy": 0.4603848796400016,
+      "branch_number": "0",
+      "branch_number_confidence": {
+        "0": 0.8759585139904648
+      },
+      "branch_number_entropy": 0.4603848796400016,
+      "clock_length": 1149.9378893945413,
+      "country": "China",
+      "country_confidence": {
+        "China": 0.8759585139904651
+      },
+      "country_entropy": 0.4603848796400013,
+      "date": "NA",
+      "datebp": "NA",
+      "mutation_length": 2.5145372400847393e-05,
+      "num_date": 2005.6788128737762,
+      "num_date_bar": "35.5423105076859:16.0",
+      "num_date_confidence": [
+        1985.457689492314,
+        2005.0
+      ],
+      "province": "Xinjiang",
+      "province_confidence": {
+        "Xinjiang": 0.8759585139904635
+      },
+      "province_entropy": 0.4603848796400053,
+      "rate": 2.1366419124506457e-08,
+      "rate_fold_change": 1.100147865330783,
+      "raw_date": "2005-09-05",
+      "scf": 0.0,
+      "strain": "NA",
+      "ufboot": 91.0
+    },
+    "Reference": {
+      "biosample": "NA",
+      "biosamplecomment": "KEEP: Assembly Modern Reference",
+      "biovar": "Orientalis",
+      "branch_length": 2.3073e-05,
+      "branch_major": "1.ORI",
+      "branch_major_confidence": {
+        "1.ORI": 1.0
+      },
+      "branch_major_entropy": -1.000088900581841e-12,
+      "branch_minor": "1.ORI1",
+      "branch_minor_confidence": {
+        "1.ORI1": 1.0
+      },
+      "branch_minor_entropy": -1.000088900581841e-12,
+      "branch_number": "1",
+      "branch_number_confidence": {
+        "1": 1.0
+      },
+      "branch_number_entropy": -1.000088900581841e-12,
+      "clock_length": 1140.788371134017,
+      "country": "United States of America",
+      "country_confidence": {
+        "United States of America": 1.0
+      },
+      "country_entropy": -1.000088900581841e-12,
+      "date": 1992.0,
+      "datebp": -29.0,
+      "mutation_length": 2.1277164143616335e-05,
+      "num_date": 1996.529294613252,
+      "num_date_bar": "29.0:29.0",
+      "num_date_confidence": [
+        1992.0,
+        1992.0
+      ],
+      "province": "Colorado",
+      "province_confidence": {
+        "Colorado": 1.0
+      },
+      "province_entropy": -1.000088900581841e-12,
+      "rate": 1.8214911688180126e-08,
+      "rate_fold_change": 0.9378780830876815,
+      "raw_date": "1996-07-12",
+      "scf": "NA",
+      "strain": "NA",
+      "ufboot": "NA"
+    }
+  }
+}

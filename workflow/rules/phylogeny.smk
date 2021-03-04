@@ -170,3 +170,23 @@ rule mugration_plot:
         notebook = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_plot_processed.py.ipynb",
     notebook:
         os.path.join(notebooks_dir, "mugration_plot.py.ipynb")
+
+rule geo:
+    """
+    Plot the geographic results following mugration analysis.
+    """
+    input:
+        tree      = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_model_timetree.nwk",
+        tsv       = results_dir + "/mugration/{reads_origin}/{locus_name}_filter{missing_data}/mugration_model.tsv",
+    output:
+        tsv       = results_dir + "/geo/{reads_origin}/{locus_name}_filter{missing_data}/geo.tsv",
+        spreadmap = report(directory(results_dir + "/geo/{reads_origin}/{locus_name}_filter{missing_data}"),
+                           patterns=["geo_spreadmap_{branch}.svg"],
+                           caption=os.path.join(report_dir, "geo", "spreadmap.rst"),
+                           category="Geo",
+                           subcategory="Spreadmap",
+                          )
+    log:
+        notebook = results_dir + "/geo/{reads_origin}/{locus_name}_filter{missing_data}/geo_processed.py.ipynb",
+    notebook:
+        os.path.join(notebooks_dir, "geo.py.ipynb")

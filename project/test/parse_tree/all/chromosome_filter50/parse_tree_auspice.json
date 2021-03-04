@@ -64,7 +64,7 @@
         "key": "branch_number",
         "scale": [
           [
-            "2",
+            "2.0",
             "#8000ff"
           ],
           [
@@ -72,7 +72,7 @@
             "#80ffb4"
           ],
           [
-            "0",
+            "0.0",
             "#ff0000"
           ]
         ],
@@ -133,20 +133,58 @@
         "type": "continuous"
       },
       {
-        "key": "biosample",
-        "title": "Data Accession",
+        "key": "biovar",
+        "title": "Biovar",
         "type": "categorical"
       },
       {
-        "key": "ufboot",
-        "title": "Ultrafast Bootstrap",
-        "type": "continuous"
+        "key": "biosamplecomment",
+        "title": "Data Comment",
+        "type": "categorical"
+      },
+      {
+        "key": "country",
+        "scale": [
+          [
+            "Russia",
+            "#8000ff"
+          ],
+          [
+            "United States of America",
+            "#80ffb4"
+          ],
+          [
+            "China",
+            "#ff0000"
+          ]
+        ],
+        "title": "Country",
+        "type": "categorical"
+      },
+      {
+        "key": "province",
+        "scale": [
+          [
+            "Rostov Oblast",
+            "#8000ff"
+          ],
+          [
+            "Colorado",
+            "#80ffb4"
+          ],
+          [
+            "Xinjiang",
+            "#ff0000"
+          ]
+        ],
+        "title": "Province",
+        "type": "categorical"
       },
       {
         "key": "branch_number",
         "scale": [
           [
-            "2",
+            "2.0",
             "#8000ff"
           ],
           [
@@ -154,7 +192,7 @@
             "#80ffb4"
           ],
           [
-            "0",
+            "0.0",
             "#ff0000"
           ]
         ],
@@ -162,8 +200,32 @@
         "type": "categorical"
       },
       {
-        "key": "biovar",
-        "title": "Biovar",
+        "key": "datebp",
+        "title": "Collection Date (BP)",
+        "type": "continuous"
+      },
+      {
+        "key": "branch_minor",
+        "scale": [
+          [
+            "2.MED1",
+            "#8000ff"
+          ],
+          [
+            "1.ORI1",
+            "#80ffb4"
+          ],
+          [
+            "0.ANT1",
+            "#ff0000"
+          ]
+        ],
+        "title": "Branch Minor",
+        "type": "categorical"
+      },
+      {
+        "key": "strain",
+        "title": "Strain",
         "type": "categorical"
       },
       {
@@ -186,81 +248,19 @@
         "type": "categorical"
       },
       {
-        "key": "biosamplecomment",
-        "title": "Data Comment",
-        "type": "categorical"
-      },
-      {
-        "key": "datebp",
-        "title": "Collection Date (BP)",
-        "type": "continuous"
-      },
-      {
-        "key": "province",
-        "scale": [
-          [
-            "Rostov Oblast",
-            "#8000ff"
-          ],
-          [
-            "Colorado",
-            "#80ffb4"
-          ],
-          [
-            "Xinjiang",
-            "#ff0000"
-          ]
-        ],
-        "title": "Province",
-        "type": "categorical"
-      },
-      {
         "key": "scf",
         "title": "sCF",
         "type": "continuous"
       },
       {
-        "key": "country",
-        "scale": [
-          [
-            "Russia",
-            "#8000ff"
-          ],
-          [
-            "United States of America",
-            "#80ffb4"
-          ],
-          [
-            "China",
-            "#ff0000"
-          ]
-        ],
-        "title": "Country",
+        "key": "biosample",
+        "title": "Data Accession",
         "type": "categorical"
       },
       {
-        "key": "strain",
-        "title": "Strain",
-        "type": "categorical"
-      },
-      {
-        "key": "branch_minor",
-        "scale": [
-          [
-            "2.MED1",
-            "#8000ff"
-          ],
-          [
-            "1.ORI1",
-            "#80ffb4"
-          ],
-          [
-            "0.ANT1",
-            "#ff0000"
-          ]
-        ],
-        "title": "Branch Minor",
-        "type": "categorical"
+        "key": "ufboot",
+        "title": "Ultrafast Bootstrap",
+        "type": "continuous"
       }
     ],
     "display_defaults": {
@@ -351,13 +351,13 @@
             "value": "2.MED1"
           },
           "branch_number": {
-            "value": "2"
+            "value": "2.0"
           },
           "country": {
             "value": "Russia"
           },
           "datebp": {
-            "value": "-98"
+            "value": -98.0
           },
           "div": 2.44708e-05,
           "province": {
@@ -425,13 +425,13 @@
                     "value": "0.ANT1"
                   },
                   "branch_number": {
-                    "value": "0"
+                    "value": "0.0"
                   },
                   "country": {
                     "value": "China"
                   },
                   "datebp": {
-                    "value": "-15"
+                    "value": -15.0
                   },
                   "div": 2.72917e-05,
                   "province": {
@@ -462,13 +462,13 @@
                     "value": "0.ANT1"
                   },
                   "branch_number": {
-                    "value": "0"
+                    "value": "0.0"
                   },
                   "country": {
                     "value": "China"
                   },
                   "datebp": {
-                    "value": "-16"
+                    "value": -16.0
                   },
                   "div": 2.75015e-05,
                   "province": {
@@ -501,13 +501,28 @@
                     "branch_attrs": {},
                     "name": "SAMN02442718",
                     "node_attrs": {
-                      "div": 3.18884e-05
+                      "biosample": {
+                        "value": "SAMN02442718"
+                      },
+                      "biosamplecomment": {
+                        "value": "REMOVE: SRA Ancient Low Coverage"
+                      },
+                      "div": 3.18884e-05,
+                      "strain": {
+                        "value": "LP32b"
+                      }
                     }
                   },
                   {
                     "branch_attrs": {},
                     "name": "testlocal1",
                     "node_attrs": {
+                      "biosample": {
+                        "value": "testlocal1"
+                      },
+                      "biosamplecomment": {
+                        "value": "KEEP: Local Test"
+                      },
                       "div": 3.18884e-05
                     }
                   }
@@ -530,13 +545,28 @@
                     "branch_attrs": {},
                     "name": "SAMN02442721",
                     "node_attrs": {
-                      "div": 3.20808e-05
+                      "biosample": {
+                        "value": "SAMN02442721"
+                      },
+                      "biosamplecomment": {
+                        "value": "REMOVE: SRA Ancient Low Coverage"
+                      },
+                      "div": 3.20808e-05,
+                      "strain": {
+                        "value": "LP37b"
+                      }
                     }
                   },
                   {
                     "branch_attrs": {},
                     "name": "testlocal2",
                     "node_attrs": {
+                      "biosample": {
+                        "value": "testlocal2"
+                      },
+                      "biosamplecomment": {
+                        "value": "KEEP: Local Test"
+                      },
                       "div": 3.20808e-05
                     }
                   }

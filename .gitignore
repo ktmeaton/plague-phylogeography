@@ -34,6 +34,7 @@ results/qualimap/*
 results/parse_tree/*
 results/clock/*
 results/mugration/*
+results/geo/*
 
 # Project
 project/*/iqtree/*/*ckp.gz
