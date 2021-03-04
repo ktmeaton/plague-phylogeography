@@ -31,6 +31,8 @@ results/report/*
 results/snippy_multi/*
 results/snippy_pairwise/*
 results/qualimap/*
+results/parse_tree/*
+results/clock/*
 
 # Project
 project/*/iqtree/*/*ckp.gz

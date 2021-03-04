@@ -260,12 +260,52 @@ rule iqtree_scf_all:
     input:
         iqtree_scf_all_input
 
+#------------------------------------------------------------------------------#
+# Post-Phylogeny
+#------------------------------------------------------------------------------#
+
 parse_tree_all_input      = expand(results_dir + "/parse_tree/all/{locus_name}_filter{missing_data}/parse_tree.tsv",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 parse_tree_local_input    = [ x.replace("all", "local") for x in parse_tree_all_input ]
 parse_tree_sra_input      = [ x.replace("all", "sra") for x in parse_tree_all_input ]
 parse_tree_assembly_input = [ x.replace("all", "assembly") for x in parse_tree_all_input ]
+
+rule parse_tree_assembly:
+    input:
+        parse_tree_assembly_input
+rule parse_tree_sra:
+    input:
+        parse_tree_sra_input
+rule parse_tree_local:
+    input:
+        parse_tree_local_input
+rule parse_tree_all:
+    input:
+        parse_tree_all_input
+
+#------------------------------------------------------------------------------#
+
+clock_model_all_input      = expand(results_dir + "/clock/all/{locus_name}_filter{missing_data}/clock_model.tsv",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+clock_model_local_input    = [ x.replace("all", "local") for x in clock_model_all_input ]
+clock_model_sra_input      = [ x.replace("all", "sra") for x in clock_model_all_input ]
+clock_model_assembly_input = [ x.replace("all", "assembly") for x in clock_model_all_input ]
+
+rule clock_model_assembly:
+    input:
+        clock_model_assembly_input
+rule clock_model_sra:
+    input:
+        clock_model_sra_input
+rule clock_model_local:
+    input:
+        clock_model_local_input
+rule clock_model_all:
+    input:
+        clock_model_all_input
+
 
 
 #------------------------------------------------------------------------------#

@@ -102,8 +102,10 @@ rule all:
         metadata_all_input,
         # Multiqc
         multiqc_all_input,
-        # IQTREE
+        # Phylo
         iqtree_scf_all_input,
+        # Post-Phylo
+        clock_model_all_input,
         # Plot
         plot_missing_data_all_input,
         # Stats
