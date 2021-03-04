@@ -21,7 +21,7 @@ fi
 
 echo -e "\nRestoring ${BACKUP_DIR} to ${RESULTS_DIR}:"
 echo
-mkdir ${$RESULTS_DIR}
+mkdir -p ${RESULTS_DIR}
 
 for dir in `ls -d $BACKUP_DIR/*`;
 do
