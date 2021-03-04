@@ -5,14 +5,16 @@ BACKUP_DIR=$2
 MODE=$3
 
 EXCLUDE_DIR=(
+    config
 	data
-	sqlite_db
 	eager
-	snippy_pairwise
+    logs
 	qualimap
+	snippy_pairwise
+	sqlite_db
 	);
 
-if [[ ! $RESULTS_DIR ]];
+if [[ ! $RESULTS_DIR || ! $BACKUP_DIR ]];
 then
 	exit 1;
 fi
@@ -32,25 +34,27 @@ do
 			keep="false";
 	  fi;
 	done;
-	# Check if this directory should be kept
-	if [[ $keep == "true" && $MODE == "cp" ]];
-	then
-		echo -e "\tCopying: ${RESULTS_DIR}/$dirname";
+
+    # Print directory specific info
+	if [[ $keep == "true" ]]; then
+        echo -e "\tBacking up: ${RESULTS_DIR}/$dirname/";
+        echo -e "\t    origin: ${RESULTS_DIR}/$dirname/";
+        echo -e "\t      dest: ${RESULTS_DIR}/$dirname/";
+    else
+        continue
+    fi
+
+    # Print MODE specific output
+	if [[ $MODE == "cp" ]]; then
 		echo -e "\t         cp -r ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname";
 		cp -r ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname
-	elif [[ $keep == "true" && $MODE == "mv" ]];
-	then
-		echo -e "\tMoving: ${RESULTS_DIR}/$dirname";
+	elif [[ $MODE == "mv" ]]; then
 		echo -e "\t         mv ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname";
 		mv ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname
-	elif [[ $keep == "true" && $MODE == "rsync" ]];
-	then
-		echo -e "\trsync: ${RESULTS_DIR}/$dirname";
-		echo -e "\t       rsync -u -a ${RESULTS_DIR}/$dirname/ ${BACKUP_DIR}/$dirname/";
+	elif [[ $MODE == "rsync" ]]; then
+		echo -e "\t       rsync -u -a ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname/";
 		rsync -u -a ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/;
-	elif [[ $keep == "true" && $MODE == "list" ]];
-	then
-		echo -e "\tMoving/Copying: ${RESULTS_DIR}/$dirname";
-		echo -e "\t         mv/cp ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname";
 	fi
+    echo
+
 done;

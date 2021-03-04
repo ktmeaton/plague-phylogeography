@@ -31,6 +31,26 @@ conda activate plague-phylogeography
 snakemake --profile profiles/gh-actions help;
 ```
 
+### Switch Projects
+
+1. Backup project output.
+
+  ```bash
+  workflow/scripts/results_backup.sh results project/test rsync
+  ```
+
+1. Clean results directory.
+
+  ```bash
+  workflow/scripts/results_clean.sh results
+  ```
+
+1. Restore project output.
+
+  ```bash
+  workflow/scripts/results_restore.sh results project/megapestis rsync
+  ```  
+
 ## 2. Metadata
 
 ### Create Database
@@ -99,7 +119,7 @@ python workflow/scripts/geocode.py "Armenia:Shirak Province"
 bash workflow/scripts/palladio.sh 2>&1 | tee results/metadata/sra/palladio_ancient.tsv
 ```
 
-## Genomic Alignment
+## 3. Genomic Alignment
 
 ### Modern Assembly (NCBI)
 
@@ -259,7 +279,7 @@ Full version:
 snakemake --profile profiles/infoserv snippy_multi_all --config snippy_missing_data=5;
 ```
 
-## Phylogeny
+## 4. Phylogeny
 
 ### Maximum Likelihood Phylogeny
 
@@ -275,7 +295,7 @@ Full version:
 snakemake --profile profiles/infoserv iqtree_all --config iqtree_runs=10;
 ```
 
-## Post-Phylogeny
+## 5. Post-Phylogeny
 
 | Step | Script         | Output                          |
 |------|----------------|---------------------------------|
