@@ -180,6 +180,21 @@ do
 done
 ```
 
+#### SAMEA6502100 (G701)
+
+- Has already been trimmed and merged
+
+```bash
+snakemake \
+   /2/scratch/keaton/plague-phylogeography/results/eager/sra/SAMEA6502107/final_bams/SAMEA6502107.bam \
+  --profile profiles/infoserv \
+  -np \
+  --config eager_other='--skip_adapterremoval' \
+  --configfile project/main/config/snakemake.yaml
+```
+
+#### SAMEA6502107 (G488)
+
 #### Azov38
 
 Merge: SAMEA7313245, SAMEA7313244, SAMEA7313243
