@@ -74,7 +74,7 @@ def identify_assembly_ftp():
 def identify_sra_sample():
     """
     Parse the sqlite database to identify the SRA accessions.
-    Return a list of accessions and layouts.
+    Return a dictionary of accessions and layouts.
     """
     sra_sample_dict = {}
     sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
@@ -96,20 +96,29 @@ def identify_sra_sample():
     return sra_sample_dict
 
 def identify_local_sample():
-    """Parse the local input directory for sample names."""
-    local_sample_dict = {}
+    """
+    Parse the sqlite database to identify the local samples.
+    Return a dictionary of accessions and layouts.
+    """
     data_dir = os.path.join(results_dir, "data", "local")
-    for dir in os.listdir(data_dir):
-        sample_dir = os.path.join(data_dir, dir)
-        if not os.path.isdir(sample_dir): continue
-        for file in os.listdir(sample_dir):
-            if "_1.fastq.gz" in file:
-                biosample = dir
-                # strip gz and fastq and prefix
-                file_acc = file.replace("_1.fastq.gz","")
-                if biosample not in local_sample_dict:
-                    local_sample_dict[biosample] = []
-                local_sample_dict[biosample].append(file_acc)
+    local_sample_dict = {}
+    sqlite_db_path = os.path.join(results_dir,"sqlite_db",config["sqlite_db"])
+    conn = sqlite3.connect(sqlite_db_path)
+    cur = conn.cursor()
+    sra_fetch = cur.execute(config["sqlite_select_command_local"]).fetchall()
+    # Iterate through records in database
+    for record in sra_fetch:
+        sample = record[0]
+        local_sample_dict[sample] = []
+        for dir in os.listdir(data_dir):
+            if sample != dir: continue
+            sample_dir = os.path.join(data_dir, dir)
+            for file in os.listdir(sample_dir):
+                if ".fastq.gz" in file:
+                    filename = file.split("_")[0]
+                    if filename not in local_sample_dict[sample]:
+                        local_sample_dict[sample].append(filename)
+
     return local_sample_dict
 
 def identify_all_sample():

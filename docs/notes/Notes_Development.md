@@ -13,6 +13,8 @@
 1. Create scripts to clean and backup results.
 1. Remove plot_table rules and script.
 1. Remove almost all attached files from report.
+1. Put config files inside the associated project directory.
+1. Update function ```identify_local_sample``` to use database.
 
 ## TO-DO
 

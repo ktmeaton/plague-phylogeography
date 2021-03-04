@@ -34,7 +34,8 @@ config_dir = os.path.join(project_dir, "config")
 
 
 # Include the config file (If not specified on command line)
-configfile: os.path.join(config_dir, "snakemake.yaml")
+#configfile: os.path.join(config_dir, "snakemake.yaml")
+configfile: os.path.join(project_dir, "project", "test", "config", "snakemake.yaml")
 
 # Sub snakefiles
 include: rules_dir + "/download.smk"
@@ -146,21 +147,3 @@ rule help:
           print("\t\tconda: ", rule.conda_env)
       if rule._log:
           print("\t\tlog: ", rule._log)
-
-'''
-rule collect:
-    """ Collect files from different reads_origin in a rule."""
-    input:
-        rule_dir = expand(results_dir + "/{{rule}}/{reads_origin}/{sample}/",
-                   reads_origin = config["reads_origin"]),
-    output:
-        collect_dir = directory(results_dir + "/{rule}/all/"),
-        collect_sample = directory(expand(results_dir + "/{{rule}}/all/{sample}/",
-				          sample=identify_all_sample())
-                                  ),
-    shell:
-        "for dir in {input.rule_dir}; \
-         do \
-	   ln -s $dir/* {output.collect_dir}; \
-         done; "
-'''

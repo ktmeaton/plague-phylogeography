@@ -21,6 +21,12 @@ sqlite_select_command_sra : SELECT
                             WHERE
                               (SRARunAccession = 'SRR1048902' OR
                                SRARunAccession = 'SRR1048905')
+sqlite_select_command_local : SELECT
+                              BioSampleAccession
+                            FROM
+                              BioSample
+                            WHERE
+                              (BioSampleComment LIKE '%Local%Test%')
 sqlite_select_command_ref : SELECT
                               AssemblyFTPGenbank
                             FROM

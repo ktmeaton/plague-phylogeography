@@ -9,7 +9,7 @@ on:
       - dev
     paths:
       - '.github/workflows/pipeline.yaml'
-      - 'config/snakemake.yaml'
+      - 'project/test/config/snakemake.yaml'
       - 'workflow/Snakefile'
       - 'workflow/rules/*.smk'
       - 'workflow/envs/*/*.yaml'
