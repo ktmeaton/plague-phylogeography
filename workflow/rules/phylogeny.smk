@@ -196,7 +196,7 @@ rule geo:
                            category="Geo",
                            subcategory="Spreadmap",
                           ),
-                              resources:
+    resources:
         load      = 100,
     log:
         notebook  = results_dir + "/geo/{reads_origin}/{locus_name}_filter{missing_data}/geo_processed.py.ipynb",
