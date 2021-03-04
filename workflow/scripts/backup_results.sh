@@ -36,17 +36,21 @@ do
 	if [[ $keep == "true" && $MODE == "cp" ]];
 	then
 		echo -e "\tCopying: ${RESULTS_DIR}/$dirname";
-		echo -e "\t         cp -r ${RESULTS_DIR}/$dirname to ${BACKUP_DIR}/$dirname";
+		echo -e "\t         cp -r ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname";
 		cp -r ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname
 	elif [[ $keep == "true" && $MODE == "mv" ]];
 	then
 		echo -e "\tMoving: ${RESULTS_DIR}/$dirname";
-		echo -e "\t         mv ${RESULTS_DIR}/$dirname to ${BACKUP_DIR}/$dirname";
+		echo -e "\t         mv ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname";
 		mv ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname
+	elif [[ $keep == "true" && $MODE == "rsync" ]];
+	then
+		echo -e "\trsync: ${RESULTS_DIR}/$dirname";
+		echo -e "\t       rsync -u -a ${RESULTS_DIR}/$dirname/ ${BACKUP_DIR}/$dirname/";
+		rsync -u -a ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/;
 	elif [[ $keep == "true" && $MODE == "list" ]];
 	then
 		echo -e "\tMoving/Copying: ${RESULTS_DIR}/$dirname";
-		echo -e "\t         mv/cp ${RESULTS_DIR}/$dirname to ${BACKUP_DIR}/$dirname";
+		echo -e "\t         mv/cp ${RESULTS_DIR}/$dirname ${BACKUP_DIR}/$dirname";
 	fi
-
 done;
