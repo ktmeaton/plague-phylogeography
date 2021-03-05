@@ -69,10 +69,10 @@ rule snippy_pairwise_local:
 # Locus Coverage
 #------------------------------------------------------------------------------#
 
-locus_coverage_all_input      = results_dir + "/locus_coverage/all/locus_coverage.txt"
-locus_coverage_local_input    = locus_coverage_all_input.replace("all", "local")
-locus_coverage_assembly_input = locus_coverage_all_input.replace("all", "assembly")
-locus_coverage_sra_input      = locus_coverage_all_input.replace("all", "sra")
+locus_coverage_all_input      = results_dir + "/detect_snp_density/all/snpden"
+locus_coverage_local_input    = [path.replace("all", "local") for path in locus_coverage_all_input]
+locus_coverage_assembly_input = [path.replace("all", "assembly") for path in locus_coverage_all_input]
+locus_coverage_sra_input      = [path.replace("all", "sra") for path in locus_coverage_all_input]
 
 rule locus_coverage_all:
     input:
@@ -89,6 +89,27 @@ rule locus_coverage_sra:
 rule locus_coverage_local:
     input:
         locus_coverage_local_input
+
+locus_coverage_collect_all_input = results_dir + "/locus_coverage_collect/all/locus_coverage.txt"
+locus_coverage_collect_local_input    = locus_coverage_collect_all_input.replace("all", "local")
+locus_coverage_collect_assembly_input    = locus_coverage_collect_all_input.replace("all", "assembly")
+locus_coverage_collect_sra_input    = locus_coverage_collect_all_input.replace("all", "sra")
+
+rule locus_coverage_collect_all:
+    input:
+        locus_coverage_collect_all_input
+
+rule locus_coverage_collect_assembly:
+    input:
+        locus_coverage_collect_assembly_input
+
+rule locus_coverage_collect_sra:
+    input:
+        locus_coverage_collect_sra_input,
+
+rule locus_coverage_collect_local:
+    input:
+        locus_coverage_collect_local_input
 #------------------------------------------------------------------------------#
 # Filtering
 #------------------------------------------------------------------------------#

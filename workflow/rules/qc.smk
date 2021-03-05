@@ -25,6 +25,8 @@ rule qualimap:
         "samtools view -b -q {config[snippy_map_qual]} {input.snippy_dir}/{wildcards.sample}.bam > {output.bamq}; "
         "qualimap bamqc -bam {output.bamq} --skip-duplicated -c -outformat 'HTML' -outdir {output.dir} -nt {resources.cpus} 1> {log}; "
 
+# -----------------------------------------------------------------------------#
+
 rule multiqc:
     """
     Run multiqc on miscellaneous data files.
@@ -63,3 +65,48 @@ rule multiqc:
           {input.qualimap_dir} \
           {input.snippy_pairwise_dir} 2> {log};
           """
+
+# -----------------------------------------------------------------------------#
+
+rule locus_coverage:
+    """
+    Calculate locus coverage statistics.
+    """
+    input:
+        bamq = results_dir + "/qualimap/{reads_origin}/{sample}/{sample}.bam",
+        ref_gff = [path + ".gff" for path in identify_paths(outdir="data", reads_origin="reference")],
+    output:
+        cov_full = results_dir + "/locus_coverage/{reads_origin}/{sample}/locus_coverage_full.txt",
+        cov_df   = results_dir + "/locus_coverage/{reads_origin}/{sample}/locus_coverage.txt",
+        dep_full = results_dir + "/locus_coverage/{reads_origin}/{sample}/locus_depth_full.txt",
+        dep_df   = results_dir + "/locus_coverage/{reads_origin}/{sample}/locus_depth.txt",
+    shell:
+        """
+        bedtools coverage -a {input.ref_gff} -b {input.bamq} > {output.cov_full};
+        bedtools coverage -a {input.ref_gff} -b {input.bamq} -mean > {output.dep_full};
+        loci=`cut -f9 {output.cov_full} | sed 's/ID=//g' | cut -d ";" -f 1 | tr '\n' '\t'`;
+        cov=`cut -f 13 {output.cov_full} | tr '\n' '\t'`
+        dep=`cut -f 10 {output.dep_full} | tr '\n' '\t'`
+        echo -e "Sample\t$loci\n"{wildcards.sample}"\t$cov" > {output.cov_df};
+        echo -e "Sample\t$loci\n"{wildcards.sample}"\t$dep" > {output.dep_df};
+        """
+
+rule locus_coverage_collect:
+    """
+    Collect locus coverage statistics.
+    """
+    input:
+        cov_files = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/locus_coverage.txt"
+                                      for path in identify_paths(outdir="locus_coverage", reads_origin=wildcards.reads_origin)]),
+        dep_files = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/locus_depth.txt"
+                                      for path in identify_paths(outdir="locus_coverage", reads_origin=wildcards.reads_origin)]),
+    output:
+        cov_df = results_dir + "/locus_coverage_collect/{reads_origin}/locus_coverage.txt",
+        dep_df = results_dir + "/locus_coverage_collect/{reads_origin}/locus_depth.txt",
+    shell:
+        """
+        head -n1 {input.cov_files[0]} > {output.cov_df}
+        for file in {input.cov_files}; do tail -n1 $file; done >> {output.cov_df};
+        head -n1 {input.dep_files[0]} > {output.dep_df}
+        for file in {input.dep_files}; do tail -n1 $file; done >> {output.dep_df};
+        """

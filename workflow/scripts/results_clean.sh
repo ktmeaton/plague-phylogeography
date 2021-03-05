@@ -7,6 +7,7 @@ EXCLUDE_DIR=(
     config
 	data
 	eager
+	locus_coverage
     logs
 	qualimap
 	snippy_pairwise

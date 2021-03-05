@@ -114,23 +114,8 @@ rule snippy_pairwise:
               --report 2> {log}; \
           fi ;"
 
-rule locus_coverage:
-    """
-    Calculate locus coverage statistics.
-    """
-    input:
-        snippy_pairwise_dir = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/" for path in
-                               identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)]),
-        ref_bed = [path + ".bed" for path in identify_paths(outdir="data", reads_origin="reference")],
-    output:
-        locus_cov = results_dir + "/locus_coverage/{reads_origin}/locus_coverage.txt",
-    shell:
-        """
-        {scripts_dir}/locus_coverage.sh \
-            {input.ref_bed} \
-            "{input.snippy_pairwise_dir}" > {output.locus_cov};
-        """
 # -----------------------------------------------------------------------------#
+
 rule snippy_multi:
     """
     Peform a multiple alignment from pairwise output.

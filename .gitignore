@@ -24,6 +24,7 @@ results/detect_snp_density/*
 results/eager/*
 results/iqtree/*
 results/locus_coverage/*
+results/locus_coverage_collect/*
 results/logs/*
 results/metadata/*
 results/multiqc/*
