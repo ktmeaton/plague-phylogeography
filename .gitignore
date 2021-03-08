@@ -41,6 +41,7 @@ results/geo/*
 project/*/iqtree/*/*ckp.gz
 project/*/iqtree/*/*uniqueseq*
 project/*/iqtree/*/*filter50*
+project/*/locus_coverage_collect/*
 
 # Snippy Multi Alignments
 project/*/snippy_multi/*/*.aln*
