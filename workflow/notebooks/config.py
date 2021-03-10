@@ -538,6 +538,11 @@ def metadata_to_comment(tree, tree_df):
                 c.comment += ",{}={}".format(col, col_val)
 
 
+def get_parent(tree, child_clade):
+    node_path = tree.get_path(child_clade)
+    return node_path[-2]
+
+
 """
 # Testing
 tree_path=(
