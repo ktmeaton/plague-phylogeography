@@ -539,22 +539,41 @@ def metadata_to_comment(tree, tree_df):
 
 
 def get_parent(tree, child_clade):
-    node_path = tree.get_path(child_clade)
-    return node_path[-2]
+    node_path = [tree.root] + tree.get_path(child_clade)
+    try:
+        return node_path[-2]
+    except IndexError:
+        return None
+
+
+def tree2network(tree):
+    """
+    Return a list of node connections.
+    """
+    network = []
+    for c in tree.find_clades(order="postorder"):
+        parent = get_parent(tree, c)
+        if not parent:
+            continue
+        connection = [parent, c]
+        if connection not in network:
+            network.append(connection)
+    return network
 
 
 """
 # Testing
 tree_path=(
-  "../../results/clock_model/clock_model.nwk"
+  "../../results/clock/all/chromosome_filter5/clock_model_timetree.nwk"
 )
 aln_path = (
-  "../../docs/results/latest/snippy_multi/snippy-core_chromosome.snps.filter5.aln"
+  "../../results/snippy_multi/snippy-core_chromosome.snps.filter5.aln"
 )
 
 tree_div = Phylo.read(tree_path, "newick")
 tree_div.ladderize(reverse=False)
 tree=tree_div
+
 
 tree_df_path = "../../results/clock_model/clock_model.tsv"
 tree_df = pd.read_csv(tree_df_path, sep='\t')
