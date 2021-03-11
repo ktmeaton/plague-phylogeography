@@ -558,6 +558,9 @@ def tree2network(tree):
         connection = [parent, c]
         if connection not in network:
             network.append(connection)
+
+    # Put root back at start
+    network.reverse()
     return network
 
 

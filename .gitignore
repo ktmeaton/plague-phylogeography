@@ -36,6 +36,7 @@ results/parse_tree/*
 results/clock/*
 results/mugration/*
 results/geo/*
+results/geo_bias/
 
 # Project
 project/*/iqtree/*/*ckp.gz
