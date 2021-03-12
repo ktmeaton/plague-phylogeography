@@ -2,7 +2,7 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib import colors
+from matplotlib import colors, lines
 import numpy as np
 import geopandas
 import shapely
@@ -12,6 +12,7 @@ from augur import utils, export_v2
 from Bio import Phylo
 import os
 import ast  # Evaluate string literals
+import copy
 
 # ------------------------------------------------------------------------
 # VARIABLES
@@ -564,8 +565,39 @@ def tree2network(tree):
     return network
 
 
+# @Jason from https://stackoverflow.com/questions/32663758/split-line-into-multiple-line
+def segment_line(line, num_segments, cumulative=False):
+    start = (line.get_xdata()[0], line.get_ydata()[0])
+    end = (line.get_xdata()[-1], line.get_ydata()[-1])
+    x_delta = (end[0] - start[0]) / float(num_segments)
+    y_delta = (end[1] - start[1]) / float(num_segments)
+    line_segments = []
+    prev_xdata, prev_ydata = start[0], start[1]
+
+    for i in range(1, num_segments + 1):
+        cur_xdata = start[0] + (i * x_delta)
+        cur_ydata = start[1] + (i * y_delta)
+        line_copy = copy.copy(line)
+        line_copy.set_xdata([prev_xdata, cur_xdata])
+        line_copy.set_ydata([prev_ydata, cur_ydata])
+        line_segments.append(line_copy)
+
+        # Prepare for next
+        if not cumulative:
+            prev_xdata, prev_ydata = cur_xdata, cur_ydata
+
+    return line_segments
+
+
 """
 # Testing
+test_line = (lines.Line2D([0,10],
+[0,10], marker="o", markerfacecolor="black", markeredgewidth=0.5, markersize=5,
+)
+
+segs = segment_line(test_line, 11)
+print(len(segs), segs)
+
 tree_path=(
   "../../results/clock/all/chromosome_filter5/clock_model_timetree.nwk"
 )
