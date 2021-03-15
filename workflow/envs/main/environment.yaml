@@ -45,6 +45,7 @@ dependencies:
   - dill=0.3.3
   - cartopy=0.18.0
   - augur=10.3.0
+  - ffmpeg=4.3.1
   # Filtering
   - biopython=1.76
   - mummer=3.23
