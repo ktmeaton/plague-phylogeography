@@ -4,6 +4,7 @@ channels:
 - anaconda
 - defaults
 dependencies:
+- anaconda:bokeh=2.3.0
 - anaconda:gfortran_linux-64
 - augur=10.3.0
 - bioconda::adapterremoval=2.3.1
@@ -37,6 +38,7 @@ dependencies:
 - bioconda::sexdeterrmine=1.1.2
 - bioconda::vcf2genome=0.91
 - bioconda:snippy=4.6.0
+- bioconda:snp-dists=0.7.0
 - bioconda:sra-tools=2.10.8
 - bioconda:vt=0.57721
 - biopython=1.76

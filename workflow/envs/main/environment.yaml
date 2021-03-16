@@ -26,6 +26,7 @@ dependencies:
   # Alignment
   - bioconda:snippy=4.6.0
   - bioconda:vt=0.57721
+  - bioconda:snp-dists=0.7.0
   # Phylogeny
   - iqtree=2.0.3
   - conda-forge::geopy=2.0.0
@@ -46,6 +47,7 @@ dependencies:
   - cartopy=0.18.0
   - augur=10.3.0
   - ffmpeg=4.3.1
+  - bokeh=2.3.0
   # Filtering
   - biopython=1.76
   - mummer=3.23
