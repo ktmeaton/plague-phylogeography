@@ -1,9 +1,12 @@
+#!/usr/bin/env python3
+
 from math import pi
 from pathlib import Path
 from typing import Union
 
 import click
 import pandas as pd
+import numpy as np
 from bokeh.io import save, output_file
 from bokeh.models import BasicTicker, ColorBar, LinearColorMapper
 from bokeh.palettes import brewer
@@ -12,19 +15,38 @@ from bokeh.plotting import figure
 PathLike = Union[str, Path]
 VALUE = "distance"
 TOOLS = "hover,save,pan,box_zoom,reset,wheel_zoom"
-TITLE = "Pairwise distance matrix"
+TITLE = "Pairwise SNP Matrix"
 WIDTH = 900
 HEIGHT = 900
 
 
-def load_matrix(fpath: PathLike, delim: str) -> pd.DataFrame:
+def load_matrix(fpath: PathLike, delim: str, filter_df) -> pd.DataFrame:
     matrix = []
     with open(fpath) as instream:
         header = next(instream).rstrip()
         names = header.split(delim)[1:]
+        filter_names = [name for name in names if name in filter_df.index]
+        pretty_names = [
+            filter_df["Strain"][name]
+            + "_"
+            + str(filter_df["Date"][name]).lstrip("[").rstrip("]")
+            + "_"
+            + filter_df["Country"]
+            for name in filter_names
+        ]
+
+        filter_i = [i for i in range(0, len(names)) if names[i] in filter_df.index]
         for row in map(str.rstrip, instream):
-            matrix.append(map(int, row.split(delim)[1:]))
-    return pd.DataFrame(matrix, index=names, columns=names)
+            # Filter sample rows
+            sample = row.split(delim)[0]
+            if sample not in filter_names:
+                continue
+            # Filter distance column
+            dists = row.split(delim)[1:]
+            dists = [dists[i] for i in filter_i]
+
+            matrix.append([int(d) for d in dists])
+    return pd.DataFrame(matrix, index=pretty_names, columns=pretty_names)
 
 
 @click.command()
@@ -67,6 +89,19 @@ def load_matrix(fpath: PathLike, delim: str) -> pd.DataFrame:
 @click.option(
     "--height", help="Plot height in pixels", default=HEIGHT, show_default=True
 )
+@click.option(
+    "-a", "--attribute", help="Attribute to filter on.", default=None,
+)
+@click.option(
+    "-s", "--state", help="Attribute state to filter on.", default=None,
+)
+@click.option(
+    "-m",
+    "--metadata",
+    help="Metadata to filter with.",
+    type=click.Path(exists=True, dir_okay=False, allow_dash=True),
+    default=None,
+)
 def main(
     matrix: str,
     output: str,
@@ -75,12 +110,26 @@ def main(
     title: str,
     height: int,
     width: int,
+    attribute: str,
+    state: str,
+    metadata: str,
 ):
     """This script generates an interactive heatmap (HTML) for a distance matrix."""
-    matrix_df = load_matrix(matrix, delim)
-    samples = list(matrix_df.index)
+
+    # Load metadata
+    metadata_df = pd.read_csv(metadata, sep="\t")
+    metadata_df.fillna("NA", inplace=True)
+    metadata_df.set_index("Sample", inplace=True)
+    filter_df = metadata_df[metadata_df[attribute] == state]
+
+    # Load distance matrix
+    matrix_df = load_matrix(matrix, delim, filter_df)
+    # Lower triangle
+    df_lt = matrix_df.where(np.tril(np.ones(matrix_df.shape)).astype(np.bool))
+    samples = list(df_lt.index)
     df = (
-        matrix_df.stack()
+        # matrix_df.stack()
+        df_lt.stack()
         .rename(VALUE)
         .reset_index()
         .rename(columns={"level_0": "sample1", "level_1": "sample2"})
@@ -96,11 +145,14 @@ def main(
 
     plot = figure(
         title=title,
-        x_range=samples,
-        y_range=list(reversed(samples)),
+        # x_range=samples,
+        x_range=list(reversed(samples)),
+        y_range=samples,
+        # y_range=list(reversed(samples)),
         active_drag="box_zoom",
         active_scroll="wheel_zoom",
-        x_axis_location="above",
+        # x_axis_location="above",
+        x_axis_location="below",
         plot_width=width,
         plot_height=height,
         tools=TOOLS,
@@ -111,7 +163,8 @@ def main(
     plot.grid.grid_line_color = None
     plot.axis.axis_line_color = None
     plot.axis.major_tick_line_color = None
-    plot.axis.major_label_text_font_size = "7px"
+    # plot.axis.major_label_text_font_size = "7px"
+    plot.axis.major_label_text_font_size = "10px"
     plot.axis.major_label_standoff = 0
     plot.xaxis.major_label_orientation = pi / 3
 

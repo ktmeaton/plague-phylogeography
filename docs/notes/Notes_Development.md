@@ -15,11 +15,10 @@
 1. Put config files inside the associated project directory.
 1. Update function ```identify_local_sample``` to use database.
 1. Environment addition: ugur, cartopy, ffpmeg, snp-dists, bokeh.
+1. Create Pairwise SNP matrix.
 
 ## TO-DO
 
 1. Maybe write a function to condense notebook import/exporting.
 1. Rethink the use of large dill objects that can't be version controlled...
-1. Test snp-dists on project/test alignment.
-1. Test snp-dists on project/main alignment.
 1. Test bokeh.
