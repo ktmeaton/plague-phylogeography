@@ -443,6 +443,44 @@ rule plot_missing_data_all:
 		    plot_missing_data_all_input
 
 #------------------------------------------------------------------------------#
+
+plot_snp_matrix_filter_all_input = expand(results_dir + "/snippy_multi/all/snippy-core_{locus_name}.snps.filter{missing_data}.dist.heatmap.html",
+				                          locus_name = config["reference_locus_name"],
+                                          missing_data=config["snippy_multi_plot_missing_data"],
+					                     )
+plot_snp_matrix_full_all_input = expand(results_dir + "/snippy_multi/all/snippy-core_{locus_name}.full.dist.heatmap.html",
+				                          locus_name = config["reference_locus_name"],
+					                     )
+
+plot_snp_matrix_filter_sra_input = [ x.replace("all", "sra") for x in plot_snp_matrix_filter_all_input ]
+plot_snp_matrix_full_sra_input = [ x.replace("all", "sra") for x in plot_snp_matrix_full_all_input ]
+plot_snp_matrix_filter_local_input = [ x.replace("all", "local") for x in plot_snp_matrix_filter_all_input ]
+plot_snp_matrix_full_local_input = [ x.replace("all", "local") for x in plot_snp_matrix_full_all_input ]
+plot_snp_matrix_filter_assembly_input = [ x.replace("all", "assembly") for x in plot_snp_matrix_filter_all_input ]
+plot_snp_matrix_full_assembly_input = [ x.replace("all", "assembly") for x in plot_snp_matrix_full_all_input ]
+
+rule plot_snp_matrix_assembly:
+    input:
+        plot_snp_matrix_filter_assembly_input,
+        plot_snp_matrix_full_assembly_input,
+
+rule plot_snp_matrix_local:
+    input:
+        plot_snp_matrix_filter_local_input,
+        plot_snp_matrix_full_local_input,
+
+rule plot_snp_matrix_sra:
+    input:
+        plot_snp_matrix_filter_sra_input,
+        plot_snp_matrix_full_sra_input,
+
+rule plot_snp_matrix_all:
+    input:
+        plot_snp_matrix_filter_all_input,
+        plot_snp_matrix_full_all_input,
+
+
+#------------------------------------------------------------------------------#
 # Metadata
 #------------------------------------------------------------------------------#
 metadata_all_input      = results_dir + "/metadata/all/metadata.tsv"

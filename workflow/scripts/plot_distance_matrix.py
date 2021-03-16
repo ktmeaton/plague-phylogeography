@@ -24,29 +24,35 @@ def load_matrix(fpath: PathLike, delim: str, filter_df) -> pd.DataFrame:
     matrix = []
     with open(fpath) as instream:
         header = next(instream).rstrip()
-        names = header.split(delim)[1:]
-        filter_names = [name for name in names if name in filter_df.index]
-        pretty_names = [
-            filter_df["Strain"][name]
-            + "_"
-            + str(filter_df["Date"][name]).lstrip("[").rstrip("]")
-            + "_"
-            + filter_df["Country"]
-            for name in filter_names
-        ]
+        ind_names = header.split(delim)[1:]
+        if filter_df:
+            ind_names = [name for name in ind_names if name in filter_df.index]
+            ind_names = [
+                filter_df["Strain"][name]
+                + "_"
+                + str(filter_df["Date"][name]).lstrip("[").rstrip("]")
+                + "_"
+                + filter_df["Country"]
+                for name in ind_names
+            ]
+            filter_i = [
+                i for i in range(0, len(ind_names)) if ind_names[i] in filter_df.index
+            ]
 
-        filter_i = [i for i in range(0, len(names)) if names[i] in filter_df.index]
+        col_names = ind_names
+
         for row in map(str.rstrip, instream):
             # Filter sample rows
             sample = row.split(delim)[0]
-            if sample not in filter_names:
+            if sample not in ind_names:
                 continue
             # Filter distance column
             dists = row.split(delim)[1:]
-            dists = [dists[i] for i in filter_i]
+            if filter_df:
+                dists = [dists[i] for i in filter_i]
 
             matrix.append([int(d) for d in dists])
-    return pd.DataFrame(matrix, index=pretty_names, columns=pretty_names)
+    return pd.DataFrame(matrix, index=ind_names, columns=col_names)
 
 
 @click.command()
@@ -117,10 +123,12 @@ def main(
     """This script generates an interactive heatmap (HTML) for a distance matrix."""
 
     # Load metadata
-    metadata_df = pd.read_csv(metadata, sep="\t")
-    metadata_df.fillna("NA", inplace=True)
-    metadata_df.set_index("Sample", inplace=True)
-    filter_df = metadata_df[metadata_df[attribute] == state]
+    filter_df = None
+    if metadata:
+        metadata_df = pd.read_csv(metadata, sep="\t")
+        metadata_df.fillna("NA", inplace=True)
+        metadata_df.set_index("Sample", inplace=True)
+        filter_df = metadata_df[metadata_df[attribute] == state]
 
     # Load distance matrix
     matrix_df = load_matrix(matrix, delim, filter_df)

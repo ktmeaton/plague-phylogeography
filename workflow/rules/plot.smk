@@ -12,3 +12,15 @@ rule plot_missing_data:
     notebook= os.path.join(logs_dir, "notebooks", "{reads_origin}",	"processed_{locus_name}_plot_missing_data.py.ipynb")
   notebook:
 	  os.path.join(notebooks_dir, "plot_missing_data.py.ipynb")
+
+rule plot_snp_matrix:
+  input:
+    aln  = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.{filter}.aln",
+  output:
+    dist = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.{filter}.dist",
+    html = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.{filter}.dist.heatmap.html",
+  shell:
+    """
+    snp-dists {input.aln} > {output.dist}
+    python3 {scripts_dir}/plot_distance_matrix.py -i {output.dist} -o {output.html}
+    """
