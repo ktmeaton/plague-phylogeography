@@ -63,7 +63,7 @@ rule detect_snp_density:
         "{scripts_dir}/detect_snp_density.sh {input.vcf} {output.snpden} {config[snippy_snp_density]} 2> {log}"
 
 #------------------------------------------------------------------------------#
-rule merge_snp_density:
+rule detect_snp_density_collect:
     """
     Merge filter bed files.
     """
@@ -71,7 +71,7 @@ rule merge_snp_density:
         snpden = lambda wildcards: remove_duplicates([os.path.dirname(path) + ".subs.snpden" + str(config["snippy_snp_density"])
                  for path in identify_paths(outdir="detect_snp_density", reads_origin=wildcards.reads_origin)]),
     output:
-        bed = expand(results_dir + "/detect_snp_density/{{reads_origin}}/snpden{density}.bed",
+        bed = expand(results_dir + "/detect_snp_density_collect/{{reads_origin}}/snpden{density}.bed",
               density=config["snippy_snp_density"])
     resources:
         cpus = 1,

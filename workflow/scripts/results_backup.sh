@@ -7,6 +7,7 @@ MODE=$3
 EXCLUDE_DIR=(
     config
 	data
+	detect_snp_density
 	eager
 	locus_coverage
     logs

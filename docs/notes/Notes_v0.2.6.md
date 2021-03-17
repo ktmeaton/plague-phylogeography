@@ -16,3 +16,8 @@
 1. Update function ```identify_local_sample``` to use database.
 1. Environment addition: ugur, cartopy, ffpmeg, snp-dists, bokeh.
 1. Create Pairwise SNP matrix.
+1. Remove results folder from docs.
+1. Create new output folder collect for detect snp density.
+1. Move project specific results to a new repository.
+1. Remove US Kim strain, mark as laboratory manipulation.
+1. Rerun projects

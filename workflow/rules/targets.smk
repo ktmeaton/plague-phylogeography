@@ -69,7 +69,7 @@ rule snippy_pairwise_local:
 # Locus Coverage
 #------------------------------------------------------------------------------#
 
-locus_coverage_all_input      = results_dir + "/detect_snp_density/all/snpden"
+locus_coverage_all_input      = results_dir + "/locus_coverage/all/snpden"
 locus_coverage_local_input    = [path.replace("all", "local") for path in locus_coverage_all_input]
 locus_coverage_assembly_input = [path.replace("all", "assembly") for path in locus_coverage_all_input]
 locus_coverage_sra_input      = [path.replace("all", "sra") for path in locus_coverage_all_input]
@@ -139,21 +139,21 @@ rule detect_snp_density_local:
          for path in identify_paths(outdir="detect_snp_density", reads_origin="local")]
 
 # -----------------------------------------------------------------------------#
-rule merge_snp_density_assembly:
+rule snp_density_collect_assembly:
     input:
-        results_dir + "/detect_snp_density/assembly/snpden" +  str(config["snippy_snp_density"]) + ".bed"
+        results_dir + "/detect_snp_density_collect/assembly/snpden" +  str(config["snippy_snp_density"]) + ".bed"
 
-rule merge_snp_density_sra:
+rule snp_density_collect_sra:
     input:
-        results_dir + "/detect_snp_density/sra/snpden" +  str(config["snippy_snp_density"]) + ".bed"
+        results_dir + "/detect_snp_density_collect/sra/snpden" +  str(config["snippy_snp_density"]) + ".bed"
 
-rule merge_snp_density_local:
+rule snp_density_collect_local:
     input:
-        results_dir + "/detect_snp_density/local/snpden" +  str(config["snippy_snp_density"]) + ".bed"
+        results_dir + "/detect_snp_density_collect/local/snpden" +  str(config["snippy_snp_density"]) + ".bed"
 
-rule merge_snp_density_all:
+rule snp_density_collect_all:
     input:
-        results_dir + "/detect_snp_density/all/snpden" +  str(config["snippy_snp_density"]) + ".bed"
+        results_dir + "/detect_snp_density_collect/all/snpden" +  str(config["snippy_snp_density"]) + ".bed"
 
 # -----------------------------------------------------------------------------#
 rule snippy_multi_extract_all:

@@ -126,7 +126,7 @@ rule snippy_multi:
         ref_fna             = [path + ".fna" for path in identify_paths(outdir="data", reads_origin="reference")],
         inexact             = [os.path.dirname(path) + ".inexact.repeats.bed" for path in identify_paths(outdir="detect_repeats", reads_origin="reference")],
         low_complexity      = [os.path.dirname(path) + ".dustmasker.bed" for path in identify_paths(outdir="detect_low_complexity", reads_origin="reference")],
-        snp_density         = expand(results_dir + "/detect_snp_density/{{reads_origin}}/snpden{density}.bed",
+        snp_density         = expand(results_dir + "/detect_snp_density_collect/{{reads_origin}}/snpden{density}.bed",
                                 density=config["snippy_snp_density"]),
     output:
         results_dir + "/snippy_multi/{reads_origin}/snippy-core.txt",
