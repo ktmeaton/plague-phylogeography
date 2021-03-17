@@ -20,4 +20,18 @@
 1. Create new output folder collect for detect snp density.
 1. Move project specific results to a new repository.
 1. Remove US Kim strain, mark as laboratory manipulation.
-1. Rerun projects
+1. Rerun projects: test, megapestis, denmark, main.
+1. Clean snp density files from version control.
+
+## To-Do
+
+1. Migrate projects to new repository.
+    - test
+    - megapestis
+    - denmark
+    - main/global
+1. Clean projects from main repository.
+    - test
+    - megapestis
+    - denmark
+    - main/global

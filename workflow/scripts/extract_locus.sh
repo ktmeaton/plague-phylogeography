@@ -30,7 +30,8 @@ LOCUS_END=$4
 
 INDIR=`dirname ${IN_FASTA_FILE}`
 #--------- Create bed files for coordinate extraction of each locus -----------#
-rm -f extract_locus.bed
+rm -f $INDIR/extract_${LOCUS_NAME}.bed
+
 # Get all headers in the fasta file (ex. multiple alignment)
 grep ">" ${IN_FASTA_FILE} | sed 's/>//g' | while read line;
 do

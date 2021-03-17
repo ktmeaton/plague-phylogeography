@@ -1,8 +1,0 @@
-Sample	Strain	Date	DateBP	Country	Province	CountryLat	CountryLon	ProvinceLat	ProvinceLon	Biovar	Branch_Major	Branch_Minor	BioSample	BioSampleComment	Branch_Number
-GCA_009909635.1_ASM990963v1_genomic	9_10	1923	-98	Russia	Rostov Oblast	64.6863136	97.7453061	47.6222451	40.7957942	Medievalis	2.MED	2.MED1	SAMN13632815	KEEP: Assembly Modern	2
-GCA_009669545.1_ASM966954v1_genomic	42126	2006	-15	China	Xinjiang	35.000074	104.999927	42.4804953	85.4633464	Antiqua	0.ANT	0.ANT1	SAMN07722925	KEEP: Assembly Modern	0
-GCA_009669555.1_ASM966955v1_genomic	42123	2005	-16	China	Xinjiang	35.000074	104.999927	42.4804953	85.4633464	Antiqua	0.ANT	0.ANT1	SAMN07722924	KEEP: Assembly Modern	0
-SAMN02442721	LP37b	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	SAMN02442721	REMOVE: SRA Ancient Low Coverage	NA
-SAMN02442718	LP32b	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	SAMN02442718	REMOVE: SRA Ancient Low Coverage	NA
-testlocal1		NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	testlocal1	KEEP: Local Test	NA
-testlocal2		NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	testlocal2	KEEP: Local Test	NA

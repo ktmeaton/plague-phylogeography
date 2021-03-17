@@ -22,20 +22,23 @@ min_version("5.26.1")
 #                                 Setup                                        #
 # -----------------------------------------------------------------------------#
 
-project_dir = os.path.dirname(workflow.basedir)
-scripts_dir = os.path.join(project_dir, "workflow", "scripts")
-envs_dir = os.path.join(project_dir, "workflow", "envs")
-results_dir = os.path.join(project_dir, "results")
-notebooks_dir = os.path.join(project_dir, "workflow", "notebooks")
-report_dir = os.path.join(project_dir, "workflow", "report")
-rules_dir = os.path.join(project_dir, "workflow", "rules")
-logs_dir = os.path.join(project_dir, "results", "logs")
-config_dir = os.path.join(project_dir, "config")
+if not config:
+    print("ERROR: Please specify --configfile")
+    quit(1)
 
+# Pipeline directories
+pipeline_dir = os.path.dirname(workflow.basedir)
+project_dir = os.getcwd()
+scripts_dir = os.path.join(pipeline_dir, "workflow", "scripts")
+envs_dir = os.path.join(pipeline_dir, "workflow", "envs")
+notebooks_dir = os.path.join(pipeline_dir, "workflow", "notebooks")
+report_dir = os.path.join(pipeline_dir, "workflow", "report")
+rules_dir = os.path.join(pipeline_dir, "workflow", "rules")
 
-# Include the config file (If not specified on command line)
-#configfile: os.path.join(config_dir, "snakemake.yaml")
-configfile: os.path.join(project_dir, "project", "test", "config", "snakemake.yaml")
+# Project directories
+results_dir = os.path.join(project_dir, config["results_dir"])
+logs_dir = os.path.join(results_dir, "logs")
+config_dir = os.path.join(results_dir, "config")
 
 # Sub snakefiles
 include: rules_dir + "/download.smk"
@@ -54,7 +57,7 @@ report: report_dir + "/workflow.rst"
 # -----------------------------------------------------------------------------#
 # Package Management                                                           #
 # -----------------------------------------------------------------------------#
-conda: os.path.join(project_dir, "workflow/envs/main/main.yaml")
+conda: os.path.join(pipeline_dir, "workflow/envs/main/main.yaml")
 container: "docker://ktmeaton/plague-phylogeography"
 
 # -----------------------------------------------------------------------------#
@@ -65,15 +68,15 @@ if workflow.singularity_prefix:
     os.environ["SINGULARITY_CACHEDIR"] =  workflow.singularity_prefix
     os.environ["NXF_SINGULARITY_CACHEDIR"] =  workflow.singularity_prefix
 else:
-    os.environ["SINGULARITY_CACHEDIR"] = os.path.join(project_dir, ".snakemake", "singularity")
-    os.environ["NXF_SINGULARITY_CACHEDIR"] = os.path.join(project_dir, ".snakemake", "singularity")
+    os.environ["SINGULARITY_CACHEDIR"] = os.path.join(pipeline_dir, ".snakemake", "singularity")
+    os.environ["NXF_SINGULARITY_CACHEDIR"] = os.path.join(pipeline_dir, ".snakemake", "singularity")
 # Conda
 if workflow.conda_prefix:
     os.environ["CONDA_CACHEDIR"] =  workflow.conda_prefix
     os.environ["NXF_CONDA_CACHEDIR"] = workflow.conda_prefix
 else:
-    os.environ["CONDA_CACHEDIR"] = os.path.join(project_dir, ".snakemake", "conda")
-    os.environ["NXF_CONDA_CACHEDIR"] = os.path.join(project_dir, ".snakemake", "conda")
+    os.environ["CONDA_CACHEDIR"] = os.path.join(pipeline_dir, ".snakemake", "conda")
+    os.environ["NXF_CONDA_CACHEDIR"] = os.path.join(pipeline_dir, ".snakemake", "conda")
 # Locale settings for perl
 if "LANGUAGE" not in os.environ:
     os.environ["LANGUAGE"] = "en_US.UTF-8"

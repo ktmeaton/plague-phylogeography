@@ -21,6 +21,7 @@ results/data/*
 results/detect_low_complexity/*
 results/detect_repeats/*
 results/detect_snp_density/*
+results/detect_snp_density_collect/*
 results/eager/*
 results/iqtree/*
 results/locus_coverage/*
