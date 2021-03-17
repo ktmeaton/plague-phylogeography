@@ -99,20 +99,20 @@ rule all:
     """
     input:
         # Metadata
-        metadata_all,
+        metadata_all_input,
         # Multiqc
-        multiqc_all,
+        multiqc_all_input,
         # Phylo
-        iqtree_scf_all,
+        iqtree_scf_all_input,
         # Post-Phylo
-        clock_plot_all,
-        mugration_plot_all,
-        geo_all,
+        clock_plot_all_input,
+        mugration_plot_all_input,
+        geo_all_input,
         # Plot
-        plot_missing_data_all,
-        plot_snp_matrix_all,
+        plot_missing_data_all_input,
+        plot_snp_matrix_all_input,
         # Stats
-        locus_coverage_collect_all
+        locus_coverage_collect_all_input,
 
 # -----------------------------------------------------------------------------#
 #                             Help and Usage                                   #
