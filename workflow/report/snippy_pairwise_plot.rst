@@ -1,1 +1,0 @@
-Snippy pairwise variant statistics.

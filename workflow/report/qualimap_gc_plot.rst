@@ -1,1 +1,0 @@
-Qualimap GC content distribution.
