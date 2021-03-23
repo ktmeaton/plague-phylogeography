@@ -55,48 +55,10 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate plague-phylogeography;
-          snakemake --profile profiles/gh-actions help;
+          snakemake help --profile profiles/gh-actions --configfile results/config/snakemake.yaml ;
       #------------------------------------------------------------------------#
       #- name: Setup tmate session
       #  uses: mxschmitt/action-tmate@v3
-  #----------------------------------------------------------------------------#
-  # install_singularity:
-  #   name: Install with Singularity
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     fail-fast: false
-  #   steps:
-  #     #------------------------------------------------------------------------#
-  #     - name: setup environment variables
-  #       run: |
-  #         echo "SINGULARITY_DOCKER_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> $GITHUB_ENV
-  #         echo "SINGULARITY_DOCKER_PASSWORD=${{ secrets.DOCKERHUB_PASSWORD }}" >> $GITHUB_ENV
-  #         echo "FLOWDASH_BIO_USERNAME=${{ secrets.FLOWDASH_BIO_USERNAME }}" >> $GITHUB_ENV
-  #         echo "FLOWDASH_BIO_PASSWORD=${{ secrets.FLOWDASH_BIO_PASSWORD }}" >> $GITHUB_ENV
-  #     #SINGULARITY_ROOT: /opt/hostedtoolcache/singularity/3.6.3/x64
-  #     #------------------------------------------------------------------------#
-  #     # Checkout Repository
-  #     - name: checkout repo
-  #       uses: actions/checkout@v2
-  #     #------------------------------------------------------------------------#
-  #     # Setup singularity
-  #     - name: setup singularity
-  #       uses: eWaterCycle/setup-singularity@v5
-  #       with:
-  #         singularity-version: 3.6.3
-  #     #------------------------------------------------------------------------#
-  #     # pull container
-  #     - name: pull container
-  #       run: singularity pull docker://docker.io/ktmeaton/plague-phylogeography:dev
-  #     #------------------------------------------------------------------------#
-  #     # Configure sra-toolkit
-  #     - name: configure sra-toolkit
-  #       run: |
-  #         mkdir -p ~/.ncbi/;
-  #         printf '/LIBS/GUID = "%s"\n' `uuidgen` > ~/.ncbi/user-settings.mkfg;
-  #     # run help
-  #     - name: run help
-  #       run: singularity exec plague-phylogeography_dev.sif snakemake --profile profiles/gh-actions help;
   #----------------------------------------------------------------------------#
   install_docker:
     name: Install with Docker
@@ -122,4 +84,4 @@ jobs:
       #------------------------------------------------------------------------#
       # run help
       - name: run help
-        run: docker run -e FLOWDASH_BIO_USERNAME=$FLOWDASH_BIO_USERNAME -e FLOWDASH_BIO_PASSWORD=$FLOWDASH_BIO_PASSWORD -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions help;
+        run: docker run -e FLOWDASH_BIO_USERNAME=$FLOWDASH_BIO_USERNAME -e FLOWDASH_BIO_PASSWORD=$FLOWDASH_BIO_PASSWORD -v $PWD:/pipeline -w /pipeline ktmeaton/plague-phylogeography:dev snakemake help --profile profiles/gh-actions --configfile results/config/snakemake.yaml;

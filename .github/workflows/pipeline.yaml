@@ -63,19 +63,19 @@ jobs:
         shell: bash -l {0}
         run: |
             conda activate plague-phylogeography;
-            snakemake --profile profiles/gh-actions help;
+            snakemake help --profile profiles/gh-actions --configfile results/config/snakemake.yaml;
       # run all
       - name: run all
         shell: bash -l {0}
         run: |
             conda activate plague-phylogeography;
-            snakemake --profile profiles/gh-actions all;
+            snakemake all --profile profiles/gh-actions --configfile results/config/snakemake.yaml;
       # run report
       - name: run report
         shell: bash -l {0}
         run: |
             conda activate plague-phylogeography;
-            snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
+            snakemake all --profile profiles/gh-actions --report workflow/report/report.html --configfile results/config/snakemake.yaml;
       #------------------------------------------------------------------------#
       #  Artifact Upload
       - name: artifact conda-report
@@ -115,15 +115,15 @@ jobs:
       #------------------------------------------------------------------------#
       # run help
       - name: run help
-        run: docker run -v $PWD:/pipeline -e FLOWDASH_BIO_USERNAME=$FLOWDASH_BIO_USERNAME -e FLOWDASH_BIO_PASSWORD=$FLOWDASH_BIO_PASSWORD -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions help;
+        run: docker run -v $PWD:/pipeline -e FLOWDASH_BIO_USERNAME=$FLOWDASH_BIO_USERNAME -e FLOWDASH_BIO_PASSWORD=$FLOWDASH_BIO_PASSWORD -w /pipeline ktmeaton/plague-phylogeography:dev snakemake help --profile profiles/gh-actions --configfile results/config/snakemake.yaml;
       # run all
       - name: run all
         shell: bash -l {0}
-        run: docker run -v $PWD:/pipeline -e FLOWDASH_BIO_USERNAME=$FLOWDASH_BIO_USERNAME -e FLOWDASH_BIO_PASSWORD=$FLOWDASH_BIO_PASSWORD -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions all;
+        run: docker run -v $PWD:/pipeline -e FLOWDASH_BIO_USERNAME=$FLOWDASH_BIO_USERNAME -e FLOWDASH_BIO_PASSWORD=$FLOWDASH_BIO_PASSWORD -w /pipeline ktmeaton/plague-phylogeography:dev snakemake all --profile profiles/gh-actions --configfile results/config/snakemake.yaml;
       # run report
       - name: run report
         shell: bash -l {0}
-        run: docker run -v $PWD:/pipeline -e FLOWDASH_BIO_USERNAME=$FLOWDASH_BIO_USERNAME -e FLOWDASH_BIO_PASSWORD=$FLOWDASH_BIO_PASSWORD -w /pipeline ktmeaton/plague-phylogeography:dev snakemake --profile profiles/gh-actions --report workflow/report/report.html all;
+        run: docker run -v $PWD:/pipeline -e FLOWDASH_BIO_USERNAME=$FLOWDASH_BIO_USERNAME -e FLOWDASH_BIO_PASSWORD=$FLOWDASH_BIO_PASSWORD -w /pipeline ktmeaton/plague-phylogeography:dev snakemake all --profile profiles/gh-actions --report workflow/report/report.html --configfile results/config/snakemake.yaml;
       #------------------------------------------------------------------------#
       #  Artifact Upload
       - name: artifact docker-report
