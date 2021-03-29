@@ -161,12 +161,29 @@ rule snippy_multi_extract_all:
         expand(results_dir + "/snippy_multi/all/snippy-core_{locus_name}.full.aln",
         locus_name=config["reference_locus_name"]),
 
+snippy_multi_filter_all_input = expand(results_dir + "/snippy_multi/all/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
+        locus_name=config["reference_locus_name"],
+        missing_data = config["snippy_missing_data"])[0]
+
+snippy_multi_filter_local_input    = snippy_multi_filter_all_input.replace("all", "local")
+snippy_multi_filter_assembly_input = snippy_multi_filter_all_input.replace("all", "assembly")
+snippy_multi_filter_sra_input      = snippy_multi_filter_all_input.replace("all", "sra")
+
 rule snippy_multi_filter_all:
     input:
-        expand(results_dir + "/snippy_multi/all/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
-        locus_name=config["reference_locus_name"],
-        missing_data = config["snippy_missing_data"])
+        snippy_multi_filter_all_input
 
+rule snippy_multi_filter_local:
+    input:
+        snippy_multi_filter_local_input
+
+rule snippy_multi_filter_assembly:
+    input:
+        snippy_multi_filter_assembly_input
+
+rule snippy_multi_filter_sra:
+    input:
+        snippy_multi_filter_sra_input
 
 #------------------------------------------------------------------------------#
 # Qualimap

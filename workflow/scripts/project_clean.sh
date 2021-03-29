@@ -24,7 +24,7 @@ then
 fi
 
 echo -e "\nCleaning up ${RESULTS_DIR} directory:"
-mkdir -p $BACKUP_DIR;
+#mkdir -p $BACKUP_DIR;
 
 for dir in `ls -d $RESULTS_DIR/*`;
 do
