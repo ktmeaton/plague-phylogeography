@@ -102,11 +102,11 @@ rule clock_model:
     output:
         tree     = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_timetree.nwk",
         tsv      = results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model.tsv",
-        skyline  = report(results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_skyline.svg",
-                          caption=os.path.join(report_dir, "clock", "skyline.rst"),
-						  category="Clock",
-						  subcategory="Skyline",
-                         ),
+        #skyline  = report(results_dir + "/clock/{reads_origin}/{locus_name}_filter{missing_data}/clock_model_skyline.svg",
+        #                  caption=os.path.join(report_dir, "clock", "skyline.rst"),
+				#		  category="Clock",
+				#		  subcategory="Skyline",
+        #                 ),
     resources:
         load     = 100,
     log:
