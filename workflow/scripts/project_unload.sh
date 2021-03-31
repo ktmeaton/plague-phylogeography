@@ -6,14 +6,12 @@ MODE=$3
 
 EXCLUDE_DIR=(
 	# Input dir
-    config
 	data
 	sqlite_db
 	# Output per-sample
 	detect_snp_density
 	eager
 	locus_coverage
-    logs
 	qualimap
 	snippy_pairwise
 	);
