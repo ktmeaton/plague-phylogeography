@@ -6,6 +6,7 @@ MODE=$3
 
 EXCLUDE_DIR=(
 	# Input dir
+	config
 	data
 	sqlite_db
 	# Output per-sample
