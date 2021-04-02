@@ -6,10 +6,12 @@ MODE=$3
 
 # All directories
 EXCLUDE_DIR=(
+  beast
 	);
 
 if [[ ! $RESULTS_DIR || ! $BACKUP_DIR ]];
 then
+	echo "Please specify a results directory and backup directory."
 	exit 1;
 fi
 
@@ -27,7 +29,7 @@ do
 	keep="true";
 	for target in ${EXCLUDE_DIR[@]};
 	do
-		if [[ $dirname == $target || $dirname ]];
+		if [[ $dirname == $target ]];
 		then
 			keep="false";
 	  fi;
