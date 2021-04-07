@@ -71,8 +71,17 @@ with open(world_geo_json_path) as infile:
 for feature in data["features"]:
     country = feature["properties"]["sovereignt"]
     continent = feature["properties"]["continent"]
+
+    # Manual edits for Nominatim compatibility
+    if country == "United Kingdom":
+        country = "England"
+    elif country == "Netherlands":
+        country = "The Netherlands"
     continent_dict[country] = continent
 
+# k = list(continent_dict.keys())
+# k.sort()
+# print(k)
 geolocator = Nominatim(user_agent="plague-phylogeography")
 
 CURRENT_YEAR = datetime.datetime.utcnow().year
