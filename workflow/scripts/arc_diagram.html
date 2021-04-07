@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!-- Port Arc Diagram visualization from http://homes.cs.washington.edu/~jheer/files/zoo/ex/networks/arc.html to D3.js -->
+<meta charset="utf-8">
+<style>
+    body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        width: 960px;
+        height: 500px;
+        position: relative;
+    }
+
+    <!--
+    path {
+        //fill: #505050;
+        //fill-opacity: 0.2;
+    }
+
+    circle{
+        stroke-width: 1;
+    }
+</style>
+<body>Order:
+    <select id="selectSort">
+        <option value="Country">Country</option>
+        <option value="Continent">Continent</option>
+        <option value="Node Size">Node Size</option>
+        <option value="Total Links">Total Links</option>
+        <option value="In Links">In Links</option>
+        <option value="Out Links">Out Links</option>
+        <option value="Latitude">Latitude</option>
+        <option value="Longitude">Longitude</option>
+
+    </select>
+
+    Color:
+    <select id="selectColor">
+        <option value="Country">Country</option>
+        <option value="Continent">Continent</option>
+        <option value="Frequency">Frequency</option>
+    </select>
+</body>
+
+<!-- Load the data source -->
+<script src="network.js"></script>
+
+<!-- Load AJAX -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+
+<!-- Load jquery-->
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script>
+
+var i,
+    width = 960,
+    height = 500,
+    transitionTime = 1000,
+    margin = 100,
+    nodeY = 250,
+    nodes = network.nodes,
+    links = network.links,
+    link_left_col = "blue",
+    link_right_col = "black",
+    spacing = 500 / nodes.length,
+    colors_disc = d3.scale.category20(),
+    τ = 2 * Math.PI; // http://tauday.com/tau-manifesto
+
+
+var svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+function mapRange(value, inMin, inMax, outMin, outMax){
+    var inVal = Math.min(Math.max(value, inMin), inMax);
+    return outMin + (outMax-outMin)*((inVal - inMin)/(inMax-inMin));
+}
+
+// Set each node's value to the sum of all incoming and outgoing link values
+var nodeValMin = 100000000,
+    nodeValMax = 0;
+
+// Initialize some values for dynamic setting
+for(i=0; i<nodes.length; i++){
+    nodes[i].totalLinks = 0;
+    nodes[i].inLinks = 0;
+    nodes[i].outLinks = 0;
+    nodes[i].displayOrder = i;
+}
+// Get the range of node sizes
+for(i=0; i<nodes.length; i++){
+    nodeValMin = Math.min(nodeValMin, nodes[i].size);
+    nodeValMax = Math.max(nodeValMax, nodes[i].size);
+}
+
+// Get the number of links for each node
+for(i=0; i<links.length; i++){
+    link = links[i];
+
+    nodes[link.source].totalLinks += link.size;
+    nodes[link.source].outLinks += link.size;
+
+    nodes[link.target].totalLinks += link.size;
+    nodes[link.target].inLinks += link.size;
+
+}
+
+var arcBuilder = d3.svg.arc()
+    .startAngle(-τ/4)
+    .endAngle(τ/4);
+arcBuilder.setRadii = function(d){
+        var arcHeight = 0.5 * Math.abs(d.x2-d.x1);
+        this
+            .innerRadius(arcHeight - d.thickness/2)
+            .outerRadius(arcHeight + d.thickness/2);
+    };
+function arcTranslation(d){
+    return "translate(" + (d.x1 + d.x2)/2 + "," + nodeY + ")";
+}
+function nodeDisplayX(node){
+    return node.displayOrder * spacing + margin;
+}
+
+var path;
+
+function update(){
+
+    // DATA JOIN
+    path = svg.selectAll("path")
+        .data(links);
+    // UPDATE
+    path.transition()
+      .duration(transitionTime)
+      .call(pathTween, null)
+
+      .attr("fill", function(d,i){ return(
+          nodes[d.target].displayOrder > nodes[d.source].displayOrder ? link_left_col : link_right_col)
+        })
+      ;
+    // ENTER
+    path.enter()
+        .append("path")
+        .attr("transform", function(d,i){
+            d.x1 = nodeDisplayX(nodes[d.target]);
+            d.x2 = nodeDisplayX(nodes[d.source]);
+            return arcTranslation(d);
+            })
+        .attr("d", function(d,i){
+            d.thickness = 1 + d.size;
+            arcBuilder.setRadii(d);
+            return arcBuilder();
+            })
+        .attr("fill", function(d,i){ return(
+          nodes[d.target].displayOrder > nodes[d.source].displayOrder ? link_left_col : link_right_col)
+        })
+        .attr("opacity", 0.2)
+    ;
+
+    // DATA JOIN
+    var circle = svg.selectAll("circle")
+        .data(nodes);
+
+    // UPDATE
+    circle.transition()
+        .duration(transitionTime)
+        .attr("cx", function(d,i) {return nodeDisplayX(d);})
+        .attr("fill", function(d,i) {return d.nodeFill;})
+        .attr("stroke", function(d,i) {return d.nodeStroke;})
+        ;
+    // ENTER
+    circle.enter()
+        .append("circle")
+        .attr("cy", nodeY)
+        .attr("cx", function(d,i) {return nodeDisplayX(d);})
+        .attr("r", function(d,i) {return mapRange(d.size, nodeValMin, nodeValMax, 10, margin/2);})
+        .attr("fill", function(d,i) {return d.nodeFill;})
+        .attr("stroke", function(d,i) {return d.nodeStroke;})
+
+    function textTransform(node){
+        return ("rotate(90 " + (nodeDisplayX(node) - 5) + " " + (nodeY + 12) + ")");
+    }
+    // DATA JOIN
+    var text = svg.selectAll("text")
+        .data(nodes);
+    // UPDATE
+    text.transition()
+        .duration(transitionTime)
+        .attr("x", function(d,i) {return nodeDisplayX(d) + d.size/2;})
+        .attr("transform", function(d,i) { return textTransform(d); });
+    // ENTER
+    text.enter()
+        .append("text")
+        .attr("y", nodeY + 12)
+        .attr("x", function(d,i) {return nodeDisplayX(d) + d.size/2;})
+        .attr("transform", function(d,i) { return textTransform(d); })
+        .attr("font-size", "10px")
+        .text(function(d,i) {return d.country;});
+}
+
+doSort("Country");
+doColor("country");
+update();
+
+function pathTween(transition, dummy){
+    transition.attrTween("d", function(d){
+        var interpolateX1 = d3.interpolate(d.x1, nodeDisplayX(nodes[d.target]));
+        var interpolateX2 = d3.interpolate(d.x2, nodeDisplayX(nodes[d.source]));
+        return function(t){
+            d.x1 = interpolateX1(t);
+            d.x2 = interpolateX2(t);
+            arcBuilder.setRadii(d);
+            return arcBuilder();
+        };
+    });
+
+    transition.attrTween("transform", function(d){
+        var interpolateX1 = d3.interpolate(d.x1, nodeDisplayX(nodes[d.target]));
+        var interpolateX2 = d3.interpolate(d.x2, nodeDisplayX(nodes[d.source]));
+        return function(t){
+            d.x1 = interpolateX1(t);
+            d.x2 = interpolateX2(t);
+            return arcTranslation(d);
+        };
+    });
+}
+
+d3.select("#selectSort").on("change", function() {
+    var sortMethod = this[this.selectedIndex].value;
+    doSort(sortMethod);
+    update();
+});
+
+
+function doSort(sortMethod){
+    var nodeMap = [],
+        sortFunction;
+
+    for(i=0; i<nodes.length; i++){
+        var node = $.extend({index:i}, nodes[i]); // Shallow copy
+        nodeMap.push(node);
+    }
+
+    if (sortMethod == "Default"){
+        // Default
+        sortFunction = function(a, b){
+            return b.country - a.country;
+        };
+    }
+    else if (sortMethod == "Node Size"){
+        sortFunction = function(a, b){
+            return b.size - a.size;
+        };
+    }
+    else if(sortMethod == "Country"){
+        // ALPHABETICAL
+        sortFunction = function(a, b){
+            return a.country.localeCompare(b.country)
+        };
+    }
+
+    else if(sortMethod == "Latitude"){
+        sortFunction = function(a, b){
+            return a.lat - b.lat;
+        };
+    }
+
+    else if(sortMethod == "Longitude"){
+        sortFunction = function(a, b){
+            return a.lon - b.lon;
+        };
+    }
+
+    else if(sortMethod == "Continent"){
+        sortFunction = function(a, b){
+            return a.continent.localeCompare(b.continent)
+        };
+    }
+
+    else if(sortMethod == "Total Links"){
+        sortFunction = function(a, b){
+            return b.totalLinks - a.totalLinks;
+        };
+    }
+
+    else if(sortMethod == "In Links"){
+        sortFunction = function(a, b){
+            return b.inLinks - a.inLinks;
+        };
+    }
+
+    else if(sortMethod == "Out Links"){
+        sortFunction = function(a, b){
+            return b.outLinks - a.outLinks;
+        };
+    }
+
+    nodeMap.sort(sortFunction);
+    for(i=0; i<nodeMap.length; i++){
+        nodes[nodeMap[i].index].displayOrder = i;
+    }
+}
+
+d3.select("#selectColor").on("change", function() {
+    var colorMethod = this[this.selectedIndex].value.toLowerCase();
+    doColor(colorMethod);
+    update();
+});
+
+function doColor(colorMethod){
+    console.log(nodes[0][colorMethod])
+    for(i=0; i<nodes.length; i++){
+        nodes[i].nodeFill = colors_disc(nodes[i][colorMethod])
+        nodes[i].nodeStroke = d3.rgb(nodes[i].nodeFill).darker(1);
+    }
+}
+</script>
