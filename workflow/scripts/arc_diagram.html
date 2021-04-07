@@ -46,6 +46,7 @@
 <!-- Load AJAX -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+
 <!-- Load jquery-->
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -64,6 +65,8 @@ var i,
     min_node_size = 5,
     max_node_size = 40,
     spacing = 20,
+    label_size = '15px',
+    link_opacity = 0.2,
     colors_disc = d3.scale.category20(),
     rainbow = d3.scaleSequential(d3.interpolateRainbow);
     τ = 2 * Math.PI; // http://tauday.com/tau-manifesto
@@ -71,6 +74,7 @@ var i,
 var svg = d3.select("body").append("svg")
         .attr("width", width)
         .attr("height", height)
+
 
 function mapRange(value, inMin, inMax, outMin, outMax){
     var inVal = Math.min(Math.max(value, inMin), inMax);
@@ -117,6 +121,15 @@ for(i=0; i<links.length; i++){
 
 }
 
+
+var allTotalLinks = nodes.map(function(d){return d.totalLinks}).sort((a, b) => b - a),
+    allTotalLinksUniq = [...new Set(allTotalLinks)];
+    allInLinks = nodes.map(function(d){return d.inLinks}).sort((a, b) => b - a),
+    allInLinksUniq = [...new Set(allInLinks)];
+    allOutLinks = nodes.map(function(d){return d.outLinks}).sort((a, b) => b - a),
+    allOutLinksUniq = [...new Set(allOutLinks)];
+
+
 var arcBuilder = d3.svg.arc()
     .startAngle(-τ/4)
     .endAngle(τ/4);
@@ -144,10 +157,7 @@ function update(){
     path.transition()
       .duration(transitionTime)
       .call(pathTween, null)
-
-      .attr("fill", function(d,i){ return(
-          nodes[d.target].displayOrder > nodes[d.source].displayOrder ? nodes[d.source].nodeFill : nodes[d.target].nodeFill)
-        })
+      .attr("fill", function(d,i){ return nodes[d.source].nodeFill})
       ;
     // ENTER
     path.enter()
@@ -163,7 +173,7 @@ function update(){
             return arcBuilder();
             })
         .attr("fill", function(d,i){ return nodes[d.source].nodeFill})
-        .attr("opacity", 0.5)
+        .attr("opacity", link_opacity)
     ;
 
     // DATA JOIN
@@ -204,8 +214,31 @@ function update(){
         .attr("y", nodeY + 12)
         .attr("x", function(d,i) {return nodeDisplayX(d) + 5;})
         .attr("transform", function(d,i) { return textTransform(d); })
-        .attr("font-size", "15px")
+        .attr("font-size", label_size)
         .text(function(d,i) {return d.country;});
+
+
+    var circles = svg.selectAll("circle")
+    var paths = svg.selectAll("path")
+    var texts = svg.selectAll("text")
+
+    circles
+    .on('mouseover', function (d) {
+      // Highlight the nodes: every node is green except of him
+      circles
+        .style('opacity', 0.2)
+      d3.select(this)
+        .style('opacity', 1)
+        paths
+        .style('opacity', function(link_d) { return(link_d.source == d.id || link_d.target == d.id  ? 1 : 0.05)})
+    })
+    .on('mouseout', function (d) {
+      circles.style('opacity', 1)
+      paths
+        .style('opacity', link_opacity)
+        .style('stroke-width', '1')
+
+    })
 }
 
 doSort("Country");
@@ -332,10 +365,30 @@ function doColor(colorMethod){
         }
     }
 
+    else if (colorMethod == "in links"){
+        for(i=0; i<nodes.length; i++){
+            var in_links_i = allInLinksUniq.indexOf(nodes[i].inLinks)
+            nodes[i].nodeFill = rainbow((in_links_i/allInLinksUniq.length));
+        }
+    }
+
+    else if (colorMethod == "out links"){
+        for(i=0; i<nodes.length; i++){
+            var out_links_i = allOutLinksUniq.indexOf(nodes[i].outLinks)
+            nodes[i].nodeFill = rainbow((out_links_i/allOutLinksUniq.length));
+        }
+    }
+
+    else if (colorMethod == "total links"){
+        for(i=0; i<nodes.length; i++){
+            var total_links_i = allTotalLinksUniq.indexOf(nodes[i].totalLinks)
+            nodes[i].nodeFill = rainbow((total_links_i/allTotalLinksUniq.length));
+        }
+    }
+
     else if (colorMethod == "latitude"){
         for(i=0; i<nodes.length; i++){
             var lat_i = allLatitudesUniq.indexOf(nodes[i].lat)
-            console.log(nodes[i].country, nodes[i].lat, lat_i)
             nodes[i].nodeFill = rainbow((lat_i/allLatitudesUniq.length));
         }
     }
@@ -343,7 +396,6 @@ function doColor(colorMethod){
     else if (colorMethod == "longitude"){
         for(i=0; i<nodes.length; i++){
             var lon_i = allLongitudesUniq.indexOf(nodes[i].lon)
-            console.log(nodes[i].country, nodes[i].lon, lon_i)
             nodes[i].nodeFill = rainbow((lon_i/allLongitudesUniq.length));
         }
     }
