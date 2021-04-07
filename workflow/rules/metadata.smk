@@ -17,5 +17,6 @@ rule metadata:
 		    python {scripts_dir}/metadata.py \
 				  --db {params.db} \
 					--samples-csv {params.samples} \
-					--output {output.tsv} ;
+					--output {output.tsv} \
+					--world {scripts_dir}/world.geo.json;
 			"""

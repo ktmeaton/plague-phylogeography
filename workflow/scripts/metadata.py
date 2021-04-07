@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -----------------------------------------------------------------------------#
 #                         Modules and Packages                                 #
 # -----------------------------------------------------------------------------#
@@ -7,6 +8,7 @@ import sqlite3  # database queries
 import os  # path manipulation
 import datetime  # calculate current year
 from geopy.geocoders import Nominatim  # Geocode addresses
+import json
 
 # ------------------------------------------------------------------------------#
 # Argument Parsing                                                              #
@@ -31,6 +33,15 @@ parser.add_argument(
 )
 
 parser.add_argument(
+    "--world",
+    help="World Geo JSON.",
+    action="store",
+    dest="worldGeoJson",
+    required=True,
+)
+
+
+parser.add_argument(
     "--output",
     help="Ouput TSV file path.",
     action="store",
@@ -43,14 +54,24 @@ parser.add_argument(
 args = vars(parser.parse_args())
 sqlite_db_path = args["dbPath"]
 samples_csv = args["samplesCSV"]
+world_geo_json_path = args["worldGeoJson"]
 samples_list = samples_csv.split(",")
 output_path = args["outputPath"]
-
 
 # ------------------------------------------------------------------------------#
 # Setup                                                                         #
 # ------------------------------------------------------------------------------#
 
+# Create a mapping of countries to continents
+continent_dict = {}
+
+with open(world_geo_json_path) as infile:
+    data = json.load(infile)
+
+for feature in data["features"]:
+    country = feature["properties"]["sovereignt"]
+    continent = feature["properties"]["continent"]
+    continent_dict[country] = continent
 
 geolocator = Nominatim(user_agent="plague-phylogeography")
 
@@ -97,6 +118,7 @@ output_headers_main = [
     "BioSample",
     "BioSampleComment",
     "Branch_Number",
+    "Continent",
 ]
 
 # Nextstrain LatLon Format (no header)
@@ -167,6 +189,7 @@ for sample in samples_list:
         "NA",  # biosample [13]
         "NA",  # comment [14]
         "NA",  # branch_number [15]
+        "NA",  # continent [16]
     ]
 
     if result:
@@ -207,7 +230,7 @@ for sample in samples_list:
             output_main_vals[4] = country_name
             # Geocode country
             if country_name not in geocode_dict:
-                country_geocode = geolocator.geocode(country_name, language="en",)
+                country_geocode = geolocator.geocode(country_name, language="en")
                 geocode_dict[country_name] = [
                     country_geocode.latitude,
                     country_geocode.longitude,
@@ -229,6 +252,9 @@ for sample in samples_list:
                     ]
                 output_main_vals[8] = geocode_dict[province_name][0]
                 output_main_vals[9] = geocode_dict[province_name][1]
+
+            # continent parsing
+            output_main_vals[16] = continent_dict[country_name]
 
         # Biovar parsing
         biovar = result[4]
