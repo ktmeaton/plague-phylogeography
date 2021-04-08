@@ -9,12 +9,6 @@
         position: relative;
     }
 
-    <!--
-    path {
-        //fill: #505050;
-        //fill-opacity: 0.2;
-    }
-
     circle{
         stroke-width: 1;
     }
@@ -23,20 +17,26 @@
     <select id="selectSort">
         <option value="Country">Country</option>
         <option value="Continent">Continent</option>
-        <option value="Node Size">Node Size</option>
+        <option value="Size">Size</option>
         <option value="Total Links">Total Links</option>
         <option value="In Links">In Links</option>
         <option value="Out Links">Out Links</option>
         <option value="Latitude">Latitude</option>
         <option value="Longitude">Longitude</option>
-
+        <option value="ID">ID</option>
     </select>
 
     Color:
     <select id="selectColor">
         <option value="Country">Country</option>
         <option value="Continent">Continent</option>
-        <option value="Frequency">Frequency</option>
+        <option value="Size">Size</option>
+        <option value="Total Links">Total Links</option>
+        <option value="In Links">In Links</option>
+        <option value="Out Links">Out Links</option>
+        <option value="Latitude">Latitude</option>
+        <option value="Longitude">Longitude</option>
+        <option value="ID">ID</option>
     </select>
 </body>
 
@@ -45,6 +45,7 @@
 
 <!-- Load AJAX -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 
 <!-- Load jquery-->
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -52,28 +53,44 @@
 <script>
 
 var i,
-    width = 960,
+    width = 900,
     height = 500,
     transitionTime = 1000,
     margin = 100,
-    nodeY = 250,
+    nodeY = 400,
     nodes = network.nodes,
     links = network.links,
     link_left_col = "blue",
     link_right_col = "black",
-    spacing = 500 / nodes.length,
+    min_node_size = 5,
+    max_node_size = 40,
+    spacing = 20,
+    label_size = '15px',
+    link_opacity = 0.2,
     colors_disc = d3.scale.category20(),
+    rainbow = d3.scaleSequential(d3.interpolateRainbow);
     τ = 2 * Math.PI; // http://tauday.com/tau-manifesto
-
 
 var svg = d3.select("body").append("svg")
         .attr("width", width)
         .attr("height", height)
 
+
 function mapRange(value, inMin, inMax, outMin, outMax){
     var inVal = Math.min(Math.max(value, inMin), inMax);
     return outMin + (outMax-outMin)*((inVal - inMin)/(inMax-inMin));
 }
+
+var allSizes = nodes.map(function(d){return d.size}).sort((a, b) => b - a),
+    allSizesUniq = [...new Set(allSizes)];
+
+var allCountries = nodes.map(function(d){return d.country}).sort();
+
+var allLatitudes = nodes.map(function(d){return d.lat}).sort((a, b) => b - a),
+    allLatitudesUniq = [...new Set(allLatitudes)];
+
+var allLongitudes = nodes.map(function(d){return d.lon}).sort((a, b) => b - a),
+    allLongitudesUniq = [...new Set(allLongitudes)];
 
 // Set each node's value to the sum of all incoming and outgoing link values
 var nodeValMin = 100000000,
@@ -104,6 +121,15 @@ for(i=0; i<links.length; i++){
 
 }
 
+
+var allTotalLinks = nodes.map(function(d){return d.totalLinks}).sort((a, b) => b - a),
+    allTotalLinksUniq = [...new Set(allTotalLinks)];
+    allInLinks = nodes.map(function(d){return d.inLinks}).sort((a, b) => b - a),
+    allInLinksUniq = [...new Set(allInLinks)];
+    allOutLinks = nodes.map(function(d){return d.outLinks}).sort((a, b) => b - a),
+    allOutLinksUniq = [...new Set(allOutLinks)];
+
+
 var arcBuilder = d3.svg.arc()
     .startAngle(-τ/4)
     .endAngle(τ/4);
@@ -131,10 +157,7 @@ function update(){
     path.transition()
       .duration(transitionTime)
       .call(pathTween, null)
-
-      .attr("fill", function(d,i){ return(
-          nodes[d.target].displayOrder > nodes[d.source].displayOrder ? link_left_col : link_right_col)
-        })
+      .attr("fill", function(d,i){ return nodes[d.source].nodeFill})
       ;
     // ENTER
     path.enter()
@@ -149,10 +172,8 @@ function update(){
             arcBuilder.setRadii(d);
             return arcBuilder();
             })
-        .attr("fill", function(d,i){ return(
-          nodes[d.target].displayOrder > nodes[d.source].displayOrder ? link_left_col : link_right_col)
-        })
-        .attr("opacity", 0.2)
+        .attr("fill", function(d,i){ return nodes[d.source].nodeFill})
+        .attr("opacity", link_opacity)
     ;
 
     // DATA JOIN
@@ -171,12 +192,13 @@ function update(){
         .append("circle")
         .attr("cy", nodeY)
         .attr("cx", function(d,i) {return nodeDisplayX(d);})
-        .attr("r", function(d,i) {return mapRange(d.size, nodeValMin, nodeValMax, 10, margin/2);})
+        .attr("r", function(d,i) {return mapRange(d.size, nodeValMin, nodeValMax, min_node_size, max_node_size);})
         .attr("fill", function(d,i) {return d.nodeFill;})
         .attr("stroke", function(d,i) {return d.nodeStroke;})
+        .attr("opacity", 0.9)
 
     function textTransform(node){
-        return ("rotate(90 " + (nodeDisplayX(node) - 5) + " " + (nodeY + 12) + ")");
+        return ("rotate(45 " + (nodeDisplayX(node) - 5) + " " + (nodeY + 12) + ")");
     }
     // DATA JOIN
     var text = svg.selectAll("text")
@@ -184,16 +206,39 @@ function update(){
     // UPDATE
     text.transition()
         .duration(transitionTime)
-        .attr("x", function(d,i) {return nodeDisplayX(d) + d.size/2;})
+        .attr("x", function(d,i) {return nodeDisplayX(d) + 5;})
         .attr("transform", function(d,i) { return textTransform(d); });
     // ENTER
     text.enter()
         .append("text")
         .attr("y", nodeY + 12)
-        .attr("x", function(d,i) {return nodeDisplayX(d) + d.size/2;})
+        .attr("x", function(d,i) {return nodeDisplayX(d) + 5;})
         .attr("transform", function(d,i) { return textTransform(d); })
-        .attr("font-size", "10px")
+        .attr("font-size", label_size)
         .text(function(d,i) {return d.country;});
+
+
+    var circles = svg.selectAll("circle")
+    var paths = svg.selectAll("path")
+    var texts = svg.selectAll("text")
+
+    circles
+    .on('mouseover', function (d) {
+      // Highlight the nodes: every node is green except of him
+      circles
+        .style('opacity', 0.2)
+      d3.select(this)
+        .style('opacity', 1)
+        paths
+        .style('opacity', function(link_d) { return(link_d.source == d.id || link_d.target == d.id  ? 1 : 0.05)})
+    })
+    .on('mouseout', function (d) {
+      circles.style('opacity', 1)
+      paths
+        .style('opacity', link_opacity)
+        .style('stroke-width', '1')
+
+    })
 }
 
 doSort("Country");
@@ -239,13 +284,7 @@ function doSort(sortMethod){
         nodeMap.push(node);
     }
 
-    if (sortMethod == "Default"){
-        // Default
-        sortFunction = function(a, b){
-            return b.country - a.country;
-        };
-    }
-    else if (sortMethod == "Node Size"){
+    if (sortMethod == "Size"){
         sortFunction = function(a, b){
             return b.size - a.size;
         };
@@ -293,6 +332,12 @@ function doSort(sortMethod){
         };
     }
 
+    else if(sortMethod == "ID"){
+        sortFunction = function(a, b){
+            return a.id - b.id;
+        };
+    }
+
     nodeMap.sort(sortFunction);
     for(i=0; i<nodeMap.length; i++){
         nodes[nodeMap[i].index].displayOrder = i;
@@ -306,10 +351,72 @@ d3.select("#selectColor").on("change", function() {
 });
 
 function doColor(colorMethod){
-    console.log(nodes[0][colorMethod])
+
+    if (colorMethod == "id"){
+        for(i=0; i<nodes.length; i++){
+            nodes[i].nodeFill = rainbow(nodes[i].id/nodes.length);
+        }
+    }
+
+    else if (colorMethod == "size"){
+        for(i=0; i<nodes.length; i++){
+            var size_i = allSizesUniq.indexOf(nodes[i].size)
+            nodes[i].nodeFill = rainbow((size_i/allSizesUniq.length));
+        }
+    }
+
+    else if (colorMethod == "in links"){
+        for(i=0; i<nodes.length; i++){
+            var in_links_i = allInLinksUniq.indexOf(nodes[i].inLinks)
+            nodes[i].nodeFill = rainbow((in_links_i/allInLinksUniq.length));
+        }
+    }
+
+    else if (colorMethod == "out links"){
+        for(i=0; i<nodes.length; i++){
+            var out_links_i = allOutLinksUniq.indexOf(nodes[i].outLinks)
+            nodes[i].nodeFill = rainbow((out_links_i/allOutLinksUniq.length));
+        }
+    }
+
+    else if (colorMethod == "total links"){
+        for(i=0; i<nodes.length; i++){
+            var total_links_i = allTotalLinksUniq.indexOf(nodes[i].totalLinks)
+            nodes[i].nodeFill = rainbow((total_links_i/allTotalLinksUniq.length));
+        }
+    }
+
+    else if (colorMethod == "latitude"){
+        for(i=0; i<nodes.length; i++){
+            var lat_i = allLatitudesUniq.indexOf(nodes[i].lat)
+            nodes[i].nodeFill = rainbow((lat_i/allLatitudesUniq.length));
+        }
+    }
+
+    else if (colorMethod == "longitude"){
+        for(i=0; i<nodes.length; i++){
+            var lon_i = allLongitudesUniq.indexOf(nodes[i].lon)
+            nodes[i].nodeFill = rainbow((lon_i/allLongitudesUniq.length));
+        }
+    }
+
+    else if (colorMethod == "country"){
+        for(i=0; i<nodes.length; i++){
+            var country_i = allCountries.indexOf(nodes[i].country)
+            nodes[i].nodeFill = rainbow(country_i/allCountries.length);
+        }
+    }
+
+    else {
+        for(i=0; i<nodes.length; i++){
+            nodes[i].nodeFill = colors_disc(nodes[i][colorMethod])
+        }
+    }
+
+    // Set the node stroke to slightly darker than the fill
     for(i=0; i<nodes.length; i++){
-        nodes[i].nodeFill = colors_disc(nodes[i][colorMethod])
         nodes[i].nodeStroke = d3.rgb(nodes[i].nodeFill).darker(1);
     }
+
 }
 </script>
