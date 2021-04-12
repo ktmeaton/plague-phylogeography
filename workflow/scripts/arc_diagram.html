@@ -54,7 +54,7 @@
 
 var i,
     width = 900,
-    height = 500,
+    height = 600,
     transitionTime = 1000,
     margin = 100,
     nodeY = 400,
@@ -65,7 +65,7 @@ var i,
     min_node_size = 5,
     max_node_size = 40,
     spacing = 20,
-    label_size = '15px',
+    label_size = '12px',
     link_opacity = 0.2,
     colors_disc = d3.scale.category20(),
     rainbow = d3.scaleSequential(d3.interpolateRainbow);
@@ -224,6 +224,8 @@ function update(){
 
     circles
     .on('mouseover', function (d) {
+      // log info to console
+      console.log(d);
       // Highlight the nodes: every node is green except of him
       circles
         .style('opacity', 0.2)

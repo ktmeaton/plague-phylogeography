@@ -56,6 +56,7 @@ dependencies:
 - conda-forge::pygments=2.6.1
 - conda-forge::pymdown-extensions=7.1
 - conda-forge::python=3.7.3
+- conda-forge::r-ape
 - conda-forge::xopen=0.9.0
 - contextily=1.0.1
 - descartes=1.1.0
@@ -89,7 +90,8 @@ dependencies:
 - vcftools=0.1.16
 - pip:
   - git+https://github.com/ktmeaton/MultiQC.git@snippy
-  - phylo-treetime==0.8.1
+  - git+https://github.com/ktmeaton/treetime.git
+  #- phylo-treetime==0.8.1
   - nextstrain-augur==10.3.0
   - bezier==2020.5.19
 name: plague-phylogeography

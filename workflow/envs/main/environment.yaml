@@ -33,6 +33,7 @@ dependencies:
   - ete3=3.1.2
   - bioconda::beagle-lib=3.1.2
   - bioconda::beast2=2.6.2
+  - conda-forge::r-ape
   # Plotting
   - matplotlib=3.3.2
   - pandas=1.0.4
@@ -62,6 +63,7 @@ dependencies:
   - pip=20.2.3
   - pip:
     - git+https://github.com/ktmeaton/MultiQC.git@snippy
-    - phylo-treetime==0.8.1
+    - git+https://github.com/ktmeaton/treetime.git
+    #- phylo-treetime==0.8.1
     - nextstrain-augur==10.3.0
     - bezier==2020.5.19
