@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+
+# Usage
+# ./metadata.py \
+#  --db ../../results/sqlite_db/yersinia_pestis_db.sqlite \
+#  --samples-csv SAMEA5054093 \
+#  --world world.geo.json \
+#  --output test.txt
+
+
 # -----------------------------------------------------------------------------#
 #                         Modules and Packages                                 #
 # -----------------------------------------------------------------------------#
@@ -69,7 +78,8 @@ with open(world_geo_json_path) as infile:
     data = json.load(infile)
 
 for feature in data["features"]:
-    country = feature["properties"]["sovereignt"]
+
+    country = feature["properties"]["admin"]
     continent = feature["properties"]["continent"]
 
     # Manual edits for Nominatim compatibility
@@ -81,7 +91,7 @@ for feature in data["features"]:
 
 # k = list(continent_dict.keys())
 # k.sort()
-# print(k)
+
 geolocator = Nominatim(user_agent="plague-phylogeography")
 
 CURRENT_YEAR = datetime.datetime.utcnow().year
@@ -111,23 +121,23 @@ geocode_dict = {}  # Name: [lat, lon]
 # 16. BioSample Branch Number
 
 output_headers_main = [
-    "Sample",
-    "Strain",
-    "Date",
-    "DateBP",
-    "Country",
-    "Province",
-    "CountryLat",
-    "CountryLon",
-    "ProvinceLat",
-    "ProvinceLon",
-    "Biovar",
-    "Branch_Major",
-    "Branch_Minor",
-    "BioSample",
-    "BioSampleComment",
-    "Branch_Number",
-    "Continent",
+    "sample",
+    "strain",
+    "date",
+    "date_bp",
+    "country",
+    "province",
+    "country_lat",
+    "country_lon",
+    "province_lat",
+    "province_lon",
+    "biovar",
+    "branch_major",
+    "branch_minor",
+    "biosample_accession",
+    "biosample_comment",
+    "branch_number",
+    "continent",
 ]
 
 # Nextstrain LatLon Format (no header)

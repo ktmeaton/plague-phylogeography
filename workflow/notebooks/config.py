@@ -31,7 +31,7 @@ UFBOOT_THRESH = 95
 SCF_THRESH = 95
 
 # Significant digits for writing newick files
-BRANCH_LEN_SIG_DIG = 12
+BRANCH_LEN_SIG_DIG = 10
 
 # Data parsing
 NO_DATA_CHAR = "NA"
@@ -40,13 +40,13 @@ NO_DATA_CHAR = "NA"
 TARGET_RTL = 0.95
 
 # Mugration Parameters
-DATE_COL = "Date"
+DATE_COL = "date"
 ATTRIBUTE_LIST = [
-    "Branch_Number",
-    "Branch_Major",
-    "Branch_Minor",
-    "Country",
-    "Province",
+    "branch_number",
+    "branch_major",
+    "branch_minor",
+    "country",
+    "province",
 ]
 # ATTRIBUTE_LIST = ["Branch_Major", "Branch_Number"]
 MUG_CONF_THRESH = 0.95
@@ -54,47 +54,34 @@ MUG_TINY = 1e-12
 
 # Reference Info
 REF_META = {
-    "Date": 1992.0,
-    "DateBP": 0 - (CURRENT_YEAR - 1992.0),
-    "Branch_Number": 1,
-    "Branch_Major": "1.ORI",
-    "Branch_Minor": "1.ORI1",
-    "Country": "United States of America",
-    "Province": "Colorado",
-    "Biovar": "Orientalis",
-    "BioSampleComment": "KEEP: Assembly Modern Reference",
-    "CountryLat": 39.7837304,
-    "CountryLon": -100.4458825,
-    "ProvinceLat": 38.7251776,
-    "ProvinceLon": -105.607716,
+    "date": 1992.0,
+    "date_bp": 0 - (CURRENT_YEAR - 1992.0),
+    "branch_number": 1,
+    "branch_major": "1.ORI",
+    "branch_minor": "1.ORI1",
+    "country": "United States of America",
+    "province": "Colorado",
+    "biovar": "Orientalis",
+    "biosample_comment": "KEEP: Assembly Modern Reference",
+    "country_lat": 39.7837304,
+    "country_lon": -100.4458825,
+    "province_lat": 38.7251776,
+    "province_lon": -105.607716,
+    "continent": "North America",
+    "strain": "CO92",
 }
-REF_DATE = 1992.0
-REF_STRAIN = "CO92"
 
 
 REF_LEN = 4653728
 
 # Clock models
 CONFIDENCE = 0.95
-TIME_MARGINAL = True
-SEQ_MARGINAL = False
-MAX_ITER = 3
-RELAXED_CLOCK = {"slack": 1.0, "coupling": 0}
-# RELAXED_CLOCK = False
-# TC = "skyline"
-TC = None
 
 # N_IQD Explanation
 # 1_IQD is np.percentile(residuals,75) - np.percentile(residuals,25)
 # 3_IQD is 3 *1_IQD
 N_IQD = 3
 N_STD = 2
-
-# How to color branch supports
-LOW_COL = "black"
-HIGH_COL = "red"
-TERM_COL = "grey"
-THRESH_COL = "blue"
 
 # Continuous data color palette
 CONT_COLOR_PAL = "rainbow"
@@ -362,29 +349,29 @@ def augur_export(
 
                 # We need the value assigned to the trait by mugration
                 if (
-                    "Mugration" in attr
-                    and "Confidence" not in attr
-                    and "Entropy" not in attr
+                    "mugration" in attr
+                    and "confidence" not in attr
+                    and "entropy" not in attr
                 ):
-                    attr = attr.replace("Mugration_", "")
+                    attr = attr.replace("mugration_", "")
                     # Check again for a type conversion
                     if attr in type_convert:
                         attr_val = type_convert[attr](attr_val)
                     augur_data["nodes"][c.name][attr.lower()] = attr_val
 
                     # Prepare an empty dict for the confidence values
-                    attr_conf = attr + "_Confidence"
+                    attr_conf = attr + "_confidence"
                     augur_data["nodes"][c.name][attr_conf.lower()] = {attr_val: "NA"}
 
                 # Get the mugration entropy associated with the trait
-                elif "Mugration" in attr and "Entropy" in attr:
-                    attr = attr.replace("Mugration_", "")
+                elif "mugration" in attr and "entropy" in attr:
+                    attr = attr.replace("mugration_", "")
                     augur_data["nodes"][c.name][attr.lower()] = attr_val
 
                 # Get the mugration confidence associated with the trait
-                elif "Mugration" in attr and "Confidence" in attr:
-                    attr = attr.replace("Mugration_", "")
-                    attr_assoc = attr.replace("_Confidence", "")
+                elif "mugration" in attr and "confidence" in attr:
+                    attr = attr.replace("mugration_", "")
+                    attr_assoc = attr.replace("_confidence", "")
 
                     # If original attr is not yet in dict, set to NA
                     try:
