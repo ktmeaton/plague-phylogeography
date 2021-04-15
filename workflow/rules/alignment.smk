@@ -129,12 +129,12 @@ rule snippy_multi:
         snp_density         = expand(results_dir + "/detect_snp_density_collect/{{reads_origin}}/snpden{density}.bed",
                                 density=config["snippy_snp_density"]),
     output:
-        results_dir + "/snippy_multi/{reads_origin}/snippy-core.txt",
-        #snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.aln",
-        full_aln            = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
-        log                 = logs_dir    + "/snippy_multi/{reads_origin}/snippy-core.log",
+        results_dir + "/snippy_multi/{reads_origin}/snippy-multi.txt",
+        #snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.aln",
+        full_aln            = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.full.aln",
+        log                 = logs_dir    + "/snippy_multi/{reads_origin}/snippy-multi.log",
     log:
-        os.path.join(logs_dir, "snippy_multi","{reads_origin}","snippy-core.log")
+        os.path.join(logs_dir, "snippy_multi","{reads_origin}","snippy-multi.log")
     shell:
         # Merge masking beds
         """
@@ -144,7 +144,7 @@ rule snippy_multi:
         set +e;
         snippy-core \
           --ref {input.ref_fna} \
-          --prefix {results_dir}/snippy_multi/{wildcards.reads_origin}/snippy-core \
+          --prefix {results_dir}/snippy_multi/{wildcards.reads_origin}/snippy-multi \
           --mask {results_dir}/snippy_multi/{wildcards.reads_origin}/mask.bed \
           --mask-char {config[snippy_mask_char]} \
           {input.snippy_pairwise_dir} 2> {log};

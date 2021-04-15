@@ -28,19 +28,23 @@ LOCUS_END=$4
 # pPCP1_START=4820244;
 # pPCP1_END=4829855
 
+# Prep the directories
 INDIR=`dirname ${IN_FASTA_FILE}`
+OUTDIR=${INDIR}/${LOCUS_NAME}/
+mkdir -p $OUTDIR
+out_fasta=$OUTDIR/`basename $IN_FASTA_FILE`
+out_bed=$OUTDIR/extract.bed
+
 #--------- Create bed files for coordinate extraction of each locus -----------#
-rm -f $INDIR/extract_${LOCUS_NAME}.bed
+rm -f ${out_bed}
 
 # Get all headers in the fasta file (ex. multiple alignment)
 grep ">" ${IN_FASTA_FILE} | sed 's/>//g' | while read line;
 do
-  echo -e "$line\t"${LOCUS_START}"\t"${LOCUS_END} >> $INDIR/extract_${LOCUS_NAME}.bed
+  echo -e "$line\t"${LOCUS_START}"\t"${LOCUS_END} >> ${out_bed};
 done
 
 #--------Create new alignment from extracted sequences, rename headers--------#
-extension="${IN_FASTA_FILE##*.}"
-outfile="${IN_FASTA_FILE%%.*}_${LOCUS_NAME}.full.${extension}"
-bedtools getfasta -fi $IN_FASTA_FILE -fo $outfile -bed $INDIR/extract_${LOCUS_NAME}.bed
+bedtools getfasta -fi $IN_FASTA_FILE -fo ${out_fasta} -bed ${out_bed}
 # Remove the coordinates added to each header name
-sed -i "s/:$LOCUS_START-$LOCUS_END//g" $outfile
+sed -i "s/:$LOCUS_START-$LOCUS_END//g" ${out_fasta}

@@ -92,6 +92,11 @@ if "LC_ALL" not in os.environ:
 localrules:
     download_assembly, download_sra
 
+wildcard_constraints:
+    reads_origin="(all|assembly|sra|local)",
+    missing_data="([0-9]*)",
+    locus_name="([A-Z,a-z]*)",
+
 # -----------------------------------------------------------------------------#
 # Main Target                                                                  #
 # -----------------------------------------------------------------------------#
@@ -108,7 +113,7 @@ rule all:
         # Phylo
         iqtree_scf_all_input,
         # Post-Phylo
-        #clock_plot_all_input,
+        clock_plot_all_input,
         #mugration_plot_all_input,
         #geo_all_input,
         # Plot

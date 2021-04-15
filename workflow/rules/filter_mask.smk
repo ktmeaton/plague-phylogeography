@@ -80,16 +80,18 @@ rule detect_snp_density_collect:
           sort -k1,1 -k2,2n | \
           bedtools merge > {output.bed}; "
 
+
 #------------------------------------------------------------------------------#
 rule snippy_multi_extract:
     """
     Extract a locus (ex. chromosome) from the snippy multi alignment.
     """
     input:
-        full_aln               = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
+        full_aln                = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.full.aln",
     output:
-        extract_aln            = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
-        extract_constant_sites = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.constant_sites.txt",
+        extract_full            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.full.aln",
+        extract_snps            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.snps.aln",
+        extract_constant_sites  = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.full.constant_sites.txt",
     resources:
         cpus                   = 1,
     shell:
@@ -99,7 +101,8 @@ rule snippy_multi_extract:
           {config[reference_locus_name]} \
           {config[reference_locus_start]} \
           {config[reference_locus_end]};
-        snp-sites -C {output.extract_aln} > {output.extract_constant_sites};
+        snp-sites -C {output.extract_full} > {output.extract_constant_sites};
+        snp-sites -m -o {output.extract_snps} {output.extract_full}
         """
 
 
@@ -109,23 +112,22 @@ rule snippy_multi_filter:
     Filter a multiple alignment for missing data.
     """
     input:
-        full_locus_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
+        snps_locus_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.snps.aln",
     output:
-        filter_snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
-        log            = logs_dir    + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log",
+        filter_snp_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/snippy-multi.snps.aln",
+        log            = logs_dir    + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/snippy-multi.snps.log",
     log:
-        logs_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log",
-
+        logs_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/snippy-multi.snps.log",
+    params:
+        keep_singleton = config["snippy_keep_singleton"],
     resources:
         cpus = 1,
     shell:
         """
-        threshold=`echo "{output.filter_snp_aln}" | cut -d "." -f 3 | sed 's/filter//g'`;
-        snp-sites -m -o {output.filter_snp_aln}.tmp {input.full_locus_aln};
         python {scripts_dir}/filter_sites.py \
-                --fasta {output.filter_snp_aln}.tmp \
-                --missing ${{threshold}} \
-                {config[snippy_keep_singleton]} \
+                --fasta {input.snps_locus_aln} \
+                --missing {wildcards.missing_data} \
+                {params.keep_singleton} \
                 --output {output.filter_snp_aln} \
                 --log {log};
         """

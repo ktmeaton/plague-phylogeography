@@ -156,7 +156,7 @@ rule snp_density_collect_all:
         results_dir + "/detect_snp_density_collect/all/snpden" +  str(config["snippy_snp_density"]) + ".bed"
 
 # -----------------------------------------------------------------------------#
-snippy_multi_extract_all_input = expand(results_dir + "/snippy_multi/all/snippy-core_{locus_name}.full.aln",
+snippy_multi_extract_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/snippy-multi.full.aln",
         locus_name=config["reference_locus_name"])[0]
 snippy_multi_extract_local_input    = snippy_multi_extract_all_input.replace("all", "local")
 snippy_multi_extract_assembly_input = snippy_multi_extract_all_input.replace("all", "assembly")
@@ -175,7 +175,7 @@ rule snippy_multi_extract_sra:
     input:
         snippy_multi_extract_sra_input
 # -----------------------------------------------------------------------------#
-snippy_multi_filter_all_input = expand(results_dir + "/snippy_multi/all/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
+snippy_multi_filter_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/filter{missing_data}/snippy-multi.snps.aln",
         locus_name=config["reference_locus_name"],
         missing_data = config["snippy_missing_data"])[0]
 snippy_multi_filter_local_input    = snippy_multi_filter_all_input.replace("all", "local")
@@ -246,24 +246,24 @@ rule multiqc_all:
 
 rule snippy_multi_assembly:
     input:
-        results_dir + "/snippy_multi/assembly/snippy-core.full.aln"
+        results_dir + "/snippy_multi/assembly/snippy-multi.full.aln"
 
 rule snippy_multi_sra:
     input:
-        results_dir + "/snippy_multi/sra/snippy-core.full.aln"
+        results_dir + "/snippy_multi/sra/snippy-multi.full.aln"
 
 rule snippy_multi_local:
     input:
-        results_dir + "/snippy_multi/local/snippy-core.full.aln"
+        results_dir + "/snippy_multi/local/snippy-multi.full.aln"
 
 rule snippy_multi_all:
     input:
-        results_dir + "/snippy_multi/all/snippy-core.full.aln"
+        results_dir + "/snippy_multi/all/snippy-multi.full.aln"
 
 #------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#
-iqtree_all_input      = expand(results_dir + "/iqtree/all/iqtree-core_{locus_name}.filter{missing_data}.treefile",
+iqtree_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/filter{missing_data}/iqtree.treefile",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 iqtree_local_input    = [ x.replace("all", "local") for x in iqtree_all_input ]
@@ -288,7 +288,7 @@ rule iqtree_all:
 
  # Site Concordance factor
  #
-iqtree_scf_all_input      = expand(results_dir + "/iqtree/all/iqtree-core_{locus_name}.filter{missing_data}_post.cf.tree",
+iqtree_scf_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/filter{missing_data}/iqtree_post.cf.tree",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 iqtree_scf_local_input    = [ x.replace("all", "local") for x in iqtree_scf_all_input ]
@@ -315,7 +315,7 @@ rule iqtree_scf_all:
 # Post-Phylogeny
 #------------------------------------------------------------------------------#
 
-parse_tree_all_input      = expand(results_dir + "/parse_tree/all/{locus_name}_filter{missing_data}/parse_tree.tsv",
+parse_tree_all_input      = expand(results_dir + "/parse_tree/all/{locus_name}/filter{missing_data}/parse_tree.tsv",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 parse_tree_local_input    = [ x.replace("all", "local") for x in parse_tree_all_input ]
@@ -337,7 +337,7 @@ rule parse_tree_all:
 
 #------------------------------------------------------------------------------#
 
-clock_model_all_input      = expand(results_dir + "/clock/all/{locus_name}_filter{missing_data}/clock_model.tsv",
+clock_model_all_input      = expand(results_dir + "/clock/all/{locus_name}/filter{missing_data}/clock_model.tsv",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 clock_model_local_input    = [ x.replace("all", "local") for x in clock_model_all_input ]
@@ -449,7 +449,7 @@ rule geo_all:
 # Plot
 #------------------------------------------------------------------------------#
 
-plot_missing_data_all_input = expand(results_dir + "/snippy_multi/all/missing_data_{locus_name}.snps.html",
+plot_missing_data_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/snippy-multi.snps.missing-data.html",
 				                          locus_name = config["reference_locus_name"],
 					                     )
 plot_missing_data_sra_input = [ x.replace("all", "sra") for x in plot_missing_data_all_input ]
@@ -474,14 +474,10 @@ rule plot_missing_data_all:
 
 #------------------------------------------------------------------------------#
 
-plot_snp_matrix_all_input = (expand(results_dir + "/snippy_multi/all/snippy-core_{locus_name}.snps.filter{missing_data}.dist.heatmap.html",
+plot_snp_matrix_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/filter{missing_data}/snippy-multi.snps.dist.heatmap.html",
 				                          locus_name = config["reference_locus_name"],
                                           missing_data=config["snippy_multi_plot_missing_data"],
-                                          ) +
-					        expand(results_dir + "/snippy_multi/all/snippy-core_{locus_name}.full.dist.heatmap.html",
-				                          locus_name = config["reference_locus_name"],
-                                )
-                            )
+                                          )
 
 plot_snp_matrix_sra_input = [ x.replace("all", "sra") for x in plot_snp_matrix_all_input ]
 plot_snp_matrix_local_input = [ x.replace("all", "local") for x in plot_snp_matrix_all_input ]
