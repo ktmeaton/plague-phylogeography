@@ -68,7 +68,7 @@ dependencies:
 - graphviz=2.40.1
 - ipywidgets=7.5.1
 - plotly=4.12.0
-- iqtree=2.0.3
+- iqtree=2.1.2
 - matplotlib=3.3.2
 - mummer=3.23
 - nextflow=20.04.1
