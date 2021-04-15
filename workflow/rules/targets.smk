@@ -359,7 +359,7 @@ rule clock_model_all:
 
 #------------------------------------------------------------------------------#
 
-clock_plot_all_input      = expand(results_dir + "/clock/all/{locus_name}_filter{missing_data}/clock_plot_timetree.svg",
+clock_plot_all_input      = expand(results_dir + "/clock/all/{locus_name}/filter{missing_data}/clock_plot_timetree.svg",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 clock_plot_local_input    = [ x.replace("all", "local") for x in clock_plot_all_input ]
@@ -381,7 +381,7 @@ rule clock_plot_all:
 
 #------------------------------------------------------------------------------#
 
-mugration_model_all_input      = expand(results_dir + "/mugration/all/{locus_name}_filter{missing_data}/mugration_model.tsv",
+mugration_model_all_input      = expand(results_dir + "/mugration/all/{locus_name}/filter{missing_data}/mugration_model.tsv",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 mugration_model_local_input    = [ x.replace("all", "local") for x in mugration_model_all_input ]
@@ -403,7 +403,7 @@ rule mugration_model_all:
 
 #------------------------------------------------------------------------------#
 
-mugration_plot_all_input      = expand(results_dir + "/mugration/all/{locus_name}_filter{missing_data}/mugration_plot_timetree-branch-major.svg",
+mugration_plot_all_input      = expand(results_dir + "/mugration/all/{locus_name}/filter{missing_data}/mugration_plot_timetree-branch-major.svg",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 mugration_plot_local_input    = [ x.replace("all", "local") for x in mugration_plot_all_input ]
@@ -425,7 +425,7 @@ rule mugration_plot_all:
 
 #------------------------------------------------------------------------------#
 
-geo_all_input      = expand(results_dir + "/geo/all/{locus_name}_filter{missing_data}/geo.tsv",
+geo_all_input      = expand(results_dir + "/geo/all/{locus_name}/filter{missing_data}/geo.tsv",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 geo_local_input    = [ x.replace("all", "local") for x in geo_all_input ]
