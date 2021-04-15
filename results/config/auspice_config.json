@@ -14,13 +14,13 @@
       "type": "continuous"
     },
     {
-      "key": "biosample_accession",
-      "title": "BioSample Accession",
+      "key": "biosample",
+      "title": "Data Accession",
       "type": "categorical"
     },
     {
-      "key": "biosample_comment",
-      "title": "BioSample Comment",
+      "key": "biosamplecomment",
+      "title": "Data Comment",
       "type": "categorical"
     },
     {
@@ -44,24 +44,14 @@
       "type": "categorical"
     },
     {
-      "key": "continent",
-      "title": "Continent",
-      "type": "categorical"
-    },
-    {
       "key": "country",
       "title": "Country",
       "type": "categorical"
     },
     {
-      "key": "date_bp",
+      "key": "datebp",
       "title": "Collection Date (BP)",
       "type": "continuous"
-    },
-    {
-      "key": "node_type",
-      "title": "Node Type",
-      "type": "categorical"
     },
     {
       "key": "province",
