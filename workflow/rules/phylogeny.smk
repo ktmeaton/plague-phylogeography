@@ -111,20 +111,35 @@ rule beast_geo:
     Continuous phylogeography with BEAST
     """
     input:
-        tsv     = results_dir + "/metadata/{reads_origin}/metadata.tsv",
-        dates   = results_dir + "/lsd/{reads_origin}/{locus_name}/filter{missing_data}/lsd.dates.txt",
-        timetree   = results_dir + "/lsd/{reads_origin}/{locus_name}/filter{missing_data}/lsd.timetree.nex",
+        tsv            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/metadata.tsv",
+        dates    = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.dates.txt",
+        timetree = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nex",
     output:
-        lat = results_dir + "/beast/{reads_origin}/{locus_name}/filter{missing_data}/beast.lat.txt",
-        lon = results_dir + "/beast/{reads_origin}/{locus_name}/filter{missing_data}/beast.lon.txt",
-        timetree = results_dir + "/beast/{reads_origin}/{locus_name}/filter{missing_data}/beast_timetree.nex",
+        lat      = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.lat.txt",
+        lon      = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.lon.txt",
+        latlon   = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.latlon.txt",
+        timetree = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.timetree.nex",
 
     shell:
         """
-        cut -f 1,9 {input.tsv} | tail -n+2 > {output.lat};
         echo -e "Reference\t"{config[reference_lat]} >> {output.lat};
-        cut -f 1,10 {input.tsv} | tail -n+2 > {output.lon};
         echo -e "Reference\t"{config[reference_lon]} >> {output.lon};
+        echo -e "Reference\t"{config[reference_lat]}"\t"{config[reference_lon]} >> {output.latlon};
+
+        tail -n+2 {input.tsv} | while read line; \
+        do
+            sample=`echo "$line" | cut -f 1`;
+            lat=`echo "$line" | cut -f 9`;
+            lon=`echo "$line" | cut -f 10`;
+            if [[ $lat == "NA" ]]; then
+                lat=`echo "$line" | cut -f 7`;
+                lon=`echo "$line" | cut -f 8`;
+            fi;
+            echo -e $sample"\t"$lat >> {output.lat};
+            echo -e $sample"\t"$lon >> {output.lon};
+            echo -e $sample"\t"$lat"\t"$lon >> {output.latlon};
+        done
+
         {scripts_dir}/nexus2beast.py {input.timetree} {output.timetree};
         """
 

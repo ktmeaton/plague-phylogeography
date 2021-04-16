@@ -346,6 +346,15 @@ lsd_prune_all_input = expand(results_dir + "/lsd/all/{locus_name}/prune/filter{m
 rule lsd_prune_all:
     input:
         lsd_prune_all_input
+
+#------------------------------------------------------------------------------#
+ # Beast geo
+beast_geo_all_input = expand(results_dir + "/beast/all/{locus_name}/full/filter{missing_data}/beast.timetree.nex",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule beast_geo_all:
+    input:
+        beast_geo_all_input
 #------------------------------------------------------------------------------#
 # Post-Phylogeny
 #------------------------------------------------------------------------------#
