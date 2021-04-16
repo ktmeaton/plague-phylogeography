@@ -286,8 +286,9 @@ rule iqtree_all:
     input:
         iqtree_all_input
 
- # Site Concordance factor
- #
+#------------------------------------------------------------------------------#
+# Site Concordance factor
+
 iqtree_scf_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/filter{missing_data}/iqtree_post.cf.tree",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
@@ -311,6 +312,14 @@ rule iqtree_scf_all:
     input:
         iqtree_scf_all_input
 
+#------------------------------------------------------------------------------#
+ # LSD Dating
+lsd_all_input = expand(results_dir + "/lsd/all/{locus_name}/filter{missing_data}/lsd.timetree.nex",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule lsd_all:
+    input:
+        lsd_all_input
 #------------------------------------------------------------------------------#
 # Post-Phylogeny
 #------------------------------------------------------------------------------#
@@ -476,7 +485,7 @@ rule plot_missing_data_all:
 
 plot_snp_matrix_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/filter{missing_data}/snippy-multi.snps.dist.heatmap.html",
 				                          locus_name = config["reference_locus_name"],
-                                          missing_data=config["snippy_multi_plot_missing_data"],
+                                          missing_data=config["snippy_missing_data"],
                                           )
 
 plot_snp_matrix_sra_input = [ x.replace("all", "sra") for x in plot_snp_matrix_all_input ]
