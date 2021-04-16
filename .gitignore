@@ -38,6 +38,8 @@ results/clock/*
 results/mugration/*
 results/geo/*
 results/geo_bias/
+results/beast/*
+results/lsd/*
 
 # Project
 project/*/iqtree/*/*ckp.gz
