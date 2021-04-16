@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 # Usage
-# ./prune_alignment.py \
-#   --metadata ../../results/metadata/all/metadata.tsv \
-#   --matrix ../../results/snippy_multi/all/chromosome/filter5/snippy-multi.snps.dist \
-#   --aln ../../results/snippy_multi/all/chromosome/filter5/snippy-multi.snps.aln \
-#   --outdir ../../results/snippy_multi/all/chromosome/filter5/prune/
+# prune_alignment.py \
+#   --metadata metadata.tsv \
+#   --matrix snippy-multi.snps.dist \
+#   --aln snippy-multi.snps.aln \
+#   --outdir prune/
 
 import os
 import pandas as pd
@@ -97,29 +97,55 @@ for rec in metadata_df.iterrows():
         date = sum(date_split) / len(date_split)
     date = int(date)
 
+    # Get the shortest pairwise distance (not to iteself)
+    snp_diffs = snp_mat_df.loc[sample]
+    min_diff = max(snp_diffs)
+
+    for compare_sample in snp_mat_df.columns:
+        # skip itself
+        if compare_sample == sample:
+            continue
+        diff = snp_diffs[compare_sample]
+        if diff < min_diff:
+            min_diff = diff
+
     # Add the country if it hasn't been observed
     if geo_val not in branch_dict[branch][GEO]:
-        branch_dict[branch][GEO][geo_val] = {"dates": {date: sample}}
+        branch_dict[branch][GEO][geo_val] = {"dates": {date: {sample: min_diff}}}
         continue
 
     # Keep all ancient samples
     if date < ANCIENT_DATE_THRESHOLD:
-        branch_dict[branch][GEO][geo_val]["dates"][date] = sample
+        branch_dict[branch][GEO][geo_val]["dates"][date] = {sample: min_diff}
 
     else:
-        # Compare dates
-        i_date = 0
         # By default, assume we're adding the sample
-        add_sample = True
+        update_status = "add"
         for c_date in branch_dict[branch][GEO][geo_val]["dates"]:
             date_diff = abs(date - c_date)
             # If the date difference is too small, exclude
             if date_diff < TIME_WINDOW:
-                # How to resolve ties? Want to minimize terminal branch length
-                add_sample = False
-            i_date += 1
+                champion = branch_dict[branch][GEO][geo_val]["dates"][c_date]
+                champion_sample = list(champion.keys())[0]
+                champion_diff = list(champion.values())[0]
+                contender = {sample: min_diff}
 
-        if add_sample:
+                if min_diff <= champion_diff:
+                    update_status = "replace"
+                    break
+                update_status = "none"
+
+        # Replacing sample
+        if update_status == "replace":
+            print("Replacing:", champion, "with", contender)
+            print(branch_dict[branch][GEO][geo_val])
+            # Remove old champion
+            branch_dict[branch][GEO][geo_val]["dates"].pop(c_date)
+            # Add contender
+            branch_dict[branch][GEO][geo_val]["dates"][date] = contender
+
+        # Add new sample
+        if update_status == "add":
             branch_dict[branch][GEO][geo_val]["dates"][date] = sample
 
 sample_list = []

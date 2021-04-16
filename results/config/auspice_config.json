@@ -1,6 +1,6 @@
 {
-  "title": "Plague Phylogeography",
-  "build_url": "https://github.com/ktmeaton/plague-phylogeography",
+  "title": "Plague Phylogeography Placement",
+  "build_url": "https://github.com/ktmeaton/plague-phylogeography-projects/tree/main/placement",
   "maintainers": [
     {
       "name": "Katherine Eaton",
@@ -14,13 +14,13 @@
       "type": "continuous"
     },
     {
-      "key": "biosample",
-      "title": "Data Accession",
+      "key": "biosample_accession",
+      "title": "BioSample Accession",
       "type": "categorical"
     },
     {
-      "key": "biosamplecomment",
-      "title": "Data Comment",
+      "key": "biosample_comment",
+      "title": "BioSample Comment",
       "type": "categorical"
     },
     {
@@ -44,14 +44,24 @@
       "type": "categorical"
     },
     {
+      "key": "continent",
+      "title": "Continent",
+      "type": "categorical"
+    },
+    {
       "key": "country",
       "title": "Country",
       "type": "categorical"
     },
     {
-      "key": "datebp",
+      "key": "date_bp",
       "title": "Collection Date (BP)",
       "type": "continuous"
+    },
+    {
+      "key": "node_type",
+      "title": "Node Type",
+      "type": "categorical"
     },
     {
       "key": "province",

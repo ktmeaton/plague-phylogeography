@@ -1,19 +1,18 @@
 # Snakemake Configuration File
 
 # Directories
-results_dir: "results"
-
+results_dir: results
 # SQLITE Parameters
-sqlite_db : "test.sqlite"
+sqlite_db : "yersinia_pestis_db.sqlite"
 sqlite_select_command_asm : SELECT
                               AssemblyFTPGenbank
                             FROM
                               BioSample
-                            LEFT JOIN
-                              Assembly ON AssemblyBioSampleAccession = BioSampleAccession
+                            LEFT JOIN Assembly
+                              ON AssemblyBioSampleAccession = BioSampleAccession
                             WHERE
-                              (BioSampleComment LIKE '%KEEP%Assembly%Modern%' AND
-                               length(AssemblyFTPGenbank) > 0)
+                              BioSampleComment LIKE '%KEEP%Assembly%Modern%Placement%'
+
 sqlite_select_command_sra : SELECT
                               BioSampleAccession,
                               SRARunAccession
@@ -22,14 +21,15 @@ sqlite_select_command_sra : SELECT
                             LEFT JOIN SRA
                               ON SRABioSampleAccession = BioSampleAccession
                             WHERE
-                              (SRARunAccession = 'SRR1048902' OR
-                               SRARunAccession = 'SRR1048905')
+                              BioSampleComment LIKE '%KEEP%SRA%Ancient%Placement%'
+
 sqlite_select_command_local : SELECT
                               BioSampleAccession
                             FROM
                               BioSample
                             WHERE
-                              (BioSampleComment LIKE '%Local%Test%')
+                              (BioSampleComment LIKE 'None')
+
 sqlite_select_command_ref : SELECT
                               AssemblyFTPGenbank
                             FROM
@@ -40,12 +40,10 @@ sqlite_select_command_ref : SELECT
                               (BioSampleComment LIKE '%Assembly%Modern%Reference%')
 
 # Dataset size
-max_datasets_assembly : 3
-max_datasets_sra : 2
+max_datasets_assembly : 1000
+max_datasets_sra : 1000
 reads_origin :
   - "assembly"
-  - "sra"
-  - "local"
 
 # misc filtering
 detect_repeats_threshold : 90
@@ -55,9 +53,9 @@ reference_locus : "AL590842"
 reference_locus_name : "chromosome"
 reference_locus_start : "0"
 reference_locus_end : "4653728"
-reference_date : -29
+reference_date : "-29"
 
-# nf-core/eager parameters
+# Eager param
 eager_rev: "2.2.1"
 eager_clip_readlength : 35
 eager_bwaalnn : 0.01
@@ -68,36 +66,37 @@ organism : "Yersinia pestis"
 eager_forward_adapter : 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCACNNNNNNATCTCGTATGCCGTCTTCTGCTTG'
 eager_reverse_adapter : 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT'
 
-# snippy parameters
+# Snippy Parameters
 snippy_ctg_depth : 10
 snippy_bam_depth : 3
 snippy_base_qual : 20
 snippy_map_qual : 30
 snippy_min_frac : 0.9
 snippy_mask_char : "X"
-snippy_missing_data : 50
+snippy_missing_data : 5
 snippy_snp_density : 10
-
 # Make this an empty string if removing singletons
-# snippy_keep_singleton: ""
+#snippy_keep_singleton: ""
 snippy_keep_singleton : "--keep-singleton"
 snippy_multi_plot_missing_data:
   - 0
+  - 5
+  - 10
+  - 15
+  - 20
   - 25
-  - 50
-  - 75
-  - 100
 
 # IQTREE
 iqtree_model: "-m MFP"
 #iqtree_model : "-m K3Pu+F+I"
-iqtree_seed : "47321424" # keeping it consistent in a config file allows for checkpointing
+iqtree_seed : "674947425" # keeping it consistent in a config file allows for checkpointing
 # Outgroup Option #1: Reference
-iqtree_constraint : "(Reference);"
-iqtree_outgroup : "Reference"
+#iqtree_outgroup : "Reference"
 # Outgroup Option #2: Basal modern clade
-#iqtree_outgroup : "GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic"
+iqtree_constraint: "((GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic),Reference);"
+iqtree_outgroup : "GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic"
 # Outgroup Option #3: Basal ancient clade
+#iqtree_constraint: "((SAMEA3541826,SAMEA3541827),Reference);"
 #iqtree_outgroup : "SAMEA3541826,SAMEA3541827"
-iqtree_other : "--ufboot 1000"
+iqtree_other : ""
 iqtree_runs : 1

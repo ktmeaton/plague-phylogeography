@@ -21,7 +21,7 @@ rule eager:
         final_bam = results_dir + "/eager/{reads_origin}/{sample}/final_bams/{sample}.bam",
         eager_tsv = results_dir + "/eager/{reads_origin}/{sample}/metadata_{sample}.tsv",
         log_html  = results_dir + "/eager/{reads_origin}/{sample}/{sample}.html",
-        log_text  = results_dir + "/eager/{reads_origin}/{sample}/{sample}.log",
+        log_txt  = results_dir + "/eager/{reads_origin}/{sample}/{sample}.log",
     wildcard_constraints:
         reads_origin = "(sra|local)",
     resources:
