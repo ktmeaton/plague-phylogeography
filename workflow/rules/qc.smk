@@ -12,6 +12,8 @@ rule qualimap:
         dir = directory(results_dir + "/qualimap/{reads_origin}/{sample}/"),
         bamq = results_dir + "/qualimap/{reads_origin}/{sample}/{sample}.bam",
         html = results_dir + "/qualimap/{reads_origin}/{sample}/qualimapReport.html",
+        log =  results_dir + "/qualimap/{reads_origin}/{sample}/{sample}.log",
+
     wildcard_constraints:
         reads_origin="(assembly|sra|local)",
     resources:
@@ -19,11 +21,9 @@ rule qualimap:
         time_min=600,
 	cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
         mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
-    log:
-        os.path.join(logs_dir, "qualimap", "{reads_origin}", "{sample}.log")
     shell:
         "samtools view -b -q {config[snippy_map_qual]} {input.snippy_dir}/{wildcards.sample}.bam > {output.bamq}; "
-        "qualimap bamqc -bam {output.bamq} --skip-duplicated -c -outformat 'HTML' -outdir {output.dir} -nt {resources.cpus} 1> {log}; "
+        "qualimap bamqc -bam {output.bamq} --skip-duplicated -c -outformat 'HTML' -outdir {output.dir} -nt {resources.cpus} 1> {output.log}; "
 
 # -----------------------------------------------------------------------------#
 
@@ -46,8 +46,7 @@ rule multiqc:
         results_dir + "/multiqc/{reads_origin}/multiqc_plots/pdf/mqc_qualimap_genome_fraction_1.pdf",
         results_dir + "/multiqc/{reads_origin}/multiqc_plots/pdf/mqc_qualimap_coverage_histogram_1.pdf",
         dir = directory(results_dir + "/multiqc/{reads_origin}/"),
-    log:
-        os.path.join(logs_dir, "multiqc/{reads_origin}/multiqc.log")
+        log = results_dir + "/multiqc/{reads_origin}/multiqc.log",
     resources:
         cpus = 1,
     params:
@@ -61,9 +60,8 @@ rule multiqc:
           --export \
           --outdir {output.dir} \
           --force \
-          {params.eager_dir} \
           {input.qualimap_dir} \
-          {input.snippy_pairwise_dir} 2> {log};
+          {input.snippy_pairwise_dir} 2> {output.log};
           """
 
 # -----------------------------------------------------------------------------#

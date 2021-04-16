@@ -9,23 +9,21 @@ rule iqtree:
     """
     input:
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.full.constant_sites.txt",
-        snp_aln        = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/snippy-multi.snps.aln",
+        snp_aln        = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/snippy-multi.snps.aln",
     output:
-        tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree.treefile",
-        iqtree         = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree.iqtree",
-        log            = logs_dir    + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree.log",
-        constraint     = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree.constraint",
+        tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/iqtree.treefile",
+        iqtree         = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/iqtree.iqtree",
+        log            = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/iqtree.log",
+        constraint     = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/iqtree.constraint",
     params:
         #seed = random.randint(0, 99999999),
         seed           = config["iqtree_seed"],
-        prefix         = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree",
+        prefix         = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/iqtree",
     resources:
         load           = 100,
         time_min       = 600,
       	cpus           = workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
         mem_mb         = workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
-    log:
-        logs_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree.log",
     shell:
         """
         echo "{config[iqtree_constraint]}" > {output.constraint};
@@ -39,7 +37,8 @@ rule iqtree:
             --runs {config[iqtree_runs]} \
             -fconst `cat {input.constant_sites}` \
             {config[iqtree_other]} \
-            -pre {params.prefix};
+            -redo \
+            -pre {params.prefix} > {output.log};
         """
 
 #1>{log}
@@ -64,8 +63,6 @@ rule iqtree_scf:
         time_min       = 600,
       	cpus           = workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
         mem_mb         = workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
-    log:
-        logs_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree_post.cf.log",
     shell:
         """
         iqtree   \
@@ -84,23 +81,23 @@ rule lsd:
     Estimate a time-scaled phylogeny using LSD2 in IQTREE.
     """
     input:
-        tsv     = results_dir + "/metadata/{reads_origin}/metadata.tsv",
-        tree    = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree.treefile",
-        snp_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/snippy-multi.snps.aln",
+        tsv = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/metadata.tsv",
+        tree    = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/iqtree.treefile",
+        snp_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/snippy-multi.snps.aln",
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.full.constant_sites.txt",
     output:
-        dates   = results_dir + "/lsd/{reads_origin}/{locus_name}/filter{missing_data}/lsd.dates.txt",
-        timetree   = results_dir + "/lsd/{reads_origin}/{locus_name}/filter{missing_data}/lsd.timetree.nex",
+        timetree   = results_dir + "/lsd/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/lsd.timetree.nex",
     params:
         seed    = config["iqtree_seed"],
-        prefix  = results_dir + "/lsd/{reads_origin}/{locus_name}/filter{missing_data}/lsd",
+        prefix  = results_dir + "/lsd/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/lsd",
+        dates   = results_dir + "/lsd/{reads_origin}/{locus_name}/filter{missing_data}/{prune}/lsd.dates.txt",
     shell:
         """
-        cut -f 1,4 {input.tsv}  | tail -n+2 | sed 's/\[\|\]//g' > {output.dates};
-        echo -e "Reference\t"{config[reference_date]} >> {output.dates}
+        cut -f 1,4 {input.tsv}  | tail -n+2 | sed 's/\[\|\]//g' > {params.dates};
+        echo -e "Reference\t"{config[reference_date]} >> {params.dates}
         iqtree \
             -s {input.snp_aln} \
-            --date {output.dates} \
+            --date {params.dates} \
             --prefix {params.prefix} \
             -fconst `cat {input.constant_sites}` \
             --date-ci 100 \

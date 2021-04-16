@@ -20,6 +20,8 @@ rule eager:
     output:
         final_bam = results_dir + "/eager/{reads_origin}/{sample}/final_bams/{sample}.bam",
         eager_tsv = results_dir + "/eager/{reads_origin}/{sample}/metadata_{sample}.tsv",
+        log_html  = results_dir + "/eager/{reads_origin}/{sample}/{sample}.html",
+        log_text  = results_dir + "/eager/{reads_origin}/{sample}/{sample}.log",
     wildcard_constraints:
         reads_origin = "(sra|local)",
     resources:
@@ -27,9 +29,6 @@ rule eager:
        	time_min=600,
         cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
         mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
-    log:
-        html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
-        txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
     shell:
         "export NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m'; "
         "python {scripts_dir}/eager_tsv.py --files \"{input.fastq}\" --organism \"{config[organism]}\" --tsv {output.eager_tsv}; "
@@ -40,7 +39,7 @@ rule eager:
             -r {config[eager_rev]} \
             -profile standard \
             --igenomes_ignore \
-            -with-report {log.html} \
+            -with-report {output.log_html} \
             --input metadata_{wildcards.sample}.tsv \
             --outdir . \
             --fasta {input.ref_fna} \
@@ -58,7 +57,7 @@ rule eager:
             --max_memory {resources.mem_mb}.MB \
             --max_time {resources.time_min}m \
 			{config[eager_other]} \
-            -resume 1> {log.txt}; "
+            -resume 1> {output.log_txt}; "
         "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.sample}; "
 
 # -----------------------------------------------------------------------------#
@@ -73,16 +72,15 @@ rule snippy_pairwise:
         ref = expand(results_dir + "/data/reference/{reference}/{reference}.gbff", reference=identify_reference_sample()),
     output:
         snippy_dir = directory(results_dir + "/snippy_pairwise/{reads_origin}/{sample}/"),
-        snp_txt = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.txt",
+        snp_txt    = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.txt",
         snippy_aln = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.aligned.fa",
-        snps_vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
+        snps_vcf   = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
+        log        = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.log",
     resources:
         load=100,
         time_min=600,
 	cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
         mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
-    log:
-        os.path.join(logs_dir, "snippy_pairwise", "{reads_origin}", "{sample}.log")
     wildcard_constraints:
         reads_origin="(sra|local|assembly)",
     shell:
@@ -98,7 +96,7 @@ rule snippy_pairwise:
               --basequal {config[snippy_base_qual]} \
               --force \
               --cpus {resources.cpus} \
-              --report 2> {log}; \
+              --report 2> {output.log}; \
           else \
             snippy \
               --prefix {wildcards.sample} \
@@ -132,9 +130,7 @@ rule snippy_multi:
         results_dir + "/snippy_multi/{reads_origin}/snippy-multi.txt",
         #snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.aln",
         full_aln            = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.full.aln",
-        log                 = logs_dir    + "/snippy_multi/{reads_origin}/snippy-multi.log",
-    log:
-        os.path.join(logs_dir, "snippy_multi","{reads_origin}","snippy-multi.log")
+        log                 = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.log",
     shell:
         # Merge masking beds
         """
@@ -147,7 +143,7 @@ rule snippy_multi:
           --prefix {results_dir}/snippy_multi/{wildcards.reads_origin}/snippy-multi \
           --mask {results_dir}/snippy_multi/{wildcards.reads_origin}/mask.bed \
           --mask-char {config[snippy_mask_char]} \
-          {input.snippy_pairwise_dir} 2> {log};
+          {input.snippy_pairwise_dir} 2> {output.log};
         exitcode=$?;
         if [ $exitcode -eq 1 ]
         then

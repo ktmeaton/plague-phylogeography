@@ -12,10 +12,9 @@ rule detect_repeats:
         fna = results_dir + "/data/{reads_origin}/{sample}/{sample}.fna",
     output:
         inexact = results_dir + "/detect_repeats/{reads_origin}/{sample}.inexact.repeats.bed",
+        log     = results_dir + "/detect_repeats/{reads_origin}/{sample}.log",
     wildcard_constraints:
         reads_origin = "(reference|assembly)",
-    log:
-        logs_dir + "/detect_repeats/{reads_origin}/{sample}.log",
     resources:
         cpus = 1,
     shell:
@@ -23,7 +22,7 @@ rule detect_repeats:
           {input.fna} \
           {results_dir}/detect_repeats/{wildcards.reads_origin} \
           {config[detect_repeats_length]} \
-          {config[detect_repeats_threshold]} 2> {log}; "
+          {config[detect_repeats_threshold]} 2> {output.log}; "
 
 #------------------------------------------------------------------------------#
 rule detect_low_complexity:
@@ -52,15 +51,14 @@ rule detect_snp_density:
         vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
     output:
         snpden = expand(results_dir + "/detect_snp_density/{{reads_origin}}/{{sample}}.subs.snpden{density}",
-                 density=config["snippy_snp_density"])
+                        density=config["snippy_snp_density"]),
+        log    = results_dir + "detect_snp_density/{reads_origin}/{sample}.log",
     wildcard_constraints:
         reads_origin = "(assembly|sra|local)",
-    log:
-      os.path.join(logs_dir, "detect_snp_density","{reads_origin}","{sample}.log"),
     resources:
         cpus = 1,
     shell:
-        "{scripts_dir}/detect_snp_density.sh {input.vcf} {output.snpden} {config[snippy_snp_density]} 2> {log}"
+        "{scripts_dir}/detect_snp_density.sh {input.vcf} {output.snpden} {config[snippy_snp_density]} 2> {output.log}"
 
 #------------------------------------------------------------------------------#
 rule detect_snp_density_collect:
@@ -113,11 +111,12 @@ rule snippy_multi_filter:
     """
     input:
         snps_locus_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.snps.aln",
+        tsv            = results_dir + "/metadata/{reads_origin}/metadata.tsv",
     output:
-        filter_snp_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/snippy-multi.snps.aln",
-        log            = logs_dir    + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/snippy-multi.snps.log",
-    log:
-        logs_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/snippy-multi.snps.log",
+        filter_snp_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/full/snippy-multi.snps.aln",
+        log            = results_dir    + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/full/snippy-multi.snps.log",
+        tsv            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/full/metadata.tsv",
+
     params:
         keep_singleton = config["snippy_keep_singleton"],
     resources:
@@ -129,5 +128,31 @@ rule snippy_multi_filter:
                 --missing {wildcards.missing_data} \
                 {params.keep_singleton} \
                 --output {output.filter_snp_aln} \
-                --log {log};
+                --log {output.log};
+        cp {input.tsv} {output.tsv};
+        """
+
+#------------------------------------------------------------------------------#
+rule snippy_multi_prune:
+    """
+    Subsample a multiple alignment.
+    """
+    input:
+        aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/full/snippy-multi.snps.aln",
+        tsv     = results_dir + "/metadata/{reads_origin}/metadata.tsv",
+        dist    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/full/snippy-multi.snps.dist",
+    output:
+        aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/prune/snippy-multi.snps.aln",
+        tsv = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/prune/metadata.tsv",
+    resources:
+        cpus = 1,
+    params:
+        outdir = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/prune/",
+    shell:
+        """
+        python3 {scripts_dir}/prune_alignment.py \
+          --metadata {input.tsv} \
+          --matrix {input.dist} \
+          --aln {input.aln} \
+          --outdir {params.outdir}
         """

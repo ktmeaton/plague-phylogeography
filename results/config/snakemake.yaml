@@ -55,6 +55,7 @@ reference_locus : "AL590842"
 reference_locus_name : "chromosome"
 reference_locus_start : "0"
 reference_locus_end : "4653728"
+reference_date : -29
 
 # nf-core/eager parameters
 eager_rev: "2.2.1"
@@ -92,7 +93,7 @@ iqtree_model: "-m MFP"
 #iqtree_model : "-m K3Pu+F+I"
 iqtree_seed : "47321424" # keeping it consistent in a config file allows for checkpointing
 # Outgroup Option #1: Reference
-iqtree_constraint: "((Reference));"
+iqtree_constraint : "(Reference);"
 iqtree_outgroup : "Reference"
 # Outgroup Option #2: Basal modern clade
 #iqtree_outgroup : "GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic"

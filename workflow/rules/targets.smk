@@ -175,7 +175,7 @@ rule snippy_multi_extract_sra:
     input:
         snippy_multi_extract_sra_input
 # -----------------------------------------------------------------------------#
-snippy_multi_filter_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/filter{missing_data}/snippy-multi.snps.aln",
+snippy_multi_filter_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/filter{missing_data}/full/snippy-multi.snps.aln",
         locus_name=config["reference_locus_name"],
         missing_data = config["snippy_missing_data"])[0]
 snippy_multi_filter_local_input    = snippy_multi_filter_all_input.replace("all", "local")
@@ -197,6 +197,13 @@ rule snippy_multi_filter_assembly:
 rule snippy_multi_filter_sra:
     input:
         snippy_multi_filter_sra_input
+
+snippy_multi_prune_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/filter{missing_data}/prune/snippy-multi.snps.aln",
+        locus_name=config["reference_locus_name"],
+        missing_data = config["snippy_missing_data"])[0]
+rule snippy_multi_prune_all:
+    input:
+        snippy_multi_prune_all_input
 
 #------------------------------------------------------------------------------#
 # Qualimap
@@ -263,7 +270,7 @@ rule snippy_multi_all:
 #------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#
-iqtree_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/filter{missing_data}/iqtree.treefile",
+iqtree_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/filter{missing_data}/full/iqtree.treefile",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 iqtree_local_input    = [ x.replace("all", "local") for x in iqtree_all_input ]
@@ -285,6 +292,14 @@ rule iqtree_local:
 rule iqtree_all:
     input:
         iqtree_all_input
+
+#------------------------------------------------------------------------------#
+iqtree_prune_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/filter{missing_data}/prune/iqtree.treefile",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule iqtree_prune_all:
+    input:
+        iqtree_prune_all_input
 
 #------------------------------------------------------------------------------#
 # Site Concordance factor
@@ -314,12 +329,19 @@ rule iqtree_scf_all:
 
 #------------------------------------------------------------------------------#
  # LSD Dating
-lsd_all_input = expand(results_dir + "/lsd/all/{locus_name}/filter{missing_data}/lsd.timetree.nex",
+lsd_all_input = expand(results_dir + "/lsd/all/{locus_name}/filter{missing_data}/full/lsd.timetree.nex",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 rule lsd_all:
     input:
         lsd_all_input
+
+lsd_prune_all_input = expand(results_dir + "/lsd/all/{locus_name}/filter{missing_data}/prune/lsd.timetree.nex",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule lsd_prune_all:
+    input:
+        lsd_prune_all_input
 #------------------------------------------------------------------------------#
 # Post-Phylogeny
 #------------------------------------------------------------------------------#
@@ -483,7 +505,7 @@ rule plot_missing_data_all:
 
 #------------------------------------------------------------------------------#
 
-plot_snp_matrix_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/filter{missing_data}/snippy-multi.snps.dist.heatmap.html",
+plot_snp_matrix_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/filter{missing_data}/full/snippy-multi.snps.dist.heatmap.html",
 				                          locus_name = config["reference_locus_name"],
                                           missing_data=config["snippy_missing_data"],
                                           )
