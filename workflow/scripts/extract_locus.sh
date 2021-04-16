@@ -9,6 +9,7 @@ IN_FASTA_FILE=$1
 LOCUS_NAME=$2
 LOCUS_START=$3
 LOCUS_END=$4
+OUTDIR=$5
 
 # These coordinates are based on the ordering of the genbank file
 # TO get locus info, lengths and therefore positions
@@ -30,7 +31,6 @@ LOCUS_END=$4
 
 # Prep the directories
 INDIR=`dirname ${IN_FASTA_FILE}`
-OUTDIR=${INDIR}/${LOCUS_NAME}/
 mkdir -p $OUTDIR
 out_fasta=$OUTDIR/`basename $IN_FASTA_FILE`
 out_bed=$OUTDIR/extract.bed

@@ -138,7 +138,6 @@ for rec in metadata_df.iterrows():
         # Replacing sample
         if update_status == "replace":
             print("Replacing:", champion, "with", contender)
-            print(branch_dict[branch][GEO][geo_val])
             # Remove old champion
             branch_dict[branch][GEO][geo_val]["dates"].pop(c_date)
             # Add contender
@@ -155,7 +154,7 @@ for branch in branch_dict:
     for geo_val in branch_dict[branch][GEO]:
         # print("\t", geo_val)
         for date in branch_dict[branch][GEO][geo_val]["dates"]:
-            sample = branch_dict[branch][GEO][geo_val]["dates"][date]
+            sample = list(branch_dict[branch][GEO][geo_val]["dates"][date].keys())[0]
             strain = metadata_df["strain"][sample]
             sample_list.append(sample)
             # print("\t\t", date, strain, sample)

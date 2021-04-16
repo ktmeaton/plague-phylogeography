@@ -85,24 +85,55 @@ rule snippy_multi_extract:
     Extract a locus (ex. chromosome) from the snippy multi alignment.
     """
     input:
-        full_aln                = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.full.aln",
+        full_aln               = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.full.aln",
+        tsv    = results_dir + "/metadata/{reads_origin}/metadata.tsv",
     output:
-        extract_full            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.full.aln",
-        extract_snps            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.snps.aln",
-        extract_constant_sites  = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.full.constant_sites.txt",
+        extract_full           = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.full.aln",
+        extract_snps           = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.snps.aln",
+        extract_constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
+        tsv                    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/metadata.tsv",
     resources:
         cpus                   = 1,
+    params:
+        outdir = lambda wildcards: os.path.join(results_dir, "snippy_multi", wildcards.reads_origin, wildcards.locus_name, "full"),
     shell:
         """
         {scripts_dir}/extract_locus.sh \
           {input.full_aln} \
           {config[reference_locus_name]} \
           {config[reference_locus_start]} \
-          {config[reference_locus_end]};
+          {config[reference_locus_end]} \
+          {params.outdir};
         snp-sites -C {output.extract_full} > {output.extract_constant_sites};
         snp-sites -m -o {output.extract_snps} {output.extract_full}
+        cp {input.tsv} {output.tsv};
         """
 
+
+#------------------------------------------------------------------------------#
+rule snippy_multi_prune:
+    """
+    Subsample a multiple alignment.
+    """
+    input:
+        aln    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.snps.aln",
+        tsv    = results_dir + "/metadata/{reads_origin}/metadata.tsv",
+        dist   = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.snps.dist",
+    output:
+        aln    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/snippy-multi.snps.aln",
+        tsv    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/metadata.tsv",
+    resources:
+        cpus   = 1,
+    params:
+        outdir = lambda wildcards: os.path.join(results_dir, "snippy_multi", wildcards.reads_origin, wildcards.locus_name, "prune"),
+    shell:
+        """
+        python3 {scripts_dir}/prune_alignment.py \
+          --metadata {input.tsv} \
+          --matrix {input.dist} \
+          --aln {input.aln} \
+          --outdir {params.outdir}
+        """
 
 #------------------------------------------------------------------------------#
 rule snippy_multi_filter:
@@ -110,13 +141,11 @@ rule snippy_multi_filter:
     Filter a multiple alignment for missing data.
     """
     input:
-        snps_locus_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.snps.aln",
-        tsv            = results_dir + "/metadata/{reads_origin}/metadata.tsv",
+        snps_locus_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/snippy-multi.snps.aln",
+        tsv            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/metadata.tsv",
     output:
-        filter_snp_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/full/snippy-multi.snps.aln",
-        log            = results_dir    + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/full/snippy-multi.snps.log",
-        tsv            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/full/metadata.tsv",
-
+        filter_snp_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
+        log            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.log",
     params:
         keep_singleton = config["snippy_keep_singleton"],
     resources:
@@ -129,30 +158,4 @@ rule snippy_multi_filter:
                 {params.keep_singleton} \
                 --output {output.filter_snp_aln} \
                 --log {output.log};
-        cp {input.tsv} {output.tsv};
-        """
-
-#------------------------------------------------------------------------------#
-rule snippy_multi_prune:
-    """
-    Subsample a multiple alignment.
-    """
-    input:
-        aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/full/snippy-multi.snps.aln",
-        tsv     = results_dir + "/metadata/{reads_origin}/metadata.tsv",
-        dist    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/full/snippy-multi.snps.dist",
-    output:
-        aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/prune/snippy-multi.snps.aln",
-        tsv = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/prune/metadata.tsv",
-    resources:
-        cpus = 1,
-    params:
-        outdir = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/prune/",
-    shell:
-        """
-        python3 {scripts_dir}/prune_alignment.py \
-          --metadata {input.tsv} \
-          --matrix {input.dist} \
-          --aln {input.aln} \
-          --outdir {params.outdir}
         """

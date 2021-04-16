@@ -109,7 +109,7 @@ rule snippy_pairwise:
               --basequal {config[snippy_base_qual]} \
               --force \
               --cpus {resources.cpus} \
-              --report 2> {log}; \
+              --report 2> {output.log}; \
           fi ;"
 
 # -----------------------------------------------------------------------------#

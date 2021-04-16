@@ -156,7 +156,7 @@ rule snp_density_collect_all:
         results_dir + "/detect_snp_density_collect/all/snpden" +  str(config["snippy_snp_density"]) + ".bed"
 
 # -----------------------------------------------------------------------------#
-snippy_multi_extract_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/snippy-multi.full.aln",
+snippy_multi_extract_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/full/snippy-multi.full.aln",
         locus_name=config["reference_locus_name"])[0]
 snippy_multi_extract_local_input    = snippy_multi_extract_all_input.replace("all", "local")
 snippy_multi_extract_assembly_input = snippy_multi_extract_all_input.replace("all", "assembly")
@@ -174,8 +174,18 @@ rule snippy_multi_extract_assembly:
 rule snippy_multi_extract_sra:
     input:
         snippy_multi_extract_sra_input
+
+
 # -----------------------------------------------------------------------------#
-snippy_multi_filter_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/filter{missing_data}/full/snippy-multi.snps.aln",
+snippy_multi_prune_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/prune/snippy-multi.snps.aln",
+        locus_name=config["reference_locus_name"],
+        missing_data = config["snippy_missing_data"])[0]
+rule snippy_multi_prune_all:
+    input:
+        snippy_multi_prune_all_input
+
+# -----------------------------------------------------------------------------#
+snippy_multi_filter_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/prune/filter{missing_data}/snippy-multi.snps.aln",
         locus_name=config["reference_locus_name"],
         missing_data = config["snippy_missing_data"])[0]
 snippy_multi_filter_local_input    = snippy_multi_filter_all_input.replace("all", "local")
@@ -198,12 +208,6 @@ rule snippy_multi_filter_sra:
     input:
         snippy_multi_filter_sra_input
 
-snippy_multi_prune_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/filter{missing_data}/prune/snippy-multi.snps.aln",
-        locus_name=config["reference_locus_name"],
-        missing_data = config["snippy_missing_data"])[0]
-rule snippy_multi_prune_all:
-    input:
-        snippy_multi_prune_all_input
 
 #------------------------------------------------------------------------------#
 # Qualimap
@@ -270,7 +274,7 @@ rule snippy_multi_all:
 #------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#
-iqtree_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/filter{missing_data}/full/iqtree.treefile",
+iqtree_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/full/filter{missing_data}/iqtree.treefile",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 iqtree_local_input    = [ x.replace("all", "local") for x in iqtree_all_input ]
@@ -294,7 +298,7 @@ rule iqtree_all:
         iqtree_all_input
 
 #------------------------------------------------------------------------------#
-iqtree_prune_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/filter{missing_data}/prune/iqtree.treefile",
+iqtree_prune_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/prune/filter{missing_data}/iqtree.treefile",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 rule iqtree_prune_all:
@@ -329,14 +333,14 @@ rule iqtree_scf_all:
 
 #------------------------------------------------------------------------------#
  # LSD Dating
-lsd_all_input = expand(results_dir + "/lsd/all/{locus_name}/filter{missing_data}/full/lsd.timetree.nex",
+lsd_all_input = expand(results_dir + "/lsd/all/{locus_name}/full/filter{missing_data}/lsd.timetree.nex",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 rule lsd_all:
     input:
         lsd_all_input
 
-lsd_prune_all_input = expand(results_dir + "/lsd/all/{locus_name}/filter{missing_data}/prune/lsd.timetree.nex",
+lsd_prune_all_input = expand(results_dir + "/lsd/all/{locus_name}/prune/filter{missing_data}/lsd.timetree.nex",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 rule lsd_prune_all:
@@ -480,7 +484,7 @@ rule geo_all:
 # Plot
 #------------------------------------------------------------------------------#
 
-plot_missing_data_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/snippy-multi.snps.missing-data.html",
+plot_missing_data_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/prune/snippy-multi.snps.missing-data.html",
 				                          locus_name = config["reference_locus_name"],
 					                     )
 plot_missing_data_sra_input = [ x.replace("all", "sra") for x in plot_missing_data_all_input ]
