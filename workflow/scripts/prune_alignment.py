@@ -130,7 +130,7 @@ for rec in metadata_df.iterrows():
                 champion_diff = list(champion.values())[0]
                 contender = {sample: min_diff}
 
-                if min_diff <= champion_diff:
+                if min_diff < champion_diff:
                     update_status = "replace"
                     break
                 update_status = "none"
@@ -145,7 +145,7 @@ for rec in metadata_df.iterrows():
 
         # Add new sample
         if update_status == "add":
-            branch_dict[branch][GEO][geo_val]["dates"][date] = sample
+            branch_dict[branch][GEO][geo_val]["dates"][date] = {sample: min_diff}
 
 sample_list = []
 for branch in branch_dict:

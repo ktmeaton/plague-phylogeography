@@ -518,7 +518,7 @@ rule plot_missing_data_all:
 
 #------------------------------------------------------------------------------#
 
-plot_snp_matrix_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/filter{missing_data}/full/snippy-multi.snps.dist.heatmap.html",
+plot_snp_matrix_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/full/filter{missing_data}/snippy-multi.snps.dist.heatmap.html",
 				                          locus_name = config["reference_locus_name"],
                                           missing_data=config["snippy_missing_data"],
                                           )
