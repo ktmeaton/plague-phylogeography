@@ -113,7 +113,7 @@ rule all:
         # Phylo
         iqtree_scf_all_input,
         # Post-Phylo
-        clock_plot_all_input,
+        #clock_plot_all_input,
         #mugration_plot_all_input,
         #geo_all_input,
         # Plot
