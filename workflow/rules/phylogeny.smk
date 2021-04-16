@@ -98,6 +98,7 @@ rule lsd:
         echo -e "Reference\t"{config[reference_date]} >> {params.dates}
         iqtree \
             -s {input.snp_aln} \
+		    {config[iqtree_model]} \
             --date {params.dates} \
             --prefix {params.prefix} \
             -fconst `cat {input.constant_sites}` \
