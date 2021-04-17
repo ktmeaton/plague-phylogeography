@@ -15,6 +15,9 @@ rule iqtree:
         iqtree         = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.iqtree",
         log            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.log",
         constraint     = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.constraint",
+        outgroup_txt   = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.outgroup.txt",
+        outgroup_tree  = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.outgroup.treefile",
+        aln            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.aln",
     params:
         #seed = random.randint(0, 99999999),
         seed           = config["iqtree_seed"],
@@ -39,6 +42,17 @@ rule iqtree:
             {config[iqtree_other]} \
             -redo \
             -pre {params.prefix} > {output.log};
+
+        echo {config[iqtree_outgroup]} | tr "," "\n" >> {output.outgroup_txt};
+
+        mv {output.tree} {output.outgroup_tree};
+
+        workflow/scripts/filter_alignment.py \
+            --tree {output.outgroup_tree} \
+            --aln {input.snp_aln} \
+            --out {output.aln} \
+            --prune-tips {output.outgroup_txt} \
+            --prune-tree {output.tree};
         """
 
 rule lsd:
@@ -48,31 +62,32 @@ rule lsd:
     input:
         tsv            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/metadata.tsv",
         tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.treefile",
-        snp_aln        = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
+        aln            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.aln",
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
     output:
         timetree   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nex",
-        outgroup   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.outgroup.txt",
+        aln        = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.aln",
+        dates   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.dates.txt",
     params:
         seed    = config["iqtree_seed"],
         prefix  = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd",
-        dates   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.dates.txt",
     shell:
         """
-        cut -f 1,4 {input.tsv}  | tail -n+2 | sed 's/\[\|\]//g' > {params.dates};
-        echo -e "Reference\t"{config[reference_date]} >> {params.dates}
-        echo {config[iqtree_outgroup]} | tr "," "\n" | wc -l > {output.outgroup};
-        echo {config[iqtree_outgroup]} | tr "," "\n" >> {output.outgroup};
-        echo "iqtree \
-            -s {input.snp_aln} \
+        cut -f 1,4 {input.tsv}  | tail -n+2 | sed 's/\[\|\]//g' > {output.dates};
+        echo -e "Reference\t"{config[reference_date]} >> {output.dates}
+        iqtree \
+            -s {input.aln} \
 		    {config[iqtree_model]} \
-            --date {params.dates} \
-            --date-options \"-g {output.outgroup}\" \
+            --date {output.dates} \
             --prefix {params.prefix} \
             -fconst `cat {input.constant_sites}` \
             --date-ci 100 \
             --date-outlier 3 \
-            -te {input.tree};"
+            -te {input.tree};
+        {scripts_dir}/filter_alignment.py \
+            --tree {output.timetree} \
+            --aln {input.aln} \
+            --out {output.aln}
         """
 
 rule beast_geo:
@@ -80,9 +95,10 @@ rule beast_geo:
     Continuous phylogeography with BEAST
     """
     input:
-        tsv            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/metadata.tsv",
+        tsv      = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/metadata.tsv",
         dates    = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.dates.txt",
         timetree = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nex",
+        aln        = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.aln",
     output:
         lat      = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.lat.txt",
         lon      = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.lon.txt",
@@ -91,8 +107,9 @@ rule beast_geo:
 
     shell:
         """
-        echo -e "Reference\t"{config[reference_lat]} >> {output.lat};
-        echo -e "Reference\t"{config[reference_lon]} >> {output.lon};
+        echo -e "Reference\t"{config[reference_lat]} > {output.lat};
+        echo -e "Reference\t"{config[reference_lon]} > {output.lon};
+        echo -e "traits\tlat\tlon" > {output.latlon};
         echo -e "Reference\t"{config[reference_lat]}"\t"{config[reference_lon]} >> {output.latlon};
 
         tail -n+2 {input.tsv} | while read line; \
@@ -104,12 +121,16 @@ rule beast_geo:
                 lat=`echo "$line" | cut -f 7`;
                 lon=`echo "$line" | cut -f 8`;
             fi;
-            echo -e $sample"\t"$lat >> {output.lat};
-            echo -e $sample"\t"$lon >> {output.lon};
-            echo -e $sample"\t"$lat"\t"$lon >> {output.latlon};
+            if [[ `grep "$sample" {input.aln}` ]]; then
+                echo -e $sample"\t"$lat >> {output.lat};
+                echo -e $sample"\t"$lon >> {output.lon};
+                echo -e $sample"\t"$lat"\t"$lon >> {output.latlon};
+            fi;
         done
 
-        {scripts_dir}/nexus2beast.py {input.timetree} {output.timetree};
+        {scripts_dir}/multi2bi.py \
+          --tree {input.timetree} \
+          --out {output.timetree}
         """
 
 rule parse_tree:
