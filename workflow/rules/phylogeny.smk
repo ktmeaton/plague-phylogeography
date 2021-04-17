@@ -41,42 +41,6 @@ rule iqtree:
             -pre {params.prefix} > {output.log};
         """
 
-#1>{log}
-
-rule iqtree_scf:
-    """
-    Estimate site concordance factors.
-    """
-    input:
-        tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree.treefile",
-        snp_aln        = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/filter{missing_data}/snippy-multi.snps.aln",
-        constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/snippy-multi.full.constant_sites.txt",
-    output:
-        cf_branch      = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree_post.cf.branch",
-        cf_stat        = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree_post.cf.stat",
-        cf_tree        = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree_post.cf.tree",
-    params:
-        seed           = config["iqtree_seed"],
-        prefix         = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree_post",
-    resources:
-        load           = 100,
-        time_min       = 600,
-      	cpus           = workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
-        mem_mb         = workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
-    shell:
-        """
-        iqtree   \
-            -t {input.tree}   \
-            -s {input.snp_aln}   \
-		    {config[iqtree_model]} \
-            --prefix {params.prefix}   \
-            -fconst `cat {input.constant_sites}` \
-            --scf 1000   \
-            --seed {params.seed}   \
-            --threads-max {resources.cpus} \
-            -nt {resources.cpus};
-        """
-
 rule lsd:
     """
     Estimate a time-scaled phylogeny using LSD2 in IQTREE.
@@ -88,6 +52,7 @@ rule lsd:
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
     output:
         timetree   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nex",
+        outgroup   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.outgroup.txt",
     params:
         seed    = config["iqtree_seed"],
         prefix  = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd",
@@ -96,15 +61,18 @@ rule lsd:
         """
         cut -f 1,4 {input.tsv}  | tail -n+2 | sed 's/\[\|\]//g' > {params.dates};
         echo -e "Reference\t"{config[reference_date]} >> {params.dates}
-        iqtree \
+        echo {config[iqtree_outgroup]} | tr "," "\n" | wc -l > {output.outgroup};
+        echo {config[iqtree_outgroup]} | tr "," "\n" >> {output.outgroup};
+        echo "iqtree \
             -s {input.snp_aln} \
 		    {config[iqtree_model]} \
             --date {params.dates} \
+            --date-options \"-g {output.outgroup}\" \
             --prefix {params.prefix} \
             -fconst `cat {input.constant_sites}` \
             --date-ci 100 \
             --date-outlier 3 \
-            -te {input.tree}
+            -te {input.tree};"
         """
 
 rule beast_geo:
