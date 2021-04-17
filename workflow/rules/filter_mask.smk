@@ -52,7 +52,7 @@ rule detect_snp_density:
     output:
         snpden = expand(results_dir + "/detect_snp_density/{{reads_origin}}/{{sample}}.subs.snpden{density}",
                         density=config["snippy_snp_density"]),
-        log    = results_dir + "detect_snp_density/{reads_origin}/{sample}.log",
+        log    = results_dir + "/detect_snp_density/{reads_origin}/{sample}.log",
     wildcard_constraints:
         reads_origin = "(assembly|sra|local)",
     resources:
