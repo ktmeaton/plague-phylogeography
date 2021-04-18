@@ -12,6 +12,7 @@ import pandas as pd
 import copy
 import argparse
 from Bio import AlignIO, Align, SeqIO
+import subprocess
 
 # Command-line argument capture
 parser = argparse.ArgumentParser(
@@ -182,7 +183,15 @@ aln = AlignIO.read(aln_path, "fasta")
 filter_seq = [rec for rec in aln if rec.id in sample_list or rec.id == "Reference"]
 filter_aln = Align.MultipleSeqAlignment(filter_seq)
 
-out_path_filter_aln = os.path.join(out_dir, aln_basename)
-with open(out_path_filter_aln, "w") as outfile:
+out_path_aln = os.path.join(out_dir, aln_basename)
+
+# Write temporary file
+with open(out_path_aln + ".tmp", "w") as outfile:
     count = SeqIO.write(filter_aln, outfile, "fasta")
     # print("\n",count, "alignments written.")
+
+# Remove constant sites
+result = subprocess.run(["snp-sites", "-m", "-o", out_path_aln, out_path_aln + ".tmp"])
+
+# Remove temporary file
+os.remove(out_path_aln + ".tmp")

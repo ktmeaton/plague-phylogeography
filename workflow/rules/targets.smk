@@ -185,7 +185,7 @@ rule snippy_multi_prune_all:
         snippy_multi_prune_all_input
 
 # -----------------------------------------------------------------------------#
-snippy_multi_filter_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/prune/filter{missing_data}/snippy-multi.snps.aln",
+snippy_multi_filter_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/full/filter{missing_data}/snippy-multi.snps.aln",
         locus_name=config["reference_locus_name"],
         missing_data = config["snippy_missing_data"])[0]
 snippy_multi_filter_local_input    = snippy_multi_filter_all_input.replace("all", "local")
@@ -208,7 +208,12 @@ rule snippy_multi_filter_sra:
     input:
         snippy_multi_filter_sra_input
 
-
+snippy_multi_filter_prune_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/prune/filter{missing_data}/snippy-multi.snps.aln",
+        locus_name=config["reference_locus_name"],
+        missing_data = config["snippy_missing_data"])[0]
+rule snippy_multi_filter_prune_all:
+    input:
+        snippy_multi_filter_prune_all_input
 #------------------------------------------------------------------------------#
 # Qualimap
 #------------------------------------------------------------------------------#
