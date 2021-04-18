@@ -53,7 +53,7 @@ def main(
     # Import tree
     tree = Phylo.read(tree_path, tree_type)
 
-    # Strip comments
+    # Strip comments and confidence
     for c in tree.find_clades():
         c.comment = None
 
@@ -62,6 +62,9 @@ def main(
     tree_multi.standardize()
 
     tree_bi = Phylo.read(StringIO(tree_multi.write(format=0)), "newick")
+
+    for c in tree_bi.find_clades():
+        c.confidence = None
 
     Phylo.write(tree_bi, out_path, "nexus")
 

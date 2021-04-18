@@ -23,8 +23,10 @@ min_version("5.26.1")
 # -----------------------------------------------------------------------------#
 
 if not config:
-    print("ERROR: Please specify --configfile")
-    quit(1)
+    #print("ERROR: Please specify --configfile")
+    #quit(1)
+    print("WARNING: Using default configfile results/config/snakemake.yaml")
+    configfile: os.path.join("results", "config", "snakemake.yaml")
 
 # Pipeline directories
 pipeline_dir = os.path.dirname(workflow.basedir)

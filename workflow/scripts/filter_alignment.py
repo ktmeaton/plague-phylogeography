@@ -10,6 +10,8 @@ import click
 from Bio import Phylo, AlignIO, Align, SeqIO
 import os
 import copy
+import subprocess
+import pandas as pd
 
 # -----------------------------------------------------------------------------
 # Command Line Arguments
@@ -38,28 +40,49 @@ import copy
     required=False,
 )
 @click.option(
-    "--prune-tree",
-    help="File for output pruned tree.",
-    type=click.Path(dir_okay=False, allow_dash=True),
-    required=False,
+    "-o",
+    "--outdir",
+    help="Output directory.",
+    type=click.Path(dir_okay=True, allow_dash=True),
+    required=True,
 )
 @click.option(
-    "-o",
-    "--out",
-    help="Output alignment that is filtered.",
+    "-m",
+    "--metadata",
+    help="Input metadata.",
     type=click.Path(dir_okay=False, allow_dash=True),
     required=True,
 )
 def main(
-    tree: str, aln: str, out: str, prune_tips: str, prune_tree: str,
+    tree: str, aln: str, prune_tips: str, outdir: str, metadata: str,
 ):
     """This script filters an alignment based on taxa in a tree"""
 
     tree_path = tree
     aln_path = aln
-    out_path = out
     prune_tips_path = prune_tips
-    prune_tree_path = prune_tree
+    metadata_path = metadata
+
+    # -------------------------------------------------------------------------
+    # Output file names
+    aln_basename = os.path.basename(aln_path)
+    aln_ext = os.path.splitext(aln_basename)[1]
+    tree_basename = os.path.basename(tree_path)
+    tree_prefix = os.path.splitext(tree_basename)[0]
+    metadata_basename = os.path.basename(metadata_path)
+
+    # Output alignment takes its name from the tree
+    out_path_aln = os.path.join(outdir, tree_prefix + ".filter" + aln_ext)
+    out_path_metadata = os.path.join(outdir, metadata_basename)
+
+    # Path for pruned tree
+    prune_tree_prefix = os.path.join(outdir, tree_prefix + ".filter")
+
+    # -------------------------------------------------------------------------
+    # Load Metadata
+    metadata_df = pd.read_csv(metadata_path, sep="\t")
+    metadata_df.fillna("NA", inplace=True)
+    metadata_df.set_index(metadata_df.columns[0], inplace=True)
 
     # -------------------------------------------------------------------------
     # Identify tree type
@@ -72,8 +95,16 @@ def main(
         print("Unrecognized tree format:", tree_ext)
         quit()
 
+    # -----------------------------------------------------
+    # Parse Tree
     # Import tree
-    tree = Phylo.read(tree_path, tree_type)
+    trees = Phylo.parse(tree_path, tree_type)
+
+    # Parse out the tree
+    for tree in trees:
+        clades = [c for c in tree.find_clades()]
+        if len(clades) > 1:
+            break
 
     # Parse taxa to prune
     prune_taxa = []
@@ -87,6 +118,7 @@ def main(
     for c in tree.find_clades():
         # Prune taxa
         if c.name in prune_taxa:
+            print("Pruning taxa", c.name, "from the tree.")
             tree_edit.prune(c.name)
 
         if c.name in prune_taxa and prune_tips:
@@ -95,17 +127,36 @@ def main(
             tree_taxa.append(c.name)
 
     # Write the pruned tree
-    if prune_tree:
-        Phylo.write(tree_edit, prune_tree_path, "newick")
+    if prune_tips:
+        Phylo.write(tree_edit, prune_tree_prefix + ".nwk", "newick")
+        Phylo.write(tree_edit, prune_tree_prefix + ".nex", "nexus")
+
+    # -----------------------------------------------------
+    # Filter Alignment
 
     # Import alignment
     aln = AlignIO.read(aln_path, "fasta")
     filter_seq = [rec for rec in aln if rec.id in tree_taxa]
     filter_aln = Align.MultipleSeqAlignment(filter_seq)
 
-    with open(out_path, "w") as outfile:
+    with open(out_path_aln + ".tmp", "w") as outfile:
         count = SeqIO.write(filter_aln, outfile, "fasta")
         print("\n", count, "alignments written.")
+
+    # Remove constant sites
+    subprocess.run(["snp-sites", "-m", "-o", out_path_aln, out_path_aln + ".tmp"])
+
+    # Remove temporary file
+    os.remove(out_path_aln + ".tmp")
+
+    # -----------------------------------------------------
+    # Filter Metadata
+    filter_df = copy.deepcopy(metadata_df)
+    for sample in metadata_df.index:
+        if sample not in tree_taxa:
+            filter_df.drop(sample, inplace=True)
+
+    filter_df.to_csv(out_path_metadata, sep="\t")
 
 
 if __name__ == "__main__":

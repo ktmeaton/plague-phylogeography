@@ -279,7 +279,7 @@ rule snippy_multi_all:
 #------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#
-iqtree_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/full/filter{missing_data}/iqtree.treefile",
+iqtree_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/full/filter{missing_data}/iqtree.nex",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 iqtree_local_input    = [ x.replace("all", "local") for x in iqtree_all_input ]
@@ -303,7 +303,7 @@ rule iqtree_all:
         iqtree_all_input
 
 #------------------------------------------------------------------------------#
-iqtree_prune_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/prune/filter{missing_data}/iqtree.treefile",
+iqtree_prune_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/prune/filter{missing_data}/iqtree.nex",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 rule iqtree_prune_all:
@@ -311,188 +311,53 @@ rule iqtree_prune_all:
         iqtree_prune_all_input
 
 #------------------------------------------------------------------------------#
-# Site Concordance factor
-
-iqtree_scf_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/filter{missing_data}/iqtree_post.cf.tree",
+# Remove outgroups
+remove_outgroup_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/full/filter{missing_data}/iqtree.filter.nex",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
-iqtree_scf_local_input    = [ x.replace("all", "local") for x in iqtree_scf_all_input ]
-iqtree_scf_sra_input      = [ x.replace("all", "sra") for x in iqtree_scf_all_input ]
-iqtree_scf_assembly_input = [ x.replace("all", "assembly") for x in iqtree_scf_all_input ]
-
-rule iqtree_scf_assembly:
+rule remove_outgroup_all:
     input:
-        iqtree_scf_assembly_input
+        remove_outgroup_all_input
 
-rule iqtree_scf_sra:
+remove_outgroup_prune_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/prune/filter{missing_data}/iqtree.filter.nex",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule remove_outgroup_prune_all:
     input:
-        iqtree_scf_sra_input
-
-rule iqtree_scf_local:
-    input:
-        iqtree_scf_local_input
-
-rule iqtree_scf_all:
-    input:
-        iqtree_scf_all_input
+        remove_outgroup_prune_all_input
 
 #------------------------------------------------------------------------------#
  # LSD Dating
-lsd_all_input = expand(results_dir + "/lsd/all/{locus_name}/full/filter{missing_data}/lsd.timetree.nex",
+lsd_all_input = expand(results_dir + "/lsd/all/{locus_name}/full/filter{missing_data}/lsd.nex",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 rule lsd_all:
     input:
         lsd_all_input
 
-lsd_prune_all_input = expand(results_dir + "/lsd/all/{locus_name}/prune/filter{missing_data}/lsd.timetree.nex",
+lsd_prune_all_input = expand(results_dir + "/lsd/all/{locus_name}/prune/filter{missing_data}/lsd.nex",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 rule lsd_prune_all:
     input:
         lsd_prune_all_input
 
+# Remove outliers
+lsd_remove_outliers_all_input = expand(results_dir + "/lsd/all/{locus_name}/full/filter{missing_data}/lsd.filter.nex",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule lsd_remove_outliers_all:
+    input:
+        lsd_remove_outliers_all_input
+
 #------------------------------------------------------------------------------#
  # Beast geo
-beast_geo_all_input = expand(results_dir + "/beast/all/{locus_name}/full/filter{missing_data}/beast.timetree.nex",
+beast_geo_all_input = expand(results_dir + "/beast/all/{locus_name}/full/filter{missing_data}/beast.nex",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 rule beast_geo_all:
     input:
         beast_geo_all_input
-#------------------------------------------------------------------------------#
-# Post-Phylogeny
-#------------------------------------------------------------------------------#
-
-parse_tree_all_input      = expand(results_dir + "/parse_tree/all/{locus_name}/filter{missing_data}/parse_tree.tsv",
-                               locus_name=config["reference_locus_name"],
-                               missing_data = config["snippy_missing_data"])
-parse_tree_local_input    = [ x.replace("all", "local") for x in parse_tree_all_input ]
-parse_tree_sra_input      = [ x.replace("all", "sra") for x in parse_tree_all_input ]
-parse_tree_assembly_input = [ x.replace("all", "assembly") for x in parse_tree_all_input ]
-
-rule parse_tree_assembly:
-    input:
-        parse_tree_assembly_input
-rule parse_tree_sra:
-    input:
-        parse_tree_sra_input
-rule parse_tree_local:
-    input:
-        parse_tree_local_input
-rule parse_tree_all:
-    input:
-        parse_tree_all_input
-
-#------------------------------------------------------------------------------#
-
-clock_model_all_input      = expand(results_dir + "/clock/all/{locus_name}/filter{missing_data}/clock_model.tsv",
-                               locus_name=config["reference_locus_name"],
-                               missing_data = config["snippy_missing_data"])
-clock_model_local_input    = [ x.replace("all", "local") for x in clock_model_all_input ]
-clock_model_sra_input      = [ x.replace("all", "sra") for x in clock_model_all_input ]
-clock_model_assembly_input = [ x.replace("all", "assembly") for x in clock_model_all_input ]
-
-rule clock_model_assembly:
-    input:
-        clock_model_assembly_input
-rule clock_model_sra:
-    input:
-        clock_model_sra_input
-rule clock_model_local:
-    input:
-        clock_model_local_input
-rule clock_model_all:
-    input:
-        clock_model_all_input
-
-#------------------------------------------------------------------------------#
-
-clock_plot_all_input      = expand(results_dir + "/clock/all/{locus_name}/filter{missing_data}/clock_plot_timetree.svg",
-                               locus_name=config["reference_locus_name"],
-                               missing_data = config["snippy_missing_data"])
-clock_plot_local_input    = [ x.replace("all", "local") for x in clock_plot_all_input ]
-clock_plot_sra_input      = [ x.replace("all", "sra") for x in clock_plot_all_input ]
-clock_plot_assembly_input = [ x.replace("all", "assembly") for x in clock_plot_all_input ]
-
-rule clock_plot_assembly:
-    input:
-        clock_plot_assembly_input
-rule clock_plot_sra:
-    input:
-        clock_plot_sra_input
-rule clock_plot_local:
-    input:
-        clock_plot_local_input
-rule clock_plot_all:
-    input:
-        clock_plot_all_input
-
-#------------------------------------------------------------------------------#
-
-mugration_model_all_input      = expand(results_dir + "/mugration/all/{locus_name}/filter{missing_data}/mugration_model.tsv",
-                               locus_name=config["reference_locus_name"],
-                               missing_data = config["snippy_missing_data"])
-mugration_model_local_input    = [ x.replace("all", "local") for x in mugration_model_all_input ]
-mugration_model_sra_input      = [ x.replace("all", "sra") for x in mugration_model_all_input ]
-mugration_model_assembly_input = [ x.replace("all", "assembly") for x in mugration_model_all_input ]
-
-rule mugration_model_assembly:
-    input:
-        mugration_model_assembly_input
-rule mugration_model_sra:
-    input:
-        mugration_model_sra_input
-rule mugration_model_local:
-    input:
-        mugration_model_local_input
-rule mugration_model_all:
-    input:
-        mugration_model_all_input
-
-#------------------------------------------------------------------------------#
-
-mugration_plot_all_input      = expand(results_dir + "/mugration/all/{locus_name}/filter{missing_data}/mugration_plot_timetree-branch-major.svg",
-                               locus_name=config["reference_locus_name"],
-                               missing_data = config["snippy_missing_data"])
-mugration_plot_local_input    = [ x.replace("all", "local") for x in mugration_plot_all_input ]
-mugration_plot_sra_input      = [ x.replace("all", "sra") for x in mugration_plot_all_input ]
-mugration_plot_assembly_input = [ x.replace("all", "assembly") for x in mugration_plot_all_input ]
-
-rule mugration_plot_assembly:
-    input:
-        mugration_plot_assembly_input
-rule mugration_plot_sra:
-    input:
-        mugration_plot_sra_input
-rule mugration_plot_local:
-    input:
-        mugration_plot_local_input
-rule mugration_plot_all:
-    input:
-        mugration_plot_all_input
-
-#------------------------------------------------------------------------------#
-
-geo_all_input      = expand(results_dir + "/geo/all/{locus_name}/filter{missing_data}/geo.tsv",
-                               locus_name=config["reference_locus_name"],
-                               missing_data = config["snippy_missing_data"])
-geo_local_input    = [ x.replace("all", "local") for x in geo_all_input ]
-geo_sra_input      = [ x.replace("all", "sra") for x in geo_all_input ]
-geo_assembly_input = [ x.replace("all", "assembly") for x in geo_all_input ]
-
-rule geo_assembly:
-    input:
-        geo_assembly_input
-rule geo_sra:
-    input:
-        geo_sra_input
-rule geo_local:
-    input:
-        geo_local_input
-rule geo_all:
-    input:
-        geo_all_input
 
 #------------------------------------------------------------------------------#
 # Plot

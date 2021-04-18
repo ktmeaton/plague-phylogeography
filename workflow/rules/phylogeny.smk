@@ -9,19 +9,20 @@ rule iqtree:
     """
     input:
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
-        snp_aln        = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
+        aln        = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
     output:
-        tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.treefile",
+        tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.nex",
         iqtree         = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.iqtree",
         log            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.log",
-        constraint     = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.constraint",
-        outgroup_txt   = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.outgroup.txt",
-        outgroup_tree  = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.outgroup.treefile",
-        aln            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.aln",
+        outgroup       = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.filter-taxa.txt",
     params:
         #seed = random.randint(0, 99999999),
         seed           = config["iqtree_seed"],
         prefix         = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree",
+        outgroup       = config["iqtree_outgroup"],
+        model          = config["iqtree_model"],
+        runs           = config["iqtree_runs"],
+        other          = config["iqtree_other"],
     resources:
         load           = 100,
         time_min       = 600,
@@ -29,48 +30,68 @@ rule iqtree:
         mem_mb         = workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     shell:
         """
-        echo "{config[iqtree_constraint]}" > {output.constraint};
+        echo {params.outgroup} | tr "," "\n" >> {output.outgroup};
         iqtree \
-            -s {input.snp_aln} \
-		    {config[iqtree_model]} \
+            -s {input.aln} \
+		    {params.model} \
             --threads-max {resources.cpus} \
             -nt {resources.cpus} \
-            -o {config[iqtree_outgroup]} \
+            -o {params.outgroup} \
             -seed {params.seed} \
-            --runs {config[iqtree_runs]} \
+            --runs {params.runs} \
             -fconst `cat {input.constant_sites}` \
-            {config[iqtree_other]} \
+            {params.other} \
             -redo \
             -pre {params.prefix} > {output.log};
 
-        echo {config[iqtree_outgroup]} | tr "," "\n" >> {output.outgroup_txt};
-
-        mv {output.tree} {output.outgroup_tree};
-
-        workflow/scripts/filter_alignment.py \
-            --tree {output.outgroup_tree} \
-            --aln {input.snp_aln} \
-            --out {output.aln} \
-            --prune-tips {output.outgroup_txt} \
-            --prune-tree {output.tree};
+        {scripts_dir}/newick2nexus.py {params.prefix}.treefile {output.tree}
         """
+
+rule filter_taxa:
+    """
+    Remove taxa from an alignment based on a tree.
+    """
+    input:
+        tree           = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.nex",
+        tsv            = results_dir + "/metadata/{reads_origin}/metadata.tsv",
+        taxa           = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter-taxa.txt",
+        aln            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
+    output:
+        nex            = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter.nex",
+        nwk            = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter.nwk",
+        tsv            = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/metadata.tsv",
+        aln            =  results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter.aln",
+    params:
+        taxa           = config["iqtree_outgroup"],
+        outdir         = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/",
+    shell:
+        """
+        workflow/scripts/filter_alignment.py \
+            --tree {input.tree} \
+            --aln {input.aln} \
+            --outdir {params.outdir} \
+            --metadata {input.tsv} \
+            --prune-tips {input.taxa}
+        """
+
 
 rule lsd:
     """
     Estimate a time-scaled phylogeny using LSD2 in IQTREE.
     """
     input:
-        tsv            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/metadata.tsv",
-        tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.treefile",
-        aln            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.aln",
+        tsv            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/metadata.tsv",
+        tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.filter.nwk",
+        aln            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.filter.aln",
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
     output:
-        timetree   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nex",
-        aln        = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.aln",
-        dates   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.dates.txt",
+        timetree       = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.nex",
+        dates          = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.dates.txt",
+        log            = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.log",
+        taxa           = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.filter-taxa.txt",
     params:
-        seed    = config["iqtree_seed"],
-        prefix  = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd",
+        seed           = config["iqtree_seed"],
+        prefix         = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd",
     shell:
         """
         cut -f 1,4 {input.tsv}  | tail -n+2 | sed 's/\[\|\]//g' > {output.dates};
@@ -83,11 +104,11 @@ rule lsd:
             -fconst `cat {input.constant_sites}` \
             --date-ci 100 \
             --date-outlier 3 \
-            -te {input.tree};
-        {scripts_dir}/filter_alignment.py \
-            --tree {output.timetree} \
-            --aln {input.aln} \
-            --out {output.aln}
+            -redo \
+            -te {input.tree} > {output.log};
+
+        grep -A 1 "outliers" {output.log} | tail -n 1 | tr " " "\n" | tail -n+2 > {output.taxa};
+        cp {params.prefix}.timetree.nex {output.timetree}
         """
 
 rule beast_geo:
@@ -95,168 +116,33 @@ rule beast_geo:
     Continuous phylogeography with BEAST
     """
     input:
-        tsv      = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/metadata.tsv",
+        tsv      = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/metadata.tsv",
         dates    = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.dates.txt",
-        timetree = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nex",
-        aln        = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.aln",
+        tree     = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.filter.nex",
     output:
-        lat      = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.lat.txt",
-        lon      = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.lon.txt",
         latlon   = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.latlon.txt",
-        timetree = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.timetree.nex",
+        tree     = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.nex",
+        dates    = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.dates.txt",
 
     shell:
         """
-        echo -e "Reference\t"{config[reference_lat]} > {output.lat};
-        echo -e "Reference\t"{config[reference_lon]} > {output.lon};
         echo -e "traits\tlat\tlon" > {output.latlon};
         echo -e "Reference\t"{config[reference_lat]}"\t"{config[reference_lon]} >> {output.latlon};
+        echo -e "Reference\t"{config[reference_date_bp]} > {output.dates}
 
         tail -n+2 {input.tsv} | while read line; \
         do
             sample=`echo "$line" | cut -f 1`;
             lat=`echo "$line" | cut -f 9`;
             lon=`echo "$line" | cut -f 10`;
+            date=`echo "$line" | cut -f 4 | sed "s/\[\|\]//g" | tr ":" "\n" | awk '{{sum+=$0}}END{{print 0-sum/NR}}'`;
             if [[ $lat == "NA" ]]; then
                 lat=`echo "$line" | cut -f 7`;
                 lon=`echo "$line" | cut -f 8`;
             fi;
-            if [[ `grep "$sample" {input.aln}` ]]; then
-                echo -e $sample"\t"$lat >> {output.lat};
-                echo -e $sample"\t"$lon >> {output.lon};
-                echo -e $sample"\t"$lat"\t"$lon >> {output.latlon};
-            fi;
+            echo -e $sample"\t"$lat"\t"$lon >> {output.latlon};
+            echo -e $sample"\t"$date >> {output.dates};
         done
 
-        {scripts_dir}/multi2bi.py \
-          --tree {input.timetree} \
-          --out {output.timetree}
+        {scripts_dir}/multi2bi.py --tree {input.tree} --out {output.tree}
         """
-
-rule parse_tree:
-    """
-    Parse IQTREE trees and rename internal nodes.
-    """
-    input:
-        tree     = results_dir + "/iqtree/{reads_origin}/{locus_name}/filter{missing_data}/iqtree_post.cf.tree",
-        tsv      = results_dir + "/metadata/{reads_origin}/metadata.tsv",
-    output:
-        tsv      = results_dir + "/parse_tree/{reads_origin}/{locus_name}/filter{missing_data}/parse_tree.tsv",
-        tree     = results_dir + "/parse_tree/{reads_origin}/{locus_name}/filter{missing_data}/parse_tree.nwk",
-    resources:
-        load     = 100,
-    log:
-        notebook = results_dir + "/parse_tree/{reads_origin}/{locus_name}/filter{missing_data}/parse_tree_processed.py.ipynb",
-    notebook:
-        os.path.join(notebooks_dir, "parse_tree.py.ipynb")
-
-rule clock_model:
-    """
-    Estimate a clock model from the parsed IQTREE phylogeny.
-    """
-    input:
-        tree     = results_dir + "/parse_tree/{reads_origin}/{locus_name}/filter{missing_data}/parse_tree.nwk",
-        tsv      = results_dir + "/parse_tree/{reads_origin}/{locus_name}/filter{missing_data}/parse_tree.tsv",
-    output:
-        tree     = results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_model_timetree.nwk",
-        tsv      = results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_model.tsv",
-        #skyline  = report(results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_model_skyline.svg",
-        #                  caption=os.path.join(report_dir, "clock", "skyline.rst"),
-				#		  category="Clock",
-				#		  subcategory="Skyline",
-        #                 ),
-    resources:
-        load     = 100,
-    log:
-        notebook = results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_model_processed.py.ipynb",
-    notebook:
-        os.path.join(notebooks_dir, "clock_model.py.ipynb")
-
-rule clock_plot:
-    """
-    Plot the clock results from the estimated clock model.
-    """
-    input:
-        tree     = results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_model_timetree.nwk",
-        tsv      = results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_model.tsv",
-    output:
-        timetree = report(results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_plot_timetree.svg",
-                          caption=os.path.join(report_dir, "clock", "timetree.rst"),
-						  category="Clock",
-						  subcategory="Time Tree",
-                         ),
-        rtt      = report(results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_plot_rtt.svg",
-                          caption=os.path.join(report_dir, "clock", "rtt.rst"),
-						  category="Clock",
-						  subcategory="RTT",
-                         ),
-        rate     = report(results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_plot_rate-variation.svg",
-                          caption=os.path.join(report_dir, "clock", "rate.rst"),
-						  category="Clock",
-						  subcategory="Rate",
-                         ),
-    resources:
-        load     = 100,
-    log:
-        notebook = results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_plot_processed.py.ipynb",
-    notebook:
-        os.path.join(notebooks_dir, "clock_plot.py.ipynb")
-
-rule mugration_model:
-    """
-    Estimate mugration models for discrete traits.
-    """
-    input:
-        tree     = results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_model_timetree.nwk",
-        tsv      = results_dir + "/clock/{reads_origin}/{locus_name}/filter{missing_data}/clock_model.tsv",
-    output:
-        tree     = results_dir + "/mugration/{reads_origin}/{locus_name}/filter{missing_data}/mugration_model_timetree.nwk",
-        tsv      = results_dir + "/mugration/{reads_origin}/{locus_name}/filter{missing_data}/mugration_model.tsv",
-    resources:
-        load     = 100,
-    log:
-        notebook = results_dir + "/mugration/{reads_origin}/{locus_name}/filter{missing_data}/mugration_model_processed.py.ipynb",
-    notebook:
-        os.path.join(notebooks_dir, "mugration_model.py.ipynb")
-
-rule mugration_plot:
-    """
-    Plot the mugration results for the discrete traits.
-    """
-    input:
-        tree     = results_dir + "/mugration/{reads_origin}/{locus_name}/filter{missing_data}/mugration_model_timetree.nwk",
-        tsv      = results_dir + "/mugration/{reads_origin}/{locus_name}/filter{missing_data}/mugration_model.tsv",
-    output:
-        timetree = report(results_dir + "/mugration/{reads_origin}/{locus_name}/filter{missing_data}/mugration_plot_timetree-branch-major.svg",
-                          caption=os.path.join(report_dir, "mugration", "timetree-branch-major.rst"),
-						  category="Mugration",
-						  subcategory="Branch Major",
-                         ),
-    resources:
-        load     = 100,
-    log:
-        notebook = results_dir + "/mugration/{reads_origin}/{locus_name}/filter{missing_data}/mugration_plot_processed.py.ipynb",
-    notebook:
-        os.path.join(notebooks_dir, "mugration_plot.py.ipynb")
-
-rule geo:
-    """
-    Plot the geographic results following mugration analysis.
-    """
-    input:
-        tree      = results_dir + "/mugration/{reads_origin}/{locus_name}/filter{missing_data}/mugration_model_timetree.nwk",
-        tsv       = results_dir + "/mugration/{reads_origin}/{locus_name}/filter{missing_data}/mugration_model.tsv",
-    output:
-        tsv       = results_dir + "/geo/{reads_origin}/{locus_name}/filter{missing_data}/geo.tsv",
-        spreadmap = report(directory(results_dir + "/geo/{reads_origin}/{locus_name}_filter{missing_data}"),
-                           patterns=["geo_spreadmap_{branch}.svg"],
-                           caption=os.path.join(report_dir, "geo", "spreadmap.rst"),
-                           category="Geo",
-                           subcategory="Spreadmap",
-                          ),
-    resources:
-        load      = 100,
-    log:
-        notebook  = results_dir + "/geo/{reads_origin}/{locus_name}/filter{missing_data}/geo_processed.py.ipynb",
-    notebook:
-        os.path.join(notebooks_dir, "geo.py.ipynb")
