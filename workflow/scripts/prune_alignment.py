@@ -66,7 +66,7 @@ snp_mat_df.set_index(snp_mat_df.columns[0], inplace=True)
 # Processing
 branch_dict = {}
 TIME_WINDOW = 25  # exclude if dates are within this range
-ANCIENT_DATE_THRESHOLD = 1900  # samples older than this are considered ancient
+# ANCIENT_DATE_THRESHOLD = 1900  # samples older than this are considered ancient
 GEO = "province"
 GEO_ALT = "country"
 
@@ -91,11 +91,12 @@ for rec in metadata_df.iterrows():
         geo_val = metadata_df[GEO_ALT][sample]
 
     date = metadata_df["date"][sample].lstrip("[").rstrip("]")
-    # If it's a range, take the mean
-    date_split = [int(d) for d in date.split(":")]
-    if len(date_split) > 1:
-        date = sum(date_split) / len(date_split)
-    date = int(date)
+    if date != "NA":
+        # If it's a range, take the mean
+        date_split = [int(d) for d in date.split(":")]
+        if len(date_split) > 1:
+            date = sum(date_split) / len(date_split)
+        date = int(date)
 
     # Get the shortest pairwise distance (not to iteself)
     snp_diffs = snp_mat_df.loc[sample]
@@ -115,13 +116,18 @@ for rec in metadata_df.iterrows():
         continue
 
     # Keep all ancient samples
-    if date < ANCIENT_DATE_THRESHOLD:
-        branch_dict[branch][GEO][geo_val]["dates"][date] = {sample: min_diff}
+    # if date < ANCIENT_DATE_THRESHOLD:
+    #    branch_dict[branch][GEO][geo_val]["dates"][date] = {sample: min_diff}
 
     else:
         # By default, assume we're adding the sample
         update_status = "add"
         for c_date in branch_dict[branch][GEO][geo_val]["dates"]:
+            # if the date is NA, automatically include
+            if date == "NA":
+                update_status = "add"
+                break
+
             date_diff = abs(date - c_date)
             # If the date difference is too small, exclude
             if date_diff < TIME_WINDOW:
