@@ -350,6 +350,12 @@ rule lsd_remove_outliers_all:
     input:
         lsd_remove_outliers_all_input
 
+lsd_remove_outliers_prune_all_input = expand(results_dir + "/lsd/all/{locus_name}/prune/filter{missing_data}/lsd.filter.nex",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule lsd_remove_outliers_prune_all:
+    input:
+        lsd_remove_outliers_prune_all_input
 #------------------------------------------------------------------------------#
  # Beast geo
 beast_geo_all_input = expand(results_dir + "/beast/all/{locus_name}/full/filter{missing_data}/beast.nex",
@@ -359,6 +365,12 @@ rule beast_geo_all:
     input:
         beast_geo_all_input
 
+beast_geo_prune_all_input = expand(results_dir + "/beast/all/{locus_name}/prune/filter{missing_data}/beast.nex",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule beast_geo_prune_all:
+    input:
+        beast_geo_prune_all_input
 #------------------------------------------------------------------------------#
 # Plot
 #------------------------------------------------------------------------------#
