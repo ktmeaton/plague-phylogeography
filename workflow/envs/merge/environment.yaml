@@ -11,7 +11,7 @@ dependencies:
 - bioconda::adapterremovalfixprefix=0.0.5
 - bioconda::angsd=0.933
 - bioconda::bamutil=1.0.14
-- bioconda::beast2=2.6.2
+- bioconda::beast=1.10.4
 - bioconda::bedtools=2.29.2
 - bioconda::bowtie2=2.4.1
 - bioconda::bwa=0.7.17
