@@ -53,7 +53,7 @@ def main(
     # Import tree
     tree = Phylo.read(tree_path, tree_type)
 
-    # Strip comments and confidence
+    # Strip comments
     for c in tree.find_clades():
         c.comment = None
 
