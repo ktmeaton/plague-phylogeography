@@ -95,7 +95,7 @@ rule lsd:
     shell:
         """
         cut -f 1,4 {input.tsv}  | tail -n+2 | sed 's/\[\|\]//g' > {output.dates};
-        echo -e "Reference\t"{config[reference_date]} >> {output.dates}
+        echo -e "Reference\t"{config[reference_date_bp]} >> {output.dates}
         iqtree \
             -s {input.aln} \
 		    {config[iqtree_model]} \

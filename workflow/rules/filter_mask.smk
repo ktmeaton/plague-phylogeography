@@ -122,6 +122,7 @@ rule snippy_multi_prune:
     output:
         aln    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/snippy-multi.snps.aln",
         tsv    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/metadata.tsv",
+        log    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/snippy-multi.snps.log",
     resources:
         cpus   = 1,
     params:
@@ -132,7 +133,7 @@ rule snippy_multi_prune:
           --metadata {input.tsv} \
           --matrix {input.dist} \
           --aln {input.aln} \
-          --outdir {params.outdir}
+          --outdir {params.outdir} > {output.log}
         """
 
 #------------------------------------------------------------------------------#

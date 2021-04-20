@@ -156,15 +156,15 @@ for rec in metadata_df.iterrows():
 
 sample_list = []
 for branch in branch_dict:
-    # print()
-    # print(branch)
+    print()
+    print(branch)
     for geo_val in branch_dict[branch][GEO]:
-        # print("\t", geo_val)
+        print("\t", geo_val)
         for date in branch_dict[branch][GEO][geo_val]["dates"]:
             sample = list(branch_dict[branch][GEO][geo_val]["dates"][date].keys())[0]
             strain = metadata_df["strain"][sample]
             sample_list.append(sample)
-            # print("\t\t", date, strain, sample)
+            print("\t\t", date, strain, sample)
 
 # -----------------------------------------------------
 # Filter Metadata
