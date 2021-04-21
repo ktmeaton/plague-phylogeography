@@ -115,6 +115,10 @@ def main(
     # Store the taxa in the tree
     tree_taxa = []
     tree_edit = copy.deepcopy(tree)
+
+    # Get minimum branch length for output precision
+    min_branch_length = 1e10
+
     for c in tree.find_clades():
         # Prune taxa
         if c.name in prune_taxa:
@@ -125,11 +129,29 @@ def main(
             continue
         else:
             tree_taxa.append(c.name)
+            if c.branch_length and c.branch_length < min_branch_length:
+                min_branch_length = c.branch_length
+
+    # This is a terrible way to get sig digits
+    sig_dig = 5
+    # If we're using scientific notation, it's really small
+    if "e-" in str(min_branch_length):
+        sig_dig = int(str(min_branch_length).split("e-")[-1]) + 2
 
     # Write the pruned tree
     if prune_tips:
-        Phylo.write(tree_edit, prune_tree_prefix + ".nwk", "newick")
-        Phylo.write(tree_edit, prune_tree_prefix + ".nex", "nexus")
+        Phylo.write(
+            tree_edit,
+            prune_tree_prefix + ".nwk",
+            "newick",
+            format_branch_length="%1.{}f".format(sig_dig),
+        )
+        Phylo.write(
+            tree_edit,
+            prune_tree_prefix + ".nex",
+            "nexus",
+            format_branch_length="%1.{}f".format(sig_dig),
+        )
 
     # -----------------------------------------------------
     # Filter Alignment
