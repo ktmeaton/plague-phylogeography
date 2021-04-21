@@ -87,30 +87,41 @@ rule lsd:
     output:
         timetree       = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.nex",
         dates          = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.dates.txt",
-        log            = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.log",
+        outgroups      = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.outgroups.txt",
+        log            = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.log",
         taxa           = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.filter-taxa.txt",
     params:
         seed           = config["iqtree_seed"],
         prefix         = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd",
+        outgroup       = config["lsd_outgroup"],
     shell:
         """
-        cut -f 1,4 {input.tsv}  | tail -n+2 | sed 's/\[\|\]//g' > {output.dates};
-        echo -e "Reference\t"{config[reference_date_bp]} >> {output.dates}
-        iqtree \
-            -s {input.aln} \
-		    {config[iqtree_model]} \
-            --date {output.dates} \
-            --prefix {params.prefix} \
-            -fconst `cat {input.constant_sites}` \
-            --date-ci 100 \
-            --date-outlier 3 \
-            -redo \
-            -te {input.tree} > {output.log};
+        wc -l {input.tsv} | cut -d " " -f 1 > {output.dates};
+        cut -f 1,4 {input.tsv}  | tail -n+2 | sed 's/\[/b(/g'  | sed 's/\]/)/g' | sed 's/:/,/g' >> {output.dates};
+        echo -e "Reference\t"{config[reference_date_bp]} >> {output.dates};
+        outgroups=`echo {params.outgroup} | tr ',' '\n'`;
+        echo -e "$outgroups" | wc -l > {output.outgroups};
+        echo -e "$outgroups" >> {output.outgroups};
 
-        grep -A 1 "outliers" {output.log} | tail -n 1 | tr " " "\n" | tail -n+2 > {output.taxa};
-        cp {params.prefix}.timetree.nex {output.timetree}
+        lsd2 \
+            -i {input.tree} \
+            -s {params.seed} \
+            -o {params.prefix} \
+            -f 100 \
+            -e 3 \
+            -r k \
+            -d {output.dates} \
+            -g {output.outgroups} > {output.log}
+
+        mv {params.prefix}.nexus {params.prefix}.divtree.nex
+        mv {params.prefix}.nwk {params.prefix}.divtree.nwk
+        mv {params.prefix}.date.nexus {params.prefix}.nex
+        if  [[ `grep -A 1 "outliers" {output.log}` ]]; then
+            grep -A 1 "outliers" {output.log} | tail -n 1 | tr " " "\n" | tail -n+2 > {output.taxa};
+        else
+            touch {output.taxa}
+        fi
         """
-
 rule beast_geo:
     """
     Continuous phylogeography with BEAST
