@@ -9,7 +9,7 @@ rule iqtree:
     """
     input:
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
-        aln        = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
+        aln            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
     output:
         tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.nex",
         iqtree         = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.iqtree",
@@ -80,9 +80,9 @@ rule lsd:
     Estimate a time-scaled phylogeny using LSD2 in IQTREE.
     """
     input:
-        tsv            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/metadata.tsv",
-        tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.filter.nwk",
-        aln            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.filter.aln",
+        tsv            = results_dir + "/metadata/{reads_origin}/metadata.tsv",
+        tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.treefile",
+        aln            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
     output:
         timetree       = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.nex",
@@ -93,11 +93,11 @@ rule lsd:
     params:
         seed           = config["iqtree_seed"],
         prefix         = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd",
-        outgroup       = config["lsd_outgroup"],
+        outgroup       = config["iqtree_outgroup"],
     shell:
         """
-        wc -l {input.tsv} | cut -d " " -f 1 > {output.dates};
-        cut -f 1,4 {input.tsv}  | tail -n+2 | sed 's/\[/b(/g'  | sed 's/\]/)/g' | sed 's/:/,/g' >> {output.dates};
+        cut -f 1,4 {input.tsv} | grep -v "NA" | wc -l | cut -d " " -f 1 > {output.dates};
+        cut -f 1,4 {input.tsv} | grep -v "NA" | tail -n+2 | sed 's/\[/b(/g'  | sed 's/\]/)/g' | sed 's/:/,/g' >> {output.dates};
         echo -e "Reference\t"{config[reference_date_bp]} >> {output.dates};
         outgroups=`echo {params.outgroup} | tr ',' '\n'`;
         echo -e "$outgroups" | wc -l > {output.outgroups};
@@ -111,7 +111,8 @@ rule lsd:
             -e 3 \
             -r k \
             -d {output.dates} \
-            -g {output.outgroups} > {output.log}
+            -g {output.outgroups} \
+            -G > tee {output.log}
 
         mv {params.prefix}.nexus {params.prefix}.divtree.nex
         mv {params.prefix}.nwk {params.prefix}.divtree.nwk
