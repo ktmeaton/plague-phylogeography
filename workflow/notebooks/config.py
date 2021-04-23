@@ -106,8 +106,7 @@ figsize = (6.4, 4.8)
 figsize_flip = (4.8, 6.4)
 figsize_alt = (9.6, 4.8)
 figsize_mini = (4.8, 2.4)
-figsize_tiny = (2.4, 1.2)
-dpi = 400
+worlddpi = 400
 
 SM_FONT = 5
 MED_FONT = 8

@@ -112,7 +112,7 @@ rule lsd:
             -r k \
             -d {output.dates} \
             -g {output.outgroups} \
-            -G > tee {output.log}
+            -G > {output.log}
 
         mv {params.prefix}.nexus {params.prefix}.divtree.nex
         mv {params.prefix}.nwk {params.prefix}.divtree.nwk
