@@ -102,17 +102,19 @@ rule lsd:
         outgroups=`echo {params.outgroup} | tr ',' '\n'`;
         echo -e "$outgroups" | wc -l > {output.outgroups};
         echo -e "$outgroups" >> {output.outgroups};
+				constant_sites=`awk -F "," '{{print ($1 + $2 + $3 + $4)}}' {input.constant_sites}`;
 
         lsd2 \
             -i {input.tree} \
-            -s {params.seed} \
+            -s ${{constant_sites}} \
             -o {params.prefix} \
             -f 100 \
-            -e 3 \
+						-l '-1' \
+						-q 0.2 \
             -r k \
             -d {output.dates} \
             -g {output.outgroups} \
-            -G > {output.log}
+            -G > {output.log};
 
         mv {params.prefix}.nexus {params.prefix}.divtree.nex
         mv {params.prefix}.nwk {params.prefix}.divtree.nwk
