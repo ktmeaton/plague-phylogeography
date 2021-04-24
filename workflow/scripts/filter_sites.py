@@ -112,6 +112,7 @@ alignment_in_samples = [rec.id for rec in alignment_in]
 num_samples = len(alignment_in[:, 1])
 logging.info("Number of samples: " + str(num_samples))
 # Counter to store number of singleton sites
+constant_sites = 0
 biallelic_singleton_sites = 0
 multiallelic_singleton_sites = 0
 pseudo_singleton_sites = 0
@@ -169,27 +170,30 @@ for column in range(0, alignment_in_len):
     # store the variant type (default singleton)
     site_type = "singleton"
 
-    # Remove singleton columns sites
+    # Determine Site Type
+    # Constant site format [0,0,0,x]
+    if count_list.count(0) == 3:
+        constant_sites += 1
     # Biallelic format [0,0,1,x]
-    if count_list.count(0) == 2 and count_list.count(1) == 1:
+    elif count_list.count(0) == 2 and count_list.count(1) >= 1:
         biallelic_singleton_sites += 1
-        if not keep_singleton:
-            continue
     # Multi allelic format [0,1,1,x]
-    elif count_list.count(0) == 1 and count_list.count(1) == 2:
+    elif count_list.count(0) == 1 and count_list.count(1) >= 2:
         multiallelic_singleton_sites += 1
-        if not keep_singleton:
-            continue
-    # Pseudo allelic format [0,1,x,x] or [1,1,x,x]
+    # Pseudo allelic format [0,1,x,x] or [1,1,x,x] or [1,x,x,x]
     elif count_list.count(1) > 0:
         pseudo_singleton_sites += 1
-        if not keep_singleton:
-            continue
     else:
         parsimony_informative_sites += 1
         site_type = "parsimony"
 
-    # Decide if this
+    # Decide whether to skip over this site
+    if site_type == "constant":
+        continue
+    if site_type == "singleton" and not keep_singleton:
+        continue
+
+    # Decide whether this site has enough informative nucleotides
     num_data = count_g + count_t + count_a + count_c
     site_prop = num_data / num_samples
     # Check if the amount of missing data passes user parameter
@@ -225,6 +229,13 @@ SeqIO.write(alignment_out_list, output_file, "fasta")
 alignment_out_len = len(alignment_out_array[0])
 total_singleton_sites = (
     biallelic_singleton_sites + multiallelic_singleton_sites + pseudo_singleton_sites
+)
+logging.info(
+    "Constant sites: "
+    + str(constant_sites)
+    + " ("
+    + str(int(constant_sites / alignment_in_len * 100))
+    + "%)"
 )
 logging.info(
     "Parsimony informative sites: "
