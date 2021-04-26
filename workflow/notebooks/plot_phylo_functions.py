@@ -1,4 +1,5 @@
 import numpy as np
+import copy
 
 
 # Get X And Y Positions
@@ -149,3 +150,25 @@ def metadata_to_comment(tree, tree_df):
                 c.comment = "&{}={}".format(col, col_val)
             else:
                 c.comment += ",{}={}".format(col, col_val)
+
+
+def extract_subtree(tree, tips, df, color_branches=False):
+    """ Extract a subtree defined by tip names"""
+    subtree_mrca = tree.common_ancestor(tips)
+    subtree_clade = copy.deepcopy(subtree_mrca)
+
+    # Search for the nodes, finding tips to prune
+    for c in subtree_mrca.find_clades(order="postorder"):
+        cur_term = [t.name for t in subtree_clade.get_terminals()]
+        if c.name not in tips:
+            if c.name in cur_term:
+                subtree_clade.collapse(target=c.name)
+
+    # Color branches
+    # if color_branches:
+    #    for c in subtree_clade.find_clades():
+    #        state = df["mugration_branch_major"][c.name]
+    #        color = colors_dict[state]
+    #        c.color = color
+
+    return subtree_clade
