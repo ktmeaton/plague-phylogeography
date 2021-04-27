@@ -263,7 +263,7 @@ for sample in samples_list:
             date_err = date_mean - split_date[0]
             # If it was an interval date
             if len(split_date) > 1:
-                date_format = "[" + ":".join(split_date) + "]"
+                date_format = "[" + date + "]"
                 date_bp_list = [
                     str(-(CURRENT_YEAR - int(subdate))) for subdate in split_date
                 ]
