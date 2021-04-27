@@ -83,13 +83,13 @@ for rec in metadata_df.iterrows():
     if geo_val == "NA":
         geo_val = metadata_df[GEO_ALT][sample]
 
-    date = metadata_df["date"][sample].lstrip("[").rstrip("]")
+    date = str(metadata_df["date"][sample]).lstrip("[").rstrip("]")
     if date != "NA":
         # If it's a range, take the mean
-        date_split = [int(d) for d in date.split(":")]
+        date_split = [float(d) for d in date.split(":")]
         if len(date_split) > 1:
             date = sum(date_split) / len(date_split)
-        date = int(date)
+        date = float(date)
 
     # Get the shortest pairwise distance (not to iteself)
     snp_diffs = snp_mat_df.loc[sample]

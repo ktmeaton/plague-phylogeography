@@ -47,6 +47,42 @@ rule iqtree:
         {scripts_dir}/newick2nexus.py {output.nwk} {output.nex}
         """
 
+rule iqtree_filter:
+    """
+    Filter IQTREE output to remove the output and sync alignment and metadata.
+    """
+    input:
+        aln    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
+        tsv    = results_dir + "/metadata/{reads_origin}/metadata.tsv",
+        tree   = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.treefile",
+        taxa   = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.filter-taxa.txt",
+    output:
+        taxa_aln    = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/snippy-multi.snps.aln",
+        taxa_tsv    = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/metadata.tsv",
+        taxa_tree   = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/iqtree.treefile",
+        sites_aln   = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-sites/snippy-multi.snps.aln",
+        sites_log   = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-sites/snippy-multi.snps.log",
+    params:
+        taxa_outdir = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/",
+        sites_outdir = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-sites/",
+        keep_singleton = config["snippy_keep_singleton"],
+    shell:
+        """
+        python3 {scripts_dir}/filter_taxa.py \
+            --tree {input.tree} \
+            --aln {input.aln} \
+            --outdir {params.taxa_outdir} \
+            --metadata {input.tsv} \
+            --prune-tips {input.taxa};
+
+        python3 {scripts_dir}/filter_sites.py \
+            --fasta {output.taxa_aln} \
+            --missing 100 \
+            {params.keep_singleton} \
+            --output {output.sites_aln} \
+            --log {output.sites_log};
+        """
+
 rule lsd:
     """
     Estimate a time-scaled phylogeny using LSD2 in IQTREE.
@@ -97,7 +133,8 @@ rule lsd:
             touch {output.taxa}
         fi
         """
-rule beast_geo:
+
+rule beast:
     """
     Continuous phylogeography with BEAST
     """

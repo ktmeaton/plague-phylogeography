@@ -97,11 +97,8 @@ def main(
             tree_type = "newick"
         elif tree_ext == ".nex" or ".nexus":
             tree_type = "nexus"
-        tree_prefix = os.path.splitext(tree_basename)[0]
         if prune_tips_path or keep_tips_path:
-            filter_tree_path = os.path.join(
-                outdir, tree_prefix + ".filter-taxa" + tree_ext
-            )
+            filter_tree_path = os.path.join(outdir, tree_basename)
 
     # -------------------------------------------------------------------------
     # Load Metadata
@@ -153,7 +150,7 @@ def main(
         # Get minimum branch length for output precision
         min_branch_length = 1e10
 
-        for c in tree.find_clades():
+        for c in tree.get_terminals():
             # Prune taxa
             if c.name not in keep_taxa:
                 print("Pruning taxa", c.name, "from the tree.")

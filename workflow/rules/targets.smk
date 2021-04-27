@@ -302,28 +302,24 @@ rule iqtree_all:
         iqtree_all_input
 
 #------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
+# Remove outgroups
+iqtree_filter_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/full/filter{missing_data}/filter-sites/snippy-multi.snps.aln",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule iqtree_filter_all:
+    input:
+        iqtree_filter_all_input
+
+
+
+#------------------------------------------------------------------------------#
 iqtree_prune_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/prune/filter{missing_data}/iqtree.nex",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 rule iqtree_prune_all:
     input:
         iqtree_prune_all_input
-
-#------------------------------------------------------------------------------#
-# Remove outgroups
-remove_outgroup_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/full/filter{missing_data}/iqtree.filter.nex",
-                               locus_name=config["reference_locus_name"],
-                               missing_data = config["snippy_missing_data"])
-rule remove_outgroup_all:
-    input:
-        remove_outgroup_all_input
-
-remove_outgroup_prune_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/prune/filter{missing_data}/iqtree.filter.nex",
-                               locus_name=config["reference_locus_name"],
-                               missing_data = config["snippy_missing_data"])
-rule remove_outgroup_prune_all:
-    input:
-        remove_outgroup_prune_all_input
 
 #------------------------------------------------------------------------------#
  # LSD Dating
