@@ -20,6 +20,8 @@ rule eager:
     output:
         final_bam = results_dir + "/eager/{reads_origin}/{sample}/final_bams/{sample}.bam",
         eager_tsv = results_dir + "/eager/{reads_origin}/{sample}/metadata_{sample}.tsv",
+        log_html  = results_dir + "/eager/{reads_origin}/{sample}/{sample}.html",
+        log_txt  = results_dir + "/eager/{reads_origin}/{sample}/{sample}.log",
     wildcard_constraints:
         reads_origin = "(sra|local)",
     resources:
@@ -27,20 +29,18 @@ rule eager:
        	time_min=600,
         cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
         mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
-    log:
-        html = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.html"),
-        txt = os.path.join(logs_dir, "eager", "{reads_origin}", "{sample}.log"),
     shell:
-        "export NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m'; "
-        "python {scripts_dir}/eager_tsv.py --files \"{input.fastq}\" --organism \"{config[organism]}\" --tsv {output.eager_tsv}; "
-        "cd {results_dir}/eager/{wildcards.reads_origin}/{wildcards.sample}; "
-        "nextflow \
+        """
+        export NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m';
+        python {scripts_dir}/eager_tsv.py --files \"{input.fastq}\" --organism \"{config[organism]}\" --tsv {output.eager_tsv};
+        cd {results_dir}/eager/{wildcards.reads_origin}/{wildcards.sample};
+        nextflow \
             -c {config_dir}/eager.config \
             run nf-core/eager \
             -r {config[eager_rev]} \
             -profile standard \
             --igenomes_ignore \
-            -with-report {log.html} \
+            -with-report {output.log_html} \
             --input metadata_{wildcards.sample}.tsv \
             --outdir . \
             --fasta {input.ref_fna} \
@@ -58,8 +58,9 @@ rule eager:
             --max_memory {resources.mem_mb}.MB \
             --max_time {resources.time_min}m \
 			{config[eager_other]} \
-            -resume 1> {log.txt}; "
-        "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.sample}; "
+            -resume > {output.log_txt};
+        {scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.sample};
+        """
 
 # -----------------------------------------------------------------------------#
 rule snippy_pairwise:
@@ -73,16 +74,15 @@ rule snippy_pairwise:
         ref = expand(results_dir + "/data/reference/{reference}/{reference}.gbff", reference=identify_reference_sample()),
     output:
         snippy_dir = directory(results_dir + "/snippy_pairwise/{reads_origin}/{sample}/"),
-        snp_txt = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.txt",
+        snp_txt    = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.txt",
         snippy_aln = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.aligned.fa",
-        snps_vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
+        snps_vcf   = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
+        log        = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.log",
     resources:
         load=100,
         time_min=600,
 	cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
         mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
-    log:
-        os.path.join(logs_dir, "snippy_pairwise", "{reads_origin}", "{sample}.log")
     wildcard_constraints:
         reads_origin="(sra|local|assembly)",
     shell:
@@ -98,7 +98,7 @@ rule snippy_pairwise:
               --basequal {config[snippy_base_qual]} \
               --force \
               --cpus {resources.cpus} \
-              --report 2> {log}; \
+              --report 2> {output.log}; \
           else \
             snippy \
               --prefix {wildcards.sample} \
@@ -111,51 +111,28 @@ rule snippy_pairwise:
               --basequal {config[snippy_base_qual]} \
               --force \
               --cpus {resources.cpus} \
-              --report 2> {log}; \
+              --report 2> {output.log}; \
           fi ;"
 
-rule locus_coverage:
-    """
-    Calculate locus coverage statistics.
-    """
-    input:
-        snippy_pairwise_dir = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/" for path in
-                               identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)]),
-        ref_bed = [path + ".bed" for path in identify_paths(outdir="data", reads_origin="reference")],
-    output:
-        locus_cov = results_dir + "/locus_coverage/{reads_origin}/locus_coverage.txt",
-    shell:
-        """
-        {scripts_dir}/locus_coverage.sh \
-            {input.ref_bed} \
-            "{input.snippy_pairwise_dir}" > {output.locus_cov};
-        """
 # -----------------------------------------------------------------------------#
+
 rule snippy_multi:
     """
     Peform a multiple alignment from pairwise output.
     """
     input:
         snippy_pairwise_dir = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/" for path in
-                               identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)]),
-        ref_fna = [path + ".fna" for path in identify_paths(outdir="data", reads_origin="reference")],
-        inexact = [os.path.dirname(path) + ".inexact.repeats.bed" for path in identify_paths(outdir="detect_repeats", reads_origin="reference")],
-        low_complexity = [os.path.dirname(path) + ".dustmasker.bed" for path in identify_paths(outdir="detect_low_complexity", reads_origin="reference")],
-        snp_density = expand(results_dir + "/detect_snp_density/{{reads_origin}}/snpden{density}.bed",
-                      density=config["snippy_snp_density"]),
+                                identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)]),
+        ref_fna             = [path + ".fna" for path in identify_paths(outdir="data", reads_origin="reference")],
+        inexact             = [os.path.dirname(path) + ".inexact.repeats.bed" for path in identify_paths(outdir="detect_repeats", reads_origin="reference")],
+        low_complexity      = [os.path.dirname(path) + ".dustmasker.bed" for path in identify_paths(outdir="detect_low_complexity", reads_origin="reference")],
+        snp_density         = expand(results_dir + "/detect_snp_density_collect/{{reads_origin}}/snpden{density}.bed",
+                                density=config["snippy_snp_density"]),
     output:
-        report(results_dir + "/snippy_multi/{reads_origin}/snippy-core.txt",
-                caption=os.path.join(report_dir,"snippy_multi.rst"),
-                category="Alignment",
-                subcategory="Snippy Multi"),
-        #snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.aln",
-        full_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
-        log = report(os.path.join(logs_dir, "snippy_multi/{reads_origin}/snippy-core.log"),
-				             caption=os.path.join(report_dir, "logs.rst"),
-										 category="Logs",
-										 subcategory="Alignment"),
-    log:
-        os.path.join(logs_dir, "snippy_multi","{reads_origin}","snippy-core.log")
+        results_dir + "/snippy_multi/{reads_origin}/snippy-multi.txt",
+        #snp_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.aln",
+        full_aln            = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.full.aln",
+        log                 = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.log",
     shell:
         # Merge masking beds
         """
@@ -165,10 +142,10 @@ rule snippy_multi:
         set +e;
         snippy-core \
           --ref {input.ref_fna} \
-          --prefix {results_dir}/snippy_multi/{wildcards.reads_origin}/snippy-core \
+          --prefix {results_dir}/snippy_multi/{wildcards.reads_origin}/snippy-multi \
           --mask {results_dir}/snippy_multi/{wildcards.reads_origin}/mask.bed \
           --mask-char {config[snippy_mask_char]} \
-          {input.snippy_pairwise_dir} 2> {log};
+          {input.snippy_pairwise_dir} 2> {output.log};
         exitcode=$?;
         if [ $exitcode -eq 1 ]
         then

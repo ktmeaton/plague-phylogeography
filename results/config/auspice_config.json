@@ -1,0 +1,175 @@
+{
+  "title": "Plague Phylogeography Test",
+  "build_url": "https://github.com/ktmeaton/plague-phylogeography-projects/tree/tree",
+  "maintainers": [
+    {
+      "name": "Katherine Eaton",
+      "url": "https://ktmeaton.github.io"
+    }
+  ],
+  "colorings": [
+    {
+      "key": "scf",
+      "title": "sCF",
+      "type": "continuous"
+    },
+    {
+      "key": "biosample_accession",
+      "title": "BioSample Accession",
+      "type": "categorical"
+    },
+    {
+      "key": "biosample_comment",
+      "title": "BioSample Comment",
+      "type": "categorical"
+    },
+    {
+      "key": "biovar",
+      "title": "Biovar",
+      "type": "categorical"
+    },
+    {
+      "key": "branch_major",
+      "title": "Branch Major",
+      "type": "categorical"
+    },
+    {
+      "key": "branch_minor",
+      "title": "Branch Minor",
+      "type": "categorical"
+    },
+    {
+      "key": "branch_number",
+      "title": "Branch Number",
+      "type": "categorical"
+    },
+    {
+      "key": "continent",
+      "title": "Continent",
+      "type": "categorical"
+    },
+    {
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
+    },
+    {
+      "key": "date_bp",
+      "title": "Collection Date (BP)",
+      "type": "continuous"
+    },
+    {
+      "key": "node_type",
+      "title": "Node Type",
+      "type": "categorical"
+    },
+    {
+      "key": "province",
+      "title": "Province",
+      "type": "categorical"
+    },
+    {
+      "key": "rate",
+      "title": "Substitution Rate",
+      "type": "continuous"
+    },
+    {
+      "key": "rate_fold_change",
+      "title": "Substitution Rate Fold Change",
+      "type": "continuous"
+    },
+    {
+      "key": "raw_date",
+      "title": "Collection Date",
+      "type": "continuous"
+    },
+    {
+      "key": "strain",
+      "title": "Strain",
+      "type": "categorical"
+    },
+    {
+      "key": "ufboot",
+      "title": "Ultrafast Bootstrap",
+      "type": "continuous"
+    },
+    {
+    "key": "chrom_cov",
+    "title": "Chromosome Coverage",
+    "type": "continuous"
+    },
+    {
+      "key": "pcd1_cov",
+      "title": "pCD1 Coverage",
+      "type": "continuous"
+    },
+    {
+      "key": "pmt1_cov",
+      "title": "pMT1 Coverage",
+      "type": "continuous"
+    },
+    {
+      "key": "ppcp1_cov",
+      "title": "pPCP1 Coverage",
+      "type": "continuous"
+    },
+    {
+      "key": "pla_cov",
+      "title": "pla Coverage",
+      "type": "continuous"
+    },
+    {
+    "key": "chrom_dep",
+    "title": "Chromosome Depth",
+    "type": "continuous"
+    },
+    {
+      "key": "pcd1_dep",
+      "title": "pCD1 Depth",
+      "type": "continuous"
+    },
+    {
+      "key": "pmt1_dep",
+      "title": "pMT1 Depth",
+      "type": "continuous"
+    },
+    {
+      "key": "ppcp1_dep",
+      "title": "pPCP1 Depth",
+      "type": "continuous"
+    },
+    {
+      "key": "pla_dep",
+      "title": "pla Depth",
+      "type": "continuous"
+    },
+    {
+      "key": "ppcp1_pla_dep_ratio",
+      "title": "pPCP1 pla Depth Ratio",
+      "type": "continuous"
+    }
+  ],
+  "filters": [
+    "country",
+    "province",
+    "biovar",
+    "branch_major",
+    "branch_minor"
+  ],
+  "panels": [
+    "tree",
+    "map",
+    "entropy"
+  ],
+ "geo_resolutions": [
+  "country",
+  "province"
+  ],
+  "display_defaults": {
+    "color_by": "branch_major",
+    "distance_measure": "div",
+    "geo_resolution": "province",
+    "map_triplicate": true,
+    "branch_label": "none"
+  }
+}

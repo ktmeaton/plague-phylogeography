@@ -112,12 +112,15 @@ alignment_in_samples = [rec.id for rec in alignment_in]
 num_samples = len(alignment_in[:, 1])
 logging.info("Number of samples: " + str(num_samples))
 # Counter to store number of singleton sites
+constant_sites = 0
 biallelic_singleton_sites = 0
 multiallelic_singleton_sites = 0
 pseudo_singleton_sites = 0
 parsimony_informative_sites = 0
 passing_filter_sites = 0
 failing_filter_sites = 0
+passing_filter_parsimony_sites = 0
+passing_filter_singleton_sites = 0
 
 # Convert the input alignment into a numpy array to operate on columns
 alignment_out_array = np.array([list("") for rec in alignment_in])
@@ -164,31 +167,44 @@ for column in range(0, alignment_in_len):
     count_a = column_seq.lower().count("a")
     count_c = column_seq.lower().count("c")
     count_list = [count_g, count_t, count_a, count_c]
-    # Remove singleton columns sites
+    # store the variant type (default singleton)
+    site_type = "singleton"
+
+    # Determine Site Type
+    # Constant site format [0,0,0,x]
+    if count_list.count(0) == 3:
+        constant_sites += 1
+        site_type = "constant"
     # Biallelic format [0,0,1,x]
-    if count_list.count(0) == 2 and count_list.count(1) == 1:
+    elif count_list.count(0) == 2 and count_list.count(1) >= 1:
         biallelic_singleton_sites += 1
-        if not keep_singleton:
-            continue
     # Multi allelic format [0,1,1,x]
-    elif count_list.count(0) == 1 and count_list.count(1) == 2:
+    elif count_list.count(0) == 1 and count_list.count(1) >= 2:
         multiallelic_singleton_sites += 1
-        if not keep_singleton:
-            continue
-    # Pseudo allelic format [0,1,x,x] or [1,1,x,x]
+    # Pseudo allelic format [0,1,x,x] or [1,1,x,x] or [1,x,x,x]
     elif count_list.count(1) > 0:
         pseudo_singleton_sites += 1
-        if not keep_singleton:
-            continue
     else:
         parsimony_informative_sites += 1
+        site_type = "parsimony"
 
-    # Decide if this
+    # Decide whether to skip over this site
+    if site_type == "constant":
+        continue
+    if site_type == "singleton" and not keep_singleton:
+        continue
+
+    # Decide whether this site has enough informative nucleotides
     num_data = count_g + count_t + count_a + count_c
     site_prop = num_data / num_samples
     # Check if the amount of missing data passes user parameter
     if site_prop >= prop_data:
         passing_filter_sites += 1
+        if site_type == "singleton":
+            passing_filter_singleton_sites += 1
+        elif site_type == "parsimony":
+            passing_filter_parsimony_sites += 1
+
         column_seq_array = np.array([list(char) for char in column_seq])
         join_seq = "".join(column_seq_array[:, 0])
         # Check if site is variable
@@ -214,6 +230,13 @@ SeqIO.write(alignment_out_list, output_file, "fasta")
 alignment_out_len = len(alignment_out_array[0])
 total_singleton_sites = (
     biallelic_singleton_sites + multiallelic_singleton_sites + pseudo_singleton_sites
+)
+logging.info(
+    "Constant sites: "
+    + str(constant_sites)
+    + " ("
+    + str(int(constant_sites / alignment_in_len * 100))
+    + "%)"
 )
 logging.info(
     "Parsimony informative sites: "
@@ -250,8 +273,19 @@ logging.info(
     + str(int(total_singleton_sites / alignment_in_len * 100))
     + "%)"
 )
-logging.info("Sites passing missing data filter: " + str(passing_filter_sites))
-logging.info("Sites failing missing data filter: " + str(failing_filter_sites))
+logging.info(
+    "Singleton sites passing missing data filter: {}".format(
+        passing_filter_singleton_sites
+    )
+)
+logging.info(
+    "Parsimony informative sites passing missing data filter: {}".format(
+        passing_filter_parsimony_sites
+    )
+)
+
+logging.info("Total sites passing missing data filter: " + str(passing_filter_sites))
+logging.info("Total sites failing missing data filter: " + str(failing_filter_sites))
 logging.info("Wrote a multi-fasta alignment of length: " + str(alignment_out_len))
 
 # Clean up

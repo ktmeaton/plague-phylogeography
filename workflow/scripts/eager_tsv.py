@@ -86,6 +86,10 @@ for file in files_path.split(" "):
         sample_file_dict[sample_name] = {}
     # Iterate through the single or paired fastq files
     for library_file in sample_files:
+        # Catch random log files
+        library_ext = os.path.splitext(library_file)[1]
+        if library_ext != ".fastq" and library_ext != ".gz":
+            continue
         library_id = library_file.split("_")[0]
         if library_id not in sample_file_dict[sample_name]:
             sample_file_dict[sample_name][library_id] = []

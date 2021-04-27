@@ -12,10 +12,9 @@ rule detect_repeats:
         fna = results_dir + "/data/{reads_origin}/{sample}/{sample}.fna",
     output:
         inexact = results_dir + "/detect_repeats/{reads_origin}/{sample}.inexact.repeats.bed",
+        log     = results_dir + "/detect_repeats/{reads_origin}/{sample}.log",
     wildcard_constraints:
         reads_origin = "(reference|assembly)",
-    log:
-        logs_dir + "/detect_repeats/{reads_origin}/{sample}.log",
     resources:
         cpus = 1,
     shell:
@@ -23,7 +22,7 @@ rule detect_repeats:
           {input.fna} \
           {results_dir}/detect_repeats/{wildcards.reads_origin} \
           {config[detect_repeats_length]} \
-          {config[detect_repeats_threshold]} 2> {log}; "
+          {config[detect_repeats_threshold]} 2> {output.log}; "
 
 #------------------------------------------------------------------------------#
 rule detect_low_complexity:
@@ -52,18 +51,17 @@ rule detect_snp_density:
         vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
     output:
         snpden = expand(results_dir + "/detect_snp_density/{{reads_origin}}/{{sample}}.subs.snpden{density}",
-                 density=config["snippy_snp_density"])
+                        density=config["snippy_snp_density"]),
+        log    = results_dir + "/detect_snp_density/{reads_origin}/{sample}.log",
     wildcard_constraints:
         reads_origin = "(assembly|sra|local)",
-    log:
-      os.path.join(logs_dir, "detect_snp_density","{reads_origin}","{sample}.log"),
     resources:
         cpus = 1,
     shell:
-        "{scripts_dir}/detect_snp_density.sh {input.vcf} {output.snpden} {config[snippy_snp_density]} 2> {log}"
+        "{scripts_dir}/detect_snp_density.sh {input.vcf} {output.snpden} {config[snippy_snp_density]} 2> {output.log}"
 
 #------------------------------------------------------------------------------#
-rule merge_snp_density:
+rule detect_snp_density_collect:
     """
     Merge filter bed files.
     """
@@ -71,7 +69,7 @@ rule merge_snp_density:
         snpden = lambda wildcards: remove_duplicates([os.path.dirname(path) + ".subs.snpden" + str(config["snippy_snp_density"])
                  for path in identify_paths(outdir="detect_snp_density", reads_origin=wildcards.reads_origin)]),
     output:
-        bed = expand(results_dir + "/detect_snp_density/{{reads_origin}}/snpden{density}.bed",
+        bed = expand(results_dir + "/detect_snp_density_collect/{{reads_origin}}/snpden{density}.bed",
               density=config["snippy_snp_density"])
     resources:
         cpus = 1,
@@ -80,31 +78,70 @@ rule merge_snp_density:
           sort -k1,1 -k2,2n | \
           bedtools merge > {output.bed}; "
 
+
 #------------------------------------------------------------------------------#
 rule snippy_multi_extract:
     """
     Extract a locus (ex. chromosome) from the snippy multi alignment.
     """
     input:
-        full_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core.full.aln",
+        full_aln               = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.full.aln",
+        tsv    = results_dir + "/metadata/{reads_origin}/metadata.tsv",
     output:
-        extract_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
-        extract_constant_sites = report(results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.constant_sites.txt",
-				                 caption=os.path.join(report_dir, "snippy", "snippy_multi_extract.rst"),
-												 category="Alignment",
-												 subcategory="Snippy Multi"),
+        extract_full           = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.full.aln",
+        extract_snps           = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.snps.aln",
+        extract_constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
+        tsv                    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/metadata.tsv",
     resources:
-        cpus = 1,
+        cpus                   = 1,
+    params:
+        outdir                 = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/",
     shell:
         """
         {scripts_dir}/extract_locus.sh \
           {input.full_aln} \
           {config[reference_locus_name]} \
           {config[reference_locus_start]} \
-          {config[reference_locus_end]};
-        snp-sites -C {output.extract_aln} > {output.extract_constant_sites};
+          {config[reference_locus_end]} \
+          {params.outdir};
+        snp-sites -C {output.extract_full} > {output.extract_constant_sites};
+        snp-sites -m -o {output.extract_snps} {output.extract_full}
+        cp {input.tsv} {output.tsv};
         """
 
+#------------------------------------------------------------------------------#
+rule snippy_multi_prune:
+    """
+    Subsample a multiple alignment.
+    """
+    input:
+        aln    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.snps.aln",
+        tsv    = results_dir + "/metadata/{reads_origin}/metadata.tsv",
+        dist   = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.snps.dist",
+    output:
+        aln    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/snippy-multi.snps.aln",
+        taxa   = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/taxa-keep.txt",
+        tsv    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/metadata.tsv",
+        log    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/snippy-multi.snps.log",
+    resources:
+        cpus   = 1,
+    params:
+        outdir = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/",
+    shell:
+        """
+        # Identify taxa to remove
+        python3 {scripts_dir}/prune_taxa.py \
+          --metadata {input.tsv} \
+          --matrix {input.dist} \
+          --outdir {params.outdir} > {output.log}
+        # Filter the taxa out of the alignment
+        python3 {scripts_dir}/filter_taxa.py \
+          --metadata {input.tsv} \
+          --aln {input.aln} \
+           --keep-tips {output.taxa} \
+          --outdir {params.outdir}
+
+        """
 
 #------------------------------------------------------------------------------#
 rule snippy_multi_filter:
@@ -112,30 +149,21 @@ rule snippy_multi_filter:
     Filter a multiple alignment for missing data.
     """
     input:
-        full_locus_aln = results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.full.aln",
+        snps_locus_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/snippy-multi.snps.aln",
+        tsv            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/metadata.tsv",
     output:
-        filter_snp_aln = report(results_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.aln",
-				                 caption=os.path.join(report_dir, "snippy_multi_filter.rst"),
-												 category="Alignment",
-												 subcategory="Snippy Multi"),
-        log = report(os.path.join(logs_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log"),
-				             caption=os.path.join(report_dir, "logs.rst"),
-										 category="Logs",
-										 subcategory="Alignment"),
-
-    log:
-        logs_dir + "/snippy_multi/{reads_origin}/snippy-core_{locus_name}.snps.filter{missing_data}.log",
-
+        filter_snp_aln = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
+        log            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.log",
+    params:
+        keep_singleton = config["snippy_keep_singleton"],
     resources:
         cpus = 1,
     shell:
         """
-        threshold=`echo "{output.filter_snp_aln}" | cut -d "." -f 3 | sed 's/filter//g'`;
-        snp-sites -m -o {output.filter_snp_aln}.tmp {input.full_locus_aln};
         python {scripts_dir}/filter_sites.py \
-                --fasta {output.filter_snp_aln}.tmp \
-                --missing ${{threshold}} \
-                {config[snippy_keep_singleton]} \
+                --fasta {input.snps_locus_aln} \
+                --missing {wildcards.missing_data} \
+                {params.keep_singleton} \
                 --output {output.filter_snp_aln} \
-                --log {log};
+                --log {output.log};
         """

@@ -12,9 +12,8 @@ rule download_sra:
   """
   message: "Downloading and dumping {wildcards.sample} fastq for BioSample {wildcards.sample_dir}."
   output:
-    fastq = results_dir + "/data/sra/{sample_dir}/{sample}_1.fastq.gz"
-  log:
-    os.path.join(logs_dir, "download_sra","{sample_dir}", "{sample}.log"),
+    fastq = results_dir + "/data/sra/{sample_dir}/{sample}_1.fastq.gz",
+    log   = results_dir + "/data/sra/{sample_dir}/{sample}.log"
   resources:
     cpus = 1,
     time_min = 360,
@@ -23,7 +22,7 @@ rule download_sra:
         {project_dir} \
         {results_dir}/data/sra/ \
         {wildcards.sample_dir} \
-        {wildcards.sample} 1> {log}"
+        {wildcards.sample} 1> {output.log}"
 
 rule download_assembly:
     """

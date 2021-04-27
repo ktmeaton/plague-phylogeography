@@ -1,1 +1,0 @@
-Table of fastq files.

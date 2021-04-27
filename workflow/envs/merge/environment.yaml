@@ -4,11 +4,14 @@ channels:
 - anaconda
 - defaults
 dependencies:
+- anaconda:bokeh=2.3.0
 - anaconda:gfortran_linux-64
+- augur=10.3.0
 - bioconda::adapterremoval=2.3.1
 - bioconda::adapterremovalfixprefix=0.0.5
 - bioconda::angsd=0.933
 - bioconda::bamutil=1.0.14
+- bioconda::beast=1.10.4
 - bioconda::bedtools=2.29.2
 - bioconda::bowtie2=2.4.1
 - bioconda::bwa=0.7.17
@@ -36,11 +39,12 @@ dependencies:
 - bioconda::sexdeterrmine=1.1.2
 - bioconda::vcf2genome=0.91
 - bioconda:snippy=4.6.0
+- bioconda:snp-dists=0.7.0
 - bioconda:sra-tools=2.10.8
 - bioconda:vt=0.57721
 - biopython=1.76
 - blast=2.10.1
-- cartopy
+- cartopy=0.18.0
 - conda-forge::biopython=1.76
 - conda-forge::geopy=2.0.0
 - conda-forge::libiconv=1.15
@@ -52,17 +56,19 @@ dependencies:
 - conda-forge::pygments=2.6.1
 - conda-forge::pymdown-extensions=7.1
 - conda-forge::python=3.7.3
+- conda-forge::r-ape
 - conda-forge::xopen=0.9.0
 - contextily=1.0.1
 - descartes=1.1.0
 - dill=0.3.3
 - ete3=3.1.2
+- ffmpeg=4.3.1
 - flask=1.1.2
 - geopandas=0.8.1
 - graphviz=2.40.1
 - ipywidgets=7.5.1
 - plotly=4.12.0
-- iqtree=2.0.3
+- iqtree=2.1.2
 - matplotlib=3.3.2
 - mummer=3.23
 - nextflow=20.04.1
@@ -84,7 +90,8 @@ dependencies:
 - vcftools=0.1.16
 - pip:
   - git+https://github.com/ktmeaton/MultiQC.git@snippy
-  - phylo-treetime==0.8.0
+  - git+https://github.com/ktmeaton/treetime.git
+  #- phylo-treetime==0.8.1
   - nextstrain-augur==10.3.0
   - bezier==2020.5.19
 name: plague-phylogeography

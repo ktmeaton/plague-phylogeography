@@ -26,10 +26,14 @@ dependencies:
   # Alignment
   - bioconda:snippy=4.6.0
   - bioconda:vt=0.57721
+  - bioconda:snp-dists=0.7.0
   # Phylogeny
-  - iqtree=2.0.3
+  - iqtree=2.1.2
   - conda-forge::geopy=2.0.0
   - ete3=3.1.2
+  - bioconda::beagle-lib=3.1.2
+  - bioconda::beast=1.10.4
+  - conda-forge::r-ape
   # Plotting
   - matplotlib=3.3.2
   - pandas=1.0.4
@@ -43,7 +47,10 @@ dependencies:
   - descartes=1.1.0
   - contextily=1.0.1
   - dill=0.3.3
-  - cartopy
+  - cartopy=0.18.0
+  - augur=10.3.0
+  - ffmpeg=4.3.1
+  - bokeh=2.3.0
   # Filtering
   - biopython=1.76
   - mummer=3.23
@@ -56,6 +63,7 @@ dependencies:
   - pip=20.2.3
   - pip:
     - git+https://github.com/ktmeaton/MultiQC.git@snippy
-    - phylo-treetime==0.8.0
+    - git+https://github.com/ktmeaton/treetime.git
+    #- phylo-treetime==0.8.1
     - nextstrain-augur==10.3.0
     - bezier==2020.5.19
