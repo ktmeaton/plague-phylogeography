@@ -11,7 +11,10 @@ sqlite_select_command_asm : SELECT
                             LEFT JOIN Assembly
                               ON AssemblyBioSampleAccession = BioSampleAccession
                             WHERE
-                              BioSampleComment LIKE '%KEEP%Assembly%Modern%Placement%'
+                              (BioSampleComment LIKE '%KEEP%Assembly%Modern%'
+                              AND length(AssemblyFTPGenbank) > 0
+                              AND length(BioSampleCollectionDate) > 0)
+                              OR (BioSampleComment LIKE '%KEEP%Assembly%Modern%Outgroup%')
 
 sqlite_select_command_sra : SELECT
                               BioSampleAccession,
@@ -21,8 +24,7 @@ sqlite_select_command_sra : SELECT
                             LEFT JOIN SRA
                               ON SRABioSampleAccession = BioSampleAccession
                             WHERE
-                              (SRARunAccession = 'SRR1048902' OR
-                               SRARunAccession = 'SRR1048905')
+                              (BioSampleComment LIKE '%SRA%Test%')
 
 sqlite_select_command_local : SELECT
                               BioSampleAccession
@@ -85,28 +87,26 @@ snippy_snp_density : 10
 snippy_keep_singleton : "--keep-singleton"
 snippy_multi_plot_missing_data:
   - 0
-  - 5
-  - 10
-  - 15
-  - 20
   - 25
+  - 50
+  - 75
+  - 100
 
 # IQTREE
-iqtree_model: "-m MFP"
-#iqtree_model : "-m K3Pu+F+I"
-iqtree_seed : "674947425" # keeping it consistent in a config file allows for checkpointing
+#iqtree_model: "-m MFP"
+iqtree_model : "-m K3Pu+F+I"
+iqtree_seed : "47321424" # keeping it consistent in a config file allows for checkpointing
+iqtree_runs : 1
+iqtree_other : "--ufboot 1000"
 
 # Outgroup Option #1: Reference
-iqtree_outgroup : "Reference"
+#iqtree_outgroup : "Reference"
 
 # Outgroup Option #2: Basal modern clade
-#iqtree_outgroup : "GCA_000323485.1_ASM32348v1_genomic"
+#iqtree_outgroup : "GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic"
 
 # Outgroup Option #3: Basal ancient clade
-#iqtree_outgroup : "SAMEA3541826,SAMEA3541827"
+#iqtree_outgroup : "SAMEA3541826"
 
-# Outgroup Option #4: Other species
-#iqtree_outgroup : "GCA_900637475.1_51108_B01_genomic,GCA_000834295.1_ASM83429v1_genomic"
-
-iqtree_other : "--ufboot 1000"
-iqtree_runs : 1
+# Outgroup Option #4: Outgroup
+iqtree_outgroup : "GCA_900637475.1_51108_B01_genomic,GCA_000834295.1_ASM83429v1_genomic"

@@ -11,7 +11,8 @@ rule iqtree:
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
         aln            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
     output:
-        tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.nex",
+        nwk            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.treefile",
+        nex            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.nex",
         iqtree         = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.iqtree",
         log            = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.log",
         outgroup       = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.filter-taxa.txt",
@@ -43,37 +44,8 @@ rule iqtree:
             {params.other} \
             -redo \
             -pre {params.prefix} > {output.log};
-
-        {scripts_dir}/newick2nexus.py {params.prefix}.treefile {output.tree}
+        {scripts_dir}/newick2nexus.py {output.nwk} {output.nex}
         """
-
-rule filter_taxa:
-    """
-    Remove taxa from an alignment based on a tree.
-    """
-    input:
-        tree           = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.nex",
-        tsv            = results_dir + "/metadata/{reads_origin}/metadata.tsv",
-        taxa           = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter-taxa.txt",
-        aln            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
-    output:
-        nex            = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter.nex",
-        nwk            = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter.nwk",
-        tsv            = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/metadata.tsv",
-        aln            =  results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter.aln",
-    params:
-        taxa           = config["iqtree_outgroup"],
-        outdir         = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/",
-    shell:
-        """
-        workflow/scripts/filter_alignment.py \
-            --tree {input.tree} \
-            --aln {input.aln} \
-            --outdir {params.outdir} \
-            --metadata {input.tsv} \
-            --prune-tips {input.taxa}
-        """
-
 
 rule lsd:
     """

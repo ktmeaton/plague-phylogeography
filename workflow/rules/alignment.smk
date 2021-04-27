@@ -30,10 +30,11 @@ rule eager:
         cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
         mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     shell:
-        "export NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m'; "
-        "python {scripts_dir}/eager_tsv.py --files \"{input.fastq}\" --organism \"{config[organism]}\" --tsv {output.eager_tsv}; "
-        "cd {results_dir}/eager/{wildcards.reads_origin}/{wildcards.sample}; "
-        "nextflow \
+        """
+        export NXF_OPTS='-Xms50m -Xmx{resources.mem_mb}m';
+        python {scripts_dir}/eager_tsv.py --files \"{input.fastq}\" --organism \"{config[organism]}\" --tsv {output.eager_tsv};
+        cd {results_dir}/eager/{wildcards.reads_origin}/{wildcards.sample};
+        nextflow \
             -c {config_dir}/eager.config \
             run nf-core/eager \
             -r {config[eager_rev]} \
@@ -57,8 +58,9 @@ rule eager:
             --max_memory {resources.mem_mb}.MB \
             --max_time {resources.time_min}m \
 			{config[eager_other]} \
-            -resume > {output.log_txt}"
-        "{scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.sample}; "
+            -resume > {output.log_txt};
+        {scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.sample};
+        """
 
 # -----------------------------------------------------------------------------#
 rule snippy_pairwise:

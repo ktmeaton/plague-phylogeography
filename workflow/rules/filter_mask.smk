@@ -95,7 +95,7 @@ rule snippy_multi_extract:
     resources:
         cpus                   = 1,
     params:
-        outdir = lambda wildcards: os.path.join(results_dir, "snippy_multi", wildcards.reads_origin, wildcards.locus_name, "full"),
+        outdir                 = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/",
     shell:
         """
         {scripts_dir}/extract_locus.sh \
@@ -109,7 +109,6 @@ rule snippy_multi_extract:
         cp {input.tsv} {output.tsv};
         """
 
-
 #------------------------------------------------------------------------------#
 rule snippy_multi_prune:
     """
@@ -121,19 +120,27 @@ rule snippy_multi_prune:
         dist   = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.snps.dist",
     output:
         aln    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/snippy-multi.snps.aln",
+        taxa   = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/taxa-keep.txt",
         tsv    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/metadata.tsv",
         log    = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/snippy-multi.snps.log",
     resources:
         cpus   = 1,
     params:
-        outdir = lambda wildcards: os.path.join(results_dir, "snippy_multi", wildcards.reads_origin, wildcards.locus_name, "prune"),
+        outdir = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/prune/",
     shell:
         """
-        python3 {scripts_dir}/prune_alignment.py \
+        # Identify taxa to remove
+        python3 {scripts_dir}/prune_taxa.py \
           --metadata {input.tsv} \
           --matrix {input.dist} \
-          --aln {input.aln} \
           --outdir {params.outdir} > {output.log}
+        # Filter the taxa out of the alignment
+        python3 {scripts_dir}/filter_taxa.py \
+          --metadata {input.tsv} \
+          --aln {input.aln} \
+           --keep-tips {output.taxa} \
+          --outdir {params.outdir}
+
         """
 
 #------------------------------------------------------------------------------#
@@ -159,4 +166,32 @@ rule snippy_multi_filter:
                 {params.keep_singleton} \
                 --output {output.filter_snp_aln} \
                 --log {output.log};
+        """
+
+
+rule filter_taxa:
+    """
+    Remove taxa from an alignment based on a tree.
+    """
+    input:
+        tree           = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.nex",
+        tsv            = results_dir + "/metadata/{reads_origin}/metadata.tsv",
+        taxa           = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter-taxa.txt",
+        aln            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
+    output:
+        nex            = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter.nex",
+        nwk            = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter.nwk",
+        tsv            = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/metadata.tsv",
+        aln            =  results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/{rule}.filter.aln",
+    params:
+        taxa           = config["iqtree_outgroup"],
+        outdir         = results_dir + "/{rule}/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/",
+    shell:
+        """
+        workflow/scripts/filter_alignment.py \
+            --tree {input.tree} \
+            --aln {input.aln} \
+            --outdir {params.outdir} \
+            --metadata {input.tsv} \
+            --prune-tips {input.taxa}
         """

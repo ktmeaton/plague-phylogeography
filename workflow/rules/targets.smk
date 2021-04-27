@@ -175,7 +175,6 @@ rule snippy_multi_extract_sra:
     input:
         snippy_multi_extract_sra_input
 
-
 # -----------------------------------------------------------------------------#
 snippy_multi_prune_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/prune/snippy-multi.snps.aln",
         locus_name=config["reference_locus_name"],

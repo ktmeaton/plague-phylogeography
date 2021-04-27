@@ -138,7 +138,32 @@ output_headers_main = [
     "biosample_comment",
     "branch_number",
     "continent",
+    "date_mean",
+    "date_err",
 ]
+
+output_ref_vals = [
+    "Reference",
+    "CO92",
+    1992,
+    CURRENT_YEAR - 1992,
+    "United States of America",
+    "Colorado",
+    39.7837304,
+    -100.4458825,
+    38.7251776,
+    -105.607716,
+    "Orientalis",
+    "1.ORI",
+    "1.ORI1",
+    "SAMEA1705942",
+    "KEEP: Assembly Modern Reference",
+    1,
+    "North America",
+    1992,
+    0,
+]
+
 
 # Nextstrain LatLon Format (no header)
 # 1. Geo Level
@@ -157,6 +182,12 @@ header = output_delim.join(output_headers_main)
 # Write headers to file
 with open(output_path_main, "w") as outfile:
     outfile.write(header + "\n")
+
+# Write reference metadata to file
+with open(output_path_main, "a") as outfile:
+    # Write reference
+    str_vals = [str(val) for val in output_ref_vals]
+    outfile.write(output_delim.join(str_vals) + "\n")
 
 for sample in samples_list:
     # Remove the _genomic suffix from assemblies
@@ -209,6 +240,8 @@ for sample in samples_list:
         "NA",  # comment [14]
         "NA",  # branch_number [15]
         "NA",  # continent [16]
+        "NA",  # date Mean [17]
+        "NA",  # date Err [18]
     ]
 
     if result:
@@ -225,7 +258,9 @@ for sample in samples_list:
         # Date Parsing
         date = result[2]
         if date:
-            split_date = date.split(":")
+            split_date = [float(d) for d in date.split(":")]
+            date_mean = float(sum(split_date)) / float(len(split_date))
+            date_err = date_mean - split_date[0]
             # If it was an interval date
             if len(split_date) > 1:
                 date_format = "[" + ":".join(split_date) + "]"
@@ -239,6 +274,8 @@ for sample in samples_list:
 
             output_main_vals[2] = date_format
             output_main_vals[3] = date_bp_format
+            output_main_vals[17] = date_mean
+            output_main_vals[18] = date_err
 
         # Location Parsing
         location = result[3]  # Country:Province
@@ -308,8 +345,8 @@ for sample in samples_list:
 
     # Write data to main output file
     with open(output_path_main, "a") as outfile:
+        # Write samples
         str_vals = [str(val) for val in output_main_vals]
-        # print(output_delim.join(str_vals))
         outfile.write(output_delim.join(str_vals) + "\n")
 
 
