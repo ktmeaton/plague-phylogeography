@@ -158,6 +158,6 @@ rule beast:
         cut -f 1,21,22 {input.tsv} > {output.latlon};
         cp {input.aln} {output.aln};
         cp {input.divtree} {output.divtree};
-        cp {input.timetree} {output.timetree};
+        python3 {scripts_dir}/nexus2newick.py {input.timetree} {output.timetree};
         cp {input.constant_sites} {output.constant_sites};
         """
