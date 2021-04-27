@@ -22,8 +22,11 @@ rule qualimap:
 	cpus=workflow.global_resources["cpus"] if ("cpus" in workflow.global_resources) else 1,
         mem_mb=workflow.global_resources["mem_mb"] if ("mem_mb" in workflow.global_resources) else 4000,
     shell:
-        "samtools view -b -q {config[snippy_map_qual]} {input.snippy_dir}/{wildcards.sample}.bam > {output.bamq}; "
-        "qualimap bamqc -bam {output.bamq} --skip-duplicated -c -outformat 'HTML' -outdir {output.dir} -nt {resources.cpus} 1> {output.log}; "
+        """
+        export JAVA_OPTS='-Djava.awt.headless=true';
+        samtools view -b -q {config[snippy_map_qual]} {input.snippy_dir}/{wildcards.sample}.bam > {output.bamq};
+        qualimap bamqc -bam {output.bamq} --skip-duplicated -c -outformat 'HTML' -outdir {output.dir} -nt {resources.cpus} 1> {output.log};
+        """
 
 # -----------------------------------------------------------------------------#
 
