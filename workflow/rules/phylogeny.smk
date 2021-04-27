@@ -136,36 +136,28 @@ rule lsd:
 
 rule beast:
     """
-    Continuous phylogeography with BEAST
+    Prepare input files for beast1 and beast2
     """
     input:
-        tsv      = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/metadata.tsv",
-        dates    = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.dates.txt",
-        tree     = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.filter.nex",
+        tsv      = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/metadata.tsv",
+        divtree  = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/iqtree.treefile",
+        timetree = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.nex",
+        aln      = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-sites/snippy-multi.snps.aln",
+        constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
     output:
         latlon   = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.latlon.txt",
-        tree     = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.nex",
+        timetree = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.timetree.nwk",
+        divtree  = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.divtree.nwk",
         dates    = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.dates.txt",
+        aln      = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.fasta",
+        constant_sites = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.constant-sites.txt",
 
     shell:
         """
-        echo -e "traits\tlat\tlon" > {output.latlon};
-        echo -e "Reference\t"{config[reference_lat]}"\t"{config[reference_lon]} >> {output.latlon};
-        echo -e "Reference\t"{config[reference_date_bp]} > {output.dates}
-
-        tail -n+2 {input.tsv} | while read line; \
-        do
-            sample=`echo "$line" | cut -f 1`;
-            lat=`echo "$line" | cut -f 9`;
-            lon=`echo "$line" | cut -f 10`;
-            date=`echo "$line" | cut -f 4 | sed "s/\[\|\]//g" | tr ":" "\n" | awk '{{sum+=$0}}END{{print 0-sum/NR}}'`;
-            if [[ $lat == "NA" ]]; then
-                lat=`echo "$line" | cut -f 7`;
-                lon=`echo "$line" | cut -f 8`;
-            fi;
-            echo -e $sample"\t"$lat"\t"$lon >> {output.latlon};
-            echo -e $sample"\t"$date >> {output.dates};
-        done
-
-        {scripts_dir}/multi2bi.py --tree {input.tree} --out {output.tree}
+        tail -n+2 {input.tsv} | cut -f 1,19,20 > {output.dates};
+        cut -f 1,21,22 {input.tsv} > {output.latlon};
+        cp {input.aln} {output.aln};
+        cp {input.divtree} {output.divtree};
+        cp {input.timetree} {output.timetree};
+        cp {input.constant_sites} {output.constant_sites};
         """

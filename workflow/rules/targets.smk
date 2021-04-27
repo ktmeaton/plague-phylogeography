@@ -257,7 +257,7 @@ rule snippy_multi_all:
 #------------------------------------------------------------------------------#
 # Phylogeny
 #------------------------------------------------------------------------------#
-iqtree_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/full/filter{missing_data}/iqtree.nex",
+iqtree_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/full/filter{missing_data}/iqtree.treefile",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
 iqtree_local_input    = [ x.replace("all", "local") for x in iqtree_all_input ]
@@ -279,6 +279,13 @@ rule iqtree_local:
 rule iqtree_all:
     input:
         iqtree_all_input
+
+iqtree_prune_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/prune/filter{missing_data}/iqtree.treefile",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule iqtree_prune_all:
+    input:
+        iqtree_prune_all_input
 
 #------------------------------------------------------------------------------#
 # Remove outgroups
@@ -327,20 +334,20 @@ rule lsd_remove_outliers_prune_all:
     input:
         lsd_remove_outliers_prune_all_input
 #------------------------------------------------------------------------------#
- # Beast geo
-beast_geo_all_input = expand(results_dir + "/beast/all/{locus_name}/full/filter{missing_data}/beast.nex",
+ # Beast
+beast_all_input = expand(results_dir + "/beast/all/{locus_name}/full/filter{missing_data}/beast.dates.txt",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
-rule beast_geo_all:
+rule beast_all:
     input:
-        beast_geo_all_input
+        beast_all_input
 
-beast_geo_prune_all_input = expand(results_dir + "/beast/all/{locus_name}/prune/filter{missing_data}/beast.nex",
+beast_prune_all_input = expand(results_dir + "/beast/all/{locus_name}/prune/filter{missing_data}/beast.dates.txt",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
-rule beast_geo_prune_all:
+rule beast_prune_all:
     input:
-        beast_geo_prune_all_input
+        beast_prune_all_input
 #------------------------------------------------------------------------------#
 # Plot
 #------------------------------------------------------------------------------#

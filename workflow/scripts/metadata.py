@@ -139,7 +139,10 @@ output_headers_main = [
     "branch_number",
     "continent",
     "date_mean",
+    "date_bp_mean",
     "date_err",
+    "lat",
+    "lon",
 ]
 
 output_ref_vals = [
@@ -161,7 +164,10 @@ output_ref_vals = [
     1,
     "North America",
     1992,
+    CURRENT_YEAR - 1992,
     0,
+    38.7251776,
+    -105.607716,
 ]
 
 
@@ -241,7 +247,10 @@ for sample in samples_list:
         "NA",  # branch_number [15]
         "NA",  # continent [16]
         "NA",  # date Mean [17]
-        "NA",  # date Err [18]
+        "NA",  # date vp Mean [18]
+        "NA",  # date err [19]
+        "NA",  # lat [20]
+        "NA",  # lon [21]
     ]
 
     if result:
@@ -272,10 +281,13 @@ for sample in samples_list:
                 date_format = split_date[0]
                 date_bp_format = -(CURRENT_YEAR - int(date_format))
 
+            date_bp_mean = CURRENT_YEAR - date_mean
+
             output_main_vals[2] = date_format
             output_main_vals[3] = date_bp_format
             output_main_vals[17] = date_mean
-            output_main_vals[18] = date_err
+            output_main_vals[18] = date_bp_mean
+            output_main_vals[19] = date_err
 
         # Location Parsing
         location = result[3]  # Country:Province
@@ -294,6 +306,10 @@ for sample in samples_list:
             output_main_vals[6] = geocode_dict[country_name][0]
             output_main_vals[7] = geocode_dict[country_name][1]
 
+            # Set lat,lon first to country
+            output_main_vals[20] = geocode_dict[country_name][0]
+            output_main_vals[21] = geocode_dict[country_name][1]
+
             # province processing (if exists)
             if len(split_location) > 1:
                 province_name = split_location[1]
@@ -308,6 +324,10 @@ for sample in samples_list:
                     ]
                 output_main_vals[8] = geocode_dict[province_name][0]
                 output_main_vals[9] = geocode_dict[province_name][1]
+
+                # Update to province
+                output_main_vals[20] = geocode_dict[province_name][0]
+                output_main_vals[21] = geocode_dict[province_name][1]
 
             # continent parsing
             output_main_vals[16] = continent_dict[country_name]
