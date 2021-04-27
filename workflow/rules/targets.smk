@@ -69,27 +69,6 @@ rule snippy_pairwise_local:
 # Locus Coverage
 #------------------------------------------------------------------------------#
 
-locus_coverage_all_input      = results_dir + "/locus_coverage/all/snpden"
-locus_coverage_local_input    = [path.replace("all", "local") for path in locus_coverage_all_input]
-locus_coverage_assembly_input = [path.replace("all", "assembly") for path in locus_coverage_all_input]
-locus_coverage_sra_input      = [path.replace("all", "sra") for path in locus_coverage_all_input]
-
-rule locus_coverage_all:
-    input:
-        locus_coverage_all_input
-
-rule locus_coverage_assembly:
-    input:
-        locus_coverage_assembly_input
-
-rule locus_coverage_sra:
-    input:
-        locus_coverage_sra_input,
-
-rule locus_coverage_local:
-    input:
-        locus_coverage_local_input
-
 locus_coverage_collect_all_input = results_dir + "/locus_coverage_collect/all/locus_coverage.txt"
 locus_coverage_collect_local_input    = locus_coverage_collect_all_input.replace("all", "local")
 locus_coverage_collect_assembly_input    = locus_coverage_collect_all_input.replace("all", "assembly")
@@ -302,7 +281,6 @@ rule iqtree_all:
         iqtree_all_input
 
 #------------------------------------------------------------------------------#
-#------------------------------------------------------------------------------#
 # Remove outgroups
 iqtree_filter_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/full/filter{missing_data}/filter-sites/snippy-multi.snps.aln",
                                locus_name=config["reference_locus_name"],
@@ -311,15 +289,12 @@ rule iqtree_filter_all:
     input:
         iqtree_filter_all_input
 
-
-
-#------------------------------------------------------------------------------#
-iqtree_prune_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/prune/filter{missing_data}/iqtree.nex",
+iqtree_filter_prune_all_input      = expand(results_dir + "/iqtree/all/{locus_name}/prune/filter{missing_data}/filter-sites/snippy-multi.snps.aln",
                                locus_name=config["reference_locus_name"],
                                missing_data = config["snippy_missing_data"])
-rule iqtree_prune_all:
+rule iqtree_filter_prune_all:
     input:
-        iqtree_prune_all_input
+        iqtree_filter_prune_all_input
 
 #------------------------------------------------------------------------------#
  # LSD Dating

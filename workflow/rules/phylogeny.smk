@@ -117,8 +117,8 @@ rule lsd:
             -s ${{constant_sites}} \
             -o {params.prefix} \
             -f 100 \
-						-l '-1' \
-						-q 0.2 \
+			-l '-1' \
+			-q 0.2 \
             -r k \
             -d {output.dates} \
             -g {output.outgroups} \

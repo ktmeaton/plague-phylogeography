@@ -174,6 +174,7 @@ for column in range(0, alignment_in_len):
     # Constant site format [0,0,0,x]
     if count_list.count(0) == 3:
         constant_sites += 1
+        site_type = "constant"
     # Biallelic format [0,0,1,x]
     elif count_list.count(0) == 2 and count_list.count(1) >= 1:
         biallelic_singleton_sites += 1
