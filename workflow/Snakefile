@@ -114,9 +114,10 @@ rule all:
         # Multiqc
         #multiqc_all_input,
         # Phylo
-        iqtree_all_input,
+        #iqtree_all_input,
         # Post-Phylo
-        #lsd_all_input,
+        lsd_all_input,
+        snippy_multi_filter_prune_all_input,
         # Plot
         plot_missing_data_all_input,
         plot_snp_matrix_all_input,

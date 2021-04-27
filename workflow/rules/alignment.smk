@@ -21,7 +21,7 @@ rule eager:
         final_bam = results_dir + "/eager/{reads_origin}/{sample}/final_bams/{sample}.bam",
         eager_tsv = results_dir + "/eager/{reads_origin}/{sample}/metadata_{sample}.tsv",
         log_html  = results_dir + "/eager/{reads_origin}/{sample}/{sample}.html",
-        #log_txt  = results_dir + "/eager/{reads_origin}/{sample}/{sample}.log",
+        log_txt  = results_dir + "/eager/{reads_origin}/{sample}/{sample}.log",
     wildcard_constraints:
         reads_origin = "(sra|local)",
     resources:
@@ -58,7 +58,7 @@ rule eager:
             --max_memory {resources.mem_mb}.MB \
             --max_time {resources.time_min}m \
 			{config[eager_other]} \
-            -resume;
+            -resume > {output.log_txt};
         {scripts_dir}/eager_cleanup.sh {results_dir} {wildcards.reads_origin} {wildcards.sample};
         """
 
