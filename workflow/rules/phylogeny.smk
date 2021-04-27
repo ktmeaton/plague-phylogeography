@@ -146,8 +146,10 @@ rule beast:
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
     output:
         latlon   = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.latlon.txt",
-        timetree = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.timetree.nwk",
-        divtree  = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.divtree.nwk",
+        timetree_nwk = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.timetree.nwk",
+        timetree_nex = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.timetree.nex",
+        divtree_nwk  = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.divtree.nwk",
+        divtree_nex  = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.divtree.nex",
         dates    = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.dates.txt",
         aln      = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.fasta",
         constant_sites = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.constant-sites.txt",
@@ -157,7 +159,10 @@ rule beast:
         tail -n+2 {input.tsv} | cut -f 1,19,20 > {output.dates};
         cut -f 1,21,22 {input.tsv} > {output.latlon};
         cp {input.aln} {output.aln};
-        cp {input.divtree} {output.divtree};
-        python3 {scripts_dir}/nexus2newick.py {input.timetree} {output.timetree};
+        cp {input.divtree} {output.divtree_nwk}
+        python3 {scripts_dir}/newick2nexus.py {output.divtree_nwk} {output.divtree_nex};
+
+        python3 {scripts_dir}/nexus2newick.py {input.timetree} {output.timetree_nwk};
+        python3 {scripts_dir}/newick2nexus.py {output.timetree_nwk} {output.timetree_nex};
         cp {input.constant_sites} {output.constant_sites};
         """
