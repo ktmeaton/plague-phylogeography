@@ -1,5 +1,9 @@
 import numpy as np
 import copy
+from augur import utils, export_v2
+import time
+
+AUSPICE_GEO_RES = ["country", "province"]
 
 
 # Get X And Y Positions
@@ -172,3 +176,191 @@ def extract_subtree(tree, tips, df, color_branches=False):
     #        c.color = color
 
     return subtree_clade
+
+
+def augur_export(
+    tree_path=None,
+    aln_path=None,
+    tree=None,
+    tree_df=None,
+    color_keyword_exclude=None,
+    type_convert=None,
+):
+    """
+    Export the Augur JSON of tree node data.
+    """
+    augur_data = {}
+    augur_data["alignment"] = aln_path
+    augur_data["input_tree"] = tree_path
+    augur_data["nodes"] = {}
+
+    # Iterate through all nodes in the tree
+    for c in tree.find_clades():
+        # Add the node to the dictionary
+        augur_data["nodes"][c.name] = {}
+
+        # Iterate through all attributes in the dataframe
+        for attr in tree_df.columns:
+            attr_val = tree_df[attr][c.name]
+
+            # Check if this attribute should be excluded
+            exclude = False
+            for keyword in color_keyword_exclude:
+                if keyword in attr.lower():
+                    exclude = True
+
+            if not exclude:
+                # Fix numpy attr to float/int
+                if type(attr_val) == np.float64:
+                    attr_val = float(attr_val)
+                elif type(attr_val) == np.int64:
+                    attr_val = int(attr_val)
+
+                # Perform requested type conversions, using lambda functions
+                if attr in type_convert:
+                    attr_val = type_convert[attr](attr_val)
+
+                # Convert boolean variables to str
+                if type(attr_val) == np.bool_:
+                    attr_val = str(attr_val)
+
+                # We need the value assigned to the trait by mugration
+                if (
+                    "mugration" in attr
+                    and "confidence" not in attr
+                    and "entropy" not in attr
+                ):
+                    attr = attr.replace("mugration_", "")
+                    # Check again for a type conversion
+                    if attr in type_convert:
+                        attr_val = type_convert[attr](attr_val)
+                    augur_data["nodes"][c.name][attr.lower()] = attr_val
+
+                    # Prepare an empty dict for the confidence values
+                    attr_conf = attr + "_confidence"
+                    augur_data["nodes"][c.name][attr_conf.lower()] = {attr_val: "NA"}
+
+                # Get the mugration entropy associated with the trait
+                elif "mugration" in attr and "entropy" in attr:
+                    attr = attr.replace("mugration_", "")
+                    augur_data["nodes"][c.name][attr.lower()] = attr_val
+
+                # Get the mugration confidence associated with the trait
+                elif "mugration" in attr and "confidence" in attr:
+                    attr = attr.replace("mugration_", "")
+                    attr_assoc = attr.replace("_confidence", "")
+
+                    # If original attr is not yet in dict, set to NA
+                    try:
+                        attr_mug_val = augur_data["nodes"][c.name][attr_assoc.lower()]
+
+                    except KeyError:
+                        attr_mug_val = "NA"
+                    attr_val = {attr_mug_val: attr_val}
+
+                    augur_data["nodes"][c.name][attr_conf.lower()] = attr_val
+
+                # Remove the timetree prefix
+                elif "timetree" in attr:
+                    attr = attr.replace("timetree_", "")
+                    # Catch other list types (like timetree_num_date_bar)
+                    if "confidence" not in attr and type(attr_val) == list:
+                        attr_val = ":".join([str(x) for x in attr_val])
+                    augur_data["nodes"][c.name][attr.lower()] = attr_val
+
+                else:
+                    # Make attribute name in dict lowercase
+                    # (ex. Branch_Length -> branch_length)
+                    augur_data["nodes"][c.name][attr.lower()] = attr_val
+
+    return augur_data
+
+
+def auspice_export(
+    tree=None,
+    augur_json_paths=None,
+    auspice_config_path=None,
+    auspice_colors_path=None,
+    auspice_latlons_path=None,
+):
+    """
+    Export the full Auspice JSON v2 for visualization
+    """
+    export_v2.configure_warnings()
+
+    # Initialize the auspice json
+    data_json = {"version": "v2", "meta": {"updated": time.strftime("%Y-%m-%d")}}
+
+    # parse input files
+    (
+        node_data,
+        node_attrs,
+        node_data_names,
+        metadata_names,
+    ) = export_v2.parse_node_data_and_metadata(tree, augur_json_paths, None)
+
+    # print(data_json["tree"] = convert_tree_to_json_structure(T.root, node_attrs)
+
+    # Validate and load config file (could put this in try except)
+    export_v2.validate_auspice_config_v2(auspice_config_path)
+    print("Validation success.")
+    config = export_v2.read_config(auspice_config_path)
+
+    # set metadata structures
+    export_v2.set_title(data_json, config, config["title"])
+    export_v2.set_display_defaults(data_json, config)
+    export_v2.set_maintainers(data_json, config, config["maintainers"])
+    export_v2.set_build_url(data_json, config, config["build_url"])
+    export_v2.set_annotations(data_json, node_data)
+
+    # Set Colors
+    export_v2.set_colorings(
+        data_json=data_json,
+        config=export_v2.get_config_colorings_as_dict(config),
+        node_data_colorings=node_data_names,
+        provided_colors=utils.read_colors(auspice_colors_path),
+        node_attrs=node_attrs,
+        command_line_colorings=None,
+        metadata_names=metadata_names,
+    )
+
+    # Set Filters
+    export_v2.set_filters(data_json, config)
+
+    # Set Tree
+    data_json["tree"] = export_v2.convert_tree_to_json_structure(tree.root, node_attrs)
+    export_v2.set_node_attrs_on_tree(data_json, node_attrs)
+    export_v2.set_geo_resolutions(
+        data_json,
+        config,
+        AUSPICE_GEO_RES,
+        utils.read_lat_longs(auspice_latlons_path),
+        node_attrs,
+    )
+
+    # Set panels
+    export_v2.set_panels(data_json, config, cmd_line_panels=None)
+
+    return data_json
+
+
+def branch_attributes(tree_dict, sub_dict, df, label_col):
+    """
+    Add branch attributes to an auspice tree
+    """
+    root = sub_dict
+    if "children" not in root:
+        return root
+    else:
+        for child in root["children"]:
+            node = branch_attributes(tree_dict, child, df, label_col)
+            node_type = df["node_type"][node["name"]]
+            if node_type != "internal":
+                continue
+            branch_labels = {col: df[col][node["name"]] for col in label_col}
+
+            node["branch_attrs"]["labels"] = branch_labels
+
+        branch_labels = {col: df[col][root["name"]] for col in label_col}
+        root["branch_attrs"]["labels"] = branch_labels
+        return root
