@@ -93,7 +93,8 @@ rule lsd:
         aln            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
     output:
-        timetree       = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.nex",
+        timetree_nex   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nex",
+        timetree_nwk   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nwk",
         dates          = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.dates.txt",
         outgroups      = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.outgroups.txt",
         log            = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.log",
@@ -126,7 +127,8 @@ rule lsd:
 
         mv {params.prefix}.nexus {params.prefix}.divtree.nex
         mv {params.prefix}.nwk {params.prefix}.divtree.nwk
-        mv {params.prefix}.date.nexus {params.prefix}.nex
+        mv {params.prefix}.date.nexus {output.timetree_nex}
+        python3 {scripts_dir}/nexus2newick.py {output.timetree_nex} {output.timetree_nwk}
         if  [[ `grep -A 1 "outliers" {output.log}` ]]; then
             grep -A 1 "outliers" {output.log} | tail -n 1 | tr " " "\n" | tail -n+2 > {output.taxa};
         else
@@ -165,4 +167,44 @@ rule beast:
         python3 {scripts_dir}/nexus2newick.py {input.timetree} {output.timetree_nwk};
         python3 {scripts_dir}/newick2nexus.py {output.timetree_nwk} {output.timetree_nex};
         cp {input.constant_sites} {output.constant_sites};
+        """
+
+rule mugration:
+    """
+    Run mugration as implemented in treetime.
+    """
+    input:
+        tsv  = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/metadata.tsv",
+        tree = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/iqtree.treefile",
+    output:
+        tsv  = results_dir + "/mugration/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/metadata.tsv",
+    params:
+        attr = config["mugration_attribute"],
+        outdir = results_dir + "/mugration/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/",
+    shell:
+        """
+        sed 's/\\bNA/?/g' {input.tsv} > {output.tsv}
+        for attr in {params.attr};
+        do
+            treetime mugration \
+                --tree {input.tree} \
+                --states {output.tsv} \
+                --attribute ${{attr}} \
+                --name-column sample \
+                --confidence \
+                --outdir {params.outdir} \
+                --verbose 4 > {params.outdir}/${{attr}}.log;
+            mv {params.outdir}/GTR.txt {params.outdir}/${{attr}}_GTR.txt
+            mv {params.outdir}/annotated_tree.nexus {params.outdir}/${{attr}}.nex;
+            mv {params.outdir}/confidence.csv {params.outdir}/${{attr}}_confidence.csv;
+            tail -n+2 {params.outdir}/${{attr}}_GTR.txt | \
+                grep -B 1000 "Substitution rate" | \
+                grep -v "Sub" | \
+                sed '/^$/d' | while read line;
+                do
+                    char=`echo "$line" | cut -d ":" -f 1`;
+                    state=`echo "$line" | cut -d ":" -f 2 | sed 's/^ *//g'`;
+                    echo $char","$state;
+                done > {params.outdir}/${{attr}}_states.csv
+        done
         """
