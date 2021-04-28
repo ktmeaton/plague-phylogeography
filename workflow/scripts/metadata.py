@@ -149,7 +149,7 @@ output_ref_vals = [
     "Reference",
     "CO92",
     1992,
-    CURRENT_YEAR - 1992,
+    1992 - CURRENT_YEAR,
     "United States of America",
     "Colorado",
     39.7837304,
