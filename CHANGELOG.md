@@ -34,11 +34,12 @@
 
 ### Pull Requests
 
-* [```pull/6```](https://github.com/ktmeaton/plague-phylogeography/pull/6)
-* [```pull/5```](https://github.com/ktmeaton/plague-phylogeography/pull/5)
+* [```pull/6```](https://github.com/ktmeaton/plague-phylogeography/pull/6) v0.2.6
+* [```pull/5```](https://github.com/ktmeaton/plague-phylogeography/pull/5) Megapestis
 
 ### Commits
 
+* [```3b93d735```](https://github.com/ktmeaton/plague-phylogeography/commit/3b93d735) update notes for v0.2.6
 * [```47d7feff```](https://github.com/ktmeaton/plague-phylogeography/commit/47d7feff) Merge pull request #6 from ktmeaton/dev
 * [```4e43f4f6```](https://github.com/ktmeaton/plague-phylogeography/commit/4e43f4f6) update docs notes
 * [```b24b1d97```](https://github.com/ktmeaton/plague-phylogeography/commit/b24b1d97) create newick and nexus trees for beast
@@ -250,7 +251,7 @@
 
 ### Pull Requests
 
-* [```pull/4```](https://github.com/ktmeaton/plague-phylogeography/pull/4)
+* [```pull/4```](https://github.com/ktmeaton/plague-phylogeography/pull/4) v0.2.5
 
 ### Commits
 
@@ -313,7 +314,7 @@
 
 ### Pull Requests
 
-* [```pull/3```](https://github.com/ktmeaton/plague-phylogeography/pull/3)
+* [```pull/3```](https://github.com/ktmeaton/plague-phylogeography/pull/3) v0.2.3
 
 ### Commits
 
@@ -349,7 +350,7 @@
 
 ### Pull Requests
 
-* [```pull/2```](https://github.com/ktmeaton/plague-phylogeography/pull/2)
+* [```pull/2```](https://github.com/ktmeaton/plague-phylogeography/pull/2) v0.2.2
 
 ### Commits
 
@@ -419,7 +420,7 @@
 
 ### Pull Requests
 
-* [```pull/1```](https://github.com/ktmeaton/plague-phylogeography/pull/1)
+* [```pull/1```](https://github.com/ktmeaton/plague-phylogeography/pull/1) Fully automate dev setup with Gitpod
 
 ### Commits
 
