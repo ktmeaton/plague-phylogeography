@@ -344,6 +344,13 @@ rule mugration_all:
     input:
         mugration_all_input
 
+mugration_prune_all_input = expand(results_dir + "/mugration/all/{locus_name}/prune/filter{missing_data}/metadata.tsv",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule mugration_prune_all:
+    input:
+        mugration_prune_all_input
+
 #------------------------------------------------------------------------------#
 # Plot
 #------------------------------------------------------------------------------#
