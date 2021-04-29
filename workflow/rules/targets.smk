@@ -350,7 +350,21 @@ mugration_prune_all_input = expand(results_dir + "/mugration/all/{locus_name}/pr
 rule mugration_prune_all:
     input:
         mugration_prune_all_input
+#------------------------------------------------------------------------------#
+# Auspice
+auspice_all_input = expand(results_dir + "/auspice/all/{locus_name}/full/filter{missing_data}/all.json",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule auspice_all:
+    input:
+        auspice_all_input
 
+auspice_prune_all_input = expand(results_dir + "/auspice/all/{locus_name}/prune/filter{missing_data}/all.json",
+                               locus_name=config["reference_locus_name"],
+                               missing_data = config["snippy_missing_data"])
+rule auspice_prune_all:
+    input:
+        auspice_prune_all_input
 #------------------------------------------------------------------------------#
 # Plot
 #------------------------------------------------------------------------------#
