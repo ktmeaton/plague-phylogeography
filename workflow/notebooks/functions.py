@@ -2,8 +2,14 @@ import numpy as np
 import copy
 from augur import utils, export_v2
 import time
+import pandas as pd
+import matplotlib.pyplot as plt
+import statsmodels.api as sma
+import statsmodels.formula.api as smfa
+import seaborn as sns
 
 AUSPICE_GEO_RES = ["country", "province"]
+ALPHA = 0.05
 
 
 # Get X And Y Positions
@@ -364,3 +370,219 @@ def branch_attributes(tree_dict, sub_dict, df, label_col):
         branch_labels = {col: df[col][root["name"]] for col in label_col}
         root["branch_attrs"]["labels"] = branch_labels
         return root
+
+
+def linregress_bootstrap(
+    x, y, xerr, nboots=100, s=100, plot=False, color="black", label=None, confidence=95
+):
+    """
+    Bootstrap a linear regression.
+    """
+
+    # Add constant
+    data_df = pd.DataFrame({"x": x, "y": y})
+
+    # Construct a linear model
+    ols_model = smfa.ols(formula="y ~ x", data=data_df)
+    results = ols_model.fit()
+    # print(results.conf_int())
+
+    # get predicted values and residuals
+    y_pred = results.predict(data_df["x"])
+    resids = results.resid
+    y_intercept = results.params[0]
+    slope = results.params[1]
+    x_intercept = (0 - y_intercept) / slope
+    r_squared = results.rsquared_adj
+    # print(results.summary())
+    # 0 is intercept, 1 is x
+    p_value = results.pvalues[1]
+    p_sig = ""
+    if p_value < ALPHA:
+        p_sig = "*"
+
+    bootstrap_dict = {
+        "x": [],
+        "y": [],
+        "slopes": [],
+        "slope_peak": [],
+        "x_intercepts": [],
+        "x_intercept_peak": [],
+        "y_intercepts": [],
+        "p_value": p_value,
+    }
+
+    for _ in range(nboots):
+        # sample residuals with replacement
+        boot_resids = np.random.choice(resids, len(x), replace=True)
+
+        # Randomly add residuals to y values
+        y_temp = [y_pred_i + resid_i for y_pred_i, resid_i in zip(y_pred, boot_resids)]
+
+        # Store the new random coordinates
+        sample_df = pd.DataFrame({"x": list(x), "y": y_temp})
+
+        # Fit a new linear regression
+        ols_model_temp = smfa.ols(formula="y ~ x", data=sample_df)
+        results_temp = ols_model_temp.fit()
+
+        bootstrap_dict["x"] += x
+        bootstrap_dict["y"] += y_temp
+
+        # get coefficients
+        y_intercept = results_temp.params[0]
+        slope = results_temp.params[1]
+        x_intercept = (0 - y_intercept) / slope
+        bootstrap_dict["slopes"] += [slope]
+        bootstrap_dict["y_intercepts"] += [y_intercept]
+        bootstrap_dict["x_intercepts"] += [x_intercept]
+
+    # Estimate a kernel density of the slope/rate
+    slope_kde = sma.nonparametric.KDEUnivariate(bootstrap_dict["slopes"])
+    slope_kde.fit()
+    peak_slope_i = np.argmax(slope_kde.density)
+    peak_slope = slope_kde.support[peak_slope_i]
+
+    slope_ci = np.array(
+        np.percentile(
+            np.array(bootstrap_dict["slopes"]), (100 - confidence, confidence), axis=0
+        )
+    )
+    slope_ci_pretty = (
+        str(["{:.2e}".format(n) for n in slope_ci]).strip("[]").replace("'", "")
+    )
+    bootstrap_dict["slope_peak"] = peak_slope
+    bootstrap_dict["slope_ci"] = slope_ci
+
+    # Estimate a kernel density of the x_intercept/mrca
+    x_int_kde = sma.nonparametric.KDEUnivariate(bootstrap_dict["x_intercepts"])
+    x_int_kde.fit()
+    peak_x_int_i = np.argmax(x_int_kde.density)
+    peak_x_int = x_int_kde.support[peak_x_int_i]
+    x_int_ci = np.array(
+        np.percentile(
+            np.array(bootstrap_dict["x_intercepts"]),
+            (100 - confidence, confidence),
+            axis=0,
+        )
+    )
+    x_int_ci_pretty = str([round(n) for n in x_int_ci]).strip("[]")
+    bootstrap_dict["x_intercept_peak"] = peak_x_int
+    bootstrap_dict["x_intercept_ci"] = x_int_ci
+
+    if plot:
+
+        TARGET_RES = [1280, 240]
+        DPI = 200
+        FIGSIZE = [TARGET_RES[0] / DPI, TARGET_RES[1] / DPI]
+        FONTSIZE = 5
+        plt.rc("font", size=FONTSIZE)
+
+        fig, axes = plt.subplots(1, 3, figsize=FIGSIZE, dpi=DPI)
+        fig.subplots_adjust(wspace=0.25)
+        for ax in axes:
+            ax.ticklabel_format(axis="y", style="sci", scilimits=(0, 0))
+            for spine in ax.spines:
+                ax.spines[spine].set_linewidth(0.5)
+        axes[0].set_title("Root-To-Tip Regression", y=1.05)
+        axes[1].set_title("Substitution Rate", y=1.05)
+        axes[2].set_title("MRCA Date", y=1.05)
+
+        # -----------------------------------------------------
+        # Slopes / Rates
+        ax = axes[1]
+        ax.plot(slope_kde.support, slope_kde.density, color="black", lw=0.5)
+        ax.fill_between(slope_kde.support, slope_kde.density, color=color, alpha=0.8)
+        ax.set_xlim(bootstrap_dict["slope_ci"])
+        ax.set_ylabel("Density")
+        ax.set_xlabel("Substitution Rate")
+
+        # -----------------------------------------------------
+        # X Intercept / MRCA
+        ax = axes[2]
+        ax.plot(x_int_kde.support, x_int_kde.density, color="black", lw=0.5)
+        ax.fill_between(x_int_kde.support, x_int_kde.density, color=color, alpha=0.8)
+        ax.set_xlim(bootstrap_dict["x_intercept_ci"])
+        ax.set_ylabel("Density")
+        ax.set_xlabel("Date")
+
+        # -----------------------------------------------------
+        # Linear Regression
+        ax = axes[0]
+        sns.regplot(
+            ax=ax,
+            data=data_df,
+            x="x",
+            y="y",
+            ci=95,
+            scatter_kws={"s": 0},
+            line_kws={"linewidth": 0.5},
+            color="grey",
+        )
+
+        ax.errorbar(
+            x=x,
+            y=y,
+            xerr=xerr,
+            yerr=None,
+            ls="none",
+            c=color,
+            capsize=1,
+            label=None,
+            zorder=2,
+            lw=0.5,
+        )
+        ax.scatter(
+            x,
+            y,
+            s=20,
+            color=color,
+            ec="black",
+            lw=0.50,
+            label=None,
+            alpha=0.8,
+            zorder=3,
+        )
+
+        x_int_ci_pretty = str(
+            [round(n) for n in bootstrap_dict["x_intercept_ci"]]
+        ).strip("[]")
+        slope_ci_pretty = (
+            str(["{:.2e}".format(n) for n in bootstrap_dict["slope_ci"]])
+            .strip("[]")
+            .replace("'", "")
+        )
+
+        ax.annotate(
+            (
+                "      Clade: {}".format(label)
+                + "\n"
+                + "\n      R²: {}".format(round(r_squared, 2))
+                + "\n"
+                + "\n       p: {:.2e}{}".format(p_value, p_sig)
+                + "\n"
+                + "\n  Rate: {:.2e}".format(bootstrap_dict["slope_peak"])
+                + "\n           ({})".format(slope_ci_pretty,)
+                + "\n"
+                + "\nMRCA: {}".format(round(bootstrap_dict["x_intercept_peak"]))
+                + "\n           ({})".format(x_int_ci_pretty,)
+            ),
+            xy=(-1, 0.5),
+            xycoords="axes fraction",
+            size=5,
+            ha="left",
+            va="center",
+            bbox=dict(fc="w", lw=0.5),
+        )
+
+        # Extend x-axis by 5% of the range
+        xlim = ax.get_xlim()
+        perc = 0.05
+        x_buff = (xlim[1] - xlim[0]) * perc
+        new_xlim = [xlim[0] - x_buff, xlim[1] + x_buff]
+        ax.set_xlim(new_xlim)
+
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Distance to Clade Root")
+
+    return bootstrap_dict
