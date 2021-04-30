@@ -100,7 +100,7 @@ iqtree_runs : 1
 iqtree_other : ""
 
 # Outgroup Option #1: Reference
-#iqtree_outgroup : "Reference"
+iqtree_outgroup : "Reference"
 
 # Outgroup Option #2: Basal modern clade
 #iqtree_outgroup : "GCA_000323485.1_ASM32348v1_genomic,GCA_000323845.1_ASM32384v1_genomic"
@@ -109,7 +109,7 @@ iqtree_other : ""
 #iqtree_outgroup : "SAMEA3541826"
 
 # Outgroup Option #4: Outgroup
-iqtree_outgroup : "GCA_900637475.1_51108_B01_genomic,GCA_000834295.1_ASM83429v1_genomic"
+#iqtree_outgroup : "GCA_900637475.1_51108_B01_genomic,GCA_000834295.1_ASM83429v1_genomic"
 
 mugration_attribute:
   - branch_major
