@@ -305,7 +305,7 @@ def auspice_export(
         metadata_names,
     ) = export_v2.parse_node_data_and_metadata(tree, augur_json_paths, None)
 
-    # print(data_json["tree"] = convert_tree_to_json_structure(T.root, node_attrs)
+    # data_json["tree"] = convert_tree_to_json_structure(T.root, node_attrs)
 
     # Validate and load config file (could put this in try except)
     export_v2.validate_auspice_config_v2(auspice_config_path)
@@ -363,11 +363,27 @@ def branch_attributes(tree_dict, sub_dict, df, label_col):
             node_type = df["node_type"][node["name"]]
             if node_type != "internal":
                 continue
-            branch_labels = {col: df[col][node["name"]] for col in label_col}
+            branch_labels = {}
+            for col in label_col:
+                col_pretty = (
+                    col.replace("mugration_", "")
+                    .replace("timetree_", "")
+                    .replace("_", " ")
+                    .title()
+                )
+                branch_labels[col_pretty] = df[col][node["name"]]
 
             node["branch_attrs"]["labels"] = branch_labels
 
-        branch_labels = {col: df[col][root["name"]] for col in label_col}
+        branch_labels = {}
+        for col in label_col:
+            col_pretty = (
+                col.replace("mugration_", "")
+                .replace("timetree_", "")
+                .replace("_", " ")
+                .title()
+            )
+            branch_labels[col_pretty] = df[col][node["name"]]
         root["branch_attrs"]["labels"] = branch_labels
         return root
 
