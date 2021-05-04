@@ -352,7 +352,7 @@ def auspice_export(
 
 def branch_attributes(tree_dict, sub_dict, df, label_col):
     """
-    Add branch attributes to an auspice tree
+    Add branch attributes to an auspice tree.
     """
     root = sub_dict
     if "children" not in root:
@@ -371,6 +371,9 @@ def branch_attributes(tree_dict, sub_dict, df, label_col):
                     .replace("_", " ")
                     .title()
                 )
+                # clade needs to stay lowercase
+                if col == "clade":
+                    col_pretty = "clade"
                 branch_labels[col_pretty] = df[col][node["name"]]
 
             node["branch_attrs"]["labels"] = branch_labels
@@ -383,6 +386,9 @@ def branch_attributes(tree_dict, sub_dict, df, label_col):
                 .replace("_", " ")
                 .title()
             )
+            # clade needs to stay lowercase
+            if col == "clade":
+                col_pretty = "clade"
             branch_labels[col_pretty] = df[col][node["name"]]
         root["branch_attrs"]["labels"] = branch_labels
         return root
