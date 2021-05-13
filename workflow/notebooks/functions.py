@@ -432,6 +432,7 @@ def linregress_bootstrap(
         "x_intercept_peak": [],
         "y_intercepts": [],
         "p_value": p_value,
+        "r_squared": r_squared,
     }
 
     for _ in range(nboots):
@@ -475,6 +476,7 @@ def linregress_bootstrap(
     )
     bootstrap_dict["slope_peak"] = peak_slope
     bootstrap_dict["slope_ci"] = slope_ci
+    bootstrap_dict["slope_kde"] = slope_kde
 
     # Estimate a kernel density of the x_intercept/mrca
     x_int_kde = sma.nonparametric.KDEUnivariate(bootstrap_dict["x_intercepts"])
@@ -491,6 +493,7 @@ def linregress_bootstrap(
     x_int_ci_pretty = str([round(n) for n in x_int_ci]).strip("[]")
     bootstrap_dict["x_intercept_peak"] = peak_x_int
     bootstrap_dict["x_intercept_ci"] = x_int_ci
+    bootstrap_dict["x_intercept_kde"] = x_int_kde
 
     if plot:
 
@@ -501,7 +504,7 @@ def linregress_bootstrap(
         plt.rc("font", size=FONTSIZE)
 
         fig, axes = plt.subplots(1, 3, figsize=FIGSIZE, dpi=DPI)
-        fig.subplots_adjust(wspace=0.25)
+        fig.subplots_adjust(wspace=0.40)
         for ax in axes:
             ax.ticklabel_format(axis="y", style="sci", scilimits=(0, 0))
             for spine in ax.spines:
@@ -579,9 +582,9 @@ def linregress_bootstrap(
             (
                 "      Clade: {}".format(label)
                 + "\n"
-                + "\n      R²: {}".format(round(r_squared, 2))
+                + "\n      R²: {}".format(round(bootstrap_dict["r_squared"], 2))
                 + "\n"
-                + "\n       p: {:.2e}{}".format(p_value, p_sig)
+                + "\n       p: {:.2e}{}".format(bootstrap_dict["p_value"], p_sig)
                 + "\n"
                 + "\n  Rate: {:.2e}".format(bootstrap_dict["slope_peak"])
                 + "\n           ({})".format(slope_ci_pretty,)
@@ -589,7 +592,7 @@ def linregress_bootstrap(
                 + "\nMRCA: {}".format(round(bootstrap_dict["x_intercept_peak"]))
                 + "\n           ({})".format(x_int_ci_pretty,)
             ),
-            xy=(-1, 0.5),
+            xy=(-1.15, 0.5),
             xycoords="axes fraction",
             size=5,
             ha="left",
