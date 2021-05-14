@@ -119,6 +119,13 @@ geocode_dict = {}  # Name: [lat, lon]
 # 14. BioSample Accession
 # 15. BioSampleComment
 # 16. BioSample Branch Number
+# 17. Continent
+# 18. Date Mean
+# 19. Date BP Mean
+# 20. Date Err
+# 21. Latitude
+# 22. lon
+# 23. Host Human
 
 output_headers_main = [
     "sample",
@@ -143,6 +150,7 @@ output_headers_main = [
     "date_err",
     "lat",
     "lon",
+    "host_human",
 ]
 
 output_ref_vals = [
@@ -168,6 +176,7 @@ output_ref_vals = [
     0,
     38.7251776,
     -105.607716,
+    "Human",
 ]
 
 
@@ -210,7 +219,8 @@ for sample in samples_list:
               BioSampleGeographicLocation,
               BioSampleBiovar,
               BioSampleBranch,
-              BioSampleComment
+              BioSampleComment,
+              BioSampleHost
             FROM
               BioSample
             LEFT Join
@@ -251,6 +261,7 @@ for sample in samples_list:
         "NA",  # date err [19]
         "NA",  # lat [20]
         "NA",  # lon [21]
+        "NA",  # host human [22]
     ]
 
     if result:
@@ -362,6 +373,15 @@ for sample in samples_list:
             # split on the period and take number before
             branch_number = branch_number.split(".")[0]
             output_main_vals[15] = branch_number
+
+        # host parsing
+        host = result[7]
+        if host:
+            # split on semicolon
+            split_host = host.split(";")
+            # human status as a binary is the second element
+            host_human = split_host[1]
+            output_main_vals[22] = host_human
 
     # Write data to main output file
     with open(output_path_main, "a") as outfile:
