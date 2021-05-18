@@ -82,6 +82,19 @@ rule iqtree_filter:
             --output {output.sites_aln} \
             --log {output.sites_log};
         """
+rule iqtree_stats:
+    """
+    Estimate temporal constraints from filtered iqtree.
+    """
+    input:
+        tree        = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/iqtree.treefile",
+        tsv         = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/metadata.tsv",
+    output:
+        constraints = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/temporal_constraints.txt",
+    log:
+        notebook    = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/processed_iqtree_stats.py.ipynb"
+    notebook:
+        os.path.join(notebooks_dir, "iqtree_stats.py.ipynb")
 
 rule lsd:
     """
@@ -92,6 +105,7 @@ rule lsd:
         tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.treefile",
         aln            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
+        constraints = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/temporal_constraints.txt",
     output:
         timetree_nex   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nex",
         timetree_nwk   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nwk",
@@ -105,9 +119,12 @@ rule lsd:
         outgroup       = config["iqtree_outgroup"],
     shell:
         """
-        cut -f 1,4 {input.tsv} | grep -v "NA" | wc -l | cut -d " " -f 1 > {output.dates};
+        lines=`cut -f 1,4 {input.tsv} | grep -v "NA" | wc -l | cut -d " " -f 1`;
+        constraints=`wc -l {input.constraints} | cut -d " " -f 1`
+        num_dates=`expr $lines + $constraints - 1`;
+        echo ${{num_dates}} > {output.dates}
         cut -f 1,4 {input.tsv} | grep -v "NA" | tail -n+2 | sed 's/\[/b(/g'  | sed 's/\]/)/g' | sed 's/:/,/g' >> {output.dates};
-        echo -e "Reference\t"{config[reference_date_bp]} >> {output.dates};
+        cat {input.constraints} >> {output.dates};
         outgroups=`echo {params.outgroup} | tr ',' '\n'`;
         echo -e "$outgroups" | wc -l > {output.outgroups};
         echo -e "$outgroups" >> {output.outgroups};
@@ -121,6 +138,7 @@ rule lsd:
 			-l '-1' \
 			-q 0.2 \
             -r k \
+            -v 2 \
             -d {output.dates} \
             -g {output.outgroups} \
             -G > {output.log};
@@ -208,3 +226,18 @@ rule mugration:
                 done > {params.outdir}/${{attr}}_states.csv
         done
         """
+
+rule auspice:
+    """
+    Convert trees and metadata to auspice display.
+    """
+    input:
+        timetree = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nex",
+        divtree  = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/iqtree.treefile",
+        mug_tsv  = results_dir + "/mugration/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/metadata.tsv",
+    output:
+        json     = results_dir + "/auspice/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/all.json",
+    log:
+        notebook = results_dir + "/auspice/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/processed_auspice.ipynb",
+    notebook:
+        os.path.join(notebooks_dir, "auspice.py.ipynb")

@@ -67,3 +67,5 @@ dependencies:
     #- phylo-treetime==0.8.1
     - nextstrain-augur==10.3.0
     - bezier==2020.5.19
+# npm:
+# - auspice@2.23.0 -> @2.25.1
