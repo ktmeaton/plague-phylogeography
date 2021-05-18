@@ -18,3 +18,6 @@
 - parse_tree
 - template
 - treemmer
+
+1. Curate host metadata.
+1. Consolidate visualization to auspice notebook.
