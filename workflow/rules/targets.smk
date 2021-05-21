@@ -383,7 +383,7 @@ rule auspice_prune_all:
 # Plot
 #------------------------------------------------------------------------------#
 
-plot_missing_data_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/prune/snippy-multi.snps.missing-data.html",
+plot_missing_data_all_input = expand(results_dir + "/snippy_multi/all/{locus_name}/full/snippy-multi.snps.missing-data.html",
 				                          locus_name = config["reference_locus_name"],
 					                     )
 plot_missing_data_sra_input = [ x.replace("all", "sra") for x in plot_missing_data_all_input ]
