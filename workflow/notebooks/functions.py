@@ -3,10 +3,12 @@ import copy
 from augur import utils, export_v2
 import time
 import pandas as pd
-import matplotlib.pyplot as plt
+
+# import matplotlib.pyplot as plt
 import statsmodels.api as sma
 import statsmodels.formula.api as smfa
-import seaborn as sns
+
+# import seaborn as sns
 
 AUSPICE_GEO_RES = ["country", "province"]
 ALPHA = 0.05
@@ -419,20 +421,29 @@ def linregress_bootstrap(
     # print(results.summary())
     # 0 is intercept, 1 is x
     p_value = results.pvalues[1]
-    p_sig = ""
-    if p_value < ALPHA:
-        p_sig = "*"
 
     bootstrap_dict = {
-        "x": [],
-        "y": [],
-        "slopes": [],
-        "slope_peak": [],
-        "x_intercepts": [],
-        "x_intercept_peak": [],
-        "y_intercepts": [],
+        "n": len(x),
+        "x": x,
+        "y": y,
+        "slope": slope,
         "p_value": p_value,
         "r_squared": r_squared,
+        "x_intercept": x_intercept,
+        "y_intercept": y_intercept,
+        "bootstrap_x": [],
+        "bootstrap_y": [],
+        "bootstrap_slopes": [],
+        "bootstrap_slope_peak": [],
+        "bootstrap_slope_ci": [],
+        "bootstrap_slope_ci_pretty": [],
+        "bootstrap_slope_kde": [],
+        "bootstrap_x_intercepts": [],
+        "bootstrap_x_intercept_peak": [],
+        "bootstrap_x_intercept_ci": [],
+        "bootstrap_x_intercept_ci_pretty": [],
+        "bootstrap_x_intercept_kde": [],
+        "bootstrap_y_intercepts": [],
     }
 
     for _ in range(nboots):
@@ -449,52 +460,59 @@ def linregress_bootstrap(
         ols_model_temp = smfa.ols(formula="y ~ x", data=sample_df)
         results_temp = ols_model_temp.fit()
 
-        bootstrap_dict["x"] += x
-        bootstrap_dict["y"] += y_temp
+        bootstrap_dict["bootstrap_x"] += x
+        bootstrap_dict["bootstrap_y"] += y_temp
 
         # get coefficients
         y_intercept = results_temp.params[0]
         slope = results_temp.params[1]
         x_intercept = (0 - y_intercept) / slope
-        bootstrap_dict["slopes"] += [slope]
-        bootstrap_dict["y_intercepts"] += [y_intercept]
-        bootstrap_dict["x_intercepts"] += [x_intercept]
+        bootstrap_dict["bootstrap_slopes"] += [slope]
+        bootstrap_dict["bootstrap_y_intercepts"] += [y_intercept]
+        bootstrap_dict["bootstrap_x_intercepts"] += [x_intercept]
 
     # Estimate a kernel density of the slope/rate
-    slope_kde = sma.nonparametric.KDEUnivariate(bootstrap_dict["slopes"])
+    slope_kde = sma.nonparametric.KDEUnivariate(bootstrap_dict["bootstrap_slopes"])
     slope_kde.fit()
     peak_slope_i = np.argmax(slope_kde.density)
     peak_slope = slope_kde.support[peak_slope_i]
 
     slope_ci = np.array(
         np.percentile(
-            np.array(bootstrap_dict["slopes"]), (100 - confidence, confidence), axis=0
+            np.array(bootstrap_dict["bootstrap_slopes"]),
+            (100 - confidence, confidence),
+            axis=0,
         )
     )
     slope_ci_pretty = (
         str(["{:.2e}".format(n) for n in slope_ci]).strip("[]").replace("'", "")
     )
-    bootstrap_dict["slope_peak"] = peak_slope
-    bootstrap_dict["slope_ci"] = slope_ci
-    bootstrap_dict["slope_kde"] = slope_kde
+    bootstrap_dict["bootstrap_slope_peak"] = peak_slope
+    bootstrap_dict["bootstrap_slope_ci"] = slope_ci
+    bootstrap_dict["bootstrap_slope_ci_pretty"] = slope_ci_pretty
+    bootstrap_dict["bootstrap_slope_kde"] = slope_kde
 
     # Estimate a kernel density of the x_intercept/mrca
-    x_int_kde = sma.nonparametric.KDEUnivariate(bootstrap_dict["x_intercepts"])
+    x_int_kde = sma.nonparametric.KDEUnivariate(
+        bootstrap_dict["bootstrap_x_intercepts"]
+    )
     x_int_kde.fit()
     peak_x_int_i = np.argmax(x_int_kde.density)
     peak_x_int = x_int_kde.support[peak_x_int_i]
     x_int_ci = np.array(
         np.percentile(
-            np.array(bootstrap_dict["x_intercepts"]),
+            np.array(bootstrap_dict["bootstrap_x_intercepts"]),
             (100 - confidence, confidence),
             axis=0,
         )
     )
     x_int_ci_pretty = str([round(n) for n in x_int_ci]).strip("[]")
-    bootstrap_dict["x_intercept_peak"] = peak_x_int
-    bootstrap_dict["x_intercept_ci"] = x_int_ci
-    bootstrap_dict["x_intercept_kde"] = x_int_kde
+    bootstrap_dict["bootstrap_x_intercept_peak"] = peak_x_int
+    bootstrap_dict["bootstrap_x_intercept_ci"] = x_int_ci
+    bootstrap_dict["bootstrap_x_intercept_ci_pretty"] = x_int_ci_pretty
+    bootstrap_dict["bootstrap_x_intercept_kde"] = x_int_kde
 
+    """
     if plot:
 
         TARGET_RES = [1280, 240]
@@ -518,7 +536,7 @@ def linregress_bootstrap(
         ax = axes[1]
         ax.plot(slope_kde.support, slope_kde.density, color="black", lw=0.5)
         ax.fill_between(slope_kde.support, slope_kde.density, color=color, alpha=0.8)
-        ax.set_xlim(bootstrap_dict["slope_ci"])
+        ax.set_xlim(bootstrap_dict["bootstrap_slope_ci"])
         ax.set_ylabel("Density")
         ax.set_xlabel("Substitution Rate")
 
@@ -527,7 +545,7 @@ def linregress_bootstrap(
         ax = axes[2]
         ax.plot(x_int_kde.support, x_int_kde.density, color="black", lw=0.5)
         ax.fill_between(x_int_kde.support, x_int_kde.density, color=color, alpha=0.8)
-        ax.set_xlim(bootstrap_dict["x_intercept_ci"])
+        ax.set_xlim(bootstrap_dict["bootstrap_x_intercept_ci"])
         ax.set_ylabel("Density")
         ax.set_xlabel("Date")
 
@@ -570,10 +588,10 @@ def linregress_bootstrap(
         )
 
         x_int_ci_pretty = str(
-            [round(n) for n in bootstrap_dict["x_intercept_ci"]]
+            [round(n) for n in bootstrap_dict["bootstrap_x_intercept_ci"]]
         ).strip("[]")
         slope_ci_pretty = (
-            str(["{:.2e}".format(n) for n in bootstrap_dict["slope_ci"]])
+            str(["{:.2e}".format(n) for n in bootstrap_dict["bootstrap_slope_ci"]])
             .strip("[]")
             .replace("'", "")
         )
@@ -586,7 +604,7 @@ def linregress_bootstrap(
                 + "\n"
                 + "\n       p: {:.2e}{}".format(bootstrap_dict["p_value"], p_sig)
                 + "\n"
-                + "\n  Rate: {:.2e}".format(bootstrap_dict["slope_peak"])
+                + "\n  Rate: {:.2e}".format(bootstrap_dict["bootstrap_slope_peak"])
                 + "\n           ({})".format(slope_ci_pretty,)
                 + "\n"
                 + "\nMRCA: {}".format(round(bootstrap_dict["x_intercept_peak"]))
@@ -609,5 +627,6 @@ def linregress_bootstrap(
 
         ax.set_xlabel("Date")
         ax.set_ylabel("Distance to Clade Root")
+    """
 
     return bootstrap_dict
