@@ -4,6 +4,36 @@
 
 ### Commits
 
+## v0.2.8
+
+### Notes
+
+1. Add Jupyter Notebook for processing BEAST output.
+1. Updates to Root-To-Tip Regression and Geographic.
+1. Update and sync all metadata files.
+1. Separated auspice output into beast/ml datasets.
+1. Add beast timetrees to auspice.
+
+### Commits
+
+* [```64df6aac```](https://github.com/ktmeaton/plague-phylogeography//commit/64df6aac) stable notebooks and update docs
+* [```ba6a6c66```](https://github.com/ktmeaton/plague-phylogeography//commit/ba6a6c66) remove screenshot
+* [```7c5b5cd9```](https://github.com/ktmeaton/plague-phylogeography//commit/7c5b5cd9) update autologs
+* [```b874f75b```](https://github.com/ktmeaton/plague-phylogeography//commit/b874f75b) checkpoint notebooks before troubleshooting
+* [```acd301df```](https://github.com/ktmeaton/plague-phylogeography//commit/acd301df) rearrange confidence intervals
+* [```5302b404```](https://github.com/ktmeaton/plague-phylogeography//commit/5302b404) first draft of beast trees
+* [```bb617a82```](https://github.com/ktmeaton/plague-phylogeography//commit/bb617a82) checkpoint beast
+* [```4153f6e8```](https://github.com/ktmeaton/plague-phylogeography//commit/4153f6e8) add legends and white background
+* [```c3f22efb```](https://github.com/ktmeaton/plague-phylogeography//commit/c3f22efb) correct rtt p_values for multiple tests
+* [```faafa254```](https://github.com/ktmeaton/plague-phylogeography//commit/faafa254) add mantel test to iqtree stats
+* [```fc321f4c```](https://github.com/ktmeaton/plague-phylogeography//commit/fc321f4c) update auspice time-dependency
+* [```49314a4e```](https://github.com/ktmeaton/plague-phylogeography//commit/49314a4e) add time-dependency to auspice
+* [```14796fe6```](https://github.com/ktmeaton/plague-phylogeography//commit/14796fe6) update iqtree stats
+* [```c94afdce```](https://github.com/ktmeaton/plague-phylogeography//commit/c94afdce) plotting overhaul
+* [```a7b01119```](https://github.com/ktmeaton/plague-phylogeography//commit/a7b01119) add joint probability of mugration and branch support
+* [```0fc3a25f```](https://github.com/ktmeaton/plague-phylogeography//commit/0fc3a25f) update iqtree stats with ibd
+* [```87c715f1```](https://github.com/ktmeaton/plague-phylogeography//commit/87c715f1) update plot target and load beast dir
+
 ## v0.2.7
 
 ### Notes
@@ -16,10 +46,11 @@
 
 ### Pull Requests
 
-* [```pull/7```](https://github.com/ktmeaton/plague-phylogeography/pull/7) v0.2.7
+* [```pull/7```](https://github.com/ktmeaton/plague-phylogeography//pull/7)
 
 ### Commits
 
+* [```6e469bc6```](https://github.com/ktmeaton/plague-phylogeography//commit/6e469bc6) update docs for v0.2.7
 * [```120aa0a0```](https://github.com/ktmeaton/plague-phylogeography//commit/120aa0a0) Merge pull request #7 from ktmeaton/dev
 * [```f0a2d742```](https://github.com/ktmeaton/plague-phylogeography//commit/f0a2d742) update docs
 * [```faa9731e```](https://github.com/ktmeaton/plague-phylogeography//commit/faa9731e) update database
@@ -71,8 +102,8 @@
 
 ### Pull Requests
 
-* [```pull/6```](https://github.com/ktmeaton/plague-phylogeography/pull/6) v0.2.6
-* [```pull/5```](https://github.com/ktmeaton/plague-phylogeography/pull/5) Megapestis
+* [```pull/6```](https://github.com/ktmeaton/plague-phylogeography//pull/6)
+* [```pull/5```](https://github.com/ktmeaton/plague-phylogeography//pull/5)
 
 ### Commits
 
@@ -288,7 +319,7 @@
 
 ### Pull Requests
 
-* [```pull/4```](https://github.com/ktmeaton/plague-phylogeography/pull/4) v0.2.5
+* [```pull/4```](https://github.com/ktmeaton/plague-phylogeography//pull/4)
 
 ### Commits
 
@@ -351,7 +382,7 @@
 
 ### Pull Requests
 
-* [```pull/3```](https://github.com/ktmeaton/plague-phylogeography/pull/3) v0.2.3
+* [```pull/3```](https://github.com/ktmeaton/plague-phylogeography//pull/3)
 
 ### Commits
 
@@ -387,7 +418,7 @@
 
 ### Pull Requests
 
-* [```pull/2```](https://github.com/ktmeaton/plague-phylogeography/pull/2) v0.2.2
+* [```pull/2```](https://github.com/ktmeaton/plague-phylogeography//pull/2)
 
 ### Commits
 
@@ -457,7 +488,7 @@
 
 ### Pull Requests
 
-* [```pull/1```](https://github.com/ktmeaton/plague-phylogeography/pull/1) Fully automate dev setup with Gitpod
+* [```pull/1```](https://github.com/ktmeaton/plague-phylogeography//pull/1)
 
 ### Commits
 
