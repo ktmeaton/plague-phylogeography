@@ -40,14 +40,15 @@ rule multiqc:
                                           for path in identify_paths(outdir="qualimap", reads_origin=wildcards.reads_origin)]),
         snippy_pairwise_dir = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/"
                                           for path in identify_paths(outdir="snippy_pairwise", reads_origin=wildcards.reads_origin)]),
+        snippy_multi_txt = results_dir + "/snippy_multi/{reads_origin}/snippy-multi.txt",
     wildcard_constraints:
         reads_origin="(assembly|sra|local|all)",
     output:
         results_dir + "/multiqc/{reads_origin}/multiqc_report.html",
-        results_dir + "/multiqc/{reads_origin}/multiqc_plots/pdf/mqc_snippy_variants_1.pdf",
-        results_dir + "/multiqc/{reads_origin}/multiqc_plots/pdf/mqc_qualimap_gc_content_1.pdf",
-        results_dir + "/multiqc/{reads_origin}/multiqc_plots/pdf/mqc_qualimap_genome_fraction_1.pdf",
-        results_dir + "/multiqc/{reads_origin}/multiqc_plots/pdf/mqc_qualimap_coverage_histogram_1.pdf",
+        #results_dir + "/multiqc/{reads_origin}/multiqc_plots/pdf/mqc_snippy_variants_1.pdf",
+        #results_dir + "/multiqc/{reads_origin}/multiqc_plots/pdf/mqc_qualimap_gc_content_1.pdf",
+        #results_dir + "/multiqc/{reads_origin}/multiqc_plots/pdf/mqc_qualimap_genome_fraction_1.pdf",
+        #results_dir + "/multiqc/{reads_origin}/multiqc_plots/pdf/mqc_qualimap_coverage_histogram_1.pdf",
         dir = directory(results_dir + "/multiqc/{reads_origin}/"),
         log = results_dir + "/multiqc/{reads_origin}/multiqc.log",
     resources:
@@ -63,8 +64,11 @@ rule multiqc:
           --export \
           --outdir {output.dir} \
           --force \
+					--module qualimap \
+					--module snippy \
           {input.qualimap_dir} \
-          {input.snippy_pairwise_dir} 2> {output.log};
+          {input.snippy_pairwise_dir} \
+					{input.snippy_multi_txt} 2> {output.log};
           """
 
 # -----------------------------------------------------------------------------#
