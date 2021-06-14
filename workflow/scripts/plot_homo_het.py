@@ -32,7 +32,7 @@ parser.add_argument(
 args = vars(parser.parse_args())
 homo_path = args["homoPath"]
 het_path = args["hetPath"]
-out_file = "".join(het_path.split(".")[0:-2]) + ".homo_het.jpg"
+out_file = "".join(het_path.split(".")[0:-2]) + ".homo_het.png"
 sample = het_path.split(".")[0].split("/")[-1].replace("_", " ")
 
 # Global plot settings
