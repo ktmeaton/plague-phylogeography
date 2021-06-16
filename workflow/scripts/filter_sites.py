@@ -122,6 +122,10 @@ failing_filter_sites = 0
 passing_filter_parsimony_sites = 0
 passing_filter_singleton_sites = 0
 
+total_sites = len(alignment_in[0].seq)
+ambiguous_nucleotides = 0
+total_nucleotides = 0
+
 # Convert the input alignment into a numpy array to operate on columns
 alignment_out_array = np.array([list("") for rec in alignment_in])
 
@@ -167,6 +171,10 @@ for column in range(0, alignment_in_len):
     count_a = column_seq.lower().count("a")
     count_c = column_seq.lower().count("c")
     count_list = [count_g, count_t, count_a, count_c]
+
+    # Count the ambiguous characters
+    count_ambig = len(column_seq) - sum(count_list)
+
     # store the variant type (default singleton)
     site_type = "singleton"
 
@@ -205,13 +213,16 @@ for column in range(0, alignment_in_len):
         elif site_type == "parsimony":
             passing_filter_parsimony_sites += 1
 
+        # Increase the total nucleotides
+        total_nucleotides += len(column_seq)
+        # Increase the total ambiguous nucleotides
+        ambiguous_nucleotides += count_ambig
+
         column_seq_array = np.array([list(char) for char in column_seq])
         join_seq = "".join(column_seq_array[:, 0])
-        # Check if site is variable
-        if join_seq.count(join_seq[0]) != len(join_seq):
-            alignment_out_array = np.append(
-                alignment_out_array, column_seq_array, axis=1
-            )
+        # Add the site/column to the alignment
+        alignment_out_array = np.append(alignment_out_array, column_seq_array, axis=1)
+
     else:
         failing_filter_sites += 1
 
@@ -283,9 +294,21 @@ logging.info(
         passing_filter_parsimony_sites
     )
 )
+logging.info("Filtered nucleotides: " + str(total_nucleotides))
+logging.info(
+    "Ambiguous nucleotides: "
+    + str(ambiguous_nucleotides)
+    + " ("
+    + str(int(ambiguous_nucleotides / total_nucleotides * 100))
+    + "%)"
+)
 
 logging.info("Total sites passing missing data filter: " + str(passing_filter_sites))
 logging.info("Total sites failing missing data filter: " + str(failing_filter_sites))
+logging.info("Total nucleotides passing missing data filter: " + str(total_nucleotides))
+logging.info(
+    "Ambiguous nucleotides passing missing data filter: " + str(ambiguous_nucleotides)
+)
 logging.info("Wrote a multi-fasta alignment of length: " + str(alignment_out_len))
 
 # Clean up
