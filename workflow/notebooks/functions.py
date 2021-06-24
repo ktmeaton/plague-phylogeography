@@ -10,7 +10,6 @@ import statsmodels.formula.api as smfa
 
 # import seaborn as sns
 
-AUSPICE_GEO_RES = ["country", "province"]
 ALPHA = 0.05
 
 
@@ -290,10 +289,14 @@ def auspice_export(
     auspice_config_path=None,
     auspice_colors_path=None,
     auspice_latlons_path=None,
+    auspice_geo_res=None,
 ):
     """
     Export the full Auspice JSON v2 for visualization
     """
+
+    if not auspice_geo_res:
+        auspice_geo_res = ["country", "province"]
     export_v2.configure_warnings()
 
     # Initialize the auspice json
@@ -341,7 +344,7 @@ def auspice_export(
     export_v2.set_geo_resolutions(
         data_json,
         config,
-        AUSPICE_GEO_RES,
+        auspice_geo_res,
         utils.read_lat_longs(auspice_latlons_path),
         node_attrs,
     )

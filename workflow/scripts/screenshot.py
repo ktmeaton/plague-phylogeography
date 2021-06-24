@@ -10,13 +10,14 @@ import time
 # )
 # query = "?d=tree&legend=open&m=div&onlyPanels&p=full&sidebar=closed"
 
-# dataset = "http://localhost:4000/1.PRE"
-# query = "?c=date_mean&d=map&m=div&onlyPanels&p=full&sidebar=closed&tl=blank"
-# url = dataset + query
-# url = "https://nextstrain.org/community/ktmeaton/plague-phylogeography-projects@3a11d4ecd0dc8cdf1354c3599503b71553b75c12/main/full/1.PRE?c=date_mean&label=Biosample%20Accession:NA&m=div&tl=country"
+# LOCAL
+dataset = "http://localhost:4000/1.PRE"
+query = "?c=date_mean&d=map&m=div&onlyPanels&p=full&sidebar=closed&tl=blank"
+url = dataset + query
 
-# Russia Geocoding Compare
-url = "https://nextstrain.org/community/ktmeaton/plague-phylogeography-projects@main/main/full/all?c=countryn&d=map&f_country=Russia&onlyPanels&p=full&sidebar=closed&transmissions=hide"
+print(url)
+print()
+
 wait = 10
 width = 450
 height = 450
