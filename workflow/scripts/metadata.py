@@ -126,6 +126,8 @@ geocode_dict = {}  # Name: [lat, lon]
 # 21. Latitude
 # 22. lon
 # 23. Host Human
+# 24. Sequencing Technology
+# 25. Assembly Method
 
 output_headers_main = [
     "sample",
@@ -151,6 +153,8 @@ output_headers_main = [
     "lat",
     "lon",
     "host_human",
+    "sequencing_technology",
+    "assembly_method",
 ]
 
 output_ref_vals = [
@@ -177,6 +181,8 @@ output_ref_vals = [
     38.7251776,
     -105.607716,
     "Human",
+    "NA",
+    "NA",
 ]
 
 
@@ -220,17 +226,25 @@ for sample in samples_list:
               BioSampleBiovar,
               BioSampleBranch,
               BioSampleComment,
-              BioSampleHost
+              BioSampleHost,
+              NucleotideSequencingTechnology,
+              SRAInstrumentModel,
+              NucleotideAssemblyMethod
             FROM
               BioSample
             LEFT Join
               Assembly ON BioSampleAccession==AssemblyBioSampleAccession
+            LEFT Join
+              Nucleotide ON BioSampleAccession==NucleotideBioSampleAccession
+            LEFT Join
+              SRA ON BioSampleAccession==SRABioSampleAccession
             WHERE
               AssemblyFTPGenbank LIKE '%{}%' OR
               BioSampleAccession LIKE '%{}%'
             """.format(
         sample, sample
     )
+
     result = cur.execute(query).fetchone()
 
     # Reinstate the assembly suffix genomic
@@ -262,6 +276,8 @@ for sample in samples_list:
         "NA",  # lat [20]
         "NA",  # lon [21]
         "NA",  # host human [22]
+        "NA",  # sequencing technology [23]
+        "NA",  # assembly method [24]
     ]
 
     if result:
@@ -382,6 +398,21 @@ for sample in samples_list:
             # human status as a binary is the second element
             host_human = split_host[1]
             output_main_vals[22] = host_human
+
+        # Sequencing technology, try with assembly result
+        sequencing_technology = result[8]
+        if sequencing_technology:
+            output_main_vals[23] = sequencing_technology
+        else:
+            # Try with sra result
+            sequencing_technology = result[9]
+            if sequencing_technology:
+                output_main_vals[23] = sequencing_technology
+
+        # assembly method
+        assembly_method = result[10]
+        if assembly_method:
+            output_main_vals[24] = assembly_method
 
     # Write data to main output file
     with open(output_path_main, "a") as outfile:

@@ -44,7 +44,7 @@ CALIBRATE_BASE_STR = "CALIBRATE {} = {}"
     "--nwk",
     help="Input newick tree.",
     type=click.Path(dir_okay=False, allow_dash=True),
-    required=True,
+    required=False,
 )
 @click.option(
     "--nex",
@@ -57,12 +57,12 @@ def main(
 ):
     """Create a comprehensive nexus for BEAST2."""
 
-    tree = Phylo.read(nwk, "newick")
     metadata_df = pd.read_csv(metadata, sep="\t", index_col="sample")
 
     # Step 1. Create Nexus with alignment
     alignment = AlignIO.read(open(aln), "fasta")
     n = Nexus.Nexus.Nexus()
+    samples = [rec.id for rec in alignment]
 
     for rec in alignment:
         n.add_sequence(sequence=str(rec.seq), name=rec.id)
@@ -72,16 +72,16 @@ def main(
     # Step 2. Add assumptions
     calibrations = []
 
-    for c in tree.get_terminals():
-        date_mean = metadata_df["date_bp_mean"][c.name]
-        date_err = metadata_df["date_err"][c.name]
+    for sample in samples:
+        date_mean = metadata_df["date_bp_mean"][sample]
+        date_err = metadata_df["date_err"][sample]
 
         prior = "fixed({})".format(date_mean)
         if date_err > 1:
             # By default, use uncertainty divided by 2 as std
             prior = "normal({},{})".format(date_mean, date_err / 2)
 
-        calibrations.append(CALIBRATE_BASE_STR.format(c.name, prior))
+        calibrations.append(CALIBRATE_BASE_STR.format(sample, prior))
 
     # Add the formatting char
     assumptions = "\t" + ",\n\t".join(calibrations) + ";"
@@ -97,16 +97,18 @@ def main(
 
     # -----------------
     # Step 3. Add tree
-    writer = Phylo.NewickIO.Writer(trees=[tree])
-    nwk_str = ""
-    for tree_str in writer.to_strings(format_branch_length="%1.10f"):
-        nwk_str = tree_str
+    if nwk:
+        tree = Phylo.read(nwk, "newick")
+        writer = Phylo.NewickIO.Writer(trees=[tree])
+        nwk_str = ""
+        for tree_str in writer.to_strings(format_branch_length="%1.10f"):
+            nwk_str = tree_str
 
-    trees_block = "begin Trees;\n\tTree tree1={}\nend;".format(nwk_str)
+        trees_block = "begin Trees;\n\tTree tree1={}\nend;".format(nwk_str)
 
-    with open(nex, "a") as nex_file:
-        nex_file.write("\n\n")
-        nex_file.write(trees_block)
+        with open(nex, "a") as nex_file:
+            nex_file.write("\n\n")
+            nex_file.write(trees_block)
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # All directories
 EXCLUDE_DIR=(
-  # beast
+  #beast
 	);
 
 if [[ ! $RESULTS_DIR || ! $BACKUP_DIR ]];
