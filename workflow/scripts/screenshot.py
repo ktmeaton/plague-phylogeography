@@ -7,12 +7,13 @@ import time
 # ------------------------------------------
 # URL Construction
 
-clade = "1.ORI"
-dataset = "main/beast/geo/" + clade
+clade = "1.IN"
+# dataset = "main/beast/geo/" + clade
+dataset = "main/ml/" + clade
 geo_res = "province"
-color = "continent"
+color = "branch_major"
 panel = "map"
-transmissions = "show"
+transmissions = "hide"
 repo = "plague-phylogeography-projects"
 base_url = "https://nextstrain.org/community/ktmeaton"
 branch = "main"
