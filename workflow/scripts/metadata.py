@@ -128,6 +128,8 @@ geocode_dict = {}  # Name: [lat, lon]
 # 23. Host Human
 # 24. Sequencing Technology
 # 25. Assembly Method
+# 26. Host Raw
+# 27. Host Order
 
 output_headers_main = [
     "sample",
@@ -155,6 +157,8 @@ output_headers_main = [
     "host_human",
     "sequencing_technology",
     "assembly_method",
+    "host_raw",
+    "host_order",
 ]
 
 output_ref_vals = [
@@ -183,6 +187,8 @@ output_ref_vals = [
     "Human",
     "NA",
     "NA",
+    "Human",
+    "Human",
 ]
 
 
@@ -278,6 +284,8 @@ for sample in samples_list:
         "NA",  # host human [22]
         "NA",  # sequencing technology [23]
         "NA",  # assembly method [24]
+        "NA",  # host human [25]
+        "NA",  # host human [26]
     ]
 
     if result:
@@ -396,8 +404,12 @@ for sample in samples_list:
             # split on semicolon
             split_host = host.split(";")
             # human status as a binary is the second element
+            host_raw = split_host[0]
             host_human = split_host[1]
+            host_order = split_host[2]
             output_main_vals[22] = host_human
+            output_main_vals[25] = host_raw
+            output_main_vals[26] = host_order
 
         # Sequencing technology, try with assembly result
         sequencing_technology = result[8]
