@@ -42,7 +42,7 @@ do
 	if [[ $keep == "true" ]]; then
         echo -e "\tBacking up: ${RESULTS_DIR}/$dirname/";
         echo -e "\t    origin: ${RESULTS_DIR}/$dirname/";
-        echo -e "\t      dest: ${RESULTS_DIR}/$dirname/";
+        echo -e "\t      dest: ${BACKUP_DIR}/$dirname/";
     else
         continue
     fi
