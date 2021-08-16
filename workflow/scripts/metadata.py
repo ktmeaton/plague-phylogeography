@@ -124,12 +124,13 @@ geocode_dict = {}  # Name: [lat, lon]
 # 19. Date BP Mean
 # 20. Date Err
 # 21. Latitude
-# 22. lon
+# 22. Longitude
 # 23. Host Human
 # 24. Sequencing Technology
 # 25. Assembly Method
 # 26. Host Raw
 # 27. Host Order
+# 28. Library Layout
 
 output_headers_main = [
     "sample",
@@ -159,6 +160,7 @@ output_headers_main = [
     "assembly_method",
     "host_raw",
     "host_order",
+    "library_layout",
 ]
 
 output_ref_vals = [
@@ -189,6 +191,7 @@ output_ref_vals = [
     "NA",
     "Human",
     "Human",
+    "NA",
 ]
 
 
@@ -235,7 +238,8 @@ for sample in samples_list:
               BioSampleHost,
               NucleotideSequencingTechnology,
               SRAInstrumentModel,
-              NucleotideAssemblyMethod
+              NucleotideAssemblyMethod,
+              SRALibraryLayout
             FROM
               BioSample
             LEFT Join
@@ -286,6 +290,7 @@ for sample in samples_list:
         "NA",  # assembly method [24]
         "NA",  # host human [25]
         "NA",  # host human [26]
+        "NA",  # library layout [27]
     ]
 
     if result:
@@ -425,6 +430,11 @@ for sample in samples_list:
         assembly_method = result[10]
         if assembly_method:
             output_main_vals[24] = assembly_method
+
+        # library layout
+        library_layout = result[11]
+        if library_layout:
+            output_main_vals[27] = library_layout
 
     # Write data to main output file
     with open(output_path_main, "a") as outfile:
