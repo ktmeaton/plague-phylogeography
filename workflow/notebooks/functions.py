@@ -410,7 +410,7 @@ def linregress_bootstrap(
     data_df = pd.DataFrame({"x": x, "y": y})
 
     # Construct a linear model
-    ols_model = smfa.ols(formula="y ~ x", data=data_df)
+    ols_model = smfa.ols(formula="y ~ x", data=data_df,)
     results = ols_model.fit()
     # print(results.conf_int())
 
