@@ -95,7 +95,8 @@ rule locus_coverage_collect_local:
 # dNdS
 #------------------------------------------------------------------------------#
 
-dnds_collect_all_input = results_dir + "/dnds_collect/all/dnds.txt"
+dnds_collect_all_input = results_dir + expand("/dnds_collect/all/{locus_name}/dnds.txt",
+                                locus_name=config["reference_locus_name"])[0]
 dnds_collect_local_input    = dnds_collect_all_input.replace("all", "local")
 dnds_collect_assembly_input    = dnds_collect_all_input.replace("all", "assembly")
 dnds_collect_sra_input    = dnds_collect_all_input.replace("all", "sra")

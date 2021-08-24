@@ -123,19 +123,26 @@ rule dnds:
     input:
         tab = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.tab",
     output:
-        dnds = results_dir + "/dnds/{reads_origin}/{sample}/{locus_name}/dnds.txt",
+        dnds = results_dir + "/dnds/{reads_origin}/{locus_name}/{sample}.txt",
+    params:
+        locus = config["reference_locus"],
     shell:
         """
-        {scripts_dir}/dnds.sh {wildcards.sample} {input.tab} {output.dnds} {wildcards.locus_name};
+        {scripts_dir}/dnds.sh {wildcards.sample} {input.tab} {output.dnds} {params.locus};
         """
 
+# Yuck the path setup for this is horribly convoluted
 rule dnds_collect:
     """
     Collect dNdS statistics.
     """
     input:
-        files = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/dnds.txt"
-                                      for path in identify_paths(outdir="dnds", reads_origin=wildcards.reads_origin)]),
+        files = lambda wildcards: remove_duplicates([
+                os.path.join(
+                    os.path.dirname(os.path.dirname(path)),
+                    config["reference_locus_name"],
+                    os.path.basename(os.path.dirname(path)) + ".txt")
+                for path in identify_paths(outdir="dnds", reads_origin=wildcards.reads_origin)]),
     output:
         df = results_dir + "/dnds_collect/{reads_origin}/{locus_name}/dnds.txt",
 
