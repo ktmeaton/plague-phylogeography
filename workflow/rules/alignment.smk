@@ -74,6 +74,7 @@ rule snippy_pairwise:
         ref = expand(results_dir + "/data/reference/{reference}/{reference}.gbff", reference=identify_reference_sample()),
     output:
         snippy_dir = directory(results_dir + "/snippy_pairwise/{reads_origin}/{sample}/"),
+        snps_tab   = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.tab",
         snp_txt    = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.txt",
         snippy_aln = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.aligned.fa",
         snps_vcf   = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",

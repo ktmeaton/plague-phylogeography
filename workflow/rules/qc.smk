@@ -123,10 +123,10 @@ rule dnds:
     input:
         tab = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.tab",
     output:
-        dnds = results_dir + "/dnds/{reads_origin}/{sample}/dnds.txt",
+        dnds = results_dir + "/dnds/{reads_origin}/{sample}/{locus_name}/dnds.txt",
     shell:
         """
-        {scripts_dir}/dnds.sh {wildcards.sample} {input.tab} {output.dnds};
+        {scripts_dir}/dnds.sh {wildcards.sample} {input.tab} {output.dnds} {wildcards.locus_name};
         """
 
 rule dnds_collect:
@@ -137,7 +137,7 @@ rule dnds_collect:
         files = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/dnds.txt"
                                       for path in identify_paths(outdir="dnds", reads_origin=wildcards.reads_origin)]),
     output:
-        df = results_dir + "/dnds_collect/{reads_origin}/dnds.txt",
+        df = results_dir + "/dnds_collect/{reads_origin}/{locus_name}/dnds.txt",
 
     shell:
         """
