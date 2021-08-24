@@ -160,7 +160,7 @@ rule tstv:
         vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
     output:
         vcf  = results_dir + "/tstv/{reads_origin}/{locus_name}/{sample}.vcf",
-        tstv = results_dir + "/tstv/{reads_origin}/{locus_name}/{sample}.tstv",
+        tstv = results_dir + "/tstv/{reads_origin}/{locus_name}/{sample}.txt",
     params:
         locus = config["reference_locus"],
     shell:
@@ -173,4 +173,24 @@ rule tstv:
         java -jar $snpsift tstv {input.vcf} > {output.tstv}.raw;
         {scripts_dir}/vcf_tstv.sh {output.tstv}.raw > {output.tstv}
         rm -f {output.tstv}.raw
+        """
+
+rule tstv_collect:
+    """
+    Collect tStV statistics.
+    """
+    input:
+        files = lambda wildcards: remove_duplicates([
+                os.path.join(
+                    os.path.dirname(os.path.dirname(path)),
+                    config["reference_locus_name"],
+                    os.path.basename(os.path.dirname(path)) + ".txt")
+                for path in identify_paths(outdir="tstv", reads_origin=wildcards.reads_origin)]),
+    output:
+        df = results_dir + "/tstv_collect/{reads_origin}/{locus_name}/tstv.txt",
+
+    shell:
+        """
+        echo -e "sample\ttstv" > {output.df};
+        for file in {input.files}; do head -n1 $file; done >> {output.df};
         """

@@ -118,6 +118,33 @@ rule dnds_collect_local:
         dnds_collect_local_input
 
 #------------------------------------------------------------------------------#
+# TsTv
+#------------------------------------------------------------------------------#
+
+tstv_collect_all_input = results_dir + expand("/tstv_collect/all/{locus_name}/tstv.txt",
+                                locus_name=config["reference_locus_name"])[0]
+tstv_collect_local_input    = tstv_collect_all_input.replace("all", "local")
+tstv_collect_assembly_input    = tstv_collect_all_input.replace("all", "assembly")
+tstv_collect_sra_input    = tstv_collect_all_input.replace("all", "sra")
+
+rule tstv_collect_all:
+    input:
+        tstv_collect_all_input
+
+rule tstv_collect_assembly:
+    input:
+        tstv_collect_assembly_input
+
+rule tstv_collect_sra:
+    input:
+        tstv_collect_sra_input,
+
+rule tstv_collect_local:
+    input:
+        tstv_collect_local_input
+
+
+#------------------------------------------------------------------------------#
 # Filtering
 #------------------------------------------------------------------------------#
 rule detect_repeats_reference:
