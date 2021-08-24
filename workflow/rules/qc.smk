@@ -115,3 +115,32 @@ rule locus_coverage_collect:
         head -n1 {input.dep_files[0]} > {output.dep_df}
         for file in {input.dep_files}; do tail -n1 $file; done >> {output.dep_df};
         """
+
+rule dnds:
+    """
+    Calculate pseudo dNdS from pairwise alignments.
+    """
+    input:
+        tab = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.tab",
+    output:
+        dnds = results_dir + "/dnds/{reads_origin}/{sample}/dnds.txt",
+    shell:
+        """
+        {scripts_dir}/dnds.sh {wildcards.sample} {input.tab} {output.dnds};
+        """
+
+rule dnds_collect:
+    """
+    Collect dNdS statistics.
+    """
+    input:
+        files = lambda wildcards: remove_duplicates([os.path.dirname(path) + "/dnds.txt"
+                                      for path in identify_paths(outdir="dnds", reads_origin=wildcards.reads_origin)]),
+    output:
+        df = results_dir + "/dnds_collect/{reads_origin}/dnds.txt",
+
+    shell:
+        """
+        head -n1 {input.files[0]} > {output.df}
+        for file in {input.files}; do tail -n1 $file; done >> {output.df};
+        """

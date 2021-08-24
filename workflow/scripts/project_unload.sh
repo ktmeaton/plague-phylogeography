@@ -11,6 +11,7 @@ EXCLUDE_DIR=(
 	sqlite_db
 	# Output per-sample
 	detect_snp_density
+	dnds
 	eager
 	locus_coverage
 	qualimap

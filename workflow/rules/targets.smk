@@ -89,6 +89,33 @@ rule locus_coverage_collect_sra:
 rule locus_coverage_collect_local:
     input:
         locus_coverage_collect_local_input
+
+
+#------------------------------------------------------------------------------#
+# dNdS
+#------------------------------------------------------------------------------#
+
+dnds_collect_all_input = results_dir + "/dnds_collect/all/dnds.txt"
+dnds_collect_local_input    = dnds_collect_all_input.replace("all", "local")
+dnds_collect_assembly_input    = dnds_collect_all_input.replace("all", "assembly")
+dnds_collect_sra_input    = dnds_collect_all_input.replace("all", "sra")
+
+rule dnds_collect_all:
+    input:
+        dnds_collect_all_input
+
+rule dnds_collect_assembly:
+    input:
+        dnds_collect_assembly_input
+
+rule dnds_collect_sra:
+    input:
+        dnds_collect_sra_input,
+
+rule dnds_collect_local:
+    input:
+        dnds_collect_local_input
+
 #------------------------------------------------------------------------------#
 # Filtering
 #------------------------------------------------------------------------------#
