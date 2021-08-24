@@ -151,3 +151,26 @@ rule dnds_collect:
         head -n1 {input.files[0]} > {output.df}
         for file in {input.files}; do tail -n1 $file; done >> {output.df};
         """
+
+rule tstv:
+    """
+    Calculate tstv from pairwise alignments.
+    """
+    input:
+        vcf = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
+    output:
+        vcf  = results_dir + "/tstv/{reads_origin}/{locus_name}/{sample}.vcf",
+        tstv = results_dir + "/tstv/{reads_origin}/{locus_name}/{sample}.tstv",
+    params:
+        locus = config["reference_locus"],
+    shell:
+        """
+        header=`grep "#" {input.vcf}`
+        locus_sites=`grep {params.locus} {input.vcf}`;
+        echo $header > {output.vcf};
+        echo $locus_sites >> {output.vcf};
+        snpsift=`ls ~/miniconda3/envs/plague-phylogeography/share/*/SnpSift.jar`;
+        java -jar $snpsift tstv {input.vcf} > {output.tstv}.raw;
+        {scripts_dir}/vcf_tstv.sh {output.tstv}.raw > {output.tstv}
+        rm -f {output.tstv}.raw
+        """
