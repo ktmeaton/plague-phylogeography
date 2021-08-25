@@ -90,16 +90,33 @@ rule locus_coverage_collect_local:
     input:
         locus_coverage_collect_local_input
 
+#------------------------------------------------------------------------------#
+# Singletons
+#------------------------------------------------------------------------------#
+
+singletons_all_input        = results_dir + expand("/variant_qc/all/{locus_name}/singletons.txt",
+                                locus_name=config["reference_locus_name"])[0]
+singletons_local_input      = singletons_all_input.replace("all", "local")
+singletons_assembly_input   = singletons_all_input.replace("all", "assembly")
+singletons_sra_input        = singletons_all_input.replace("all", "sra")
+
+rule singletons_all:        input: singletons_all_input
+
+rule singletons_assembly:   input: singletons_assembly_input
+
+rule singletons_sra:        input: singletons_sra_input
+
+rule singletons_local:      input: singletons_local_input
 
 #------------------------------------------------------------------------------#
 # Variant Quality Control
 #------------------------------------------------------------------------------#
 
-variant_qc_all_input = results_dir + expand("/variant_qc/all/{locus_name}/variant_qc.txt",
+variant_qc_all_input        = results_dir + expand("/variant_qc/all/{locus_name}/variant_qc.txt",
                                 locus_name=config["reference_locus_name"])[0]
-variant_qc_local_input    = variant_qc_all_input.replace("all", "local")
-variant_qc_assembly_input    = variant_qc_all_input.replace("all", "assembly")
-variant_qc_sra_input    = variant_qc_all_input.replace("all", "sra")
+variant_qc_local_input      = variant_qc_all_input.replace("all", "local")
+variant_qc_assembly_input   = variant_qc_all_input.replace("all", "assembly")
+variant_qc_sra_input        = variant_qc_all_input.replace("all", "sra")
 
 rule variant_qc_all:
     input:

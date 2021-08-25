@@ -170,6 +170,26 @@ rule heterozygosity:
         {scripts_dir}/heterozygosity.sh {wildcards.sample} {input.subs_vcf} {output.df} {params.locus};
         """
 
+rule singletons:
+    """
+    Calculate singletons across all samples.
+    """
+    input:
+        sub_vcfs    = lambda wildcards: remove_duplicates([
+                        os.path.join(
+                            os.path.dirname(os.path.dirname(path)),
+                            os.path.basename(os.path.dirname(path)),
+                            os.path.basename(os.path.dirname(path)) + ".subs.vcf")
+                        for path in identify_paths(outdir="snippy_pairwise", reads_origin="all")]),
+    output:
+        df          = results_dir + "/variant_qc/{reads_origin}/{locus_name}/singletons.txt",
+    params:
+        locus = config["reference_locus"],
+    shell:
+        """
+        bash {scripts_dir}/singletons.sh {params.locus} {input.sub_vcfs} > {output.df};
+        """
+
 # Yuck the path setup for this is horribly convoluted
 rule variant_qc:
     """
@@ -188,26 +208,19 @@ rule variant_qc:
                             config["reference_locus_name"],
                             os.path.basename(os.path.dirname(path)) + ".txt")
                         for path in identify_paths(outdir="dnds", reads_origin=wildcards.reads_origin)]),
-        het_files  = lambda wildcards: remove_duplicates([
+        het_files   = lambda wildcards: remove_duplicates([
                         os.path.join(
                             os.path.dirname(os.path.dirname(path)),
                             config["reference_locus_name"],
                             os.path.basename(os.path.dirname(path)) + ".txt")
                         for path in identify_paths(outdir="heterozygosity", reads_origin=wildcards.reads_origin)]),
-        sub_vcfs    = lambda wildcards: remove_duplicates([
-                        os.path.join(
-                            os.path.dirname(os.path.dirname(path)),
-                            os.path.basename(os.path.dirname(path)),
-                            os.path.basename(os.path.dirname(path)) + ".subs.vcf")
-                        for path in identify_paths(outdir="snippy_pairwise", reads_origin="all")]),
+        singletons  = results_dir + "/variant_qc/{reads_origin}/{locus_name}/singletons.txt",
     output:
         df          = results_dir + "/variant_qc/{reads_origin}/{locus_name}/variant_qc.txt",
     params:
         locus = config["reference_locus"],
     shell:
         """
-        bash {scripts_dir}/singletons.sh {params.locus} {input.sub_vcfs} > {output.df}.singletons;
-
         # TsTv
         header="sample\ttstv";
         # ns/ss
@@ -215,7 +228,7 @@ rule variant_qc:
         # het
         header="$header\t"`head -n 1 {input.het_files[0]} | sed 's/sample\t//g'`;
         # singletons
-        header="$header\t"`head -n 1 {output.df}.singletons | sed 's/sample\t//g'`;
+        header="$header\t"`head -n 1 {input.singletons[0]} | sed 's/sample\t//g'`;
         echo -e $header > {output.df};
 
         for file in {input.tstv_files};
@@ -233,7 +246,7 @@ rule variant_qc:
             line="$line\t"`tail -n1 $het_file | cut -f 2-`;
 
             # singletons
-            line="$line\t"`grep $sample {output.df}.singletons | cut -f 2-`;
+            line="$line\t"`grep $sample {input.singletons} | cut -f 2-`;
 
             echo $line >> {output.df};
 
