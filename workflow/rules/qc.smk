@@ -214,7 +214,6 @@ rule variant_qc:
                             config["reference_locus_name"],
                             os.path.basename(os.path.dirname(path)) + ".txt")
                         for path in identify_paths(outdir="heterozygosity", reads_origin=wildcards.reads_origin)]),
-        singletons  = results_dir + "/variant_qc/{reads_origin}/{locus_name}/singletons.txt",
     output:
         df          = results_dir + "/variant_qc/{reads_origin}/{locus_name}/variant_qc.txt",
     params:
@@ -227,8 +226,6 @@ rule variant_qc:
         header="$header\t"`head -n 1 {input.dnds_files[0]} | sed 's/sample\t//g'`;
         # het
         header="$header\t"`head -n 1 {input.het_files[0]} | sed 's/sample\t//g'`;
-        # singletons
-        header="$header\t"`head -n 1 {input.singletons} | sed 's/sample\t//g'`;
         echo -e $header > {output.df};
 
         for file in {input.tstv_files};
@@ -244,9 +241,6 @@ rule variant_qc:
             line="$line\t"`tail -n1 $dnds_file | cut -f 2-`;
             # heterozygosity
             line="$line\t"`tail -n1 $het_file | cut -f 2-`;
-
-            # singletons
-            line="$line\t"`grep $sample {input.singletons} | cut -f 2-`;
 
             echo $line >> {output.df};
 
