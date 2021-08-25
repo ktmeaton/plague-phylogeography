@@ -228,7 +228,7 @@ rule variant_qc:
         # het
         header="$header\t"`head -n 1 {input.het_files[0]} | sed 's/sample\t//g'`;
         # singletons
-        header="$header\t"`head -n 1 {input.singletons[0]} | sed 's/sample\t//g'`;
+        header="$header\t"`head -n 1 {input.singletons} | sed 's/sample\t//g'`;
         echo -e $header > {output.df};
 
         for file in {input.tstv_files};
