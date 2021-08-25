@@ -131,27 +131,6 @@ rule dnds:
         {scripts_dir}/dnds.sh {wildcards.sample} {input.tab} {output.dnds} {params.locus};
         """
 
-# Yuck the path setup for this is horribly convoluted
-rule dnds_collect:
-    """
-    Collect dNdS statistics.
-    """
-    input:
-        files = lambda wildcards: remove_duplicates([
-                os.path.join(
-                    os.path.dirname(os.path.dirname(path)),
-                    config["reference_locus_name"],
-                    os.path.basename(os.path.dirname(path)) + ".txt")
-                for path in identify_paths(outdir="dnds", reads_origin=wildcards.reads_origin)]),
-    output:
-        df = results_dir + "/dnds_collect/{reads_origin}/{locus_name}/dnds.txt",
-
-    shell:
-        """
-        head -n1 {input.files[0]} > {output.df}
-        for file in {input.files}; do tail -n1 $file; done >> {output.df};
-        """
-
 rule tstv:
     """
     Calculate tstv from pairwise alignments.
@@ -175,6 +154,23 @@ rule tstv:
         rm -f {output.tstv}.raw
         """
 
+rule heterozygosity:
+    """
+    Calculate heterozygosity statistics.
+    """
+    input:
+        raw_vcf     = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.raw.vcf",
+        subs_vcf    = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
+    output:
+        df          = results_dir + "/heterozygosity/{reads_origin}/{locus_name}/{sample}.txt",
+    params:
+        locus       = config["reference_locus"],
+    shell:
+        """
+        {scripts_dir}/heterozygosity.sh {wildcards.sample} {input.raw_vcf} {output.df} {params.locus};
+        """
+
+# Yuck the path setup for this is horribly convoluted
 rule variant_qc:
     """
     Collect statistics for ns/ss, TsTv.
@@ -192,12 +188,12 @@ rule variant_qc:
                             config["reference_locus_name"],
                             os.path.basename(os.path.dirname(path)) + ".txt")
                         for path in identify_paths(outdir="dnds", reads_origin=wildcards.reads_origin)]),
-        raw_vcfs    = lambda wildcards: remove_duplicates([
+        het_files  = lambda wildcards: remove_duplicates([
                         os.path.join(
                             os.path.dirname(os.path.dirname(path)),
-                            os.path.basename(os.path.dirname(path)),
-                            os.path.basename(os.path.dirname(path)) + ".raw.vcf")
-                        for path in identify_paths(outdir="snippy_pairwise", reads_origin="all")]),
+                            config["reference_locus_name"],
+                            os.path.basename(os.path.dirname(path)) + ".txt")
+                        for path in identify_paths(outdir="heterozygosity", reads_origin=wildcards.reads_origin)]),
         sub_vcfs    = lambda wildcards: remove_duplicates([
                         os.path.join(
                             os.path.dirname(os.path.dirname(path)),
@@ -211,9 +207,15 @@ rule variant_qc:
     shell:
         """
         bash {scripts_dir}/singletons.sh {params.locus} {input.sub_vcfs} > {output.df}.singletons;
-        bash {scripts_dir}/heterozygosity.sh {params.locus} {input.raw_vcfs} > {output.df}.heterozygosity;
 
-        header="sample\ttstv\tcds_sites\tns_sites\tss_sites\tns_ss_ratio\tall_sites\tsingleton_sites\tsingleton_ratio\thomo_het_sites\thomo_sites\thet_sites\thet_ratio"
+        # TsTv
+        header="sample\ttstv";
+        # ns/ss
+        header="$header\t"`head -n 1 {input.dnds_files[0]} | sed 's/sample\t//g'`;
+        # het
+        header="$header\t"`head -n 1 {input.het_files[0]} | sed 's/sample\t//g'`;
+        # singletons
+        header="$header\t"`head -n 1 {output.df}.singletons | sed 's/sample\t//g'`;
         echo -e $header > {output.df};
 
         for file in {input.tstv_files};
@@ -221,15 +223,17 @@ rule variant_qc:
             tstv_file="$file";
             sample=`head -n1 $tstv_file | cut -f 1`
             dnds_file=`echo $file | sed 's/tstv/dnds/g'`;
+            het_file=`echo $file | sed 's/tstv/heterozygosity/g'`;
 
             # TsTv
             line=`head -n1 $tstv_file`;
             # ns/ss
             line="$line\t"`tail -n1 $dnds_file | cut -f 2-`;
+            # heterozygosity
+            line="$line\t"`tail -n1 $het_file | cut -f 2-`;
+
             # singletons
             line="$line\t"`grep $sample {output.df}.singletons | cut -f 2-`;
-            # heterozygosity
-            line="$line\t"`grep $sample {output.df}.heterozygosity | cut -f 2-`;
 
             echo $line >> {output.df};
 

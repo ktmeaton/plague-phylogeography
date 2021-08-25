@@ -12,7 +12,7 @@ do
     nonsyn_query="$nonsyn_query\|$kw";
 done
 
-echo -e "sample\tsites\tns_sites\tss_sites\tns_ss_ratio" > $OUTPUT;
+echo -e "sample\tcds_sites\tns_sites\tss_sites\tns_ss_ratio" > $OUTPUT;
 
 sites=`grep $LOCI $INPUT | grep snp | wc -l`
 syn=`grep $LOCI $INPUT| grep snp | cut -f 11 | grep synonymous | wc -l`
