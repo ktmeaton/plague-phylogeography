@@ -13,9 +13,11 @@ EXCLUDE_DIR=(
 	detect_snp_density
 	dnds
 	eager
+	heterozygosity
 	locus_coverage
 	qualimap
 	snippy_pairwise
+	tstv
 	);
 
 if [[ ! $RESULTS_DIR || ! $BACKUP_DIR ]];
