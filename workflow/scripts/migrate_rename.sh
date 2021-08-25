@@ -13,6 +13,8 @@ FILTER=$2
 INDIR=$3
 OUTDIR=$4
 SYMDIR=$5
+MIGRATE="${6:-true}"
+SYMLINK="${7:-true}"
 
 # Exit if the metadata file was not supplied
 if [[ ! $METADATA ]] || [[ ! $INDIR ]] || [[ ! $OUTDIR ]]; then
@@ -28,27 +30,25 @@ do
   out_dir="$OUTDIR/$origin/$sample";
 
   # Create new sample directory and migrate fastq
-  if [[ ! -d $out_dir ]]; then
+  if [[ $MIGRATE == "true" ]] && [[ ! -d $out_dir ]]; then
     echo "Migrating ${in_dir} to ${out_dir}"
     mkdir -p $out_dir;
     cp -r $in_dir/* $out_dir;
   fi;
 
   # Make sym link directory
-  if [[ $SYMDIR ]]; then
+  if [[ $SYMLINK == "true" ]] && [[ $SYMDIR ]]; then
     sym_dir="$SYMDIR/Sample_$sample";
     mkdir -p $sym_dir;
 
     # Rename to illumina format
     lane=1;
-    for r1_file in `ls ${out_dir}/*_1.fastq.gz`;
-    do
-    r2_file=`echo $r1_file | sed 's/_1.fastq.gz/_2.fastq.gz/g'`;
-    filename=`basename $r1_file`;
-    run=`echo $filename | cut -d "_" -f 1`;
-    r1_illumina="${sample}_${run}_L00${lane}_R1_001.fastq.gz"
-    r2_illumina=`echo $r1_illumina | sed 's/R1/R2/g'`;
-
+    for r1_file in `ls ${out_dir}/*_1.fastq.gz`; do
+      r2_file=`echo $r1_file | sed 's/_1.fastq.gz/_2.fastq.gz/g'`;
+      filename=`basename $r1_file`;
+      run=`echo $filename | cut -d "_" -f 1`;
+      r1_illumina="${sample}_${run}_L00${lane}_R1_001.fastq.gz"
+      r2_illumina=`echo $r1_illumina | sed 's/_R1/_R2/g'`;
     # Symlink rename to the R1 file
     if [[ ! -L $sym_dir/$r1_illumina ]]; then
         echo "Symlinking $r1_file to $sym_dir/$r1_illumina";
