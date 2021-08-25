@@ -187,7 +187,7 @@ rule singletons:
         locus = config["reference_locus"],
     shell:
         """
-        bash {scripts_dir}/singletons.sh {params.locus} {input.sub_vcfs} > {output.df};
+        bash {scripts_dir}/singletons.sh {params.locus} {output.df} {input.sub_vcfs};
         """
 
 # Yuck the path setup for this is horribly convoluted
