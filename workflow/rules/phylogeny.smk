@@ -89,8 +89,7 @@ rule iqtree_stats:
     input:
         tree        = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/iqtree.treefile",
         tsv         = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/metadata.tsv",
-        dnds        = results_dir + "/dnds_collect/{reads_origin}/{locus_name}/dnds.txt",
-        tstv        = results_dir + "/tstv_collect/{reads_origin}/{locus_name}/tstv.txt",
+        variant_qc  = results_dir + "/variant_qc/{reads_origin}/{locus_name}/variant_qc.txt",
     output:
         constraints = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/temporal_constraints.txt",
     log:

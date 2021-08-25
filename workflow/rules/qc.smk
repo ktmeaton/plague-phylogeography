@@ -175,22 +175,63 @@ rule tstv:
         rm -f {output.tstv}.raw
         """
 
-rule tstv_collect:
+rule variant_qc:
     """
-    Collect tStV statistics.
+    Collect statistics for ns/ss, TsTv.
     """
     input:
-        files = lambda wildcards: remove_duplicates([
-                os.path.join(
-                    os.path.dirname(os.path.dirname(path)),
-                    config["reference_locus_name"],
-                    os.path.basename(os.path.dirname(path)) + ".txt")
-                for path in identify_paths(outdir="tstv", reads_origin=wildcards.reads_origin)]),
+        tstv_files  = lambda wildcards: remove_duplicates([
+                        os.path.join(
+                            os.path.dirname(os.path.dirname(path)),
+                            config["reference_locus_name"],
+                            os.path.basename(os.path.dirname(path)) + ".txt")
+                        for path in identify_paths(outdir="tstv", reads_origin=wildcards.reads_origin)]),
+        dnds_files  = lambda wildcards: remove_duplicates([
+                        os.path.join(
+                            os.path.dirname(os.path.dirname(path)),
+                            config["reference_locus_name"],
+                            os.path.basename(os.path.dirname(path)) + ".txt")
+                        for path in identify_paths(outdir="dnds", reads_origin=wildcards.reads_origin)]),
+        raw_vcfs    = lambda wildcards: remove_duplicates([
+                        os.path.join(
+                            os.path.dirname(os.path.dirname(path)),
+                            os.path.basename(os.path.dirname(path)),
+                            os.path.basename(os.path.dirname(path)) + ".raw.vcf")
+                        for path in identify_paths(outdir="snippy_pairwise", reads_origin="all")]),
+        sub_vcfs    = lambda wildcards: remove_duplicates([
+                        os.path.join(
+                            os.path.dirname(os.path.dirname(path)),
+                            os.path.basename(os.path.dirname(path)),
+                            os.path.basename(os.path.dirname(path)) + ".subs.vcf")
+                        for path in identify_paths(outdir="snippy_pairwise", reads_origin="all")]),
     output:
-        df = results_dir + "/tstv_collect/{reads_origin}/{locus_name}/tstv.txt",
-
+        df          = results_dir + "/variant_qc/{reads_origin}/{locus_name}/variant_qc.txt",
+    params:
+        locus = config["reference_locus"],
     shell:
         """
-        echo -e "sample\ttstv" > {output.df};
-        for file in {input.files}; do head -n1 $file; done >> {output.df};
+        bash {scripts_dir}/singletons.sh {params.locus} {input.sub_vcfs} > {output.df}.singletons;
+        bash {scripts_dir}/heterozygosity.sh {params.locus} {input.raw_vcfs} > {output.df}.heterozygosity;
+
+        header="sample\ttstv\tcds_sites\tns_sites\tss_sites\tns_ss_ratio\tall_sites\tsingleton_sites\tsingleton_ratio\thomo_het_sites\thomo_sites\thet_sites\thet_ratio"
+        echo -e $header > {output.df};
+
+        for file in {input.tstv_files};
+        do
+            tstv_file="$file";
+            sample=`head -n1 $tstv_file | cut -f 1`
+            dnds_file=`echo $file | sed 's/tstv/dnds/g'`;
+
+            # TsTv
+            line=`head -n1 $tstv_file`;
+            # ns/ss
+            line="$line\t"`tail -n1 $dnds_file | cut -f 2-`;
+            # singletons
+            line="$line\t"`grep $sample {output.df}.singletons | cut -f 2-`;
+            # heterozygosity
+            line="$line\t"`grep $sample {output.df}.heterozygosity | cut -f 2-`;
+
+            echo $line >> {output.df};
+
+        done;
         """

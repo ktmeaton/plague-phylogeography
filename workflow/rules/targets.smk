@@ -92,57 +92,30 @@ rule locus_coverage_collect_local:
 
 
 #------------------------------------------------------------------------------#
-# dNdS
+# Variant Quality Control
 #------------------------------------------------------------------------------#
 
-dnds_collect_all_input = results_dir + expand("/dnds_collect/all/{locus_name}/dnds.txt",
+variant_qc_all_input = results_dir + expand("/variant_qc/all/{locus_name}/variant_qc.txt",
                                 locus_name=config["reference_locus_name"])[0]
-dnds_collect_local_input    = dnds_collect_all_input.replace("all", "local")
-dnds_collect_assembly_input    = dnds_collect_all_input.replace("all", "assembly")
-dnds_collect_sra_input    = dnds_collect_all_input.replace("all", "sra")
+variant_qc_local_input    = variant_qc_all_input.replace("all", "local")
+variant_qc_assembly_input    = variant_qc_all_input.replace("all", "assembly")
+variant_qc_sra_input    = variant_qc_all_input.replace("all", "sra")
 
-rule dnds_collect_all:
+rule variant_qc_all:
     input:
-        dnds_collect_all_input
+        variant_qc_all_input
 
-rule dnds_collect_assembly:
+rule variant_qc_assembly:
     input:
-        dnds_collect_assembly_input
+        variant_qc_assembly_input
 
-rule dnds_collect_sra:
+rule variant_qc_sra:
     input:
-        dnds_collect_sra_input,
+        variant_qc_sra_input,
 
-rule dnds_collect_local:
+rule variant_qc_local:
     input:
-        dnds_collect_local_input
-
-#------------------------------------------------------------------------------#
-# TsTv
-#------------------------------------------------------------------------------#
-
-tstv_collect_all_input = results_dir + expand("/tstv_collect/all/{locus_name}/tstv.txt",
-                                locus_name=config["reference_locus_name"])[0]
-tstv_collect_local_input    = tstv_collect_all_input.replace("all", "local")
-tstv_collect_assembly_input    = tstv_collect_all_input.replace("all", "assembly")
-tstv_collect_sra_input    = tstv_collect_all_input.replace("all", "sra")
-
-rule tstv_collect_all:
-    input:
-        tstv_collect_all_input
-
-rule tstv_collect_assembly:
-    input:
-        tstv_collect_assembly_input
-
-rule tstv_collect_sra:
-    input:
-        tstv_collect_sra_input,
-
-rule tstv_collect_local:
-    input:
-        tstv_collect_local_input
-
+        variant_qc_local_input
 
 #------------------------------------------------------------------------------#
 # Filtering
