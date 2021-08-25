@@ -159,15 +159,15 @@ rule heterozygosity:
     Calculate heterozygosity statistics.
     """
     input:
-        raw_vcf     = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.raw.vcf",
         subs_vcf    = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
+        raw_vcf     = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.raw.vcf",
     output:
         df          = results_dir + "/heterozygosity/{reads_origin}/{locus_name}/{sample}.txt",
     params:
         locus       = config["reference_locus"],
     shell:
         """
-        {scripts_dir}/heterozygosity.sh {wildcards.sample} {input.raw_vcf} {output.df} {params.locus};
+        {scripts_dir}/heterozygosity.sh {wildcards.sample} {input.subs_vcf} {output.df} {params.locus};
         """
 
 # Yuck the path setup for this is horribly convoluted

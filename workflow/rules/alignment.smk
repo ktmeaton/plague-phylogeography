@@ -78,6 +78,7 @@ rule snippy_pairwise:
         snp_txt    = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.txt",
         snippy_aln = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.aligned.fa",
         snps_vcf   = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.subs.vcf",
+        raw_vcf    = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.raw.vcf",
         log        = results_dir + "/snippy_pairwise/{reads_origin}/{sample}/{sample}.log",
     resources:
         load=100,
