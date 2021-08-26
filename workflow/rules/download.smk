@@ -18,11 +18,13 @@ rule download_sra:
     cpus = 1,
     time_min = 360,
   shell:
-    "{scripts_dir}/download_sra.sh \
+    """
+    {scripts_dir}/download_sra.sh \
         {project_dir} \
         {results_dir}/data/sra/ \
         {wildcards.sample_dir} \
-        {wildcards.sample} 1> {output.log}"
+        {wildcards.sample} 1> {output.log}
+    """
 
 rule download_assembly:
     """
@@ -35,22 +37,21 @@ rule download_assembly:
         ext = "(fna|gbff|gff)",
 	      reads_origin = "(reference|assembly)",
     params:
-		    ftp = lambda wildcards: globals()["identify_" + wildcards.reads_origin + "_ftp"]()
+		    ftp = lambda wildcards: [
+          ftp for ftp in
+          globals()["identify_" + wildcards.reads_origin + "_ftp"]()
+          if wildcards.sample in ftp][0]
     resources:
         cpus = 1,
-		shell:
-        """
-        for url in {params.ftp};
-				do
-				    if [[ $url =~ {wildcards.sample} ]]; then
-						  sample_url=`echo $url | sed "s/fna/{wildcards.ext}/g"`;
-							wget --quiet -O - $sample_url | gunzip -c > {output.file};
-							if [[ {wildcards.reads_origin} == "reference" && ({wildcards.ext} == "fna" || {wildcards.ext} == "gff") ]]; then
-							    python {scripts_dir}/rename_headers.py --file {output.file};
-							fi
-						fi;
-				done
-				"""
+    shell:
+      """
+      wget --quiet -O - {params.ftp} | gunzip -c > {output.file};
+      if [[ {wildcards.reads_origin} == "reference" ]]; then
+        if [[ {wildcards.ext} == "fna" || {wildcards.ext} == "gff" ]]; then
+          python {scripts_dir}/rename_headers.py --file {output.file};
+        fi;
+      fi;
+      """
 
 rule locus_bed:
   """
