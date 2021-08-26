@@ -106,7 +106,7 @@ rule lsd:
         tree           = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/iqtree.treefile",
         aln            = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/snippy-multi.snps.aln",
         constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
-        constraints = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/temporal_constraints.txt",
+        constraints    = results_dir + "/iqtree_stats/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/temporal_constraints.txt",
     output:
         timetree_nex   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nex",
         timetree_nwk   = results_dir + "/lsd/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/lsd.timetree.nwk",
@@ -182,7 +182,7 @@ rule mugration:
     Run mugration as implemented in treetime.
     """
     input:
-        tsv  = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/metadata.tsv",
+        tsv  = results_dir + "/iqtree_stats/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/metadata.tsv",
         tree = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/iqtree.treefile",
     output:
         tsv  = results_dir + "/mugration/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/metadata.tsv",
