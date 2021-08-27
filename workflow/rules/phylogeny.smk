@@ -160,21 +160,24 @@ rule beast:
     Prepare input files for beast1 and beast2
     """
     input:
-        tsv      = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/metadata.tsv",
-        aln      = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-sites/snippy-multi.snps.aln",
-        constant_sites = results_dir + "/snippy_multi/{reads_origin}/{locus_name}/full/snippy-multi.constant_sites.txt",
+        tsv             = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-taxa/metadata.tsv",
+        aln             = results_dir + "/iqtree/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/filter-sites/snippy-multi.snps.aln",
     output:
         latlon   = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.latlon.txt",
         dates    = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.dates.txt",
         aln      = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.fasta",
-        constant_sites = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.constant-sites.txt",
+        nex      = results_dir + "/beast/{reads_origin}/{locus_name}/{prune}/filter{missing_data}/beast.nex",
 
     shell:
         """
         tail -n+2 {input.tsv} | cut -f 1,19,20 > {output.dates};
         cut -f 1,21,22 {input.tsv} > {output.latlon};
         cp {input.aln} {output.aln};
-        cp {input.constant_sites} {output.constant_sites};
+
+        python {scripts_dir}/beast_nexus.py \
+            -m {input.tsv} \
+            -a {input.aln} \
+            --nex {output.nex};
         """
 
 rule mugration:
