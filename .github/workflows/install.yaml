@@ -53,7 +53,7 @@ jobs:
       - name: install lsd2
         run: |
           wget https://github.com/tothuhien/lsd2/releases/download/v1.9.9/lsd2_unix ;
-          mv lsd2_unix /usr/share/miniconda/envs/plague-phylogeography/bin/ ;
+          mv lsd2_unix /home/runner/miniconda/envs/plague-phylogeography/bin/lsd2 ;
           conda-activate plague-phylogeography ;
           which lsd2 ;
           lsd2 -h ;
