@@ -20,6 +20,11 @@ RUN conda install -c conda-forge mamba \
     && mamba clean -a \
     && echo "source activate plague-phylogeography" > ~/.bashrc;
 
+# Install lsd2
+RUN wget https://github.com/tothuhien/lsd2/releases/download/v1.9.9/lsd2_unix \
+    && mv lsd2_unix /opt/conda/envs/plague-phylogeography/bin/lsd2;
+
+
 ENV PATH /opt/conda/envs/plague-phylogeography/bin:$PATH
 ENV IN_DOCKER_CONTAINER Yes
 
