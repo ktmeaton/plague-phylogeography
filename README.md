@@ -11,15 +11,26 @@
 
 ## Pipeline Overview
 
-1. Create a metadata database of NCBI genomic assemblies and SRA data (```NCBImeta```)
-1. Download assemblies and SRA fastq files (```sra-tools```)
-1. Build SnpEff database from reference (```SnpEff```)
-1. Align to reference genome (```snippy```,```eager```)
-1. Mask problematic regions (```dustmasker```, ```mummer```, ```vcftools```)
-1. Evaluate statistics (```qualimap```, ```multiqc```)
-1. Construct a Maximum Likelihood phylogeny (```iqtree```)
-1. Optimize time-scaled phylogeny (```augur```, ```treetime```)
-1. Web-based narrative visualization (```auspice```)
+1. Create a metadata database of NCBI genomic assemblies and SRA data.
+    - [`NCBImeta`](https://ktmeaton.github.io/NCBImeta/)
+1. Download assemblies and SRA fastq files.
+    - [`sra-tools`](https://github.com/ncbi/sra-tools)
+1. Align assemblies and fastq files to a reference genome.
+    - [`snippy`](https://github.com/tseemann/snippy)
+    - [`nf-core/eager`](https://github.com/nf-core/eager)
+1. Mask problematic regions.
+    - [`dustmasker`](http://nebc.nox.ac.uk/bioinformatics/docs/dustmasker.html)
+    - [`mummer`](https://github.com/mummer4/mummer)
+    - [`vctools`](https://github.com/vcftools/vcftools)
+1. Evaluate statistics.
+    - [`qualimap`](http://qualimap.conesalab.org/)
+    - [`multiqc`](https://github.com/ewels/MultiQC)
+1. Estimate a maximum-likelihood phylogeny.
+    - [`iqtree`](https://github.com/iqtree/iqtree2)
+1. Estimate a time-scaled phylogeny.
+    - [`lsd2`](https://github.com/tothuhien/lsd2)
+1. Web-based visualization.
+    - [`auspice`](https://github.com/nextstrain/auspice)
 
 ## Showcase
 
@@ -29,7 +40,7 @@
 </a>
 </div>
 
-* **Presenting “The Plague”: Digital Exhibits as Interdisciplinary Method.**  
+- **Presenting “The Plague”: Digital Exhibits as Interdisciplinary Method.**  
 [DHSI Conference and Colloquium](https://dhsi.org/colloquium/). June 5, 2020.  
 Katherine Eaton, Nukhet Varlik, Ann Carmichael, Brian Golding, Hendrik Poinar.  
 [Digital Exhibit](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/DHSI2020Remote) • [Talk](https://omekas.library.uvic.ca/files/original/bd5516ed57c38f589a6054df32e9aafcdfb1aeb9.mp4)
@@ -40,7 +51,7 @@ Katherine Eaton, Nukhet Varlik, Ann Carmichael, Brian Golding, Hendrik Poinar.
 </a>
 </div>
 
-* **Plagues of the Past and Present.**  
+- **Plagues of the Past and Present.**  
 [Lewis & Ruth Sherman Centre for Digital Scholarship](https://dhsi.org/colloquium/). June 2, 2020.  
 Katherine Eaton  
 [Digital Exhibit](https://nextstrain.org/community/narratives/ktmeaton/plague-phylogeography/plagueSCDS2020Remote) • [Blog Post 1](https://scds.ca/constructing-a-digital-disease-exhibit/) • [Blog Post 2](https://scds.ca/plagues-of-the-past-and-present/) *
@@ -54,18 +65,38 @@ git clone https://github.com/ktmeaton/plague-phylogeography.git
 cd plague-phylogeography
 ```
 
-### 1. Conda (Laptop)
+### 1. Conda
+
+- Create a conda environment with dependencies.
+- Mamba is not strictly necessary but it is heavily recommended.
 
 ```bash
 conda install -c conda-forge mamba
 mamba env create -f workflow/envs/merge/environment.yaml
-conda activate plague-phylogeography
+```
+
+- Install LSD2 (not available through conda).
+
+```bash
+# Download binary
+wget https://github.com/tothuhien/lsd2/releases/download/v1.9.9/lsd2_unix
+# Move into the conda binary path and rename
+mv lsd2_unix ~/miniconda3/envs/plague-phylogeography/bin/lsd2
+```
+
+- Test the help command.
+
+```bash
 snakemake --profile profiles/laptop help
 ```
 
 (While mamba is not strictly necessary, it is heavily recommended.)
 
-## 2. Docker (Laptop)
+```bash
+snakemake --profile profiles/laptop all
+```
+
+### 2. Docker
 
 ```bash
 docker pull ktmeaton/plague-phylogeography:dev
@@ -76,19 +107,22 @@ docker run \
   snakemake --profile profiles/laptop help
 ```
 
-### 3. Singularity (HPC - Compute Canada)
+## Demo
+
+### 1. Conda
 
 ```bash
-singularity pull docker://docker.io/ktmeaton/plague-phylogeography:dev
-singularity exec plague_phylogeography_dev.sif \
-  snakemake --profile profiles/compute-canada help
+snakemake --profile profiles/laptop all
 ```
 
-If you will be downloading data from the SRA with singularity, the sra toolkit must be configured:
+### 2. Docker
 
 ```bash
-mkdir -p ~/.ncbi/
-printf '/LIBS/GUID = "%s"\n' `uuidgen` > ~/.ncbi/user-settings.mkfg;
+docker run \
+  -v $PWD:/pipeline \
+  -w /pipeline \
+  ktmeaton/plague-phylogeography:dev \
+  snakemake --profile profiles/laptop all
 ```
 
 ## Credits
