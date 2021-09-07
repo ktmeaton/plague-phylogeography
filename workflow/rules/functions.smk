@@ -27,7 +27,8 @@ def identify_reference_ftp():
     conn = sqlite3.connect(sqlite_db_path)
     cur = conn.cursor()
     ref_url = cur.execute(config["sqlite_select_command_ref"]).fetchone()[0]
-    ref_fna_gz = ref_url.split("/")[9] + "_genomic.fna.gz"
+    #ref_fna_gz = ref_url.split("/")[9] + "_genomic.fna.gz"
+    ref_fna_gz = ref_url.split("/")[9] + "_genomic"
     ref_url = [ref_url + "/" + ref_fna_gz]
     cur.close()
     return ref_url
@@ -66,7 +67,8 @@ def identify_assembly_ftp():
             if len(asm_ftp_list) >= max_datasets:
                 break
             if url:
-                asm_ftp_list.append(url + "/"+ url.split("/")[9] + "_genomic.fna.gz")
+                #asm_ftp_list.append(url + "/"+ url.split("/")[9] + "_genomic.fna.gz")
+                asm_ftp_list.append(url + "/"+ url.split("/")[9] + "_genomic")
     cur.close()
     return asm_ftp_list
 

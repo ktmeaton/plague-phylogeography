@@ -38,7 +38,7 @@ rule download_assembly:
 	      reads_origin = "(reference|assembly)",
     params:
 		    ftp = lambda wildcards: [
-          ftp for ftp in
+          "{}.{}.gz".format(ftp, wildcards.ext) for ftp in
           globals()["identify_" + wildcards.reads_origin + "_ftp"]()
           if wildcards.sample in ftp][0]
     resources:
