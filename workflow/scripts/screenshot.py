@@ -7,11 +7,11 @@ import time
 # ------------------------------------------
 # URL Construction
 
-clade = "1.IN"
+clade = "all"
 # dataset = "main/beast/geo/" + clade
 dataset = "main/ml/" + clade
 geo_res = "province"
-color = "branch_major"
+color = "population_inferred"
 panel = "map"
 transmissions = "hide"
 repo = "plague-phylogeography-projects"
@@ -31,15 +31,18 @@ options = [
 ]
 query = "?" + "&".join(options)
 url = project + query
-
 output = "{}_{}_{}.pdf".format(clade, panel, color)
+
+url = "https://nextstrain.org/community/ktmeaton/plague-phylogeography-projects@main/main/ml/all?branchLabel=Branch%20Support%20Conf%20Char&branches=hide&d=tree&l=scatter&legend=closed&onlyPanels&p=full&scatterX=date_mean&sidebar=closed&transmissions=hide"
+output = "{}_{}_{}.pdf".format("all", "scatter", "time")
+
 
 print(url)
 print()
 
 wait = 10
-width = 720
-height = 720
+width = 1920
+height = 1080
 options = {
     "path": output,
     "format": "A0",

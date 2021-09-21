@@ -163,7 +163,7 @@ def metadata_to_comment(tree, tree_df):
                 c.comment += ",{}={}".format(col, col_val)
 
 
-def extract_subtree(tree, tips, df, color_branches=False):
+def extract_subtree(tree, tips, df, color=False):
     """ Extract a subtree defined by tip names"""
     subtree_mrca = tree.common_ancestor(tips)
     subtree_clade = copy.deepcopy(subtree_mrca)
@@ -176,11 +176,9 @@ def extract_subtree(tree, tips, df, color_branches=False):
                 subtree_clade.collapse(target=c.name)
 
     # Color branches
-    # if color_branches:
-    #    for c in subtree_clade.find_clades():
-    #        state = df["mugration_branch_major"][c.name]
-    #        color = colors_dict[state]
-    #        c.color = color
+    if color:
+        for c in subtree_clade.find_clades():
+            c.color = color
 
     return subtree_clade
 
@@ -515,121 +513,22 @@ def linregress_bootstrap(
     bootstrap_dict["bootstrap_x_intercept_ci_pretty"] = x_int_ci_pretty
     bootstrap_dict["bootstrap_x_intercept_kde"] = x_int_kde
 
-    """
-    if plot:
-
-        TARGET_RES = [1280, 240]
-        DPI = 200
-        FIGSIZE = [TARGET_RES[0] / DPI, TARGET_RES[1] / DPI]
-        FONTSIZE = 5
-        plt.rc("font", size=FONTSIZE)
-
-        fig, axes = plt.subplots(1, 3, figsize=FIGSIZE, dpi=DPI)
-        fig.subplots_adjust(wspace=0.40)
-        for ax in axes:
-            ax.ticklabel_format(axis="y", style="sci", scilimits=(0, 0))
-            for spine in ax.spines:
-                ax.spines[spine].set_linewidth(0.5)
-        axes[0].set_title("Root-To-Tip Regression", y=1.05)
-        axes[1].set_title("Substitution Rate", y=1.05)
-        axes[2].set_title("MRCA Date", y=1.05)
-
-        # -----------------------------------------------------
-        # Slopes / Rates
-        ax = axes[1]
-        ax.plot(slope_kde.support, slope_kde.density, color="black", lw=0.5)
-        ax.fill_between(slope_kde.support, slope_kde.density, color=color, alpha=0.8)
-        ax.set_xlim(bootstrap_dict["bootstrap_slope_ci"])
-        ax.set_ylabel("Density")
-        ax.set_xlabel("Substitution Rate")
-
-        # -----------------------------------------------------
-        # X Intercept / MRCA
-        ax = axes[2]
-        ax.plot(x_int_kde.support, x_int_kde.density, color="black", lw=0.5)
-        ax.fill_between(x_int_kde.support, x_int_kde.density, color=color, alpha=0.8)
-        ax.set_xlim(bootstrap_dict["bootstrap_x_intercept_ci"])
-        ax.set_ylabel("Density")
-        ax.set_xlabel("Date")
-
-        # -----------------------------------------------------
-        # Linear Regression
-        ax = axes[0]
-        sns.regplot(
-            ax=ax,
-            data=data_df,
-            x="x",
-            y="y",
-            ci=95,
-            scatter_kws={"s": 0},
-            line_kws={"linewidth": 0.5},
-            color="grey",
-        )
-
-        ax.errorbar(
-            x=x,
-            y=y,
-            xerr=xerr,
-            yerr=None,
-            ls="none",
-            c=color,
-            capsize=1,
-            label=None,
-            zorder=2,
-            lw=0.5,
-        )
-        ax.scatter(
-            x,
-            y,
-            s=20,
-            color=color,
-            ec="black",
-            lw=0.50,
-            label=None,
-            alpha=0.8,
-            zorder=3,
-        )
-
-        x_int_ci_pretty = str(
-            [round(n) for n in bootstrap_dict["bootstrap_x_intercept_ci"]]
-        ).strip("[]")
-        slope_ci_pretty = (
-            str(["{:.2e}".format(n) for n in bootstrap_dict["bootstrap_slope_ci"]])
-            .strip("[]")
-            .replace("'", "")
-        )
-
-        ax.annotate(
-            (
-                "      Clade: {}".format(label)
-                + "\n"
-                + "\n      R²: {}".format(round(bootstrap_dict["r_squared"], 2))
-                + "\n"
-                + "\n       p: {:.2e}{}".format(bootstrap_dict["p_value"], p_sig)
-                + "\n"
-                + "\n  Rate: {:.2e}".format(bootstrap_dict["bootstrap_slope_peak"])
-                + "\n           ({})".format(slope_ci_pretty,)
-                + "\n"
-                + "\nMRCA: {}".format(round(bootstrap_dict["x_intercept_peak"]))
-                + "\n           ({})".format(x_int_ci_pretty,)
-            ),
-            xy=(-1.15, 0.5),
-            xycoords="axes fraction",
-            size=5,
-            ha="left",
-            va="center",
-            bbox=dict(fc="w", lw=0.5),
-        )
-
-        # Extend x-axis by 5% of the range
-        xlim = ax.get_xlim()
-        perc = 0.05
-        x_buff = (xlim[1] - xlim[0]) * perc
-        new_xlim = [xlim[0] - x_buff, xlim[1] + x_buff]
-        ax.set_xlim(new_xlim)
-
-        ax.set_xlabel("Date")
-        ax.set_ylabel("Distance to Clade Root")
-    """
-
     return bootstrap_dict
+
+
+def calc_peak_ci(data, confidence, tails):
+    """Return the peak value of the data kde and confidence interval"""
+    kde = sma.nonparametric.KDEUnivariate(data)
+    kde.fit()
+    peak_i = np.argmax(kde.density)
+    peak = kde.support[peak_i]
+
+    if tails == 2:
+        adjust = (100 - confidence) / 2
+        interval = [0 + adjust, 100 - adjust]
+
+    elif tails == 1:
+        interval = [0, confidence]
+
+    ci = list(np.percentile(np.array(data), interval, axis=0,))
+    return (peak, ci)
