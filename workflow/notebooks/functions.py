@@ -532,3 +532,9 @@ def calc_peak_ci(data, confidence, tails):
 
     ci = list(np.percentile(np.array(data), interval, axis=0,))
     return (peak, ci)
+
+
+# Fit an exponential model
+def func_exp(x, a, b, c):
+    """Fit an exponential function."""
+    return a * x + b * x ** 2 + c
