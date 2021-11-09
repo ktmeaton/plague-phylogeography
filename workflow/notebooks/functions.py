@@ -538,3 +538,22 @@ def calc_peak_ci(data, confidence, tails):
 def func_exp(x, a, b, c):
     """Fit an exponential function."""
     return a * x + b * x ** 2 + c
+
+# Find the closest relative
+def closest_terminal_node(sample, tree):
+    """Return the closests terminal node to the sample in tree."""
+    sample1 = sample
+    closest_dist = 999
+    closest_sample = None
+    
+    # Search through tree and calculate genetic distances
+    for sample2 in tree.get_terminals():
+        # Skip self
+        if sample1 == sample2: continue
+
+        gene_dist = tree.distance(sample1, sample2)
+        if gene_dist < closest_dist:
+            closest_dist = gene_dist
+            closest_sample = sample2
+        
+    return closest_sample

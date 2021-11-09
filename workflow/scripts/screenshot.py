@@ -33,16 +33,20 @@ query = "?" + "&".join(options)
 url = project + query
 output = "{}_{}_{}.pdf".format(clade, panel, color)
 
-url = "https://nextstrain.org/community/ktmeaton/plague-phylogeography-projects@main/main/ml/all?d=map&f_population=1.PRE,2.MED,0.PE&legend=closed&onlyPanels&p=full&sidebar=closed&transmissions=hide"
-output = "map_caucasus.pdf"
+url ="https://nextstrain.org/community/ktmeaton/plague-phylogeography-projects@main/main/ml/1.IN?branchLabel=Province%20Confidence&c=province&d=map&legend=closed&m=div&onlyPanels&p=full&sidebar=closed&tl=host_order_raw&transmissions=hide"
+output = "map_divtree.pdf"
+
+
 
 
 print(url)
 print()
 
 wait = 10
-width = 1920
-height = 1080
+#width = 1920
+#height = 1080
+width = 720
+height = 540
 options = {
     "path": output,
     "format": "A0",
