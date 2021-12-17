@@ -123,8 +123,8 @@ rule all:
         #mugration_all_input,
         #mugration_prune_all_input,
         # Plot
-        plot_missing_data_all_input,
-        plot_snp_matrix_all_input,
+        #plot_missing_data_all_input,
+        #plot_snp_matrix_all_input,
         # Stats
         locus_coverage_collect_all_input,
 
